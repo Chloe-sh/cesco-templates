@@ -163,10 +163,10 @@ DRAIN_LV = [('청결','병원 내 조리시설 관리 수준'),('주의','경미
 DRAIN_EX = '배수구는 악취만의 문제가 아니라 세균 증식, 해충 유입의 원인이 됩니다! 배수구 전용 클린 서비스로 관리하는 사업장입니다.'
 TOOLS = {
 'chicken': [
-  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='튀김 기름과 음식물 쓰레기 냄새를 측정기로 재요. 냄새에 예민한 분도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
+  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='튀김 기름과 음식물 쓰레기 냄새를 측정기로 체크해요. 냄새에 예민한 분도 편안하게 이용할 수 있는 수준인지 확인해요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
   dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='주방 바닥 배수구 안을 내시경으로 봐요. 기름때와 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.16')],
 'care': [
-  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='산모 방과 공용 화장실 냄새를 측정기로 재요. 출산 뒤 냄새에 예민해진 산모도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
+  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='산모 방과 화장실 냄새를 측정기로 체크해요. 출산 후 냄새에 예민해진 산모도 편안하게 이용할 수 있는 수준인지 확인해요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
   dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='좌욕실과 조리실 배수구 안을 내시경으로 봐요. 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
 'meat': [],
 }
@@ -261,7 +261,7 @@ EXTRA_CSS = r"""
 .qt2{text-align:center;font-size:17px;font-weight:800;color:var(--ink);line-height:1.45;padding:6px 20px 16px;letter-spacing:-.01em}
 .hc .sw{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 calc((100% - 262px)/2) 4px;scrollbar-width:none}
 .hc .sw::-webkit-scrollbar{display:none}
-.hc .swc{flex:none;width:262px;scroll-snap-align:center;background:#E3E8EE;border-radius:20px;padding:12px;cursor:pointer}
+.hc .swc{position:relative;flex:none;width:262px;scroll-snap-align:center;background:#E3E8EE;border-radius:20px;padding:12px;cursor:pointer}
 .hc .swin{background:#fff;border-radius:12px;border:1.4px solid #E3E8EE;border-top-color:#2F7CE8;border-left-color:#2F7CE8;padding:14px 14px 12px;height:100%;display:flex;flex-direction:column}
 .hc .swt{display:flex;align-items:flex-start;justify-content:space-between}
 .hc .logo{display:flex;align-items:baseline;gap:4px}
@@ -291,6 +291,10 @@ EXTRA_CSS = r"""
 /* 체크 스탬프(네모 스티커) · 블루/화이트 멤버스 탭 */
 .sh3{display:flex;align-items:baseline;gap:6px;padding:0 16px;font-size:12.5px;font-weight:900;color:var(--ink)}
 .sh3 small{font-weight:600;color:var(--muted);font-size:10.5px}
+.mleg{display:flex;gap:12px;padding:4px 16px 10px;font-size:11px;font-weight:800;color:var(--muted)}
+.mleg span{display:inline-flex;align-items:center;gap:5px}
+.mleg i{width:9px;height:9px;border-radius:50%;background:var(--mc)}
+.swc .mtag{position:absolute;top:4px;left:50%;transform:translateX(-50%);z-index:2;font-size:9px;font-weight:900;color:#fff;background:var(--mc);border-radius:999px;padding:2px 7px}
 .mtabs{display:flex;gap:6px;padding:8px 16px 12px}
 .mtab{flex:1;font:inherit;font-size:12px;font-weight:800;padding:8px 0;border-radius:999px;border:1.5px solid #E3E6E1;background:#fff;color:var(--muted);cursor:pointer}
 .mtab small{font-weight:700;margin-left:4px;font-size:10px}
@@ -356,15 +360,18 @@ EXTRA_CSS = r"""
 .tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
 .tv-b .bh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
 .tv-b .bh small{font-size:10.5px;color:var(--muted)}
-.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0}
 .tv-b .g{font:inherit;cursor:pointer;position:relative;padding:8px 8px 12px;border:1px solid var(--wc-line);border-radius:14px;text-align:center;background:#FAFCFF;color:inherit}
 .tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
 .tv-b .g svg{width:100%;max-width:120px;display:block;margin:0 auto}
 .tv-b .g .gv{display:inline-block;margin-top:-10px;font-size:11px;font-weight:900;color:#fff;background:var(--wc);border-radius:999px;padding:3px 10px;letter-spacing:.01em}
 .tv-b .g .gk{font-size:12.5px;font-weight:900;color:var(--ink);margin-top:8px;line-height:1.35;word-break:keep-all;min-height:34px}
 .tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:4px}
+.tv-b .btw{min-height:0}
+.tv-b .bt{display:none;font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.6;margin:2px 2px 10px}
+.tv-b .bt.on{display:block}
 .tv-b .bd{margin-top:8px}
-.tv-b .bp{display:none;border-top:1px solid var(--line);padding-top:8px}
+.tv-b .bp{display:none;padding-top:2px}
 .tv-b .bp.on{display:block}
 .tv-b .be{font-size:11.5px;color:var(--txt);line-height:1.55;margin:0}
 .tv-b .bl{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:8px}
@@ -546,14 +553,15 @@ function editorHtml(bk, s, withBiz){
   return h;
 }
 
-const TXT={title:'세스코가 전문적으로 체크했습니다', sub:'측정 장비로 직접 쟀어요. 바늘이 파란 칸이면 기준을 통과한 거예요', lg:'CESCO<br>측정', more:'자세히', more2:'자세히 보기', less2:'접기', seal:'CESCO', pass:'기준 안', date:'체크일', lvsep:' · '};
+const TXT={title:'세스코가 전문적으로 체크했습니다', sub:'세스코 전문가가 측정 장비로 직접 체크해요.', lg:'CESCO<br>측정', more:'자세히', more2:'자세히 보기', less2:'접기', seal:'CESCO', pass:'기준 안', date:'체크일', lvsep:' · '};
 function toolsBlock(t, tv){
   const T=t.tools;
   if(tv==='A'){
     const rows=T.map(x=>`<div class="ri"><div class="rt"><b>${x.k}</b><span class="rs"><i>✓</i>${x.levels[0][0]}</span><small>측정 도구 · ${x.tool}</small></div><p class="re">${x.easy}</p><div class="rb" style="--w:${(100/x.levels.length).toFixed(2)}%">${x.levels.map((l,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="rl">${x.levels.map((l,i)=>`<b class="${i===0?'on':''}">${l[0]}</b><span class="${i===0?'on':''}">${l[1]}</span>`).join('')}</div><p class="rq">${x.ex}</p></div>`).join('');
     return `<div class="tv-a"><div class="rh"><div><span class="no">CESCO · 측정 리포트</span><b>세스코가 전문적으로 체크했습니다</b></div><div class="dt">체크일<br><b>${T[0].date}</b></div></div>${rows}<div class="rf"><span>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</span><span>${T.length}항목 모두 통과</span></div></div>`;
   }
-  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><div class="bxw"><p class="bx">${x.ex}</p><button type="button" class="bxm">${TXT.more2}</button></div><div class="bdt">${TXT.date} ${x.date}</div></div>`;
+  const topTxt=(x,i)=>`<p class="be bt${i===0?' on':''}" data-tgp="${i}">${x.easy}</p>`;
+  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><div class="bxw"><p class="bx">${x.ex}</p><button type="button" class="bxm">${TXT.more2}</button></div><div class="bdt">${TXT.date} ${x.date}</div></div>`;
   const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b><small>${sub}</small></div></div>`;
   if(tv==='B'){
     const COL=['#0072CE','#E0A100','#E2641B','#C8102E'];
@@ -562,7 +570,7 @@ function toolsBlock(t, tv){
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0072CE">✓</text></svg>`;};
     const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<span class="gv">✓ ${x.levels[0][0]}</span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div></button>`).join('');
-    return `<div class="tv-b" data-tvbox>${head(TXT.sub)}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+    return `<div class="tv-b" data-tvbox><div class="btw">${T.map(topTxt).join('')}</div><div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='D'){
     const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>${TXT.seal}</small></span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><i class="more">${TXT.more}</i></button>`).join('');
@@ -592,14 +600,14 @@ function previewHtml(bk, typ, s, o){
   const say = s.say ? `<div class="say2"><div class="lb">${t.owner} 한마디</div><p><mark class="ed">"${esc(s.say)}"</mark></p><small>${reg.name} ${t.owner}</small></div>` : '';
   const A=t.aicard;
   const aiHtml=`<div class="wai"><div class="wai-t"><span class="sp">✨</span>위쳌 AI<span class="inf">i</span></div><p class="wai-i">${A.intro}</p><ul>${A.checks.map(x=>`<li><span class="em">✅</span>${x}</li>`).join('')}</ul><div class="wai-h">매장정보</div><ul>${A.info.map(x=>`<li><span class="em">${x[0]}</span>${x[1]}</li>`).join('')}</ul><div class="wai-h">리뷰 한눈에</div><ul>${A.review.map(x=>`<li><span class="em">✅</span>${x}</li>`).join('')}</ul></div>`;
-  const mem=t.members.find(m=>m.key===mt)||t.members[0];
-  const cards=t.hcards.cards.filter(c=>mem.svcs.includes(c[0]));
+  const memOf=svc=>t.members.find(m=>m.svcs.includes(svc))||t.members[0];
+  const cards=[...t.hcards.cards].sort((x,y)=>t.members.indexOf(memOf(x[0]))-t.members.indexOf(memOf(y[0])));
   const N=cards.length;
   const mcol=svc=>svc==='FOOD'?t.members[1].color:svc==='CHECK'?'#1A3668':t.members[0].color;
   const P=t.placeinfo;
   const basicHtml=`<div class="binfo"><div class="bi"><span class="ic">📍</span><span>${P.addr}</span><b>복사 · 길찾기</b></div><div class="bi"><span class="ic">🕒</span><span>${P.hours}</span></div><div class="bi"><span class="ic">📞</span><span>${P.tel}</span><b>복사</b></div><div class="bi"><span class="ic">💳</span><span>${P.pay}</span></div><div class="bi"><span class="ic">#</span><span>${P.tags}</span></div><div class="bi"><span class="ic">🛋️</span><span>${P.conv.join(', ')}</span></div></div>`;
-  const mtabs=`<div class="mtabs">${t.members.map(m=>`<button type="button" class="mtab ${m.key===mt?'on':''}" data-mt="${m.key}" style="--mc:${m.color}">${m.name}<small>${t.hcards.cards.filter(c=>m.svcs.includes(c[0])).length}</small></button>`).join('')}</div>`;
-  const cardsHtml=cards.map((c,ci)=>`<div class="swc" style="--mc:${mem.color};--mbg:${mem.bg};--ml:${mem.line}"><div class="swin"><div class="swt"><span class="logo"><b>CESCO</b><i>${t.svc_en[c[0]]||c[0]}</i></span><span class="stamp"><svg viewBox="0 0 44 44" width="40" height="40"><circle cx="22" cy="22" r="20" fill="none" stroke="#8FA3BF" stroke-width="1.4"/><circle cx="22" cy="22" r="15" fill="none" stroke="#8FA3BF" stroke-width=".8"/><text x="22" y="20" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CESCO</text><text x="22" y="28" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CHECK</text></svg></span></div><div class="hk">${c[1]}</div><div class="hl">${c[2]}</div><div class="ck"><span class="bx">✓</span><span>[${c[3]}] ${c[4]} 체크 완료</span></div><div class="dt">최근 점검일 : 2026.${reg.date}</div><div class="rp">ⓘ 점검 리포트 보기</div></div></div>`).join('');
+  const mtabs=`<div class="mleg">${t.members.map(m=>{const n=t.hcards.cards.filter(c=>m.svcs.includes(c[0])).length; return n?`<span style="--mc:${m.color}"><i></i>${m.name} ${n}</span>`:'';}).join('')}</div>`;
+  const cardsHtml=cards.map((c,ci)=>{const mem=memOf(c[0]); return `<div class="swc" style="--mc:${mem.color};--mbg:${mem.bg};--ml:${mem.line}"><div class="swin"><span class="mtag">${mem.name}</span><div class="swt"><span class="logo"><b>CESCO</b><i>${t.svc_en[c[0]]||c[0]}</i></span><span class="stamp"><svg viewBox="0 0 44 44" width="40" height="40"><circle cx="22" cy="22" r="20" fill="none" stroke="#8FA3BF" stroke-width="1.4"/><circle cx="22" cy="22" r="15" fill="none" stroke="#8FA3BF" stroke-width=".8"/><text x="22" y="20" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CESCO</text><text x="22" y="28" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CHECK</text></svg></span></div><div class="hk">${c[1]}</div><div class="hl">${c[2]}</div><div class="ck"><span class="bx">✓</span><span>[${c[3]}] ${c[4]} 체크 완료</span></div><div class="dt">최근 점검일 : 2026.${reg.date}</div><div class="rp">ⓘ 점검 리포트 보기</div></div></div>`;}).join('');
   const toolsHtml=toolsBlock(t, o.tv||'B');
   const M=t.placemeta, pv=o.pv||'A';
   const chkRow=(c,i)=>`<div class="pc${i===0?' first':''}" style="--mc:${mcol(c[0])}"><div class="pc-h"><span class="ok">✓</span><b>${c[1]}</b><span class="svc">${t.svc_ko[c[0]]||c[0]}</span></div><p>${c[2]}</p><div class="pc-f">세스코 체크 완료 · 2026.${reg.date} · 유효 3개월</div></div>`;
@@ -722,7 +730,7 @@ document.addEventListener('click',e=>{
   const tb=e.target.closest('.tabs2 span[data-tab]'); if(tb){const el=tb.closest('[data-static]'); if(el){el.dataset.tab=tb.dataset.tab; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
   const pb=e.target.closest('.pvsel button[data-pv]'); if(pb){const el=document.querySelector(pb.closest('.pvsel').dataset.for); if(el){el.dataset.pv=pb.dataset.pv; el.dataset.tab='place'; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv}); pb.parentElement.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===pb));} return;}
   const bm=e.target.closest('.tv-b .bxm'); if(bm){const w=bm.closest('.bxw'); const o=w.classList.toggle('open'); bm.textContent=o?TXT.less2:TXT.more2; return;}
-  const tg=e.target.closest('[data-tvbox] .g[data-tg]'); if(tg){const box=tg.closest('[data-tvbox]'); const k=tg.dataset.tg; const open=!tg.classList.contains('on'); box.querySelectorAll('.g').forEach(b=>b.classList.toggle('on',open&&b.dataset.tg===k)); box.querySelectorAll('.bp').forEach(b=>b.classList.toggle('on',open&&b.dataset.tgp===k)); return;}
+  const tg=e.target.closest('[data-tvbox] .g[data-tg]'); if(tg){const box=tg.closest('[data-tvbox]'); const k=tg.dataset.tg; const open=!tg.classList.contains('on'); box.querySelectorAll('.g').forEach(b=>b.classList.toggle('on',open&&b.dataset.tg===k)); box.querySelectorAll('.bp,.bt').forEach(b=>b.classList.toggle('on',open&&b.dataset.tgp===k)); return;}
   const mb=e.target.closest('.mtab[data-mt]'); if(mb){const el=mb.closest('[data-static]'); if(el){el.dataset.mt=mb.dataset.mt; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
 });
 function swGo(sw,k){const n=sw.children.length; k=(k+n)%n; const c=sw.children[k]; sw.scrollTo({left:c.offsetLeft-(sw.clientWidth-c.offsetWidth)/2-sw.offsetLeft*0,behavior:'smooth'});}
