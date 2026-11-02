@@ -35,7 +35,16 @@ function card(it, skipTpl) {
   c += `<span class="gal-actions"><a class="gal-open" href="${link(it)}" target="_blank" rel="noopener">열기 ↗</a>`;
   if (it.draft) c += `<a class="gal-draft" href="${href(it.draft)}" target="_blank" rel="noopener" title="원고 확인용 코드 초안형">초안</a>`;
   for (const t of it.tpl) if (t !== skipTpl) c += `<button type="button" class="xref gal-xref" data-goto="${t}" title="${esc(tplLabel(t))}">${t}</button>`;
-  return c + `</span></figcaption></figure>`;
+  c += `</span>`;
+  if (it.versions && it.versions.length) {
+    c += `<details class="gal-vers"><summary>버전 ${it.versions.length}개 보기</summary><ul>`;
+    for (const v of it.versions) {
+      const vmeta = [v.date ? v.date.replace(/^2026-/, '').replace('-', '/') : '', v.note].filter(Boolean).join(' · ');
+      c += `<li><a href="${href(v.file)}${v.hash ? '#' + v.hash : ''}" target="_blank" rel="noopener">${esc(v.label)}</a>${vmeta ? `<small>${esc(vmeta)}</small>` : ''}</li>`;
+    }
+    c += `</ul></details>`;
+  }
+  return c + `</figcaption></figure>`;
 }
 
 // ---------- 본문 ----------
@@ -86,6 +95,15 @@ const css = `
 .gal-title{font-size:.92rem;font-weight:700;letter-spacing:-.01em;line-height:1.35;text-wrap:balance}
 .gal-meta{font-size:.74rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .gal-actions{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;margin-top:.35rem;padding-top:.45rem;border-top:1px dashed var(--rule-soft)}
+.gal-vers{margin-top:.4rem;font-size:.78rem}
+.gal-vers summary{cursor:pointer;color:var(--accent);font-weight:700;list-style:none;display:inline-flex;align-items:center;gap:.3rem}
+.gal-vers summary::before{content:"▸";font-size:.7rem;transition:transform .12s}
+.gal-vers[open] summary::before{transform:rotate(90deg)}
+.gal-vers ul{list-style:none;margin:.35rem 0 0;padding:0;display:flex;flex-direction:column;gap:.25rem}
+.gal-vers li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .5rem;padding:.3rem .55rem;border:1px solid var(--rule-soft);border-radius:6px;background:var(--paper)}
+.gal-vers li a{color:var(--ink);font-weight:600;text-decoration:none}
+.gal-vers li a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.gal-vers li small{color:var(--ink-3);font-size:.72rem}
 .gal-open{font-size:.78rem;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:.14rem .6rem;background:var(--paper)}
 .gal-open:hover{border-color:var(--accent);background:var(--accent-soft)}
 .gal-draft{font-size:.74rem;color:var(--ink-3);text-decoration:underline;text-underline-offset:2px}
