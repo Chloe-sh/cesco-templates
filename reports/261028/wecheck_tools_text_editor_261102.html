@@ -339,6 +339,8 @@ figcaption small{display:block;font-weight:500;color:var(--muted);font-size:11.5
 .hc .sw:empty:before{content:"이 탭에 해당하는 항목이 없어요";font-size:11px;color:var(--muted);padding:12px 0}
 /* 도구 측정 블록 */
 .tools-wrap{background:var(--bg);padding:6px 0 18px}
+.tools-wrap.in-hc{background:transparent;padding:14px 0 4px}
+.tools-wrap.in-hc .tv-b{margin:0;box-shadow:none;border:1px solid var(--wc-line)}
 .tools{margin:0 16px;background:#fff;border:1.5px solid #E6D9B8;border-radius:16px;padding:14px}
 .tl-h{display:flex;gap:10px;align-items:center}
 .gold{flex:none;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#F6E7B0,#C9A227 70%,#A8841A);color:#5A4200;font-size:7.5px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15;box-shadow:0 1px 3px rgba(0,0,0,.2)}
@@ -392,7 +394,7 @@ figcaption small{display:block;font-weight:500;color:var(--muted);font-size:11.5
 .tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
 .tv-b .bh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
 .tv-b .bh small{font-size:10.5px;color:var(--muted)}
-.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0}
+.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
 .tv-b .g{font:inherit;cursor:pointer;position:relative;padding:8px 8px 12px;border:1px solid var(--wc-line);border-radius:14px;text-align:center;background:#FAFCFF;color:inherit}
 .tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
 .tv-b .g svg{width:100%;max-width:120px;display:block;margin:0 auto}
@@ -400,7 +402,7 @@ figcaption small{display:block;font-weight:500;color:var(--muted);font-size:11.5
 .tv-b .g .gk{font-size:12.5px;font-weight:900;color:var(--ink);margin-top:8px;line-height:1.35;word-break:keep-all;min-height:34px}
 .tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:4px}
 .tv-b .btw{min-height:0}
-.tv-b .bt{display:none;font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.6;margin:2px 2px 10px}
+.tv-b .bt{display:none;font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.6;margin:12px 2px 10px}
 .tv-b .bt.on{display:block}
 .tv-b .bd{margin-top:8px}
 .tv-b .bp{display:none;padding-top:2px}
@@ -642,7 +644,7 @@ function toolsBlock(t, tv){
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0072CE">✓</text></svg>`;};
     const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<span class="gv">✓ ${x.levels[0][0]}</span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div></button>`).join('');
-    return `<div class="tv-b" data-tvbox><div class="btw">${T.map(topTxt).join('')}</div><div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+    return `<div class="tv-b" data-tvbox>${head(TXT.sub)}<div class="btw">${T.map(topTxt).join('')}</div><div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='D'){
     const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>${TXT.seal}</small></span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><i class="more">${TXT.more}</i></button>`).join('');
@@ -721,6 +723,7 @@ ${mtabs}
 <div class="sw">${cardsHtml}</div>
 <div class="swbar"><button type="button" class="swnav" data-d="p" aria-label="이전 카드">‹</button><div class="dots">${cards.map((c,ci)=>`<i class="${ci===0?'on':''}"></i>`).join('')}</div><button type="button" class="swnav" data-d="n" aria-label="다음 카드">›</button></div>
 <div class="hcsum">세스코가 ${reg.date}에 직접 체크한 ${t.key} 위생 정보 ${t.hcards.cards.length}가지 · 위생 등급 <b>A</b></div>
+<div class="tools-wrap in-hc">${toolsHtml}</div>
 ${typ==='A'?'<div class="grid">'+ms+'</div>':''}</div>`);
   const bodyC=`<div class="dp">
 <div class="hr"><div class="pho">사진 자리 · 대표 세로 컷 (사장님 또는 점검 촬영)</div><div class="ov"><span class="lab">${fill(t.hero_lab,reg)}</span><h1>${t.hero}</h1><div class="sub">${reg.name}</div></div></div>
@@ -758,7 +761,7 @@ ${repRow}${fine}</div>`;
 ${pull}
 ${repRow}${fine}</div>`;
   const body = typ==='A'?bodyA : typ==='B'?bodyB : bodyC;
-  return headHtml + (tab==='place'?'':body) + `<div class="tools-wrap">${toolsHtml}</div>` + `<div class="actions"><div class="ico">전화</div><div class="ico">저장</div><div class="cta">${t.cta}</div></div>`;
+  return headHtml + (tab==='place'?`<div class="tools-wrap">${toolsHtml}</div>`:body) + `<div class="actions"><div class="ico">전화</div><div class="ico">저장</div><div class="cta">${t.cta}</div></div>`;
 }
 function refreshPreviews(bk){
   document.querySelectorAll('[data-tools]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML='<div class="tools-wrap">'+toolsBlock(D[bk], el.dataset.tv)+'</div>'; });
