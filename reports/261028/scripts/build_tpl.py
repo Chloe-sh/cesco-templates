@@ -362,19 +362,19 @@ EXTRA_CSS = r"""
 .tv-b .g .gk{font-size:11.5px;font-weight:900;color:var(--ink);margin-top:-2px;line-height:1.3;word-break:keep-all}
 .tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:1px}
 .tv-b .g .gv{display:inline-block;margin-top:6px;font-size:11px;font-weight:900;color:#0B5E31;background:#E8F6EE;border-radius:999px;padding:2px 9px}
-.tv-b .bd{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
-.tv-b details{border-bottom:1px solid var(--line);padding:7px 0}
-.tv-b details:last-child{border-bottom:0}
-.tv-b summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;color:var(--ink);flex-wrap:wrap}
-.tv-b summary::-webkit-details-marker{display:none}
-.tv-b summary small{font-weight:600;color:var(--muted);font-size:10px}
-.tv-b summary:after{content:"⌄";margin-left:auto;color:var(--muted);font-size:14px}
-.tv-b details[open] summary:after{content:"⌃"}
-.tv-b .be{font-size:11.5px;color:var(--txt);line-height:1.55;margin:6px 0 0}
-.tv-b .bl{display:flex;gap:4px;margin-top:8px}
-.tv-b .bl span{flex:1;font-size:9.5px;line-height:1.35;color:#6B6B6B;padding:6px 5px;border-radius:7px;background:#F4F5F2}
-.tv-b .bl span b{display:block;font-size:10px;color:var(--ink2)}
-.tv-b .bl span.on{background:#E8F6EE;color:#0B5E31}.tv-b .bl span.on b{color:#0B5E31}
+.tv-b .g{font:inherit;cursor:pointer;position:relative;padding-bottom:22px}
+.tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
+.tv-b .g .more{position:absolute;left:0;right:0;bottom:6px;font-style:normal;font-size:9.5px;color:var(--muted);font-weight:700}
+.tv-b .g .more:after{content:" ⌄"}
+.tv-b .g.on .more{color:var(--wc)}.tv-b .g.on .more:after{content:" ⌃"}
+.tv-b .bd{margin-top:8px}
+.tv-b .bp{display:none;border-top:1px solid var(--line);padding-top:8px}
+.tv-b .bp.on{display:block}
+.tv-b .be{font-size:11.5px;color:var(--txt);line-height:1.55;margin:0}
+.tv-b .bl{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:8px}
+.tv-b .bl span{font-size:10px;font-weight:800;color:#9A9A9A;padding:3px 8px;border-radius:999px;background:#F4F5F2}
+.tv-b .bl span.on{background:#E8F6EE;color:#0B5E31}
+.tv-b .bl small{flex-basis:100%;font-size:10px;color:var(--muted);line-height:1.4;margin-top:1px}
 .tv-b .bx{font-size:10.5px;color:var(--ink2);line-height:1.6;margin-top:8px;background:var(--wc-bg);border-radius:10px;padding:8px 10px}
 .tv-b .bdt{font-size:10px;color:var(--muted);margin-top:5px;font-weight:700}
 /* C 점검 기록형 */
@@ -530,8 +530,8 @@ function toolsBlock(t, tv){
       const segs=x.levels.map((l,i)=>`<path d="${arc(i/n+0.01,(i+1)/n-0.01)}" stroke="${COL[i]}" stroke-width="10" fill="none" stroke-linecap="butt" opacity="${i===0?1:.28}"/>`).join('');
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0B5E31">✓</text></svg>`;};
-    const gg=T.map(x=>`<div class="g">${gauge(x)}<div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span></div>`).join('');
-    const bd=T.map((x,i)=>`<details ${i===0?'open':''}><summary>${x.hl}<small>${x.k} · ${x.tool}</small></summary><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}"><b>${l[0]}</b>${l[1]}</span>`).join('')}</div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></details>`).join('');
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span><i class="more">자세히</i></button>`).join('');
+    const bd=T.map((x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></div>`).join('');
     return `<div class="tv-b"><div class="bh"><span class="lg">CESCO<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>측정 장비로 직접 쟀어요. 바늘이 초록이면 기준 안이에요</small></div></div><div class="gg">${gg}</div><div class="bd">${bd}</div></div>`;
   }
   if(tv==='C'){
@@ -680,6 +680,7 @@ document.addEventListener('input',e=>{
 document.addEventListener('click',e=>{
   const tb=e.target.closest('.tabs2 span[data-tab]'); if(tb){const el=tb.closest('[data-static]'); if(el){el.dataset.tab=tb.dataset.tab; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
   const pb=e.target.closest('.pvsel button[data-pv]'); if(pb){const el=document.querySelector(pb.closest('.pvsel').dataset.for); if(el){el.dataset.pv=pb.dataset.pv; el.dataset.tab='place'; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv}); pb.parentElement.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===pb));} return;}
+  const tg=e.target.closest('.tv-b .g[data-tg]'); if(tg){const box=tg.closest('.tv-b'); const k=tg.dataset.tg; const open=!tg.classList.contains('on'); box.querySelectorAll('.g').forEach(b=>b.classList.toggle('on',open&&b.dataset.tg===k)); box.querySelectorAll('.bp').forEach(b=>b.classList.toggle('on',open&&b.dataset.tgp===k)); return;}
   const mb=e.target.closest('.mtab[data-mt]'); if(mb){const el=mb.closest('[data-static]'); if(el){el.dataset.mt=mb.dataset.mt; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
 });
 function swGo(sw,k){const n=sw.children.length; k=(k+n)%n; const c=sw.children[k]; sw.scrollTo({left:c.offsetLeft-(sw.clientWidth-c.offsetWidth)/2-sw.offsetLeft*0,behavior:'smooth'});}
