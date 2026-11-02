@@ -144,6 +144,23 @@ def place_block():
 <div class="panel"><table class="names"><thead><tr><th style="width:18%">항목</th><th>내용</th></tr></thead><tbody>{tr}</tbody></table></div>
 <div class="row3" style="margin-top:16px">{figs}</div></div>'''
 
+def tools3_block():
+    rows = [
+        ('A','검사 리포트형','종이 측정 리포트처럼. 항목마다 결과 칸(청결 ✓)을 오른쪽에 크게 두고, 가는 단계 막대와 기준 설명, 예시 문구를 인용 줄로 붙입니다. 종이색 바탕, 검정 제목 줄.','"세스코가 직접 쟀다"는 공식 문서 느낌이 제일 강합니다. 글이 많아도 표처럼 읽힙니다.','금색 표식이 없어 위생정보 카드와 톤이 달라 보일 수 있습니다.'),
+        ('B','게이지형','계기판 반원 2개를 나란히 두고 바늘이 초록 칸을 가리킵니다. 설명·기준·예시 문구는 아래 접이식에 두고 첫 항목만 펼쳐 둡니다.','한눈에 "기준 안"이 보이고 화면이 짧습니다. 세스코 파랑과 맞춰 위쳌 AI 카드와 같은 계열입니다.','접힌 항목은 눌러야 보입니다. 게이지가 수치처럼 읽힐 수 있어 "바늘이 초록이면 기준 안" 한 줄을 넣었습니다.'),
+        ('C','점검 기록형','세스코 전문가가 남긴 점검 기록처럼. 왼쪽 점선 타임라인에 체크 표시, 단계는 위험→청결 사다리로 쌓고 이 사업장 위치를 초록으로, 예시 문구는 "세스코 전문가 메모" 말풍선으로.','사람이 와서 보고 갔다는 느낌이 납니다. 인터뷰·에디터 방향과 어울립니다.','셋 중 제일 깁니다. 말풍선 문구가 길면 더 늘어납니다.'),
+    ]
+    tr = ''.join(f'<tr><td class="n">{k} · {n}</td><td>{d}</td><td>{g}</td><td>{b}</td></tr>' for k,n,d,g,b in rows)
+    figs = ''
+    for k, nm in [('A','검사 리포트형'),('B','게이지형'),('C','점검 기록형')]:
+        for bk in ['chicken','care']:
+            t = T.TPL[bk]
+            figs += f'<figure><figcaption><b>{k}안 · {nm}</b><small>{t["reg"]["name"]} · 각 화면 맨 아래 블록만 떼어 본 것</small></figcaption><div class="phone part"><div data-tools data-biz="{bk}" data-tv="{k}"></div></div></figure>'
+    return f'''<div class="blk" id="tools3"><h2>도구 측정 블록 디자인 3안<small>내용(악취 · 배수구 오염도, 쉬운 설명, 기준 단계, 예시 문구, 체크일)은 같고 보여 주는 모양만 다릅니다</small></h2>
+<div class="sub">위 업종별 화면 맨 아래에 있는 금색 표식 블록이 현재안입니다(참고 캡처 <a href="ref/도구측정블록_현재디자인_261102.png" target="_blank">ref/도구측정블록_현재디자인_261102.png</a>). 아래 세 안은 같은 내용을 다른 모양으로 그린 것이고, 하나를 고르면 두 업종 화면에 한 번에 넣습니다.</div>
+<div class="panel"><table class="names"><thead><tr><th style="width:14%">안</th><th style="width:32%">모양</th><th>좋은 점</th><th style="width:24%">걸리는 점</th></tr></thead><tbody>{tr}</tbody></table></div>
+<div class="row3" style="margin-top:16px">{figs}</div></div>'''
+
 def feat_notes(bk):
     t = T.TPL[bk]; o = t['owner']
     return f'''<div class="notes"><h3>화면 구성 (위에서 아래로)</h3><ol>
@@ -152,7 +169,7 @@ def feat_notes(bk):
 <li class="c"><i>3</i><div><b>위생정보 / 장소정보 탭</b>: 둘 다 눌러 볼 수 있습니다</div></li>
 <li class="c"><i>4</i><div><b>{T.STICKER_NAME}</b>(네모 스티커): 블루 멤버스(파랑) / 화이트 멤버스(식품안전, 초록) 탭. 실제 받는 솔루션만</div></li>
 <li class="o"><i>5</i><div><b>{o}이 고른 POINT 01~03</b>: 10개 중 2~3개. 아래 선택 화면에서 바꿔 볼 수 있습니다</div></li>
-<li class="c"><i>6</i><div><b>도구 측정 "세스코가 전문적으로 체크했습니다"</b>: 각 화면 맨 아래, 두 탭 공통. 악취, 배수구 오염도. 쉬운 설명, 기준 범위, 예시 문구, 체크일 순서. 수치 대신 "기준 안" 통과 표시와 골드 표식</div></li>
+<li class="c"><i>6</i><div><b>도구 측정 "세스코가 전문적으로 체크했습니다"</b>: 각 화면 맨 아래, 두 탭 공통. 악취, 배수구 오염도. 쉬운 설명, 기준 범위, 예시 문구, 체크일 순서. 수치 대신 "기준 안" 통과 표시와 골드 표식. 다른 모양 3안은 <a href="#tools3">위 비교</a>에</div></li>
 <li class="c"><i>7</i><div><b>장소정보 탭</b>(아이콘 그리드로 확정): 기본 정보 전체와 <b>세스코가 특별히 체크한 장소 정보</b>. 유아의자, 단체석, 국내산 김치, 조리자 비흡연, 손세정제, 알레르기 표기처럼 가 봐야만 아는 짧은 사실, 타일을 누르면 문진 원문</div></li>
 </ol><div class="lg2">세스코 영역<i style="background:var(--wc)"></i> · 등록 정보<i style="background:#6B7684"></i> · {o} 선택<i style="background:var(--amber)"></i></div></div>'''
 
@@ -179,11 +196,12 @@ def build():
 <div class="lead"><div class="desc"><h1>위쳌 사업장 상세 시안, 치킨집과 산후조리원</h1>
 <p>10/30 회의에서 나온 7가지를 반영한 판입니다. 업종마다 <b>상세페이지형</b>을 먼저 크게 두고, 같은 화면의 <b>장소정보 탭</b>을 옆에 붙였습니다. 사장님 선택 화면, 수치형, 인터뷰형은 아래에 참고로 있습니다. 장소정보 탭 UI는 11/02에 A 아이콘 그리드로 정해서 그 모양만 남겼습니다.</p>
 <p>화면 안의 탭, 카드, 체크박스는 다 눌러 볼 수 있습니다. 상호, 주소, 수치는 예시입니다.</p>
-<div class="chips"><span>① 장소정보 탭 (아이콘 그리드 확정)</span><span class="g">② {T.STICKER_NAME} 블루/화이트 멤버스</span><span class="y">③ 도구 측정 블록 (악취 · 배수구)</span><span>④ 문장 손질</span><span>⑤ 상세페이지형 앞으로</span><span>⑥ 관리 구조</span><span>⑦ 명칭 후보</span></div>
-<div class="toc"><a href="#struct">관리 구조</a><a href="#naming">명칭 후보</a><a href="#place">장소정보 탭</a><a href="#chicken">치킨집</a><a href="#care">산후조리원</a><a href="#memo">확인 필요</a></div></div></div>
+<div class="chips"><span>① 장소정보 탭 (아이콘 그리드 확정)</span><span class="g">② {T.STICKER_NAME} 블루/화이트 멤버스</span><span class="y">③ 도구 측정 블록 (악취 · 배수구, 디자인 3안)</span><span>④ 문장 손질</span><span>⑤ 상세페이지형 앞으로</span><span>⑥ 관리 구조</span><span>⑦ 명칭 후보</span></div>
+<div class="toc"><a href="#struct">관리 구조</a><a href="#naming">명칭 후보</a><a href="#place">장소정보 탭</a><a href="#tools3">도구 측정 3안</a><a href="#chicken">치킨집</a><a href="#care">산후조리원</a><a href="#memo">확인 필요</a></div></div></div>
 {struct_block()}
 {naming_block()}
 {place_block()}
+{tools3_block()}
 {secs}
 <div class="memo" id="memo"><h2>확인 필요, 출처</h2>
 <div class="tw"><table><thead><tr><th style="width:22%">항목</th><th>내용</th></tr></thead><tbody>

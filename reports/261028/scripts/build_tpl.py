@@ -323,6 +323,86 @@ EXTRA_CSS = r"""
 .lvd b{flex:none;width:28px;color:var(--ink2);font-weight:800}
 .tl-x{font-size:11px;color:var(--ink2);line-height:1.6;margin-top:8px;background:#FBF7EC;border-radius:10px;padding:9px 10px}
 .tl-d{font-size:10px;color:#9A6B12;margin-top:6px;font-weight:700}
+
+/* 도구 측정 블록 디자인 3안 */
+.phone.part{border-radius:16px;padding:10px 0}
+/* A 검사 리포트형 */
+.tv-a{margin:0 16px;background:#FCFBF7;border:1px solid #E3DFD2;border-radius:10px;padding:0 0 10px;font-size:11.5px}
+.tv-a .rh{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:2px solid #1A1A1A}
+.tv-a .rh .no{font-size:9.5px;letter-spacing:.08em;color:#6B6B6B;font-weight:800;text-transform:uppercase}
+.tv-a .rh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
+.tv-a .rh .dt{margin-left:auto;text-align:right;font-size:9.5px;color:#6B6B6B;line-height:1.3}
+.tv-a .rh .dt b{font-size:11px;color:var(--ink)}
+.tv-a .ri{padding:12px 14px 2px;border-bottom:1px solid #E3DFD2}
+.tv-a .ri:last-child{border-bottom:0}
+.tv-a .rt{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.tv-a .rt b{font-size:13px;font-weight:900;color:var(--ink)}
+.tv-a .rt small{font-size:10px;color:#6B6B6B}
+.tv-a .rs{grid-row:1/3;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:900;color:#0B5E31;background:#E8F6EE;border:1px solid #BFE5CF;border-radius:6px;padding:5px 9px}
+.tv-a .rs i{font-style:normal;width:16px;height:16px;border-radius:50%;background:#0E8F4A;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center}
+.tv-a .re{color:var(--txt);line-height:1.55;margin:7px 0 0}
+.tv-a .rb{position:relative;display:flex;gap:2px;margin-top:22px;height:8px}
+.tv-a .rb i{flex:1;border-radius:2px;background:#DAD6C9}
+.tv-a .rb i.on{background:#0E8F4A}
+.tv-a .rb i.on:after{content:"▼ 이 사업장";position:absolute;top:-16px;left:0;width:var(--w);text-align:center;font-size:9.5px;font-weight:900;color:#0B5E31;font-style:normal;white-space:nowrap}
+.tv-a .rl{display:grid;grid-template-columns:auto 1fr;gap:3px 8px;margin-top:8px;font-size:10px;color:#6B6B6B;line-height:1.4}
+.tv-a .rl b{color:var(--ink2);font-weight:800;min-width:24px}
+.tv-a .rl .on{color:#0B5E31}
+.tv-a .rq{margin:9px 0 10px;padding:0 0 0 10px;border-left:2px solid #C9A227;font-size:10.5px;color:var(--ink2);line-height:1.6}
+.tv-a .rf{padding:9px 14px 0;font-size:9.5px;color:#6B6B6B;display:flex;justify-content:space-between}
+/* B 게이지형 */
+.tv-b{margin:0 16px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.tv-b .bh{display:flex;align-items:center;gap:8px}
+.tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
+.tv-b .bh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
+.tv-b .bh small{font-size:10.5px;color:var(--muted)}
+.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tv-b .g{border:1px solid var(--wc-line);border-radius:14px;padding:10px 8px 8px;text-align:center;background:#FAFCFF}
+.tv-b .g svg{width:100%;max-width:130px;display:block;margin:0 auto}
+.tv-b .g .gk{font-size:12px;font-weight:900;color:var(--ink);margin-top:-4px}
+.tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:1px}
+.tv-b .g .gv{display:inline-block;margin-top:6px;font-size:11px;font-weight:900;color:#0B5E31;background:#E8F6EE;border-radius:999px;padding:2px 9px}
+.tv-b .bd{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.tv-b details{border-bottom:1px solid var(--line);padding:7px 0}
+.tv-b details:last-child{border-bottom:0}
+.tv-b summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;color:var(--ink)}
+.tv-b summary::-webkit-details-marker{display:none}
+.tv-b summary small{font-weight:600;color:var(--muted);font-size:10px}
+.tv-b summary:after{content:"⌄";margin-left:auto;color:var(--muted);font-size:14px}
+.tv-b details[open] summary:after{content:"⌃"}
+.tv-b .be{font-size:11.5px;color:var(--txt);line-height:1.55;margin:6px 0 0}
+.tv-b .bl{display:flex;gap:4px;margin-top:8px}
+.tv-b .bl span{flex:1;font-size:9.5px;line-height:1.35;color:#6B6B6B;padding:6px 5px;border-radius:7px;background:#F4F5F2}
+.tv-b .bl span b{display:block;font-size:10px;color:var(--ink2)}
+.tv-b .bl span.on{background:#E8F6EE;color:#0B5E31}.tv-b .bl span.on b{color:#0B5E31}
+.tv-b .bx{font-size:10.5px;color:var(--ink2);line-height:1.6;margin-top:8px;background:var(--wc-bg);border-radius:10px;padding:8px 10px}
+.tv-b .bdt{font-size:10px;color:var(--muted);margin-top:5px;font-weight:700}
+/* C 점검 기록형 */
+.tv-c{margin:0 16px;background:#fff;border-radius:16px;padding:14px 14px 10px;border:1px solid var(--line)}
+.tv-c .ch{display:flex;align-items:center;gap:9px}
+.tv-c .ch .av{flex:none;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1A3668,#0072CE);color:#fff;font-size:8.5px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
+.tv-c .ch b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
+.tv-c .ch small{font-size:10.5px;color:var(--muted)}
+.tv-c .ch .st{margin-left:auto;font-size:9.5px;font-weight:900;color:var(--wc);border:1.5px solid var(--wc);border-radius:6px;padding:3px 7px;white-space:nowrap;text-align:center;line-height:1.2}
+.tv-c .tl2{position:relative;margin-top:12px;padding-left:22px}
+.tv-c .tl2:before{content:"";position:absolute;left:6px;top:8px;bottom:14px;border-left:2px dotted #CFE0F3}
+.tv-c .ci{position:relative;padding:2px 0 14px}
+.tv-c .ci:before{content:"✓";position:absolute;left:-22px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--wc);color:#fff;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.tv-c .ck{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:900;color:var(--ink)}
+.tv-c .ck small{font-size:10px;color:var(--muted);font-weight:600}
+.tv-c .ck .ok{margin-left:auto;font-size:10px;font-weight:900;color:#0B5E31;background:#E8F6EE;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.tv-c .ce{font-size:11.5px;color:var(--txt);line-height:1.55;margin:5px 0 0}
+.tv-c .ld{margin-top:8px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tv-c .ld div{display:flex;gap:8px;align-items:center;padding:5px 9px;font-size:10px;color:#9A9A9A;line-height:1.35;border-top:1px solid var(--line)}
+.tv-c .ld div:first-child{border-top:0}
+.tv-c .ld b{flex:none;width:26px;font-weight:800;color:#B0B0B0}
+.tv-c .ld div.on{background:#E8F6EE;color:#0B5E31;font-weight:700}
+.tv-c .ld div.on b{color:#0B5E31}
+.tv-c .ld div.on:after{content:"◀ 이 사업장";margin-left:auto;font-size:9.5px;font-weight:900;white-space:nowrap}
+.tv-c .cm{position:relative;margin-top:9px;background:#F4F5F2;border-radius:12px;padding:8px 10px;font-size:10.5px;color:var(--ink2);line-height:1.6}
+.tv-c .cm:before{content:"";position:absolute;left:14px;top:-6px;border:6px solid transparent;border-bottom-color:#F4F5F2;border-top:0}
+.tv-c .cm b{display:block;font-size:9.5px;color:var(--wc);margin-bottom:2px}
+.tv-c .cd{font-size:10px;color:var(--muted);margin-top:6px;font-weight:700}
 /* 장소 정보 탭 */
 .place{background:#fff;padding:14px 16px 18px}
 .pl-sec{padding:4px 0 14px}
@@ -438,6 +518,28 @@ function editorHtml(bk, s, withBiz){
   return h;
 }
 
+function toolsBlock(t, tv){
+  const T=t.tools;
+  if(tv==='A'){
+    const rows=T.map(x=>`<div class="ri"><div class="rt"><b>${x.k}</b><span class="rs"><i>✓</i>${x.levels[0][0]}</span><small>측정 도구 · ${x.tool}</small></div><p class="re">${x.easy}</p><div class="rb" style="--w:${(100/x.levels.length).toFixed(2)}%">${x.levels.map((l,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="rl">${x.levels.map((l,i)=>`<b class="${i===0?'on':''}">${l[0]}</b><span class="${i===0?'on':''}">${l[1]}</span>`).join('')}</div><p class="rq">${x.ex}</p></div>`).join('');
+    return `<div class="tv-a"><div class="rh"><div><span class="no">CESCO · 측정 리포트</span><b>세스코가 전문적으로 체크했습니다</b></div><div class="dt">체크일<br><b>${T[0].date}</b></div></div>${rows}<div class="rf"><span>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</span><span>${T.length}항목 모두 통과</span></div></div>`;
+  }
+  if(tv==='B'){
+    const COL=['#0E8F4A','#E0A100','#E2641B','#C8102E'];
+    const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
+      const segs=x.levels.map((l,i)=>`<path d="${arc(i/n+0.01,(i+1)/n-0.01)}" stroke="${COL[i]}" stroke-width="10" fill="none" stroke-linecap="butt" opacity="${i===0?1:.28}"/>`).join('');
+      const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
+      return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0B5E31">✓</text></svg>`;};
+    const gg=T.map(x=>`<div class="g">${gauge(x)}<div class="gk">${x.k}<small>${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span></div>`).join('');
+    const bd=T.map((x,i)=>`<details ${i===0?'open':''}><summary>${x.k} 자세히<small>${x.tool}</small></summary><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}"><b>${l[0]}</b>${l[1]}</span>`).join('')}</div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></details>`).join('');
+    return `<div class="tv-b"><div class="bh"><span class="lg">CESCO<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>측정 장비로 직접 쟀어요. 바늘이 초록이면 기준 안이에요</small></div></div><div class="gg">${gg}</div><div class="bd">${bd}</div></div>`;
+  }
+  if(tv==='C'){
+    const items=T.map(x=>`<div class="ci"><div class="ck">${x.k}<small>${x.tool}</small><span class="ok">✓ ${x.levels[0][0]}</span></div><p class="ce">${x.easy}</p><div class="ld">${x.levels.slice().reverse().map((l,i,arr)=>`<div class="${i===arr.length-1?'on':''}"><b>${l[0]}</b><span>${l[1]}</span></div>`).join('')}</div><div class="cm"><b>세스코 전문가 메모</b>${x.ex}</div><div class="cd">체크일 ${x.date}</div></div>`).join('');
+    return `<div class="tv-c"><div class="ch"><span class="av">세스코<br>전문가</span><div><b>세스코가 전문적으로 체크했습니다</b><small>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</small></div><span class="st">${T.length}항목<br>모두 통과</span></div><div class="tl2">${items}</div></div>`;
+  }
+  return `<div class="tools"><div class="tl-h"><span class="gold">CESCO<br>전문<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</small></div></div>${T.map(x=>`<div class="tl"><div class="tl-k">${x.k}<small>${x.tool}</small><span class="pass">기준 안 · ${x.levels[0][0]}</span></div><p class="tl-e">${x.easy}</p><div class="scale">${x.levels.map((l,i)=>`<div class="lv ${i===0?'on':''}">${l[0]}</div>`).join('')}</div><div class="lvd">${x.levels.map(l=>`<div><b>${l[0]}</b><span>${l[1]}</span></div>`).join('')}</div><p class="tl-x">${x.ex}</p><div class="tl-d">체크일 ${x.date}</div></div>`).join('')}</div>`;
+}
 function previewHtml(bk, typ, s, o){
   const t=D[bk], reg=t.reg, hc=t.hc; o=o||{}; const tab=o.tab||'hy', mt=o.mt||t.default_mt;
   const tabs=t.tabs.map(x=>`<span class="${x==='위생'?'on':''}">${x}</span>`).join('');
@@ -456,7 +558,7 @@ function previewHtml(bk, typ, s, o){
   const basicHtml=`<div class="binfo"><div class="bi"><span class="ic">📍</span><span>${P.addr}</span><b>복사 · 길찾기</b></div><div class="bi"><span class="ic">🕒</span><span>${P.hours}</span></div><div class="bi"><span class="ic">📞</span><span>${P.tel}</span><b>복사</b></div><div class="bi"><span class="ic">💳</span><span>${P.pay}</span></div><div class="bi"><span class="ic">#</span><span>${P.tags}</span></div><div class="bi"><span class="ic">🛋️</span><span>${P.conv.join(', ')}</span></div></div>`;
   const mtabs=`<div class="mtabs">${t.members.map(m=>`<button type="button" class="mtab ${m.key===mt?'on':''}" data-mt="${m.key}" style="--mc:${m.color}">${m.name}<small>${t.hcards.cards.filter(c=>m.svcs.includes(c[0])).length}</small></button>`).join('')}</div>`;
   const cardsHtml=cards.map((c,ci)=>`<div class="swc" style="--mc:${mem.color};--mbg:${mem.bg};--ml:${mem.line}"><div class="swin"><div class="swt"><span class="logo"><b>CESCO</b><i>${t.svc_en[c[0]]||c[0]}</i></span><span class="stamp"><svg viewBox="0 0 44 44" width="40" height="40"><circle cx="22" cy="22" r="20" fill="none" stroke="#8FA3BF" stroke-width="1.4"/><circle cx="22" cy="22" r="15" fill="none" stroke="#8FA3BF" stroke-width=".8"/><text x="22" y="20" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CESCO</text><text x="22" y="28" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CHECK</text></svg></span></div><div class="hk">${c[1]}</div><div class="hl">${c[2]}</div><div class="ck"><span class="bx">✓</span><span>[${c[3]}] ${c[4]} 체크 완료</span></div><div class="dt">최근 점검일 : 2026.${reg.date}</div><div class="rp">ⓘ 점검 리포트 보기</div></div></div>`).join('');
-  const toolsHtml=`<div class="tools"><div class="tl-h"><span class="gold">CESCO<br>전문<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</small></div></div>${t.tools.map(x=>`<div class="tl"><div class="tl-k">${x.k}<small>${x.tool}</small><span class="pass">기준 안 · ${x.levels[0][0]}</span></div><p class="tl-e">${x.easy}</p><div class="scale">${x.levels.map((l,i)=>`<div class="lv ${i===0?'on':''}">${l[0]}</div>`).join('')}</div><div class="lvd">${x.levels.map(l=>`<div><b>${l[0]}</b><span>${l[1]}</span></div>`).join('')}</div><p class="tl-x">${x.ex}</p><div class="tl-d">체크일 ${x.date}</div></div>`).join('')}</div>`;
+  const toolsHtml=toolsBlock(t, o.tv||'gold');
   const M=t.placemeta, pv=o.pv||'A';
   const chkRow=(c,i)=>`<div class="pc${i===0?' first':''}" style="--mc:${mcol(c[0])}"><div class="pc-h"><span class="ok">✓</span><b>${c[1]}</b><span class="svc">${t.svc_ko[c[0]]||c[0]}</span></div><p>${c[2]}</p><div class="pc-f">세스코 체크 완료 · 2026.${reg.date} · 유효 3개월</div></div>`;
   const basicRows=`<div class="pl-row"><span>주소</span><span>${P.addr}</span></div><div class="pl-row"><span>${t.key==='산후조리원'?'상담·면회':'영업시간'}</span><span>${P.hours}</span></div><div class="pl-row"><span>전화</span><span>${P.tel}</span></div><div class="pl-row"><span>결제</span><span>${P.pay}</span></div>`;
@@ -538,7 +640,8 @@ ${repRow}${fine}</div>`;
   return headHtml + (tab==='place'?'':body) + `<div class="tools-wrap">${toolsHtml}</div>` + `<div class="actions"><div class="ico">전화</div><div class="ico">저장</div><div class="cta">${t.cta}</div></div>`;
 }
 function refreshPreviews(bk){
-  document.querySelectorAll('[data-static]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML=previewHtml(bk, el.dataset.t, state[bk], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv}); });
+  document.querySelectorAll('[data-tools]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML='<div class="tools-wrap">'+toolsBlock(D[bk], el.dataset.tv)+'</div>'; });
+  document.querySelectorAll('[data-static]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML=previewHtml(bk, el.dataset.t, state[bk], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv}); });
 }
 function refresh(bk){
   document.querySelectorAll('[data-ed]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML=editorHtml(bk, state[bk], el.hasAttribute('data-withbiz')); });
@@ -575,9 +678,9 @@ document.addEventListener('input',e=>{
   refreshPreviews(bk);
 });
 document.addEventListener('click',e=>{
-  const tb=e.target.closest('.tabs2 span[data-tab]'); if(tb){const el=tb.closest('[data-static]'); if(el){el.dataset.tab=tb.dataset.tab; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv});} return;}
-  const pb=e.target.closest('.pvsel button[data-pv]'); if(pb){const el=document.querySelector(pb.closest('.pvsel').dataset.for); if(el){el.dataset.pv=pb.dataset.pv; el.dataset.tab='place'; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv}); pb.parentElement.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===pb));} return;}
-  const mb=e.target.closest('.mtab[data-mt]'); if(mb){const el=mb.closest('[data-static]'); if(el){el.dataset.mt=mb.dataset.mt; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv});} return;}
+  const tb=e.target.closest('.tabs2 span[data-tab]'); if(tb){const el=tb.closest('[data-static]'); if(el){el.dataset.tab=tb.dataset.tab; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
+  const pb=e.target.closest('.pvsel button[data-pv]'); if(pb){const el=document.querySelector(pb.closest('.pvsel').dataset.for); if(el){el.dataset.pv=pb.dataset.pv; el.dataset.tab='place'; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv}); pb.parentElement.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===pb));} return;}
+  const mb=e.target.closest('.mtab[data-mt]'); if(mb){const el=mb.closest('[data-static]'); if(el){el.dataset.mt=mb.dataset.mt; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
 });
 function swGo(sw,k){const n=sw.children.length; k=(k+n)%n; const c=sw.children[k]; sw.scrollTo({left:c.offsetLeft-(sw.clientWidth-c.offsetWidth)/2-sw.offsetLeft*0,behavior:'smooth'});}
 document.addEventListener('click',e=>{
