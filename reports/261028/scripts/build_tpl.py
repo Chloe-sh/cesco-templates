@@ -155,7 +155,7 @@ SVC_KO = {'VIRUSCARE':'바이러스케어','BODYCARE':'바디케어','FOOD':'식
 # 도구 측정 블록(엑셀 ③시트) — 치킨집·산후조리원 각각 악취 + 배수구 오염도. 실제 수치 대신 기준 범위 안 통과 표시.
 # levels: (단계명, 소비자 설명) · 첫 단계가 통과 위치. ex = 엑셀 '예시 문구' 원문(배수구는 ③시트에 없어 ②시트 숙박 행 문구를 가져옴 [확인 필요])
 ODOR_LV = [('청결','냄새 민감군도 감지하기 어려운 수준'),('주의','불쾌감이 시작되고 해충 유입 위험이 증가하는 수준'),('위험','눈·코·입 점막을 자극해 알레르기 반응, 기관지염 등 건강에 실질적인 영향을 미칠 수 있는 수준')]
-ODOR_EX = '일반적으로 악취 민원이 발생하는 화장실의 주요 악취 유발물질 농도는 암모니아 1.0 ~ 3.5 ppm, 황화수소 0.01 ~ 0.04 ppm, 메틸메르캅탄 0.003 ~ 0.01 ppm 이지만, 우리 사업장은 방향탈취기를 사용하여 냄새 민감군도 감지하기 어려운 수준인 암모니아 0.5 ppm 이하, 황화수소 0.005 ppm 이하, 메틸메르캅탄 0.001 ppm 이하로 쾌적하게 관리합니다.'
+ODOR_EX = '일반적으로 악취 민원이 발생하는 화장실의 주요 악취 유발물질 농도는 암모니아 1.0 ~ 3.5 ppm, 황화수소 0.01 ~ 0.04 ppm, 메틸메르캅탄 0.003 ~ 0.01 ppm 이지만,<br>우리 사업장은 방향탈취기를 사용하여 냄새 민감군도 감지하기 어려운 수준인 암모니아 0.5 ppm 이하, 황화수소 0.005 ppm 이하, 메틸메르캅탄 0.001 ppm 이하로 쾌적하게 관리합니다.'
 DRAIN_LV = [('청결','병원 내 조리시설 관리 수준'),('주의','경미한 악취가 시작되는 수준'),('경고','식중독균이 서식할 수 있는 수준'),('심각','악취가 심각하고 해충 서식 위험이 높은 수준')]
 DRAIN_EX = '배수구는 악취만의 문제가 아니라 세균 증식, 해충 유입의 원인이 됩니다! 배수구 전용 클린 서비스로 관리하는 사업장입니다.'
 TOOLS = {
@@ -355,10 +355,10 @@ EXTRA_CSS = r"""
 .tv-a .rf{padding:9px 14px 0;font-size:9.5px;color:#6B6B6B;display:flex;justify-content:space-between}
 /* D 스탬프형(확정) + 같은 방식 B·E·F */
 .tv-b{margin:0 16px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.tv-b .bh{display:flex;align-items:center;gap:8px}
+.tv-b .bh{display:flex;align-items:center;gap:11px}
 .tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
 .tv-b .bh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
-.tv-b .bh small{font-size:10.5px;color:var(--muted)}
+.tv-b .bh small{display:block;margin-top:3px;font-size:10.5px;color:var(--muted);line-height:1.5}
 .tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
 .tv-b .g{font:inherit;cursor:pointer;position:relative;padding:8px 8px 12px;border:1px solid var(--wc-line);border-radius:14px;text-align:center;background:#FAFCFF;color:inherit}
 .tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
@@ -367,22 +367,22 @@ EXTRA_CSS = r"""
 .tv-b .g .gk{font-size:12.5px;font-weight:900;color:var(--ink);margin-top:8px;line-height:1.35;word-break:keep-all;min-height:34px}
 .tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:4px}
 .tv-b .btw{min-height:0}
-.tv-b .bt{display:none;font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.6;margin:12px 2px 10px}
+.tv-b .bt{display:none;font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.7;margin:16px 2px 14px}
 .tv-b .bt.on{display:block}
-.tv-b .bd{margin-top:8px}
-.tv-b .bp{display:none;padding-top:2px}
+.tv-b .bd{margin-top:12px}
+.tv-b .bp{display:none;padding-top:4px}
 .tv-b .bp.on{display:block}
-.tv-b .be{font-size:11.5px;color:var(--txt);line-height:1.55;margin:0}
-.tv-b .bl{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:8px}
-.tv-b .bl span{font-size:10px;font-weight:800;color:#9A9A9A;padding:3px 8px;border-radius:999px;background:#F4F5F2}
+.tv-b .be{font-size:12px;color:var(--txt);line-height:1.7;margin:0}
+.tv-b .bl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px}
+.tv-b .bl span{font-size:10.5px;font-weight:800;color:#9A9A9A;padding:4px 10px;border-radius:999px;background:#F4F5F2}
 .tv-b .bl span.on{background:var(--wc-bg);color:var(--wc)}
-.tv-b .bl small{flex-basis:100%;font-size:10px;color:var(--muted);line-height:1.4;margin-top:1px}
-.tv-b .bxw{margin-top:8px;background:var(--wc-bg);border-radius:10px;padding:8px 10px}
-.tv-b .bx{font-size:10.5px;color:var(--ink2);line-height:1.6;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tv-b .bl small{flex-basis:100%;font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:5px}
+.tv-b .bxw{margin-top:12px;background:var(--wc-bg);border-radius:10px;padding:11px 13px}
+.tv-b .bx{font-size:11px;color:var(--ink2);line-height:1.75;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tv-b .bxw.open .bx{display:block;-webkit-line-clamp:unset}
-.tv-b .bxm{display:block;margin-top:4px;padding:0;border:0;background:none;font:inherit;font-size:10.5px;font-weight:800;color:var(--wc);cursor:pointer}
+.tv-b .bxm{display:block;margin-top:7px;padding:0;border:0;background:none;font:inherit;font-size:10.5px;font-weight:800;color:var(--wc);cursor:pointer}
 .tv-b .bxm:after{content:" ⌄"}.tv-b .bxw.open .bxm:after{content:" ⌃"}
-.tv-b .bdt{font-size:10px;color:var(--muted);margin-top:5px;font-weight:700}
+.tv-b .bdt{font-size:10px;color:var(--muted);margin-top:10px;font-weight:700}
 /* D 스탬프형 */
 .tv-d .g{padding-top:14px}
 .tv-d .seal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:58px;height:58px;margin:0 auto 8px;border-radius:50%;border:2px solid #0E8F4A;outline:2px dashed #BFE5CF;outline-offset:3px;color:#0E8F4A;transform:rotate(-8deg)}
@@ -464,14 +464,14 @@ EXTRA_CSS = r"""
 .tile b{display:block;font-size:10.5px;font-weight:800;color:var(--ink);line-height:1.3;margin-top:4px;word-break:keep-all}
 .tile i{position:absolute;right:5px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--mc);color:#fff;font-size:8px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center}
 .tile.on{background:#fff;border-color:var(--mc);box-shadow:0 0 0 2px var(--wc-bg)}
-.sheet{margin-top:10px;background:#fff;border:1.5px solid var(--mc);border-radius:12px;padding:11px 12px;position:relative}
+.sheet{margin-top:12px;background:#fff;border:1.5px solid var(--mc);border-radius:12px;padding:14px 16px 12px;position:relative}
 
-.sh-h{display:flex;gap:8px;align-items:center}
+.sh-h{display:flex;gap:10px;align-items:center}
 .sh-h .ic{font-size:22px}
 .sh-h b{display:block;font-size:12.5px;font-weight:900;color:var(--ink)}
-.sh-h small{font-size:10px;color:var(--mc);font-weight:800}
-.sheet p{font-size:11px;color:var(--txt);line-height:1.55;margin-top:7px}
-.sh-f{font-size:9.5px;color:var(--muted);margin-top:6px}
+.sh-h small{display:block;margin-top:3px;font-size:10.5px;color:var(--mc);font-weight:800}
+.sheet p{font-size:12px;color:var(--txt);line-height:1.7;margin-top:11px}
+.sh-f{font-size:10.5px;color:var(--muted);margin-top:11px;padding-top:9px;border-top:1px dashed var(--line)}
 /* 장소정보 B · 손님 질문형 */
 .qg{margin-top:8px}
 .qg-t{font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--wc);padding:6px 0 2px}
