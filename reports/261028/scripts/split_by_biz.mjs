@@ -23,7 +23,7 @@ function build(key) {
   const sec = new RegExp(`<section class="bizsec" id="${b.other}">[\\s\\S]*?</section>`);
   if (!sec.test(html)) throw new Error("section " + b.other);
   html = html.replace(sec, "");
-  // 장소정보 3안 비교 줄에서 다른 업종 휴대폰 화면만 제거
+  // 장소정보 탭(아이콘 그리드) 블록에서 다른 업종 휴대폰 화면만 제거
   html = html.replace(new RegExp(`<figure>(?:(?!</figure>)[\\s\\S])*?data-biz="${b.other}"(?:(?!</figure>)[\\s\\S])*?</figure>`, "g"), "");
 
   // 제목, 안내문, 목차
