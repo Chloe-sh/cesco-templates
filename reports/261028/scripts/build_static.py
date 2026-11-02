@@ -139,7 +139,7 @@ def place_block():
     for bk in ['chicken','care']:
         t = T.TPL[bk]; mt = 'white' if bk=='chicken' else 'blue'
         figs += f'<figure><figcaption><b>아이콘 그리드 · {t["key"]}</b><small>{t["reg"]["name"]} · 장소정보 탭. 타일을 누르면 문진 원문이 펼쳐집니다</small></figcaption><div class="phone"><div class="fold"><span>첫 화면 끝</span></div><div data-static data-biz="{bk}" data-t="C" data-tab="place" data-mt="{mt}" data-pv="A"></div></div></figure>'
-    return f'''<div class="blk" id="place"><h2>장소정보 탭 · 아이콘 그리드로 확정<small>11/02 결정. 기본 정보와 세스코 체크 {len(T.PLACE["chicken"]["checks"])}개를 3열 타일로 보여 줍니다</small></h2>
+    return f'''<div class="blk" id="place"><h2>장소정보 탭 · 아이콘 그리드로 확정<small>11/02 결정. 세스코 체크 {len(T.PLACE["chicken"]["checks"])}개를 3열 타일로 보여 줍니다. 기본 정보는 탭 위 등록 정보와 겹쳐서 탭 안에 다시 쓰지 않습니다</small></h2>
 <div class="sub">위쪽 기본 정보(주소, 영업시간, 전화, 결제, 편의)는 네이버와 같은 모양이고, 그 아래 "세스코가 특별히 체크한 장소 정보"를 아이콘 타일로 둡니다. 10/30에 비교했던 세 안 가운데 A 아이콘 그리드를 골랐습니다.</div>
 <div class="panel"><table class="names"><thead><tr><th style="width:18%">항목</th><th>내용</th></tr></thead><tbody>{tr}</tbody></table></div>
 <div class="row3" style="margin-top:16px">{figs}</div></div>'''
@@ -188,7 +188,7 @@ def feat_notes(bk):
 <li class="c"><i>4</i><div><b>{T.STICKER_NAME}</b>(네모 스티커): 블루 멤버스(파랑) / 화이트 멤버스(식품안전, 초록) 탭. 실제 받는 솔루션만</div></li>
 <li class="o"><i>5</i><div><b>{o}이 고른 POINT 01~03</b>: 10개 중 2~3개. 아래 선택 화면에서 바꿔 볼 수 있습니다</div></li>
 <li class="c"><i>6</i><div><b>도구 측정 "세스코가 전문적으로 체크했습니다"</b>: 위생정보 탭에서는 체크 스탬프 요약 줄 바로 아래(사진 위), 장소정보 탭에서는 맨 아래. 게이지형(11/02 확정). 카드 2장에 초록 체크 도장이 찍혀 있으면 기준 안. 이름은 "냄새 없이 쾌적해요", "배수구가 청결하게 관리되고 있어요"이고, 카드를 누르면 쉬운 설명, 기준 단계, 예시 문구, 체크일이 펼쳐짐. <a href="#tools">자세히</a></div></li>
-<li class="c"><i>7</i><div><b>장소정보 탭</b>(아이콘 그리드로 확정): 기본 정보 전체와 <b>세스코가 특별히 체크한 장소 정보</b>. 국내산 김치, 조리자 비흡연, 손세정제, 알레르기 표기처럼 가 봐야만 아는 짧은 사실, 타일을 누르면 문진 원문. 유아의자·단체석 같은 시설은 기본 정보 편의에만 두고 타일로 반복하지 않음</div></li>
+<li class="c"><i>7</i><div><b>장소정보 탭</b>(아이콘 그리드로 확정): <b>세스코가 특별히 체크한 장소 정보</b>만. 기본 정보(주소·영업시간·전화·결제·편의·태그)는 탭 위 등록 정보와 겹쳐서 탭 안에 다시 쓰지 않음. 국내산 김치, 조리자 비흡연, 손세정제, 알레르기 표기처럼 가 봐야만 아는 짧은 사실, 타일을 누르면 문진 원문</div></li>
 </ol><div class="lg2">세스코 영역<i style="background:var(--wc)"></i> · 등록 정보<i style="background:#6B7684"></i> · {o} 선택<i style="background:var(--amber)"></i></div></div>'''
 
 def build():
@@ -197,7 +197,7 @@ def build():
         t = T.TPL[bk]; reg = t['reg']; o = t['owner']; mt = 'white' if bk=='chicken' else 'blue'
         feat = f'''<div class="feat">
 <figure><figcaption><b>상세페이지형 · 위생정보 탭</b><small>풀블리드 사진과 POINT 01~03. {T.STICKER_NAME} 탭과 카드는 눌러서 넘길 수 있습니다</small></figcaption><div class="phone"><div class="fold"><span>첫 화면 끝</span></div><div data-static data-biz="{bk}" data-t="C" data-tab="hy" data-mt="{mt}"></div></div></figure>
-<figure><figcaption><b>같은 화면 · 장소정보 탭</b><small>네이버식 기본 정보와 세스코가 특별히 체크한 장소 정보를 아이콘 그리드로. 타일을 누르면 문진 원문이 펼쳐집니다</small></figcaption><div class="phone"><div class="fold"><span>첫 화면 끝</span></div><div id="pv-{bk}" data-static data-biz="{bk}" data-t="C" data-tab="place" data-mt="{mt}" data-pv="A"></div></div></figure>
+<figure><figcaption><b>같은 화면 · 장소정보 탭</b><small>세스코가 특별히 체크한 장소 정보를 아이콘 그리드로. 타일을 누르면 문진 원문이 펼쳐집니다</small></figcaption><div class="phone"><div class="fold"><span>첫 화면 끝</span></div><div id="pv-{bk}" data-static data-biz="{bk}" data-t="C" data-tab="place" data-mt="{mt}" data-pv="A"></div></div></figure>
 {feat_notes(bk)}</div>'''
         figs = f'<figure><figcaption><b>{o} 선택 화면</b><small>위쳌 사업주용. 2~3개 체크, 기본 문안이 들어 있고, 여기서 바꾸면 이 업종 화면이 다 같이 바뀝니다</small></figcaption><div class="ed"><div class="bar">위생 페이지 관리<span class="sv">저장</span></div><div class="in" data-ed data-biz="{bk}"></div></div></figure>'
         for code, nm, ds in TYPES:

@@ -618,22 +618,19 @@ function previewHtml(bk, typ, s, o){
   if(pv==='A'){
     const tiles=P.checks.map((c,i)=>`<div class="tile${i===0?' on':''}" style="--mc:${mcol(c[0])}"><span class="ic">${M[i][0]}</span><b>${M[i][3]}</b><i>✓</i></div>`).join('');
     const c0=P.checks[0];
-    placeBody=`<div class="pl-sec"><div class="pl-t">기본 정보</div>${basicRows}${convRow}</div>
-<div class="pl-sec cesco">${cescoHead('궁금한 항목을 누르면 확인 내용을 볼 수 있어요')}<div class="tiles">${tiles}</div>
+    placeBody=`<div class="pl-sec cesco">${cescoHead('궁금한 항목을 누르면 확인 내용을 볼 수 있어요')}<div class="tiles">${tiles}</div>
 <div class="sheet" style="--mc:${mcol(c0[0])}"><div class="sh-h"><span class="ic">${M[0][0]}</span><div><b>${c0[1]}</b><small>${t.svc_ko[c0[0]]} · 세스코 체크 완료 2026.${reg.date}</small></div></div><p>${c0[2]}</p><div class="sh-f">3개월마다 다시 확인해요</div></div></div>`;
   } else if(pv==='B'){
     const qa=groups.map(g=>`<div class="qg"><div class="qg-t">${g}</div>${P.checks.map((c,i)=>M[i][1]===g?`<div class="qi" style="--mc:${mcol(c[0])}"><div class="q">${M[i][2]}</div><div class="a"><b>${c[1]}</b><small>${c[2]}</small><span class="chk">✓ 세스코 확인 · 2026.${reg.date}</span></div></div>`:'').join('')}</div>`).join('');
-    placeBody=`<div class="pl-sec"><div class="pl-t">기본 정보</div>${basicRows}${convRow}</div>
-<div class="pl-sec cesco">${cescoHead('가기 전에 많이 묻는 것들이에요. 답은 세스코가 가서 확인했어요')}${qa}</div>`;
+    placeBody=`<div class="pl-sec cesco">${cescoHead('가기 전에 많이 묻는 것들이에요. 답은 세스코가 가서 확인했어요')}${qa}</div>`;
   } else if(pv==='C'){
     const rows=groups.map(g=>`<div class="pl-row"><span>${g}</span><span class="pl-chips">${P.checks.map((c,i)=>M[i][1]===g?`<i class="cc${i===0?' on':''}" style="--mc:${mcol(c[0])}">✓ ${M[i][3]}</i>`:'').join('')}</span></div>`).join('');
     const c0=P.checks[0];
-    placeBody=`<div class="pl-sec"><div class="pl-t">기본 정보<small class="badge">세스코 체크 ${P.checks.length} · 2026.${reg.date} · 유효 3개월</small></div>${basicRows}<div class="pl-row"><span>편의</span><span class="pl-chips">${P.conv.map(c=>`<i>${c}</i>`).join('')}</span></div>${rows}<div class="pl-row"><span>태그</span><span>${P.tags}</span></div>
-<div class="lgc"><i>✓ 파란 칩</i>은 세스코가 가서 확인한 것, 회색은 등록 정보예요</div>
+    placeBody=`<div class="pl-sec">${cescoHead('세스코 체크 '+P.checks.length+' · 2026.'+reg.date+' · 유효 3개월')}${rows}
+<div class="lgc"><i>✓ 칩</i>은 세스코가 가서 확인한 것이에요</div>
 <div class="pop" style="--mc:${mcol(c0[0])}"><div class="pop-a"></div><b>${c0[1]}</b><p>${c0[2]}</p><small>${t.svc_ko[c0[0]]} · 세스코 체크 완료 2026.${reg.date}</small></div></div>`;
   } else {
-    placeBody=`<div class="pl-sec"><div class="pl-t">기본 정보</div>${basicRows}${convRow}</div>
-<div class="pl-sec cesco">${cescoHead('가 봐야만 아는 것 '+P.checks.length+'가지를 세스코가 가서 확인했어요')}${P.checks.map((c,i)=>chkRow(c,i)).join('')}</div>`;
+    placeBody=`<div class="pl-sec cesco">${cescoHead('가 봐야만 아는 것 '+P.checks.length+'가지를 세스코가 가서 확인했어요')}${P.checks.map((c,i)=>chkRow(c,i)).join('')}</div>`;
   }
   const placeHtml=`<div class="place">${placeBody}</div>`;
   const headHtml=`
