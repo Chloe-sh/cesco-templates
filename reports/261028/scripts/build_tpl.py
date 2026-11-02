@@ -93,9 +93,9 @@ TPL = {
 # 위생 정보 카드 (스와이프). 산후조리원 = 10/23 개선안 최종 1안 원문. 치킨집 = 10/23 개선안에 행이 없어 같은 형식으로 쓴 초안.
 HCARDS = {
 'care': dict(src='윗줄은 엑셀 ①시트 1안, 본문은 원문', cards=[
+  ('VIRUSCARE','면역력 약한 아기에겐 공기 속 세균도 위험!','공기 중 부유세균을 150 CFU/m³ 이하로 유지해요. 산후조리원 법정 기준의 5분의 1 수준으로 낮아요.','바이러스케어 솔루션','공기 살균'),
   ('VIRUSCARE','작은 세균도 조심해야 할 때!','전문 방역업체가 월 1회 이상 살균·소독하고 집기는 수시로 살균·소독해요.','바이러스케어 솔루션','전문 살균'),
   ('VIRUSCARE','젖병 하나로도 번지는 교차 감염!','아기마다 개별로 구분해서 매일 고온 살균으로 관리해요.','바이러스케어 솔루션','신생아 용품 살균'),
-  ('VIRUSCARE','면역력 약한 아기에겐 공기 속 세균도 위험!','공기 중 부유세균을 150 CFU/m³ 이하로 유지해요. 산후조리원 법정 기준의 5분의 1 수준으로 낮아요.','바이러스케어 솔루션','공기 살균'),
   ('BODYCARE','출산 후 산모의 몸은 감염에 특히 취약!','안심하고 회복할 수 있도록 청결 관리를 돕는 비데를 전 객실에 설치했어요.','바디케어 솔루션','비데 위생 관리'),
   ('FOOD','회복하는 동안 하루 세 끼 먹는 조리원 밥!','식자재 입고부터 조리, 배식, 보관까지 모든 과정을 국내 식품위생법 기준으로 운영해요.','식품안전 솔루션','산모 식재료 위생')]),
 'chicken': dict(src='초안 · 엑셀 ①시트 2안 구조(이유 한 줄 + 관리 두 줄 + 다짐 한 줄)로 작성, 치킨집 행은 엑셀에 없음 [확인 필요]', cards=[
@@ -164,7 +164,7 @@ TOOLS = {
   dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='주방 바닥 배수구 안을 내시경으로 점검해요. 냄새, 세균, 해충이 생기지 않도록 기름때와 찌꺼기를 꼼꼼히 확인해요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.16')],
 'care': [
   dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='출산 후 냄새에 예민해진 산모도 편안하게 지낼 수 있도록 세스코 전문가가 산모 방과 화장실 냄새를 측정기로 깐깐하게 체크해요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
-  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='좌욕실과 조리실 배수구 안을 내시경으로 봐요. 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
+  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='화장실과 조리실 배수구 안을 내시경으로 점검해요. 냄새, 세균, 해충이 생기지 않도록 찌꺼기를 꼼꼼히 확인해요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
 'meat': [],
 }
 # 위쳌 AI 카드 (세스코 CT Way PPT 'WeCheck 시연' 상세 화면 구조: 인트로 + ✅ 3 / 매장정보 3 / 리뷰 한눈에 3)
@@ -548,7 +548,7 @@ function editorHtml(bk, s, withBiz){
   h+='<div class="fs"><div class="lb">③ 선택한 항목의 설명<small>시설 운영 방식에 맞게 수정 · 각 140자</small></div>';
   s.sel.forEach((i,n)=>{const it=t.items[i]; h+=`<div class="pt-ed"><div class="t">POINT 0${n+1}<span>${it.title.replace('<br>',' ')}</span></div><div class="qq">소비자가 궁금해할 질문: “${it.q}”</div><textarea data-pt="${i}" rows="3" class="${s.pts[i]!==it.copy?'changed':''}">${esc(s.pts[i])}</textarea><div class="cnt">${s.pts[i].length}/140</div><div class="ph">사진 추가 (선택) · 없으면 점검 때 촬영한 사진</div></div>`;});
   h+='</div>';
-  h+=`<div class="fs"><div class="lb">④ ${t.owner} 한마디<small>선택 입력 · 최대 40자</small></div><input type="text" data-f="say" value="${esc(s.say)}" placeholder="비워 두면 이 칸은 손님 화면에 안 나와요" class="${s.say?'changed':''}"><div class="cnt">${s.say.length}/40</div></div>`;
+  h+=`<div class="fs"><div class="lb">④ ${t.owner} 한마디<small>선택 입력 · 최대 40자</small></div><input type="text" data-f="say" value="${esc(s.say)}" placeholder="고객님들께 전하고 싶은 한 마디를 작성해 주세요!" class="${s.say?'changed':''}"><div class="cnt">${s.say.length}/40</div></div>`;
   h+='<div class="btns"><button type="button" data-act="reset">기본 내용으로 저장</button><button type="button" class="ex" data-act="example">수정한 내용으로 저장</button></div>';
   h+=`<div class="note">저장하면 손님 화면에 바로 반영돼요. 세스코 측정값·등급·점검일은 ${t.owner}이 바꿀 수 없어요. 주황색 칸이 ${t.owner}이 고친 곳이에요.</div>`;
   return h;
@@ -563,7 +563,7 @@ function toolsBlock(t, tv){
   }
   const topTxt=(x,i)=>`<p class="be bt${i===0?' on':''}" data-tgp="${i}">${x.easy}</p>`;
   const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><div class="bxw"><p class="bx">${x.ex}</p><button type="button" class="bxm">${TXT.more2}</button></div><div class="bdt">${TXT.date} ${x.date}</div></div>`;
-  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b>${sub?`<small>${sub}</small>`:''}</div><span class="bst">${T.length}항목 모두 기준 안</span></div>`;
+  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b>${sub?`<small>${sub}</small>`:''}</div></div>`;
   if(tv==='B'){
     const COL=['#0072CE','#E0A100','#E2641B','#C8102E'];
     const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
@@ -685,7 +685,7 @@ ${repRow}${fine}</div>`;
 ${pull}
 ${repRow}${fine}</div>`;
   const body = typ==='A'?bodyA : typ==='B'?bodyB : bodyC;
-  return headHtml + (tab==='place'?`<div class="tools-wrap">${toolsHtml}</div>`:body) + `<div class="actions"><div class="ico">전화</div><div class="ico">저장</div><div class="cta">${t.cta}</div></div>`;
+  return headHtml + (tab==='place'?'':body) + `<div class="actions"><div class="ico">전화</div><div class="ico">저장</div><div class="cta">${t.cta}</div></div>`;
 }
 function refreshPreviews(bk){
   document.querySelectorAll('[data-tools]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML='<div class="tools-wrap">'+toolsBlock(D[bk], el.dataset.tv)+'</div>'; });
