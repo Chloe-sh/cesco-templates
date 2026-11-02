@@ -176,7 +176,7 @@ AICARD = {
   checks=['튀김 기름 산가를 정기 점검해 3.0 이하로 유지','닭고기는 입고 즉시 냉장 보관','주방 후드에 쌓인 기름때, 정기 전문 클리닝'],
   info=[('👶','유아의자가 있어서 아이와 같이 가도 괜찮아요.'),('👥','단체석이 있어서 모임이나 회식도 할 수 있어요.'),('🚻','매장 내부에 남녀 구분된 화장실이 있어요.')],
   review=['튀김이 바삭하고 기름 냄새가 안 나요.','고기가 촉촉하고 부드러워요.','포장해 가도 눅눅하지 않아요.'],
-  quote='바삭한 건 기본이고,<br>주방 안쪽 위생까지<br>믿고 먹을 수 있는 치킨집이에요.'),
+  quote=''),
 'care': dict(intro='면역력이 약한 신생아와 산모가 오래 머무는 곳이라 공기부터 손 닿는 자리까지 더 꼼꼼하게 관리해요.',
   checks=['전문 방역업체가 월 1회 이상 전체 살균·소독','젖병·수건은 아기별로 구분해 매일 고온 살균','신생아실 공기 살균기 상시 가동'],
   info=[('🍼','모자동실을 운영해 아기와 함께 지낼 수 있어요.'),('📹','폰으로 신생아실을 24시간 볼 수 있어요.'),('🪟','방마다 바깥 창이 있어 환기가 잘 돼요.')],
@@ -634,7 +634,7 @@ function previewHtml(bk, typ, s, o){
 <div class="body" style="padding-bottom:4px;background:#fff">${aiHtml}${basicHtml}</div>
 <div class="tabs2"><span class="${tab==='hy'?'on':''}" data-tab="hy">위생정보</span><span class="${tab==='place'?'on':''}" data-tab="place">장소정보</span></div>` + (tab==='place' ? placeHtml : `
 <div class="hc">
-<div class="qt2">“${A.quote}”</div>
+${A.quote?`<div class="qt2">“${A.quote}”</div>`:''}
 <div class="sh3">${t.sticker}<small>세스코 솔루션을 받는 항목</small></div>
 ${mtabs}
 <div class="sw">${cardsHtml}</div>
