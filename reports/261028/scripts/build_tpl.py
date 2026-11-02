@@ -163,11 +163,11 @@ DRAIN_LV = [('청결','병원 내 조리시설 관리 수준'),('주의','경미
 DRAIN_EX = '배수구는 악취만의 문제가 아니라 세균 증식, 해충 유입의 원인이 됩니다! 배수구 전용 클린 서비스로 관리하는 사업장입니다.'
 TOOLS = {
 'chicken': [
-  dict(k='악취', tool='악취측정기', easy='튀김 기름과 음식물 쓰레기 냄새를 측정기로 재요. 냄새에 예민한 분도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
-  dict(k='배수구 오염도', tool='배관 내시경', easy='주방 바닥 배수구 안을 내시경으로 봐요. 기름때와 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.16')],
+  dict(k='악취', hl='냄새 없이 쾌적해요', tool='악취측정기', easy='튀김 기름과 음식물 쓰레기 냄새를 측정기로 재요. 냄새에 예민한 분도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
+  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', tool='배관 내시경', easy='주방 바닥 배수구 안을 내시경으로 봐요. 기름때와 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.16')],
 'care': [
-  dict(k='악취', tool='악취측정기', easy='산모 방과 공용 화장실 냄새를 측정기로 재요. 출산 뒤 냄새에 예민해진 산모도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
-  dict(k='배수구 오염도', tool='배관 내시경', easy='좌욕실과 조리실 배수구 안을 내시경으로 봐요. 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
+  dict(k='악취', hl='냄새 없이 쾌적해요', tool='악취측정기', easy='산모 방과 공용 화장실 냄새를 측정기로 재요. 출산 뒤 냄새에 예민해진 산모도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
+  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', tool='배관 내시경', easy='좌욕실과 조리실 배수구 안을 내시경으로 봐요. 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
 'meat': [],
 }
 # 위쳌 AI 카드 (세스코 CT Way PPT 'WeCheck 시연' 상세 화면 구조: 인트로 + ✅ 3 / 매장정보 3 / 리뷰 한눈에 3)
@@ -359,13 +359,13 @@ EXTRA_CSS = r"""
 .tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .tv-b .g{border:1px solid var(--wc-line);border-radius:14px;padding:10px 8px 8px;text-align:center;background:#FAFCFF}
 .tv-b .g svg{width:100%;max-width:130px;display:block;margin:0 auto}
-.tv-b .g .gk{font-size:12px;font-weight:900;color:var(--ink);margin-top:-4px}
+.tv-b .g .gk{font-size:11.5px;font-weight:900;color:var(--ink);margin-top:-2px;line-height:1.3;word-break:keep-all}
 .tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:1px}
 .tv-b .g .gv{display:inline-block;margin-top:6px;font-size:11px;font-weight:900;color:#0B5E31;background:#E8F6EE;border-radius:999px;padding:2px 9px}
 .tv-b .bd{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
 .tv-b details{border-bottom:1px solid var(--line);padding:7px 0}
 .tv-b details:last-child{border-bottom:0}
-.tv-b summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;color:var(--ink)}
+.tv-b summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;color:var(--ink);flex-wrap:wrap}
 .tv-b summary::-webkit-details-marker{display:none}
 .tv-b summary small{font-weight:600;color:var(--muted);font-size:10px}
 .tv-b summary:after{content:"⌄";margin-left:auto;color:var(--muted);font-size:14px}
@@ -530,8 +530,8 @@ function toolsBlock(t, tv){
       const segs=x.levels.map((l,i)=>`<path d="${arc(i/n+0.01,(i+1)/n-0.01)}" stroke="${COL[i]}" stroke-width="10" fill="none" stroke-linecap="butt" opacity="${i===0?1:.28}"/>`).join('');
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0B5E31">✓</text></svg>`;};
-    const gg=T.map(x=>`<div class="g">${gauge(x)}<div class="gk">${x.k}<small>${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span></div>`).join('');
-    const bd=T.map((x,i)=>`<details ${i===0?'open':''}><summary>${x.k} 자세히<small>${x.tool}</small></summary><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}"><b>${l[0]}</b>${l[1]}</span>`).join('')}</div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></details>`).join('');
+    const gg=T.map(x=>`<div class="g">${gauge(x)}<div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span></div>`).join('');
+    const bd=T.map((x,i)=>`<details ${i===0?'open':''}><summary>${x.hl}<small>${x.k} · ${x.tool}</small></summary><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}"><b>${l[0]}</b>${l[1]}</span>`).join('')}</div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></details>`).join('');
     return `<div class="tv-b"><div class="bh"><span class="lg">CESCO<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>측정 장비로 직접 쟀어요. 바늘이 초록이면 기준 안이에요</small></div></div><div class="gg">${gg}</div><div class="bd">${bd}</div></div>`;
   }
   if(tv==='C'){
@@ -558,7 +558,7 @@ function previewHtml(bk, typ, s, o){
   const basicHtml=`<div class="binfo"><div class="bi"><span class="ic">📍</span><span>${P.addr}</span><b>복사 · 길찾기</b></div><div class="bi"><span class="ic">🕒</span><span>${P.hours}</span></div><div class="bi"><span class="ic">📞</span><span>${P.tel}</span><b>복사</b></div><div class="bi"><span class="ic">💳</span><span>${P.pay}</span></div><div class="bi"><span class="ic">#</span><span>${P.tags}</span></div><div class="bi"><span class="ic">🛋️</span><span>${P.conv.join(', ')}</span></div></div>`;
   const mtabs=`<div class="mtabs">${t.members.map(m=>`<button type="button" class="mtab ${m.key===mt?'on':''}" data-mt="${m.key}" style="--mc:${m.color}">${m.name}<small>${t.hcards.cards.filter(c=>m.svcs.includes(c[0])).length}</small></button>`).join('')}</div>`;
   const cardsHtml=cards.map((c,ci)=>`<div class="swc" style="--mc:${mem.color};--mbg:${mem.bg};--ml:${mem.line}"><div class="swin"><div class="swt"><span class="logo"><b>CESCO</b><i>${t.svc_en[c[0]]||c[0]}</i></span><span class="stamp"><svg viewBox="0 0 44 44" width="40" height="40"><circle cx="22" cy="22" r="20" fill="none" stroke="#8FA3BF" stroke-width="1.4"/><circle cx="22" cy="22" r="15" fill="none" stroke="#8FA3BF" stroke-width=".8"/><text x="22" y="20" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CESCO</text><text x="22" y="28" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CHECK</text></svg></span></div><div class="hk">${c[1]}</div><div class="hl">${c[2]}</div><div class="ck"><span class="bx">✓</span><span>[${c[3]}] ${c[4]} 체크 완료</span></div><div class="dt">최근 점검일 : 2026.${reg.date}</div><div class="rp">ⓘ 점검 리포트 보기</div></div></div>`).join('');
-  const toolsHtml=toolsBlock(t, o.tv||'gold');
+  const toolsHtml=toolsBlock(t, o.tv||'B');
   const M=t.placemeta, pv=o.pv||'A';
   const chkRow=(c,i)=>`<div class="pc${i===0?' first':''}" style="--mc:${mcol(c[0])}"><div class="pc-h"><span class="ok">✓</span><b>${c[1]}</b><span class="svc">${t.svc_ko[c[0]]||c[0]}</span></div><p>${c[2]}</p><div class="pc-f">세스코 체크 완료 · 2026.${reg.date} · 유효 3개월</div></div>`;
   const basicRows=`<div class="pl-row"><span>주소</span><span>${P.addr}</span></div><div class="pl-row"><span>${t.key==='산후조리원'?'상담·면회':'영업시간'}</span><span>${P.hours}</span></div><div class="pl-row"><span>전화</span><span>${P.tel}</span></div><div class="pl-row"><span>결제</span><span>${P.pay}</span></div>`;
