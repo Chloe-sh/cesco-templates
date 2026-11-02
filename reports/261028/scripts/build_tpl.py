@@ -545,26 +545,27 @@ function editorHtml(bk, s, withBiz){
   return h;
 }
 
+const TXT={title:'세스코가 전문적으로 체크했습니다', sub:'측정 장비로 직접 쟀어요. 도장이 찍혔으면 기준 안이에요', lg:'CESCO<br>측정', more:'자세히', seal:'CESCO', pass:'기준 안', date:'체크일', lvsep:' · '};
 function toolsBlock(t, tv){
   const T=t.tools;
   if(tv==='A'){
     const rows=T.map(x=>`<div class="ri"><div class="rt"><b>${x.k}</b><span class="rs"><i>✓</i>${x.levels[0][0]}</span><small>측정 도구 · ${x.tool}</small></div><p class="re">${x.easy}</p><div class="rb" style="--w:${(100/x.levels.length).toFixed(2)}%">${x.levels.map((l,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="rl">${x.levels.map((l,i)=>`<b class="${i===0?'on':''}">${l[0]}</b><span class="${i===0?'on':''}">${l[1]}</span>`).join('')}</div><p class="rq">${x.ex}</p></div>`).join('');
     return `<div class="tv-a"><div class="rh"><div><span class="no">CESCO · 측정 리포트</span><b>세스코가 전문적으로 체크했습니다</b></div><div class="dt">체크일<br><b>${T[0].date}</b></div></div>${rows}<div class="rf"><span>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</span><span>${T.length}항목 모두 통과</span></div></div>`;
   }
-  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></div>`;
-  const head=(sub)=>`<div class="bh"><span class="lg">CESCO<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>${sub}</small></div></div>`;
+  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">${TXT.date} ${x.date}</div></div>`;
+  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b><small>${sub}</small></div></div>`;
   if(tv==='B'){
     const COL=['#0E8F4A','#E0A100','#E2641B','#C8102E'];
     const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
       const segs=x.levels.map((l,i)=>`<path d="${arc(i/n+0.01,(i+1)/n-0.01)}" stroke="${COL[i]}" stroke-width="10" fill="none" stroke-linecap="butt" opacity="${i===0?1:.28}"/>`).join('');
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0B5E31">✓</text></svg>`;};
-    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span><i class="more">자세히</i></button>`).join('');
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><span class="gv">${x.levels[0][0]}${TXT.lvsep}${TXT.pass}</span><i class="more">${TXT.more}</i></button>`).join('');
     return `<div class="tv-b" data-tvbox>${head('측정 장비로 직접 쟀어요. 바늘이 초록이면 기준 안이에요')}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='D'){
-    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>CESCO</small></span><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><i class="more">자세히</i></button>`).join('');
-    return `<div class="tv-b tv-d" data-tvbox>${head('측정 장비로 직접 쟀어요. 도장이 찍혔으면 기준 안이에요')}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>${TXT.seal}</small></span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><i class="more">${TXT.more}</i></button>`).join('');
+    return `<div class="tv-b tv-d" data-tvbox>${head(TXT.sub)}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='E'){
     const rows=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="ic">${x.ic}</span><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">✓ 기준 안</span><span class="seg">${x.levels.map((l,j)=>`<i class="${j===0?'on':''}"></i>`).join('')}</span></button>`).join('');

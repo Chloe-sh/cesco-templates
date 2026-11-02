@@ -653,7 +653,7 @@ mark.ed{background:var(--amber-bg);color:inherit;box-shadow:0 0 0 2px var(--ambe
 <div class="blk" id="tools2"><h2>도구 측정 블록 · 함께 비교한 3안<small>스탬프형과 같은 규칙(결과 문장 먼저, 글은 눌러야 보임)으로 모양만 다른 것</small></h2>
 <div class="sub">위 스탬프형이 지금 들어가 있는 안입니다. 아래 셋은 비교용으로 남긴 것이고, 펼쳤을 때 내용은 넷이 같습니다.</div>
 <div class="panel"><table class="names"><thead><tr><th style="width:14%">안</th><th style="width:32%">모양</th><th>좋은 점</th><th style="width:24%">걸리는 점</th></tr></thead><tbody><tr><td class="n">B · 게이지형</td><td>반원 계기판 2개. 바늘이 초록 칸을 가리키면 기준 안이고, 게이지를 누르면 아래에 설명이 펼쳐집니다.</td><td>세스코 파랑과 맞춰 위쳌 AI 카드와 같은 계열입니다. 11/02 처음 고른 안입니다.</td><td>게이지가 수치처럼 읽힐 수 있어 설명 한 줄이 따로 필요합니다.</td></tr><tr><td class="n">E · 한 줄 리스트형</td><td>아이콘, 결과 문장, 기준 안 칩을 한 줄에. 줄 아래 가는 단계 칸(초록이 이 사업장). 줄을 누르면 펼쳐집니다.</td><td>세로로 제일 짧고 항목이 늘어도 한 줄씩만 늘어납니다. 위쳌 AI 카드의 체크 줄과 닮았습니다.</td><td>도장보다 눈에 덜 띕니다.</td></tr><tr><td class="n">F · 요약 카드형</td><td>파란 머리에 "2항목 모두 기준 안"을 크게, 아래에 결과 문장 2줄. 줄을 누르면 펼쳐집니다.</td><td>결론이 제일 먼저 보입니다. 화면 맨 아래 마무리 카드 역할을 합니다.</td><td>파란 머리가 위쳌 AI 카드와 겹쳐 보일 수 있습니다. 항목별 상태는 줄을 봐야 압니다.</td></tr></tbody></table></div>
-<div class="row3" style="margin-top:16px"><figure><figcaption><b>B안 · 게이지형</b><small>볕드는집 산후조리원 · 블록만 떼어 본 것. 게이지를 눌러 펼치고 접습니다</small></figcaption><div class="phone part"><div data-tools data-biz="care" data-tv="B"></div></div></figure><figure><figcaption><b>E안 · 한 줄 리스트형</b><small>볕드는집 산후조리원 · 블록만 떼어 본 것. 카드나 줄을 눌러 펼치고 접습니다</small></figcaption><div class="phone part"><div data-tools data-biz="care" data-tv="E"></div></div></figure><figure><figcaption><b>F안 · 요약 카드형</b><small>볕드는집 산후조리원 · 블록만 떼어 본 것. 카드나 줄을 눌러 펼치고 접습니다</small></figcaption><div class="phone part"><div data-tools data-biz="care" data-tv="F"></div></div></figure></div></div>
+<div class="row3" style="margin-top:16px"><figure><figcaption><b>B안 · 게이지형</b><small>볕드는집 산후조리원 · 블록만 떼어 본 것. 게이지나 줄을 눌러 펼치고 접습니다</small></figcaption><div class="phone part"><div data-tools data-biz="care" data-tv="B"></div></div></figure><figure><figcaption><b>E안 · 한 줄 리스트형</b><small>볕드는집 산후조리원 · 블록만 떼어 본 것. 게이지나 줄을 눌러 펼치고 접습니다</small></figcaption><div class="phone part"><div data-tools data-biz="care" data-tv="E"></div></div></figure><figure><figcaption><b>F안 · 요약 카드형</b><small>볕드는집 산후조리원 · 블록만 떼어 본 것. 게이지나 줄을 눌러 펼치고 접습니다</small></figcaption><div class="phone part"><div data-tools data-biz="care" data-tv="F"></div></div></figure></div></div>
 <section class="bizsec" id="care"><h2>산후조리원 · 볕드는집 산후조리원<small>원장님 입력이 없는 기본 상태. 상호와 수치는 예시</small></h2>
 <div class="sub">위쳌 AI, 기본 정보, 체크 스탬프, 도구 측정은 세 유형이 같고, 그 사이 본문만 유형에 따라 다릅니다.</div>
 <div class="feat">
@@ -710,26 +710,27 @@ function editorHtml(bk, s, withBiz){
   return h;
 }
 
+const TXT={title:'세스코가 전문적으로 체크했습니다', sub:'측정 장비로 직접 쟀어요. 도장이 찍혔으면 기준 안이에요', lg:'CESCO<br>측정', more:'자세히', seal:'CESCO', pass:'기준 안', date:'체크일', lvsep:' · '};
 function toolsBlock(t, tv){
   const T=t.tools;
   if(tv==='A'){
     const rows=T.map(x=>`<div class="ri"><div class="rt"><b>${x.k}</b><span class="rs"><i>✓</i>${x.levels[0][0]}</span><small>측정 도구 · ${x.tool}</small></div><p class="re">${x.easy}</p><div class="rb" style="--w:${(100/x.levels.length).toFixed(2)}%">${x.levels.map((l,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="rl">${x.levels.map((l,i)=>`<b class="${i===0?'on':''}">${l[0]}</b><span class="${i===0?'on':''}">${l[1]}</span>`).join('')}</div><p class="rq">${x.ex}</p></div>`).join('');
     return `<div class="tv-a"><div class="rh"><div><span class="no">CESCO · 측정 리포트</span><b>세스코가 전문적으로 체크했습니다</b></div><div class="dt">체크일<br><b>${T[0].date}</b></div></div>${rows}<div class="rf"><span>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</span><span>${T.length}항목 모두 통과</span></div></div>`;
   }
-  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></div>`;
-  const head=(sub)=>`<div class="bh"><span class="lg">CESCO<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>${sub}</small></div></div>`;
+  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">${TXT.date} ${x.date}</div></div>`;
+  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b><small>${sub}</small></div></div>`;
   if(tv==='B'){
     const COL=['#0E8F4A','#E0A100','#E2641B','#C8102E'];
     const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
       const segs=x.levels.map((l,i)=>`<path d="${arc(i/n+0.01,(i+1)/n-0.01)}" stroke="${COL[i]}" stroke-width="10" fill="none" stroke-linecap="butt" opacity="${i===0?1:.28}"/>`).join('');
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0B5E31">✓</text></svg>`;};
-    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span><i class="more">자세히</i></button>`).join('');
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><span class="gv">${x.levels[0][0]}${TXT.lvsep}${TXT.pass}</span><i class="more">${TXT.more}</i></button>`).join('');
     return `<div class="tv-b" data-tvbox>${head('측정 장비로 직접 쟀어요. 바늘이 초록이면 기준 안이에요')}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='D'){
-    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>CESCO</small></span><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><i class="more">자세히</i></button>`).join('');
-    return `<div class="tv-b tv-d" data-tvbox>${head('측정 장비로 직접 쟀어요. 도장이 찍혔으면 기준 안이에요')}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>${TXT.seal}</small></span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><i class="more">${TXT.more}</i></button>`).join('');
+    return `<div class="tv-b tv-d" data-tvbox>${head(TXT.sub)}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='E'){
     const rows=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="ic">${x.ic}</span><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">✓ 기준 안</span><span class="seg">${x.levels.map((l,j)=>`<i class="${j===0?'on':''}"></i>`).join('')}</span></button>`).join('');
