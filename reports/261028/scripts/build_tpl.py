@@ -160,10 +160,10 @@ DRAIN_LV = [('청결','병원 내 조리시설 관리 수준'),('주의','경미
 DRAIN_EX = '배수구는 악취만의 문제가 아니라 세균 증식, 해충 유입의 원인이 됩니다! 배수구 전용 클린 서비스로 관리하는 사업장입니다.'
 TOOLS = {
 'chicken': [
-  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='튀김 기름과 음식물 쓰레기 냄새를 측정기로 체크해요. 냄새에 예민한 분도 편안하게 이용할 수 있는 수준인지 확인해요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
+  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='냄새에 예민한 분도 편안하게 이용할 수 있도록 세스코 전문가가 업장 냄새를 측정기로 깐깐하게 체크해요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
   dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='주방 바닥 배수구 안을 내시경으로 점검해요. 냄새, 세균, 해충이 생기지 않도록 기름때와 찌꺼기를 꼼꼼히 확인해요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.16')],
 'care': [
-  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='산모 방과 화장실 냄새를 측정기로 체크해요. 출산 후 냄새에 예민해진 산모도 편안하게 이용할 수 있는 수준인지 확인해요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
+  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='출산 후 냄새에 예민해진 산모도 편안하게 지낼 수 있도록 세스코 전문가가 산모 방과 화장실 냄새를 측정기로 깐깐하게 체크해요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
   dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='좌욕실과 조리실 배수구 안을 내시경으로 봐요. 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
 'meat': [],
 }
@@ -552,7 +552,7 @@ function editorHtml(bk, s, withBiz){
   return h;
 }
 
-const TXT={title:'세스코가 전문적으로 체크했습니다', sub:'세스코 전문가가 측정 장비로 직접 체크해요.', lg:'CESCO<br>측정', more:'자세히', more2:'자세히 보기', less2:'접기', seal:'CESCO', pass:'기준 안', date:'체크일', lvsep:' · '};
+const TXT={title:'세스코가 전문적으로 체크했습니다', sub:'', lg:'CESCO<br>측정', more:'자세히', more2:'자세히 보기', less2:'접기', seal:'CESCO', pass:'기준 안', date:'체크일', lvsep:' · '};
 function toolsBlock(t, tv){
   const T=t.tools;
   if(tv==='A'){
@@ -561,7 +561,7 @@ function toolsBlock(t, tv){
   }
   const topTxt=(x,i)=>`<p class="be bt${i===0?' on':''}" data-tgp="${i}">${x.easy}</p>`;
   const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><div class="bxw"><p class="bx">${x.ex}</p><button type="button" class="bxm">${TXT.more2}</button></div><div class="bdt">${TXT.date} ${x.date}</div></div>`;
-  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b><small>${sub}</small></div></div>`;
+  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b>${sub?`<small>${sub}</small>`:''}</div></div>`;
   if(tv==='B'){
     const COL=['#0072CE','#E0A100','#E2641B','#C8102E'];
     const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
