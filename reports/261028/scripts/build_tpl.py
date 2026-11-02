@@ -183,7 +183,7 @@ AICARD = {
 }
 SVC_EN = {'VIRUSCARE':'Viruscare','BODYCARE':'Bodycare','FOOD':'Food','IHM':'Cleaning','IPM':'IPM','AIR':'Air','MYLAB':'MyLab','CHECK':'Check'}
 
-# 인터뷰형 질문(셀프 인터뷰) · 수치형 매핑(위생 카드 실측 항목 index, 없으면 -1)
+# 인터뷰형 질문 · 수치형 매핑(위생 카드 실측 항목 index, 없으면 -1)
 QS = {
 'chicken': ['기름은 언제 갈아요?','닭은 어떻게 보관해요?','염지는 어떻게 해요?','생닭 손질할 때 도마는요?','두 번 튀기는 이유가 있어요?','후드 청소는 누가, 얼마나 자주 해요?','포장하면 눅눅해지지 않나요?','어떤 닭을 쓰세요?','테이블이랑 소스통은요?','배달은 매장이랑 다른 게 있어요?'],
 'meat': ['고기는 몇 도에 두세요?','고기 들어올 때 뭘 보세요?','불판은 언제 바꿔 줘요?','집게가 두 개 나오던데요?','남은 반찬은 어떻게 해요?','숯은 언제 갈아요?','연기는 어떻게 빼요?','오늘 고기는 어디서 온 거예요?','된장이랑 김치는 직접 담그세요?','홀 공기는 어떻게 관리해요?'],
@@ -675,11 +675,11 @@ ${say}
 ${restList}
 ${sayCard}
 ${repRow}${fine}</div>`;
-  // B · 인터뷰형 (셀프 인터뷰)
+  // B · 인터뷰형
   const qa=s.sel.map(i=>{const it=t.items[i]; return `<div class="it"><div class="q">${it.q}</div><div class="a">${mark(s.pts[i],it.copy)}</div><div class="fact"><i>${CHK}</i>${it.chip}</div></div>`;}).join('');
-  const pull = s.say ? `<div class="pull"><p><mark class="ed" style="background:transparent;box-shadow:none">"${esc(s.say)}"</mark></p><span>${reg.name} ${t.owner}</span></div>` : '';
+  const pull = s.say ? `<div class="pull"><p><mark class="ed" style="background:transparent;box-shadow:none">"${esc(s.say)}"</mark></p><span>${t.owner} 한마디</span></div>` : '';
   const bodyB=`<div class="body">
-<div class="iv-hero"><div class="ph">사진 자리 · ${t.owner} · 대표 컷 (${t.owner} 업로드 또는 점검 촬영)</div><div class="eb">${t.owner} 셀프 인터뷰 · ${reg.date} 점검 후</div><h3>${t.about_h}</h3><div class="who">${reg.name} · 질문은 위쳌이, 답은 ${t.owner}이 직접 적었어요</div></div>
+<div class="iv-hero"><div class="ph">사진 자리 · ${t.owner} · 대표 컷 (${t.owner} 업로드 또는 점검 촬영)</div><div class="eb">${t.key} 위생 정보 · ${reg.date} 점검</div><h3>${t.about_h}</h3></div>
 <div class="card intro"><p>${mark(s.about, fill(t.about,reg))}</p></div>
 <div class="card iv">${qa}</div>
 ${pull}
@@ -766,7 +766,7 @@ def build():
 <tr><td><b>0 · 기본 제공</b></td><td>세스코 점검 데이터 + 등록 정보만 있음. 사장님 입력 없음</td><td>업종 기본 소개 문구, 업종 기본 특장점 3개(기본 선택), 기본 문안 그대로. 이 상태로도 완성된 페이지</td></tr>
 <tr><td><b>1 · 고르기</b></td><td>사장님이 특장점 10개 중 2~3개 체크 (고른 순서 = 노출 순서)</td><td>POINT 01~03이 고른 항목의 기본 문안으로 바뀜. AI 요약 두 번째 줄도 같이 바뀜</td></tr>
 <tr><td><b>2 · 고치기</b></td><td>사장님이 소개(160자)·항목 설명(140자)·한마디(40자)를 고침. 사진 추가</td><td>고친 문장만 바뀜. 안 고친 칸은 기본 문안 유지. 한마디는 적었을 때만 나옴</td></tr>
-<tr><td><b>유형 (세스코가 정함)</b></td><td>수치형 · 인터뷰형 · 상세페이지형. 사장님 입력은 세 유형 공통</td><td>수치형: 실측 계기판 아래 "이 집은 ~"로 사장님 문장이 붙음. 인터뷰형: 고른 항목이 질문이 되고 사장님 문장이 답이 됨(셀프 인터뷰). 상세페이지형: POINT 01~03</td></tr>
+<tr><td><b>유형 (세스코가 정함)</b></td><td>수치형 · 인터뷰형 · 상세페이지형. 사장님 입력은 세 유형 공통</td><td>수치형: 실측 계기판 아래 "이 집은 ~"로 사장님 문장이 붙음. 인터뷰형: 고른 항목이 질문이 되고 사장님 문장이 답이 됨. 상세페이지형: POINT 01~03</td></tr>
 <tr><td><b>세스코 전용</b></td><td>측정값·등급·점검일·리포트·"세스코 확인" 칩</td><td>사장님이 못 바꿈. 사장님이 고른 항목이라도 점검 항목이 아니면 POINT 아래 칩이 "매장 기록"으로만 표시</td></tr>
 </tbody></table></div>
 <p style="margin-top:10px"><span class="flag">확인 필요</span>글자 수 상한(160·140·40), 사진 장수, 사장님 수정분의 검수 여부(자동 게시 vs 세스코 승인 후 게시), 금지어 필터(가이드라인 표기법 ⑭⑮) 적용 위치.</p>

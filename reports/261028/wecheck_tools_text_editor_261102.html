@@ -750,11 +750,11 @@ ${say}
 ${restList}
 ${sayCard}
 ${repRow}${fine}</div>`;
-  // B · 인터뷰형 (셀프 인터뷰)
+  // B · 인터뷰형
   const qa=s.sel.map(i=>{const it=t.items[i]; return `<div class="it"><div class="q">${it.q}</div><div class="a">${mark(s.pts[i],it.copy)}</div><div class="fact"><i>${CHK}</i>${it.chip}</div></div>`;}).join('');
-  const pull = s.say ? `<div class="pull"><p><mark class="ed" style="background:transparent;box-shadow:none">"${esc(s.say)}"</mark></p><span>${reg.name} ${t.owner}</span></div>` : '';
+  const pull = s.say ? `<div class="pull"><p><mark class="ed" style="background:transparent;box-shadow:none">"${esc(s.say)}"</mark></p><span>${t.owner} 한마디</span></div>` : '';
   const bodyB=`<div class="body">
-<div class="iv-hero"><div class="ph">사진 자리 · ${t.owner} · 대표 컷 (${t.owner} 업로드 또는 점검 촬영)</div><div class="eb">${t.owner} 셀프 인터뷰 · ${reg.date} 점검 후</div><h3>${t.about_h}</h3><div class="who">${reg.name} · 질문은 위쳌이, 답은 ${t.owner}이 직접 적었어요</div></div>
+<div class="iv-hero"><div class="ph">사진 자리 · ${t.owner} · 대표 컷 (${t.owner} 업로드 또는 점검 촬영)</div><div class="eb">${t.key} 위생 정보 · ${reg.date} 점검</div><h3>${t.about_h}</h3></div>
 <div class="card intro"><p>${mark(s.about, fill(t.about,reg))}</p></div>
 <div class="card iv">${qa}</div>
 ${pull}
