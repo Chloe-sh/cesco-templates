@@ -98,13 +98,13 @@ HCARDS = {
   ('VIRUSCARE','면역력 약한 아기에겐 공기 속 세균도 위험!','공기 중 부유세균을 150 CFU/m³ 이하로 유지해요. 산후조리원 법정 기준의 5분의 1 수준으로 낮아요.','바이러스케어 솔루션','공기 살균'),
   ('BODYCARE','출산 후 산모의 몸은 감염에 특히 취약!','안심하고 회복할 수 있도록 청결 관리를 돕는 비데를 전 객실에 설치했어요.','바디케어 솔루션','비데 위생 관리'),
   ('FOOD','회복하는 동안 하루 세 끼 먹는 조리원 밥!','식자재 입고부터 조리, 배식, 보관까지 모든 과정을 국내 식품위생법 기준으로 운영해요.','식품안전 솔루션','산모 식재료 위생')]),
-'chicken': dict(src='초안 · 윗줄은 팀장님 피드백 구조(왜 필요한가), 엑셀 ①시트에 치킨집 행 없음 [확인 필요]', cards=[
-  ('FOOD','오래 쓴 기름은 산패돼 독성물질이 생겨요!','튀김유 산가를 측정해서 식품위생법 기준(3.0 이하) 안으로 관리해요.','식품안전 솔루션','튀김유 산가'),
-  ('FOOD','생닭은 실온에서 세균이 가장 빨리 늘어요!','입고 즉시 0~5℃ 냉장 보관하고 보관 온도를 매일 확인해요.','식품안전 솔루션','생닭 보관 온도'),
-  ('FOOD','생닭을 만진 칼·도마가 다른 음식에 균을 옮겨요!','생닭용 칼·도마를 따로 두고 쓰고 나면 세척·소독해요.','식품안전 솔루션','칼·도마 위생'),
-  ('IHM','후드에 쌓인 기름때는 발암물질이자 화재 원인!','후드와 배기 덕트를 월 1회 전문 클리닝해요.','전문클리닝 솔루션','후드·배기 청소'),
-  ('AIR','튀김 연기 속 초미세먼지와 유해가스가 주방에 머물러요!','공기청정기를 24시간 가동해서 초미세먼지와 휘발성유기화합물을 관리해요.','에어 솔루션','주방 공기질'),
-  ('IPM','기름과 음식물 냄새는 바퀴벌레와 파리를 불러요!','전문 방제 서비스로 월 1회 이상 점검하고 관리해요.','종합방제 솔루션','해충 방제')]),
+'chicken': dict(src='초안 · 엑셀 ①시트 2안 구조(이유 한 줄 + 관리 두 줄 + 다짐 한 줄)로 작성, 치킨집 행은 엑셀에 없음 [확인 필요]', cards=[
+  ('FOOD','오래 쓴 기름은 산패돼 독성물질까지 생겨요!','산가 측정기로 튀김유를 재서<br>산가 1.0 이하로 관리해요.<small>법적 기준 3.0보다 훨씬 깐깐한, 갓 짠 기름 수준이에요.</small>','식품안전 솔루션','튀김유 산가'),
+  ('FOOD','생닭은 실온에서 세균이 가장 빨리 늘어요!','입고 즉시 0~5℃ 냉장 보관하고<br>상온 노출 시간을 최소로 줄여요.<small>보관 온도는 매일 기록으로 확인해요.</small>','식품안전 솔루션','생닭 보관 온도'),
+  ('FOOD','생닭 만진 칼과 도마는 세균 증식 위험!','생닭용 칼·도마를 따로 두고<br>사용 전후 꼼꼼하게 세척·소독해요.<small>오염도 200RLU 이하, 식품 공장 권장 기준이에요.</small>','식품안전 솔루션','칼·도마 위생'),
+  ('IHM','후드에 쌓인 기름때는 발암물질이자 화재 원인!','후드부터 배기 덕트까지<br>월 1회 전문 클리닝으로 걷어내요.<small>안 보이는 곳도 깨끗하게 관리해요.</small>','전문클리닝 솔루션','후드·배기 청소'),
+  ('AIR','튀김 연기 속엔 초미세먼지가 가득!','초미세먼지부터 VOCs까지 걸러내는<br>공기청정기를 24시간 가동해요.<small>병원 공용 공간 수준의 공기질로 관리해요.</small>','에어 솔루션','주방 공기질'),
+  ('IPM','기름과 음식물 냄새는 바퀴벌레와 파리를 불러요!','월 1회 이상 전문 방제로 점검하고<br>해충이 들어오는 길목부터 막아요.<small>보이지 않는 곳까지 세스코가 확인해요.</small>','종합방제 솔루션','해충 방제')]),
 'meat': dict(src='', cards=[]),
 }
 # 네모 스티커(체크 스탬프) 탭 · 색 구분. 블루 멤버스 = IPM·바이러스케어·에어·워터·레스트룸(바디케어) 등 파랑, 화이트 멤버스 = 식품안전(세스코 푸드 초록)
@@ -267,6 +267,7 @@ EXTRA_CSS = r"""
 .hc .stamp{flex:none;margin-top:-4px}
 .hc .hk{font-size:12px;color:#6B7684;margin-top:12px;line-height:1.5}
 .hc .hl{font-size:14px;font-weight:800;color:#1A2E5A;line-height:1.5;margin-top:6px;flex:1}
+.hc .hl small{display:block;font-size:12px;font-weight:600;color:#4B5563;margin-top:5px;line-height:1.5}
 .hc .ck{display:flex;gap:6px;align-items:flex-start;margin-top:12px;font-size:10.5px;color:#1A2E5A;line-height:1.45}
 .hc .ck .bx{flex:none;width:13px;height:13px;border:1.4px solid #1A2E5A;border-radius:2px;font-size:9px;line-height:11px;text-align:center;font-weight:900}
 .hc .dt{font-size:10px;color:#6B9AD4;margin-top:3px;padding-left:19px}
@@ -359,7 +360,7 @@ EXTRA_CSS = r"""
 .tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
 .tv-b .bh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
 .tv-b .bh small{display:block;margin-top:3px;font-size:10.5px;color:var(--muted);line-height:1.5}
-.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 .tv-b .g{font:inherit;cursor:pointer;position:relative;padding:8px 8px 12px;border:1px solid var(--wc-line);border-radius:14px;text-align:center;background:#FAFCFF;color:inherit}
 .tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
 .tv-b .g svg{width:100%;max-width:120px;display:block;margin:0 auto}
@@ -369,15 +370,16 @@ EXTRA_CSS = r"""
 .tv-b .btw{min-height:0}
 .tv-b .bt{display:none;font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.7;margin:16px 2px 14px}
 .tv-b .bt.on{display:block}
-.tv-b .bd{margin-top:12px}
-.tv-b .bp{display:none;padding-top:4px}
+.tv-b .bd{margin-top:12px;background:#F7F9FC;border-radius:14px;padding:14px 14px 12px}
+.tv-b .bst{margin-left:auto;align-self:center;font-size:10px;font-weight:900;color:var(--wc);background:var(--wc-bg);border-radius:999px;padding:4px 9px;white-space:nowrap}
+.tv-b .bp{display:none}
 .tv-b .bp.on{display:block}
-.tv-b .be{font-size:12px;color:var(--txt);line-height:1.7;margin:0}
-.tv-b .bl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px}
+.tv-b .be{font-size:12.5px;color:var(--ink);font-weight:600;line-height:1.7;margin:0}
+.tv-b .bl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:12px}
 .tv-b .bl span{font-size:10.5px;font-weight:800;color:#9A9A9A;padding:4px 10px;border-radius:999px;background:#F4F5F2}
 .tv-b .bl span.on{background:var(--wc-bg);color:var(--wc)}
 .tv-b .bl small{flex-basis:100%;font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:5px}
-.tv-b .bxw{margin-top:12px;background:var(--wc-bg);border-radius:10px;padding:11px 13px}
+.tv-b .bxw{margin-top:12px;background:#fff;border:1px solid var(--wc-line);border-radius:10px;padding:11px 13px}
 .tv-b .bx{font-size:11px;color:var(--ink2);line-height:1.75;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tv-b .bxw.open .bx{display:block;-webkit-line-clamp:unset}
 .tv-b .bxm{display:block;margin-top:7px;padding:0;border:0;background:none;font:inherit;font-size:10.5px;font-weight:800;color:var(--wc);cursor:pointer}
@@ -560,8 +562,8 @@ function toolsBlock(t, tv){
     return `<div class="tv-a"><div class="rh"><div><span class="no">CESCO · 측정 리포트</span><b>세스코가 전문적으로 체크했습니다</b></div><div class="dt">체크일<br><b>${T[0].date}</b></div></div>${rows}<div class="rf"><span>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</span><span>${T.length}항목 모두 통과</span></div></div>`;
   }
   const topTxt=(x,i)=>`<p class="be bt${i===0?' on':''}" data-tgp="${i}">${x.easy}</p>`;
-  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><div class="bxw"><p class="bx">${x.ex}</p><button type="button" class="bxm">${TXT.more2}</button></div><div class="bdt">${TXT.date} ${x.date}</div></div>`;
-  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b>${sub?`<small>${sub}</small>`:''}</div></div>`;
+  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><div class="bxw"><p class="bx">${x.ex}</p><button type="button" class="bxm">${TXT.more2}</button></div><div class="bdt">${TXT.date} ${x.date}</div></div>`;
+  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b>${sub?`<small>${sub}</small>`:''}</div><span class="bst">${T.length}항목 모두 기준 안</span></div>`;
   if(tv==='B'){
     const COL=['#0072CE','#E0A100','#E2641B','#C8102E'];
     const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
@@ -569,7 +571,7 @@ function toolsBlock(t, tv){
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0072CE">✓</text></svg>`;};
     const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<span class="gv">✓ ${x.levels[0][0]}</span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div></button>`).join('');
-    return `<div class="tv-b" data-tvbox>${head(TXT.sub)}<div class="btw">${T.map(topTxt).join('')}</div><div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+    return `<div class="tv-b" data-tvbox>${head(TXT.sub)}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='D'){
     const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>${TXT.seal}</small></span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><i class="more">${TXT.more}</i></button>`).join('');
