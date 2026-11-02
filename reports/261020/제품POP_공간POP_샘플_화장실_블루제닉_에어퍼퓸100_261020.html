@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>화장실 공간 POP 샘플 · 블루제닉 + 에어퍼퓸100</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--navy:#1d2b4f;--magenta:#C2185B;--violet:#7E6BC4;--amber:#b35c00;--amber-soft:#fff4e5;--green:#1b7f3b;--green-soft:#e8f5ec}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+.wrap{max-width:1040px;margin:0 auto;padding:44px 24px 80px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:24px}
+.kicker{font-size:13px;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:26px;margin:0 0 8px;font-weight:800;line-height:1.3}
+.meta{display:flex;flex-wrap:wrap;gap:6px 20px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+h2{font-size:19px;margin:40px 0 10px;padding-top:16px;border-top:1px solid var(--line);font-weight:800;display:flex;gap:10px;align-items:baseline}
+h2 .num{color:var(--blue);font-size:14px;min-width:2ch}
+h3{font-size:15.5px;margin:22px 0 8px;font-weight:700}
+p{margin:0 0 10px}
+.lead{font-size:16px;color:var(--ink2)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 14px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-size:13px;color:var(--ink2);white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px}
+.tag.b{background:#e6f1fb;color:var(--blue)}.tag.a{background:var(--amber-soft);color:var(--amber)}.tag.g{background:var(--green-soft);color:var(--green)}.tag.k{background:#eee;color:var(--ink2)}
+.box{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px;background:var(--soft);padding:12px 16px;margin:12px 0}
+.box.amber{border-left-color:var(--amber);background:var(--amber-soft)}
+.small{font-size:13px;color:var(--ink2)}
+code{font-family:inherit;background:#f1f1f1;padding:1px 5px;border-radius:3px;font-size:13px}
+
+/* ---- POP 카드: 실제 mm 치수 ---- */
+.board{display:flex;flex-wrap:wrap;gap:28px 36px;align-items:flex-start;margin:14px 0 6px}
+.popwrap{display:flex;flex-direction:column;gap:8px}
+.poplabel{font-size:12.5px;color:var(--ink2)}
+.poplabel b{color:var(--ink)}
+.pop{position:relative;background:#fff;border:1px solid #cfd4da;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:4.5mm 5mm 4mm 5mm;display:flex;flex-direction:column;justify-content:space-between;border-radius:3mm 3mm 3mm 0;overflow:hidden}
+.pop.cut{border-radius:3mm 3mm 3mm 0}
+.pop .lockup{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.pop .brand{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.01em;line-height:1}
+.pop .brand .c{font-size:1em}
+.pop .brand .sub{font-family:"Pretendard Variable",Pretendard,sans-serif;font-weight:600;margin-left:.3em}
+.pop .icon{width:5mm;height:5mm;border-radius:50%;border:1.5px solid currentColor;display:inline-flex;align-items:center;justify-content:center;font-size:2.6mm;font-weight:800;flex:none}
+.pop .sci{font-size:2.9mm;font-weight:600;color:var(--ink2);margin-top:1.2mm}
+.pop .head{font-weight:800;line-height:1.22;letter-spacing:-.02em;margin-top:.6mm}
+.pop .head em{font-style:normal}
+.pop .note{font-size:2.1mm;line-height:1.35;color:#333;margin-top:1.6mm}
+.pop .sup{font-size:2.3mm;color:var(--ink2);margin-top:1.4mm;line-height:1.35}
+.pop .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:1.5mm}
+.pop .foot .tag2{font-size:2.1mm;color:var(--ink3)}
+.pop .foot .logo{font-family:Georgia,serif;font-weight:700;font-size:3.2mm;color:var(--blue)}
+/* 컬러스킴 */
+.pop.magenta{color:var(--navy)} .pop.magenta .brand .c,.pop.magenta .brand .sub,.pop.magenta .icon,.pop.magenta .head em{color:var(--magenta)}
+.pop.violet{color:var(--navy)} .pop.violet .brand .c,.pop.violet .brand .sub,.pop.violet .icon,.pop.violet .head em{color:var(--violet)}
+.pop.blue{color:var(--navy)} .pop.blue .brand .c,.pop.blue .brand .sub,.pop.blue .icon,.pop.blue .head em{color:var(--blue)}
+.pop.dark{background:#141414;color:#fff;border-color:#141414}
+.pop.dark .sci,.pop.dark .note,.pop.dark .sup{color:#ddd}
+/* 치수 */
+.s75{width:75mm;height:66mm}
+.s85{width:85mm;height:56mm}
+.s120{width:120mm;height:66mm}
+.s56{width:56mm;height:50mm}
+.s75 .brand{font-size:4.4mm}.s75 .head{font-size:5.6mm}
+.s85 .brand{font-size:3.6mm}.s85 .head{font-size:3.9mm}
+.s120 .brand{font-size:4.6mm}.s120 .head{font-size:6.2mm}
+.s56 .brand{font-size:3.4mm}.s56 .head{font-size:4.3mm}
+.rule{position:absolute;right:2mm;bottom:1mm;font-size:2mm;color:#bbb}
+.pos{font-size:12.5px;color:var(--ink2);margin:4px 0 0}
+@media print{.wrap{padding:0;max-width:none}h2{break-after:avoid}.board{break-inside:avoid}.noprint{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">세스코 제품 POP 템플릿 테스트 · 공간 부착용 POP</div>
+  <h1>사업장 화장실 공간 POP 샘플 — 블루제닉 + 에어퍼퓸100</h1>
+  <div class="meta">
+    <span><b>작성</b> 2026-10-20 · 시하 김선희</span>
+    <span><b>템플릿</b> 마스터 d45 공간 부착용 POP (10/20 가이드 v.4 준용 보완) · d95 제품 부착형</span>
+    <span><b>근거</b> 표시홍보물 비주얼 가이드 v.4(2026.06) · 공통 브랜드 언어 원칙 v2026.10.13 · 상세페이지 코퍼스 "화장실 360˚입체살균 시스템"</span>
+  </div>
+</header>
+
+<p class="lead">다음 주 POP 템플릿 테스트 과제인 "블루제닉 + 에어퍼퓸100 화장실 위생케어 솔루션 → 계약 사업장 화장실 부착용 공간 POP"를, 오늘 보완한 템플릿(가이드 v.4 규격 준용 + C형 관리 선언형)으로 먼저 뽑아 본 샘플입니다. 카드는 실제 치수(mm)로 그려서 브라우저에서 100%로 인쇄하면 실물 크기가 됩니다. 컬러값은 가이드 실물 기준으로 바꿔야 하는 근사치입니다.</p>
+
+<div class="box amber">
+  <b>확인이 필요한 것 2건</b> ① "블루제닉"은 세스코몰 정식 상품명(블루제닉 손세정기 프로 · 손소독기 프로 · 변기세정기 프로 MAX)이고, 가이드 v.4의 제닉 시리즈(핸드제닉 · 새니제닉 · 프레쉬제닉) 공식 카피를 그대로 써도 되는지 확인이 필요합니다. 아래 제품 POP 세트는 제닉 공식 카피를 그대로 두었습니다. ② "에어퍼퓸100"은 코퍼스에 없는 표기입니다(에어퍼퓸 · 에어퍼퓸200만 있음). 가이드 v.4 에어퍼퓸 공식 카피의 각주(싸이클론 기술)가 100 모델에도 맞는지 확인이 필요합니다.
+</div>
+
+<!-- ───────── 1 ───────── -->
+<h2><span class="num">01</span>공간 POP 3안 — 화장실 벽면용</h2>
+<p>세 안 모두 수치와 각주가 없고, 금지 표현(안심 · 안전 · 완벽 · 친환경 등)을 쓰지 않았습니다. 주어는 공간이고 시제는 현재진행입니다. 화장실 솔루션의 이름은 상세페이지 코퍼스의 공식 명칭 "세스코 화장실 360˚입체살균 시스템"을 따랐습니다.</p>
+
+<div class="board">
+  <div class="popwrap">
+    <div class="poplabel"><b>A안 · C형 관리 선언형</b> — 85 × 56 mm · Science, ON Life 블루 · 화장실 출입문 안쪽 또는 세면대 거울 옆</div>
+    <div class="pop blue s85 cut">
+      <div>
+        <div class="lockup"><span class="brand"><span class="c">CESCO</span><span class="sub">Science, ON Life</span></span><span class="icon">C</span></div>
+        <div class="sci">세스코 사이언스케어 서비스</div>
+        <div class="head">이 화장실은 <em>손 위생부터 변기, 공기까지</em><br>세스코 과학으로 관리합니다.</div>
+        <div class="sup">손을 씻고 나서는 당신처럼,<br>세스코는 다음 사람이 쓸 공간을 미리 살핍니다.</div>
+      </div>
+      <div class="note">* 블루제닉 손세정기 · 손소독기 · 변기세정기, 향기솔루션 에어퍼퓸100 설치 공간</div>
+      <span class="rule">85×56</span>
+    </div>
+    <p class="pos">가이드 p.16 핸드드라이어 서비스형 POP의 문장 틀을 공간에 옮긴 것입니다. 제품이 여러 개 들어간 공간을 한 장으로 설명할 때 씁니다.</p>
+  </div>
+
+  <div class="popwrap">
+    <div class="poplabel"><b>B안 · A형 시스템 가동 선언형</b> — 75 × 66 mm · Viruscare 마젠타 · 세면대 위 벽면</div>
+    <div class="pop magenta s75 cut">
+      <div>
+        <div class="lockup"><span class="brand"><span class="c">CESCO</span><span class="sub">Viruscare</span></span><span class="icon">V</span></div>
+        <div class="sci">바이러스케어</div>
+        <div class="head">이곳은 세스코 과학으로 만든<br><em>화장실 360˚입체살균 시스템</em>이<br>가동 중입니다</div>
+      </div>
+      <div class="foot"><span class="tag2">CESCO Science, ON Life</span><span class="logo">CESCO</span></div>
+      <span class="rule">75×66</span>
+    </div>
+    <p class="pos">실물로 확인된 A형(카드뉴스 836_20)의 서비스명 자리에 화장실 솔루션 공식 명칭을 넣었습니다. 명칭이 길어 3행째가 꽉 차므로 글자 크기 조정이 필요합니다.</p>
+  </div>
+
+  <div class="popwrap">
+    <div class="poplabel"><b>C안 · B형 관리 진행 고지형(압축)</b> — 56 × 50 mm · Viruscare 마젠타 · 변기 칸 안쪽 · 손소독기 옆</div>
+    <div class="pop magenta s56 cut">
+      <div>
+        <div class="lockup"><span class="brand"><span class="c">CESCO</span><span class="sub">Viruscare</span></span><span class="icon">V</span></div>
+        <div class="head"><em>손과 변기, 공기까지</em><br>청결하고 위생적인<br>관리 진행</div>
+      </div>
+      <div class="foot"><span class="tag2">세스코 과학으로 관리합니다</span></div>
+      <span class="rule">56×50</span>
+    </div>
+    <p class="pos">실물로 확인된 B형(리플릿 334_1)의 위해요소 자리에 관리 대상 3가지를 넣은 압축형입니다. 작은 자리용입니다.</p>
+  </div>
+</div>
+
+<!-- ───────── 2 ───────── -->
+<h2><span class="num">02</span>제품 POP 세트 — 가이드 v.4 공식 카피 그대로</h2>
+<p>공간 POP와 함께 각 제품에는 가이드 v.4의 공식 카피를 그대로 붙입니다. 바꾼 글자는 없습니다. 블루제닉 신명칭에 맞춘 공식 카피가 따로 있는지만 확인이 필요합니다.</p>
+
+<div class="board">
+  <div class="popwrap">
+    <div class="poplabel"><b>자동 손세정기</b> (블루제닉 손세정기 프로 ← 가이드 p.2 핸드제닉) — 75 × 66 · 제품 뒷면 정가운데, 하단에서 10 cm</div>
+    <div class="pop magenta s75 cut">
+      <div>
+        <div class="lockup"><span class="brand"><span class="c">CESCO</span><span class="sub">Viruscare</span></span><span class="icon">V</span></div>
+        <div class="sci">세스코 과학으로 만든</div>
+        <div class="head"><em>자동센서<br>항균손세정기</em></div>
+      </div>
+      <div class="note">* 유해세균 교차오염까지 방지하는 비접촉식 손세정기</div>
+      <span class="rule">75×66</span>
+    </div>
+  </div>
+  <div class="popwrap">
+    <div class="poplabel"><b>자동 손소독기</b> (블루제닉 손소독기 프로 ← 가이드 p.3 새니제닉) — 75 × 66 · 제품 뒷면 정가운데, 하단에서 10 cm</div>
+    <div class="pop magenta s75 cut dark">
+      <div>
+        <div class="lockup"><span class="brand"><span class="c">CESCO</span><span class="sub">Viruscare</span></span><span class="icon">V</span></div>
+        <div class="sci">세스코 과학으로 만든</div>
+        <div class="head"><em>자동센서<br>항균손소독기</em></div>
+      </div>
+      <div class="note">* 유해세균 교차오염까지 방지하는 비접촉식 거치형 손소독기</div>
+      <span class="rule">75×66 · 블랙</span>
+    </div>
+  </div>
+  <div class="popwrap">
+    <div class="poplabel"><b>자동 변기세정기</b> (블루제닉 변기세정기 프로 MAX ← 가이드 p.4 프레쉬제닉) — 56 × 50 · 제품 뒷면 정가운데, 상단에서 4 cm</div>
+    <div class="pop magenta s56 cut">
+      <div>
+        <div class="lockup"><span class="brand"><span class="c">CESCO</span><span class="sub">Viruscare</span></span><span class="icon">V</span></div>
+        <div class="sci">세스코 과학으로 만든</div>
+        <div class="head"><em>자동센서<br>변기세정기</em></div>
+      </div>
+      <div class="note">* 변기오염, 세정·탈취 상시 관리</div>
+      <span class="rule">56×50</span>
+    </div>
+  </div>
+  <div class="popwrap">
+    <div class="poplabel"><b>향기솔루션</b> (에어퍼퓸100 ← 가이드 p.13 에어퍼퓸) — 75 × 66 · 제품 우측 · 좌측 세로 스티커 부착부</div>
+    <div class="pop violet s75 cut">
+      <div>
+        <div class="lockup"><span class="brand"><span class="c">CESCO</span><span class="sub">Airperfume</span></span><span class="icon">~</span></div>
+        <div class="sci">세스코 과학으로 만든</div>
+        <div class="head"><em>향기솔루션<br>에어퍼퓸</em></div>
+      </div>
+      <div class="note">* 넓은 공간을 균일한 발향강도로 커버하는 싸이클론 기술력 적용</div>
+      <span class="rule">75×66</span>
+    </div>
+  </div>
+</div>
+
+<!-- ───────── 3 ───────── -->
+<h2><span class="num">03</span>부착 위치 — 화장실 동선 기준</h2>
+<table>
+<thead><tr><th>순서</th><th>자리</th><th>붙이는 것</th><th>간격·방법 (가이드 v.4)</th></tr></thead>
+<tbody>
+<tr><td>①</td><td>출입문 안쪽 또는 세면대 거울 옆 (시선 높이)</td><td>공간 POP A안 (C형)</td><td>벽면 정가운데 부착. 제품 POP가 붙은 제품과 겹치지 않게 (추정)</td></tr>
+<tr><td>②</td><td>세면대 위 벽면</td><td>공간 POP B안 (A형) 또는 생략</td><td>A안과 둘 다 붙이지 않습니다. 공간당 공간 POP 1장이 기본 (추정)</td></tr>
+<tr><td>③</td><td>손세정기 · 손소독기 본체</td><td>제품 POP (핸드제닉 · 새니제닉 공식 카피)</td><td>제품 뒷면 정가운데, 제품 하단에서 10 cm (실제 확인)</td></tr>
+<tr><td>④</td><td>변기 칸 안쪽 변기세정기 본체</td><td>제품 POP (프레쉬제닉 공식 카피) + 공간 POP C안(선택)</td><td>제품 뒷면 정가운데, 제품 상단에서 4 cm (실제 확인)</td></tr>
+<tr><td>⑤</td><td>에어퍼퓸100 본체</td><td>제품 POP (에어퍼퓸 공식 카피)</td><td>제품 우측, 좌측 세로 스티커 부착부 (실제 확인 · 100 모델 치수 확인 필요)</td></tr>
+</tbody>
+</table>
+
+<!-- ───────── 4 ───────── -->
+<h2><span class="num">04</span>검수 — 템플릿 d45 §0 5번 · d95 §4 체크리스트</h2>
+<table>
+<thead><tr><th>점검</th><th class="c">결과</th><th>메모</th></tr></thead>
+<tbody>
+<tr><td>파는 말(할인·문의·구매) 없음</td><td><span class="tag g">통과</span></td><td>CTA 없음. 연락처 · QR 없음</td></tr>
+<tr><td>해충을 직접 가리키는 말 없음</td><td><span class="tag g">통과</span></td><td>위생 · 관리 · 살균 시스템 명칭만 사용</td></tr>
+<tr><td>수치 · 각주</td><td><span class="tag g">통과</span></td><td>공간 POP 3안 모두 수치 없음 → 각주 불필요. 제품 POP는 가이드 공식 각주 원문 그대로</td></tr>
+<tr><td>금지 표현 (§8 ⑭⑮)</td><td><span class="tag g">통과</span></td><td>안심 · 안전 · 완벽 · 친환경 · 무독성 없음. A안 보조문의 "살핍니다"는 관리 행위 서술</td></tr>
+<tr><td>브랜드 로크업 · 컬러스킴 고정</td><td><span class="tag g">통과</span></td><td>Viruscare 마젠타 / Airperfume 연보라 / Science, ON Life 블루</td></tr>
+<tr><td>주어 = 공간, 시제 = 현재진행</td><td><span class="tag g">통과</span></td><td>"이 화장실은", "이곳은" / 관리합니다 · 가동 중입니다 · 관리 진행</td></tr>
+<tr><td>상품명 표기</td><td><span class="tag a">확인 필요</span></td><td>블루제닉 ↔ 제닉 시리즈 공식 카피 적용 가능 여부, 에어퍼퓸100 표기 · 사양</td></tr>
+<tr><td>B안 3행 글자 수</td><td><span class="tag a">조정</span></td><td>"화장실 360˚입체살균 시스템이"가 13자를 넘어 표준 분량(행당 8~13자) 초과. 디자인에서 2단 처리하거나 "화장실 입체살균 시스템이"로 줄일지 결정 필요</td></tr>
+<tr><td>태그라인 표기</td><td><span class="tag g">통과</span></td><td>CESCO Science, ON Life (가이드 v.4 핸드드라이어 POP 실물 표기)</td></tr>
+</tbody>
+</table>
+
+<!-- ───────── 5 ───────── -->
+<h2><span class="num">05</span>결정 요청</h2>
+<ol>
+  <li><b>안 선택</b> 공간 POP는 A안(관리 선언형)을 기본으로 보고, B안은 바이러스케어 계약 사업장용 대안, C안은 작은 자리용 보조로 제안합니다.</li>
+  <li><b>사이즈</b> 공간 POP 전용 사이즈가 없어 가이드 v.4 값(85 × 56 / 75 × 66 / 56 × 50 mm)을 준용했습니다. 전용 사이즈를 정해 주시면 템플릿 §4 표에 고정합니다.</li>
+  <li><b>명칭</b> 블루제닉 신명칭의 제품 POP 공식 카피 유무, 에어퍼퓸100의 정식 표기와 각주 사양.</li>
+  <li><b>B안 3행 처리</b> 공식 명칭 그대로 두고 디자인에서 해결할지, 줄인 표현을 허용할지.</li>
+</ol>
+
+<p class="small">근거 — 마스터 템플릿 d45(공간 부착용 POP, 2026-10-20 가이드 v.4 준용 보완) · d95(제품 부착형 POP 가이드 v.4 전사) · 공통 브랜드 언어 원칙 d01 §8 ⑭⑮⑯~⑱, §10-4 · 상세페이지 코퍼스 "세스코 화장실 360˚입체살균 시스템"(방향탈취기 · 공기살균기 · 자동 변기세정기 · 살균방수 비데 · 자동 손세정기 · 자동 손소독기) · 세스코몰 카탈로그 블루제닉 3종.</p>
+
+</div>
+</body>
+</html>

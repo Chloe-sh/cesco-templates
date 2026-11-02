@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>세스코 마이랩 살균소독제 70 · 제품 리플릿 기타형(Q&A 규제 대응형) · 실물 디자인형</title>
+<!-- 세스코 리플릿 실물 디자인형 샘플 · 규약 ../../references/leaflet-real-design-spec.md · 공용 CSS ../../assets/leaflet-real-design.css (인라인)
+     규격 A4 세로 1장 앞·뒷면(2P) · 접지 없음(접지가 필요하면 발주 전 확인) · 재단 여백 3mm는 인쇄소 사양에 따라 디자이너가 추가
+     층: 지면 카피(기본) / 회색 점선 = 이미지 자리(종류·분위기·역할·지면 %) / 노란 메모 = 제작 메모(지면 미노출) / 주황 = [확인 필요] -->
+<style>/* 세스코 리플릿 — 실물 디자인형 공용 CSS (2026-10-28 회의 결정 반영)
+   규격: A4 세로 1장 앞·뒷면(2P). 화면에서는 앞·뒷면을 나란히 비교, 인쇄(@page A4)에서는 면당 1장.
+   지면 안 글자·여백은 모두 cqw(지면 폭 기준 %) 단위 — 화면 폭이 달라도, 인쇄로 넘어가도 비율이 같다. 1cqw = 2.1mm.
+   층 구분: 지면 카피(기본) · 이미지 자리(.slot, 회색 점선) · 메모 층(.memo/.pct/.dnote — '메모 숨기기'로 사라짐) · [확인 필요](.need, 주황)
+   규약 정본: ../references/leaflet-real-design-spec.md */
+:root{--stage:#d9dee6;--paper:#fff;--ink:#1c2430;--ink-2:#4b5563;--ink-3:#7c8592;--navy:#0f3c7a;--blue:#1e6fd9;--wash:#e9f1fb;--wash-2:#f4f7fb;--line:#d5dde8;
+--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200;--hero:#1b2a3f;--tag:#ff7a2f;--need:#fff0e6;--need-ink:#b4530a;--ok:#1f7a45;--bad:#c2410c;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--stage:#1a1f27;}}
+:root[data-theme="dark"]{--stage:#1a1f27;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--stage)}
+body{color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all;padding:20px 16px 56px}
+.wrap{max-width:1240px;margin:0 auto}
+/* ── 상단 바(지면 밖) ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.bar h1{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.bar .sub{font-size:11.5px;color:var(--ink-3)}
+.bar .chips{display:flex;gap:5px;flex-wrap:wrap}
+.bar .chip{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-2);background:#fff}
+.bar .chip.type{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.bar .btns{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.bar button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 11px;border-radius:16px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+/* ── 디자이너 노트(지면 밖) ── */
+.dnote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--tag);border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.55;color:var(--ink-2);margin-bottom:16px}
+.dnote h2{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.dnote h2 span{display:inline-block;background:var(--tag);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.dnote table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.dnote th{background:var(--wash-2);color:var(--ink);text-align:left;white-space:nowrap;width:96px;padding:5px 8px;border:1px solid var(--line);vertical-align:top}
+.dnote td{padding:5px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dnote td b{color:var(--navy)}
+/* ── 대지: 앞·뒷면 나란히 ── */
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media (max-width:1080px){.spread{grid-template-columns:1fr}}
+@media (max-width:640px){.spread{overflow-x:auto;padding-bottom:8px}.page{min-width:560px}}
+body[data-view="front"] .page.back,body[data-view="back"] .page.front{display:none}
+body[data-view="front"] .spread,body[data-view="back"] .spread{grid-template-columns:minmax(0,620px);justify-content:center}
+.page{position:relative;background:var(--paper);width:100%;aspect-ratio:210/297;container-type:inline-size;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 3px rgba(0,0,0,.08),0 18px 40px -12px rgba(15,60,122,.25)}
+.page .side{position:absolute;top:0;left:0;z-index:3;background:var(--navy);color:#fff;font-size:1.35cqw;font-weight:700;padding:.4cqw 1.6cqw;border-radius:0 0 .8cqw 0;letter-spacing:.05em}
+.page .fill{position:absolute;top:0;right:0;z-index:3;font-size:1.3cqw;font-weight:700;padding:.4cqw 1.4cqw;border-radius:0 0 0 .8cqw;background:var(--ok);color:#fff}
+.page .fill.bad{background:var(--bad)}
+.pad{padding:0 5.2cqw;display:flex;flex-direction:column;flex:1 0 auto}
+.pad>*+*{margin-top:1.4cqw}
+.page p{font-size:1.72cqw;line-height:1.6}
+/* 메모 층 */
+.memo{background:var(--memo);color:var(--memo-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:500;font-size:.92em}
+.pct{position:absolute;right:.6cqw;top:-.9cqw;z-index:2;font-size:1.15cqw;font-weight:800;color:var(--memo-ink);background:var(--memo);padding:.1cqw .9cqw;border-radius:999px;pointer-events:none}
+.blk{position:relative}
+body.hide-memo .memo,body.hide-memo .pct,body.hide-memo .dnote,body.hide-memo .fill{display:none}
+body.hide-memo .slot{color:transparent}
+.need{background:var(--need);color:var(--need-ink);border:1px dashed var(--need-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:700;font-size:.92em}
+/* 이미지 자리 */
+.slot{background:var(--slot);border:.22cqw dashed var(--slot-line);border-radius:.9cqw;color:var(--ink-3);font-size:1.3cqw;line-height:1.45;padding:1.1cqw 1.3cqw;display:flex;flex-direction:column;justify-content:flex-end;min-height:var(--h,8cqw)}
+.slot b{display:block;font-weight:800;color:var(--ink-2);font-size:1.25cqw;margin-bottom:.2cqw}
+.slot.grow{flex:1 1 auto}
+.hero .slot,.band .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45);color:#fff}
+.hero .slot b,.band .slot b{color:#fff}
+/* ── 앞면 블록 ── */
+.lock{display:flex;justify-content:space-between;align-items:baseline;padding:3.6cqw 5.2cqw 0;font-size:1.5cqw;font-weight:700;color:var(--ink-2)}
+.lock .brand{font-size:2.2cqw;font-weight:900;color:var(--navy);letter-spacing:.02em}
+.lock .brand small{font-size:1.4cqw;font-weight:600;color:var(--ink-2);margin-left:.8cqw;letter-spacing:0}
+.lock .badge{background:var(--blue);color:#fff;font-size:1.3cqw;padding:.25cqw 1.1cqw;border-radius:.4cqw;margin-right:.8cqw}
+.hero{position:relative;background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:3.2cqw 5.2cqw 3cqw;display:grid;grid-template-columns:1.2fr .8fr;gap:3cqw;margin-top:2.2cqw}
+.bubbles{display:flex;flex-direction:column;gap:.7cqw;margin-bottom:2cqw}
+.bubble{align-self:flex-start;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:2cqw 2cqw 2cqw .4cqw;padding:.7cqw 1.6cqw;font-size:1.55cqw;line-height:1.45}
+.hero h1{font-size:4.3cqw;line-height:1.22;font-weight:900;letter-spacing:-.025em}
+.hero .sub{margin-top:1.4cqw;font-size:1.8cqw;font-weight:600;opacity:.95}
+.hero .sub2{margin-top:.5cqw;font-size:1.5cqw;opacity:.85}
+.hero .slot{min-height:100%}
+.why h2{font-size:2.5cqw;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:1cqw;letter-spacing:-.02em}
+.why h2 .q{background:var(--navy);color:#fff;font-size:1.6cqw;width:3cqw;height:3cqw;display:inline-flex;align-items:center;justify-content:center;border-radius:.4cqw;flex:none}
+.why .ans{margin-top:1cqw;font-size:1.65cqw;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;margin-top:1.6cqw}
+.card{border:1px solid var(--line);border-top:.4cqw solid var(--navy);border-radius:0 0 .9cqw .9cqw;padding:1.2cqw 1.4cqw 1.3cqw;display:flex;flex-direction:column}
+.card .ico{width:5.2cqw;height:5.2cqw;border-radius:50%;background:var(--slot);border:.2cqw dashed var(--slot-line);color:var(--ink-3);font-size:1.05cqw;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:.9cqw;line-height:1.2}
+.card b{font-size:1.65cqw;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.card p{font-size:1.4cqw;line-height:1.55;color:var(--ink-2);margin-top:.5cqw}
+.stat{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:1.4cqw;align-items:stretch}
+.stat>div{background:var(--wash-2);border-radius:.9cqw;padding:1.3cqw 1.5cqw}
+.stat .v{font-size:4.2cqw;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.03em}
+.stat .v small{font-size:1.8cqw;font-weight:800;margin-left:.2cqw}
+.stat .l{font-size:1.3cqw;line-height:1.45;color:var(--ink-2);margin-top:.7cqw}
+.stat .cap{font-size:1.55cqw;font-weight:800;color:var(--navy);margin-bottom:.6cqw}
+.stat ul{list-style:none;font-size:1.45cqw;font-weight:700;color:var(--navy)}
+.stat ul li::before{content:"☑ ";color:var(--blue)}
+.band{position:relative;background:var(--navy);color:#fff;padding:2.6cqw 5.2cqw;margin:1.6cqw -5.2cqw 0;display:grid;grid-template-columns:1fr 17cqw;gap:2.4cqw;align-items:center}
+.band .pre{font-size:1.6cqw;line-height:1.6;opacity:.92}
+.band .name{font-size:3.1cqw;font-weight:900;margin-top:.8cqw;letter-spacing:-.02em;line-height:1.25}
+.band .spec{margin-top:1cqw;font-size:1.3cqw;opacity:.85;padding-top:.8cqw;border-top:1px solid rgba(255,255,255,.3)}
+.band .slot{min-height:12cqw}
+.bridge{font-size:1.65cqw;color:var(--ink);background:var(--wash);border-left:.5cqw solid var(--blue);padding:1.1cqw 1.6cqw;border-radius:0 .8cqw .8cqw 0}
+/* ── 뒷면 블록 ── */
+.p2head{padding-top:3.2cqw}
+.p2head .k{font-size:1.6cqw;color:var(--ink-2);font-weight:600}
+.p2head h2{font-size:2.9cqw;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.02em;margin-top:.3cqw}
+.adv{display:grid;grid-template-columns:1fr 15cqw;gap:2.4cqw}
+.alist{display:flex;flex-direction:column;gap:.9cqw}
+.a{display:grid;grid-template-columns:4.6cqw 1fr;gap:1.4cqw;align-items:start}
+.a .no{width:4.6cqw;height:4.6cqw;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5cqw;font-weight:900}
+.a h3{font-size:1.78cqw;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.a p{font-size:1.4cqw;line-height:1.5;margin-top:.35cqw;color:var(--ink)}
+.col{display:flex;flex-direction:column;gap:1.2cqw}
+.col .slot{flex:1 1 auto}
+sup{font-size:.65em;color:var(--blue);font-weight:700;line-height:0}
+table.t{width:100%;border-collapse:collapse;font-size:1.4cqw}
+table.t th{background:var(--wash);color:var(--navy);font-weight:700;padding:.65cqw .8cqw;border:1px solid var(--line);text-align:center}
+table.t td{padding:.6cqw .8cqw;border:1px solid var(--line);text-align:center;vertical-align:middle}
+table.t td.l{text-align:left}
+table.t td.pr{font-weight:900;color:var(--blue);font-size:1.6cqw}
+table.t td s{color:var(--ink-3);font-weight:400;font-size:1.25cqw;margin-right:.4cqw}
+table.t.spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:16%;white-space:nowrap}
+table.t.spec td:nth-child(even){text-align:left}
+.proof{background:var(--wash-2);border-radius:.9cqw;padding:1.1cqw 1.4cqw}
+.proof .cert{font-size:1.55cqw;font-weight:900;color:var(--navy);border-left:.45cqw solid var(--navy);padding-left:1cqw;margin-bottom:.8cqw}
+.fine{font-size:1.1cqw;line-height:1.48;color:var(--ink-2)}
+.fine p{font-size:1.1cqw;line-height:1.48}
+.fine p+p{margin-top:.15cqw}
+.fnote{margin-top:auto;padding-top:1.2cqw;border-top:1px solid var(--line)}
+.cross{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.cross>div{border:1px solid var(--line);border-radius:.9cqw;padding:1cqw 1.3cqw}
+.cross h4{font-size:1.65cqw;font-weight:900;color:var(--navy)}
+.cross p{font-size:1.4cqw;color:var(--ink-2);margin-top:.4cqw}
+.cross .lbl{display:inline-block;background:var(--navy);color:#fff;font-size:1.15cqw;font-weight:700;padding:.2cqw 1cqw;border-radius:.3cqw;margin-bottom:.5cqw}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw;margin-top:1cqw}
+.mini .slot{min-height:5cqw;font-size:1.1cqw;padding:.7cqw}
+.cta{display:grid;grid-template-columns:1fr 8cqw;gap:2cqw;align-items:center;background:var(--navy);color:#fff;border-radius:1cqw;padding:1.2cqw 2cqw}
+.cta h5{font-size:2cqw;font-weight:900}
+.cta h5 small{font-size:1.4cqw;font-weight:500;opacity:.9;margin-left:.8cqw}
+.cta p{font-size:1.35cqw;opacity:.9;margin-top:.4cqw}
+.cta .qr{width:8cqw;height:8cqw;background:#fff;border-radius:.6cqw;color:var(--ink-3);font-size:1.1cqw;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+/* 관리 단계형(STEP) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.step{border:1px solid var(--line);border-radius:.9cqw;overflow:hidden;display:flex;flex-direction:column}
+.step .slot{border-radius:0;border-width:0 0 .22cqw;min-height:9cqw}
+.step .tx{padding:1cqw 1.2cqw 1.2cqw}
+.step .sn{font-size:1.2cqw;font-weight:900;color:var(--blue);letter-spacing:.04em}
+.step h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.3;margin-top:.1cqw}
+.step p{font-size:1.35cqw;line-height:1.5;color:var(--ink-2);margin-top:.4cqw}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.pt{background:var(--wash-2);border-radius:.9cqw;padding:1.2cqw 1.4cqw}
+.pt .pn{font-size:1.2cqw;font-weight:900;color:var(--blue)}
+.pt h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;margin-top:.2cqw}
+.pt p{font-size:1.35cqw;line-height:1.5;color:var(--ink);margin-top:.4cqw}
+/* 가격표형 */
+.lineup{display:flex;flex-direction:column;gap:.7cqw}
+.li{display:grid;grid-template-columns:6.5cqw 1fr;gap:1.2cqw;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.7cqw}
+.li .slot{min-height:5.6cqw;font-size:1.05cqw;padding:.6cqw}
+.li .no{display:inline-block;width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3cqw;font-weight:900;text-align:center;line-height:2.6cqw;margin-right:.6cqw;vertical-align:middle}
+.li h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;display:inline}
+.li p{font-size:1.25cqw;line-height:1.45;color:var(--ink-2);margin-top:.25cqw}
+/* Q&A형 */
+.qa{display:flex;flex-direction:column;gap:.7cqw}
+.qa>div{display:grid;grid-template-columns:4.2cqw 1fr;gap:1.2cqw}
+.qa .qn{width:4.2cqw;height:4.2cqw;border-radius:.6cqw;background:var(--navy);color:#fff;font-size:1.5cqw;font-weight:900;display:flex;align-items:center;justify-content:center}
+.qa h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.35}
+.qa p{font-size:1.36cqw;line-height:1.5;margin-top:.3cqw;color:var(--ink)}
+table.t.cmp th.rec{background:var(--navy);color:#fff}
+table.t.cmp td{text-align:left;font-size:1.22cqw;vertical-align:top;padding:.5cqw .7cqw}
+table.t.cmp td:first-child{background:var(--wash-2);font-weight:700;color:var(--navy);width:13%;white-space:nowrap;text-align:center}
+table.t.cmp td ul{list-style:none}
+table.t.cmp td li::before{content:"· "}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+/* 푸터 */
+.pf{margin-top:auto;padding:1.1cqw 5.2cqw 1.5cqw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-size:1.25cqw;color:var(--ink-2)}
+.pf .logo{font-weight:900;font-size:2.4cqw;color:var(--navy);line-height:1}
+.pf .logo small{display:block;font-size:1.15cqw;font-weight:600;letter-spacing:.14em;margin-top:.3cqw;color:var(--ink-2)}
+.pf .tel{font-size:1.9cqw;font-weight:900;color:var(--navy)}
+.pf .tel small{display:block;font-size:1.15cqw;font-weight:500;color:var(--ink-2)}
+.pf.full{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.pf .addr{font-size:1.15cqw;line-height:1.55}
+.pf .card{border:1px dashed var(--slot-line);width:19cqw;height:7cqw;font-size:1.2cqw;color:var(--ink-3);display:flex;align-items:center;justify-content:center;text-align:center;border-radius:.5cqw}
+/* 인쇄 */
+@page{size:A4 portrait;margin:0}
+@media print{
+ body{background:#fff;padding:0}
+ .bar,.dnote,.page .side,.page .fill,.pct{display:none!important}
+ .spread{display:block}
+ .page{width:210mm;height:297mm;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
+ .page:last-child{break-after:auto;page-break-after:auto}
+ .memo{background:transparent;color:inherit}
+}
+</style>
+</head>
+<body data-view="both">
+<div class="wrap">
+<header class="bar"><h1>세스코 마이랩 살균소독제 70 · 제품 리플릿 기타형(Q&A 규제 대응형) · 실물 디자인형</h1><span class="sub">실물 디자인형 · 2026-10-28 회의 반영 · 제품 리플릿</span><div class="chips"><span class="chip type">기타형 · Q&A형</span><span class="chip">A4 세로 1장 앞·뒷면(2P)</span><span class="chip">접지 없음 · 판형 확인 필요</span><span class="chip">원고 10/27 v1 (코퍼스 989)</span><span class="chip">2026-10-28</span></div><div class="btns"><button data-view="both" aria-pressed="true">앞·뒷면 나란히</button><button data-view="front" aria-pressed="false">앞면만</button><button data-view="back" aria-pressed="false">뒷면만</button><button id="memo-toggle" aria-pressed="false">메모 숨기기</button><button id="print">인쇄 미리보기</button></div></header>
+<section class="dnote"><h2><span>디자이너 노트</span>기타형 · Q&A형 · 세스코 마이랩 살균소독제 70</h2><table><tr><th>유형 선택</th><td><b>Q&A 규제 대응형</b> — 살생물제·의약외품처럼 표기 규제가 있어 “써도 되나요 / 어디에 / 얼마나”를 먼저 풀어야 하는 제품. Q&A 4~6문항 + 구·신 비교표 + 법정 각주가 뒷면의 중심축.</td></tr><tr><th>앞면 역할</th><td><b>핵심</b> — 고객 질문 3개 → 제도 변경 헤드 → 무엇이 달라졌나 + 카드 3(용어·제출 정보·사용 범위) → 선언 밴드(상품명 첫 등장 + 승인번호 + 가격 1회). 앞면 가격 각주 1)은 앞면 하단.</td></tr><tr><th>뒷면 역할</th><td><b>세부</b> — Q1~Q4 → POINT 01~03(수치 USP 여기서만) → 사용 공간별 선택 비교표(구제품을 깎아내리지 않음) → 법정 각주 4요소 → 주문 띠. 제도 배경 서술은 앞면만, 뒷면 Q1은 ‘선택 기준’으로만 답함.</td></tr><tr><th>지면 배분</th><td>앞면 히어로 30 · 배경 34 · 절차 아이콘(흡수) · 선언 24 / 뒷면 Q&A·POINT 30 · 비교표 30 · 법정 각주 20 · 주문 8</td></tr><tr><th>근거 처리</th><td>효능은 승인통지서 기재 범위로 한정, 균주 한글명(학명) 고정 각주 2) 전문 유지(지면이 부족해도 줄이지 않음). 시험기관명은 마이랩 서식(d01 §8 ⑯)에 따라 쓰지 않음. 성적서 이미지 없음.</td></tr><tr><th>중복 점검</th><td>상품명 2회(앞면 밴드 · 뒷면 헤드 라벨) · 가격은 앞면 밴드 1회 + 뒷면 비교표(구·신 대조 목적이라 허용) · 승인번호는 앞면 스펙 + 뒷면 법정 각주(법정 표기라 허용)</td></tr><tr><th>확인 필요</th><td>승인 부처 표기(기후에너지환경부/환경부) · 주의사항 준수 표준 문안 · Q2·Q3 신규 문항 채택 · 수치 USP와 승인통지서 대조 · © 코드 · 판형</td></tr></table></section>
+<main class="spread">
+<article class="page front"><span class="side">앞면 · FRONT</span><span class="fill">측정 중</span><div class="lock"><span><span class="badge">NEW</span><span class="brand">CESCO<small>Mylab 세스코 마이랩</small></span></span><span>살균소독제 70</span></div><div class="blk "><span class="pct">30%</span><div class="hero"><div><div class="bubbles"><div class="bubble">“쓰던 곡물발효 살균소독제는 이제 못 쓰는 건가요?”</div><div class="bubble">“어린이집 장난감과 문손잡이에는 어떤 살균소독제를 골라야 하죠?”</div><div class="bubble">“살균소독제, 승인받은 제품인지 어떻게 확인하나요?”</div></div><h1>이제 살균제도 ‘검증’ 받은<br>제품만 판매할 수 있습니다.</h1><div class="sub">위생 관리가 중요한 공간일수록 사용 목적에 맞는 살균소독제 선택이 중요해졌습니다.</div></div><div class="slot"><b>이미지 · 표지 연출컷</b>블록 장난감 옆에서 살균소독제 스프레이를 든 손(상세 G2000001633 이미지 6 연출) / “기준이 바뀌었고, 바뀐 기준에 맞는 제품이 나왔다”</div></div></div><div class="pad"><div class="blk "><span class="pct">34%</span><div class="why"><h2><span class="q">?</span>살균소독제 기준, 무엇이 달라졌나요?</h2><p class="ans">생활화학제품 관리 기준이 강화되면서 2026년부터 기후에너지환경부<span class="need">[확인 필요: 부처 표기: 기후에너지환경부 / 환경부]</span>의 살균소독제는 ‘살생물제품 승인’ 기준으로 관리됩니다. 효능·효과 시험부터 인체 위해성 평가까지 엄격한 검증 절차를 거쳐야 합니다.</p><div class="cards"><div class="card"><div class="ico">아이콘<br>ⓘ</div><b>살생물제품 승인이란?</b><p>유해 세균, 해충 등 유해 생물을 제거하거나 억제하는 제품. 사람·동물·환경에 대한 영향과 유해 생물 저지 효능을 함께 입증받아야 합니다.</p></div><div class="card"><div class="ico">아이콘<br>체크</div><b>승인 때 반드시 제출하는 정보</b><p>급성 독성, 피부·눈 자극성·부식성, 피부 과민성, 피부흡수 정보, 노출량-반응평가 등 인체·환경 위해성 정보.</p></div><div class="card"><div class="ico">아이콘<br>구분</div><b>사용 범위에 구분이 생겼습니다</b><p>조리 공간이나 식품 표면과, 식기류부터 장난감·문손잡이 등 생활 공간 전반은 사용할 수 있는 제품이 다릅니다.</p></div></div></div></div><div class="slot grow" style="--h:7cqw"><b>이미지 · 승인 절차 3단 아이콘 (여백 흡수 자리)</b>효능·효과 시험 → 인체 위해성 평가 → 살생물제품 승인 / 제도가 바뀐 원인을 한눈에</div><div class="blk "><span class="pct">24%</span><p class="bridge">조리 공간이나 식품 표면에는 기존 곡물발효 살균소독제를 그대로, 식기류부터 장난감·문손잡이 등 생활 공간 전반에는 바뀐 기준에 맞춰 승인받은 제품을 쓰면 됩니다.</p><div class="band"><div><div class="pre">기후에너지환경부 살생물제품 승인을 완료한</div><div class="name">세스코 마이랩 살균소독제 70</div><div class="spec">500ml · 리필 4L ㅣ 살생물제품(살균제) 승인번호 0125-0039 ㅣ <s>정상가 11,500원</s> 혜택가 9,900원(500ml)<sup>1)</sup></div></div><div class="slot"><b>제품 누끼</b>500ml 본품 + 리필 4L / 상품이 처음 등장하는 자리</div></div></div><div class="fine fnote"><p>1) 가격은 세스코몰 2026년 10월 기준이며, 세스코몰 정책에 따라 변경될 수 있습니다.</p></div></div><footer class="pf"><div class="logo">CESCO<small>MYLAB 세스코 마이랩</small></div><div class="tel">1588-1119<small>주문·상담 ㅣ www.cescomall.co.kr</small></div></footer></article>
+<article class="page back"><span class="side">뒷면 · BACK</span><span class="fill">측정 중</span><div class="pad"><div class="p2head"><div class="k">세스코 마이랩 살균소독제 70</div><h2>이것이 궁금하다!<br>사용 목적부터 성분, 사용 범위까지</h2></div><div class="blk "><span class="pct">30%</span><div class="grid2"><div class="qa"><div><div class="qn">Q1</div><div><h3>왜 제품 라인업이 달라졌나요?</h3><p>사용 범위에 구분이 생겼기 때문입니다. 식품 표면은 곡물발효, 생활 공간 전반은 살균소독제 70 — 아래 비교표에서 공간별로 고르세요. <span class="memo">앞면 해결책 문장과 겹치지 않게 ‘선택 기준’으로만 답함</span></p></div></div><div><div class="qn">Q2</div><div><h3>쓰던 곡물발효 살균소독제는 계속 써도 되나요?</h3><p>네. 급식실·식당·카페·주방의 조리 공간과 식품 표면에는 그대로 사용할 수 있습니다. 생활 공간까지 함께 관리하려면 살균소독제 70을 더해 주세요.</p></div></div><div><div class="qn">Q3</div><div><h3>아이 용품에 뿌려도 되나요?</h3><p>인체 위해성 평가 검토를 완료해 어린이 용품에도 사용 가능한 제품으로 승인받았습니다. 유모차·장난감 등에 사용할 수 있습니다. <span class="memo">Q2·Q3은 989에 없는 신규 문항 — 채택 여부 확인</span></p></div></div><div><div class="qn">Q4</div><div><h3>어떻게 쓰나요?</h3><p>세균과 바이러스가 걱정되는 곳에 10초 분사 후 닦아낼 필요 없이 5분만 기다려 주세요.</p></div></div></div><div class="col"><div class="pt"><div class="pn">POINT 01</div><h3>엄격한 기준으로</h3><p>기후에너지환경부 승인 살생물제품(살균제). 경피·흡입 위해성 평가 결과 위해 우려 없음. 승인번호 0125-0039.</p></div><div class="pt"><div class="pn">POINT 02</div><h3>까다로운 검증을 거쳐</h3><p>사탕수수 발효 식물성 주정 70%와 정제수만으로 구성된 100% 식품첨가물. 식약처 기구등의 살균소독제 기준에 부합합니다.</p></div><div class="pt"><div class="pn">POINT 03</div><h3>강력하게 기능하도록</h3><p>세균 14종 99.999% 살균 · 바이러스 3종 99.9% 살멸.<sup>2)</sup> 인체피부 저자극 판정<sup>3)</sup> · 락스 성분과 가습기 살균제 이슈 성분 4종 불검출.<sup>4)</sup></p></div><div class="slot grow" style="--h:3cqw"><b>아이콘 · 사용 장소 9종</b>어린이 용품·주방·배수구·변기·에어컨·자동차·벽/바닥·문손잡이·운동기구 + ‘10초 분사 → 5분 대기’ 픽토그램</div></div></div></div><div class="blk "><span class="pct">30%</span><table class="t cmp"><thead><tr><th>✓ 사용 공간에 따라 선택하세요</th><th>식품 위생 중심 관리<br>세스코 마이랩 곡물발효 살균소독제</th><th class="rec">생활 공간까지 함께 관리 [추천]<br>세스코 마이랩 살균소독제 70</th></tr></thead><tbody><tr><td>제품</td><td><div class="slot" style="--h:3cqw"><b>누끼</b>곡물발효 살균소독제</div></td><td><div class="slot" style="--h:3cqw"><b>누끼</b>살균소독제 70</div></td></tr><tr><td>성분</td><td>100% 식품첨가물 · 곡물 주정 58.8V/V%</td><td>100% 식품첨가물 · 사탕수수 주정 70V/V%</td></tr><tr><td>적용 대상</td><td><ul><li>그릇·밀폐용기 등 식품 담는 용기</li><li>도마·칼·행주·수세미 등 조리도구</li><li>식탁·냉장고·싱크대·조리대 등 주방 공간</li></ul></td><td><ul><li>그릇·조리도구·주방 공간 등 식품접촉용품 전반</li><li>유모차·장난감 등 어린이용품</li><li>책상·휴대폰·문손잡이·운동기구 등 생활용품</li><li>차 안·에어컨(외관/필터)·배수구·변기 등 위생 취약 공간</li></ul></td></tr><tr><td>추천 공간</td><td><ul><li>급식실·식당·카페·주방 등 식품 위생 관리가 중요한 시설</li><li>식품 제조·가공 시설, 학교 급식 시설</li></ul></td><td><ul><li>어린이집·산후조리원·키즈 시설 등 영유아 시설</li><li>의료기관·외식업·미용·피트니스 등 위생·감염 관리에 민감한 업종</li></ul></td></tr><tr><td>가격(500ml)<sup>1)</sup></td><td><s>정상가 9,900원</s> 혜택가 9,500원</td><td class="pr"><s>정상가 11,500원</s> 혜택가 9,900원</td></tr></tbody></table></div><div class="blk "><span class="pct">20%</span><div class="proof"><div class="cert">세스코 마이랩 살균소독제 70은 기후에너지환경부 승인 살생물제품(살균제)입니다 · 승인번호 0125-0039 <span class="memo">법정 각주 4요소(d01 §8 ⑰) — 성적서 이미지 없음</span></div><div class="fine"><p>사용 전 제품에 표시된 사용방법과 주의사항을 확인하고 지켜 주세요. <span class="need">[확인 필요: 사용방법·주의사항 준수 권유 표준 문안 — 마이랩개발팀 확인 후 갱신]</span></p><p>2) 생활시설 표면 살균·살바이러스(비다공성) / 세균(14종): 아시네토박터균(Acinetobacter baumannii), 시트로박터균(Citrobacter freundii), 에드워드시엘라균(Edwardsiella tarda), 장구균(Enterococcus faecalis), 장내구균(Enterococcus hirae), 대장균(Escherichia coli), 폐렴막대균(Klebsiella pneumoniae), 리스테리아균(Listeria monocytogenes), 살모넬라균(Salmonella typhimurium), 이질균(Shigella sonnei), 황색포도상구균(Staphylococcus aureus), 녹농균(Pseudomonas aeruginosa), 프로테우스균(Proteus mirabilis), 여시니아균(Yersinia enterocolitica) / 바이러스(3종): 고양이 칼리시바이러스(Feline calicivirus), 인플루엔자바이러스(Influenza A virus H1N1), 코로나바이러스(SARS-CoV-2 virus XBB.1.5)</p><p>3) 세스코 마이랩 살균소독제 70 인체피부 대상 일차 자극 테스트 완료, 저자극 범주. 4) 세스코 마이랩 살균소독제 70 락스 성분(차아염소산나트륨) 및 가습기 살균제 이슈 성분 4종(CMIT, MIT, BKC, DDAC) 불검출. ※ 사용 환경에 따라 결과가 달라질 수 있음.</p></div></div></div><div class="blk "><span class="pct">8%</span><div class="cta"><div><h5>주문 ㅣ 세스코몰 www.cescomall.co.kr<small>담당 세스코 직원에게 바로 주문할 수 있습니다</small></h5><p>500ml 본품과 리필 4L · 세스코 멤버스 가입 시 멤버스가 적용</p></div><div class="qr">QR<br>세스코몰<br>(선택)</div></div></div></div><footer class="pf full"><div class="logo">CESCO<small>MYLAB 세스코 마이랩</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr<br>©MYLAB_SS70_v.1_2026.10 <span class="need">[확인 필요: © 코드]</span> CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer></article>
+</main>
+</div>
+<script>
+(function(){
+ var body=document.body;
+ document.querySelectorAll('.bar button[data-view]').forEach(function(b){b.addEventListener('click',function(){
+  body.dataset.view=b.dataset.view;document.querySelectorAll('.bar button[data-view]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});measure();});});
+ var mt=document.getElementById('memo-toggle');mt.addEventListener('click',function(){body.classList.toggle('hide-memo');mt.setAttribute('aria-pressed',body.classList.contains('hide-memo')?'true':'false');});
+ document.getElementById('print').addEventListener('click',function(){window.print();});
+ function measure(){document.querySelectorAll('.page').forEach(function(p){
+  var badge=p.querySelector('.fill');if(!badge)return;
+  var over=p.scrollHeight-p.clientHeight;var mm=Math.round(over*297/p.clientHeight);
+  var grow=0;p.querySelectorAll('.slot.grow').forEach(function(s){grow+=s.getBoundingClientRect().height;});
+  var pct=Math.round(grow/p.clientHeight*100);
+  if(over>2){badge.textContent='지면 초과 약 '+mm+'mm · 본문을 줄이세요';badge.classList.add('bad');}
+  else{badge.textContent='지면 OK · 이미지 자리가 여백 '+pct+'% 흡수';badge.classList.remove('bad');}
+ });}
+ window.addEventListener('resize',measure);window.addEventListener('load',measure);measure();
+})();
+</script>
+</body>
+</html>

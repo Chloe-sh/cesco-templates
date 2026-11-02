@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[명인] "에어커튼과 포충등의 역할 구분으로 비래해충 솔루션의 확신을 줬습니다."</title>
+<!--
+  마케팅포털 우수사례 [명인] 템플릿 v2 (2026-10-21)
+  기준: 2026-09-15 게시 원문 캡처 8장. 레이아웃·색·간격을 그대로 옮겼다.
+
+  사용법
+  1. {{ }} 로 표시한 자리만 바꾼다. 구조(섹션 순서·개수·클래스)는 손대지 않는다.
+  2. MASTER POINT는 5개 고정. 라벨 블록(.label-card)은 포인트당 0~2개.
+  3. 💡 노하우는 2문장. CHECK POINT는 3카드 × 3문항.
+  4. 색·글씨 크기는 :root 토큰에서만 조정한다.
+-->
+<style>
+  :root {
+    /* 색 토큰 — 게시 원문에서 추출 */
+    --ink: #1C1C1E;          /* 제목·본문 */
+    --ink-soft: #3A3A3C;     /* 본문 */
+    --meta: #8E8E93;         /* 날짜·조회수·해시태그 */
+    --blue: #2F6FD6;         /* 섹션 라벨·라벨 블록 제목·체크 */
+    --blue-deep: #1F4FA8;    /* 인용 카드 크레딧 */
+    --blue-bg: #EAF2FD;      /* 인용 카드 배경 */
+    --tile-bg: #F2F5FA;      /* 라벨 블록 배경 */
+    --tip-bg: #FFF7DD;       /* 노하우 배경 */
+    --tip-line: #F5E4A8;     /* 노하우 테두리 */
+    --quote-bg: #F4F6FA;     /* MASTER'S MESSAGE 인용 배경 */
+    --card-line: #E3E7EE;    /* 체크 카드 테두리 */
+    --page: #FFFFFF;
+    --nav-bg: #FFFFFF;
+
+    /* 글씨 */
+    --font: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+    --fs-title: 20px;
+    --fs-h2: 19px;
+    --fs-body: 15.5px;
+    --fs-small: 13px;
+    --fs-label: 12.5px;
+    --lh-body: 1.72;
+
+    /* 간격 */
+    --gutter: 20px;
+    --section-gap: 52px;
+    --radius: 12px;
+    --max-w: 430px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #EEF0F3; }
+  body { font-family: var(--font); color: var(--ink-soft); font-size: var(--fs-body); line-height: var(--lh-body); -webkit-font-smoothing: antialiased; word-break: keep-all; }
+  .page { max-width: var(--max-w); margin: 0 auto; background: var(--page); min-height: 100vh; padding: 28px var(--gutter) 110px; position: relative; }
+  p { margin: 0 0 16px; }
+  p:last-child { margin-bottom: 0; }
+  b, strong { font-weight: 700; color: var(--ink); }
+
+  /* 1. 제목 · 메타 */
+  .title { font-size: var(--fs-title); font-weight: 700; color: var(--ink); line-height: 1.5; margin: 0 0 14px; letter-spacing: -0.2px; }
+  .meta { font-size: var(--fs-small); color: var(--meta); line-height: 1.7; }
+  .meta .tags { margin-top: 2px; }
+
+  /* 3. 인용 카드 */
+  .quote-card { background: var(--blue-bg); border-radius: var(--radius); padding: 22px 20px 18px; margin: 30px 0 32px; }
+  .quote-card .q { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.65; margin: 0 0 14px; }
+  .quote-card .credit { font-size: var(--fs-small); font-weight: 600; color: var(--blue-deep); }
+
+  /* 4. 도입 */
+  .intro p { margin-bottom: 18px; }
+
+  /* 5. MASTER POINT */
+  .section { margin-top: var(--section-gap); }
+  .eyebrow { font-size: var(--fs-label); font-weight: 700; color: var(--blue); letter-spacing: 0.4px; margin: 0 0 8px; }
+  .h2 { font-size: var(--fs-h2); font-weight: 700; color: var(--ink); line-height: 1.45; margin: 0 0 18px; letter-spacing: -0.2px; }
+  .label-card { background: var(--tile-bg); border-radius: var(--radius); padding: 16px 18px; margin: 0 0 12px; }
+  .label-card .lbl { font-size: 15px; font-weight: 700; color: var(--blue); margin: 0 0 6px; }
+  .label-card p { margin: 0; font-size: 15px; line-height: 1.65; }
+  .label-card + p { margin-top: 20px; }
+  .tip { background: var(--tip-bg); border: 1px solid var(--tip-line); border-radius: var(--radius); padding: 16px 18px; margin-top: 22px; }
+  .tip .tip-h { font-size: 15px; font-weight: 700; color: var(--ink); margin: 0 0 8px; }
+  .tip p { margin: 0; font-size: 15px; line-height: 1.7; }
+
+  /* 6. MASTER'S MESSAGE */
+  .message-quote { background: var(--quote-bg); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; padding: 16px 18px; margin: 0 0 22px; font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.6; }
+
+  /* 7. CHECK POINT */
+  .check-card { border: 1px solid var(--card-line); border-radius: var(--radius); padding: 18px 18px 10px; margin: 0 0 14px; background: #fff; }
+  .check-card .ch { font-size: 15.5px; font-weight: 700; color: var(--ink); margin: 0 0 10px; }
+  .check-card ul { list-style: none; margin: 0; padding: 0; }
+  .check-card li { position: relative; padding-left: 22px; margin-bottom: 10px; font-size: 15px; line-height: 1.6; }
+  .check-card li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--blue); font-weight: 700; }
+
+  /* 8. 플랫폼 고정 UI (포털이 자동 생성. 시안 확인용) */
+  .float { position: fixed; right: calc(50% - var(--max-w) / 2 + 12px); bottom: 96px; display: flex; flex-direction: column; gap: 10px; }
+  @media (max-width: 470px) { .float { right: 12px; } }
+  .float button { width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--card-line); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); font-size: 10.5px; color: var(--blue); font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; cursor: pointer; }
+  .float button span.ico { font-size: 18px; line-height: 1; }
+  .nav { position: fixed; left: 0; right: 0; bottom: 0; background: var(--nav-bg); border-top: 1px solid var(--card-line); }
+  .nav .in { max-width: var(--max-w); margin: 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); }
+  .nav .back { font-size: 18px; color: var(--ink); }
+  .nav .where { font-weight: 700; color: var(--ink); }
+  .nav .tts { background: var(--blue); color: #fff; border: 0; border-radius: 20px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .need { color: #C0392B; font-size: 12.5px; font-weight: 600; }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <h1 class="title">[S-IPM] “입항 일정도 모르는 외항선, 방문 대신 24시간 자동 모니터링으로 정기관리 계약을 열었습니다.”</h1>
+
+  <div class="meta">
+    <div><span class="need">{확인 필요: 게재일}</span></div>
+    <div>조회수 : -</div>
+    <div class="tags">#우수사례 #S-IPM #스마트통합방제 #외항선 #선박 #오토베이트 #해충 #정기관리</div>
+  </div>
+
+  <section class="quote-card">
+    <p class="q">“정기 방문이 불가능하다는 말은 거절이 아니라 조건입니다. 방문 주기를 맞추는 대신 방문 없이도 관리되는 방식을 제안하면 됩니다.”</p>
+    <div class="credit">수도권서부사업부 서인성 팀장 · 스마트 통합방제(S-IPM) <span class="need">{확인 필요: 본인 발화로 교체. 현재 문장은 초안 요약을 바탕으로 작성}</span></div>
+  </section>
+
+  <section class="intro">
+    <p>입항 시기를 예측할 수 없는 <b>외항선 2척에 오토베이트 34대를 설치하고 정기관리 계약을 체결</b>한 서인성 팀장.</p>
+    <p>팀장은 정기 방문 불가를 단순한 영업 불가 조건이 아닌 <b>‘자동화 솔루션이 가장 강하게 설득되는 환경’</b>으로 정의합니다.</p>
+    <p>접근 방식을 바꾸고 현장·본사·사업팀이 함께 움직여 계약까지 이어간 5가지 포인트를 소개합니다.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">MASTER POINT 01</p>
+    <h2 class="h2">‘정기 방문 불가’를 포기 이유가 아니라 출발점으로 삼아라</h2>
+    <p>거제통영지사는 그동안 해충 문제가 심각한 선박 고객에게 상품을 제안해 온 이력이 있었습니다. 선박은 고립된 폐쇄 공간에서 장기간 운항하는 특성상 해충 제어가 어렵습니다.</p>
+    <div class="label-card">
+      <p class="lbl">기존 방식의 한계</p>
+      <p>항구 입항 시기가 불규칙해 정기 관리가 불가능하고 방문 공백이 생깁니다.</p>
+    </div>
+    <div class="label-card">
+      <p class="lbl">문제를 보는 방향</p>
+      <p>방문 주기를 고객 일정에 맞추려 하지 않고 방문 없이도 관리되는 방식을 찾기로 했습니다.</p>
+    </div>
+    <div class="tip">
+      <p class="tip-h">💡 한 줄 노하우</p>
+      <p>고객이 “우리는 정기 방문이 안 됩니다”라고 하면 거기서 멈추지 마세요. 그 조건이 곧 제안의 방향이 됩니다.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">MASTER POINT 02</p>
+    <h2 class="h2">방문 주기 대신 24시간 자동 모니터링을 제안하라</h2>
+    <p>인력 방문 없이도 24시간 자동으로 작동하는 <b>‘오토베이트 시스템’ 중심의 맞춤형 솔루션</b>을 기획했습니다.</p>
+    <p>방문이 어렵다는 조건보다 방문 없이 관리된다는 사실이 고객에게 중요합니다. 설명의 중심을 ‘언제 오는가’에서 ‘오지 않아도 되는가’로 옮겼습니다.</p>
+    <div class="tip">
+      <p class="tip-h">💡 한 줄 노하우</p>
+      <p>입항이 불규칙한 선박일수록 자동화 시스템을 먼저 꺼내세요. 조건이 까다로울수록 자동화의 설득력이 커집니다.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">MASTER POINT 03</p>
+    <h2 class="h2">고압·밀폐 환경의 위험을 제안 근거로 바꿔라</h2>
+    <p>세종상운 외항선 2척(미래로·세계로)에 오토베이트를 적용하면서 장비만 설치하지 않고 <b>선박 환경의 특수성을 함께 고려</b>했습니다.</p>
+    <div class="label-card">
+      <p class="lbl">고압·밀폐 공간</p>
+      <p>인력 기반 방역 시스템을 적용하기 까다로운 환경입니다.</p>
+    </div>
+    <div class="label-card">
+      <p class="lbl">약제 잔류 위험</p>
+      <p>약제 잔류물이 불규칙하게 생기면 화재 위험까지 따를 수 있는 것으로 알려져 있습니다. 자동 제어 방식인 오토베이트의 장점이 그대로 드러납니다. <span class="need">{확인 필요: 화재 위험 근거 자료}</span></p>
+    </div>
+    <div class="tip">
+      <p class="tip-h">💡 한 줄 노하우</p>
+      <p>환경이 위험할수록 사람이 덜 들어가는 방식을 제안하세요. 위험 요소가 곧 자동화의 근거가 됩니다.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">MASTER POINT 04</p>
+    <h2 class="h2">현장·본사·사업팀이 함께 선내 거점 포인트를 잡아라</h2>
+    <p>부산경남사업부와 사업팀이 협업에 나섰습니다. 현장 실행 단계에서는 거제통영지사와 본사가 함께 선내를 점검해 <b>방제 관리 중점 포인트를 파악</b>했습니다.</p>
+    <p>포인트별로 <b>오토베이트 34대</b>를 편성해 입항 없이도 방역 체계가 빠짐없이 작동하도록 설계했습니다.</p>
+    <div class="tip">
+      <p class="tip-h">💡 한 줄 노하우</p>
+      <p>선박처럼 구조가 복잡한 현장은 혼자 설계하지 마세요. 현장과 본사가 함께 포인트를 잡아야 빈틈이 생기지 않습니다.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">MASTER POINT 05</p>
+    <h2 class="h2">고객의 우려는 설치 전에 풀어라</h2>
+    <p><span class="need">{확인 필요: 고객이 우려한 사항과 해소 방법. 초안 1분 요약에만 있고 본문 없음. 받으면 본문 1~2문단과 노하우로 채움}</span></p>
+    <div class="tip">
+      <p class="tip-h">💡 한 줄 노하우</p>
+      <p><span class="need">{확인 필요: 05 본문 확정 후 작성}</span></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">MASTER'S MESSAGE</p>
+    <div class="message-quote">“방문이 어렵다는 조건보다 방문 없이 관리된다는 사실이 중요합니다.” <span class="need">{확인 필요: 본인 발화로 교체}</span></div>
+    <p>정기 방문이 불가능한 고객에게 필요한 것은 방문 일정 조율이 아니라 방문 자체가 필요 없는 관리 체계입니다.</p>
+    <p>외항선 2척에 오토베이트 34대를 편성해 입항 일정과 무관한 24시간 자동 모니터링 체계를 만들었습니다. 현장·본사·사업팀이 함께 선내 포인트를 잡아 빈틈을 없앴습니다.</p>
+    <p>이 방식은 외항선뿐 아니라 고압 밀폐 시설처럼 정기 방문이 어려운 다른 업종에도 그대로 적용할 수 있습니다.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">CHECK POINT</p>
+    <h2 class="h2">정기 방문이 어려운 고객 영업 체크포인트</h2>
+    <div class="check-card">
+      <p class="ch">1. 서비스 &amp; 상담 전</p>
+      <ul>
+        <li>고객의 운항·입항 일정과 방문 가능 시점을 파악했는가?</li>
+        <li>선박·시설의 고압·밀폐 등 환경 특성과 위험 요소를 확인했는가?</li>
+        <li>오토베이트 등 자동화 솔루션 자료와 설치 사례를 준비했는가?</li>
+      </ul>
+    </div>
+    <div class="check-card">
+      <p class="ch">2. 상담 &amp; 제안 중</p>
+      <ul>
+        <li>방문 주기 대신 ‘방문 없이 관리되는’ 방식으로 설명했는가?</li>
+        <li>환경 위험 요소를 자동화 제안의 근거로 연결했는가?</li>
+        <li>현장·본사와 함께 거점 포인트와 장비 수량을 설계했는가?</li>
+      </ul>
+    </div>
+    <div class="check-card">
+      <p class="ch">3. 상담 후 &amp; 사후 관리</p>
+      <ul>
+        <li>설치 전에 고객이 우려한 사항을 확인하고 해소했는가?</li>
+        <li>입항 없이도 모니터링 결과를 고객에게 전달할 방법을 정했는가?</li>
+        <li>같은 조건의 다른 고객에게 확장할 레퍼런스로 정리했는가?</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- 8. 플랫폼 고정 UI — 포털이 자동으로 붙인다. 시안 확인용이며 게시 원고에는 넣지 않는다 -->
+<div class="float" aria-hidden="true">
+  <button><span class="ico">👍</span>3</button>
+  <button><span class="ico">🔖</span>마이픽</button>
+  <button><span class="ico">⛓</span>연관콘텐츠</button>
+</div>
+<nav class="nav" aria-hidden="true">
+  <div class="in">
+    <span class="back">‹</span>
+    <span class="where">우수사례</span>
+    <button class="tts">🎧 음성 듣기</button>
+  </div>
+</nav>
+</body>
+</html>

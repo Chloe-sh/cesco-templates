@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[관공서] 관공서 문턱 넘은 영업 노하우! 서초구 보건소 대량 수주를 만든 세스코 마이랩 제안법</title>
+<!--
+  마케팅포털 우수사례(STEP형) 템플릿 v2 (2026-10-21)
+  기준: 2026-09-15 게시 원문 [관공서] 정재형 SD 캡처. 레이아웃·색·간격을 그대로 옮겼다.
+  [명인] 시리즈는 별도 파일 우수사례_명인_템플릿_v2.html 을 쓴다.
+
+  사용법
+  1. 텍스트만 바꾼다. 섹션 순서(제목 → 메타 → 후킹 카드 → 크레딧 → 1분 요약 → ■ Tip → STEP → 성과)는 고정.
+  2. 1분 요약 •는 4~5개, 사이에 ↓. STEP은 3~4개. 성과 •는 3~4개.
+  3. 후킹 카드 인물 사진은 .hook .photo 의 img src 를 바꾼다. 사진이 없으면 .photo 블록을 지운다.
+  4. 색·글씨·간격은 :root 토큰에서만 조정한다.
+-->
+<style>
+  :root {
+    --ink: #1C1C1E;
+    --ink-soft: #3A3A3C;
+    --meta: #8E8E93;
+    --blue: #2F6FD6;         /* STEP 라벨·Tip 강조 */
+    --orange: #E8762B;       /* Tip 두 번째 강조색 */
+    --hook-a: #0B2A6B;       /* 후킹 카드 그라데이션 시작 */
+    --hook-b: #1E57C9;       /* 후킹 카드 그라데이션 끝 */
+    --hook-accent: #BFE0FF;  /* 후킹 카드 강조 글씨 */
+    --box-line: #D6DAE2;     /* 1분 요약·Tip 점선 테두리 */
+    --box-bg: #FAFBFD;
+    --card-line: #E3E7EE;
+    --page: #FFFFFF;
+
+    --font: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+    --fs-title: 19px;
+    --fs-h2: 17px;
+    --fs-body: 15.5px;
+    --fs-small: 13px;
+    --lh-body: 1.72;
+
+    --gutter: 20px;
+    --radius: 12px;
+    --max-w: 430px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #EEF0F3; }
+  body { font-family: var(--font); color: var(--ink-soft); font-size: var(--fs-body); line-height: var(--lh-body); -webkit-font-smoothing: antialiased; word-break: keep-all; }
+  .page { max-width: var(--max-w); margin: 0 auto; background: var(--page); min-height: 100vh; padding: 28px var(--gutter) 110px; position: relative; }
+  p { margin: 0 0 14px; }
+  p:last-child { margin-bottom: 0; }
+  b, strong { font-weight: 700; color: var(--ink); }
+
+  /* 1~2. 제목 · 메타 */
+  .title { font-size: var(--fs-title); font-weight: 700; color: var(--ink); line-height: 1.5; margin: 0 0 12px; letter-spacing: -0.2px; }
+  .meta { font-size: var(--fs-small); color: var(--meta); line-height: 1.7; }
+  .meta .tags { margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .meta .tags .more { color: var(--ink-soft); }
+
+  /* 3. 후킹 카드 (이미지 1) */
+  .hook { position: relative; margin: 26px 0 10px; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, var(--hook-a) 0%, var(--hook-b) 100%); color: #fff; padding: 34px 28px 34px 110px; min-height: 250px; display: flex; align-items: center; }
+  .hook .copy { font-size: 25px; font-weight: 800; line-height: 1.42; letter-spacing: -0.4px; margin: 0; }
+  .hook .copy .acc { color: var(--hook-accent); }
+  .hook .photo { position: absolute; left: 0; bottom: 0; width: 110px; height: 130px; }
+  .hook .photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .hook .photo .ph { width: 100%; height: 100%; background: linear-gradient(180deg, transparent, rgba(255,255,255,.15)); display: flex; align-items: flex-end; justify-content: center; font-size: 11px; color: rgba(255,255,255,.7); padding-bottom: 8px; }
+  .credit { font-size: var(--fs-small); color: var(--ink-soft); margin: 0 0 30px; }
+
+  /* 4. 1분 요약 */
+  .h2 { font-size: var(--fs-h2); font-weight: 700; color: var(--ink); line-height: 1.45; margin: 0 0 12px; }
+  .dotbox { border: 1.5px dashed var(--box-line); border-radius: 10px; background: var(--box-bg); padding: 16px 18px; margin: 0 0 22px; }
+  .summary { list-style: none; margin: 0; padding: 0; }
+  .summary li { position: relative; padding-left: 14px; font-size: 15px; line-height: 1.65; }
+  .summary li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--ink); font-weight: 700; }
+  .summary li.arrow { padding-left: 0; color: var(--blue); font-size: 17px; line-height: 1.4; margin: 2px 0; }
+  .summary li.arrow::before { content: none; }
+
+  /* 5. ■ Tip */
+  .tip-h { font-size: var(--fs-h2); font-weight: 700; color: var(--ink); margin: 0 0 12px; }
+  .tip-h::before { content: "■ "; }
+  .tipbox p { font-size: 14.5px; line-height: 1.7; margin-bottom: 14px; }
+  .tipbox .b { color: var(--blue); font-weight: 700; }
+  .tipbox .o { color: var(--orange); font-weight: 700; }
+
+  /* 6. STEP */
+  .step { margin-top: 44px; }
+  .step .lab { font-size: 15px; font-weight: 800; color: var(--blue); margin: 0 0 4px; letter-spacing: 0.2px; }
+  .step .gist { font-size: var(--fs-h2); font-weight: 700; color: var(--ink); line-height: 1.45; margin: 0 0 16px; }
+  .step p { font-size: 15.5px; }
+
+  /* 7. 성과 */
+  .result { margin-top: 44px; }
+  .result ul { list-style: none; margin: 0; padding: 0; }
+  .result li { position: relative; padding-left: 14px; margin-bottom: 8px; font-size: 15px; line-height: 1.65; }
+  .result li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--ink); font-weight: 700; }
+
+  /* 8. 플랫폼 고정 UI (포털 자동 생성. 시안 확인용) */
+  .float { position: fixed; right: calc(50% - var(--max-w) / 2 + 12px); bottom: 96px; display: flex; flex-direction: column; gap: 10px; }
+  @media (max-width: 470px) { .float { right: 12px; } }
+  .float button { width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--card-line); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); font-size: 10.5px; color: var(--blue); font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; cursor: pointer; }
+  .float button span.ico { font-size: 18px; line-height: 1; }
+  .nav { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--card-line); }
+  .nav .in { max-width: var(--max-w); margin: 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); }
+  .nav .back { font-size: 18px; color: var(--ink); }
+  .nav .where { font-weight: 700; color: var(--blue); }
+  .nav .tts { background: #fff; color: var(--ink); border: 1px solid var(--card-line); border-radius: 20px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- 1. 제목 -->
+  <h1 class="title">[관공서] 관공서 문턱 넘은 영업 노하우! 서초구 보건소 대량 수주를 만든 세스코 마이랩 제안법</h1>
+
+  <!-- 2. 메타 -->
+  <div class="meta">
+    <div>2026-09-15</div>
+    <div>조회수 : 355</div>
+    <div class="tags">#우수사례 #사례 #관공서 #공공기관 #보건소 #민원 #살균소독제 <span class="more">…더보기</span></div>
+  </div>
+
+  <!-- 3. 후킹 카드 (이미지 1) + 크레딧 -->
+  <section class="hook">
+    <div class="photo"><div class="ph">인물 사진</div><!-- <img src="..." alt=""> --></div>
+    <p class="copy">주민 민원 해결이라는 관공서의 명분에 맞춰 제안하니, <span class="acc">살균소독제부터 방제 계약까지 이어졌습니다.</span></p>
+  </section>
+  <p class="credit">- 서울서초지사 정재형 SD -</p>
+
+  <!-- 4. 1분 요약 -->
+  <h2 class="h2">1분 요약</h2>
+  <div class="dotbox">
+    <ul class="summary">
+      <li>식중독 뉴스 등 <b>지역 이슈를 계기</b>로 보건소 위생과/질병과를 <b>먼저 찾아가 신뢰 관계 형성</b></li>
+      <li class="arrow">↓</li>
+      <li><b>보건소의 신규 사업</b>(‘제빙기·식용 얼음 위생 관리’)에 맞춰 마이랩 살균제·티슈·손소독제 물품 세트 안내 및 납품(연간 약 1,136만 원)</li>
+      <li class="arrow">↓</li>
+      <li>담당 공무원을 도와 타사 비교 견적 준비, 대상 매장 방문 신청서 수거, 물품 직접 배송까지 <b>행정 절차 전방위 지원</b></li>
+      <li class="arrow">↓</li>
+      <li>주민 민원 발생 구역 데이터를 바탕으로 포획 기기 등 맞춤형 해충 방제 안내를 통해 <b>총 3,000만 원 규모 추가 계약 체결</b></li>
+      <li class="arrow">↓</li>
+      <li>마이랩 납품 + 추가 해충 방제 계약 등 <b>총 약 4,100만 원 규모 관공서(B2G) 사업 수주 및 재계약 기반 마련</b></li>
+    </ul>
+  </div>
+
+  <!-- 5. ■ Tip -->
+  <h2 class="tip-h">Tip</h2>
+  <div class="dotbox tipbox">
+    <p>관공서(B2G) 영업 시에는 확실한 가이드라인이 없는 <span class="b">신규 사업 기획 단계부터 적극적으로 함께하는 것이 중요</span>합니다.</p>
+    <p>담당자의 <span class="o">행정 부담</span>(업체 선정, 매장 모객, 물품 전달 등)을 <span class="b">적극적으로 해결</span>해 주는 ‘일손 돕기 전략’과, 관공서가 가장 중요하게 여기는 <span class="o">‘주민 민원 해결’을 명분으로 데이터 기반의 맞춤형 장비/용역을 제안</span>하는 것이 대형 수주의 핵심입니다.</p>
+  </div>
+
+  <!-- 6. STEP -->
+  <section class="step">
+    <p class="lab">STEP.1</p>
+    <p class="gist">지역 뉴스 소식을 듣고 보건소를 먼저 찾아갔습니다</p>
+    <p>지역 내 식중독 및 위생 관련 보도를 본 뒤 서초구 보건소 위생과와 질병과 담당자를 직접 방문했습니다.<br>당장 계약을 요구하기보다 <b>관공서의 고민과 내년도 예산 방향을 알아보고, 세스코의 전문성을 알리는 인사</b>를 먼저 건넸습니다.</p>
+  </section>
+
+  <section class="step">
+    <p class="lab">STEP.2</p>
+    <p class="gist">보건소의 신규 사업 의도에 맞춘 마이랩 물품 솔루션을 기획했습니다</p>
+    <p>보건소에서 ‘식용 얼음/제빙기 위생 관리 지원사업’을 준비하며 관리 방법에 대해 고민하자, <b>현장 경험을 바탕으로 현실적인 방안</b>을 알려드렸습니다.<br>위생 관리에 효과적이고 살균력이 뛰어난 ‘마이랩 살균소독제 70, 살균 티슈, 손소독제’ 중심의 <b>지원 방식을 기획해 사업을 성공</b>시켰습니다.</p>
+  </section>
+
+  <section class="step">
+    <p class="lab">STEP.3</p>
+    <p class="gist">신청서 수거부터 물품 배송까지 행정 절차를 직접 도왔습니다</p>
+    <p>사업 진행이 더디고 <b>대상 매장 참여가 부족한 점을 파악</b>해, 지역 내 카페 등 대상 매장을 직접 방문해 사업을 안내하고 신청서를 받아 전달했습니다.<br>타사 제품과의 비교 견적서 준비부터 물품 직접 배송까지 <b>전 과정을 밀착 지원해 담당 공무원의 업무 부담을 크게 줄여주었습니다.</b></p>
+  </section>
+
+  <section class="step">
+    <p class="lab">STEP.4</p>
+    <p class="gist">주민 민원 해결을 명분으로 바퀴·쥐 방제 추가 계약을 이끌었습니다</p>
+    <p>관공서가 <b>‘주민 민원 해결’에 예산을 우선 집행</b>한다는 점을 활용해, 민원이 많은 구역의 데이터를 바탕으로 <b>맞춤형 방제 장비를 역제안</b>했습니다.</p>
+    <p>바퀴벌레 포획 스테이션, 쥐 포획 장비(바이퍼) 등 정밀 데이터를 제공하는 방제 서비스를 제시해 <b>총 3,000만 원 상당의 추가 방제 사업을 수주</b>했습니다.</p>
+  </section>
+
+  <!-- 7. 성과 -->
+  <section class="result">
+    <h2 class="h2">성과 <span style="font-weight:400;color:var(--meta);font-size:13px">{확인 필요: 캡처에서 제목 가려짐}</span></h2>
+    <ul>
+      <li>서초구 보건소 식용 얼음 안전관리 지원사업 수주를 통한 세스코 마이랩 제품군(살균제, 티슈, 손소독제) <b>연간 약 1,136만 원 납품</b></li>
+      <li>지역 내 미계약 매장에 마이랩 전달 및 세스코 브랜드 체험 기회 제공으로 <b>향후 해충 방제 제안 기반 확보</b></li>
+      <li>민원 데이터 연계 방역 솔루션 제안을 통해 바이퍼 및 바퀴 포획 스테이션 방역 작업 등 <b>총 3,000만 원 규모 추가 계약 수주</b></li>
+      <li>데이터 기반 보고서를 선호하는 <b>관공서 특성에 맞춘 관리 결과 전달로 내년도 사업 확장 및 재계약 확정 기반 마련</b></li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- 8. 플랫폼 고정 UI — 포털이 자동으로 붙인다. 게시 원고에는 넣지 않는다 -->
+<div class="float" aria-hidden="true">
+  <button><span class="ico">👍</span>좋아요</button>
+  <button><span class="ico">🔖</span>마이픽</button>
+  <button><span class="ico">⛓</span>연관콘텐츠</button>
+</div>
+<nav class="nav" aria-hidden="true">
+  <div class="in">
+    <span class="back">‹</span>
+    <span class="where">우수사례</span>
+    <button class="tts">🎧 음성 듣기</button>
+  </div>
+</nav>
+</body>
+</html>

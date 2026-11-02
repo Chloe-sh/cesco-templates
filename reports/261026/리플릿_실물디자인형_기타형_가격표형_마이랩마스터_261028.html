@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>세스코 마이랩 마스터 라인업 · 제품 리플릿 기타형(가격표형) · 실물 디자인형</title>
+<!-- 세스코 리플릿 실물 디자인형 샘플 · 규약 ../../references/leaflet-real-design-spec.md · 공용 CSS ../../assets/leaflet-real-design.css (인라인)
+     규격 A4 세로 1장 앞·뒷면(2P) · 접지 없음(접지가 필요하면 발주 전 확인) · 재단 여백 3mm는 인쇄소 사양에 따라 디자이너가 추가
+     층: 지면 카피(기본) / 회색 점선 = 이미지 자리(종류·분위기·역할·지면 %) / 노란 메모 = 제작 메모(지면 미노출) / 주황 = [확인 필요] -->
+<style>/* 세스코 리플릿 — 실물 디자인형 공용 CSS (2026-10-28 회의 결정 반영)
+   규격: A4 세로 1장 앞·뒷면(2P). 화면에서는 앞·뒷면을 나란히 비교, 인쇄(@page A4)에서는 면당 1장.
+   지면 안 글자·여백은 모두 cqw(지면 폭 기준 %) 단위 — 화면 폭이 달라도, 인쇄로 넘어가도 비율이 같다. 1cqw = 2.1mm.
+   층 구분: 지면 카피(기본) · 이미지 자리(.slot, 회색 점선) · 메모 층(.memo/.pct/.dnote — '메모 숨기기'로 사라짐) · [확인 필요](.need, 주황)
+   규약 정본: ../references/leaflet-real-design-spec.md */
+:root{--stage:#d9dee6;--paper:#fff;--ink:#1c2430;--ink-2:#4b5563;--ink-3:#7c8592;--navy:#0f3c7a;--blue:#1e6fd9;--wash:#e9f1fb;--wash-2:#f4f7fb;--line:#d5dde8;
+--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200;--hero:#1b2a3f;--tag:#ff7a2f;--need:#fff0e6;--need-ink:#b4530a;--ok:#1f7a45;--bad:#c2410c;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--stage:#1a1f27;}}
+:root[data-theme="dark"]{--stage:#1a1f27;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--stage)}
+body{color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all;padding:20px 16px 56px}
+.wrap{max-width:1240px;margin:0 auto}
+/* ── 상단 바(지면 밖) ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.bar h1{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.bar .sub{font-size:11.5px;color:var(--ink-3)}
+.bar .chips{display:flex;gap:5px;flex-wrap:wrap}
+.bar .chip{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-2);background:#fff}
+.bar .chip.type{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.bar .btns{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.bar button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 11px;border-radius:16px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+/* ── 디자이너 노트(지면 밖) ── */
+.dnote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--tag);border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.55;color:var(--ink-2);margin-bottom:16px}
+.dnote h2{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.dnote h2 span{display:inline-block;background:var(--tag);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.dnote table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.dnote th{background:var(--wash-2);color:var(--ink);text-align:left;white-space:nowrap;width:96px;padding:5px 8px;border:1px solid var(--line);vertical-align:top}
+.dnote td{padding:5px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dnote td b{color:var(--navy)}
+/* ── 대지: 앞·뒷면 나란히 ── */
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media (max-width:1080px){.spread{grid-template-columns:1fr}}
+@media (max-width:640px){.spread{overflow-x:auto;padding-bottom:8px}.page{min-width:560px}}
+body[data-view="front"] .page.back,body[data-view="back"] .page.front{display:none}
+body[data-view="front"] .spread,body[data-view="back"] .spread{grid-template-columns:minmax(0,620px);justify-content:center}
+.page{position:relative;background:var(--paper);width:100%;aspect-ratio:210/297;container-type:inline-size;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 3px rgba(0,0,0,.08),0 18px 40px -12px rgba(15,60,122,.25)}
+.page .side{position:absolute;top:0;left:0;z-index:3;background:var(--navy);color:#fff;font-size:1.35cqw;font-weight:700;padding:.4cqw 1.6cqw;border-radius:0 0 .8cqw 0;letter-spacing:.05em}
+.page .fill{position:absolute;top:0;right:0;z-index:3;font-size:1.3cqw;font-weight:700;padding:.4cqw 1.4cqw;border-radius:0 0 0 .8cqw;background:var(--ok);color:#fff}
+.page .fill.bad{background:var(--bad)}
+.pad{padding:0 5.2cqw;display:flex;flex-direction:column;flex:1 0 auto}
+.pad>*+*{margin-top:1.4cqw}
+.page p{font-size:1.72cqw;line-height:1.6}
+/* 메모 층 */
+.memo{background:var(--memo);color:var(--memo-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:500;font-size:.92em}
+.pct{position:absolute;right:.6cqw;top:-.9cqw;z-index:2;font-size:1.15cqw;font-weight:800;color:var(--memo-ink);background:var(--memo);padding:.1cqw .9cqw;border-radius:999px;pointer-events:none}
+.blk{position:relative}
+body.hide-memo .memo,body.hide-memo .pct,body.hide-memo .dnote,body.hide-memo .fill{display:none}
+body.hide-memo .slot{color:transparent}
+.need{background:var(--need);color:var(--need-ink);border:1px dashed var(--need-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:700;font-size:.92em}
+/* 이미지 자리 */
+.slot{background:var(--slot);border:.22cqw dashed var(--slot-line);border-radius:.9cqw;color:var(--ink-3);font-size:1.3cqw;line-height:1.45;padding:1.1cqw 1.3cqw;display:flex;flex-direction:column;justify-content:flex-end;min-height:var(--h,8cqw)}
+.slot b{display:block;font-weight:800;color:var(--ink-2);font-size:1.25cqw;margin-bottom:.2cqw}
+.slot.grow{flex:1 1 auto}
+.hero .slot,.band .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45);color:#fff}
+.hero .slot b,.band .slot b{color:#fff}
+/* ── 앞면 블록 ── */
+.lock{display:flex;justify-content:space-between;align-items:baseline;padding:3.6cqw 5.2cqw 0;font-size:1.5cqw;font-weight:700;color:var(--ink-2)}
+.lock .brand{font-size:2.2cqw;font-weight:900;color:var(--navy);letter-spacing:.02em}
+.lock .brand small{font-size:1.4cqw;font-weight:600;color:var(--ink-2);margin-left:.8cqw;letter-spacing:0}
+.lock .badge{background:var(--blue);color:#fff;font-size:1.3cqw;padding:.25cqw 1.1cqw;border-radius:.4cqw;margin-right:.8cqw}
+.hero{position:relative;background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:3.2cqw 5.2cqw 3cqw;display:grid;grid-template-columns:1.2fr .8fr;gap:3cqw;margin-top:2.2cqw}
+.bubbles{display:flex;flex-direction:column;gap:.7cqw;margin-bottom:2cqw}
+.bubble{align-self:flex-start;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:2cqw 2cqw 2cqw .4cqw;padding:.7cqw 1.6cqw;font-size:1.55cqw;line-height:1.45}
+.hero h1{font-size:4.3cqw;line-height:1.22;font-weight:900;letter-spacing:-.025em}
+.hero .sub{margin-top:1.4cqw;font-size:1.8cqw;font-weight:600;opacity:.95}
+.hero .sub2{margin-top:.5cqw;font-size:1.5cqw;opacity:.85}
+.hero .slot{min-height:100%}
+.why h2{font-size:2.5cqw;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:1cqw;letter-spacing:-.02em}
+.why h2 .q{background:var(--navy);color:#fff;font-size:1.6cqw;width:3cqw;height:3cqw;display:inline-flex;align-items:center;justify-content:center;border-radius:.4cqw;flex:none}
+.why .ans{margin-top:1cqw;font-size:1.65cqw;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;margin-top:1.6cqw}
+.card{border:1px solid var(--line);border-top:.4cqw solid var(--navy);border-radius:0 0 .9cqw .9cqw;padding:1.2cqw 1.4cqw 1.3cqw;display:flex;flex-direction:column}
+.card .ico{width:5.2cqw;height:5.2cqw;border-radius:50%;background:var(--slot);border:.2cqw dashed var(--slot-line);color:var(--ink-3);font-size:1.05cqw;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:.9cqw;line-height:1.2}
+.card b{font-size:1.65cqw;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.card p{font-size:1.4cqw;line-height:1.55;color:var(--ink-2);margin-top:.5cqw}
+.stat{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:1.4cqw;align-items:stretch}
+.stat>div{background:var(--wash-2);border-radius:.9cqw;padding:1.3cqw 1.5cqw}
+.stat .v{font-size:4.2cqw;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.03em}
+.stat .v small{font-size:1.8cqw;font-weight:800;margin-left:.2cqw}
+.stat .l{font-size:1.3cqw;line-height:1.45;color:var(--ink-2);margin-top:.7cqw}
+.stat .cap{font-size:1.55cqw;font-weight:800;color:var(--navy);margin-bottom:.6cqw}
+.stat ul{list-style:none;font-size:1.45cqw;font-weight:700;color:var(--navy)}
+.stat ul li::before{content:"☑ ";color:var(--blue)}
+.band{position:relative;background:var(--navy);color:#fff;padding:2.6cqw 5.2cqw;margin:1.6cqw -5.2cqw 0;display:grid;grid-template-columns:1fr 17cqw;gap:2.4cqw;align-items:center}
+.band .pre{font-size:1.6cqw;line-height:1.6;opacity:.92}
+.band .name{font-size:3.1cqw;font-weight:900;margin-top:.8cqw;letter-spacing:-.02em;line-height:1.25}
+.band .spec{margin-top:1cqw;font-size:1.3cqw;opacity:.85;padding-top:.8cqw;border-top:1px solid rgba(255,255,255,.3)}
+.band .slot{min-height:12cqw}
+.bridge{font-size:1.65cqw;color:var(--ink);background:var(--wash);border-left:.5cqw solid var(--blue);padding:1.1cqw 1.6cqw;border-radius:0 .8cqw .8cqw 0}
+/* ── 뒷면 블록 ── */
+.p2head{padding-top:3.2cqw}
+.p2head .k{font-size:1.6cqw;color:var(--ink-2);font-weight:600}
+.p2head h2{font-size:2.9cqw;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.02em;margin-top:.3cqw}
+.adv{display:grid;grid-template-columns:1fr 15cqw;gap:2.4cqw}
+.alist{display:flex;flex-direction:column;gap:.9cqw}
+.a{display:grid;grid-template-columns:4.6cqw 1fr;gap:1.4cqw;align-items:start}
+.a .no{width:4.6cqw;height:4.6cqw;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5cqw;font-weight:900}
+.a h3{font-size:1.78cqw;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.a p{font-size:1.4cqw;line-height:1.5;margin-top:.35cqw;color:var(--ink)}
+.col{display:flex;flex-direction:column;gap:1.2cqw}
+.col .slot{flex:1 1 auto}
+sup{font-size:.65em;color:var(--blue);font-weight:700;line-height:0}
+table.t{width:100%;border-collapse:collapse;font-size:1.4cqw}
+table.t th{background:var(--wash);color:var(--navy);font-weight:700;padding:.65cqw .8cqw;border:1px solid var(--line);text-align:center}
+table.t td{padding:.6cqw .8cqw;border:1px solid var(--line);text-align:center;vertical-align:middle}
+table.t td.l{text-align:left}
+table.t td.pr{font-weight:900;color:var(--blue);font-size:1.6cqw}
+table.t td s{color:var(--ink-3);font-weight:400;font-size:1.25cqw;margin-right:.4cqw}
+table.t.spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:16%;white-space:nowrap}
+table.t.spec td:nth-child(even){text-align:left}
+.proof{background:var(--wash-2);border-radius:.9cqw;padding:1.1cqw 1.4cqw}
+.proof .cert{font-size:1.55cqw;font-weight:900;color:var(--navy);border-left:.45cqw solid var(--navy);padding-left:1cqw;margin-bottom:.8cqw}
+.fine{font-size:1.1cqw;line-height:1.48;color:var(--ink-2)}
+.fine p{font-size:1.1cqw;line-height:1.48}
+.fine p+p{margin-top:.15cqw}
+.fnote{margin-top:auto;padding-top:1.2cqw;border-top:1px solid var(--line)}
+.cross{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.cross>div{border:1px solid var(--line);border-radius:.9cqw;padding:1cqw 1.3cqw}
+.cross h4{font-size:1.65cqw;font-weight:900;color:var(--navy)}
+.cross p{font-size:1.4cqw;color:var(--ink-2);margin-top:.4cqw}
+.cross .lbl{display:inline-block;background:var(--navy);color:#fff;font-size:1.15cqw;font-weight:700;padding:.2cqw 1cqw;border-radius:.3cqw;margin-bottom:.5cqw}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw;margin-top:1cqw}
+.mini .slot{min-height:5cqw;font-size:1.1cqw;padding:.7cqw}
+.cta{display:grid;grid-template-columns:1fr 8cqw;gap:2cqw;align-items:center;background:var(--navy);color:#fff;border-radius:1cqw;padding:1.2cqw 2cqw}
+.cta h5{font-size:2cqw;font-weight:900}
+.cta h5 small{font-size:1.4cqw;font-weight:500;opacity:.9;margin-left:.8cqw}
+.cta p{font-size:1.35cqw;opacity:.9;margin-top:.4cqw}
+.cta .qr{width:8cqw;height:8cqw;background:#fff;border-radius:.6cqw;color:var(--ink-3);font-size:1.1cqw;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+/* 관리 단계형(STEP) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.step{border:1px solid var(--line);border-radius:.9cqw;overflow:hidden;display:flex;flex-direction:column}
+.step .slot{border-radius:0;border-width:0 0 .22cqw;min-height:9cqw}
+.step .tx{padding:1cqw 1.2cqw 1.2cqw}
+.step .sn{font-size:1.2cqw;font-weight:900;color:var(--blue);letter-spacing:.04em}
+.step h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.3;margin-top:.1cqw}
+.step p{font-size:1.35cqw;line-height:1.5;color:var(--ink-2);margin-top:.4cqw}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.pt{background:var(--wash-2);border-radius:.9cqw;padding:1.2cqw 1.4cqw}
+.pt .pn{font-size:1.2cqw;font-weight:900;color:var(--blue)}
+.pt h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;margin-top:.2cqw}
+.pt p{font-size:1.35cqw;line-height:1.5;color:var(--ink);margin-top:.4cqw}
+/* 가격표형 */
+.lineup{display:flex;flex-direction:column;gap:.7cqw}
+.li{display:grid;grid-template-columns:6.5cqw 1fr;gap:1.2cqw;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.7cqw}
+.li .slot{min-height:5.6cqw;font-size:1.05cqw;padding:.6cqw}
+.li .no{display:inline-block;width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3cqw;font-weight:900;text-align:center;line-height:2.6cqw;margin-right:.6cqw;vertical-align:middle}
+.li h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;display:inline}
+.li p{font-size:1.25cqw;line-height:1.45;color:var(--ink-2);margin-top:.25cqw}
+/* Q&A형 */
+.qa{display:flex;flex-direction:column;gap:.7cqw}
+.qa>div{display:grid;grid-template-columns:4.2cqw 1fr;gap:1.2cqw}
+.qa .qn{width:4.2cqw;height:4.2cqw;border-radius:.6cqw;background:var(--navy);color:#fff;font-size:1.5cqw;font-weight:900;display:flex;align-items:center;justify-content:center}
+.qa h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.35}
+.qa p{font-size:1.36cqw;line-height:1.5;margin-top:.3cqw;color:var(--ink)}
+table.t.cmp th.rec{background:var(--navy);color:#fff}
+table.t.cmp td{text-align:left;font-size:1.22cqw;vertical-align:top;padding:.5cqw .7cqw}
+table.t.cmp td:first-child{background:var(--wash-2);font-weight:700;color:var(--navy);width:13%;white-space:nowrap;text-align:center}
+table.t.cmp td ul{list-style:none}
+table.t.cmp td li::before{content:"· "}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+/* 푸터 */
+.pf{margin-top:auto;padding:1.1cqw 5.2cqw 1.5cqw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-size:1.25cqw;color:var(--ink-2)}
+.pf .logo{font-weight:900;font-size:2.4cqw;color:var(--navy);line-height:1}
+.pf .logo small{display:block;font-size:1.15cqw;font-weight:600;letter-spacing:.14em;margin-top:.3cqw;color:var(--ink-2)}
+.pf .tel{font-size:1.9cqw;font-weight:900;color:var(--navy)}
+.pf .tel small{display:block;font-size:1.15cqw;font-weight:500;color:var(--ink-2)}
+.pf.full{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.pf .addr{font-size:1.15cqw;line-height:1.55}
+.pf .card{border:1px dashed var(--slot-line);width:19cqw;height:7cqw;font-size:1.2cqw;color:var(--ink-3);display:flex;align-items:center;justify-content:center;text-align:center;border-radius:.5cqw}
+/* 인쇄 */
+@page{size:A4 portrait;margin:0}
+@media print{
+ body{background:#fff;padding:0}
+ .bar,.dnote,.page .side,.page .fill,.pct{display:none!important}
+ .spread{display:block}
+ .page{width:210mm;height:297mm;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
+ .page:last-child{break-after:auto;page-break-after:auto}
+ .memo{background:transparent;color:inherit}
+}
+</style>
+</head>
+<body data-view="both">
+<div class="wrap">
+<header class="bar"><h1>세스코 마이랩 마스터 라인업 · 제품 리플릿 기타형(가격표형) · 실물 디자인형</h1><span class="sub">실물 디자인형 · 2026-10-28 회의 반영 · 제품 리플릿</span><div class="chips"><span class="chip type">기타형 · 가격표형</span><span class="chip">A4 세로 1장 앞·뒷면(2P)</span><span class="chip">접지 없음 · 판형 확인 필요</span><span class="chip">원고 10/27 v1</span><span class="chip">2026-10-28</span></div><div class="btns"><button data-view="both" aria-pressed="true">앞·뒷면 나란히</button><button data-view="front" aria-pressed="false">앞면만</button><button data-view="back" aria-pressed="false">뒷면만</button><button id="memo-toggle" aria-pressed="false">메모 숨기기</button><button id="print">인쇄 미리보기</button></div></header>
+<section class="dnote"><h2><span>디자이너 노트</span>기타형 · 가격표형 · 세스코 마이랩 마스터 라인업</h2><table><tr><th>유형 선택</th><td><b>가격표형</b> — 한 제품군에 용량·라인업이 여럿이고 고객이 고를 것이 “어느 것을 얼마에”일 때. 앞면 문제·근거는 짧게, 뒷면은 4단 가격표가 중심.</td></tr><tr><th>앞면 역할</th><td><b>핵심</b> — 사장님 말 3개 → 문제 헤드 → 왜 가정용으로 부족한가 + 카드 3 → 선언 밴드(라인업명 첫 등장 + 주문 조건 1줄). 품목·가격은 앞면에 쓰지 않음(“품목별 가격은 뒷면”).</td></tr><tr><th>뒷면 역할</th><td><b>세부</b> — 품목 6 × 핵심 장점 1줄(수치 USP는 여기서만) → 4단 가격표(d59 §4 서식) → 각주 → 주문 띠. 가격표 안에 성능 수치를 다시 쓰지 않음.</td></tr><tr><th>지면 배분</th><td>앞면 히어로 30 · 원인 30 · 연구소 컷(흡수) · 선언 26 / 뒷면 라인업 38 · 가격표 30 · 각주 12 · 주문 10</td></tr><tr><th>근거 처리</th><td>시험 수치가 없는 라인은 ‘시험완료’ 헤드 없이 개발 근거 1)·용도 2)·처방 기준 3)·가격 기준 4) 각주. 성적서 이미지 없음.</td></tr><tr><th>중복 점검</th><td>라인업명 2회(앞면 밴드 · 뒷면 헤드 라벨) · ‘박스 단위·무료배송’은 앞면 스펙 1줄 + 뒷면 가격표 각주(가격 조건이라 허용) · 120만 수치 1회</td></tr><tr><th>확인 필요</th><td>라인업 6종 구성(키친 핸드워시 폼 제외·식기세척기 세제/린스 추가) · 멤버스가·할인율 · 품목 2~6 상세 문안 · 피부 자극 시험 · © 코드 · 판형</td></tr></table></section>
+<main class="spread">
+<article class="page front"><span class="side">앞면 · FRONT</span><span class="fill">측정 중</span><div class="lock"><span><span class="brand">CESCO<small>Mylab 세스코 마이랩</small></span></span><span>Master 마스터 ㅣ 사업장 전용 대용량 세정제</span></div><div class="blk "><span class="pct">30%</span><div class="hero"><div><div class="bubbles"><div class="bubble">“접시의 찌든 기름때가 손쉽게 제거되었으면 좋겠어요. — 치킨집 사장님”</div><div class="bubble">“헹굼 시간이 길어지니 거품이 너무 많지 않았으면 좋겠어요. — 구내식당 사장님”</div><div class="bubble">“식기류부터 과일·채소 세척까지 한 번에 해결하고 싶어요. — 식품공장 사장님”</div></div><h1>가정용 세제로는 끝나지 않는<br>사업장 주방의 찌든 오염</h1><div class="sub">세상 모든 사장님들이 위생의 마스터가 될 수 있도록.</div></div><div class="slot"><b>이미지 · 표지 연출컷</b>영업 마감 후 업소 주방 — 기름이 튄 튀김기·눌어붙은 조리도구·물때 낀 배수구를 한 프레임에 / “집에서 쓰는 세제와는 오염의 종류와 양이 다르다”</div></div></div><div class="pad"><div class="blk "><span class="pct">30%</span><div class="why"><h2><span class="q">?</span>사업장 주방 오염, 왜 가정용 세제로는 부족할까요?</h2><p class="ans">오염의 종류와 양이 다르기 때문입니다. 요식업·숙박업·식품공장의 주방에서는 튀김기와 오븐의 찌든 기름때, 눌어붙은 음식물, 배수관의 악취와 곰팡이가 매일 쌓입니다.</p><div class="cards"><div class="card"><div class="ico">아이콘<br>120만</div><b>120만 개 식당의 오염 유형 데이터<sup>1)</sup></b><p>세스코 식품안전 연구소가 분석한 오염 유형과 사용 패턴 데이터로 사업장에 가장 필요한 성능을 정했습니다.</p></div><div class="card"><div class="ico">아이콘<br>연구소</div><b>현장의 찌든 오염 때를 통째로 옮겨와 연구</b><p>실제 현장의 혹독한 주방 오염으로 수백 번 테스트를 거쳐 사업장에 가장 효과적인 제품을 제안합니다.</p></div><div class="card"><div class="ico">아이콘<br>박스</div><b>시간과 비용을 아끼는 경제성</b><p>용도에 맞춘 최적의 거품양으로 헹굼 시간과 수고를 덜고, 박스 단위 대용량으로 세정제 비용을 관리합니다.</p></div></div></div></div><div class="slot grow" style="--h:7cqw"><b>이미지 · 연구소 분석 장면 (여백 흡수 자리)</b>연구원이 현장에서 채취한 오염 샘플을 분석하는 부감 컷 + “120만 개 사업장” 숫자 타이포 / 원인을 데이터로 보여 주는 역할</div><div class="blk "><span class="pct">26%</span><p class="bridge">그 모든 과학적 솔루션을 한 통에 담아, 사업장에 가장 필요한 성능으로, 사업장에 가장 최적화된 제품을 제안합니다. 고를 것은 하나 — 우리 주방에 맞는 품목과 수량입니다.</p><div class="band"><div><div class="pre">세스코 식품안전 연구소 전문연구원이 사업장 주방 오염에 맞춰 처방한 대용량 세정제 6종</div><div class="name">세스코 마이랩 마스터</div><div class="spec">사업장 전용 ㅣ 박스 단위 판매 ㅣ 전 제품 무료배송 ㅣ 세스코몰 또는 담당 세스코 직원 주문 ㅣ 품목별 가격은 뒷면</div></div><div class="slot"><b>제품 누끼</b>마스터 6종 군집 1컷 / 라인업이 처음 등장하는 자리</div></div></div><div class="fine fnote"><p>1) 120만 개 사업장: 세스코가 50여 년간 위생 케어 서비스를 제공한 전국 사업장 수(세스코 과학연구소 통계 자료). <span class="need">[확인 필요: 집계 기준일]</span></p></div></div><footer class="pf"><div class="logo">CESCO<small>MYLAB 세스코 마이랩</small></div><div class="tel">1588-1119<small>주문·상담 ㅣ www.cescomall.co.kr</small></div></footer></article>
+<article class="page back"><span class="side">뒷면 · BACK</span><span class="fill">측정 중</span><div class="pad"><div class="p2head"><div class="k">세스코 마이랩 마스터 6종</div><h2>우리 주방에 맞는 마스터를 고르세요 — 품목별 핵심 장점과 가격</h2></div><div class="blk "><span class="pct">38%</span><div class="lineup"><div class="li"><div class="slot"><b>누끼</b>주방세제</div><div><span class="no">1</span><h3>마스터 주방세제 4L — 기름기와 눌어붙은 음식물 세척에 특화</h3><p>120만 개 식당의 식기류 오염을 분석한 맞춤 포뮬러. 헹굼이 쉬운 최적의 거품양, 맨손 설거지를 고려한 피부 자극 최소화 배합.<sup>3)</sup> 과일·채소류 세척제.<sup>2)</sup></p></div></div><div class="li"><div class="slot"><b>누끼</b>배수관세정제</div><div><span class="no">2</span><h3>마스터 배수관세정제 2L — 간편하게 붓기만 하면 해결</h3><p>배수관에 붓기만 하면 되는 사업장용 배수관 관리 세정제. <span class="need">[확인 필요: 적용 오염·권장 사용 주기]</span></p></div></div><div class="li"><div class="slot"><b>누끼</b>락스</div><div><span class="no">3</span><h3>마스터 락스 2L — 유해세균 및 곰팡이 살균에 특화</h3><p>주방·화장실·바닥 등 공용 공간의 유해세균과 곰팡이 살균에 특화된 대용량 락스. <span class="need">[확인 필요: 희석 비율·적용 대상]</span></p></div></div><div class="li"><div class="slot"><b>누끼</b>기름때세정제</div><div><span class="no">4</span><h3>마스터 기름때세정제 파우더 17kg — 튀김기·오븐의 찌든 오염에 탁월</h3><p>튀김기, 오븐 구석구석의 찌든 오염에 탁월한 파우더 타입. <span class="need">[확인 필요: 사용 방법·적용 기기]</span></p></div></div><div class="li"><div class="slot"><b>누끼</b>식기세척기</div><div><span class="no">5</span><h3>마스터 식기세척기 세제 18.75L — 식기 회전율을 UP</h3><p>업장 환경에 최적화된 세정 설계로 업소용 식기세척기의 세척 회전율을 높입니다. <span class="need">[확인 필요: 호환 유형·투입량]</span></p></div></div><div class="li"><div class="slot"><b>누끼</b>식기세척기</div><div><span class="no">6</span><h3>마스터 식기세척기 린스 18.75L — 물 얼룩과 잔여물 걱정 없는 마무리</h3><p>세제와 함께 쓰는 헹굼 보조제. <span class="need">[확인 필요: 세제·린스 세트 조건]</span></p></div></div></div></div><div class="blk "><span class="pct">30%</span><table class="t"><thead><tr><th>품목명</th><th>판매단위(BOX)</th><th>정상가</th><th>온라인 회원가</th><th>멤버스가 금액 · 할인율</th></tr></thead><tbody><tr><td class="l">세스코 마이랩 마스터 주방세제</td><td>4L × 3개입/박스</td><td><s>28,800원</s></td><td class="pr">17,900원</td><td><span class="need">[확인 필요: 멤버스가·할인율]</span></td></tr><tr><td class="l">세스코 마이랩 마스터 배수관세정제</td><td>2L × 6개입/박스</td><td><s>23,400원</s></td><td class="pr">14,600원</td><td><span class="need">[확인 필요: 멤버스가·할인율]</span></td></tr><tr><td class="l">세스코 마이랩 마스터 락스</td><td>2L × 6개입/박스</td><td><s>21,600원</s></td><td class="pr">14,600원</td><td><span class="need">[확인 필요: 멤버스가·할인율]</span></td></tr><tr><td class="l">세스코 마이랩 마스터 기름때세정제 파우더</td><td>17kg × 1개입/박스</td><td><s>154,000원</s></td><td class="pr">138,000원</td><td><span class="need">[확인 필요: 멤버스가·할인율]</span></td></tr><tr><td class="l">세스코 마이랩 마스터 식기세척기 세제</td><td>18.75L × 1개입</td><td><s>39,000원</s></td><td class="pr">33,900원</td><td><span class="need">[확인 필요: 멤버스가·할인율]</span></td></tr><tr><td class="l">세스코 마이랩 마스터 식기세척기 린스</td><td>18.75L × 1개입</td><td><s>39,000원</s></td><td class="pr">33,900원</td><td><span class="need">[확인 필요: 멤버스가·할인율]</span></td></tr></tbody></table><div class="fine" style="margin-top:.6cqw"><p>* 세스코 마이랩 마스터라인은 단품이 아닌 박스 단위로만 판매합니다. * 전 제품 무료배송입니다. * 가격은 세스코몰 2026년 10월 기준<sup>4)</sup> <span class="memo">가격표 안에는 성능 수치를 다시 쓰지 않음(2면 상단 1회)</span></p></div></div><div class="slot grow" style="--h:3cqw"><b>이미지 · 마스터 6종 사용 장면 (여백 흡수 자리)</b>싱크대·배수구·바닥·튀김기·식기세척기 사용 컷 띠 / 글이 줄면 이 자리가 늘어남</div><div class="blk "><span class="pct">12%</span><div class="proof"><div class="cert">세스코 식품안전 연구소 개발 · 120만 개 사업장 현장 데이터 기반<sup>1)</sup> <span class="memo">시험 수치가 없는 라인은 ‘공인시험기관 시험완료’ 헤드를 쓰지 않음</span></div><div class="fine"><p>2) 세스코 마이랩 마스터 주방세제는 과일·채소류 세척제(위생용품)로, 과일·채소와 식품용 기구·용기 세척에 사용할 수 있습니다. 3) 피부 자극 최소화 성분 배합은 맨손 설거지를 고려한 처방 기준이며, 시험 결과 수치는 별도 확인 후 표기. <span class="need">[확인 필요: 피부 자극 시험 여부]</span></p><p>4) 가격은 세스코몰 2026년 10월 기준이며, 세스코몰 정책에 따라 변경될 수 있습니다. 멤버스가는 세스코 멤버스 회원 로그인 후 적용됩니다. ※ 사용 환경에 따라 결과가 달라질 수 있음.</p></div></div></div><div class="blk "><span class="pct">10%</span><div class="cta"><div><h5>주문 ㅣ 세스코몰 www.cescomall.co.kr<small>담당 세스코 직원에게 바로 주문할 수 있습니다</small></h5><p>세스코 멤버스 가입 시 멤버스가 적용 · 박스 단위 · 전 제품 무료배송</p></div><div class="qr">QR<br>세스코몰 마스터<br>(선택)</div></div></div></div><footer class="pf full"><div class="logo">CESCO<small>MYLAB 세스코 마이랩</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr<br>©MYLAB_MASTER_v.1_2026.10 <span class="need">[확인 필요: © 코드]</span> CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer></article>
+</main>
+</div>
+<script>
+(function(){
+ var body=document.body;
+ document.querySelectorAll('.bar button[data-view]').forEach(function(b){b.addEventListener('click',function(){
+  body.dataset.view=b.dataset.view;document.querySelectorAll('.bar button[data-view]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});measure();});});
+ var mt=document.getElementById('memo-toggle');mt.addEventListener('click',function(){body.classList.toggle('hide-memo');mt.setAttribute('aria-pressed',body.classList.contains('hide-memo')?'true':'false');});
+ document.getElementById('print').addEventListener('click',function(){window.print();});
+ function measure(){document.querySelectorAll('.page').forEach(function(p){
+  var badge=p.querySelector('.fill');if(!badge)return;
+  var over=p.scrollHeight-p.clientHeight;var mm=Math.round(over*297/p.clientHeight);
+  var grow=0;p.querySelectorAll('.slot.grow').forEach(function(s){grow+=s.getBoundingClientRect().height;});
+  var pct=Math.round(grow/p.clientHeight*100);
+  if(over>2){badge.textContent='지면 초과 약 '+mm+'mm · 본문을 줄이세요';badge.classList.add('bad');}
+  else{badge.textContent='지면 OK · 이미지 자리가 여백 '+pct+'% 흡수';badge.classList.remove('bad');}
+ });}
+ window.addEventListener('resize',measure);window.addEventListener('load',measure);measure();
+})();
+</script>
+</body>
+</html>

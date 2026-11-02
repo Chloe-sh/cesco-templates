@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>가정집 에어컨 클리닝 · 제품 리플릿 기타형(관리 단계형) · 실물 디자인형</title>
+<!-- 세스코 리플릿 실물 디자인형 샘플 · 규약 ../../references/leaflet-real-design-spec.md · 공용 CSS ../../assets/leaflet-real-design.css (인라인)
+     규격 A4 세로 1장 앞·뒷면(2P) · 접지 없음(접지가 필요하면 발주 전 확인) · 재단 여백 3mm는 인쇄소 사양에 따라 디자이너가 추가
+     층: 지면 카피(기본) / 회색 점선 = 이미지 자리(종류·분위기·역할·지면 %) / 노란 메모 = 제작 메모(지면 미노출) / 주황 = [확인 필요] -->
+<style>/* 세스코 리플릿 — 실물 디자인형 공용 CSS (2026-10-28 회의 결정 반영)
+   규격: A4 세로 1장 앞·뒷면(2P). 화면에서는 앞·뒷면을 나란히 비교, 인쇄(@page A4)에서는 면당 1장.
+   지면 안 글자·여백은 모두 cqw(지면 폭 기준 %) 단위 — 화면 폭이 달라도, 인쇄로 넘어가도 비율이 같다. 1cqw = 2.1mm.
+   층 구분: 지면 카피(기본) · 이미지 자리(.slot, 회색 점선) · 메모 층(.memo/.pct/.dnote — '메모 숨기기'로 사라짐) · [확인 필요](.need, 주황)
+   규약 정본: ../references/leaflet-real-design-spec.md */
+:root{--stage:#d9dee6;--paper:#fff;--ink:#1c2430;--ink-2:#4b5563;--ink-3:#7c8592;--navy:#0f3c7a;--blue:#1e6fd9;--wash:#e9f1fb;--wash-2:#f4f7fb;--line:#d5dde8;
+--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200;--hero:#1b2a3f;--tag:#ff7a2f;--need:#fff0e6;--need-ink:#b4530a;--ok:#1f7a45;--bad:#c2410c;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--stage:#1a1f27;}}
+:root[data-theme="dark"]{--stage:#1a1f27;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--stage)}
+body{color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all;padding:20px 16px 56px}
+.wrap{max-width:1240px;margin:0 auto}
+/* ── 상단 바(지면 밖) ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.bar h1{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.bar .sub{font-size:11.5px;color:var(--ink-3)}
+.bar .chips{display:flex;gap:5px;flex-wrap:wrap}
+.bar .chip{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-2);background:#fff}
+.bar .chip.type{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.bar .btns{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.bar button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 11px;border-radius:16px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+/* ── 디자이너 노트(지면 밖) ── */
+.dnote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--tag);border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.55;color:var(--ink-2);margin-bottom:16px}
+.dnote h2{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.dnote h2 span{display:inline-block;background:var(--tag);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.dnote table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.dnote th{background:var(--wash-2);color:var(--ink);text-align:left;white-space:nowrap;width:96px;padding:5px 8px;border:1px solid var(--line);vertical-align:top}
+.dnote td{padding:5px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dnote td b{color:var(--navy)}
+/* ── 대지: 앞·뒷면 나란히 ── */
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media (max-width:1080px){.spread{grid-template-columns:1fr}}
+@media (max-width:640px){.spread{overflow-x:auto;padding-bottom:8px}.page{min-width:560px}}
+body[data-view="front"] .page.back,body[data-view="back"] .page.front{display:none}
+body[data-view="front"] .spread,body[data-view="back"] .spread{grid-template-columns:minmax(0,620px);justify-content:center}
+.page{position:relative;background:var(--paper);width:100%;aspect-ratio:210/297;container-type:inline-size;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 3px rgba(0,0,0,.08),0 18px 40px -12px rgba(15,60,122,.25)}
+.page .side{position:absolute;top:0;left:0;z-index:3;background:var(--navy);color:#fff;font-size:1.35cqw;font-weight:700;padding:.4cqw 1.6cqw;border-radius:0 0 .8cqw 0;letter-spacing:.05em}
+.page .fill{position:absolute;top:0;right:0;z-index:3;font-size:1.3cqw;font-weight:700;padding:.4cqw 1.4cqw;border-radius:0 0 0 .8cqw;background:var(--ok);color:#fff}
+.page .fill.bad{background:var(--bad)}
+.pad{padding:0 5.2cqw;display:flex;flex-direction:column;flex:1 0 auto}
+.pad>*+*{margin-top:1.4cqw}
+.page p{font-size:1.72cqw;line-height:1.6}
+/* 메모 층 */
+.memo{background:var(--memo);color:var(--memo-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:500;font-size:.92em}
+.pct{position:absolute;right:.6cqw;top:-.9cqw;z-index:2;font-size:1.15cqw;font-weight:800;color:var(--memo-ink);background:var(--memo);padding:.1cqw .9cqw;border-radius:999px;pointer-events:none}
+.blk{position:relative}
+body.hide-memo .memo,body.hide-memo .pct,body.hide-memo .dnote,body.hide-memo .fill{display:none}
+body.hide-memo .slot{color:transparent}
+.need{background:var(--need);color:var(--need-ink);border:1px dashed var(--need-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:700;font-size:.92em}
+/* 이미지 자리 */
+.slot{background:var(--slot);border:.22cqw dashed var(--slot-line);border-radius:.9cqw;color:var(--ink-3);font-size:1.3cqw;line-height:1.45;padding:1.1cqw 1.3cqw;display:flex;flex-direction:column;justify-content:flex-end;min-height:var(--h,8cqw)}
+.slot b{display:block;font-weight:800;color:var(--ink-2);font-size:1.25cqw;margin-bottom:.2cqw}
+.slot.grow{flex:1 1 auto}
+.hero .slot,.band .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45);color:#fff}
+.hero .slot b,.band .slot b{color:#fff}
+/* ── 앞면 블록 ── */
+.lock{display:flex;justify-content:space-between;align-items:baseline;padding:3.6cqw 5.2cqw 0;font-size:1.5cqw;font-weight:700;color:var(--ink-2)}
+.lock .brand{font-size:2.2cqw;font-weight:900;color:var(--navy);letter-spacing:.02em}
+.lock .brand small{font-size:1.4cqw;font-weight:600;color:var(--ink-2);margin-left:.8cqw;letter-spacing:0}
+.lock .badge{background:var(--blue);color:#fff;font-size:1.3cqw;padding:.25cqw 1.1cqw;border-radius:.4cqw;margin-right:.8cqw}
+.hero{position:relative;background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:3.2cqw 5.2cqw 3cqw;display:grid;grid-template-columns:1.2fr .8fr;gap:3cqw;margin-top:2.2cqw}
+.bubbles{display:flex;flex-direction:column;gap:.7cqw;margin-bottom:2cqw}
+.bubble{align-self:flex-start;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:2cqw 2cqw 2cqw .4cqw;padding:.7cqw 1.6cqw;font-size:1.55cqw;line-height:1.45}
+.hero h1{font-size:4.3cqw;line-height:1.22;font-weight:900;letter-spacing:-.025em}
+.hero .sub{margin-top:1.4cqw;font-size:1.8cqw;font-weight:600;opacity:.95}
+.hero .sub2{margin-top:.5cqw;font-size:1.5cqw;opacity:.85}
+.hero .slot{min-height:100%}
+.why h2{font-size:2.5cqw;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:1cqw;letter-spacing:-.02em}
+.why h2 .q{background:var(--navy);color:#fff;font-size:1.6cqw;width:3cqw;height:3cqw;display:inline-flex;align-items:center;justify-content:center;border-radius:.4cqw;flex:none}
+.why .ans{margin-top:1cqw;font-size:1.65cqw;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;margin-top:1.6cqw}
+.card{border:1px solid var(--line);border-top:.4cqw solid var(--navy);border-radius:0 0 .9cqw .9cqw;padding:1.2cqw 1.4cqw 1.3cqw;display:flex;flex-direction:column}
+.card .ico{width:5.2cqw;height:5.2cqw;border-radius:50%;background:var(--slot);border:.2cqw dashed var(--slot-line);color:var(--ink-3);font-size:1.05cqw;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:.9cqw;line-height:1.2}
+.card b{font-size:1.65cqw;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.card p{font-size:1.4cqw;line-height:1.55;color:var(--ink-2);margin-top:.5cqw}
+.stat{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:1.4cqw;align-items:stretch}
+.stat>div{background:var(--wash-2);border-radius:.9cqw;padding:1.3cqw 1.5cqw}
+.stat .v{font-size:4.2cqw;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.03em}
+.stat .v small{font-size:1.8cqw;font-weight:800;margin-left:.2cqw}
+.stat .l{font-size:1.3cqw;line-height:1.45;color:var(--ink-2);margin-top:.7cqw}
+.stat .cap{font-size:1.55cqw;font-weight:800;color:var(--navy);margin-bottom:.6cqw}
+.stat ul{list-style:none;font-size:1.45cqw;font-weight:700;color:var(--navy)}
+.stat ul li::before{content:"☑ ";color:var(--blue)}
+.band{position:relative;background:var(--navy);color:#fff;padding:2.6cqw 5.2cqw;margin:1.6cqw -5.2cqw 0;display:grid;grid-template-columns:1fr 17cqw;gap:2.4cqw;align-items:center}
+.band .pre{font-size:1.6cqw;line-height:1.6;opacity:.92}
+.band .name{font-size:3.1cqw;font-weight:900;margin-top:.8cqw;letter-spacing:-.02em;line-height:1.25}
+.band .spec{margin-top:1cqw;font-size:1.3cqw;opacity:.85;padding-top:.8cqw;border-top:1px solid rgba(255,255,255,.3)}
+.band .slot{min-height:12cqw}
+.bridge{font-size:1.65cqw;color:var(--ink);background:var(--wash);border-left:.5cqw solid var(--blue);padding:1.1cqw 1.6cqw;border-radius:0 .8cqw .8cqw 0}
+/* ── 뒷면 블록 ── */
+.p2head{padding-top:3.2cqw}
+.p2head .k{font-size:1.6cqw;color:var(--ink-2);font-weight:600}
+.p2head h2{font-size:2.9cqw;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.02em;margin-top:.3cqw}
+.adv{display:grid;grid-template-columns:1fr 15cqw;gap:2.4cqw}
+.alist{display:flex;flex-direction:column;gap:.9cqw}
+.a{display:grid;grid-template-columns:4.6cqw 1fr;gap:1.4cqw;align-items:start}
+.a .no{width:4.6cqw;height:4.6cqw;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5cqw;font-weight:900}
+.a h3{font-size:1.78cqw;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.a p{font-size:1.4cqw;line-height:1.5;margin-top:.35cqw;color:var(--ink)}
+.col{display:flex;flex-direction:column;gap:1.2cqw}
+.col .slot{flex:1 1 auto}
+sup{font-size:.65em;color:var(--blue);font-weight:700;line-height:0}
+table.t{width:100%;border-collapse:collapse;font-size:1.4cqw}
+table.t th{background:var(--wash);color:var(--navy);font-weight:700;padding:.65cqw .8cqw;border:1px solid var(--line);text-align:center}
+table.t td{padding:.6cqw .8cqw;border:1px solid var(--line);text-align:center;vertical-align:middle}
+table.t td.l{text-align:left}
+table.t td.pr{font-weight:900;color:var(--blue);font-size:1.6cqw}
+table.t td s{color:var(--ink-3);font-weight:400;font-size:1.25cqw;margin-right:.4cqw}
+table.t.spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:16%;white-space:nowrap}
+table.t.spec td:nth-child(even){text-align:left}
+.proof{background:var(--wash-2);border-radius:.9cqw;padding:1.1cqw 1.4cqw}
+.proof .cert{font-size:1.55cqw;font-weight:900;color:var(--navy);border-left:.45cqw solid var(--navy);padding-left:1cqw;margin-bottom:.8cqw}
+.fine{font-size:1.1cqw;line-height:1.48;color:var(--ink-2)}
+.fine p{font-size:1.1cqw;line-height:1.48}
+.fine p+p{margin-top:.15cqw}
+.fnote{margin-top:auto;padding-top:1.2cqw;border-top:1px solid var(--line)}
+.cross{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.cross>div{border:1px solid var(--line);border-radius:.9cqw;padding:1cqw 1.3cqw}
+.cross h4{font-size:1.65cqw;font-weight:900;color:var(--navy)}
+.cross p{font-size:1.4cqw;color:var(--ink-2);margin-top:.4cqw}
+.cross .lbl{display:inline-block;background:var(--navy);color:#fff;font-size:1.15cqw;font-weight:700;padding:.2cqw 1cqw;border-radius:.3cqw;margin-bottom:.5cqw}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw;margin-top:1cqw}
+.mini .slot{min-height:5cqw;font-size:1.1cqw;padding:.7cqw}
+.cta{display:grid;grid-template-columns:1fr 8cqw;gap:2cqw;align-items:center;background:var(--navy);color:#fff;border-radius:1cqw;padding:1.2cqw 2cqw}
+.cta h5{font-size:2cqw;font-weight:900}
+.cta h5 small{font-size:1.4cqw;font-weight:500;opacity:.9;margin-left:.8cqw}
+.cta p{font-size:1.35cqw;opacity:.9;margin-top:.4cqw}
+.cta .qr{width:8cqw;height:8cqw;background:#fff;border-radius:.6cqw;color:var(--ink-3);font-size:1.1cqw;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+/* 관리 단계형(STEP) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.step{border:1px solid var(--line);border-radius:.9cqw;overflow:hidden;display:flex;flex-direction:column}
+.step .slot{border-radius:0;border-width:0 0 .22cqw;min-height:9cqw}
+.step .tx{padding:1cqw 1.2cqw 1.2cqw}
+.step .sn{font-size:1.2cqw;font-weight:900;color:var(--blue);letter-spacing:.04em}
+.step h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.3;margin-top:.1cqw}
+.step p{font-size:1.35cqw;line-height:1.5;color:var(--ink-2);margin-top:.4cqw}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.pt{background:var(--wash-2);border-radius:.9cqw;padding:1.2cqw 1.4cqw}
+.pt .pn{font-size:1.2cqw;font-weight:900;color:var(--blue)}
+.pt h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;margin-top:.2cqw}
+.pt p{font-size:1.35cqw;line-height:1.5;color:var(--ink);margin-top:.4cqw}
+/* 가격표형 */
+.lineup{display:flex;flex-direction:column;gap:.7cqw}
+.li{display:grid;grid-template-columns:6.5cqw 1fr;gap:1.2cqw;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.7cqw}
+.li .slot{min-height:5.6cqw;font-size:1.05cqw;padding:.6cqw}
+.li .no{display:inline-block;width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3cqw;font-weight:900;text-align:center;line-height:2.6cqw;margin-right:.6cqw;vertical-align:middle}
+.li h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;display:inline}
+.li p{font-size:1.25cqw;line-height:1.45;color:var(--ink-2);margin-top:.25cqw}
+/* Q&A형 */
+.qa{display:flex;flex-direction:column;gap:.7cqw}
+.qa>div{display:grid;grid-template-columns:4.2cqw 1fr;gap:1.2cqw}
+.qa .qn{width:4.2cqw;height:4.2cqw;border-radius:.6cqw;background:var(--navy);color:#fff;font-size:1.5cqw;font-weight:900;display:flex;align-items:center;justify-content:center}
+.qa h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.35}
+.qa p{font-size:1.36cqw;line-height:1.5;margin-top:.3cqw;color:var(--ink)}
+table.t.cmp th.rec{background:var(--navy);color:#fff}
+table.t.cmp td{text-align:left;font-size:1.22cqw;vertical-align:top;padding:.5cqw .7cqw}
+table.t.cmp td:first-child{background:var(--wash-2);font-weight:700;color:var(--navy);width:13%;white-space:nowrap;text-align:center}
+table.t.cmp td ul{list-style:none}
+table.t.cmp td li::before{content:"· "}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+/* 푸터 */
+.pf{margin-top:auto;padding:1.1cqw 5.2cqw 1.5cqw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-size:1.25cqw;color:var(--ink-2)}
+.pf .logo{font-weight:900;font-size:2.4cqw;color:var(--navy);line-height:1}
+.pf .logo small{display:block;font-size:1.15cqw;font-weight:600;letter-spacing:.14em;margin-top:.3cqw;color:var(--ink-2)}
+.pf .tel{font-size:1.9cqw;font-weight:900;color:var(--navy)}
+.pf .tel small{display:block;font-size:1.15cqw;font-weight:500;color:var(--ink-2)}
+.pf.full{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.pf .addr{font-size:1.15cqw;line-height:1.55}
+.pf .card{border:1px dashed var(--slot-line);width:19cqw;height:7cqw;font-size:1.2cqw;color:var(--ink-3);display:flex;align-items:center;justify-content:center;text-align:center;border-radius:.5cqw}
+/* 인쇄 */
+@page{size:A4 portrait;margin:0}
+@media print{
+ body{background:#fff;padding:0}
+ .bar,.dnote,.page .side,.page .fill,.pct{display:none!important}
+ .spread{display:block}
+ .page{width:210mm;height:297mm;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
+ .page:last-child{break-after:auto;page-break-after:auto}
+ .memo{background:transparent;color:inherit}
+}
+</style>
+</head>
+<body data-view="both">
+<div class="wrap">
+<header class="bar"><h1>가정집 에어컨 클리닝 · 제품 리플릿 기타형(관리 단계형) · 실물 디자인형</h1><span class="sub">실물 디자인형 · 2026-10-28 회의 반영 · 제품 리플릿</span><div class="chips"><span class="chip type">기타형 · 관리 단계형</span><span class="chip">A4 세로 1장 앞·뒷면(2P)</span><span class="chip">접지 없음 · 판형 확인 필요</span><span class="chip">원고 10/26 v2 (코퍼스 512 · 10/21 반영)</span><span class="chip">2026-10-28</span></div><div class="btns"><button data-view="both" aria-pressed="true">앞·뒷면 나란히</button><button data-view="front" aria-pressed="false">앞면만</button><button data-view="back" aria-pressed="false">뒷면만</button><button id="memo-toggle" aria-pressed="false">메모 숨기기</button><button id="print">인쇄 미리보기</button></div></header>
+<section class="dnote"><h2><span>디자이너 노트</span>기타형 · 관리 단계형 · 가정집 에어컨 클리닝</h2><table><tr><th>유형 선택</th><td><b>관리 단계형</b> — 서비스가 붙어 “어떤 순서로 해 주느냐”가 곧 상품일 때. STEP 01~06이 뒷면의 중심축. 보통 제품에는 쓰지 않는다(10/21 결정).</td></tr><tr><th>앞면 역할</th><td><b>핵심</b> — 고객 말 3개 → 문제 헤드 → 결로 원인 + 근거 카드 3(수치 각 1회) → 해결책 → 선언 밴드(서비스명 첫 등장 + 신청 문의). 앞면 수치 각주 1)~3)은 앞면 하단.</td></tr><tr><th>뒷면 역할</th><td><b>세부</b> — STEP 01~06(무엇을 하는지 1줄씩) → POINT 01~03(왜 다른지) → 서비스 안내 표 → 각주 → 골든타임 CTA. STEP 본문과 POINT 본문이 같은 문장을 반복하지 않게 역할을 나눔(원문 512는 STEP·POINT가 겹침).</td></tr><tr><th>지면 배분</th><td>앞면 히어로 30 · 원인 34 · 아이콘 띠(흡수) · 해결책·선언 24 / 뒷면 STEP 40 · POINT 22 · 비교컷(흡수) · 안내 표 14 · 각주 12 · CTA 12</td></tr><tr><th>근거 처리</th><td>DNA 분석 성적서·케미컬 검증은 이미지 없이 각주 1)·4)로. 외부 연구는 기관·학술지·연도 표기.</td></tr><tr><th>중복 점검</th><td>서비스명 2회(앞면 밴드 · 뒷면 헤드 라벨) · 1661-0119는 앞면 1줄 + 뒷면 CTA·푸터 · ‘쌓인 오염 그대로 사용하지 마세요’는 앞면만</td></tr><tr><th>확인 필요</th><td>가격(세스코몰 10월 미등재) · 대상 에어컨 유형 · 소요 시간 · STEP 02/05/06 세부 문구 · 케미컬 시험기관·성적서 번호 · 판형</td></tr></table></section>
+<main class="spread">
+<article class="page front"><span class="side">앞면 · FRONT</span><span class="fill">측정 중</span><div class="lock"><span><span class="brand">CESCO<small>Lifecare 세스코 라이프케어</small></span></span><span>전문클리닝 ㅣ 가을·겨울철 에어컨 클리닝</span></div><div class="blk "><span class="pct">30%</span><div class="hero"><div><div class="bubbles"><div class="bubble">“에어컨을 켤 때마다 퀴퀴한 냄새가 납니다.”</div><div class="bubble">“에어컨 바람을 쐬면 기침이 잦아지는데, 냉방병인가요?”</div><div class="bubble">“여름 내내 켰는데 필터 청소만으로 충분할까요?”</div></div><h1>퀴퀴한 냄새와 잦은 기침,<br>에어컨 내부 곰팡이 신호</h1><div class="sub">쌓인 오염 그대로 사용하지 마세요.</div><div class="sub2">에어컨 사용 전 클리닝은, 이제 필수입니다.</div></div><div class="slot"><b>이미지 · 표지 연출컷</b>먼지가 두껍게 쌓인 에어컨 필터와 곰팡이가 핀 내부 부품 클로즈업(카드뉴스 1120_1 연출), 어둡고 사실적인 톤 / “깨끗해 보여도 내부는 다르다”</div></div></div><div class="pad"><div class="blk "><span class="pct">34%</span><div class="why"><h2><span class="q">?</span>에어컨 속 세균과 곰팡이, 왜 자꾸 생길까요?</h2><p class="ans">결로에서 시작합니다. 에어컨 내부는 실내 공기보다 온도가 낮아 습한 공기가 닿으면 금방 물방울이 맺히고, 여기에 먼지가 쌓이면 곰팡이가 자라기 좋은 환경이 됩니다. 가을 동안 더 증식하고 겨울 동안 단단해진 곰팡이는 제거가 어려워지며, 클리닝 전에 한 번이라도 가동하면 바람을 타고 실내로 퍼집니다.</p><div class="cards"><div class="card"><div class="ico">아이콘<br>배양접시</div><b>에어컨 한 대에서 유해 곰팡이 9종 검출<sup>1)</sup></b><p>한 고객사 에어컨 내부 먼지를 DNA 분석한 결과 9종이 검출됐습니다. 대부분 알레르기 비염이나 천식을 일으킬 수 있는 종류였습니다.</p></div><div class="card"><div class="ico">아이콘<br>폐</div><b>과민성 폐렴 환자의 23.4%, 곰팡이 노출과 관련<sup>2)</sup></b><p>환자 가정에서 곰팡이가 가장 많이 발견된 곳은 에어컨(22.2%)이었습니다.</p></div><div class="card"><div class="ico">아이콘<br>아이</div><b>곰팡이 노출 잦은 아이, 7세 천식 위험 2.6배<sup>3)</sup></b><p>생후 1년 무렵 곰팡이 오염도가 높은 집에서 생활한 아이는 7세에 천식 위험이 2.6배 높았습니다.</p></div></div></div></div><div class="slot grow" style="--h:7cqw"><b>이미지 · 결로 기전 3단 아이콘 (여백 흡수 자리)</b>찬 냉각핀에 맺힌 물방울 → 먼지 축적 → 곰팡이 증식 / 원인을 눈으로 보이게 하는 역할. 글이 줄면 이 자리가 늘어남</div><div class="blk "><span class="pct">24%</span><p class="bridge">필터 청소로는 냉각핀·송풍팬 안쪽의 깊숙한 오염까지 닿지 않습니다. 한 번 자리 잡은 곰팡이는 저절로 사라지지 않으므로 에어컨 내부까지 살균·세척해야 합니다.</p><div class="band"><div><div class="pre">부품을 직접 분해해 냉각핀까지 살균 세척하고, 고압 살균 세척 전문 장비로 세균막까지 제거하는</div><div class="name">세스코 라이프케어 에어컨 전문 클리닝 솔루션</div><div class="spec">가정집 에어컨(벽걸이·스탠드) ㅣ 신청 문의 1661-0119 ㅣ 가격 <span class="need">[확인 필요: 세스코몰 2026년 10월 기준 미등재 · 유형별 가격 또는 ‘상담 후 안내’ 확정]</span></div></div><div class="slot"><b>이미지</b>클리닝 작업자가 분해한 에어컨 앞에 선 장면 1컷 / 서비스가 처음 등장하는 자리</div></div></div><div class="fine fnote"><p>1) 세스코 곰팡이 동정(DNA 분석) 시험성적서(2026). 한 고객사의 에어컨 내부 먼지를 채취해 유전자(DNA) 분석, 총 9종의 곰팡이 검출. 위해성 분류는 WHO 실내 곰팡이·습기 건강영향 가이드라인, 국립보건연구원 병원체 샘플안전정보, 국제암연구소(IARC) 기준. 특정 에어컨 1대의 사례이며 사용 환경에 따라 결과가 달라질 수 있음.</p><p>2) 미국 UT 사우스웨스턴 메디컬센터 과민성 폐렴 환자 231명 분석, Plos One(2025). 3) 미국 신시내티대 영유아 장기 추적 연구, Annals of Allergy, Asthma &amp; Immunology(2011) / 질병관리청 국가건강정보포털 ‘천식’.</p></div></div><footer class="pf"><div class="logo">CESCO<small>LIFECARE 세스코 라이프케어</small></div><div class="tel">1661-0119<small>라이프케어 신청 문의 ㅣ www.cescomall.co.kr</small></div></footer></article>
+<article class="page back"><span class="side">뒷면 · BACK</span><span class="fill">측정 중</span><div class="pad"><div class="p2head"><div class="k">세스코 라이프케어 에어컨 전문 클리닝 솔루션</div><h2>여섯 단계로 진행합니다<br>분해부터 작동 확인까지</h2></div><div class="blk "><span class="pct">40%</span><div class="steps"><div class="step"><div class="slot" style="--h:8cqw"><b>작업 사진</b>커버·필터·송풍팬을 떼어내는 손</div><div class="tx"><div class="sn">STEP 01</div><h3>부품 분해</h3><p>필터뿐 아니라 결로가 생기는 냉각핀까지 직접 분해합니다.</p></div></div><div class="step"><div class="slot" style="--h:8cqw"><b>작업 사진</b>비닐 보양된 에어컨</div><div class="tx"><div class="sn">STEP 02</div><h3>에어컨 보양작업</h3><p>세척 전 벽면·바닥·전장부를 보호합니다. <span class="need">[확인 필요: 보양 범위와 자재]</span></p></div></div><div class="step"><div class="slot" style="--h:8cqw"><b>작업 사진</b>부품 세척 장면</div><div class="tx"><div class="sn">STEP 03</div><h3>부품 살균세척</h3><p>분해한 냉각핀·배수판·송풍팬을 살균 세척합니다.</p></div></div><div class="step"><div class="slot" style="--h:8cqw"><b>작업 사진</b>고압 장비로 내부 세척</div><div class="tx"><div class="sn">STEP 04</div><h3>내부 살균세척</h3><p>고압 살균 세척 전문 장비로 본체 내부를 세척합니다.</p></div></div><div class="step"><div class="slot" style="--h:8cqw"><b>작업 사진</b>건조 후 재조립</div><div class="tx"><div class="sn">STEP 05</div><h3>건조 및 부품재결합</h3><p>세척한 부품을 건조한 뒤 원래대로 결합합니다. <span class="need">[확인 필요: 건조 방식·소요 시간]</span></p></div></div><div class="step"><div class="slot" style="--h:8cqw"><b>작업 사진</b>작동 확인·정리</div><div class="tx"><div class="sn">STEP 06</div><h3>작동 확인 및 클리닝 마무리</h3><p>정상 작동을 확인하고 주변을 정리합니다. <span class="need">[확인 필요: 작동 확인 항목]</span></p></div></div></div></div><div class="blk "><span class="pct">22%</span><div class="points"><div class="pt"><div class="pn">POINT 01</div><h3>단순 세척이 아닌 살균 세척</h3><p>냉각핀, 배수판, 송풍팬 등 세균과 곰팡이가 증식하기 쉬운 부품을 살균 세척해 일반 세척 시 남을 수 있는 세균, 바이러스까지 제거합니다.</p></div><div class="pt"><div class="pn">POINT 02</div><h3>고압 세척 전문 살균 장비 사용</h3><p>세균과 곰팡이의 보호막 역할을 하는 세균막은 일반 세정으로 제거가 어려워, 고압 세척 전문 장비로 깨끗하게 제거합니다.</p></div><div class="pt"><div class="pn">POINT 03</div><h3>내부에 쌓인 오염원까지 제거</h3><p>회전과 함께 내부 사이사이 쌓인 오염원을 제거해 세균과 먼지가 더 깊이 침투되지 않게 관리합니다. 세스코 과학연구소에서 검증한 케미컬을 씁니다.<sup>4)</sup></p></div></div></div><div class="slot grow" style="--h:7cqw"><b>이미지 · 송풍팬 세척 전·후 비교컷 (여백 흡수 자리)</b>같은 각도로 찍은 전·후 2컷 / 공정이 상품 가치임을 보이는 역할</div><div class="blk "><span class="pct">14%</span><table class="t spec"><tr><td>서비스명</td><td>세스코 라이프케어 에어컨 전문 클리닝 솔루션</td><td>대상</td><td>가정집 벽걸이·스탠드 에어컨 <span class="need">[확인 필요: 시스템 에어컨 포함 여부]</span></td></tr><tr><td>소요 시간</td><td><span class="need">[확인 필요: 대당 소요 시간]</span></td><td>가격</td><td><span class="need">[확인 필요: 유형별 가격 또는 ‘상담 후 안내’]</span></td></tr><tr><td>신청</td><td colspan="3">라이프케어 신청 문의 1661-0119 ㅣ 세스코몰 www.cescomall.co.kr</td></tr></table></div><div class="blk "><span class="pct">12%</span><div class="proof"><div class="cert">세스코 곰팡이 동정(DNA 분석) 시험완료<sup>1)</sup> · 세스코 과학연구소 검증 케미컬 사용<sup>4)</sup> <span class="memo">성적서 이미지 대신 각주</span></div><div class="fine"><p>4) 세스코 과학연구소 검증 케미컬: 가습기 살균제 논란 성분 4종을 포함해 유해물질 31종 불검출. <span class="need">[확인 필요: 시험기관·시험성적서 번호]</span></p><p>※ 사용 환경에 따라 결과가 달라질 수 있음. * 본 서비스는 세스코 라이프케어에서 제공합니다.</p></div></div></div><div class="blk "><span class="pct">12%</span><div class="cta"><div><h5>지금이 바로 에어컨 클리닝의 골든타임입니다<small>신청 문의 1661-0119</small></h5><p>지금 클리닝하면 내년 여름, 갑작스러운 더위에도 바로 켜서 쾌적하게 사용할 수 있습니다.</p></div><div class="qr">QR<br>세스코몰<br>(선택)</div></div></div></div><footer class="pf full"><div class="logo">CESCO<small>LIFECARE 세스코 라이프케어</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ 라이프케어 신청 문의 1661-0119 ㅣ www.cesco.co.kr / www.cescomall.co.kr<br>©LIFECARE_AC_v.2_2026.10 CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer></article>
+</main>
+</div>
+<script>
+(function(){
+ var body=document.body;
+ document.querySelectorAll('.bar button[data-view]').forEach(function(b){b.addEventListener('click',function(){
+  body.dataset.view=b.dataset.view;document.querySelectorAll('.bar button[data-view]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});measure();});});
+ var mt=document.getElementById('memo-toggle');mt.addEventListener('click',function(){body.classList.toggle('hide-memo');mt.setAttribute('aria-pressed',body.classList.contains('hide-memo')?'true':'false');});
+ document.getElementById('print').addEventListener('click',function(){window.print();});
+ function measure(){document.querySelectorAll('.page').forEach(function(p){
+  var badge=p.querySelector('.fill');if(!badge)return;
+  var over=p.scrollHeight-p.clientHeight;var mm=Math.round(over*297/p.clientHeight);
+  var grow=0;p.querySelectorAll('.slot.grow').forEach(function(s){grow+=s.getBoundingClientRect().height;});
+  var pct=Math.round(grow/p.clientHeight*100);
+  if(over>2){badge.textContent='지면 초과 약 '+mm+'mm · 본문을 줄이세요';badge.classList.add('bad');}
+  else{badge.textContent='지면 OK · 이미지 자리가 여백 '+pct+'% 흡수';badge.classList.remove('bad');}
+ });}
+ window.addEventListener('resize',measure);window.addEventListener('load',measure);measure();
+})();
+</script>
+</body>
+</html>

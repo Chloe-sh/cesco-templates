@@ -26,10 +26,11 @@ const capDate = manifest.captured;
 const [cy, cm, cd] = capDate.split('-');
 
 function card(it, skipTpl) {
+  const ver = f => { try { return '?v=' + Math.floor(fs.statSync(path.join(ROOT, f)).mtimeMs / 1000).toString(36); } catch { return ''; } };
   const thumb = `${capDir}/${it.id}_thumb.jpg`, full = `${capDir}/${it.id}_full.jpg`;
   const meta = [it.date.replace(/^2026-/, '').replace('-', '/'), it.ver].filter(Boolean).join(' · ');
   let c = `<figure class="gal-card${it.star ? ' star' : ''}" data-gal-item="${it.id}">`;
-  c += `<button type="button" class="gal-thumb" data-full="${full}" data-open="${link(it)}" data-title="${esc(it.type + ' — ' + it.title)}" aria-label="${esc(it.title)} 전체 캡처 보기"><img src="${thumb}" alt="" loading="lazy" width="640" height="800"></button>`;
+  c += `<button type="button" class="gal-thumb" data-full="${full}${ver(full)}" data-open="${link(it)}" data-title="${esc(it.type + ' — ' + it.title)}" aria-label="${esc(it.title)} 전체 캡처 보기"><img src="${thumb}${ver(thumb)}" alt="" loading="lazy" decoding="async" width="640" height="800" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.split('?')[0]+'?r='+Date.now()}"></button>`;
   c += `<figcaption><span class="gal-type">${esc(it.type)}${it.star ? ' <em>★</em>' : ''}</span><b class="gal-title">${esc(it.title)}</b><span class="gal-meta">${esc(meta)}</span>`;
   c += `<span class="gal-actions"><a class="gal-open" href="${link(it)}" target="_blank" rel="noopener">열기 ↗</a>`;
   if (it.draft) c += `<a class="gal-draft" href="${href(it.draft)}" target="_blank" rel="noopener" title="원고 확인용 코드 초안형">초안</a>`;

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>세스코 카드뉴스 시안 · 가을철 매트리스 케어 편 (A/B/C)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f5; --panel:#ffffff; --ink:#15171c; --ink-2:#4d5360; --ink-3:#7a8191;
+  --line:#d9dee6; --navy:#0b2d5c; --blue:#1457c8; --blue-soft:#e6eefc; --memo:#f5f6f8;
+  --card-bg:#ffffff; --card-ink:#15171c; --card-blue:#1457c8; --card-navy:#0b2d5c; --card-mute:#6b7280; --card-line:#d9dee6; --card-sol:#eef4ff;
+  --sol:#f3f7ff; --warn:#b4541a; --warn-bg:#fff4ea;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+    --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430;
+    --sol:#1a2234; --warn:#f0a66a; --warn-bg:#2b2016;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+  --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430;
+  --sol:#1a2234; --warn:#f0a66a; --warn-bg:#2b2016;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;line-height:1.6;word-break:keep-all}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--panel);border-bottom:1px solid var(--line)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.hd{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding:14px 0}
+.hd h1{font-size:16px;font-weight:700;margin:0;color:var(--ink)}
+.hd h1 small{display:block;font-size:12px;font-weight:400;color:var(--ink-3)}
+.tabs{display:flex;gap:6px;margin-left:auto}
+.tabs button{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);font:inherit;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tabs button[aria-selected="true"]{color:#0b1220} }
+:root[data-theme="dark"] .tabs button[aria-selected="true"]{color:#0b1220}
+.tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+.intro{padding:26px 0 8px}
+.intro p{margin:0 0 6px;color:var(--ink-2);max-width:72ch}
+.intro .ver{font-size:13px;color:var(--ink-3)}
+.toggle-memo{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);border-radius:8px;padding:6px 12px;cursor:pointer;margin-top:8px}
+
+.deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;padding:18px 0 40px}
+@media (max-width:760px){.deck{grid-template-columns:1fr}}
+.slot{display:flex;flex-direction:column;gap:10px}
+.slot-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3)}
+.slot-meta b{color:var(--ink-2);font-weight:500}
+
+/* 카드 본체: 1:1 */
+.card{position:relative;aspect-ratio:1/1;width:100%;background:var(--card-bg);color:var(--card-ink);border:1px solid var(--line);border-radius:4px;padding:7% 7.5%;display:flex;flex-direction:column;overflow:hidden;container-type:inline-size}
+.card .logo{position:absolute;top:5.5%;right:7.5%;font-size:2.9cqw;font-weight:900;letter-spacing:.04em;color:var(--card-navy)}
+.card .logo.sol{color:#fff;background:var(--card-navy);padding:.4cqw 1.6cqw;border-radius:3px;font-size:2.5cqw;letter-spacing:0}
+.card .num{font-size:2.6cqw;color:var(--card-mute);margin-bottom:3.2cqw}
+.head{margin:0 0 4.2cqw;line-height:1.28;letter-spacing:-.01em}
+.head .l{display:block;font-weight:900;font-size:6.6cqw;color:var(--card-ink)}
+.head .l.j{color:var(--card-blue)}
+.head.cover .l{font-size:7.4cqw}
+.body{font-size:3.55cqw;line-height:1.62;color:var(--card-ink);margin:0}
+.body p{margin:0}
+.tip{margin:0 0 2.6cqw;font-size:3.4cqw;line-height:1.55}
+.tip b{display:block;font-weight:700;font-size:3.7cqw;color:var(--card-navy)}
+.tip:last-of-type{margin-bottom:0}
+.step{margin:0 0 1.6cqw;font-size:3.3cqw;line-height:1.5}
+.step em{font-style:normal;font-weight:700;color:var(--card-blue);margin-right:1cqw}
+.point{margin-top:2.6cqw;font-size:3.3cqw;line-height:1.5;padding-top:2.4cqw;border-top:1px solid var(--card-line)}
+.point em{font-style:normal;font-weight:700;color:var(--card-navy);margin-right:1cqw}
+.name{font-size:3.6cqw;font-weight:700;color:var(--card-navy);margin:0 0 3.2cqw;padding:1.6cqw 2.4cqw;background:#dfe9fb;display:inline-block;border-radius:3px}
+.src{margin-top:auto;padding-top:3cqw;font-size:2.5cqw;line-height:1.45;color:var(--card-mute)}
+.strip{margin-top:auto;background:var(--card-navy);color:#fff;font-size:3.1cqw;padding:2.6cqw 3.2cqw;margin-left:-7.5%;margin-right:-7.5%;margin-bottom:-7%;line-height:1.5}
+.sub{margin:-1cqw 0 0;font-size:3.5cqw;line-height:1.5;color:var(--card-mute)}
+.strip small{display:block;opacity:.75;font-size:2.6cqw;margin-top:.6cqw}
+.cta{margin-top:auto;font-size:3.1cqw;color:var(--card-mute)}
+.card.sol-bg{background:var(--card-sol)}
+.fig{width:100%;height:auto;display:block;margin:0 0 3cqw}
+.fig.sm{max-height:44%;}
+.card.c .body{font-size:3.4cqw}
+
+/* 표지 대안 */
+.alts{display:grid;gap:6px}
+.alts-t{font-size:12px;color:var(--ink-3)}
+.alts button{appearance:none;text-align:left;font:inherit;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:8px 12px;cursor:pointer;display:grid;gap:2px}
+.alts button b{font-size:12px;color:var(--blue);font-weight:500}
+.alts button span{font-size:14px;font-weight:700}
+.alts button small{font-size:12px;color:var(--ink-3)}
+.alts button[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.alts button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+/* 변주 제안 */
+.vari{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:28px}
+.vari h2{font-size:15px;margin:0 0 4px}
+.vari p.lead{margin:0 0 14px;font-size:13px;color:var(--ink-3)}
+.vari ol{margin:0;padding-left:0;list-style:none;display:grid;gap:12px}
+.vari li{border-top:1px solid var(--line);padding-top:12px;font-size:13.5px;color:var(--ink-2);max-width:80ch}
+.vari li b{display:block;color:var(--ink);font-weight:700;margin-bottom:2px}
+.vari li i{font-style:normal;color:var(--ink-3)}
+/* 변주 카드 */
+.vtabs{margin:10px 0 4px;flex-wrap:wrap}
+.vdeck{padding-top:14px;padding-bottom:8px}
+.qa{margin:0 0 3cqw;font-size:4.6cqw;font-weight:900;line-height:1.35}
+.qa .a{display:block;color:var(--card-blue);margin-top:1cqw}
+.seg{font-size:3.4cqw;line-height:1.55}
+.seg b{display:block;color:var(--card-navy);margin-top:2.4cqw}
+.seg b:first-child{margin-top:0}
+.cap{font-size:3cqw;color:var(--card-mute);margin:0 0 2cqw}
+.disc{font-size:2.6cqw;color:var(--card-mute);margin-top:auto}
+.shared{border:1px dashed var(--line);border-radius:6px;padding:12px 14px;background:var(--memo);min-height:92px}
+.shared p{margin:6px 0 0;font-size:13px;color:var(--ink-3)}
+.shared p b{color:var(--ink-2);margin-right:6px}
+.nrow{display:flex;gap:2cqw;margin:1cqw 0 3cqw}
+.nrow div{flex:1;border:1px solid var(--card-line);border-radius:3px;padding:2.4cqw 1cqw;text-align:center}
+.nrow div.on{background:var(--card-blue);border-color:var(--card-blue);color:#fff}
+.nrow b{display:block;font-size:9cqw;line-height:1;font-weight:900}
+.nrow b i{font-style:normal;font-size:4.5cqw}
+.nrow span{display:block;font-size:2.8cqw;margin-top:1.4cqw;opacity:.85}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vcard{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column}
+.vcard.rec{border:2px solid var(--blue)}
+.slot.rec .card{border:2px solid var(--blue)}
+.slot-meta .star{background:var(--blue);color:#fff;font-weight:700;padding:1px 8px;border-radius:999px;font-size:11px;margin-right:4px}
+.vcard.hold{opacity:.7}
+.vhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;padding:12px 14px 8px;font-size:12px;color:var(--ink-3)}
+.vhead b{font-size:14.5px;color:var(--ink)}
+.vhead .star{background:var(--blue);color:#fff;font-weight:700;padding:1px 8px;border-radius:999px;font-size:12px}
+.vcard .card{border-radius:0;border-left:0;border-right:0}
+.bignum{margin:1cqw 0 2cqw;font-size:26cqw;line-height:1;font-weight:900;color:var(--card-blue);letter-spacing:-.03em}
+.bignum span{font-size:10cqw;margin-left:.5cqw}
+.checks{list-style:none;margin:0;padding:0;font-size:3.5cqw;line-height:1.5}
+.checks li{padding:1.4cqw 0;border-top:1px solid var(--card-line)}
+.checks li::before{content:"☐";margin-right:2cqw;color:var(--card-blue)}
+.photo{margin:0 0 3cqw;aspect-ratio:16/9;border:1px dashed var(--card-mute);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:3.2cqw;color:var(--card-mute)}
+.photo small{font-size:2.6cqw;margin-top:1cqw}
+.vcard ol{margin:0;padding:12px 14px 4px 30px;font-size:12.5px;color:var(--ink-2);line-height:1.5;display:block}
+.vcard ol li{border:0;padding:0;margin:0 0 3px;max-width:none}
+.vcard p{margin:0;padding:8px 14px 14px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+/* 제작 메모 */
+.memo{background:var(--memo);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.memo div{margin:3px 0}
+.memo .k{color:var(--ink-3);margin-right:6px}
+.memo .need{color:var(--warn);background:var(--warn-bg);padding:1px 6px;border-radius:3px}
+body.hide-memo .memo{display:none}
+
+/* 게시 요소 */
+.post{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:40px}
+.post h2{font-size:15px;margin:0 0 10px}
+.post h3{font-size:13.5px;margin:18px 0 6px;color:var(--ink-2)}
+.post p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2);max-width:80ch}
+.post .tags{font-size:12.5px;color:var(--blue);line-height:1.8}
+.post .foot{font-size:12px;color:var(--ink-3)}
+@media (prefers-reduced-motion:no-preference){ .deck{transition:opacity .18s} .deck.swap{opacity:0} }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hd">
+    <h1>가을철 매트리스 케어 편 · 카드뉴스 시안<small>2026-10-20 초안 · 세스코 매트리스 케어 · 원천소스 10월 시트 3</small></h1>
+    <div class="tabs" role="tablist" aria-label="안 선택">
+      <button role="tab" aria-selected="true" data-v="A">A 텍스트 중심</button>
+      <button role="tab" aria-selected="false" data-v="B">B 간결 텍스트</button>
+      <button role="tab" aria-selected="false" data-v="C">C 비주얼</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <p id="verDesc"></p>
+    <p class="ver">세 안의 사실·순서·헤드·출처·서비스 정식명은 같습니다. 글자수와 그림만 다릅니다. 카드 아래 회색 상자는 제작 메모(지면 비노출)입니다. 주황 표시는 발행 전 확정이 필요한 항목입니다.</p>
+    <button class="toggle-memo" id="memoBtn" type="button">제작 메모 숨기기</button>
+  </section>
+
+  <section class="deck" id="deck" aria-live="polite"></section>
+
+  <section class="vari">
+    <h2>변주 카드 (본편에 끼우는 1장)</h2>
+    <p class="lead">「이렇게 관리해 보세요」 장을 대체하거나, 솔루션 장(CARD 6)과 클로징(CARD 7) 사이에 1장 추가합니다. 본편 나머지 장은 그대로.</p>
+    <div class="deck vdeck" id="vdeck"></div>
+  </section>
+
+  <section class="post">
+    <h2>게시 요소 (세 안 공통)</h2>
+    <p><b>게시 제목</b><br>[말머리: 확인 필요] 이불을 빨아도 그대로인 매트리스 속 진드기, 가을철 침구 관리법</p>
+    <p class="tags">#세스코 #카드뉴스 #매트리스케어 #세스코매트리스케어 #집먼지진드기 #진드기 #가을이불빨래 #이불세탁 #침구교체 #40도세탁 #진드기사멸률 #알레르기유발물질 #알레르겐 #매트리스관리 #매트리스청소 #침구관리 #가을철위생 #환절기알레르기 #진드기관리 #사체배설물집진 #매트리스진드기 #침실위생 #세릭스내추럴액 #프레임관리 #[사업부코드: 확인 필요]</p>
+    <h3>게시 텍스트 (A 본문 전사)</h3>
+    <p>이불은 빨았는데, 매트리스 속 진드기는 그대로입니다.<br>이불을 빨아도 이어지는 알레르기 걱정, 원인은 매트리스 진드기일 수 있습니다. 이불 세탁하는 날 함께 챙기는 가을철 매트리스 관리법.</p>
+    <p>[40℃로 빨아도 진드기는 9.6%만 죽습니다] 가을볕에 말린 이불은 개운합니다. 하지만 세탁 모드별 진드기 사멸률은 30℃에서 6.5%, 40℃에서 9.6%였습니다. 60℃와 스팀워터 모드에서는 모두 죽었습니다. 다만 40℃ 세탁 뒤 알레르기 유발물질(Der f 1)은 2.4%만 남았습니다. 죽이는 것과 씻어내는 것은 다른 효과입니다. (출처: Choi SY 외, Annals of Allergy, Asthma &amp; Immunology, 2008. 특정 실험 조건의 결과이며 사멸률과 세탁으로 씻겨 나간 비율은 다릅니다.)</p>
+    <p>[매트리스 속 알레르기 유발물질, 면 시트는 66%만 막습니다] 매트리스는 이불처럼 걷어서 빨 수 없습니다. 그 안에 남은 진드기의 알레르기 유발물질은 시트 표면으로 옮겨갈 수 있습니다. 60개 침대를 조사한 연구에서 일반 면 시트의 차단 효율은 66%, 나일론 차단 시트는 94%였습니다. 이불만 깨끗해져서는 안심할 수 없습니다. (출처: Jirapongsananuruk O 외, Annals of Allergy, Asthma &amp; Immunology, 2000. 알레르기 유발물질의 이동을 측정한 결과이며 살아 있는 진드기의 이동률은 아닙니다.)</p>
+    <p>[이불을 걷어낸 지금이 덮여 있던 매트리스를 살피기 가장 좋은 때입니다] 평소 매트리스는 이불과 시트에 덮여 있어 들여다볼 일이 드뭅니다. 가을 이불을 세탁하고 교체하는 날은 매트리스가 그대로 드러나는 날입니다. 시트는 자주 바꾸지만 매트리스를 마지막으로 확인한 날은 떠올리기 어렵습니다. 이불을 널어 둔 사이에 매트리스와 프레임까지 함께 보면 됩니다.</p>
+    <p>[이렇게 관리해 보세요] 1. 관리표시 확인 후 세탁 온도 맞추기: 60℃나 스팀워터 모드가 가능한 침구는 그 조건으로 세탁해 주세요. 2. 이불 걷어낸 날 매트리스·프레임 확인하기: 이불을 말리는 동안 매트리스 윗면과 프레임 틈을 함께 살펴 주세요. 3. 매트리스는 시트 교체로 끝내지 않기: 면 시트는 알레르기 유발물질을 66%만 막습니다. 매트리스 속 진드기와 사체·배설물은 세탁과 시트 교체로는 없애기 어렵습니다. 알레르기 걱정이 계속된다면 전문 관리가 필요하다는 신호입니다.</p>
+    <p>[조사·진단부터 집진까지, 매트리스와 프레임을 함께] 세스코 매트리스 케어. STEP 01 환경 조사·진단: 매트리스 오염도를 모니터링합니다. STEP 02 진드기 관리: 정향유 성분 세릭스 내추럴액으로 관리합니다. STEP 03 집진: 전문 장비로 사체·배설물·오염물질까지 집진합니다. STEP 04 프레임 관리: 세탁으로 닿지 않는 프레임까지 관리합니다. POINT 01 단순 청소가 아닌 진드기 관리로 시작합니다. POINT 02 살아 있는 진드기를 관리한 뒤 남은 사체와 배설물까지 집진합니다.</p>
+    <p>[이불 빨래하는 날, 매트리스도 세스코 하세요] 이불은 세탁으로, 매트리스는 전문 관리로 나눠서 챙기면 됩니다. 시트 교체에서 끝내지 말고 그 아래 매트리스와 프레임까지 살펴 두세요. 살아 있는 진드기부터 남은 사체·배설물까지, 가을 이불을 꺼내는 지금 세스코 매트리스 케어로 시작해 보세요.<br>(상담문의: 확정 후 기입)</p>
+    <p class="foot">☞ 옆으로 넘겨 확인하세요 · 상담문의 (확정 후 기입)<br>* 연구 결과는 특정 실험 조건에서 측정한 것으로, 실제 세탁 환경과 침구 상태에 따라 다를 수 있습니다.<br>* 서비스 결과는 사용 환경과 오염 정도에 따라 다를 수 있습니다. [확인 필요: 각주 문안 법무 확정]</p>
+  </section>
+</main>
+
+<script>
+/* ---------- 공통 조각 ---------- */
+const H = (lines, cover) => `<p class="head${cover?' cover':''}">${lines.map(([t,j])=>`<span class="l${j?' j':''}">${t}</span>`).join('')}</p>`;
+const SRC10 = `출처: Choi SY 외, Annals of Allergy, Asthma &amp; Immunology 100(6), 2008<br>※ 특정 실험 조건의 결과입니다. 사멸률과 세탁으로 씻겨 나간 비율은 다릅니다.`;
+const SRC11 = `출처: Jirapongsananuruk O 외, Annals of Allergy, Asthma &amp; Immunology 84(3), 2000<br>※ 알레르기 유발물질의 이동을 측정한 결과이며, 살아 있는 진드기의 이동률은 아닙니다.`;
+
+const COVERS = [
+  { tag:"★ 추천 · 통념 제지형", lines:[["이불은 빨았는데,",0],["매트리스 속 진드기는",0],["그대로입니다",1]], note:"빨래 끝낸 순간에서 바로 '그 아래'로. 가장 짧고 입에 붙음" },
+  { tag:"반전형", lines:[["이불 빨래로 못 잡는 진드기,",0],["매트리스 속에 있습니다",1]], note:"장소를 뒤로 보내 끝에서 반전. 2줄이라 사진 여백이 넓음" },
+  { tag:"수치형", lines:[["40℃로 빨아도",0],["진드기 사멸률 9.6%",1]], note:"세스코식 숫자 후킹. 채택 시 CARD 2 헤드를 「60℃·스팀에서는 / 전부 사멸합니다」로 교체" },
+];
+let coverIdx = 0;
+const HEAD = {
+  get cover(){ return H(COVERS[coverIdx].lines, true); },
+  c2: H([["40℃로 빨아도",0],["진드기는 9.6%만 죽습니다",1]]),
+  c3: H([["매트리스 속 알레르기 유발물질,",0],["면 시트는 66%만 막습니다",1]]),
+  c4: H([["이불을 걷어낸 지금이",0],["덮여 있던 매트리스를",1],["살피기 가장 좋은 때입니다",1]]),
+  tip: H([["이렇게 관리해 보세요",1]]),
+  sol: H([["조사·진단부터 집진까지,",0],["매트리스와 프레임을 함께",1]]),
+  end: H([["이불 빨래하는 날,",0],["매트리스도 세스코 하세요",1]]),
+};
+const NAME = `<p class="name">세스코 매트리스 케어</p>`;
+const coverStrip = `<p class="sub">이불을 빨아도 이어지는 알레르기 걱정,<br>원인은 매트리스 진드기일 수 있습니다</p><div class="strip">이불 세탁하는 날 함께 챙기는 가을철 매트리스 관리법</div>`;
+
+/* ---------- SVG (C 전용) ---------- */
+const svgTemp = `<svg class="fig" viewBox="0 0 400 150" role="img" aria-label="세탁 온도별 집먼지진드기 사멸률 비교">
+<g font-family="Noto Sans KR,sans-serif" text-anchor="middle">
+<rect x="40" y="110" width="60" height="18" rx="2" fill="#c9cfd9"/><text x="70" y="100" font-size="14" fill="#6b7280">6.5%</text><text x="70" y="145" font-size="12" fill="#6b7280">30℃</text>
+<rect x="170" y="100" width="60" height="28" rx="2" fill="#1457c8"/><text x="200" y="70" font-size="34" font-weight="900" fill="#1457c8">9.6%</text><text x="200" y="145" font-size="12" fill="#1457c8" font-weight="700">40℃</text>
+<rect x="300" y="20" width="60" height="108" rx="2" fill="#0b2d5c"/><text x="330" y="80" font-size="12" fill="#fff" font-weight="700">전부</text><text x="330" y="96" font-size="12" fill="#fff" font-weight="700">사멸</text><text x="330" y="145" font-size="12" fill="#0b2d5c">60℃·스팀</text>
+<text x="20" y="20" font-size="11" fill="#6b7280" text-anchor="start">진드기 사멸률</text>
+</g></svg>`;
+
+const svgSheet = `<svg class="fig" viewBox="0 0 400 150" role="img" aria-label="매트리스에서 시트 위로 옮겨가는 알레르기 유발물질, 면 시트 66%와 나일론 차단 시트 94% 비교">
+<g font-family="Noto Sans KR,sans-serif">
+<g>
+<rect x="20" y="80" width="170" height="55" rx="6" fill="#dfe4ec"/><rect x="20" y="70" width="170" height="12" rx="3" fill="#f3b48a"/>
+<g fill="#6b7280"><circle cx="50" cy="100" r="3"/><circle cx="80" cy="115" r="3"/><circle cx="110" cy="98" r="3"/><circle cx="140" cy="118" r="3"/><circle cx="165" cy="102" r="3"/></g>
+<g fill="#1457c8"><circle cx="60" cy="58" r="3"/><circle cx="95" cy="52" r="3"/><circle cx="130" cy="58" r="3"/><circle cx="160" cy="50" r="3"/></g>
+<text x="105" y="30" font-size="13" fill="#15171c" text-anchor="middle" font-weight="700">면 시트 차단 66%</text>
+</g>
+<g>
+<rect x="210" y="80" width="170" height="55" rx="6" fill="#dfe4ec"/><rect x="210" y="70" width="170" height="12" rx="3" fill="#0b2d5c"/>
+<g fill="#6b7280"><circle cx="240" cy="100" r="3"/><circle cx="270" cy="115" r="3"/><circle cx="300" cy="98" r="3"/><circle cx="330" cy="118" r="3"/><circle cx="355" cy="102" r="3"/></g>
+<circle cx="300" cy="56" r="3" fill="#1457c8"/>
+<text x="295" y="30" font-size="13" fill="#15171c" text-anchor="middle" font-weight="700">나일론 차단 시트 94%</text>
+</g>
+<text x="20" y="148" font-size="10" fill="#6b7280">아래: 매트리스 · 위: 시트 표면 · 점: 알레르기 유발물질</text>
+</g></svg>`;
+
+const svgTips = `<svg class="fig sm" viewBox="0 0 400 110" role="img" aria-label="세탁 온도 확인, 매트리스와 프레임 확인, 매트리스 속은 손이 닿지 않는 범위">
+<g font-family="Noto Sans KR,sans-serif" text-anchor="middle">
+<circle cx="70" cy="48" r="34" fill="none" stroke="#1457c8" stroke-width="4"/><text x="70" y="55" font-size="18" font-weight="900" fill="#1457c8">60℃</text><text x="70" y="102" font-size="11" fill="#6b7280">세탁 온도</text>
+<rect x="150" y="30" width="100" height="36" rx="5" fill="#dfe4ec"/><rect x="150" y="66" width="100" height="10" fill="#9aa4b5"/><path d="M160 30 l0 -12 M240 30 l0 -12" stroke="#9aa4b5" stroke-width="4"/><text x="200" y="102" font-size="11" fill="#6b7280">매트리스·프레임</text>
+<rect x="290" y="28" width="100" height="48" rx="5" fill="#0b2d5c"/><g fill="#6f9cf0"><circle cx="312" cy="45" r="3"/><circle cx="335" cy="60" r="3"/><circle cx="358" cy="42" r="3"/><circle cx="372" cy="62" r="3"/></g><text x="340" y="102" font-size="11" fill="#6b7280">매트리스 속</text>
+</g></svg>`;
+
+const svgSteps = `<svg class="fig sm" viewBox="0 0 400 90" role="img" aria-label="STEP 01 환경 조사·진단, 02 진드기 관리, 03 집진, 04 프레임 관리">
+<g font-family="Noto Sans KR,sans-serif" text-anchor="middle">
+<line x1="50" y1="30" x2="350" y2="30" stroke="#c9cfd9" stroke-width="3"/>
+${[["01","환경 조사·진단"],["02","진드기 관리"],["03","사체·배설물 집진"],["04","프레임 관리"]].map(([n,t],i)=>`<circle cx="${50+i*100}" cy="30" r="18" fill="#0b2d5c"/><text x="${50+i*100}" y="35" font-size="12" font-weight="700" fill="#fff">${n}</text><text x="${50+i*100}" y="72" font-size="11" fill="#15171c">${t}</text>`).join('')}
+</g></svg>`;
+
+const svgBed = `<svg class="fig" viewBox="0 0 400 120" role="img" aria-label="정돈된 침대와 창가 햇살">
+<rect x="0" y="0" width="400" height="120" fill="#f6f1e8"/>
+<rect x="250" y="10" width="110" height="70" rx="3" fill="#fff7dc" stroke="#e5d9b8"/><line x1="305" y1="10" x2="305" y2="80" stroke="#e5d9b8"/><line x1="250" y1="45" x2="360" y2="45" stroke="#e5d9b8"/>
+<rect x="40" y="60" width="200" height="40" rx="8" fill="#ffffff" stroke="#d9dee6"/><rect x="40" y="56" width="200" height="14" rx="6" fill="#dbe7fb"/><rect x="55" y="40" width="60" height="22" rx="6" fill="#ffffff" stroke="#d9dee6"/>
+<rect x="40" y="100" width="200" height="8" fill="#9aa4b5"/>
+</svg>`;
+
+
+const svgBefore=`<svg class="fig" viewBox="0 0 400 180" role="img" aria-label="집진 전 매트리스 윗면 일러스트">
+<rect width="400" height="180" fill="#f1efe9"/>
+<rect x="30" y="40" width="340" height="110" rx="10" fill="#e4e0d6"/>
+<rect x="30" y="40" width="340" height="110" rx="10" fill="none" stroke="#c8c2b4" stroke-width="2"/>
+<path d="M30 95 h340" stroke="#d2ccbe" stroke-dasharray="6 6"/>
+<g fill="#8b8372" opacity=".55"><ellipse cx="110" cy="80" rx="34" ry="14"/><ellipse cx="250" cy="120" rx="46" ry="16"/><ellipse cx="320" cy="70" rx="22" ry="10"/><ellipse cx="180" cy="100" rx="20" ry="9"/></g>
+<g fill="#5f574a"><circle cx="70" cy="60" r="2"/><circle cx="95" cy="125" r="2"/><circle cx="140" cy="70" r="2"/><circle cx="160" cy="130" r="2"/><circle cx="205" cy="60" r="2"/><circle cx="230" cy="90" r="2"/><circle cx="285" cy="110" r="2"/><circle cx="300" cy="135" r="2"/><circle cx="340" cy="100" r="2"/><circle cx="355" cy="125" r="2"/><circle cx="120" cy="140" r="2"/><circle cx="265" cy="55" r="2"/></g>
+<text x="40" y="28" font-family="Noto Sans KR,sans-serif" font-size="13" font-weight="700" fill="#5f574a">BEFORE</text>
+<text x="360" y="28" font-family="Noto Sans KR,sans-serif" font-size="10" fill="#8b8372" text-anchor="end">실사 확보 전 가안 일러스트</text>
+</svg>`;
+const svgAfter=`<svg class="fig" viewBox="0 0 400 180" role="img" aria-label="집진 후 매트리스 윗면 일러스트">
+<rect width="400" height="180" fill="#eef4ff"/>
+<rect x="30" y="40" width="340" height="110" rx="10" fill="#ffffff"/>
+<rect x="30" y="40" width="340" height="110" rx="10" fill="none" stroke="#b9c9e8" stroke-width="2"/>
+<path d="M30 95 h340" stroke="#d6e1f5" stroke-dasharray="6 6"/>
+<g stroke="#dfe8f8" stroke-width="2"><path d="M60 60 q20 -8 40 0"/><path d="M150 130 q20 -8 40 0"/><path d="M280 70 q20 -8 40 0"/></g>
+<text x="40" y="28" font-family="Noto Sans KR,sans-serif" font-size="13" font-weight="700" fill="#1457c8">AFTER</text>
+<text x="360" y="28" font-family="Noto Sans KR,sans-serif" font-size="10" fill="#6b7280" text-anchor="end">같은 부위 · 같은 각도</text>
+</svg>`;
+const svgBA=`<svg class="fig" viewBox="0 0 400 150" role="img" aria-label="매트리스 케어 전후 비교">
+<rect x="0" y="0" width="195" height="150" fill="#f1efe9"/><rect x="205" y="0" width="195" height="150" fill="#eef4ff"/>
+<rect x="18" y="45" width="160" height="80" rx="8" fill="#e4e0d6" stroke="#c8c2b4" stroke-width="2"/>
+<g fill="#8b8372" opacity=".55"><ellipse cx="70" cy="75" rx="26" ry="11"/><ellipse cx="130" cy="105" rx="30" ry="12"/></g>
+<g fill="#5f574a"><circle cx="40" cy="60" r="2"/><circle cx="100" cy="60" r="2"/><circle cx="150" cy="70" r="2"/><circle cx="60" cy="115" r="2"/><circle cx="110" cy="85" r="2"/><circle cx="165" cy="115" r="2"/></g>
+<rect x="222" y="45" width="160" height="80" rx="8" fill="#fff" stroke="#b9c9e8" stroke-width="2"/>
+<g font-family="Noto Sans KR,sans-serif" font-size="12" font-weight="700"><text x="26" y="30" fill="#5f574a">BEFORE</text><text x="230" y="30" fill="#1457c8">AFTER</text></g>
+</svg>`;
+
+/* ---------- 카드 데이터 ---------- */
+const memo = (o)=>`<div class="memo">${Object.entries(o).map(([k,v])=>`<div><span class="k">${k}</span>${v}</div>`).join('')}</div>`;
+const NEED = s=>`<span class="need">확인 필요: ${s}</span>`;
+
+const cover = { role:"표지 훅", logo:"CESCO",
+  html: HEAD.cover + coverStrip,
+  memo:{ "이미지":"실사 + 초대형 타이포. 상단 2/3 햇살 드는 창가에 널린 이불, 하단 1/3 시트를 걷어낸 매트리스 단면(어둡게). 헤드 1·2행 검정, 3행 파랑, 바로 아래 서브 문장 회색. 부제는 하단 네이비 바. 서비스명 없음",
+         "ALT":"이불을 세탁해도 매트리스 안의 진드기는 그대로 남는다는 가을철 침구 관리 카드뉴스 표지" } };
+
+const DECK = {
+A:{ desc:"A 텍스트 중심 (마스터). 본문 100~130자, 팁·STEP 장 150~190자. 현상 → 기전·근거 → 독자에게 의미 3박자.", cards:[
+ cover,
+ { role:"셀프 수단의 범위", logo:"CESCO", q:"이불을 빨았으면 거기 있던 진드기는 죽은 것 아닌가",
+   html: HEAD.c2 + `<p class="body">가을볕에 말린 이불은 개운합니다. 하지만 세탁 모드별 진드기 사멸률은 30℃에서 6.5%, 40℃에서 9.6%였습니다. 60℃와 스팀워터 모드에서는 모두 죽었습니다. 다만 40℃ 세탁 뒤 알레르기 유발물질(Der f 1)은 2.4%만 남았습니다. 죽이는 것과 씻어내는 것은 다른 효과입니다.</p><p class="src">${SRC10}</p>`,
+   memo:{ "하이라이트":"죽이는 것과 씻어내는 것은 다른 효과입니다.", "강조":"9.6%", "이미지":"세탁 온도 3단 비교 그래픽", "ALT":"40℃ 세탁의 집먼지진드기 사멸률은 9.6%, 60℃와 스팀워터 모드에서는 모두 사멸했다는 연구 결과" } },
+ { role:"위해성 (출처 장)", logo:"CESCO", q:"이불이 깨끗하면 매트리스 진드기는 상관없지 않나",
+   html: HEAD.c3 + `<p class="body">매트리스는 이불처럼 걷어서 빨 수 없습니다. 그 안에 남은 진드기의 알레르기 유발물질은 시트 표면으로 옮겨갈 수 있습니다. 60개 침대를 조사한 연구에서 일반 면 시트의 차단 효율은 66%, 나일론 차단 시트는 94%였습니다. 이불만 깨끗해져서는 안심할 수 없습니다.</p><p class="src">${SRC11}</p>`,
+   memo:{ "하이라이트":"이불만 깨끗해져서는 안심할 수 없습니다.", "강조":"66%", "이미지":"매트리스 단면 위 시트 한 겹, 입자가 시트 위로 올라오는 표현", "ALT":"매트리스의 진드기 알레르기 유발물질은 시트 위로 옮겨갈 수 있으며 일반 면 시트의 차단 효율은 66%라는 연구 결과" } },
+ { role:"왜 하필 지금", logo:"CESCO", q:"그럼 매트리스는 언제 보나",
+   html: HEAD.c4 + `<p class="body">평소 매트리스는 이불과 시트에 덮여 있어 들여다볼 일이 드뭅니다. 가을 이불을 세탁하고 교체하는 날은 매트리스가 그대로 드러나는 날입니다. 시트는 자주 바꾸지만 매트리스를 마지막으로 확인한 날은 떠올리기 어렵습니다. 이불을 널어 둔 사이에 매트리스와 프레임까지 함께 보면 됩니다.</p>`,
+   memo:{ "하이라이트":"가을 이불을 세탁하고 교체하는 날은 매트리스가 그대로 드러나는 날입니다.", "이미지":"시트를 걷어낸 침대, 매트리스와 프레임", "ALT":"가을 이불 세탁과 교체 시기가 평소 덮여 있던 매트리스와 프레임을 확인하기 좋은 때라는 안내" } },
+ { role:"이렇게 관리해 보세요", logo:"CESCO", q:"그럼 뭘 하나",
+   html: HEAD.tip + `<p class="tip"><b>1. 관리표시 확인 후 세탁 온도 맞추기</b>60℃나 스팀워터 모드가 가능한 침구는 그 조건으로 세탁해 주세요.</p><p class="tip"><b>2. 이불 걷어낸 날 매트리스·프레임 확인하기</b>이불을 말리는 동안 매트리스 윗면과 프레임 틈을 함께 살펴 주세요.</p><p class="tip"><b>3. 매트리스는 시트 교체로 끝내지 않기</b>면 시트는 알레르기 유발물질을 66%만 막습니다. 매트리스 속 진드기와 사체·배설물은 세탁과 시트 교체로는 없애기 어렵습니다. 알레르기 걱정이 계속된다면 전문 관리가 필요하다는 신호입니다.</p>`,
+   memo:{ "근거":"1번 키포인트 ①·[10], 2번 키포인트 ④, 3번 키포인트 ③·[11] + [13]. 원천소스 셀프 수칙 칸 공란이라 POD에서 추출", "브릿지":"3번 끝줄", "이미지":"번호 3단 아이콘. 1·2는 손이 닿는 것, 3은 매트리스 속", "ALT":"가을 침구 셀프 관리 3가지와 매트리스 속 진드기·사체·배설물은 세탁과 시트 교체로는 없애기 어렵다는 안내" } },
+ { role:"솔루션 · 절차 + POINT", logo:"솔루션", q:"전문 관리는 뭘 하나", sol:true,
+   html: HEAD.sol + NAME + `<p class="step"><em>STEP 01</em>환경 조사·진단 | 매트리스 오염도를 모니터링합니다.</p><p class="step"><em>STEP 02</em>진드기 관리 | 정향유 성분 세릭스 내추럴액으로 관리합니다.</p><p class="step"><em>STEP 03</em>집진 | 전문 장비로 사체·배설물·오염물질까지 집진합니다.</p><p class="step"><em>STEP 04</em>프레임 관리 | 세탁으로 닿지 않는 프레임까지 관리합니다.</p><p class="point"><em>POINT 01</em>단순 청소가 아닌 진드기 관리로 시작합니다.<br><em>POINT 02</em>살아 있는 진드기를 관리한 뒤 남은 사체와 배설물까지 집진합니다.</p>`,
+   memo:{ "확인":NEED("정식 명칭 SSOT 대조(근거 [13] 표기는 「매트리스 케어 솔루션」)")+" "+NEED("STEP 순서·개수를 공식 절차 [13]와 대조"), "미기재":"소요 시간·주기·알레르겐 제거율·증상 개선률은 POD에 없어 쓰지 않음", "이미지":"작업 실사 + STEP 원형 라인 01~04", "ALT":"세스코 매트리스 케어는 환경 조사와 진단, 세릭스 내추럴액 진드기 관리, 사체·배설물 집진, 프레임 관리 순으로 진행된다는 안내" } },
+ { role:"다짐 클로징", logo:"솔루션", q:"그래서 지금 뭘 하나", sol:true,
+   html: HEAD.end + `<p class="body">이불은 세탁으로, 매트리스는 전문 관리로 나눠서 챙기면 됩니다. 시트 교체에서 끝내지 말고 그 아래 매트리스와 프레임까지 살펴 두세요. 살아 있는 진드기부터 남은 사체·배설물까지, 가을 이불을 꺼내는 지금 세스코 매트리스 케어로 시작해 보세요.</p><p class="cta">상담문의 (확정 후 기입)</p>`,
+   memo:{ "확인":NEED("상담 번호 1661-0119 / 1588-1119 중 택1"), "이미지":"표지 톤 회귀. 정돈된 침대, 햇살", "ALT":"가을 이불 세탁 시기에 세스코 매트리스 케어로 매트리스를 함께 관리하라는 마무리 안내" } },
+]},
+B:{ desc:"B 간결 텍스트. A와 같은 사실·순서·헤드, 본문은 절반(50~70자, 팁·STEP 110~125자). 각 장의 '의미' 문장을 먼저 뺐습니다.", cards:[
+ cover,
+ { role:"셀프 수단의 범위", logo:"CESCO", q:"이불을 빨았으면 거기 있던 진드기는 죽은 것 아닌가",
+   html: HEAD.c2 + `<p class="body">40℃ 세탁의 진드기 사멸률은 9.6%, 60℃와 스팀워터 모드에서는 모두 죽었습니다. 알레르기 유발물질(Der f 1)은 2.4%만 남아, 죽이는 것과 씻어내는 것은 다릅니다.</p><p class="src">${SRC10}</p>`,
+   memo:{ "강조":"9.6%", "글자수":"78자, 기준 70자에서 8자 초과. (Der f 1) 병기를 빼면 72자. 수치 조건 유지를 위해 그대로 둠" } },
+ { role:"위해성 (출처 장)", logo:"CESCO", q:"이불이 깨끗하면 매트리스 진드기는 상관없지 않나",
+   html: HEAD.c3 + `<p class="body">매트리스에 남은 진드기의 알레르기 유발물질은 시트 위로 옮겨갈 수 있습니다. 60개 침대 조사에서 면 시트의 차단 효율은 66%, 나일론 차단 시트는 94%였습니다.</p><p class="src">${SRC11}</p>`,
+   memo:{ "강조":"66%", "이미지":"매트리스 단면 위 시트 한 겹, 입자 이동 표현" } },
+ { role:"왜 하필 지금", logo:"CESCO", q:"그럼 매트리스는 언제 보나",
+   html: HEAD.c4 + `<p class="body">가을 이불을 세탁하고 교체하는 날은 덮여 있던 매트리스가 드러나는 날입니다. 이불을 널어 둔 사이에 매트리스와 프레임까지 함께 보면 됩니다.</p>`,
+   memo:{ "이미지":"시트를 걷어낸 침대, 매트리스와 프레임" } },
+ { role:"이렇게 관리해 보세요", logo:"CESCO", q:"그럼 뭘 하나",
+   html: HEAD.tip + `<p class="tip"><b>1. 관리표시 확인 후 세탁 온도 맞추기</b>60℃나 스팀워터 모드가 가능하면 그 조건으로 세탁해 주세요.</p><p class="tip"><b>2. 이불 걷어낸 날 매트리스·프레임 확인하기</b>이불 말리는 동안 함께 살펴 주세요.</p><p class="tip"><b>3. 매트리스는 시트 교체로 끝내지 않기</b>매트리스 속 진드기와 사체·배설물은 세탁으로는 없애기 어렵습니다. 알레르기 걱정이 계속된다면 전문 관리가 필요하다는 신호입니다.</p>`,
+   memo:{ "브릿지":"3번 끝줄", "글자수":"153자(항목 제목 포함). 설명문만 113자", "이미지":"번호 3단 아이콘" } },
+ { role:"솔루션 · 절차 + POINT", logo:"솔루션", q:"전문 관리는 뭘 하나", sol:true,
+   html: HEAD.sol + NAME + `<p class="step"><em>STEP 01</em>환경 조사·진단</p><p class="step"><em>STEP 02</em>진드기 관리 | 정향유 성분 세릭스 내추럴액</p><p class="step"><em>STEP 03</em>집진 | 전문 장비로 사체·배설물·오염물질까지</p><p class="step"><em>STEP 04</em>프레임 관리 | 세탁으로 닿지 않는 곳까지</p><p class="point"><em>POINT</em>살아 있는 진드기를 관리한 뒤 남은 사체와 배설물까지 집진합니다.</p>`,
+   memo:{ "확인":NEED("정식 명칭 SSOT")+" "+NEED("STEP 순서·개수 대조"), "이미지":"작업 실사 + STEP 원형 라인 01~04" } },
+ { role:"다짐 클로징", logo:"솔루션", q:"그래서 지금 뭘 하나", sol:true,
+   html: HEAD.end + `<p class="body">이불은 세탁으로, 매트리스는 전문 관리로 나눠서 챙기면 됩니다. 가을 이불을 꺼내는 지금, 세스코 매트리스 케어로 시작해 보세요.</p><p class="cta">상담문의 (확정 후 기입)</p>`,
+   memo:{ "확인":NEED("상담 번호"), "이미지":"표지 톤 회귀. 정돈된 침대, 햇살" } },
+]},
+C:{ desc:"C 비주얼. 6장(A·B의 '왜 지금' 장을 팁 2번에 흡수). 본문은 캡션 수준(30~60자, 팁·STEP 95~110자)이고 설명은 게시 텍스트에서 복원합니다. 그림은 지시용 SVG 시안입니다.", cards:[
+ cover,
+ { role:"셀프 수단의 범위", logo:"CESCO", q:"이불을 빨았으면 거기 있던 진드기는 죽은 것 아닌가", c:true,
+   html: HEAD.c2 + svgTemp + `<p class="body">60℃·스팀워터 모드에서는 모두 사멸. 40℃ 세탁 뒤 알레르기 유발물질(Der f 1)은 2.4%만 남았습니다.</p><p class="src">${SRC10}</p>`,
+   memo:{ "그림이 말하는 것":"온도별 사멸률 차이", "이미지":"세탁기 다이얼 3개(30℃/40℃/60℃·스팀) + 세로 막대 3개. 40℃만 파랑 강조, 9.6%는 초대형 타이포. 출처·※는 그림 밖 캡션. 그림 라벨 수치는 본문·게시 텍스트와 동일 유지", "글자수":"51자" } },
+ { role:"위해성 (출처 장)", logo:"CESCO", q:"이불이 깨끗하면 매트리스 진드기는 상관없지 않나", c:true,
+   html: HEAD.c3 + svgSheet + `<p class="body">매트리스에 남은 유발물질은 시트 위로 옮겨갈 수 있습니다. 면 시트 차단 효율 66%, 나일론 차단 시트 94%.</p><p class="src">${SRC11}</p>`,
+   memo:{ "그림이 말하는 것":"매트리스에서 시트 위로 올라오는 경로", "이미지":"매트리스 단면(회색 점 = 알레르기 유발물질)과 그 위 시트. 좌 면 시트 66%, 우 나일론 차단 시트 94% 두 칸 비교. 진드기 실물 묘사 금지", "글자수":"47자(52자 미달, 메모 명기)" } },
+ { role:"이렇게 관리해 보세요", logo:"CESCO", q:"그럼 뭘 하나 ('왜 지금' 장을 2번에 흡수)", c:true,
+   html: HEAD.tip + svgTips + `<p class="tip"><b>1. 관리표시 확인 후 세탁 온도 맞추기</b>60℃나 스팀워터 모드가 가능하면 그 조건으로.</p><p class="tip"><b>2. 이불 걷어낸 날 매트리스·프레임 확인하기</b>이불 세탁하는 날이 매트리스를 살피기 가장 좋은 때입니다.</p><p class="tip"><b>3. 매트리스는 시트 교체로 끝내지 않기</b>매트리스 속 진드기와 사체·배설물은 세탁으로는 없애기 어렵습니다. 걱정이 계속된다면 전문 관리가 필요한 신호입니다.</p>`,
+   memo:{ "그림이 말하는 것":"손이 닿는 범위와 닿지 않는 범위", "이미지":"플랫 일러스트 3단. 1 세탁기 다이얼 60℃, 2 시트를 걷어낸 침대와 프레임 틈, 3 매트리스 단면 속(네이비 톤 전환). 번호는 1. 2. 3. 고정", "브릿지":"3번 끝줄", "글자수":"151자(항목 제목 포함). 설명문만 111자" } },
+ { role:"솔루션 · 절차 + POINT", logo:"솔루션", q:"전문 관리는 뭘 하나", sol:true, c:true,
+   html: HEAD.sol + NAME + svgSteps + `<p class="point"><em>POINT</em>살아 있는 진드기를 관리한 뒤 남은 사체와 배설물까지 집진합니다.</p>`,
+   memo:{ "확인":NEED("정식 명칭 SSOT")+" "+NEED("STEP 순서·개수 대조"), "그림이 말하는 것":"절차 4단계와 범위(매트리스 + 프레임)", "이미지":"작업 실사(담당자가 매트리스 장비 집진 중, 얼굴·주소 비노출) 위에 STEP 원형 라인 01~04. 각 원 아래 STEP 라벨. 하단 POINT 네이비 바", "글자수":"99자" } },
+ { role:"다짐 클로징", logo:"솔루션", q:"그래서 지금 뭘 하나", sol:true, c:true,
+   html: HEAD.end + svgBed + `<p class="body">이불은 세탁으로, 매트리스는 전문 관리로. 가을 이불을 꺼내는 지금, 세스코 매트리스 케어로 시작해 보세요.</p><p class="cta">상담문의 (확정 후 기입)</p>`,
+   memo:{ "확인":NEED("상담 번호"), "그림이 말하는 것":"표지 톤 회귀, 깨끗한 결과 장면", "이미지":"표지와 같은 창가 구도. 이불이 다시 깔린 정돈된 침대, 햇살. 서비스 정식 명칭과 상담문의는 하단 네이비 바", "글자수":"47자(52자 미달, 메모 명기)" } },
+]}};
+
+/* ---------- 렌더 ---------- */
+const deck = document.getElementById('deck');
+const desc = document.getElementById('verDesc');
+function render(v){
+  const d = DECK[v];
+  currentV = v; desc.textContent = d.desc;
+  deck.innerHTML = d.cards.map((c,i)=>`
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD ${i+1}</b> ${c.role}</span><span>${c.q ? '앞 장이 남긴 질문: '+c.q : '로고: CESCO'}</span></div>
+      <div class="card${c.sol?' sol-bg':''}${c.c?' c':''}" aria-label="CARD ${i+1} ${c.role}">
+        <span class="logo${c.sol?' sol':''}">${c.logo}</span>
+        <span class="num">${v} · ${String(i+1).padStart(2,'0')} / ${String(d.cards.length).padStart(2,'0')}</span>
+        ${c.html}
+      </div>
+      ${memo(c.memo)}
+    </article>`).join('');
+}
+function chooser(){
+  return `<div class="alts"><span class="alts-t">표지 헤드 대안 (눌러서 바꿔 보기)</span>${COVERS.map((c,i)=>`<button type="button" data-cover="${i}" aria-pressed="${i===coverIdx}"><b>${c.tag}</b><span>${c.lines.map(l=>l[0]).join(' / ')}</span><small>${c.note}</small></button>`).join('')}</div>`;
+}
+let currentV='A';
+const tabs = [...document.querySelectorAll('.tabs button')];
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(t=>t.setAttribute('aria-selected', t===b ? 'true':'false'));
+  deck.classList.add('swap');
+  setTimeout(()=>{ render(b.dataset.v); deck.classList.remove('swap'); window.scrollTo({top:0}); }, 120);
+}));
+let start='A';
+try{ const s=localStorage.getItem('cesco-mattress-tab'); if(s && DECK[s]) start=s; }catch(e){}
+tabs.forEach(t=>t.setAttribute('aria-selected', t.dataset.v===start?'true':'false'));
+render(start);
+tabs.forEach(b=>b.addEventListener('click',()=>{ try{localStorage.setItem('cesco-mattress-tab', b.dataset.v);}catch(e){} }));
+
+
+/* ---------- 변주 덱 ---------- */
+const A=DECK.A.cards, B=DECK.B.cards, C=DECK.C.cards;
+const cardWrap=(cls,html,logo='CESCO')=>({html,cls,logo});
+const checkList=`<ul class="checks"><li>이불만 빨고 매트리스는 그대로 둔다</li><li>40℃ 이하로만 세탁한다</li><li>일반 면 시트만 쓴다</li><li>매트리스를 마지막으로 본 날이 기억나지 않는다</li></ul>`;
+const photo=(a,b)=>`<div class="photo">${a}<br><small>${b}</small></div>`;
+const VCARDS=[
+ {slot:"팁 장 대체", name:"F1 체크리스트형", rec:true,
+  html:`${H([["이 중 하나라도 해당된다면,",0],["매트리스 진드기 점검이",1],["필요합니다",1]])}${checkList}<p class="disc">하나라도 해당된다면 매트리스 속 진드기와 사체·배설물이 그대로 남아 있을 수 있습니다. 이불은 60℃나 스팀워터 모드로, 매트리스는 전문 관리로 나눠서 챙겨 주세요.</p>`},
+ {slot:"팁 장 대체", name:"F5 Q&A형",
+  html:`<p class="qa">Q. 직접 할 수 있는 건요?<span class="a">A. 이불은 세탁으로, 매트리스는 따로</span></p>`+B[4].html.replace(HEAD.tip,'')},
+ {slot:"CTA 앞 추가", name:"F3 함께 쓰면 좋은 제품", sol:true,
+  html:`${H([["매트리스 속 유발물질이",0],["시트 위로 올라오지 않게",1]])}<p class="name">함께 쓰면 좋은 · 매트리스 차단 시트 (정식 명칭 확정 후 기입)</p><p class="step"><em>✔</em>매트리스에서 시트 표면으로 옮겨가는 알레르기 유발물질 차단 효율 94%<sup>1)</sup></p><p class="step"><em>✔</em>일반 면 시트(66%)로는 다 막기 어려운 부분을 보완</p><p class="step"><em>✔</em>이불 세탁하는 날 시트와 함께 교체</p><p class="src">1) 60개 침대 대상 연구, 나일론 차단 시트 기준. Jirapongsananuruk O 외, 2000<br>[확인 필요: 세스코몰 해당 제품 SSOT·시험 자료. 자사 제품 수치가 아니면 ✔ 1번은 '연구 결과' 표기로]</p>`},
+ {slot:"CTA 앞 추가", name:"F6 숫자 한 장형",
+  html:`${H([["이불 빨래로 끝나지 않는 이유,",0],["숫자로 보면",1]])}<div class="nrow"><div class="on"><b>9.6<i>%</i></b><span>40℃ 세탁 진드기 사멸률</span></div><div><b>66<i>%</i></b><span>면 시트 유발물질 차단율</span></div></div><p class="body">60℃·스팀워터 모드에서는 모두 사멸. 나일론 차단 시트는 94%. 매트리스 속은 세탁으로 닿지 않습니다.</p><p class="src">출처: Choi SY 외, 2008 · Jirapongsananuruk O 외, 2000 (Annals of Allergy, Asthma &amp; Immunology)<br>※ 특정 실험 조건의 결과입니다.</p>`},
+ {slot:"CTA 앞 추가", name:"F7 세그먼트 분기형",
+  html:`${H([["이런 공간이라면",0],["더욱 꼼꼼하게 점검하세요",1]])}<div class="seg"><b>우리 집</b>가을 이불을 세탁·교체하는 가정, 집먼지진드기 알레르기가 있는 가족이 있는 집.<b>숙박업장</b>호텔·펜션·기숙사처럼 시트 세탁·교체와 매트리스 관리가 따로 이루어지는 곳. 시트는 매번 바꾸는데 매트리스는 언제 확인했는지 돌아볼 때입니다.</div>`},
+ {slot:"CTA 앞 추가 (실사 확보 후)", name:"F4 비포/애프터형", sol:true,
+  html:`${H([["열어보기 전엔 모릅니다",0],["진드기 관리 뒤 집진까지",1]])}${svgBA}<p class="body">BEFORE 매트리스 윗면에 남은 먼지와 사체·배설물 / AFTER 정향유 성분 세릭스 내추럴액 관리 뒤 전문 장비 집진.</p><p class="disc">※ 작업 결과는 사용 환경과 오염 정도에 따라 다를 수 있습니다. 실사는 같은 부위·같은 각도, 고객 식별 정보 제거.</p>`},
+];
+const vdeck=document.getElementById('vdeck');
+vdeck.innerHTML=VCARDS.map((c,i)=>`<article class="slot${c.rec?' rec':''}"><div class="slot-meta"><span>${c.rec?'<span class="star">★ 추천</span> ':''}<b>${c.name}</b></span><span>${c.slot}</span></div><div class="card${c.sol?' sol-bg':''} c"><span class="logo${c.sol?' sol':''}">${c.sol?'솔루션':'CESCO'}</span><span class="num">변주 · ${c.slot}</span>${c.html}</div></article>`).join('');
+
+const memoBtn=document.getElementById('memoBtn');
+memoBtn.addEventListener('click',()=>{
+  const hidden=document.body.classList.toggle('hide-memo');
+  memoBtn.textContent = hidden ? '제작 메모 보이기' : '제작 메모 숨기기';
+});
+</script>
+</body>
+</html>

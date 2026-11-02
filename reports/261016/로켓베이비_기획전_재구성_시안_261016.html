@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>아기를 위한 세스코 위생 가이드</title>
+<meta name="description" content="조리원에서 세스코 리플렛을 받으신 산모님을 위한 100원 체험과 아기 위생 체크포인트 4가지.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#14305a; --navy-deep:#0d2140; --rose:#b85c63; --rose-soft:#fbf1f0; --sand:#f7f3ef; --ink:#1a1a1a; --muted:#6b7280; --line:#e6e8ec; --white:#fff; --blue:#0072CE;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#eef0f3;color:var(--ink);font-family:"Noto Sans KR",-apple-system,"Malgun Gothic",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+.page{max-width:768px;margin:0 auto;background:var(--white);padding-bottom:88px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+section{padding:48px 24px}
+h2{font-size:22px;line-height:1.35;margin:0 0 6px;font-weight:700;color:var(--navy)}
+.sub{color:var(--muted);font-size:14px;margin:0 0 22px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;color:var(--rose);letter-spacing:.04em;margin-bottom:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:48px;padding:0 22px;border-radius:8px;font-weight:700;font-size:15px;border:1.5px solid transparent;cursor:pointer}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.ghost{background:#fff;color:var(--navy);border-color:var(--navy)}
+.btn.sm{height:40px;font-size:14px;padding:0 16px;border-radius:6px}
+.btn.rose{background:var(--rose);color:#fff}
+.fine{font-size:12px;color:var(--muted);line-height:1.6}
+.fine b{color:var(--ink);font-weight:500}
+details{border:1px solid var(--line);border-radius:8px;margin-top:14px;background:#fff}
+summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:18px;color:var(--muted)}
+details[open] summary::after{content:"−"}
+details .inner{padding:0 16px 16px;font-size:14px;color:#333}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price s{color:var(--muted);font-size:13px}
+.price b{font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+.price .unit{font-size:13px;font-weight:500}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--navy);color:#fff;line-height:1.5}
+.badge.rose{background:var(--rose)}
+.badge.light{background:var(--rose-soft);color:var(--rose)}
+
+/* 0 hero */
+.hero{position:relative;padding:0;background:#f4e9e3;overflow:hidden}
+.hero .photo{height:360px;background:url("https://www.cescomall.co.kr/upload/upload/ces-event/20251127_mother/img_intro.jpg") center 24% / 100% auto no-repeat}
+.hero .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,233,227,.1) 40%,#f4e9e3 100%)}
+.hero .text{position:relative;padding:8px 24px 36px;margin-top:-80px}
+.hero .logo{font-weight:900;color:var(--navy);letter-spacing:.06em;font-size:14px;margin-bottom:14px}
+.hero h1{font-size:27px;line-height:1.35;margin:6px 0 12px;color:var(--navy);font-weight:900}
+.hero h1 em{font-style:normal;color:var(--rose)}
+.hero p{margin:0 0 20px;color:#444;font-size:15px}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+
+/* 1 benefits */
+.benefits{background:var(--navy);color:#fff;padding:36px 24px 28px}
+.benefits h2{color:#fff}
+.benefits .sub{color:#c9d3e3}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 14px}
+.tile{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:14px 12px;text-align:center}
+.tile b{display:block;font-size:22px;line-height:1.2;font-variant-numeric:tabular-nums}
+.tile span{font-size:12px;color:#c9d3e3;display:block;margin-top:4px}
+.benefits .fine{color:#aab7cc}
+.benefits .fine b{color:#fff}
+.code{margin-top:16px;padding:12px 14px;background:rgba(255,255,255,.08);border-radius:8px;font-size:13px;color:#dbe3ef}
+.code b{color:#fff}
+
+/* 2 steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 10px}
+.step{text-align:center}
+.step .n{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.step b{display:block;font-size:14px;line-height:1.35;color:var(--navy)}
+.step span{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.stores{display:flex;gap:8px;margin:14px 0 4px}
+.stores a{flex:1;height:44px;border:1.5px solid var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--navy)}
+
+/* 3 products */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.card .thumb{position:relative;background:#f6f6f6}
+.card .thumb .badge{position:absolute;top:8px;left:8px}
+.card .body{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column;gap:6px}
+.card .name{font-size:14px;font-weight:700;line-height:1.4;color:var(--ink)}
+.card .use{font-size:12px;color:var(--muted);line-height:1.45}
+.card .price{margin-top:auto}
+.card .price b{font-size:18px}
+.card .price b.hundred{color:var(--rose);font-size:22px}
+.card .btn{margin-top:8px;height:38px;font-size:13px}
+
+/* 4 set */
+.set{background:var(--sand)}
+.set .wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.set ul{list-style:none;margin:0 0 16px;padding:0}
+.set li{padding:9px 0;border-top:1px solid #e3dcd4;font-size:14px}
+.set li:last-child{border-bottom:1px solid #e3dcd4}
+.set li b{color:var(--navy);display:block;font-size:13px}
+.set .pricebox{background:#fff;border-radius:10px;padding:16px;margin-top:4px}
+
+/* 5 guide */
+.points{display:grid;gap:14px}
+.point{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.point .head{display:flex;gap:12px;align-items:center;padding:14px 16px;background:var(--rose-soft)}
+.point .head .n{font-size:12px;font-weight:700;color:var(--rose);white-space:nowrap}
+.point .head h3{margin:0;font-size:17px;color:var(--navy)}
+.point .rows{padding:6px 16px 14px}
+.row{display:grid;grid-template-columns:84px 1fr;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+.row:first-child{border-top:0}
+.row b{font-size:12px;color:var(--muted);font-weight:700;padding-top:2px}
+.row .cesco{color:var(--navy);font-weight:500}
+.point details{margin:0 16px 14px}
+.point .link{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--blue)}
+.point .link::after{content:" ›"}
+
+/* 6 service */
+.svc{display:grid;gap:14px}
+.svc .card{flex-direction:row}
+.svc .card .thumb{width:140px;flex:none;background-size:cover;background-position:center}
+.svc .card .body{gap:4px}
+.svc .card ul{margin:4px 0 8px;padding-left:16px;font-size:13px;color:#333}
+.svc .card ul li{margin:2px 0}
+
+/* 7 appliances */
+.appl{display:grid;gap:14px}
+.appl .card{flex-direction:row}
+.appl .thumb{width:150px;flex:none;background:#f6f6f6}
+.appl .why{font-size:13px;color:#333;margin:2px 0 4px}
+.appl .num{font-size:12px;color:var(--rose);font-weight:700}
+.rent{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-top:4px}
+.rent b{font-size:18px;color:var(--navy);font-variant-numeric:tabular-nums}
+.rent span{font-size:12px;color:var(--muted)}
+
+/* 8 reviews */
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.review{border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14px}
+.review .prod{font-size:12px;color:var(--rose);font-weight:700;margin-bottom:6px}
+.review p{margin:0 0 10px;color:#333}
+.review .who{font-size:12px;color:var(--muted)}
+.review .who::before{content:"★★★★★ ";color:#f2b705;letter-spacing:-1px}
+
+/* 9 notes */
+.notes{background:#f6f7f9}
+.notes details{background:#fff}
+.notes ol{padding-left:18px;margin:0;font-size:12px;color:#444;line-height:1.6}
+.notes ol li{margin:4px 0}
+
+/* 10 sticky */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.06)}
+.sticky .in{max-width:768px;margin:0 auto;display:flex;gap:10px;padding:10px 16px}
+.sticky .btn{flex:1}
+.sticky .btn.ghost{flex:0 0 auto}
+
+/* dev note */
+.devnote{margin:0 24px 24px;border:1px dashed #c3c7cf;border-radius:8px;padding:12px 14px;font-size:12px;color:#555;background:#fafbfc}
+.devnote b{color:var(--navy)}
+
+@media (max-width:520px){
+  section{padding:40px 18px}
+  .hero .text{padding:8px 18px 32px}
+  .hero h1{font-size:23px}
+  .tiles{gap:6px} .tile b{font-size:18px} .tile span{font-size:11px}
+  .step b{font-size:12px} .step span{display:none}
+  .set .wrap{grid-template-columns:1fr}
+  .svc .card,.appl .card{flex-direction:column}
+  .svc .card .thumb{width:100%;height:150px} .appl .thumb{width:100%}
+  .reviews{grid-template-columns:1fr}
+  .row{grid-template-columns:70px 1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- 0. 히어로 -->
+<header class="hero" id="top">
+  <div class="photo"></div>
+  <div class="text">
+    <div class="logo">CESCO</div>
+    <span class="eyebrow">조리원에서 세스코 리플렛을 받으신 산모님께</span>
+    <h1>아기와 지내는 하루,<br>위생은 <em>네 가지</em>만 챙기면 됩니다.</h1>
+    <p>소중한 아기의 탄생을 축하드립니다. 어른에게 일상인 침구·공기·물·장난감이 아기에게는 다를 수 있어 세스코가 체크포인트 네 가지로 정리했습니다. 읽고 난 뒤 먼저 써 볼 위생용품 하나는 100원에 드립니다.</p>
+    <div class="cta">
+      <a class="btn primary" href="#guide">체크포인트 네 가지 보기</a>
+      <a class="btn ghost" href="#join">100원 체험 시작하기</a>
+    </div>
+  </div>
+</header>
+
+<!-- 1. 체크포인트 4 -->
+<section id="guide">
+  <span class="eyebrow">아기 위생 체크포인트</span>
+  <h2>어른에게 일상인 것이 아기에게는 다를 수 있습니다</h2>
+  <p class="sub">오늘 집에서 할 수 있는 것과 세스코가 맡는 것을 나눠 적었습니다.</p>
+
+  <div class="points">
+
+    <div class="point">
+      <div class="head"><span class="n">POINT 1</span><h3>침구와 집 안의 해충</h3></div>
+      <div class="rows">
+        <div class="row"><b>왜 중요한가</b><div>먼지 1 g에 집먼지 진드기가 100~500마리 삽니다. 진드기의 배설물과 탈피 껍질은 아토피와 천식을 일으키는 알레르기 유발 물질입니다.</div></div>
+        <div class="row"><b>오늘 할 것</b><div>아기 침구는 55℃ 이상 물로 세탁하고 햇볕에 말립니다. 택배 박스는 현관 밖에서 뜯고 물건만 들입니다.</div></div>
+        <div class="row"><b>세스코가 맡는 것</b><div class="cesco">매트리스 안쪽 30 cm 깊이는 세탁이 닿지 않습니다. 매트리스케어 솔루션이 진드기 사체와 배설물까지 집진하고 발생 원인을 제거합니다.</div></div>
+      </div>
+      <details>
+        <summary>더 읽기</summary>
+        <div class="inner">
+          <p>어른 침대에 있던 집먼지 진드기는 분유를 먹이고 낮잠을 재우는 사이 아기에게 옮겨 갑니다. 공기 중 먼지와 함께 떠다니다 아기 침대까지 퍼지기도 합니다. 바퀴·개미·진드기의 배설물과 사체는 집 안에서 먼지가 되어 아기의 호흡기와 피부에 닿습니다.</p>
+          <p>해충은 택배 박스, 에어컨 실외기 배관, 창문 물구멍, 배수구처럼 아주 작은 틈으로 들어옵니다. 아기가 있는 집이라면 유입 경로를 먼저 막는 것이 중요합니다. 어디로 들어오는지 모르겠다면 세스코 무료진단으로 경로부터 확인하실 수 있습니다.</p>
+          <a class="link" href="https://www.cescomall.co.kr/products/view/G2000000887">매트리스케어 솔루션 보기</a>
+        </div>
+      </details>
+    </div>
+
+    <div class="point">
+      <div class="head"><span class="n">POINT 2</span><h3>공기 중 바이러스와 라돈</h3></div>
+      <div class="rows">
+        <div class="row"><b>왜 중요한가</b><div>감기 걸린 가족과 한 공간에 있는 것만으로 아기는 비말에 노출됩니다. 아기의 호흡량은 어른의 2~3배이고, 하루 대부분을 바닥 가까이에서 보냅니다.</div></div>
+        <div class="row"><b>오늘 할 것</b><div>감기나 독감에 걸린 가족은 KF94 마스크를 씁니다. 아기를 안기 전에는 손을 씻습니다. 미세먼지가 많은 날도 짧게라도 환기합니다.</div></div>
+        <div class="row"><b>세스코가 맡는 것</b><div class="cesco">공기 중 바이러스와 세균까지 살균하는 트루살균 공기청정기 판테온. 라돈·CO₂·초미세먼지 센서가 환기할 때를 알려 줍니다.</div></div>
+      </div>
+      <details>
+        <summary>더 읽기</summary>
+        <div class="inner">
+          <p>머리카락 굵기의 20분의 1보다 작은 비말은 매우 가벼워 공기 중에 오래 머물며 멀리 퍼집니다. 라돈은 색과 냄새가 없는 기체로, 아파트 벽과 싱크대 상판 같은 석재에서 나와 바닥 먼지에 달라붙습니다. 국내 자료에서는 라돈 148 Bq/㎥를 하루 담배 8개비에 비유합니다.</p>
+          <p>쓰고 계신 공기청정기가 있다면 그대로 두셔도 됩니다. 다만 일반 공기청정기는 미세먼지 위주라 공기 중 바이러스까지는 잡지 못합니다. 아기 방에 살균이 더 필요하다면 판테온이 청정과 살균을 한 대에서 합니다.</p>
+          <a class="link" href="https://www.cescomall.co.kr/products/view/G2000001210">트루살균 공기청정기 판테온 보기</a>
+        </div>
+      </details>
+    </div>
+
+    <div class="point">
+      <div class="head"><span class="n">POINT 3</span><h3>분유 물과 미세 플라스틱</h3></div>
+      <div class="rows">
+        <div class="row"><b>왜 중요한가</b><div>페트병 생수 속 미세 플라스틱은 뚜껑을 여닫을 때의 마찰과 보관 온도에서도 생깁니다. 아기는 장과 면역 체계가 다 자라지 않아 영향을 더 받습니다.</div></div>
+        <div class="row"><b>오늘 할 것</b><div>생수는 직사광선이 닿지 않는 서늘한 곳에 보관합니다. 한 번 연 병은 그날 안에 씁니다.</div></div>
+        <div class="row"><b>세스코가 맡는 것</b><div class="cesco">살균온 정수기 5중안심이 5단계 복합 나노 필터로 미세 플라스틱과 중금속을 거르고, 물이 나오는 코크를 1시간마다 UV-C로 살균합니다. 분유 물 온도는 3단계로 맞춥니다.</div></div>
+      </div>
+      <details>
+        <summary>더 읽기</summary>
+        <div class="inner">
+          <p>미세 플라스틱은 눈에 보이지 않는 5 mm 이하의 플라스틱 조각입니다. 페트병에 물을 담는 제조 과정에서 병 내부에서 떨어져 나오고, 뚜껑을 여닫을 때마다 마찰로 더 생깁니다. 아기가 마시는 물은 미세 플라스틱은 물론 중금속과 유해세균까지 걸러진 물인지 확인이 필요합니다.</p>
+          <p>정수기는 다른 기능이 비슷해도 살균은 비슷할 수 없습니다. 냉수·온수·정수 모두 고인 물 없는 직수이고, 물이 흐르는 모든 곳을 365일 살균 관리합니다.</p>
+          <a class="link" href="https://www.cescomall.co.kr/products/view/G2000001053">살균온 정수기 5중안심 보기</a>
+        </div>
+      </details>
+    </div>
+
+    <div class="point">
+      <div class="head"><span class="n">POINT 4</span><h3>입으로 들어가는 세균</h3></div>
+      <div class="rows">
+        <div class="row"><b>왜 중요한가</b><div>아기는 손에 잡히는 것을 입에 넣어 배웁니다. 장난감과 생활용품 표면에 남은 바이러스와 세균이 배앓이로 이어집니다.</div></div>
+        <div class="row"><b>오늘 할 것</b><div>장난감·유모차·그릇은 쓰고 난 뒤 닦습니다. 엄마 아빠의 손을 거쳐 옮겨 가는 경우가 많아 손 씻기가 먼저입니다.</div></div>
+        <div class="row"><b>세스코가 맡는 것</b><div class="cesco">열탕 소독 없이 뿌리고 닦는 세스코 마이랩 곡물발효 살균소독제. 100% 식품첨가물 성분이라 입에 닿는 것에도 씁니다. 로타바이러스 99% 항바이러스.</div></div>
+      </div>
+      <details>
+        <summary>더 읽기</summary>
+        <div class="inner">
+          <p>아기 용품은 쓰고 난 뒤 살균하지 않으면 바이러스와 세균이 그대로 남습니다. 곡물 발효 주정 에탄올 성분으로 만든 살균소독제는 락스 성분과 가습기 살균제 이슈 성분이 검출되지 않았고, 피부자극지수 0.00으로 저자극 판정을 받았습니다. 식약처와 환경부에 동시 신고되어 어린이 용품과 식품 접촉 용품에 쓸 수 있습니다.</p>
+          <a class="link" href="https://www.cescomall.co.kr/products/view/G2000000853">곡물발효 살균소독제 보기</a>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- 2. 혜택 요약 -->
+<section class="benefits" id="benefit">
+  <h2>산모님께 드리는 세 가지</h2>
+  <p class="sub">세스코몰 앱에서 인사이드 코드를 인증하면 바로 적용됩니다.</p>
+  <div class="tiles">
+    <div class="tile"><b>100원</b><span>세스코 마이랩<br>7종 중 1개</span></div>
+    <div class="tile"><b>3,000P</b><span>인사이드 코드<br>인증 즉시 지급</span></div>
+    <div class="tile"><b>5% 적립</b><span>구매확정 시<br>멤버스 혜택</span></div>
+  </div>
+  <p class="fine">앱 전용 · ID당 1개 · 인사이드 코드 인증 후 구매 가능 · 주문 취소 후 재구매 시 100원 재적용 불가</p>
+  <div class="code"><b>세스코 인사이드 코드란</b> 조리원에서 받으신 리플렛 뒷면에 인쇄된 산모 전용 인증 번호입니다. 인증하면 세스코몰 멤버스 회원과 같은 혜택을 받습니다.</div>
+</section>
+
+<!-- 3. 참여 방법 -->
+<section id="join">
+  <span class="eyebrow">참여 방법</span>
+  <h2>네 단계면 끝납니다</h2>
+  <p class="sub">앱을 받는 것부터 100원에 담는 것까지 5분이면 됩니다.</p>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><b>앱 받기</b><span>세스코몰 앱<br>설치</span></div>
+    <div class="step"><div class="n">2</div><b>가입하기</b><span>앱 푸시 동의<br>필수</span></div>
+    <div class="step"><div class="n">3</div><b>코드<br>인증하기</b><span>마이페이지 ›<br>세스코 인사이드 인증</span></div>
+    <div class="step"><div class="n">4</div><b>100원에<br>담기</b><span>[멤버스 첫구매]<br>상품 1개 선택</span></div>
+  </div>
+  <div class="stores">
+    <a href="https://play.google.com/store/apps/details?id=com.cesco.cescomall&hl=ko" target="_blank" rel="noopener">Google Play</a>
+    <a href="https://apps.apple.com/kr/app/%EC%84%B8%EC%8A%A4%EC%BD%94%EB%AA%B0/id1607009800" target="_blank" rel="noopener">App Store</a>
+  </div>
+  <p class="fine">PC에서 보고 계시면 스토어에서 '세스코몰'을 검색해 설치하세요.</p>
+  <details>
+    <summary>앱 화면으로 단계 보기</summary>
+    <div class="inner">
+      <img src="https://www.cescomall.co.kr/upload/upload/ces-event/20251127_mother/img_tab3_2.jpg" alt="앱 다운로드와 회원가입 화면" loading="lazy">
+      <img src="https://www.cescomall.co.kr/upload/upload/ces-event/20251127_mother/img_tab3_3.jpg" alt="세스코 인사이드 코드 인증 화면" loading="lazy">
+    </div>
+  </details>
+</section>
+
+<!-- 4. 100원 체험 상품 -->
+<section id="hundred" style="padding-top:0">
+  <span class="eyebrow">멤버스 첫 구매 100원</span>
+  <h2>먼저 써 보실 것 하나를 고르세요</h2>
+  <p class="sub">세스코 과학연구소가 만든 생활위생용품입니다. 아기 용품에 쓰는 것부터 골랐습니다.</p>
+  <div class="grid">
+    <a class="card" href="https://www.cescomall.co.kr/products/view/G2000001117">
+      <div class="thumb"><img src="https://www.cescomall.co.kr/upload/item/G2000001117/20260724135321S.jpg" alt="세스코 마이랩 곡물발효 살균소독제 500 ml" loading="lazy"><span class="badge rose">출산 선물세트 포함</span></div>
+      <div class="body">
+        <div class="name">세스코 마이랩 곡물발효 살균소독제 500 ml</div>
+        <div class="use">장난감·젖병·식탁에 뿌리고 닦습니다. 100% 식품첨가물 성분.</div>
+        <div class="price"><s>9,900원</s><b class="hundred">100<span class="unit">원</span></b></div>
+        <span class="btn primary">앱에서 담기</span>
+      </div>
+    </a>
+    <a class="card" href="https://www.cescomall.co.kr/products/view/G2000001118">
+      <div class="thumb"><img src="https://www.cescomall.co.kr/upload/item/G2000001118/20250619173954S.jpg" alt="세스코 마이랩 다용도 살균클리닝 티슈 50매" loading="lazy"><span class="badge rose">출산 선물세트 포함</span></div>
+      <div class="body">
+        <div class="name">세스코 마이랩 다용도 살균클리닝 티슈 (50매)</div>
+        <div class="use">유모차·아기 의자·식탁을 한 장으로 닦고 살균합니다.</div>
+        <div class="price"><s>9,700원</s><b class="hundred">100<span class="unit">원</span></b></div>
+        <span class="btn primary">앱에서 담기</span>
+      </div>
+    </a>
+    <a class="card" href="https://www.cescomall.co.kr/products/view/G2000001115">
+      <div class="thumb"><img src="https://www.cescomall.co.kr/upload/item/G2000001115/20250620033634S.jpg" alt="세스코 마이랩 배수구클리너 5회분" loading="lazy"></div>
+      <div class="body">
+        <div class="name">세스코 마이랩 배수구클리너 5회분 (40 g × 5개입)</div>
+        <div class="use">젖병 씻는 싱크대 배수구의 냄새와 날파리를 잡습니다.</div>
+        <div class="price"><s>8,300원</s><b class="hundred">100<span class="unit">원</span></b></div>
+        <span class="btn primary">앱에서 담기</span>
+      </div>
+    </a>
+    <a class="card" href="https://www.cescomall.co.kr/products/view/G2000001245">
+      <div class="thumb"><img src="https://www.cescomall.co.kr/upload/item/G2000001245/20250620034836S.jpg" alt="세스코 마이랩 항균 풋샴푸 490 ml" loading="lazy"></div>
+      <div class="body">
+        <div class="name">세스코 마이랩 항균 풋샴푸 490 ml</div>
+        <div class="use">하루 종일 서서 아기를 안은 엄마 아빠의 발을 위해.</div>
+        <div class="price"><s>11,000원</s><b class="hundred">100<span class="unit">원</span></b></div>
+        <span class="btn primary">앱에서 담기</span>
+      </div>
+    </a>
+  </div>
+  <p class="fine" style="margin-top:12px">100원 상품은 [멤버스 첫구매] 표시가 있는 상품에만 적용됩니다. 구성 상품은 세스코몰 앱 '멤버스 첫 구매 100원딜'에서 확인하실 수 있습니다.</p>
+</section>
+
+<!-- 5. 출산 5종 선물세트 -->
+<section class="set" id="set">
+  <span class="eyebrow">출산 선물세트</span>
+  <h2>아기와 지내는 하루에 맞춰 다섯 가지를 골랐습니다</h2>
+  <p class="sub">100원으로 써 보신 다음, 하루 전체를 챙기실 때.</p>
+  <div class="wrap">
+    <div>
+      <img src="https://www.cescomall.co.kr/upload/item/G2000001477/20260827135345S.jpg" alt="세스코 마이랩 출산 5종 선물세트" style="border-radius:10px" loading="lazy">
+    </div>
+    <div>
+      <ul>
+        <li><b>분유 먹이기 전</b>손소독제 겔. 손에 남은 대장균·살모넬라균 99.9% 제거</li>
+        <li><b>장난감을 입에 넣을 때</b>곡물발효 살균소독제. 로타바이러스 99% 항바이러스, 식품첨가물 성분</li>
+        <li><b>젖병과 이유식 그릇</b>주방세제 프리미엄. 과일·채소 세척제로 식약처 인증</li>
+        <li><b>유모차·아기 의자</b>다용도 살균클리닝 티슈. 한 장으로 닦고 살균</li>
+        <li><b>아기 안기 전 손 씻기</b>항균 핸드워시 폼 무향. 옥수수 유래 주성분</li>
+      </ul>
+      <div class="pricebox">
+        <div class="fine" style="margin-bottom:4px">세스코 마이랩 출산 5종 선물세트</div>
+        <div class="price"><s>51,400원</s><b>46,000<span class="unit">원</span></b></div>
+        <p class="fine" style="margin:6px 0 10px">무료배송 · 정기배송 가능 · 멤버스 인증 시 추가 혜택은 앱에서 확인</p>
+        <a class="btn primary sm" href="https://www.cescomall.co.kr/products/view/G2000001477">세트 자세히 보기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 전문가 서비스 -->
+<section id="service">
+  <span class="eyebrow">세스코 전문가 서비스</span>
+  <h2>집에서 다 할 수 없는 것은 세스코가 맡습니다</h2>
+  <p class="sub">서비스 컨설턴트가 직접 방문합니다.</p>
+  <div class="svc">
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://www.cescomall.co.kr/upload/upload/ces-event/20251127_mother/img_tab1_2.jpg');background-position:center 72%"></div>
+      <div class="body">
+        <div class="name">우리집 해충문제 무료진단</div>
+        <div class="use">해충이 어디로 들어오는지 모르겠을 때</div>
+        <ul>
+          <li>1,000시간 이상 교육받은 서비스 컨설턴트 방문</li>
+          <li>해충 종류·서식지·침입 경로 정밀 진단</li>
+          <li>모니터링 트랩 설치, 이후 발생 시 추가 진단</li>
+        </ul>
+        <div class="price"><b>무료</b></div>
+        <a class="btn ghost sm" href="https://www.cescomall.co.kr/mycesco/help/estimate/main">무료진단 신청하기</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://www.cescomall.co.kr/upload/item/G2000000887/20251127095935S.jpg')"></div>
+      <div class="body">
+        <div class="name">매트리스케어 솔루션</div>
+        <div class="use">아기 침대 옆 부모 침대까지 집먼지 진드기 케어</div>
+        <ul>
+          <li>초정밀 현미경으로 오염도 진단</li>
+          <li>30 cm 깊이까지 집진하는 전문 장비</li>
+          <li>빈대 모니터링 키트 설치, 특수 표면 코팅 기본 제공</li>
+        </ul>
+        <div class="price"><b>72,000<span class="unit">원</span></b></div>
+        <a class="btn primary sm" href="https://www.cescomall.co.kr/products/view/G2000000887">신청하기</a>
+      </div>
+    </div>
+  </div>
+  <details>
+    <summary>매트리스케어 진행 과정 7단계</summary>
+    <div class="inner">
+      <ol style="padding-left:18px;margin:0">
+        <li>환경 조사 및 진단: 초정밀 현미경으로 오염도 확인</li>
+        <li>정향유 성분 약제 분무: 정향나무 꽃봉오리·열매 추출 성분</li>
+        <li>부가 서비스: 화장실 표면 살균 또는 의류 섬유탈취 중 선택</li>
+        <li>전문 장비 매트리스 집진: 30 cm 깊이까지 진드기 사체·배설물·먼지 제거</li>
+        <li>발생 원인 제거: 침대 프레임 청소</li>
+        <li>매트리스 표면 코팅, 창틀 해충 제거 및 에어로졸 처리(간절기·하절기)</li>
+        <li>빈대 모니터링 서비스: 발생 확인용 키트 설치</li>
+      </ol>
+    </div>
+  </details>
+</section>
+
+<!-- 7. 환경가전 -->
+<section id="appliance" style="padding-top:0">
+  <span class="eyebrow">아기 방에 두는 세스코 가전</span>
+  <h2>렌탈로 쓰면 방문 때마다 관리도 함께 받습니다</h2>
+  <p class="sub">큰 금액 대신 월 요금으로 먼저 확인해 보세요.</p>
+  <div class="appl">
+    <a class="card" href="https://www.cescomall.co.kr/products/view/G2000001210">
+      <div class="thumb"><img src="https://www.cescomall.co.kr/upload/item/G2000001210/20261007111909S.jpg" alt="트루살균 공기청정기 판테온 25평형" loading="lazy"></div>
+      <div class="body">
+        <div class="name">트루살균 공기청정기 판테온 25평형</div>
+        <div class="why">청정 엔진과 살균 엔진이 따로 있어 미세먼지와 공기 중 바이러스를 한 대에서 처리합니다. 바닥 먼지까지 띄워 살균합니다.</div>
+        <div class="num">공기 중 인플루엔자 바이러스 99.99% 살균 ¹</div>
+        <div class="rent"><b>렌탈 월 37,900원</b><span>구매 1,093,000원 · 코튼 화이트 / 포레스트 그린</span></div>
+      </div>
+    </a>
+    <a class="card" href="https://www.cescomall.co.kr/products/view/G2000001236">
+      <div class="thumb"><img src="https://www.cescomall.co.kr/upload/item/G2000001236/20261007112317S.jpg" alt="UV파워 공기살균기 센스미" loading="lazy"></div>
+      <div class="body">
+        <div class="name">UV파워 공기살균기 센스미</div>
+        <div class="why">쓰고 계신 공기청정기에 살균만 더하고 싶을 때. 벽에 걸어 두면 사람의 움직임을 감지해 살균합니다.</div>
+        <div class="num">공기 중 코로나19·인플루엔자 바이러스 99.99% 살균 ²</div>
+        <div class="rent"><b>렌탈 월 9,900원</b><span>구매 589,000원</span></div>
+      </div>
+    </a>
+    <a class="card" href="https://www.cescomall.co.kr/products/view/G2000001053">
+      <div class="thumb"><img src="https://www.cescomall.co.kr/upload/item/G2000001053/20240618084906S.jpg" alt="살균온 정수기 5중안심" loading="lazy"></div>
+      <div class="body">
+        <div class="name">살균온 정수기 5중안심 직수 냉온정</div>
+        <div class="why">분유 물 온도를 3단계로 맞추고, 코크는 1시간마다 UV-C로, 유로는 3일마다 전해수로 살균합니다.</div>
+        <div class="num">5단계 복합 나노 필터로 미세 플라스틱·중금속·유해세균 제거</div>
+        <div class="rent"><b>렌탈 월 35,900원</b><span>구매 1,456,000원 · 네이처 화이트 / 포레스트 그린</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- 8. 후기 -->
+<section id="review" style="padding-top:0">
+  <span class="eyebrow">사용 후기</span>
+  <h2>직접 사서 써 본 세스코몰 회원님들</h2>
+  <p class="sub">세스코몰 상품 후기에서 그대로 옮겼습니다.</p>
+  <div class="reviews">
+    <div class="review"><div class="prod">곡물발효 살균소독제</div><p>아기매트, 아기 장난감에 뿌려서 사용하고 있어요! 식품 첨가물 성분만 첨가되어서 안심하고 쓸 수 있어요~</p><div class="who">김** 회원님</div></div>
+    <div class="review"><div class="prod">다용도 살균클리닝 티슈</div><p>n차 구매중입니다. 아기가 태어난 이후로 위생에 더욱 신경쓰게 되었는데, 손쉽게 물품을 소독할 수 있게 되어 좋아요!</p><div class="who">vjas*** 회원님</div></div>
+    <div class="review"><div class="prod">항균 핸드워시 폼 무향</div><p>병원에서 써보고 구매했어요. 믿음이 가요</p><div class="who">terr*** 회원님</div></div>
+    <div class="review"><div class="prod">손소독제 겔</div><p>아기가 태어나서 손님오거나 기저귀 갈기전에 사용하려고 샀어요~</p><div class="who">윤** 회원님</div></div>
+  </div>
+</section>
+
+<!-- 9. 시험방법·유의사항 -->
+<section class="notes" id="notes">
+  <h2 style="font-size:16px">시험방법과 유의사항</h2>
+  <details>
+    <summary>¹ 트루살균 공기청정기 판테온 시험방법</summary>
+    <div class="inner"><ol>
+      <li>인플루엔자 바이러스 99.99% 제거: 세스코 과학연구소와 고려대의대 바이러스병 연구소 공동연구. BSL-3 시설의 4,500 L 특수 챔버에 신종 인플루엔자 바이러스를 부유시킨 뒤 판테온을 30분 가동한 전후를 3회 비교 평가(25평형 시험 완료).</li>
+      <li>바이러스·세균 99.9% 제거: 한국산업기술시험원, 온도 약 23℃·습도 약 50%·30 ㎥ 챔버, 부유세균 60분 / 부유바이러스 30분.</li>
+      <li>극초미세먼지 99.999% 제거: KOTITI시험연구원, 0.01 ㎛ 이하 극초미세먼지 감소율, (29.5±0.5) ㎥ 챔버 1시간 가동.</li>
+      <li>상기 수치는 제한된 실험 조건의 결과이며 실제 사용 환경(공간 크기, 공기 유입량, 설치 위치 등)에 따라 달라질 수 있습니다.</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>² UV파워 공기살균기 센스미 시험방법</summary>
+    <div class="inner"><ol>
+      <li>세스코 과학연구소와 고려대 의대 바이러스병 연구소 공동연구. BSL-3 시설의 880 L 특수 챔버에 코로나19 바이러스와 신종 인플루엔자 바이러스를 부유시킨 뒤 공기살균기를 30분 가동한 전후를 3회 비교 평가. 99.99% 살균.</li>
+      <li>한국건설생활환경시험연구원, 폐렴균(Klebsiella pneumoniae ATCC 4352), 8 ㎥ 챔버 중앙에 설치 후 2시간 가동 전후 농도 비교. 99.9% 살균.</li>
+      <li>상기 살균율은 제한된 실험 조건의 결과이며 실제 사용 환경에 따라 달라질 수 있습니다.</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>세스코 마이랩 곡물발효 살균소독제 · 출산 선물세트 시험 근거</summary>
+    <div class="inner"><ol>
+      <li>호흡기세포융합바이러스(RSV) 99.9% 항바이러스, 로타바이러스(Rotavirus A) 99% 항바이러스 | 한국화학융합시험연구소, ASTM E1052-20</li>
+      <li>대장균·황색포도상구균 99.999% 살균 | 한국식품과학연구원, 식품첨가물공전(2019) 살균소독력시험법</li>
+      <li>인체피부 일차자극 테스트 저자극 범주(자극지수 0.00) | P&amp;K피부임상연구센터</li>
+      <li>차아염소산나트륨, CMIT, MIT, BKC, DDAC 불검출 | KCL</li>
+      <li>손소독제 겔: 대장균·황색포도상구균·살모넬라균 99.9% 살균 | KOTITI, 외용소독제 효력평가법 In vitro</li>
+      <li>핸드워시 폼: 대장균 99.960%·황색포도상구균 99.987% 항균(균 세정)</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>100원 체험 이벤트 유의사항</summary>
+    <div class="inner"><ol>
+      <li>세스코몰 앱 전용 이벤트이며, 세스코 인사이드 코드 인증 신규 회원 또는 구매 이력이 없는 멤버스 회원에게 적용됩니다.</li>
+      <li>ID당 1개 상품만 100원에 구매할 수 있습니다.</li>
+      <li>주문 취소 후 재구매 시 100원 가격은 다시 적용되지 않습니다.</li>
+      <li>첫 구매 할인은 마케팅 수신(SMS, 이메일, 앱 푸시) 동의 회원에게 제공됩니다.</li>
+      <li>인사이드 코드 인증 포인트 3,000P는 인증 즉시 지급되며 사용 조건은 앱 포인트 안내를 따릅니다.</li>
+    </ol></div>
+  </details>
+  <p class="fine" style="margin-top:14px">세스코몰 고객센터 1588-1119 · 평일 08:30~18:00</p>
+</section>
+
+<div class="devnote">
+  <b>시안 메모(게시 전 삭제)</b> · 가격·상품 구성은 2026년 10월 16일 세스코몰 상품 카드 기준입니다. 확인 필요: ① 가입 포인트(2,000P)와 인증 포인트(3,000P) 규칙 ② 100원 상품 확정 목록(이미지 7종 vs 실제 5종, 반려견용 기피제는 이 시안에서 제외) ③ 인사이드 멤버스가 노출 여부 ④ 히어로 사진은 기존 인트로 이미지를 임시로 씀.
+</div>
+
+</div>
+
+<!-- 10. 하단 고정 CTA -->
+<div class="sticky">
+  <div class="in">
+    <a class="btn rose" href="#join">100원 체험 시작하기</a>
+    <a class="btn ghost" href="https://www.cescomall.co.kr/mycesco/help/estimate/main">무료진단</a>
+  </div>
+</div>
+
+</body>
+</html>
