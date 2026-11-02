@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세스코 11/04 보고 자료</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--amber:#b35c00;--amber-soft:#fff4e5;--green:#1b7f3b;--green-soft:#e8f5ec}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px}
+.kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+h2{font-size:20px;margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px}
+h2 .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+h3{font-size:16px;margin:24px 0 8px;font-weight:700}
+p{margin:0 0 10px}
+.lead{font-size:16px;color:var(--ink2)}
+ul,ol{margin:0 0 10px;padding-left:22px}
+li{margin:3px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;font-size:13px;color:var(--ink2);white-space:nowrap}
+td.c,th.c{text-align:center;white-space:nowrap}
+.box{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px;background:var(--soft);padding:14px 18px;margin:14px 0}
+.box.amber{border-left-color:var(--amber);background:var(--amber-soft)}
+.box b.h{display:block;margin-bottom:6px}
+.small{font-size:13px;color:var(--ink2)}
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
+@media (max-width:720px){.wrap{padding:28px 16px 60px}h1{font-size:23px}table{font-size:13px}th,td{padding:7px 6px}}
+@media print{.wrap{padding:0;max-width:none}h2{break-after:avoid}table,.box{break-inside:avoid}a{color:inherit;text-decoration:none}}
+.st{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:4px;white-space:nowrap}
+.st.done{background:var(--green-soft);color:var(--green)}
+.st.run{background:var(--blue-soft);color:var(--blue)}
+.st.todo{background:#f1f1f1;color:var(--ink2)}
+.st.hold{background:var(--amber-soft);color:var(--amber)}
+td ul{margin:0;padding-left:18px}
+td li{margin:2px 0}
+.lnk{font-size:12.5px;color:var(--blue);white-space:nowrap}
+.today{background:#fffbe6;padding:0 4px;border-radius:3px}
+.strip{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 4px;font-size:14px;color:var(--ink2)}
+.strip b{color:var(--ink)}
+.out a{font-weight:600}
+.out .chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;line-height:1.25;padding:5px 11px;border:1px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.chip .type{font-size:10px;font-weight:600;color:var(--blue);opacity:.75;letter-spacing:.02em}
+.chip.old{background:#fff;border-color:var(--line);color:var(--ink2)}
+.chip.old .type{color:var(--ink3);opacity:1}
+.chip:hover{border-color:var(--blue)}
+@media print{.chip{border-color:#bbb}}
+/* 최신판 총정리 */
+.latest td:first-child{white-space:nowrap}
+.latest .v{display:flex;flex-direction:column;gap:4px}
+.latest .v a{font-weight:700;color:var(--blue);text-decoration:none}
+.latest .v a:hover{text-decoration:underline}
+.latest .v .d{font-size:12px;color:var(--ink3)}
+.latest .hist{font-size:12.5px;color:var(--ink2);line-height:1.6}
+.latest .hist a{color:var(--ink2);text-decoration:underline dotted;text-underline-offset:3px}
+.latest .hist s{color:var(--ink3)}
+.latest .hist .arr{color:var(--ink3);padding:0 3px}
+.grp td{background:var(--soft);font-weight:800;font-size:13px;color:var(--ink2);padding:6px 10px}
+.need{color:var(--amber);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">세스코 콘텐츠 템플릿 · 시하</div>
+  <h1>11/04(수) 보고 자료</h1>
+  <div class="meta">
+    <span><b>기준일</b> 2026-11-02 (월)</span>
+    <span><b>마스터 템플릿</b> <a href="https://cescomktsh-wq.github.io/cesco-templates/" target="_blank" rel="noopener">cescomktsh-wq.github.io/cesco-templates</a></span>
+    <span><b>작성</b> 김선희</span>
+  </div>
+</header>
+
+<p class="lead">10/28 미팅 결정을 반영한 이번 주 작업과, 10/21·10/28 보고를 합쳐 정리한 제작물 최신판을 담았습니다. <b>00 제작물 최신판 총정리</b>, <b>01 템플릿</b>(리플릿·카드뉴스·POP·우수사례·마스터 대시보드), <b>02 콘텐츠·기능</b>(위쳌·우수사례·피드백 대기분), <b>03 다음 주와 대기·결정 사항</b>입니다. 산출물은 표의 버튼으로 바로 열리고, 모든 시안은 마스터 템플릿의 <a href="../../index.html#d103" target="_blank">시안 갤러리</a>와 각 템플릿 문서 안에서도 캡처로 볼 수 있습니다.</p>
+
+<div class="strip">
+  <span><b>제작물 최신판</b> 포맷 18 · 파일 29</span>
+  <span><b>템플릿</b> 완료 6</span>
+  <span><b>콘텐츠·기능</b> 완료 1 · 대기 1 · 피드백 대기 4</span>
+  <span><b>결정 필요</b> 리플릿 규격 5 · 위쳌 2 · 이월 4</span>
+</div>
+
+<!-- ───────────────────────── 0 ───────────────────────── -->
+<h2 id="s0"><span class="num">00</span>제작물 최신판 총정리</h2>
+<p class="small">10/21 보고, 10/28 보고, 이번 주 작업을 합쳐 포맷마다 지금 기준이 되는 파일 하나와 그 앞 판본을 적었습니다. <b>최신판</b>은 피드백을 받을 파일, <b>판 이력</b>은 왼쪽이 최근입니다. 상태의 "확인 필요"는 세스코 확인이 남은 항목이 시안 안에 주황으로 남아 있다는 뜻입니다.</p>
+
+<table class="latest">
+<thead><tr><th style="width:18%">포맷</th><th style="width:30%">최신판</th><th>판 이력 · 비고</th><th class="c" style="width:11%">상태</th></tr></thead>
+<tbody>
+<tr class="grp"><td colspan="4">리플릿 — 제품 (10/28 실물 디자인형 규격)</td></tr>
+<tr><td>기본형</td><td><div class="v"><a href="../261026/리플릿_실물디자인형_기본형_프레쉬제닉Max_261028.html" target="_blank">프레쉬제닉 Max · 실물 디자인형</a><span class="d">10/28 · A4 앞·뒷면 · 성적서 각주화 · 지면 OK</span></div></td><td class="hist"><a href="../261026/리플릿_실물디자인형_프레쉬제닉Max·음식점로켓_261027.html#p" target="_blank">10/27 실물 디자인형 1차</a><span class="arr">←</span><a href="../261026/리플릿_제품_기본형_프레쉬제닉Max_시안_v2_261026.html" target="_blank">10/26 코드 초안 v2</a><span class="arr">←</span><s>10/22 v1</s>. 확인 필요: 월 요금 10월 기준, FITI 성적서 번호, 패키지 월 요금.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>기타형 · 관리 단계형</td><td><div class="v"><a href="../261026/리플릿_실물디자인형_기타형_관리단계형_에어컨클리닝_261028.html" target="_blank">에어컨 클리닝 · 실물 디자인형</a><span class="d">10/28 · STEP 01~06 → POINT → 서비스 안내 표</span></div></td><td class="hist"><a href="../261026/리플릿_제품_기타형_관리단계형_에어컨클리닝_시안_v2_261026.html" target="_blank">10/26 코드 초안 v2</a><span class="arr">←</span><s>10/22 v1</s>. 확인 필요: 가격(세스코몰 10월 미등재), 대상 에어컨 유형, STEP 02·05·06 세부, 케미컬 검증 기관.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>기타형 · 가격표형</td><td><div class="v"><a href="../261026/리플릿_실물디자인형_기타형_가격표형_마이랩마스터_261028.html" target="_blank">마이랩 마스터 · 실물 디자인형</a><span class="d">10/28 · 품목 × 핵심 장점 → 4단 가격표</span></div></td><td class="hist"><a href="../261026/리플릿_제품_기타형_라인업가격표형_마이랩마스터_시안_v1_261027.html" target="_blank">10/27 코드 초안 v1</a>. 확인 필요: 라인업 6종 구성, 멤버스가·할인율, 품목 2~6 상세 문안.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>기타형 · Q&amp;A형</td><td><div class="v"><a href="../261026/리플릿_실물디자인형_기타형_QA형_살균소독제70_261028.html" target="_blank">살균소독제 70 · 실물 디자인형</a><span class="d">10/28 · Q&amp;A → 구·신 비교표 → 법정 각주</span></div></td><td class="hist"><a href="../261026/리플릿_제품_기타형_QA규제대응형_살균소독제70_시안_v1_261027.html" target="_blank">10/27 코드 초안 v1</a>. 확인 필요: 승인 부처 표기, 주의사항 표준 문안, Q2·Q3 신규 문항 채택.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+
+<tr class="grp"><td colspan="4">리플릿 — 로켓 (11/02 실물 디자인형 · 10/27 샘플 형식)</td></tr>
+<tr><td>산업체</td><td><div class="v"><a href="../261026/리플릿_실물디자인형_로켓_산업체_식품공장_261102.html" target="_blank">식품공장 × 통합해충방제</a><a href="../261026/리플릿_실물디자인형_로켓_산업체_식품공장_프레쉬제닉Max_261102.html" target="_blank">식품공장 × 프레쉬제닉 Max</a><span class="d">11/02 · 원고는 10/26·27 v2 그대로</span></div></td><td class="hist"><a href="../261026/리플릿_로켓_산업체_식품공장_시안_v2_261026.html" target="_blank">10/26 v2</a> · <a href="../261026/리플릿_로켓_산업체_식품공장_프레쉬제닉Max_시안_v2_261027.html" target="_blank">10/27 v2</a><span class="arr">←</span><s>10/22 v1</s><span class="arr">←</span><a href="../261020/슬림온_리플릿_타입별_SiHAW_261019.html" target="_blank">10/19 슬림온 5종</a>(10/21 보고). 10/28 규격(성적서 각주화·앞면 푸터 축소)은 소급 결정 뒤 적용.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>소규모 사장님</td><td><div class="v"><a href="../261026/리플릿_실물디자인형_프레쉬제닉Max·음식점로켓_261027.html#r" target="_blank">음식점 × 마스터 식기세척기</a><a href="../261026/리플릿_실물디자인형_로켓_소규모_음식점_프레쉬제닉Max_261102.html" target="_blank">음식점 × 프레쉬제닉 Max</a><span class="d">10/27 · 11/02</span></div></td><td class="hist"><a href="../261026/리플릿_로켓_소규모_음식점_마스터식기세척기_시안_v2_261026.html" target="_blank">10/26 v2</a> · <a href="../261026/리플릿_로켓_소규모_음식점_프레쉬제닉Max_시안_v2_261027.html" target="_blank">10/27 v2</a><span class="arr">←</span><s>10/22 v1</s>. 확인 필요: 식기세척기 세척력·건조 수치, 시험성적서.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>가정집</td><td><div class="v"><a href="../261026/리플릿_실물디자인형_로켓_가정집_센스미_261102.html" target="_blank">가정집 × 센스미</a><a href="../261026/리플릿_실물디자인형_로켓_가정집_프레쉬제닉Max_261102.html" target="_blank">가정집 × 프레쉬제닉 Max</a><span class="d">11/02</span></div></td><td class="hist"><a href="../261026/리플릿_로켓_가정집_센스미_시안_v2_261026.html" target="_blank">10/26 v2</a> · <a href="../261026/리플릿_로켓_가정집_프레쉬제닉Max_시안_v2_261027.html" target="_blank">10/27 v2</a><span class="arr">←</span><s>10/22 v1</s>. 확인 필요: 프레쉬제닉 Max 가정집 적용 가능 여부와 가정용 요금.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+
+<tr class="grp"><td colspan="4">리플릿 — 프로모션</td></tr>
+<tr><td>제품형</td><td><div class="v"><a href="../261026/리플릿_프로모션_센스미_1안2안_실물시안_261027.html" target="_blank">센스미 1안 시즈널 · 2안 상시 · 실물 디자인형</a><span class="d">10/27 · 타이틀 3행 고정 · 제휴카드 혜택 기본 포함</span></div></td><td class="hist"><a href="../261026/리플릿_프로모션_센스미_1안2안_코드초안_261027.html" target="_blank">10/27 코드 초안형</a><span class="arr">←</span><a href="../261020/슬림온_리플릿_타입별_SiHAW_261019.html" target="_blank">10/19 슬림온 ⑤ 프로모션</a>. 프로모션 정보(기간·혜택·가격·조건)가 없으면 작업 전에 되묻는 규칙은 10/20 반영.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+
+<tr class="grp"><td colspan="4">카드뉴스</td></tr>
+<tr><td>템플릿</td><td><div class="v"><a href="../../index.html#d102" target="_blank">A/B/C 초안 생성 템플릿 v1.7</a><a href="../../index.html#d60" target="_blank">정보성 버전 · 테스트형 2종</a><span class="d">10/28 결정 · 10/30 마스터 반영</span></div></td><td class="hist">v1.6(10/20)<span class="arr">←</span>v1.5·v1.4. 현행 구조 = 기본형, 테스트형 2종(일상 상황형·경험 질문형)은 2~3편 발행 결과를 본 뒤 채택, 새 콘텐츠는 기본형 1안 + 추가안 1안, 마지막 장 커버 반복은 쓰지 않음(10/26).</td><td class="c"><span class="st done">완료</span></td></tr>
+<tr><td>매트리스 케어 편</td><td><div class="v"><a href="../261026/카드뉴스_가을매트리스케어_검수본_261026.html#main" target="_blank">경험 질문형 · 검수본</a><a href="../261026/카드뉴스_가을매트리스케어_스토리구성_3안_윤문_261027.html" target="_blank">스토리 구성 3안 (체크리스트·상담 Q&amp;A·작업일지)</a><span class="d">10/26 · 10/27 · 표지 후보 4 채택</span></div></td><td class="hist"><a href="../261026/카드뉴스_가을매트리스케어_골격변주6안_dh_261026.html" target="_blank">10/26 골격 변주 6안</a> · <a href="../261026/카드뉴스_가을매트리스케어_기본+테스트형_dh_261026.html" target="_blank">기본 + 테스트형</a>(임다해)<span class="arr">←</span><a href="../261020/카드뉴스_가을매트리스케어_ABC버전_원고_261020_최종.html" target="_blank">10/20 A/B/C 최종</a>. 3안은 발행 후보가 아니라 테스트 후보.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>배수구 편</td><td><div class="v"><a href="../261026/카드뉴스_배수구_구성안_검수본_261026.html" target="_blank">구성안 4종 · 검수본</a><span class="d">10/26 · 수사 컨셉형 · 원인 추적형 · 경험 질문형 · 연휴 프로모션형</span></div></td><td class="hist"><s>10/23 구성안 3종</s>. 10/21 예시 1안(후킹 → 일상 상황 → 문제 → 솔루션)과 2안(경험 질문 → 건강 문제 → 상품)을 둘 다 담음.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>에어컨 클리닝 편</td><td><div class="v"><a href="../261020/카드뉴스_에어컨클리닝_ABC버전_원고_261020_수정.html" target="_blank">A/B/C 원고 · 템플릿 v2.1 적용</a><span class="d">10/20 · 담당자 검수 반영</span></div></td><td class="hist"><s>10/16 A·B·C v3 장표 시안</s>. 템플릿 v1.6 적용 사례.</td><td class="c"><span class="st done">완료</span></td></tr>
+<tr><td>주방후드 편</td><td><div class="v"><a href="../261023/카드뉴스_주방후드_오해교정형_원고_261023.html" target="_blank">오해 교정형 · 파일럿</a><span class="d">10/23</span></div></td><td class="hist">스토리텔링 도입 후보 리서치(10/23)에서 나온 파일럿. 채택 여부 미정.</td><td class="c"><span class="st hold">보류</span></td></tr>
+
+<tr class="grp"><td colspan="4">라이프케어 매거진 · 제품 POP · 솔루션 페이지 · 장소별 추천</td></tr>
+<tr><td>매거진 · 카케어 Vol.14</td><td><div class="v"><a href="../261026/라이프케어매거진_Vol14_카케어_16P_시안_v4_수정본_261027.html" target="_blank">카케어 16P · v4 수정본</a><span class="d">10/27 · 가이드북(7p) 반영 · 셀프 체크 6항 도입부</span></div></td><td class="hist"><s>v3(10/27)</s><span class="arr">←</span><a href="../261020/라이프케어매거진_Vol14_카케어_16P_시안_261016.html" target="_blank">10/16 1차</a>. 확인 필요 5건(핸들 오염도 배수, 질환 표현, 티슈 원단, 세스코몰 혜택, 증발기 문장)과 "안심" 문구 교체.</td><td class="c"><span class="st todo">확인 대기</span></td></tr>
+<tr><td>매거진 · 미세플라스틱 Vol.15</td><td><div class="v"><a href="../261026/cesco_lifecare_vol15_microplastics_mockup.html" target="_blank">B · 흐름 전달 (목업)</a><a href="../261026/cesco_lifecare_vol15_microplastics_topic_only.html" target="_blank">A · 주제만 전달</a><span class="d">10/26 · A/B 테스트 완료 · B가 정확</span></div></td><td class="hist">스토리라인을 준 쪽(B)이 흐름이 정확했음. 발행용 편집은 미착수.</td><td class="c"><span class="st done">완료</span></td></tr>
+<tr><td>제품 POP</td><td><div class="v"><a href="../../index.html#d95" target="_blank">헤드라인 5안 규칙 (d95 §6)</a><a href="../261022/제품POP_제품별특장점10_16종_261022.html" target="_blank">16종 특장점 10개 · 기준 USP · 5안 샘플</a><span class="d">10/22 신설 · 10/26 개정(장식 문장 제거)</span></div></td><td class="hist"><a href="../261022/제품POP_헤드라인·보조문장_샘플16종_261022.html" target="_blank">10/22 헤드라인·보조 문장 샘플 16종</a> · <a href="../261020/제품POP_공간POP_샘플_화장실_블루제닉_에어퍼퓸100_261020.html" target="_blank">10/20 화장실 공간 POP 샘플</a>(10/21 보고). 다음: POD 2개로 공간별·상품별 테스트.</td><td class="c"><span class="st done">완료</span></td></tr>
+<tr><td>솔루션 페이지 3종</td><td><div class="v"><a href="../261026/솔루션페이지_환경가전_공기청정기_판테온_1안_이렇게까지도입_261027.html" target="_blank">판테온 1안 · "이렇게까지?" 도입</a><a href="../261026/솔루션페이지_환경가전_공기청정기_판테온_2안_WhyCESCO도입_261027.html" target="_blank">판테온 2안 · Why CESCO 도입</a><a href="../261026/솔루션페이지_서비스_빈대방제_261027.html" target="_blank">서비스 · 빈대방제</a><a href="../261026/솔루션페이지_서비스_매트리스케어_261027.html" target="_blank">서비스 · 매트리스 케어</a><a href="../261026/솔루션페이지_생활위생용품_세스코마이랩_261027.html" target="_blank">생활위생용품 · 세스코 마이랩</a><span class="d">10/27 · 공동 작업</span></div></td><td class="hist"><s>10/22 1차 시안 3종</s>. 결정 대기: 환경가전 도입 1안/2안, 하단 CTA·FAQ 추가 여부, 통합해충방제·IPM 예외 처리.</td><td class="c"><span class="st todo">결정 대기</span></td></tr>
+<tr><td>장소별 추천 페이지</td><td><div class="v"><a href="../261026/장소별추천_시안_가정집_외식업장_유통시설_v6_261027.html" target="_blank">가정집 · 외식업장 · 유통시설 v6 (기존 페이지 중심)</a><span class="d">10/27</span></div></td><td class="hist"><a href="../261022/장소별추천_시안_외식업장_261022.html" target="_blank">10/22 외식업장 단독안</a> · <a href="../261022/장소별추천_해외사례_구조보기_261022.html" target="_blank">해외 사례 9곳 구조</a>. 사업부 재편 이슈로 비즈별 템플릿은 보류(10/21).</td><td class="c"><span class="st hold">보류</span></td></tr>
+
+<tr class="grp"><td colspan="4">콘텐츠 · 기능</td></tr>
+<tr><td>위쳌 사업장 상세</td><td><div class="v"><a href="../261028/wecheck_draft_261028.html" target="_blank">최종 채택본 · 기본 템플릿 + 사장님 선택·수정</a><a href="../261028/wecheck_draft_261028_치킨집.html" target="_blank">치킨집 단독</a><a href="../261028/wecheck_draft_261028_산후조리원.html" target="_blank">산후조리원 단독</a><span class="d">10/30 수정 7건 반영 · 11/02 문장 윤문</span></div></td><td class="hist"><a href="../261028/index.html" target="_blank">10/28 풀페이지 9종 비교</a>(고깃집·치킨집·산후조리원 × A 수치형·B 인터뷰형·C 상세페이지형)<span class="arr">←</span><a href="../261026/위쳌_치킨집_상세페이지형_시안_261027.html" target="_blank">10/27 치킨집 A/B</a>·<a href="../261026/위쳌_사업장상세_시안_업종별변형_261027.html" target="_blank">업종별 변형</a><span class="arr">←</span><a href="../261026/위쳌_위생정보_개선안_261023.html" target="_blank">10/23 위생정보 개선안</a><span class="arr">←</span><s>10/20 위생정보 카드 1·2·3안</s>(10/21 보고).</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>우수사례 · 명인</td><td><div class="v"><a href="../../index.html#d99" target="_blank">작성 가이드 v2 + 글·디자인 템플릿 (d99)</a><a href="../261026/우수사례_명인_디자인적용_에어커튼포충등_261021.html" target="_blank">명인 · 에어커튼·포충등 디자인 적용</a><span class="d">10/21 · cesco-case-templates v2.1</span></div></td><td class="hist">예시 4건: <a href="../261021/우수사례_템플릿예시_step_gov_health_center.html" target="_blank">STEP형 보건소</a> · <a href="../261021/우수사례_템플릿예시_step_ship_sipm.html" target="_blank">STEP형 외항선</a> · <a href="../261021/우수사례_템플릿예시_master_aircurtain.html" target="_blank">명인형 에어커튼</a> · <a href="../261021/우수사례_템플릿예시_master_ship_sipm.html" target="_blank">명인형 외항선</a><span class="arr">←</span><s>10/13 템플릿 적용본 2건</s>. 세스코 실제 적용본(10/27 예정)을 받으면 수정 패턴 반영.</td><td class="c"><span class="st hold">대기</span></td></tr>
+<tr><td>상품 상세페이지</td><td><div class="v"><a href="../261013/세스코_에어컨전문클리닝_상세페이지_261013.html" target="_blank">에어컨 전문 클리닝 (서비스)</a><a href="../261013/상세페이지_에어퍼퓸디퓨저500ml_새디자인_261013.html" target="_blank">에어퍼퓸 디퓨저 500ml (새 디자인)</a><span class="d">10/13</span></div></td><td class="hist">보고 흐름 밖에서 만든 시안. 11/02 대시보드 등재.</td><td class="c"><span class="st done">완료</span></td></tr>
+<tr><td>로켓 기획전</td><td><div class="v"><a href="../261016/로켓베이비_기획전_재구성_시안_261016.html" target="_blank">로켓베이비 · 아기를 위한 세스코 위생 가이드 (재구성 시안)</a><span class="d">10/16</span></div></td><td class="hist">10/16 초안 검증 보고의 재구성안. 이후 진행 없음.</td><td class="c"><span class="st hold">보류</span></td></tr>
+<tr><td>CRM 메시지 · 로켓별 전략</td><td><div class="v"><span>CRM 정보성·홍보성 템플릿 공용 프로젝트 (10/20 개설)</span><span>로켓별 전략 역추출 가이드 (cesco-skills, 10/20)</span></div></td><td class="hist">10/21 보고 항목. 정성 포인트 문장 코퍼스는 세스코 실발송 사례를 받는 대로 쌓음. 역추출은 요식업 멘트 7개로 검증, 코퍼스가 적어 편차 안내.</td><td class="c"><span class="st done">완료</span></td></tr>
+
+<tr class="grp"><td colspan="4">공통 · 마스터 템플릿</td></tr>
+<tr><td>공통 브랜드 언어 원칙</td><td><div class="v"><a href="../../index.html#d01" target="_blank">v2026.10.13 (가이드라인 v28 기준)</a><span class="d">10/13 · 어휘 교정 29종 422곳(10/20)</span></div></td><td class="hist">표기법 가이드라인 최종 컨펌과 단종 제품 처리가 확정되면 버전을 함께 올림(10/21 대기 항목, 미수령).</td><td class="c"><span class="st todo">컨펌 대기</span></td></tr>
+<tr><td>마스터 템플릿 대시보드</td><td><div class="v"><a href="https://cescomktsh-wq.github.io/cesco-templates/" target="_blank">cescomktsh-wq.github.io/cesco-templates</a><span class="d">11/02 · 포맷 17 · 문서 62 · 시안 갤러리 66건</span></div></td><td class="hist">10/28 결정 반영(d59·d60·d102), 10/26 POP 개정(d95), 우수사례 템플릿(d99), 시안 갤러리와 문서별 시안 띠(20개 문서) 추가. 상세는 01 템플릿 표.</td><td class="c"><span class="st done">완료</span></td></tr>
+</tbody>
+</table>
+
+<!-- ───────────────────────── 1 ───────────────────────── -->
+<h2 id="s1"><span class="num">01</span>템플릿</h2>
+<p class="small">상태는 11/02 기준입니다. 10/28 미팅 결정 6건은 모두 마스터 템플릿과 시안에 반영했습니다.</p>
+
+<table>
+<thead><tr><th>포맷</th><th class="c">상태</th><th>이번 주 반영</th><th>산출물</th></tr></thead>
+<tbody>
+
+<tr><td><b>리플릿 · 제품</b><br><span class="small">실물 디자인형 규격</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li><b>10/28 결정 6건을 규격으로 만들었습니다.</b> ① 실물 규격은 A4 세로 1장 앞·뒷면(2P), 접지 없음이 기본. ② 앞면은 핵심(고객 말 → 문제 → 원인·근거 → 해결책 → 상품 선언), 뒷면은 세부(특장점 → 스펙·가격 → 근거 → 연계·문의 → 푸터)이고 같은 문장을 앞뒤에서 반복하지 않습니다(12자 이상 중복 금지 · 상품 정의문 앞면 1회 · 수치 USP 1회 · 4줄 푸터는 뒷면만). ③ 시험성적서 이미지는 넣지 않고 근거 패널(헤드 1줄 + 번호 각주 + 환경 문구)로만 씁니다. ④ 기타형 3종(가격표형·관리 단계형·Q&amp;A형)은 앞면이 기본형과 같고 뒷면 중심축만 다릅니다. ⑤ 공란 금지를 보강해 면마다 여백을 흡수하는 이미지 자리를 1개 이상 두고, 시안이 면마다 "지면 OK / 초과 N mm"를 표시합니다. ⑥ 기본형·기타형 모두 대시보드에서 실물 형태로 봅니다.</li>
+<li>이 규격으로 <b>실물 디자인형 4종</b>을 다시 앉혔습니다. 원고는 10/26~27 시안 그대로이고, 네 건 모두 앞·뒷면 "지면 OK", 휴대폰 폭에서 가로 스크롤 없음, 브라우저 인쇄 A4 2장을 확인했습니다. 성적서 2컷 자리는 각주 패널로, 4줄 푸터는 뒷면에만, 에어컨 클리닝 STEP과 POINT의 같은 문장은 분리, 살균소독제 70 Q1 답변은 앞면과 겹치지 않게 "선택 기준"으로만 답하게 고쳤습니다.</li>
+<li>마스터 템플릿 <a href="../../index.html#d59" target="_blank">제품 리플릿(d59)</a>에 §5 "실물 디자인형 · 앞뒷면 역할 분리 · 기타형 3종"을 넣었습니다. 유형 선택 표에서 시안 4종이 바로 열립니다. 규격 전문과 출고 점검표는 cesco-skills <code>cesco-leaflet/references/leaflet-real-design-spec.md</code>입니다. 빌더에는 앞뒷면 같은 문장·성적서 이미지 자리·STEP↔POINT 반복 점검을 추가했습니다.</li>
+<li><span class="need">[확인 필요]</span> 공통: 인쇄 판형(접지 여부), 사업부 컬러(시안은 네이비 단일), © 코드(마스터·살균소독제 70은 임시값). 제품별 항목은 00 표의 비고와 같습니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../261026/리플릿_실물디자인형_기본형_프레쉬제닉Max_261028.html" target="_blank"><span class="type">기본형 · 실물 디자인형</span>프레쉬제닉 Max</a><a class="chip" href="../261026/리플릿_실물디자인형_기타형_관리단계형_에어컨클리닝_261028.html" target="_blank"><span class="type">관리 단계형</span>에어컨 클리닝</a><a class="chip" href="../261026/리플릿_실물디자인형_기타형_가격표형_마이랩마스터_261028.html" target="_blank"><span class="type">가격표형</span>마이랩 마스터</a><a class="chip" href="../261026/리플릿_실물디자인형_기타형_QA형_살균소독제70_261028.html" target="_blank"><span class="type">Q&amp;A형</span>살균소독제 70</a><a class="chip old" href="../../index.html#d59" target="_blank"><span class="type">마스터</span>d59 §5 규격</a></div></td></tr>
+
+<tr><td><b>리플릿 · 로켓</b><br><span class="small">산업체 / 소규모 / 가정집</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li>10/28 보고에서 코드 초안형으로만 올렸던 로켓 리플릿 5건을 <b>실물 디자인형</b>으로 만들었습니다. 10/27 실물 디자인형 샘플(프레쉬제닉 Max 기본형·음식점 식기세척기)과 같은 형식이고, 원고는 10/26·27 v2 그대로입니다. 초안과 자동 대조해 지면 카피가 빠진 곳이 없음을 확인했습니다.</li>
+<li>2면 제목처럼 초안에 없던 자리에는 새 카피를 쓰지 않고 상품명·솔루션명만 넣었습니다. 초안의 [확인 필요] 메모는 그대로 남아 있습니다.</li>
+<li>이 5건은 10/27 샘플 형식이라 성적서 이미지 자리와 앞면 4줄 푸터가 남아 있습니다. 10/28 규격을 이전 시안에 소급할지 결정해 주시면 제품 리플릿과 같은 형식으로 맞추겠습니다(03 결정 사항 4).</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../261026/리플릿_실물디자인형_로켓_산업체_식품공장_261102.html" target="_blank"><span class="type">산업체</span>식품공장 통합해충방제</a><a class="chip" href="../261026/리플릿_실물디자인형_로켓_산업체_식품공장_프레쉬제닉Max_261102.html" target="_blank"><span class="type">산업체</span>식품공장 프레쉬제닉 Max</a><a class="chip" href="../261026/리플릿_실물디자인형_로켓_소규모_음식점_프레쉬제닉Max_261102.html" target="_blank"><span class="type">소규모</span>음식점 프레쉬제닉 Max</a><a class="chip" href="../261026/리플릿_실물디자인형_로켓_가정집_센스미_261102.html" target="_blank"><span class="type">가정집</span>센스미</a><a class="chip" href="../261026/리플릿_실물디자인형_로켓_가정집_프레쉬제닉Max_261102.html" target="_blank"><span class="type">가정집</span>프레쉬제닉 Max</a><a class="chip old" href="../261026/리플릿_실물디자인형_프레쉬제닉Max·음식점로켓_261027.html#r" target="_blank"><span class="type">10/27 · 소규모</span>음식점 식기세척기</a></div></td></tr>
+
+<tr><td><b>카드뉴스</b><br><span class="small">10/28 결정 반영</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li>10/28 보고 결정을 마스터 템플릿에 반영했습니다(10/30). <b>현행 구조 = 기본형</b>이고, 유형과 별개의 축으로 <b>테스트형 2종</b>(일상 상황형 · 경험 질문형, 검증 중)을 두었습니다. 채택 여부는 2~3편 발행 결과를 본 뒤 정하고, 그때까지 "검증 중" 표시를 유지합니다.</li>
+<li>새 콘텐츠는 <b>기본형 1안 + 추가안 1안, 총 2안</b>으로 냅니다. 마지막 장의 커버 반복은 10/26부터 쓰지 않습니다.</li>
+<li>A/B/C 초안 생성 템플릿은 v1.7입니다. 기본 산출 2안(§0), 전개 방식 게이트(§3-3), 테스트형 골격 2개(§5-3), 참조 비중 절(§5-4), 훅 유형 ⑥⑦, 변주 매트릭스 축 2개, 검수 항목 3개를 더했습니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../../index.html#d60" target="_blank"><span class="type">마스터</span>d60 정보성 · 테스트형 2종</a><a class="chip" href="../../index.html#d102" target="_blank"><span class="type">마스터</span>d102 A/B/C 템플릿 v1.7</a><a class="chip old" href="../261026/카드뉴스_배수구_구성안_검수본_261026.html" target="_blank"><span class="type">10/28 보고</span>배수구 구성안 4종</a><a class="chip old" href="../261026/카드뉴스_가을매트리스케어_스토리구성_3안_윤문_261027.html" target="_blank"><span class="type">10/28 보고</span>매트리스 케어 3안</a></div></td></tr>
+
+<tr><td><b>제품 POP</b><br><span class="small">헤드라인 5안 규칙</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li>10/22에 만든 헤드라인 생성 규칙을 10/26에 개정했습니다. 제품마다 <b>가이드 공식 카피 1개 + 라벨이 서로 다른 5안</b>(① 관리 선언형 · ② 관리 범위형 · ③ 수치·인증형 · ④ 상시 작동형 · ⑤ 정기 관리형)을 내고, 담당자가 고릅니다. 수치는 ③형에만, 시험기관·조건이 있는 것만 씁니다.</li>
+<li>장식 문장을 금지했습니다. 비유·대구·격언형·의인화·과장 수식·"당신" 호명은 헤드라인에 쓰지 않습니다(10/26 반려 사례: "공기가 탁해지면 먼저 / 살균엔진이 가동됩니다"). 공간 POP 보조 문장은 뱅크 25문장에서 태도 축이 다른 2~3개를 고릅니다.</li>
+<li>마스터 템플릿 <a href="../../index.html#d95" target="_blank">제품 POP(d95)</a>에 §6으로 넣었습니다. 16종 특장점 10개·기준 USP·5안 샘플 파일도 대시보드에서 바로 열립니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../../index.html#d95" target="_blank"><span class="type">마스터</span>d95 §6 헤드라인 5안</a><a class="chip" href="../261022/제품POP_제품별특장점10_16종_261022.html" target="_blank"><span class="type">16종</span>특장점 10 · 기준 USP · 5안</a><a class="chip old" href="../261022/제품POP_헤드라인·보조문장_샘플16종_261022.html" target="_blank"><span class="type">10/22</span>헤드라인 샘플 16종</a></div></td></tr>
+
+<tr><td><b>우수사례 템플릿</b><br><span class="small">글 + 디자인</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li>10/21 전달한 우수사례·명인 템플릿(cesco-case-templates v2.1)을 마스터 템플릿 <a href="../../index.html#d99" target="_blank">작성 가이드 v2(d99)</a> §7에 넣었습니다. 한 건의 계약 서사면 STEP형, 한 사람의 평소 원칙 5개면 명인형입니다. 글은 가이드로 쓰고 디자인은 HTML 템플릿을 복사해 텍스트만 바꿉니다.</li>
+<li>예시 4건(STEP형 보건소·외항선, 명인형 에어커튼·외항선)을 대시보드에서 바로 열 수 있습니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../../index.html#d99" target="_blank"><span class="type">마스터</span>d99 §7 템플릿</a><a class="chip" href="../261021/우수사례_템플릿예시_step_ship_sipm.html" target="_blank"><span class="type">STEP형</span>외항선 S-IPM</a><a class="chip" href="../261021/우수사례_템플릿예시_master_aircurtain.html" target="_blank"><span class="type">명인형</span>에어커튼</a></div></td></tr>
+
+<tr><td><b>마스터 템플릿 대시보드</b><br><span class="small">시안 갤러리</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li>10월에 만든 시안 66건을 캡처해 <b>시안 갤러리</b>(채널 10그룹)를 만들었고, 시안이 있는 템플릿 문서 20개에는 도입 문단 바로 아래 "이 템플릿으로 만든 시안" 띠를 넣었습니다. 글로 된 규칙보다 완성된 모습부터 보고 템플릿을 고를 수 있습니다. 썸네일을 누르면 전체 캡처, "열기"는 실제 페이지입니다.</li>
+<li>리플릿 카드는 전부 실물 디자인형을 보여 주고, 코드 초안형은 카드의 "초안" 링크로 남겼습니다.</li>
+<li>보고 흐름 밖에 있던 최종 HTML(상품 상세페이지 2건, 로켓 기획전, 슬림온 리플릿 5종, 카드뉴스 원고 5건, POP 2건, 우수사례 예시 4건)도 함께 올렸습니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../../index.html#d103" target="_blank"><span class="type">마스터</span>시안 갤러리 66건</a><a class="chip old" href="../../index.html#d00" target="_blank"><span class="type">마스터</span>마스터 인덱스</a></div></td></tr>
+</tbody>
+</table>
+
+<!-- ───────────────────────── 2 ───────────────────────── -->
+<h2 id="s2"><span class="num">02</span>콘텐츠 · 기능</h2>
+<table>
+<thead><tr><th>항목</th><th class="c">상태</th><th>이번 주 반영</th><th>산출물</th></tr></thead>
+<tbody>
+
+<tr><td><b>위쳌(WeCheck)</b><br><span class="small">사업장 상세 최종 채택본</span></td><td class="c"><span class="st done">완료</span><br><span class="st todo" style="margin-top:4px">피드백 대기</span></td><td><ul>
+<li>10/28 보고의 풀페이지 9종(고깃집·치킨집·산후조리원 × A 수치형·B 인터뷰형·C 상세페이지형) 가운데 <b>"기본 템플릿 + 사장님 선택·수정"</b> 구조를 최종 채택본으로 정리했습니다. 기본 템플릿은 이미 채워져 있고, 사장님은 2~3개만 고르고 원하면 고칩니다. 편집 화면과 손님 화면이 실시간으로 연동되고, 치킨집은 사장님, 산후조리원은 원장님 호칭입니다.</li>
+<li><b>10/30 수정 7건</b>(엑셀 「시하 내부 위쳌 텍스트 작업_261020_최종반영」 기준)을 반영했습니다. ① 장소정보 탭(네이버식 기본 정보 + 세스코가 특별히 체크한 장소 정보) ② 네모 스티커는 실제 솔루션 항목만 두고 블루/화이트 멤버스로 색 구분 ③ 도구 측정 블록(악취·배수구 오염도, 기준 범위 통과 표시)을 스티커 줄과 분리해 하단으로 ④ 문장 손질 ⑤ 상세페이지형 + 장소정보 탭을 업종별 맨 앞에 크게 ⑥ 관리 구조(등록 정보 / 세스코 영역 변주 불가 / 사장님 선택) ⑦ 네모 스티커 명칭 후보표(가칭 "체크 스탬프").</li>
+<li>장소정보 탭 UI는 <b>A 아이콘 그리드 · B 손님 질문형 · C 기본정보 통합</b> 3안을 비교 섹션으로 넣고 대표 화면에서 골라 볼 수 있게 했습니다. 위생 정보 카드는 스와이프형(산후조리원 10/23 개선안 1안 5장, 치킨집 5장)이고, CT Way PPT 시연 화면 기준으로 위쳌 AI 카드·위생정보 카드 캐러셀 디자인을 맞췄습니다.</li>
+<li>11/02에 항목 설명·안내문·표·캡션을 사람이 쓴 말투로 손질했습니다. 문진 원문, 개선안 원문, 수치, 상호는 그대로입니다. 치킨집과 산후조리원 업종별 단독 페이지도 따로 두었습니다.</li>
+<li><span class="need">[확인 필요]</span> 장소정보 탭 UI 3안 중 선택, 체크 스탬프 명칭, 10/30 수정 7건 반영 방향. 다음 업종(고깃집 등 1차 범위 2~3개)은 피드백 뒤 같은 구조로 확장합니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../261028/wecheck_draft_261028.html" target="_blank"><span class="type">최종 채택본</span>치킨집 · 산후조리원</a><a class="chip" href="../261028/wecheck_draft_261028_치킨집.html" target="_blank"><span class="type">업종별 단독</span>치킨집</a><a class="chip" href="../261028/wecheck_draft_261028_산후조리원.html" target="_blank"><span class="type">업종별 단독</span>산후조리원</a><a class="chip old" href="../261028/index.html" target="_blank"><span class="type">10/28 보고</span>9종 비교</a><a class="chip old" href="../261028/위쳌_전체보기_9종_261028.html" target="_blank"><span class="type">10/28</span>9종 전체보기</a></div></td></tr>
+
+<tr><td><b>우수사례</b></td><td class="c"><span class="st hold">대기</span></td><td><ul>
+<li>세스코 담당자의 실제 적용본과 수정 이유 코멘트(10/27 예정)는 아직 받지 못했습니다. 받으면 수정 패턴을 분석해 템플릿에 반영하고, 변경된 마케팅 포털 UI/UX도 함께 맞춥니다.</li>
+<li>그 사이 10/21 템플릿 묶음을 마스터 템플릿에 등재해(01 표), 적용본이 오면 바로 대조할 수 있게 했습니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip old" href="../261026/우수사례_명인_디자인적용_에어커튼포충등_261021.html" target="_blank"><span class="type">명인 · 에어커튼·포충등</span>디자인 적용 시안</a></div></td></tr>
+
+<tr><td><b>10/28 보고 피드백 대기분</b><br><span class="small">솔루션 페이지 · 프로모션 리플릿 · 매거진 · 장소별 추천</span></td><td class="c"><span class="st todo">피드백 대기</span></td><td><ul>
+<li>솔루션 페이지 3종(판테온 1안·2안, 빈대방제, 매트리스 케어, 마이랩), 프로모션 리플릿(센스미 1안·2안), 라이프케어 매거진 카케어 v4·미세플라스틱 A/B, 장소별 추천 v6는 10/28 보고 그대로이며 피드백을 기다리고 있습니다. 최신 파일은 00 표에 있습니다.</li>
+<li>매거진 카케어는 확인 필요 5건과 "안심" 문구 교체 여부를 확정해 주시면 반영합니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip old" href="../261026/index.html" target="_blank"><span class="type">10/28 보고</span>보고 자료 전체</a></div></td></tr>
+</tbody>
+</table>
+
+<!-- ───────────────────────── 3 ───────────────────────── -->
+<h2 id="s3"><span class="num">03</span>다음 주 · 세스코 대기 · 결정</h2>
+
+<h3>다음 주 할 일</h3>
+<table>
+<thead><tr><th>항목</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td><b>리플릿 · 로켓</b></td><td>10/28 규격 소급이 결정되면 실물 디자인형 5건을 제품 리플릿과 같은 형식(성적서 각주화·앞면 푸터 축소·지면 OK 배지)으로 맞춥니다.</td></tr>
+<tr><td><b>위쳌</b></td><td>피드백 반영 뒤 1차 범위 업종 2~3개(고깃집 등)를 같은 "기본 템플릿 + 사장님 선택·수정" 구조로 확장합니다. 매장 종류별 소개글 1개씩 포함.</td></tr>
+<tr><td><b>제품 POP</b></td><td>헤드라인 5안 규칙으로 POD 2개(공간별·상품별) 테스트. 과제는 블루제닉 + 에어퍼퓸100 화장실 공간 POP입니다(10/21 보고 이월).</td></tr>
+<tr><td><b>우수사례</b></td><td>세스코 적용본을 받으면 수정 패턴을 템플릿에 반영.</td></tr>
+<tr><td><b>카드뉴스</b></td><td>테스트형 2종으로 발행 원고 2~3편을 만들어 검증. 발행 결과를 본 뒤 채택 여부를 정합니다.</td></tr>
+<tr><td><b>솔루션 페이지 · 프로모션 리플릿 · 매거진</b></td><td>피드백 후 반영 예정.</td></tr>
+</tbody>
+</table>
+
+<h3>세스코에서 받을 것</h3>
+<table>
+<thead><tr><th>항목</th><th class="c">상태</th><th>메모</th></tr></thead>
+<tbody>
+<tr><td>우수사례 실제 적용본 + 수정 이유 코멘트</td><td class="c"><span class="st todo">미수령</span></td><td>10/27(화) 예정이었음. 포털 UI/UX 변경본 경로 포함.</td></tr>
+<tr><td>위쳌 10/30 수정본 피드백</td><td class="c"><span class="st todo">확인 요청</span></td><td>장소정보 탭 UI 3안 선택, 체크 스탬프 명칭, 다음 업종 순서.</td></tr>
+<tr><td>리플릿 실물 디자인형 4종 확인 항목</td><td class="c"><span class="st todo">확인 요청</span></td><td>월 요금 10월 기준, 성적서 번호, 에어컨 클리닝 가격·대상 유형, 마스터 라인업 6종·멤버스가, 살균소독제 70 부처 표기·주의사항 문안.</td></tr>
+<tr><td>빈대방제 페이지 수치 출처</td><td class="c"><span class="st todo">확인 요청</span></td><td>10/28 이월. 번식 수치, 흡혈량, 객실 확산, 폐쇄 기간, 탐지견 성공률, 피해 사례 2건.</td></tr>
+<tr><td>최상급 표현 기준</td><td class="c"><span class="st todo">확인 요청</span></td><td>10/28 이월. "국내 유일 빈대 탐지견", "국내 최초 2 in 1 공기청정기", "국내 유일 에어리바운드", "업계 최다 6가지 센서"의 비교 범위와 기준 시점.</td></tr>
+<tr><td>공기청정기 페이지 각주</td><td class="c"><span class="st todo">확인 요청</span></td><td>10/28 이월. 극초미세먼지 입자 크기가 헤드라인 "0.1㎛ 이하", 각주 "0.01μm 이하"로 다름.</td></tr>
+<tr><td>생활위생용품 제품 단위 페이지</td><td class="c"><span class="st todo">확인 요청</span></td><td>10/28 이월. 공식 홈페이지 게시 위치와 대상 제품 범위.</td></tr>
+<tr><td>표기법 가이드라인 최종 컨펌 · 단종 제품 처리</td><td class="c"><span class="st todo">대기</span></td><td>10/21 이월. 컨펌이 나면 공통 브랜드 언어 원칙(d01) 버전을 함께 올립니다.</td></tr>
+<tr><td>CRM 실발송 사례 · 감사 카드 등 따뜻한 표현 문장</td><td class="c"><span class="st todo">대기</span></td><td>10/21 이월. "정성 포인트 문장" 코퍼스에 쌓습니다.</td></tr>
+</tbody>
+</table>
+
+<h3>결정이 필요한 것</h3>
+<div class="box amber">
+  <b class="h">리플릿 실물 디자인형 규격 (10/28 변경 요약 §6)</b>
+  <ol>
+    <li><b>판형 기본값</b> A4 세로 낱장 앞·뒷면(2P)으로 둔 것이 맞는지. 2단·3단 접지를 기본으로 하려면 면 역할을 "표지면 / 내지 / 뒷표지"로 바꿉니다.</li>
+    <li><b>앞면 푸터 축소</b> 4줄 푸터·©·명함스티커를 뒷면에만 두고 앞면은 로크업 + 전화 1줄로 한 것. 앞면에도 4줄 푸터를 원하면 중복 제거 규칙 5만 뺍니다.</li>
+    <li><b>각주 번호 체계</b> 앞면 → 뒷면 연속 번호로 정했습니다. 면마다 1)부터 다시 시작할지.</li>
+    <li><b>성적서 각주화 소급 범위</b> 10/26~27 시안과 11/02 로켓 디자인형 5건에 남은 성적서 이미지 자리와 앞면 푸터를 지금 고칠지, 다음 수정 때 함께 고칠지.</li>
+    <li><b>기타형 코드명</b> 빌더는 S(관리 단계형)·P(가격표형)·Q(Q&amp;A형)입니다. 보고 자료의 "기타형 A/B/C" 표기와 맞출지.</li>
+  </ol>
+  <b class="h">위쳌</b>
+  <ol start="6">
+    <li><b>장소정보 탭 UI</b> A 아이콘 그리드 / B 손님 질문형 / C 기본정보 통합 중 선택.</li>
+    <li><b>네모 스티커 명칭</b> 가칭 "체크 스탬프"를 포함한 후보표에서 선택.</li>
+  </ol>
+  <b class="h">10/28 이월</b>
+  <ol start="8">
+    <li><b>판테온 원천 자료 정정</b> 냄새 센서 설명("조리 중 냄새" → 건축자재·페인트 유기화합물 냄새), 디퓨저 "퍼퓸 등급" → "고함량 향료 사용".</li>
+    <li><b>환경가전 솔루션 페이지</b> 도입을 1안(제품력 먼저)과 2안(Why CESCO 먼저) 중 어느 쪽으로 갈지, 하단 CTA와 FAQ 2문항 추가 여부.</li>
+    <li><b>통합해충방제·IPM</b> 예외 처리 방식. A 전용 템플릿 등재(권고) / B 서비스형 확장 모듈 / C 템플릿 대상 제외.</li>
+    <li><b>카드뉴스 테스트형</b> 일상 상황형·경험 질문형 둘 다 발행 검증할지, 하나만 둘지.</li>
+  </ol>
+</div>
+
+<div class="foot">
+  산출물은 표의 버튼으로 열립니다. 웹 주소: <a href="https://cescomktsh-wq.github.io/cesco-templates/reports/261102/" target="_blank">cescomktsh-wq.github.io/cesco-templates/reports/261102/</a> · 이전 보고: <a href="../261026/index.html" target="_blank">10/28 보고 자료</a> · 모든 시안 캡처: <a href="../../index.html#d103" target="_blank">마스터 템플릿 시안 갤러리</a></div>
+
+</div>
+</body>
+</html>
