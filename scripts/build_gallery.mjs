@@ -14,6 +14,7 @@ let html = fs.readFileSync(indexPath, 'utf8');
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const href = f => f.split('/').map(encodeURIComponent).join('/');
+const link = it => href(it.file) + (it.hash ? '#' + it.hash : '');
 const docTitle = {};
 for (const m of html.matchAll(/<article class="doc" id="(d\d+)"[\s\S]*?<span class="cr-label">([^<]*)<\/span>/g)) docTitle[m[1]] = m[2];
 const tplLabel = id => docTitle[id] ? `${id} ${docTitle[id]}` : id;
@@ -28,9 +29,10 @@ function card(it, skipTpl) {
   const thumb = `${capDir}/${it.id}_thumb.jpg`, full = `${capDir}/${it.id}_full.jpg`;
   const meta = [it.date.replace(/^2026-/, '').replace('-', '/'), it.ver].filter(Boolean).join(' · ');
   let c = `<figure class="gal-card${it.star ? ' star' : ''}" data-gal-item="${it.id}">`;
-  c += `<button type="button" class="gal-thumb" data-full="${full}" data-open="${href(it.file)}" data-title="${esc(it.type + ' — ' + it.title)}" aria-label="${esc(it.title)} 전체 캡처 보기"><img src="${thumb}" alt="" loading="lazy" width="640" height="800"></button>`;
+  c += `<button type="button" class="gal-thumb" data-full="${full}" data-open="${link(it)}" data-title="${esc(it.type + ' — ' + it.title)}" aria-label="${esc(it.title)} 전체 캡처 보기"><img src="${thumb}" alt="" loading="lazy" width="640" height="800"></button>`;
   c += `<figcaption><span class="gal-type">${esc(it.type)}${it.star ? ' <em>★</em>' : ''}</span><b class="gal-title">${esc(it.title)}</b><span class="gal-meta">${esc(meta)}</span>`;
-  c += `<span class="gal-actions"><a class="gal-open" href="${href(it.file)}" target="_blank" rel="noopener">열기 ↗</a>`;
+  c += `<span class="gal-actions"><a class="gal-open" href="${link(it)}" target="_blank" rel="noopener">열기 ↗</a>`;
+  if (it.draft) c += `<a class="gal-draft" href="${href(it.draft)}" target="_blank" rel="noopener" title="원고 확인용 코드 초안형">초안</a>`;
   for (const t of it.tpl) if (t !== skipTpl) c += `<button type="button" class="xref gal-xref" data-goto="${t}" title="${esc(tplLabel(t))}">${t}</button>`;
   return c + `</span></figcaption></figure>`;
 }
@@ -54,7 +56,7 @@ for (const g of groups) {
   for (const it of g.items) body += card(it);
   body += `</div></section>`;
 }
-body += `<h2 id="d103-s${groups.length + 1}"><span class="secnum">${String(groups.length + 1).padStart(2, '0')}</span>근거와 이력</h2><ul><li>${capDate}: reports/261020·261022·261026·261028 폴더의 시안 HTML ${total}건을 Edge 헤드리스(1280px 폭)로 캡처. 썸네일은 상단 1600px, 전체 캡처는 5200px까지 찍고 아래 빈 여백을 잘랐습니다. 탭·스와이프·버튼이 있는 시안은 첫 화면 기준이라 실제 페이지와 다를 수 있습니다.</li><li>포함하지 않은 파일: 보고 자료 2건(reports/261026/index.html · reports/261028/index.html), 옛 주소 안내 페이지, 엑셀·이미지·스크립트.</li><li>시안이 늘면 <code>${capDir}/manifest.json</code>에 항목을 추가하고 <code>node scripts/capture_reports.mjs</code> → <code>node scripts/build_gallery.mjs</code> 순서로 다시 만듭니다. 캡처 1건당 2초쯤 걸립니다.</li></ul>`;
+body += `<h2 id="d103-s${groups.length + 1}"><span class="secnum">${String(groups.length + 1).padStart(2, '0')}</span>근거와 이력</h2><ul><li>${capDate}: reports/261020·261022·261026·261028 폴더의 시안 HTML ${total}건을 Edge 헤드리스(1280px 폭)로 캡처. 썸네일은 상단 1600px, 전체 캡처는 5200px까지 찍고 아래 빈 여백을 잘랐습니다. 탭·스와이프·버튼이 있는 시안은 첫 화면 기준이라 실제 페이지와 다를 수 있습니다.</li><li>2026-11-02: 리플릿은 전부 실물 디자인형(A4 2면, 원고는 v2 그대로)으로 캡처했습니다. 코드 초안형은 카드의 "초안" 링크로 볼 수 있습니다.</li><li>포함하지 않은 파일: 보고 자료 2건(reports/261026/index.html · reports/261028/index.html), 옛 주소 안내 페이지, 엑셀·이미지·스크립트.</li><li>시안이 늘면 <code>${capDir}/manifest.json</code>에 항목을 추가하고 <code>node scripts/capture_reports.mjs</code> → <code>node scripts/build_gallery.mjs</code> 순서로 다시 만듭니다. 캡처 1건당 2초쯤 걸립니다.</li></ul>`;
 const lbHtml = `<div class="gal-lb" id="gal-lb" hidden><div class="gal-lb-bar"><span id="gal-lb-title"></span><a id="gal-lb-open" href="#" target="_blank" rel="noopener">실제 페이지 열기 ↗</a><button type="button" id="gal-lb-close" aria-label="닫기">닫기 ✕</button></div><div class="gal-lb-scroll"><img id="gal-lb-img" src="" alt=""></div></div>`;
 body += `</article>`;
 
@@ -85,6 +87,8 @@ const css = `
 .gal-actions{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;margin-top:.35rem;padding-top:.45rem;border-top:1px dashed var(--rule-soft)}
 .gal-open{font-size:.78rem;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:.14rem .6rem;background:var(--paper)}
 .gal-open:hover{border-color:var(--accent);background:var(--accent-soft)}
+.gal-draft{font-size:.74rem;color:var(--ink-3);text-decoration:underline;text-underline-offset:2px}
+.gal-draft:hover{color:var(--accent)}
 .gal-xref{font-size:.72rem;font-family:var(--mono);border:1px solid var(--rule-soft);border-radius:999px;padding:.1rem .45rem;background:var(--surface-2);color:var(--ink-2)}
 .gal-xref:hover{color:var(--accent);border-color:var(--accent)}
 .gal-strip{margin:1.1rem 0 .4rem;padding:.8rem .9rem .9rem;background:var(--surface-2);border:1px solid var(--rule);border-radius:10px}
@@ -181,6 +185,8 @@ else html = html.replace('var SECS = {', 'var SECS = {' + secsStr + ', ');
 
 // 목차 버튼 건수
 html = html.replace(/(data-goto="d103"[^>]*>시안 갤러리) \(\d+\)/, `$1 (${total})`);
+// 상단 바 버튼 건수
+html = html.replace(/(data-goto="d103">시안 갤러리 · 10월 시안 )\d+건/, `$1${total}건`);
 // 마스터 인덱스 링크 건수
 html = html.replace(/(class="xref" data-goto="d103">시안 갤러리 )\d+건/, `$1${total}건`);
 

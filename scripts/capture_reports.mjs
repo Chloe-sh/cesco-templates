@@ -20,8 +20,8 @@ const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const outDir = path.dirname(manifestPath);
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'cesco-cap-'));
 
-function shoot(file, w, h, out) {
-  const url = 'file:///' + path.resolve(ROOT, file).replace(/\\/g, '/').split('/').map((seg, i) => i === 0 ? seg : encodeURIComponent(seg)).join('/');
+function shoot(file, w, h, out, hash) {
+  const url = 'file:///' + path.resolve(ROOT, file).replace(/\\/g, '/').split('/').map((seg, i) => i === 0 ? seg : encodeURIComponent(seg)).join('/') + (hash ? '#' + hash : '');
   execFileSync(EDGE, [
     '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--allow-file-access-from-files',
     '--force-device-scale-factor=1', `--window-size=${w},${h}`, '--virtual-time-budget=8000',
@@ -34,8 +34,8 @@ let n = 0;
 for (const it of manifest.items) {
   if (only && !only.has(it.id)) continue;
   const t0 = Date.now();
-  shoot(it.file, 1280, 1600, path.join(tmp, it.id + '_thumb.png'));
-  shoot(it.file, 1280, 5200, path.join(tmp, it.id + '_full.png'));
+  shoot(it.file, 1280, 1600, path.join(tmp, it.id + '_thumb.png'), it.hash);
+  shoot(it.file, 1280, 5200, path.join(tmp, it.id + '_full.png'), it.hash);
   n++;
   console.log(`${it.id} ${it.title} (${Date.now() - t0}ms)`);
 }

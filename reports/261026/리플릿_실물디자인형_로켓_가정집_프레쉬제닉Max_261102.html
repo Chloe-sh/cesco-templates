@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ko" data-t="p">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>리플릿 실물 디자인형 · 프레쉬제닉 Max · 로켓 가정집 · 2026-11-02</title>
+<style>
+
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--stage:#d9dee6;--paper:#fff;--ink:#1c2430;--ink-2:#4b5563;--ink-3:#7c8592;--navy:#0f3c7a;--blue:#1e6fd9;--wash:#e9f1fb;--wash-2:#f4f7fb;--line:#d5dde8;--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200;--hero:#1b2a3f;--tag:#ff7a2f;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--stage:#1a1f27;}}
+:root[data-theme="dark"]{--stage:#1a1f27;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:inherit;margin:0;padding:0;}
+body{background:var(--stage);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;padding:24px 12px 48px;}
+.wrap{max-width:820px;margin:0 auto;}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.08);}
+.tabs b{font-size:12px;color:var(--ink-2);margin-right:4px;}
+.tabs button{font:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:6px 13px;border-radius:16px;cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700;}
+.tpl{display:none;}
+
+.stack{display:flex;flex-direction:column;gap:24px;}
+.page{background:var(--paper);width:100%;aspect-ratio:1/1.414;position:relative;display:flex;flex-direction:column;box-shadow:0 2px 3px rgba(0,0,0,.08),0 18px 40px -12px rgba(15,60,122,.25);overflow:hidden;padding-bottom:18px;}
+.pageno{position:absolute;bottom:3px;right:14px;font-size:9px;color:var(--ink-3);}
+.inner{padding:0 36px;}
+@media (max-width:640px){.page{aspect-ratio:auto;}.inner{padding:0 18px;}}
+.memo{background:var(--memo);color:var(--memo-ink);padding:0 4px;border-radius:2px;font-weight:500;font-size:.92em;}
+.tag{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:var(--tag);color:#fff;font-size:10px;font-weight:900;margin-right:5px;vertical-align:middle;flex:none;}
+.slot{background:var(--slot);border:1.5px dashed var(--slot-line);border-radius:6px;color:var(--ink-3);font-size:10.5px;line-height:1.45;padding:8px 10px;display:flex;align-items:flex-end;}
+.slot .lbl{display:block;font-weight:700;color:var(--ink-2);}
+.fine{font-size:8.8px;line-height:1.5;color:var(--ink-3);}
+.fine p+p{margin-top:1px;}
+table{width:100%;border-collapse:collapse;font-size:10.5px;}
+th{background:var(--wash);color:var(--navy);font-weight:700;padding:6px 7px;border:1px solid var(--line);text-align:center;}
+td{padding:6px 7px;border:1px solid var(--line);text-align:center;}
+td.l{text-align:left;}
+td.pr{font-weight:900;color:var(--blue);font-size:12px;}
+td s{color:var(--ink-3);font-weight:400;font-size:10px;margin-right:4px;}
+footer{margin-top:auto;padding:10px 36px 0;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;border-top:1px solid var(--line);}
+footer .logo{font-weight:900;font-size:22px;color:var(--navy);line-height:1;}
+footer .logo small{display:block;font-size:10px;font-weight:500;letter-spacing:.2em;margin-top:2px;}
+footer .addr{font-size:8.6px;line-height:1.55;color:var(--ink-2);}
+footer .card{border:1px dashed var(--slot-line);width:140px;height:50px;font-size:10px;color:var(--ink-3);display:flex;align-items:center;justify-content:center;}
+
+/* ===== 제품 리플릿 ===== */
+.hero{background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:36px 36px 28px;display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:stretch;}
+.hero .k1{display:inline-block;background:var(--blue);color:#fff;font-size:13px;font-weight:700;padding:4px 10px;border-radius:3px;}
+.hero .cat{font-size:28px;font-weight:900;line-height:1.2;margin-top:12px;letter-spacing:-.01em;}
+.hero .name{font-size:28px;font-weight:500;line-height:1.2;}
+.hero .hook{margin-top:14px;font-size:13.5px;opacity:.92;}
+.hero .big{font-size:18px;font-weight:900;margin-top:4px;}
+.hero .def{margin-top:8px;font-size:11.8px;line-height:1.65;opacity:.9;}
+.hero .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#fff;min-height:300px;}
+.hero .slot .lbl{color:#fff;}
+@media (max-width:640px){.hero{grid-template-columns:1fr;padding:26px 18px;}.hero .cat,.hero .name{font-size:22px;}}
+.why{margin-top:14px;}
+.why h2{font-size:16px;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.why h2 .q{background:var(--navy);color:#fff;font-size:12px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:3px;}
+.why td{text-align:left;vertical-align:top;}
+.why td:first-child{background:var(--wash-2);font-weight:700;color:var(--navy);white-space:nowrap;}
+.why td:last-child{font-weight:700;color:var(--blue);}
+.evid{margin-top:10px;display:grid;grid-template-columns:1fr 170px;gap:14px;}
+.evid .box{background:var(--wash-2);border-left:4px solid var(--blue);padding:10px 14px;font-size:11px;line-height:1.6;}
+.evid .box b{color:var(--navy);}
+.evid .slot{min-height:150px;}
+.p2head{padding:32px 36px 0;}
+.p2head .k{font-size:15px;color:var(--navy);font-weight:500;}
+.p2head h2{font-size:22px;font-weight:900;color:var(--navy);line-height:1.25;}
+.adv{display:grid;grid-template-columns:1fr 150px;gap:16px;margin-top:14px;}
+.alist{display:flex;flex-direction:column;gap:9px;}
+.a{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;}
+.a .ico{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;}
+.a h3{font-size:13.5px;font-weight:900;color:var(--navy);line-height:1.4;}
+.a p{font-size:11px;line-height:1.6;margin-top:4px;}
+.adv .slot{min-height:200px;}
+@media (max-width:640px){.adv{grid-template-columns:1fr;}}
+.cond{margin-top:14px;}
+.cond h4{font-size:14px;font-weight:900;color:var(--navy);}
+.cond h4 span{font-weight:400;font-size:11.5px;color:var(--ink-2);margin-left:6px;}
+.cross{margin-top:12px;border-top:3px solid var(--navy);padding-top:8px;display:grid;grid-template-columns:1fr 100px;gap:14px;align-items:center;}
+.cross .lbl2{display:inline-block;background:var(--navy);color:#fff;font-size:10.5px;font-weight:700;padding:3px 10px;}
+.cross h5{font-size:13px;font-weight:900;color:var(--navy);margin-top:5px;}
+.cross p{font-size:11px;margin-top:2px;}
+.cross .slot{min-height:60px;}
+
+/* ===== 로켓 리플릿 ===== */
+.rk{padding:34px 36px 0;}
+.rk .eyebrow{font-size:14px;font-weight:700;color:var(--ink-2);}
+.rk h1{font-size:27px;font-weight:900;color:var(--navy);line-height:1.25;margin-top:4px;letter-spacing:-.02em;}
+.rk h1 em{font-style:normal;background:var(--navy);color:#fff;padding:0 8px;}
+.rk .sub{font-size:12.5px;color:var(--ink-2);margin-top:8px;}
+.pts{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.pt{display:grid;grid-template-columns:120px 1fr;gap:12px;border:1px solid var(--line);border-radius:8px;padding:9px 10px;}
+.pt .slot{min-height:84px;}
+.pt b{display:block;font-size:12.5px;color:var(--navy);}
+.pt b::before{content:"☑ ";color:var(--blue);}
+.pt p{font-size:10.6px;line-height:1.55;color:var(--ink);margin-top:3px;}
+.pt p small{color:var(--ink-3);}
+.link{margin:16px 36px 0;background:var(--wash);border-left:4px solid var(--navy);padding:10px 14px;}
+.link .t{font-size:11.5px;color:var(--ink-2);}
+.link h3{font-size:14px;font-weight:900;color:var(--navy);line-height:1.4;margin-top:2px;}
+.rk2{padding:30px 36px 0;}
+.rk2 .k{font-size:13.5px;color:var(--ink-2);}
+.rk2 h2{font-size:20px;font-weight:900;color:var(--navy);line-height:1.3;}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.sv{border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.sv .slot{min-height:64px;border-radius:0;border-width:0 0 1.5px;}
+.sv .tx{padding:8px 11px 10px;}
+.sv h4{font-size:12.5px;font-weight:900;color:var(--navy);line-height:1.35;}
+.sv p{font-size:10.5px;line-height:1.55;color:var(--ink-2);margin-top:3px;}
+.sv p b{color:var(--ink);}
+.spec{margin-top:12px;}
+.spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:13%;}
+.spec td:nth-child(even){text-align:left;}
+.cta2{margin-top:12px;display:grid;grid-template-columns:1fr 90px;gap:14px;align-items:center;background:var(--navy);color:#fff;border-radius:10px;padding:12px 16px;}
+.cta2 h5{font-size:14px;font-weight:900;}
+.cta2 p{font-size:11px;opacity:.9;margin-top:3px;}
+.cta2 .qr{width:80px;height:80px;background:#fff;border-radius:6px;color:var(--ink-3);font-size:9px;display:flex;align-items:center;justify-content:center;text-align:center;}
+
+
+
+/* ===== 제품 리플릿 (pptx 구성) ===== */
+.ph1{background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:34px 36px 26px;}
+.ph1 .kick{font-size:13.5px;font-weight:700;color:#9cc8ff;}
+.ph1 .cat{font-size:28px;font-weight:900;line-height:1.2;margin-top:8px;letter-spacing:-.01em;}
+.ph1 .name{font-size:28px;font-weight:500;line-height:1.2;}
+.ph1 .k1{display:inline-block;background:var(--blue);color:#fff;font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:3px;margin-top:12px;}
+.ph1 ul{list-style:none;margin-top:10px;font-size:12.5px;line-height:1.7;}
+.ph1 ul li::before{content:"· ";}
+.pq{margin-top:18px;display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:stretch;}
+.pq h2{font-size:17px;font-weight:900;color:var(--navy);line-height:1.35;}
+.pq p{font-size:12px;line-height:1.7;margin-top:8px;color:var(--ink);}
+.pq .slot{min-height:220px;}
+.alt2{display:block;margin-top:8px;background:var(--alt,#eef7ef);color:#1f6b3a;font-size:10.5px;line-height:1.55;padding:6px 9px;border-radius:3px;}
+.alt2 b{font-weight:900;margin-right:4px;}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:16px;border-top:2px solid var(--navy);}
+.steps3 > div{padding:12px 12px 0;border-left:1px solid var(--line);}
+.steps3 > div:first-child{border-left:0;padding-left:0;}
+.steps3 .sn{font-size:10.5px;font-weight:900;color:var(--blue);letter-spacing:.02em;}
+.steps3 h3{font-size:14px;font-weight:900;color:var(--navy);line-height:1.35;margin-top:3px;}
+.steps3 p{font-size:11px;line-height:1.6;color:var(--ink);margin-top:7px;}
+.ph2{padding:32px 36px 0;display:grid;grid-template-columns:1fr 150px;gap:16px;align-items:start;}
+.ph2 h2{font-size:20px;font-weight:900;color:var(--navy);line-height:1.35;}
+.ph2 .slot{min-height:150px;}
+.nl{display:flex;flex-direction:column;gap:9px;margin-top:4px;}
+.nl > div{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;}
+.nl .no{font-size:18px;font-weight:900;color:var(--blue);line-height:1.2;}
+.nl h3{font-size:13.5px;font-weight:900;color:var(--navy);line-height:1.4;}
+.nl p{font-size:11px;line-height:1.6;color:var(--ink);margin-top:3px;}
+.reco{margin-top:12px;}
+.reco h4{font-size:14px;font-weight:900;color:var(--navy);}
+.reco .rc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+.reco .rc > div{background:var(--wash-2);border-radius:8px;padding:10px 12px;}
+.reco .rc .slot{min-height:60px;margin-bottom:8px;background:#fff;}
+.reco .rc b{display:block;font-size:12px;color:var(--navy);line-height:1.4;}
+.reco .rc p{font-size:10.6px;line-height:1.55;color:var(--ink-2);margin-top:4px;}
+/* ===== 로켓 (센스미형) ===== */
+.sm{padding:34px 36px 0;}
+.sm .hook{font-size:13.5px;font-weight:700;color:var(--ink-2);}
+.sm .hook b{color:var(--blue);}
+.sm h1{font-size:25px;font-weight:900;color:var(--navy);line-height:1.3;margin-top:6px;letter-spacing:-.01em;}
+.sm .badge2{display:inline-block;vertical-align:middle;background:var(--blue);color:#fff;font-size:12px;font-weight:500;padding:4px 10px;border-radius:4px;margin-left:8px;transform:translateY(-3px);}
+.sm .lead{margin-top:10px;font-size:13.5px;line-height:1.6;}
+.sm .lead strong{font-weight:700;}
+.sm ul.ck{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:6px;}
+.sm ul.ck li{font-size:13.5px;font-weight:700;color:var(--navy);}
+.sm ul.ck li::before{content:"☑ ";color:var(--blue);}
+.sm ul.ck li small{font-weight:500;color:var(--ink-2);font-size:11px;margin-left:4px;}
+.sm-slot{margin:14px 36px 0;min-height:400px;}
+.sm-band{background:var(--navy);color:#fff;font-weight:700;font-size:14px;padding:10px 36px;margin-top:14px;}
+.sm-band em{font-style:normal;text-decoration:underline;text-underline-offset:3px;}
+dl.mo{margin:10px 36px 0;display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:5px;font-size:12.5px;}
+dl.mo dt{font-weight:700;color:var(--navy);}
+dl.mo dt::before{content:"·";margin-right:6px;color:var(--blue);}
+dl.mo dd::before{content:"|";color:var(--line);margin-right:8px;}
+.sm2{padding:30px 36px 0;}
+.sm2 .k{font-size:14px;color:var(--ink-2);}
+.sm2 h2{font-size:20px;font-weight:900;color:var(--navy);line-height:1.3;}
+.ft{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;background:var(--wash-2);border-left:4px solid var(--blue);padding:11px 14px 11px 16px;margin-top:9px;}
+.ft h3{font-size:14px;font-weight:900;color:var(--navy);line-height:1.35;}
+.ft h3 .q{color:var(--blue);}
+.ft p{font-size:11.3px;line-height:1.6;margin-top:5px;}
+.ft .slot{min-height:76px;}
+.sp{margin-top:12px;display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;}
+.sp .slot{min-height:120px;}
+.sp h4{font-size:14px;font-weight:900;line-height:1.4;color:var(--navy);}
+.sp h4 span{display:inline-block;background:var(--blue);color:#fff;font-weight:500;font-size:12px;padding:2px 8px;margin-bottom:4px;}
+.sp ul{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:4px;}
+.sp ul li{font-size:12px;color:var(--ink);}
+.sp ul li::before{content:"☑ ";color:var(--blue);}
+.sp ul li b{color:var(--navy);}
+.cta3{margin-top:12px;}
+.cta3 h5{font-size:13.5px;font-weight:700;color:var(--navy);}
+.cta3 .promo{font-size:13.5px;font-weight:900;color:var(--navy);margin:3px 0 6px;}
+
+/* rocket bundle cards */
+.bundle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.bd{border:1px solid var(--line);border-radius:8px;overflow:hidden;display:grid;grid-template-columns:120px 1fr;}
+.bd.hl{border:2px solid var(--blue);background:var(--wash);}
+.bd .slot{min-height:100%;border-radius:0;border-width:0 1.5px 0 0;}
+.bd .tx{padding:12px 12px 13px;}
+.bd .cat{font-size:9.5px;font-weight:700;color:var(--blue);letter-spacing:.02em;}
+.bd h4{font-size:12.5px;font-weight:900;color:var(--navy);line-height:1.35;margin-top:1px;}
+.bd p{font-size:10.4px;line-height:1.55;color:var(--ink-2);margin-top:3px;}
+.bd .pr{font-size:10.5px;font-weight:700;color:var(--navy);margin-top:4px;}
+@media (max-width:640px){.bundle{grid-template-columns:1fr;}}
+
+.bundle2{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;margin-top:14px;}
+.bd .lead{font-size:10.5px;color:var(--ink-2);font-weight:500;}
+.bd.big{grid-row:span 3;grid-template-columns:1fr;grid-template-rows:180px auto;border:2px solid var(--blue);background:var(--wash);}
+.bd.big .slot{border-width:0 0 1.5px 0;}
+.bd.big h4{font-size:15px;}
+.bd.big p{font-size:11px;}
+.side3{display:flex;flex-direction:column;gap:10px;}
+.side3 .tag2{display:inline-block;background:var(--navy);color:#fff;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:3px;}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+@media (max-width:640px){.bundle2,.mini{grid-template-columns:1fr;}.bd.big{grid-row:auto;}}
+/* ===== 프로모션 리플릿 ===== */
+.pm{background:linear-gradient(120deg,#0b1a33 0%,#143a74 60%,#1e6fd9 100%);color:#fff;padding:40px 36px 30px;}
+.pm .top{display:flex;justify-content:space-between;align-items:flex-start;}
+.pm .eyebrow{font-size:13px;opacity:.9;}
+.pm h1{font-size:34px;font-weight:900;line-height:1.15;margin-top:8px;letter-spacing:-.02em;}
+.pm h1 small{display:block;font-size:16px;font-weight:500;opacity:.9;margin-top:4px;}
+.pm .deal{margin-top:14px;display:inline-flex;align-items:baseline;gap:10px;background:#fff;color:var(--navy);padding:8px 16px;border-radius:6px;}
+.pm .deal s{font-size:13px;color:var(--ink-3);}
+.pm .deal b{font-size:26px;font-weight:900;color:var(--blue);}
+.pm .deal span{font-size:12px;font-weight:700;}
+.pm .why3{margin-top:14px;font-size:12px;line-height:1.7;opacity:.95;}
+.pm .why3 li{list-style:none;}
+.pm .why3 li::before{content:"☑ ";}
+.pm .slot{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.45);color:#fff;min-height:300px;margin-top:16px;}
+.pm .slot .lbl{color:#fff;}
+.ptab{margin-top:20px;}
+.ptab h4{font-size:14px;font-weight:900;color:var(--navy);}
+.ptab h4 span{font-weight:400;font-size:11.5px;color:var(--ink-2);margin-left:6px;}
+.pm2{padding:32px 36px 0;}
+.pm2 h2{font-size:20px;font-weight:900;color:var(--navy);line-height:1.3;}
+.pm2 .k{font-size:13px;color:var(--ink-2);}
+.rsn{display:flex;flex-direction:column;gap:9px;margin-top:12px;}
+.rsn > div{display:grid;grid-template-columns:120px 1fr;gap:12px;border:1px solid var(--line);border-radius:8px;padding:9px 10px;}
+.rsn .slot{min-height:76px;}
+.rsn h3{font-size:12.5px;font-weight:900;color:var(--navy);line-height:1.4;}
+.rsn p{font-size:10.6px;line-height:1.55;color:var(--ink-2);margin-top:3px;}
+.who{margin-top:12px;background:var(--wash-2);border-radius:10px;padding:12px 14px;}
+.who h3{font-size:13px;font-weight:900;color:var(--navy);}
+.who ul{list-style:none;margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:5px 14px;}
+.who li{font-size:11px;line-height:1.5;}
+.who li::before{content:"☑ ";color:var(--blue);}
+
+/* kpi strip */
+.kpi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;}
+.kpi > div{border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:0 0 8px 8px;padding:10px 12px 11px;}
+.kpi .v{font-size:30px;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.02em;}
+.kpi .v small{font-size:13px;font-weight:700;color:var(--navy);margin-left:3px;letter-spacing:0;}
+.kpi .l{font-size:11.5px;font-weight:700;color:var(--navy);margin-top:5px;}
+.kpi .d{font-size:10px;color:var(--ink-2);line-height:1.45;margin-top:2px;}
+.kpi.dark > div{border-color:rgba(255,255,255,.35);border-top-color:#fff;background:rgba(255,255,255,.08);}
+.kpi.dark .v{color:#fff;} .kpi.dark .v small,.kpi.dark .l{color:#cfe3ff;} .kpi.dark .d{color:#fff;opacity:.85;}
+
+/* ruler */
+.ruler{margin:12px 0 0;}
+.inner .ruler{margin-top:10px;}
+.ruler .bar{height:10px;width:77.3%;background:var(--navy);border-radius:2px;position:relative;}
+.ruler .bar::before,.ruler .bar::after{content:"";position:absolute;top:-5px;width:2px;height:20px;background:var(--navy);}
+.ruler .bar::before{left:0}.ruler .bar::after{right:0}
+.ruler .cap{font-size:10px;color:var(--ink-2);margin-top:6px;}
+.ruler .cap b{color:var(--navy);}
+@media print{.ruler .bar{width:148mm;}}
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px;}
+.tl div{border-top:2px solid var(--navy);padding-top:4px;font-size:9.5px;line-height:1.4;color:var(--ink-2);}
+.tl div b{display:block;font-size:11px;color:var(--navy);}
+/* path */
+.path{display:grid;grid-template-columns:auto 1fr auto 1fr auto 1fr auto;align-items:center;gap:6px;margin-top:16px;}
+.path .end{font-size:11px;font-weight:700;opacity:.85;}
+.path .st{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:8px 10px;text-align:center;}
+.path .st .n{font-size:10px;font-weight:700;color:#cfe3ff;}
+.path .st .v{font-size:20px;font-weight:900;line-height:1.1;margin-top:2px;}
+.path .st .d{font-size:9.5px;opacity:.9;margin-top:2px;line-height:1.35;}
+.path .ar{text-align:center;font-size:14px;opacity:.6;}
+/* day row */
+.day{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
+.day div{background:var(--wash-2);border-radius:8px;padding:8px 10px;font-size:10.3px;line-height:1.5;color:var(--ink-2);}
+.day div b{display:block;color:var(--navy);font-size:11px;margin-bottom:2px;}
+.colors{display:flex;gap:8px;align-items:center;font-size:10px;color:var(--ink-2);margin-top:6px;}
+.colors i{display:inline-block;width:14px;height:14px;border-radius:50%;border:1px solid var(--line);vertical-align:middle;margin-right:3px;}
+
+/* ===== 디자이너 노트 (지면 밖) ===== */
+.dnote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--tag);border-radius:8px;padding:12px 16px;font-size:11.5px;line-height:1.55;color:var(--ink-2);}
+.dnote h4{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:4px;}
+.dnote h4 span{display:inline-block;background:var(--tag);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.dnote table{font-size:10.8px;margin-top:6px;}
+.dnote th{background:var(--wash-2);color:var(--ink);text-align:left;white-space:nowrap;width:92px;}
+.dnote td{text-align:left;}
+.dnote td b{color:var(--navy);}
+
+/* ===== ② 로켓 · 산업체 (리스크 문서형) ===== */
+.rb-head{background:var(--hero);color:#fff;padding:30px 36px 22px;}
+.rb-head .eyebrow{font-size:12px;font-weight:700;color:#9cc8ff;letter-spacing:.02em;}
+.rb-head h1{font-size:24px;font-weight:900;line-height:1.3;margin-top:6px;letter-spacing:-.02em;}
+.rb-head p{font-size:12px;line-height:1.65;margin-top:10px;opacity:.92;max-width:600px;}
+.rb-head .ad{display:inline-block;margin-top:10px;font-size:10.5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);padding:3px 9px;border-radius:3px;}
+.rb-sec{font-size:13.5px;font-weight:900;color:var(--navy);margin-top:16px;padding-bottom:5px;border-bottom:2px solid var(--navy);display:flex;align-items:baseline;gap:8px;}
+.rb-sec small{font-weight:500;font-size:10.5px;color:var(--ink-2);}
+.risk{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:10px;}
+.risk > div{display:grid;grid-template-columns:30px 1fr;gap:8px;}
+.risk .n{width:30px;height:30px;border-radius:4px;background:var(--navy);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+.risk h3{font-size:12.3px;font-weight:900;color:var(--navy);line-height:1.4;}
+.risk .w{font-size:10.6px;line-height:1.6;color:var(--ink);margin-top:3px;}
+.risk .r{font-size:10.6px;line-height:1.55;margin-top:4px;padding:5px 8px;background:var(--wash);border-left:3px solid var(--blue);color:var(--ink);}
+.risk .r b{color:var(--navy);}
+.rb-ctx{display:grid;grid-template-columns:1fr 190px;gap:14px;margin-top:10px;align-items:stretch;}
+.rb-ctx .slot{min-height:110px;}
+.rb-ctx table{font-size:10.3px;}
+.rb-ctx td{text-align:left;vertical-align:top;}
+.rb-ctx td:first-child{background:var(--wash-2);font-weight:700;color:var(--navy);white-space:nowrap;width:28%;}
+.rb-sys{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:10px;}
+.rb-sys .st{display:flex;flex-direction:column;gap:9px;}
+.rb-sys .st > div{border:1px solid var(--line);border-radius:6px;padding:9px 11px;}
+.rb-sys .sn{font-size:10px;font-weight:900;color:var(--blue);}
+.rb-sys h3{font-size:12.8px;font-weight:900;color:var(--navy);line-height:1.35;margin-top:1px;}
+.rb-sys p{font-size:10.6px;line-height:1.6;margin-top:4px;color:var(--ink);}
+.rb-sys .slot{min-height:100%;}
+.rb-tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:10px;}
+.rb-tl div{border-top:3px solid var(--line);padding:6px 8px 0 0;font-size:9.8px;line-height:1.45;color:var(--ink-2);position:relative;}
+.rb-tl div::before{content:"";position:absolute;top:-7px;left:0;width:11px;height:11px;border-radius:50%;background:var(--navy);}
+.rb-tl div b{display:block;font-size:11.5px;color:var(--navy);}
+.rb-spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:14%;white-space:nowrap;}
+.rb-spec td:nth-child(even){text-align:left;}
+.rb-cta{margin-top:12px;background:var(--navy);color:#fff;border-radius:8px;padding:14px 18px;display:grid;grid-template-columns:1fr auto 84px;gap:16px;align-items:center;}
+.rb-cta h5{font-size:15px;font-weight:900;line-height:1.35;}
+.rb-cta p{font-size:10.8px;opacity:.9;margin-top:4px;line-height:1.55;}
+.rb-cta .tel{font-size:22px;font-weight:900;letter-spacing:-.01em;white-space:nowrap;}
+.rb-cta .tel small{display:block;font-size:9.8px;font-weight:500;opacity:.85;letter-spacing:0;}
+.rb-cta .qr{width:76px;height:76px;background:#fff;border-radius:6px;color:var(--ink-3);font-size:9px;display:flex;align-items:center;justify-content:center;text-align:center;}
+@media (max-width:640px){.risk,.rb-ctx,.rb-sys,.rb-cta{grid-template-columns:1fr;}.rb-tl{grid-template-columns:1fr 1fr;}}
+
+/* ===== ③ 로켓 · 소규모 사장님 (포스터형) ===== */
+.rs1{flex:1;display:grid;grid-template-columns:1fr 1fr;}
+.rs1 .vis{background:linear-gradient(170deg,#eef3f9 0%,#dfe8f3 100%);padding:34px 22px 22px 36px;display:flex;flex-direction:column;}
+.rs1 .vis .slot{flex:1;min-height:420px;background:rgba(255,255,255,.55);}
+.rs1 .vis .eyebrow{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:10px;}
+.rs1 .tx{padding:34px 36px 20px 24px;display:flex;flex-direction:column;}
+.rs1 h1{font-size:30px;font-weight:900;color:var(--navy);line-height:1.2;letter-spacing:-.03em;}
+.rs1 h1 small{display:block;font-size:14px;font-weight:500;color:var(--ink-2);margin-top:6px;letter-spacing:0;}
+.big3{display:flex;flex-direction:column;gap:10px;margin-top:22px;}
+.big3 > div{border-left:5px solid var(--blue);padding:4px 0 4px 14px;}
+.big3 .v{font-size:34px;font-weight:900;color:var(--navy);line-height:1;letter-spacing:-.03em;}
+.big3 .v small{font-size:14px;font-weight:700;margin-left:3px;letter-spacing:0;}
+.big3 .l{font-size:13px;font-weight:700;color:var(--ink);margin-top:4px;}
+.big3 .d{font-size:10.5px;color:var(--ink-2);line-height:1.45;margin-top:1px;}
+.price{margin-top:auto;background:var(--navy);color:#fff;border-radius:10px;padding:14px 18px;}
+.price .l{font-size:12px;opacity:.9;}
+.price .v{font-size:36px;font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-top:2px;}
+.price .v small{font-size:16px;font-weight:700;margin-left:2px;}
+.price .d{font-size:10.5px;opacity:.85;margin-top:6px;line-height:1.45;}
+.rs2{padding:34px 36px 0;flex:1;display:flex;flex-direction:column;}
+.rs2 h2{font-size:26px;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.02em;}
+.rs2 h2{letter-spacing:-.02em;} .rs2 h2 small{display:block;font-size:13px;font-weight:500;color:var(--ink-2);margin-top:6px;letter-spacing:0;}
+.ck3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
+.ck3 > div{background:var(--wash-2);border-radius:10px;padding:14px 14px 16px;}
+.ck3 .slot{min-height:90px;background:#fff;margin-bottom:10px;}
+.ck3 b{display:block;font-size:14px;color:var(--navy);line-height:1.35;}
+.ck3 b::before{content:"☑ ";color:var(--blue);}
+.ck3 p{font-size:11.5px;line-height:1.55;color:var(--ink-2);margin-top:5px;}
+.cond3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;}
+.cond3 > div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center;}
+.cond3 .l{font-size:10.5px;color:var(--ink-2);}
+.cond3 .v{font-size:19px;font-weight:900;color:var(--navy);margin-top:2px;}
+.cond3 .v small{font-size:11px;font-weight:500;}
+.rs-cta{margin-top:auto;margin-bottom:14px;display:grid;grid-template-columns:1fr 110px;gap:18px;align-items:center;background:var(--navy);color:#fff;border-radius:12px;padding:18px 22px;}
+.rs-cta .t{font-size:13px;opacity:.9;}
+.rs-cta .tel{font-size:34px;font-weight:900;letter-spacing:-.02em;line-height:1.1;margin-top:2px;}
+.rs-cta .h{font-size:10.5px;opacity:.85;margin-top:4px;}
+.rs-cta .qr{width:100px;height:100px;background:#fff;border-radius:8px;color:var(--ink-3);font-size:9.5px;display:flex;align-items:center;justify-content:center;text-align:center;}
+@media (max-width:640px){.rs1,.ck3,.cond3{grid-template-columns:1fr;}.rs1 .vis,.rs1 .tx{padding:22px 18px;}.rs1 .vis .slot{min-height:220px;}.big3 .v{font-size:28px;}.rs-cta{grid-template-columns:1fr;}}
+
+/* ===== ④ 로켓 · 가정집 (상황 공감 → 상세 설명형) ===== */
+.rh-head{padding:32px 36px 0;}
+.rh-head .eyebrow{font-size:13px;font-weight:700;color:var(--blue);}
+.rh-head h1{font-size:25px;font-weight:900;color:var(--navy);line-height:1.3;margin-top:4px;letter-spacing:-.02em;}
+.rh-head p{font-size:12px;color:var(--ink-2);margin-top:8px;line-height:1.6;}
+.rh-head .slot{min-height:110px;margin-top:12px;}
+.scene{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.scene > div{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:stretch;}
+.scene > div:nth-child(even){grid-template-columns:1fr 150px;}
+.scene > div:nth-child(even) .slot{order:2;}
+.scene .slot{min-height:130px;}
+.scene .q{font-size:10.5px;font-weight:700;color:var(--blue);}
+.scene h3{font-size:13px;font-weight:900;color:var(--navy);line-height:1.4;margin-top:1px;}
+.scene .w{font-size:10.6px;line-height:1.6;color:var(--ink);margin-top:3px;}
+.scene .a{font-size:10.6px;line-height:1.55;margin-top:4px;color:var(--navy);font-weight:700;}
+.scene .a::before{content:"→ ";color:var(--blue);}
+.rh-bridge{margin:14px 36px 0;background:var(--navy);color:#fff;border-radius:8px;padding:12px 16px;font-size:13px;font-weight:700;line-height:1.5;}
+.rh-bridge small{display:block;font-weight:400;font-size:10.8px;opacity:.88;margin-top:2px;}
+.rh2{padding:30px 36px 0;display:grid;grid-template-columns:1fr 130px;gap:16px;align-items:start;}
+.rh2 .k{font-size:12.5px;color:var(--ink-2);}
+.rh2 h2{font-size:20px;font-weight:900;color:var(--navy);line-height:1.3;}
+.rh2 .slot{min-height:150px;}
+.feat{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+.feat > div{display:grid;grid-template-columns:44px 1fr 110px;gap:10px;align-items:start;border-bottom:1px solid var(--line);padding-bottom:8px;}
+.feat > div:last-child{border-bottom:0;}
+.feat .no{font-size:10px;font-weight:900;color:var(--blue);letter-spacing:.03em;padding-top:2px;}
+.feat .no b{display:block;font-size:17px;color:var(--navy);line-height:1.1;letter-spacing:-.02em;}
+.feat h3{font-size:12.8px;font-weight:900;color:var(--navy);line-height:1.4;}
+.feat p{font-size:10.6px;line-height:1.6;color:var(--ink);margin-top:3px;}
+.feat .slot{min-height:78px;}
+.rh-who{margin-top:10px;background:var(--wash-2);border-radius:8px;padding:10px 14px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;}
+.rh-who h4{font-size:12.5px;font-weight:900;color:var(--navy);white-space:nowrap;}
+.rh-who ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;}
+.rh-who li{font-size:10.6px;line-height:1.45;}
+.rh-who li::before{content:"☑ ";color:var(--blue);}
+.rh-cond{margin-top:10px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;}
+.rh-cond table{font-size:10.3px;}
+.rh-cond .pr2{text-align:right;}
+.rh-cond .pr2 .l{font-size:10px;color:var(--ink-2);}
+.rh-cond .pr2 .v{font-size:22px;font-weight:900;color:var(--blue);line-height:1.1;}
+.rh-cond .pr2 .v small{font-size:11px;font-weight:700;color:var(--navy);}
+@media (max-width:640px){.scene > div,.scene > div:nth-child(even),.rh2,.feat > div,.rh-who,.rh-cond{grid-template-columns:1fr;}.scene > div:nth-child(even) .slot{order:0;}.rh-who ul{grid-template-columns:1fr;}}
+
+/* ===== 센스미 세트 추가 ===== */
+.pm .period{display:inline-block;margin-top:10px;font-size:11px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);padding:3px 10px;border-radius:3px;}
+.pm .deal.big b{font-size:30px;}
+.pm .deal .arr{font-size:14px;color:var(--ink-3);}
+.val{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.val > div{display:grid;grid-template-columns:1fr 96px;gap:12px;border:1px solid var(--line);border-radius:8px;padding:9px 12px;align-items:stretch;}
+.val b{display:block;font-size:13px;color:var(--navy);line-height:1.4;}
+.val b::before{content:"☑ ";color:var(--blue);}
+.val p{font-size:10.6px;line-height:1.55;color:var(--ink);margin-top:3px;}
+.val .slot{min-height:56px;}
+.decl{margin:12px 36px 0;border-top:3px solid var(--navy);padding-top:8px;}
+.decl .t{font-size:11.5px;color:var(--ink-2);}
+.decl h3{font-size:16px;font-weight:900;color:var(--navy);line-height:1.35;margin-top:2px;}
+.bigdeal{margin-top:12px;background:var(--wash);border:2px solid var(--blue);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;}
+.bigdeal .l{font-size:13px;font-weight:700;color:var(--navy);}
+.bigdeal .v{font-size:30px;font-weight:900;color:var(--blue);line-height:1.1;letter-spacing:-.02em;margin-top:2px;}
+.bigdeal .v s{font-size:16px;color:var(--ink-3);font-weight:500;margin-right:8px;}
+.bigdeal .v small{font-size:13px;font-weight:700;color:var(--navy);}
+.bigdeal .r{font-size:10.5px;color:var(--ink-2);line-height:1.5;text-align:right;}
+.bigdeal .r b{display:block;font-size:12px;color:var(--navy);}
+.ben{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.ben > div{border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:0 0 8px 8px;padding:9px 12px 10px;}
+.ben .n{font-size:10px;font-weight:900;color:var(--blue);}
+.ben b{display:block;font-size:12.5px;color:var(--navy);line-height:1.4;margin-top:1px;}
+.ben p{font-size:10.5px;line-height:1.55;color:var(--ink-2);margin-top:3px;}
+.ben.one{grid-template-columns:1fr;}
+.step3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
+.step3 > div{background:var(--wash-2);border-radius:8px;padding:9px 11px;font-size:10.4px;line-height:1.5;color:var(--ink-2);}
+.step3 b{display:block;color:var(--navy);font-size:11.5px;}
+.step3 b span{color:var(--blue);margin-right:4px;}
+.sec{font-size:13px;font-weight:900;color:var(--navy);margin-top:14px;display:flex;align-items:baseline;gap:8px;}
+.sec small{font-weight:400;font-size:10.5px;color:var(--ink-2);}
+.news{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.news span{font-size:10.5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);padding:3px 9px;border-radius:14px;}
+.news span::before{content:"“";}.news span::after{content:"”";}
+.vir{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;}
+.vir > div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;}
+.vir .slot{min-height:56px;margin-bottom:8px;}
+.vir h3{font-size:13px;font-weight:900;color:var(--navy);}
+.vir .s{font-size:10.3px;color:var(--ink-2);margin-top:2px;}
+.vir .v{font-size:19px;font-weight:900;color:var(--blue);margin-top:4px;line-height:1.1;}
+.vir .v small{font-size:10px;font-weight:700;color:var(--navy);}
+.decl2{margin:14px 36px 0;background:var(--navy);color:#fff;border-radius:8px;padding:12px 16px;}
+.decl2 p{font-size:12px;line-height:1.55;opacity:.92;}
+.decl2 h3{font-size:16px;font-weight:900;line-height:1.35;margin-top:3px;}
+.decl2 small{display:block;font-size:10.5px;opacity:.85;margin-top:4px;}
+.sticker{margin-top:10px;display:grid;grid-template-columns:1fr 150px;gap:14px;align-items:stretch;background:var(--wash-2);border-radius:8px;padding:10px 14px;}
+.sticker h4{font-size:12.5px;font-weight:900;color:var(--navy);}
+.sticker p{font-size:10.5px;line-height:1.55;color:var(--ink-2);margin-top:3px;}
+.sticker .slot{min-height:64px;background:#fff;}
+.quote{margin:12px 36px 0;text-align:center;padding:14px 16px;border-top:2px solid var(--navy);border-bottom:2px solid var(--navy);}
+.quote h3{font-size:17px;font-weight:900;color:var(--navy);line-height:1.4;letter-spacing:-.01em;}
+.quote p{font-size:11.5px;color:var(--ink-2);margin-top:6px;}
+.quote p b{color:var(--navy);}
+.space{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.space > div{border:1px solid var(--line);border-radius:8px;padding:8px 10px;display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:center;}
+.space .slot{min-height:52px;}
+.space b{display:block;font-size:12px;color:var(--navy);line-height:1.35;}
+.space b::before{content:"☑ ";color:var(--blue);}
+.space p{font-size:10.3px;color:var(--ink-2);margin-top:2px;line-height:1.45;}
+.sup{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;}
+.sup > div{background:var(--wash-2);border-radius:8px;padding:10px 12px;}
+.sup .slot{min-height:70px;background:#fff;margin-bottom:8px;}
+.sup b{display:block;font-size:12px;color:var(--navy);line-height:1.4;}
+.sup b::before{content:"☑ ";color:var(--blue);}
+.sup p{font-size:10.4px;line-height:1.5;color:var(--ink-2);margin-top:3px;}
+.price1{margin-top:10px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:9px 14px;}
+.price1 .t{font-size:10.5px;color:var(--ink-2);line-height:1.5;}
+.price1 .v{font-size:20px;font-weight:900;color:var(--blue);white-space:nowrap;}
+.price1 .v small{font-size:10.5px;color:var(--navy);font-weight:700;}
+.grow{flex:1;display:flex;flex-direction:column;}.grow > .slot{flex:1;min-height:70px;margin-top:12px;}
+/* 가정집 v2 */
+.bub{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.bub span{font-size:10.5px;color:var(--navy);background:var(--wash);border:1px solid var(--line);padding:3px 10px;border-radius:14px;}
+.bub span::before{content:"“";}.bub span::after{content:"”";}
+.qa{margin-top:12px;border-left:4px solid var(--blue);background:var(--wash-2);padding:9px 12px;}
+.qa b{display:block;font-size:12.5px;color:var(--navy);line-height:1.4;}
+.qa b::before{content:"✅ ";}
+.qa p{font-size:10.6px;line-height:1.6;margin-top:3px;}
+.cause{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:9px;}
+.cause > div{border:1px solid var(--line);border-radius:8px;padding:9px 10px;}
+.cause .slot{min-height:46px;margin-bottom:7px;}
+.cause b{display:block;font-size:11.8px;color:var(--navy);line-height:1.35;}
+.cause p{font-size:10.4px;line-height:1.6;color:var(--ink);margin-top:3px;}
+.f4{display:grid;grid-template-columns:1fr 150px;gap:14px;margin-top:12px;}
+.f4 .nl h3{font-size:12.8px;} .f4 .nl p{font-size:10.6px;line-height:1.6;margin-top:3px;} .f4 .nl .no{font-size:16px;}
+.f4 .slot{min-height:100%;}
+.f4 .nl{min-height:400px;justify-content:space-between;}
+.proof{display:grid;grid-template-columns:1fr 150px;gap:10px;margin-top:9px;}
+.proof .fine{font-size:8.8px;line-height:1.5;}
+.pslots{display:flex;flex-direction:column;gap:6px;}
+.pslots .slot{flex:1;min-height:92px;}
+@media (max-width:640px){.cause,.f4,.proof{grid-template-columns:1fr;}}
+
+.pm .tdeal{margin-top:12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;}
+.pm .tdeal b{font-size:19px;font-weight:900;letter-spacing:-.02em;}
+.pm .tdeal b s{font-weight:500;opacity:.7;font-size:14px;}
+.pm .tdeal span{font-size:11.5px;opacity:.92;}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.slot:has(img){border-style:solid;border-color:transparent;}
+.slot:has(img) > div{position:relative;z-index:2;background:rgba(255,255,255,.82);padding:4px 8px;border-radius:4px;display:inline-block;margin:8px;}
+
+@media (max-width:640px){.val > div,.ben,.step3,.vir,.sticker,.space,.sup,.bigdeal,.price1{grid-template-columns:1fr;}}
+
+@media print{.tabs{display:none;}}
+
+body[data-t="p"] #tpl-p,body[data-t="r"] #tpl-r{display:block;}
+.hero .news{margin-top:0;}
+.hero h1{font-size:27px;font-weight:900;line-height:1.25;margin-top:12px;letter-spacing:-.02em;}
+.hero h1 small{display:block;font-size:13px;font-weight:500;opacity:.9;margin-top:6px;letter-spacing:0;}
+.kpi .v.t3{font-size:13px;line-height:1.5;letter-spacing:0;}
+.decl2 .n{display:inline-block;background:#fff;color:var(--navy);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:6px;}
+.pkg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;}
+.pkg > div{border:1px solid var(--line);border-radius:8px;padding:8px 9px;text-align:center;}
+.pkg .slot{min-height:46px;margin-bottom:6px;}
+.pkg b{display:block;font-size:11px;color:var(--navy);line-height:1.35;}
+.pkg.on > div:nth-child(2){border:2px solid var(--blue);background:var(--wash);}
+.spec2 td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:12%;white-space:nowrap;}
+.spec2 td:nth-child(even){text-align:left;}
+.rk-top{padding:32px 36px 0;}
+.rk-top .eyebrow{font-size:13px;font-weight:700;color:var(--ink-2);}
+.rk-top h1{font-size:27px;font-weight:900;color:var(--navy);line-height:1.25;margin-top:8px;letter-spacing:-.02em;}
+.rk-top h1 small{display:block;font-size:13px;font-weight:500;color:var(--ink-2);margin-top:6px;letter-spacing:0;}
+.rk-top .lead{font-size:12px;line-height:1.65;margin-top:10px;color:var(--ink);}
+.rk-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:16px;margin-top:12px;align-items:stretch;}
+.rk-grid .slot{min-height:100%;}
+.rk-grid > div:last-child{display:flex;flex-direction:column;}
+.rk-grid .cause{flex:1;grid-auto-rows:1fr;}
+.rk-grid .cause > div{display:flex;flex-direction:column;justify-content:center;}
+.pr3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+.pr3 > div{background:var(--navy);color:#fff;border-radius:10px;padding:14px 16px;}
+.pr3 .l{font-size:12px;opacity:.9;}
+.pr3 .v{font-size:30px;font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-top:4px;}
+.pr3 .v small{font-size:14px;font-weight:700;margin-left:2px;}
+.pr3 .d{font-size:10.5px;opacity:.85;margin-top:6px;}
+.pr3 .d s{opacity:.8;}
+.three{display:flex;gap:16px;margin-top:10px;font-size:11.5px;font-weight:700;color:var(--navy);}
+.three span::before{content:"☑ ";color:var(--blue);}
+@media (max-width:640px){.pkg{grid-template-columns:1fr 1fr;}.rk-grid,.pr3{grid-template-columns:1fr;}}
+</style>
+<style>
+/* ===== 로켓 가정집 × 프레쉬제닉 Max (261102 추가) ===== */
+.sm .hook{font-size:14px;color:var(--blue);}
+.sm h1{font-size:24px;margin-top:10px;}
+.sm .bub{margin-top:9px;}
+.sm-slot.grow{display:flex;flex-direction:column;}
+.sm-slot.grow > .slot{flex:1;min-height:150px;}
+.hm-cause .cause{margin-top:9px;}
+.hm-cause .cause > div{display:flex;flex-direction:column;}
+.hm-cause .cause .slot{min-height:62px;}
+.decl2.wp{display:grid;grid-template-columns:1fr 132px;gap:16px;align-items:stretch;}
+.decl2 .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#fff;min-height:96px;}
+.decl2 .slot .lbl{color:#fff;}
+.decl2 .memo{display:inline-block;margin-top:6px;font-size:10px;line-height:1.5;}
+.f4h{display:grid;grid-template-columns:1fr 150px;gap:14px;margin-top:10px;align-items:stretch;}
+.f4h .nl{gap:7px;}
+.f4h .nl > div{border-bottom:1px solid var(--line);padding-bottom:9px;flex:1;align-content:center;}
+.f4h .nl > div:last-child{border-bottom:0;padding-bottom:0;}
+.f4h .nl h3{font-size:13.4px;line-height:1.4;}
+.f4h .nl p{font-size:11.2px;line-height:1.65;margin-top:4px;}
+.f4h .nl .no{font-size:18px;}
+.f4h .nl sup{font-size:8px;}
+.f4h .pslots .slot:first-child{flex:3;}
+.f4h .pslots .slot:last-child{flex:1;min-height:70px;}
+.day4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:9px;}
+.day4 > div{background:var(--wash-2);border-top:3px solid var(--blue);border-radius:0 0 8px 8px;padding:7px 10px 8px;font-size:10.2px;line-height:1.5;color:var(--ink-2);}
+.day4 b{display:block;color:var(--navy);font-size:11.3px;margin-bottom:2px;}
+.ben3{display:grid;grid-template-columns:.85fr 1.3fr 1fr;gap:9px;margin-top:9px;}
+.ben3 > div{border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:0 0 8px 8px;padding:8px 11px 9px;}
+.ben3 b{display:block;font-size:12px;color:var(--navy);line-height:1.4;}
+.ben3 b::before{content:"☑ ";color:var(--blue);}
+.ben3 p{font-size:10.2px;line-height:1.55;color:var(--ink);margin-top:3px;}
+.cert2{margin-top:10px;font-size:12px;font-weight:900;color:var(--navy);border-top:2px solid var(--navy);padding-top:6px;}
+.proof .pslots .slot{min-height:44px;}
+.quote{margin:10px 36px 0;padding:10px 16px;}
+.quote h3{font-size:16px;}
+.quote p{font-size:12.5px;font-weight:700;color:var(--navy);margin-top:5px;}
+@media (max-width:640px){.f4h,.day4,.ben3,.decl2.wp{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-t="p">
+<div class="wrap">
+<div class="tabs"><b>실물 디자인형 · 2026-11-02 · 로켓 가정집 · 가정집 × 프레쉬제닉 Max</b></div>
+
+<div class="tpl" id="tpl-p"><div class="stack">
+<div class="dnote"><h4><span>디자이너 노트</span>로켓 리플릿 가정집 · 가정집 × 프레쉬제닉 Max 변기세정기 (10/27 v2 원고 그대로, 실물 배치)</h4>
+<table><tr><th>흐름</th><td>1면 <b>가족 말 3개 → 요청형 헤드</b> → 왜 평일이면 다시 누렇게 되나(원인 3) → 선언 밴드(제품 첫 등장) / 2면 특장점 5(상세) → 하루 4장면 → 시험기관·각주 → 케어십·멤버스·렌탈 → 따옴표 선언 + 상담. 가정집은 문제와 특장점을 상세히.</td></tr>
+<tr><th>레이아웃</th><td>1면 흰 지면 상단 훅 + 말풍선 + 헤드 3행, 아래 화장실 연출컷(35%, 글이 줄면 이 자리가 흡수) → 원인 카드 3(증상 사진) → 네이비 선언 밴드 + 우측 누끼. 2면 좌 번호 특장점 5 · 우 누끼 세로 열 → 4칸 하루 띠 → 각주 + 성적서 2컷 → 혜택 카드 3 → 따옴표 클로징.</td></tr>
+<tr><th>원칙</th><td>표지에 제품명 없음. 2면 헤드는 원고에 없어 제품명만 반복(새 카피 없음). 수치(99.7% · 95%)는 각 자리 1회. 가정집 렌탈·요금은 [확인 필요] 유지. 공란 없음. 2P 상한.</td></tr></table></div>
+
+<section class="page">
+  <div class="sm">
+    <div class="hook">아이·부모님과 함께 사는 가정집, 왜 세스코여야 할까요?</div>
+    <div class="bub"><span>아들 둘이라 변기 테두리 닦는 게 매일 일이에요.</span><span>손님 오시면 화장실 냄새부터 신경 쓰여요.</span><span>맞벌이라 주말에 몰아서 닦는데, 평일엔 누렇게 변해 있어요.</span></div>
+    <h1>매일 닦을 수는 없으니까,<br>닦지 않는 시간에도 변기가 깨끗하게<br>유지되게 해 주세요!</h1>
+  </div>
+  <div class="sm-slot grow"><div class="slot"><div><span class="lbl">이미지 · 표지 35%</span>가정집 화장실 연출컷. 아이가 변기 뚜껑을 여는 장면, 밝은 톤, 제품은 보이지 않게. 집에서 매일 보는 장면으로 공감 유도</div></div></div>
+  <div class="inner hm-cause">
+    <div class="qa"><b>주말마다 닦는데, 왜 평일이면 다시 누렇게 될까요?</b><p>변기는 쓸 때마다 오염이 쌓이고, 대소변이 분해되는 과정에서 악취 물질이 계속 생기기 때문입니다.<br>가족 네 명이 하루 20번 넘게 쓰는 변기는 청소와 청소 사이에 오염이 쌓일 시간이 충분합니다.</p></div>
+    <div class="cause">
+      <div><div class="slot"><div><span class="lbl">증상 사진</span>변기 테두리 소변 얼룩 · 갈색 요석</div></div><b>아이·어르신이 남기는 소변 튀김과 요석</b><p>서서 쓰는 남자아이와 조준이 어려운 어르신이 있는 집은 변기 테두리와 바닥에 소변이 남습니다. 소변으로 생기는 요석은 관리하지 않으면 갈색으로 딱딱하게 굳어 일반 청소로는 잘 지워지지 않습니다.</p></div>
+      <div><div class="slot"><div><span class="lbl">증상 사진</span>창문 없는 욕실</div></div><b>환기 약한 욕실에 고이는 악취</b><p>대소변이 분해되면서 암모니아(코를 찌르는 냄새)와 트리메틸아민(생선 비린내)이 계속 발생합니다. 창문 없는 아파트 욕실은 환기가 약해 냄새가 고이고, 방향제는 냄새를 덮을 뿐 원인 물질을 줄이지 못합니다.</p></div>
+      <div><div class="slot"><div><span class="lbl">이미지</span>청소와 청소 사이 비는 시간</div></div><b>청소 사이사이 비는 시간</b><p>맞벌이·육아 가정은 변기를 매일 닦기 어렵습니다. 하루 한두 번 청소로도 다음 청소 전까지 쌓이는 오염과 냄새를 막기 어려운데, 주 1~2회 청소라면 그 사이 비는 시간은 훨씬 깁니다.</p></div>
+    </div>
+  </div>
+  <div class="decl2 wp"><div><p>변기 오염은 쌓이기 전에 주기적으로 세정해야 하고, 악취는 덮기 전에 원인 물질을 줄여야 합니다.<br>온 가족이 매일 쓰는 변기는 사람이 닦지 않는 시간에도 이 두 가지가 자동으로 반복되어야 합니다.</p><h3>20분마다 자동 세정해 변기 오염과 악취를 상시 관리하는<br>세스코 프레쉬제닉 Max 변기세정기</h3><small>CESCO Viruscare ㅣ 벽면 부착형 ㅣ 90(W) × 67(D) × 220(H) mm ㅣ 펌프 방식 PE 용기 345ml</small><span class="memo">[확인 필요 : 프레쉬제닉 Max는 사업장 간편렌탈 상품으로 등록되어 있음 — 가정집 렌탈·구매 가능 여부, 가정용 요금과 방문주기 확인 후 지면 확정]</span></div><div class="slot"><div><span class="lbl">제품 누끼</span>가정 욕실 양변기 옆 벽면 부착 상태 1컷. 상품 첫 등장</div></div></div>
+  <footer><div class="logo">CESCO<small>세스코</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr ㅣ ©Rocket_Home_FRG_V.2_2026.10 CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer>
+  <span class="pageno">로켓 가정집 · 가정집 × 프레쉬제닉 Max 1쪽</span>
+</section>
+
+<section class="page">
+  <div class="sm2"><h2>세스코 프레쉬제닉 Max 변기세정기</h2></div>
+  <div class="inner grow">
+    <div class="f4h" style="flex:1;">
+      <div class="nl" style="justify-content:space-between;">
+        <div><div class="no">01</div><div><h3>20분마다 자동 세정, 2달 내내 일정한 세정력</h3><p>자동으로 세정액이 토출되어 변기 오염을 상시 관리합니다. 출근한 낮, 잠든 밤에도 2달 내내 일정한 세정력으로 오염이 쌓이는 것을 막아, 주말 대청소의 변기 몫을 덜어 줍니다.</p></div></div>
+        <div><div class="no">02</div><div><h3>아이·어르신 소변이 남기는 요석 발생 억제</h3><p>소변으로 생기는 요석 발생을 억제해 변기 테두리가 누렇게 굳기 전에 관리합니다. 기존 자사 제품 대비 유효성분 함량을 늘려 적은 양으로도 강력한 세정·탈취력을 제공합니다.</p></div></div>
+        <div><div class="no">03</div><div><h3>냄새를 덮지 않고 원인부터 · 암모니아 99.7%<sup>1)</sup> 트리메틸아민 95%<sup>2)</sup> 탈취</h3><p>방향제처럼 덮는 게 아니라 악취 원인 물질을 제거합니다. 여기에 마스킹 향료(오조닉향)로 2중 제어해 손님이 와도, 문을 닫아 둬도 욕실 냄새 걱정을 줄입니다.</p></div></div>
+        <div><div class="no">04</div><div><h3>아이가 쓰는 공간이니까 · 가습기 살균제 이슈성분 7종<sup>3)</sup> · 파라벤류 7종<sup>4)</sup> 불검출</h3><p>세정력·탈취력 검증은 기본, 제품 성분에 대한 유해물질 불검출 검사까지 완료했습니다. 세스코다운 기준으로 성분까지 더 엄격하게 검증합니다.</p></div></div>
+        <div><div class="no">05</div><div><h3>좁은 아파트 욕실에도, 어떤 인테리어에도</h3><p>90 × 67 × 220 mm 컴팩트 사이즈로 양변기 옆 좁은 벽면에도 설치할 수 있고, 깔끔한 디자인이 욕실 인테리어에 자연스럽게 어우러집니다. 세스코 전문가가 2개월마다 방문해 케미컬을 교체하고 기기를 점검합니다.</p></div></div>
+      </div>
+      <div class="pslots"><div class="slot"><div><span class="lbl">제품 누끼</span>양변기 옆 벽면 부착, 아이 손 닿지 않는 높이가 보이게</div></div><div class="slot"><div><span class="lbl">아이콘 5 (작게)</span>특장점 5항과 1:1</div></div></div>
+    </div>
+  </div>
+  <div class="inner">
+    <div class="day4"><div><b>아침, 출근·등교 전</b>밤새 자동 세정된 변기로 바쁜 아침에 닦을 일이 없습니다.</div><div><b>낮, 비어 있는 집</b>아무도 없어도 20분마다 세정이 반복돼 오염이 쌓이지 않습니다.</div><div><b>손님이 오는 저녁</b>냄새 원인 물질을 줄여 둔 욕실이라 급하게 방향제를 뿌리지 않아도 됩니다.</div><div><b>주말 대청소</b>변기 테두리 요석을 긁어내는 시간을 줄이고 다른 곳에 씁니다.</div></div>
+    <div class="cert2">공인시험기관(FITI시험연구원) 시험완료</div>
+    <div class="proof" style="margin-top:5px;"><div class="fine"><p>1) 암모니아 탈취율 : FITI시험연구원, 탈취 가공 제품의 탈취성능 평가방법 가스 검지관법(FITI TM F 0003 : 2022), 액상 시료 5g을 5L 백에 넣고 시험가스 3L 주입, 초기농도 100ppm, 2시간 경과 후 측정. 2) 트리메틸아민 탈취율 : 1)와 같은 시험, 초기농도 28ppm, 2시간 경과 후 측정. 3) 가습기 살균제 이슈성분 7종 불검출 : CMIT, MIT, BKC, PHMG, PGH, PHMB, DDAC (시험기관 : FITI시험연구원, 정량한계 1mg/kg 미만). 4) 파라벤류 7종 불검출 : p-하이드록시벤조익애씨드, 메칠파라벤, 에칠파라벤, 프로필파라벤, 이소프로필파라벤, 부틸파라벤, 이소부틸파라벤 (시험기관 : FITI시험연구원).</p><p>※ 상기 탈취율은 제한된 실험 조건에서 측정한 결과이며, 실제 사용 환경(화장실 면적, 환기 상태, 이용 인원 등)에 따라 성능이나 효과가 달라질 수 있습니다.</p></div><div class="pslots"><div class="slot"><div><span class="lbl">성적서</span>FITI 탈취 시험</div></div><div class="slot"><div><span class="lbl">성적서</span>성분 불검출 · 엠블럼 사용 시 "법정인증마크가 아닌 통상적인 도안" 고지</div></div></div></div>
+    <div class="ben3">
+      <div><b>세스코 케어십 서비스</b><p>세스코 전문가가 2개월마다 방문해 케미컬 용기 교체와 세정액 토출·기기 작동 상태를 점검합니다. 가족이 직접 약제를 다룰 일이 없습니다.</p></div>
+      <div><b>세스코 멤버스 혜택</b><p>세스코 쇼핑몰 회원 가입 후 멤버스 인증 시 멤버스 할인가 적용. 가정집 전문살균(바이러스, 세균 관리) 서비스 10% 할인, 가정집 해충방제 초기 서비스 10% 할인. 세스코 정수기·공기청정기·비데 계약 시 결합 할인. <span class="memo">[확인 필요 : 변기세정기 적용 가능한 멤버스 혜택 범위]</span></p></div>
+      <div><b>렌탈 또는 구매</b><p>등록비 30,000원 · 월 22,900원(세스코몰 2026년 7월 기준, 사업장 간편렌탈 기준). 가정집 조건은 상담 시 안내해 드립니다. <span class="memo">[확인 필요 : 가정용 일시불 구매 가능 여부]</span></p></div>
+    </div>
+    <div class="fine" style="margin-top:5px;"><p>* 케어십 서비스는 제품별로 상이합니다. 멤버스 프로모션 혜택은 당사 정책 변경에 따라 달라질 수 있습니다.</p></div>
+  </div>
+  <div class="quote"><h3>“ 우리 아이가 매일 쓰는 변기니까<br>세스코 과학으로 관리합니다. ”</h3><p>상담문의 1588-1119 ㅣ 홈페이지 문의 www.cesco.co.kr</p></div>
+  <footer><div class="logo">CESCO<small>세스코</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr ㅣ ©Rocket_Home_FRG_V.2_2026.10 CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer>
+  <span class="pageno">로켓 가정집 · 가정집 × 프레쉬제닉 Max 2쪽</span>
+</section>
+</div></div>
+
+</div>
+</body>
+</html>
