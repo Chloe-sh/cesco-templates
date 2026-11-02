@@ -64,9 +64,17 @@ td li{margin:2px 0}
 .latest .hist .arr{color:var(--ink3);padding:0 3px}
 .grp td{background:var(--soft);font-weight:800;font-size:13px;color:var(--ink2);padding:6px 10px}
 .need{color:var(--amber);font-weight:700}
+details.fold{margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+details.fold>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;font-size:20px;font-weight:800}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+details.fold>summary .hint{margin-left:auto;font-size:12px;font-weight:500;color:var(--muted,#6b7280)}
+details.fold[open]>summary .hint .c{display:none}details.fold:not([open])>summary .hint .o{display:none}
+details.fold h2{display:none}
+@media print{details.fold{display:block}details.fold>summary .hint{display:none}details.fold:not([open])>*:not(summary){display:block}}
 </style>
 </head>
-<body data-patched3="261104-nohist" data-patched2="261104-labels" data-patched="261104-rocket">
+<body data-patched3="261104-nohist" data-patched2="261104-labels" data-patched="261104-rocket" data-patched-fold="1">
 <div class="wrap">
 
 <header class="top">
@@ -114,7 +122,7 @@ td li{margin:2px 0}
 <tr class="grp"><td colspan="4">카드뉴스</td></tr>
 
 <tr><td>매트리스 케어 편</td><td><div class="v"><a href="매트리스케어_4종_v06_윤문검토.html#v05" target="_blank">경험 질문형</a><a href="매트리스케어_4종_v06_윤문검토.html#v06" target="_blank">체크리스트형</a><a href="매트리스케어_4종_v06_윤문검토.html#v07" target="_blank">상담 Q&amp;A형</a><a href="매트리스케어_4종_v06_윤문검토.html#v08" target="_blank">작업일지형</a><span class="d">11/02 · 표지 후보 4 채택</span></div></td><td class="hist">3안은 발행 후보가 아니라 테스트 후보.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
-<tr><td>배수구 편</td><td><div class="v"><a href="배수구_4종_v06_윤문검토.html#v01" target="_blank">수사 컨셉형</a><a href="배수구_4종_v06_윤문검토.html#v02" target="_blank">원인 추적형</a><a href="배수구_4종_v06_윤문검토.html#v03" target="_blank">경험 질문형</a><a href="배수구_4종_v06_윤문검토.html#v04" target="_blank">연휴 프로모션형</a><span class="d">11/02</span></div></td><td class="hist">10/21 예시 1안(후킹 → 일상 상황 → 문제 → 솔루션)과 2안(경험 질문 → 건강 문제 → 상품)을 둘 다 담음.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>배수구 편</td><td><div class="v"><a href="배수구_4종_v06_윤문검토.html#v01" target="_blank">수사 컨셉형</a><a href="배수구_4종_v06_윤문검토.html#v02" target="_blank">원인 추적형</a><a href="배수구_4종_v06_윤문검토.html#v03" target="_blank">경험 질문형</a><a href="배수구_4종_v06_윤문검토.html#v04" target="_blank">프로모션형</a><span class="d">11/02</span></div></td><td class="hist">10/21 예시 1안(후킹 → 일상 상황 → 문제 → 솔루션)과 2안(경험 질문 → 건강 문제 → 상품)을 둘 다 담음.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
 
 
 <tr><td>주방후드 편</td><td><div class="v"><a href="카드뉴스_주방후드_오해교정형_v03_윤문검토_261102.html" target="_blank">오해 교정형</a><span class="d">11/02</span></div></td><td class="hist">스토리텔링 도입 후보 리서치(10/23)에서 나온 파일럿. 채택 여부 미정.</td><td class="c"><span class="st hold">보류</span></td></tr>
@@ -140,7 +148,7 @@ td li{margin:2px 0}
 </table>
 
 <!-- ───────────────────────── 1 ───────────────────────── -->
-<h2 id="s1"><span class="num">01</span>템플릿</h2>
+<details class="fold" id="s1"><summary><span class="num">01</span>템플릿<span class="hint"><span class="c">펼치기 ▾</span><span class="o">접기 ▴</span></span></summary>
 <p class="small">상태는 11/02 기준입니다. 10/28 미팅 결정 6건은 모두 마스터 템플릿과 시안에 반영했습니다.</p>
 
 <table>
@@ -168,7 +176,7 @@ td li{margin:2px 0}
 <li>A/B/C 초안 생성 템플릿은 v1.7입니다. 기본 산출 2안(§0), 전개 방식 게이트(§3-3), 테스트형 골격 2개(§5-3), 참조 비중 절(§5-4), 훅 유형 ⑥⑦, 변주 매트릭스 축 2개, 검수 항목 3개를 더했습니다. 10/28 결정대로 원천소스에 맞는 유형을 먼저 추천하고 담당자가 고른 뒤 제작하는 흐름이며, 선택이 없으면 기본형입니다.</li>
 <li>11월 마케팅포털 카드뉴스 원천소스 4건(판테온·에어컨클리닝, 에어커튼, 세탁세제, 비데)을 10/27 받았습니다. 이 흐름으로 제작을 시작합니다.</li>
 </ul></td>
-<td class="out"><div class="chips"><a class="chip" href="../../index.html#d60" target="_blank"><span class="type">기본형</span>현행 구조 (d60)</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v01" target="_blank"><span class="type">배수구</span>수사 컨셉형</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v02" target="_blank"><span class="type">배수구</span>원인 추적형</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v03" target="_blank"><span class="type">배수구</span>경험 질문형</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v04" target="_blank"><span class="type">배수구</span>연휴 프로모션형</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v05" target="_blank"><span class="type">매트리스 케어</span>경험 질문형 (확정 · v03 윤문)</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v06" target="_blank"><span class="type">매트리스 케어</span>체크리스트형</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v07" target="_blank"><span class="type">매트리스 케어</span>상담 Q&amp;A형</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v08" target="_blank"><span class="type">매트리스 케어</span>작업일지형</a><a class="chip" href="../../index.html#d102" target="_blank"><span class="type">템플릿</span>A/B/C 초안 생성 v1.7</a></div></td></tr>
+<td class="out"><div class="chips"><a class="chip" href="../../index.html#d60" target="_blank"><span class="type">기본형</span>현행 구조 (d60)</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v01" target="_blank"><span class="type">배수구</span>수사 컨셉형</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v02" target="_blank"><span class="type">배수구</span>원인 추적형</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v03" target="_blank"><span class="type">배수구</span>경험 질문형</a><a class="chip" href="배수구_4종_v06_윤문검토.html#v04" target="_blank"><span class="type">배수구</span>프로모션형</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v05" target="_blank"><span class="type">매트리스 케어</span>경험 질문형</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v06" target="_blank"><span class="type">매트리스 케어</span>체크리스트형</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v07" target="_blank"><span class="type">매트리스 케어</span>상담 Q&amp;A형</a><a class="chip" href="매트리스케어_4종_v06_윤문검토.html#v08" target="_blank"><span class="type">매트리스 케어</span>작업일지형</a><a class="chip" href="../../index.html#d102" target="_blank"><span class="type">템플릿</span>A/B/C 초안 생성</a></div></td></tr>
 
 <tr><td><b>제품 POP</b><br><span class="small">헤드라인 5안 규칙</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
 <li>10/22에 만든 헤드라인 생성 규칙을 10/26에 개정했습니다. 제품마다 <b>가이드 공식 카피 1개 + 라벨이 서로 다른 5안</b>(① 관리 선언형 · ② 관리 범위형 · ③ 수치·인증형 · ④ 상시 작동형 · ⑤ 정기 관리형)을 내고, 담당자가 고릅니다. 수치는 ③형에만, 시험기관·조건이 있는 것만 씁니다.</li>
@@ -194,7 +202,8 @@ td li{margin:2px 0}
 </table>
 
 <!-- ───────────────────────── 2 ───────────────────────── -->
-<h2 id="s2"><span class="num">02</span>콘텐츠 · 기능</h2>
+</details>
+<details class="fold" id="s2"><summary><span class="num">02</span>콘텐츠 · 기능<span class="hint"><span class="c">펼치기 ▾</span><span class="o">접기 ▴</span></span></summary>
 <table>
 <thead><tr><th>항목</th><th class="c">상태</th><th>이번 주 반영</th><th>산출물</th></tr></thead>
 <tbody>
@@ -229,6 +238,7 @@ td li{margin:2px 0}
 </table>
 
 <!-- ───────────────────────── 3 ───────────────────────── -->
+</details>
 <h2 id="s3"><span class="num">03</span>다음 주 · 세스코 대기 · 결정</h2>
 
 <h3>다음 주 할 일</h3>
