@@ -181,7 +181,7 @@ AICARD = {
   checks=['전문 방역업체가 월 1회 이상 전체 살균·소독','젖병·수건은 아기별로 구분해 매일 고온 살균','신생아실 공기 살균기 상시 가동'],
   info=[('🍼','모자동실을 운영해 아기와 함께 지낼 수 있어요.'),('📹','폰으로 신생아실을 24시간 볼 수 있어요.'),('🪟','방마다 바깥 창이 있어 환기가 잘 돼요.')],
   review=['신생아실이 항상 깨끗하게 유지돼요.','산모식이 정갈하고 회복에 좋아요.','선생님들이 세심하게 돌봐주세요.'],
-  quote='공기부터 젖병까지,<br>아기에게 닿는 순서대로<br>챙기는 조리원이에요.'),
+  quote=''),
 'meat': dict(intro='',checks=[],info=[],review=[],quote=''),
 }
 SVC_EN = {'VIRUSCARE':'Viruscare','BODYCARE':'Bodycare','FOOD':'Food','IHM':'Cleaning','IPM':'IPM','AIR':'Air','MYLAB':'MyLab','CHECK':'Check'}
