@@ -350,7 +350,7 @@ EXTRA_CSS = r"""
 .tv-a .rl .on{color:#0B5E31}
 .tv-a .rq{margin:9px 0 10px;padding:0 0 0 10px;border-left:2px solid #C9A227;font-size:10.5px;color:var(--ink2);line-height:1.6}
 .tv-a .rf{padding:9px 14px 0;font-size:9.5px;color:#6B6B6B;display:flex;justify-content:space-between}
-/* B 게이지형 + 같은 방식 D·E·F */
+/* D 스탬프형(확정) + 같은 방식 B·E·F */
 .tv-b{margin:0 16px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .tv-b .bh{display:flex;align-items:center;gap:8px}
 .tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
@@ -598,7 +598,7 @@ function previewHtml(bk, typ, s, o){
   const basicHtml=`<div class="binfo"><div class="bi"><span class="ic">📍</span><span>${P.addr}</span><b>복사 · 길찾기</b></div><div class="bi"><span class="ic">🕒</span><span>${P.hours}</span></div><div class="bi"><span class="ic">📞</span><span>${P.tel}</span><b>복사</b></div><div class="bi"><span class="ic">💳</span><span>${P.pay}</span></div><div class="bi"><span class="ic">#</span><span>${P.tags}</span></div><div class="bi"><span class="ic">🛋️</span><span>${P.conv.join(', ')}</span></div></div>`;
   const mtabs=`<div class="mtabs">${t.members.map(m=>`<button type="button" class="mtab ${m.key===mt?'on':''}" data-mt="${m.key}" style="--mc:${m.color}">${m.name}<small>${t.hcards.cards.filter(c=>m.svcs.includes(c[0])).length}</small></button>`).join('')}</div>`;
   const cardsHtml=cards.map((c,ci)=>`<div class="swc" style="--mc:${mem.color};--mbg:${mem.bg};--ml:${mem.line}"><div class="swin"><div class="swt"><span class="logo"><b>CESCO</b><i>${t.svc_en[c[0]]||c[0]}</i></span><span class="stamp"><svg viewBox="0 0 44 44" width="40" height="40"><circle cx="22" cy="22" r="20" fill="none" stroke="#8FA3BF" stroke-width="1.4"/><circle cx="22" cy="22" r="15" fill="none" stroke="#8FA3BF" stroke-width=".8"/><text x="22" y="20" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CESCO</text><text x="22" y="28" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CHECK</text></svg></span></div><div class="hk">${c[1]}</div><div class="hl">${c[2]}</div><div class="ck"><span class="bx">✓</span><span>[${c[3]}] ${c[4]} 체크 완료</span></div><div class="dt">최근 점검일 : 2026.${reg.date}</div><div class="rp">ⓘ 점검 리포트 보기</div></div></div>`).join('');
-  const toolsHtml=toolsBlock(t, o.tv||'B');
+  const toolsHtml=toolsBlock(t, o.tv||'D');
   const M=t.placemeta, pv=o.pv||'A';
   const chkRow=(c,i)=>`<div class="pc${i===0?' first':''}" style="--mc:${mcol(c[0])}"><div class="pc-h"><span class="ok">✓</span><b>${c[1]}</b><span class="svc">${t.svc_ko[c[0]]||c[0]}</span></div><p>${c[2]}</p><div class="pc-f">세스코 체크 완료 · 2026.${reg.date} · 유효 3개월</div></div>`;
   const basicRows=`<div class="pl-row"><span>주소</span><span>${P.addr}</span></div><div class="pl-row"><span>${t.key==='산후조리원'?'상담·면회':'영업시간'}</span><span>${P.hours}</span></div><div class="pl-row"><span>전화</span><span>${P.tel}</span></div><div class="pl-row"><span>결제</span><span>${P.pay}</span></div>`;
