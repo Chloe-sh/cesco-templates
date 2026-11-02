@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>가을 매트리스 케어 편 · 카드뉴스 4종 v03 윤문검토</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f5; --panel:#ffffff; --ink:#15171c; --ink-2:#4d5360; --ink-3:#7a8191;
+  --line:#d9dee6; --navy:#0b2d5c; --blue:#1457c8; --blue-soft:#e6eefc; --memo:#f5f6f8;
+  --card-bg:#ffffff; --card-ink:#15171c; --card-blue:#1457c8; --card-navy:#0b2d5c; --card-mute:#6b7280; --card-line:#d9dee6; --card-sol:#eef4ff;
+  --warn:#b4541a; --warn-bg:#fff4ea;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+    --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430;
+    --warn:#f0a66a; --warn-bg:#2b2016;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+  --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430;
+  --warn:#f0a66a; --warn-bg:#2b2016;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;line-height:1.6;word-break:keep-all}
+header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.hd{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding:14px 0}
+.hd h1{font-size:16px;font-weight:700;margin:0;color:var(--ink)}
+.hd h1 small{display:block;font-size:12px;font-weight:400;color:var(--ink-3)}
+.tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.tabs button{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);font:inherit;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tabs button[aria-selected="true"]{color:#0b1220} }
+:root[data-theme="dark"] .tabs button[aria-selected="true"]{color:#0b1220}
+.tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.intro{padding:22px 0 6px}
+.intro p{margin:0 0 6px;color:var(--ink-2);max-width:76ch}
+.intro .ver{font-size:13px;color:var(--ink-3)}
+.toggle-memo{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);border-radius:8px;padding:6px 12px;cursor:pointer;margin-top:8px}
+.deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;padding:18px 0 40px}
+@media (max-width:760px){.deck{grid-template-columns:1fr}}
+.deck[hidden]{display:none}
+.slot{display:flex;flex-direction:column;gap:10px;container-type:inline-size}
+.slot-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3)}
+.slot-meta b{color:var(--ink-2);font-weight:500}
+.card{position:relative;min-height:100cqw;width:100%;background:var(--card-bg);color:var(--card-ink);border:1px solid var(--line);border-radius:4px;padding:7% 7.5%;display:flex;flex-direction:column;overflow:visible;container-type:inline-size}
+.card.over{outline:2px dashed var(--warn)}
+.overbadge{display:inline-block;font-size:11px;color:var(--warn);background:var(--warn-bg);border-radius:3px;padding:1px 6px;margin-left:6px}
+.card .logo{position:absolute;top:5.5%;right:7.5%;font-size:2.9cqw;font-weight:900;letter-spacing:.04em;color:var(--card-navy)}
+.card .logo.sol{color:#fff;background:var(--card-navy);padding:.4cqw 1.6cqw;border-radius:3px;font-size:2.5cqw;letter-spacing:0}
+.card .num{font-size:2.6cqw;color:var(--card-mute);margin-bottom:3.2cqw}
+.head{margin:0 0 4.2cqw;line-height:1.28;letter-spacing:-.01em}
+.head .l{display:block;font-weight:900;font-size:6.6cqw;color:var(--card-ink)}
+.head .l.j{color:var(--card-blue)}
+.head.cover .l{font-size:7.4cqw}
+.body{font-size:3.55cqw;line-height:1.62;color:var(--card-ink);margin:0}
+.body p{margin:0}
+.tip{margin:0 0 2.6cqw;font-size:3.4cqw;line-height:1.55}
+.tip b{display:block;font-weight:700;font-size:3.7cqw;color:var(--card-navy)}
+.tip:last-of-type{margin-bottom:0}
+.step{margin:0 0 1.6cqw;font-size:3.3cqw;line-height:1.5}
+.step em{font-style:normal;font-weight:700;color:var(--card-blue);margin-right:1cqw}
+.point{margin-top:2.6cqw;font-size:3.3cqw;line-height:1.5;padding-top:2.4cqw;border-top:1px solid var(--card-line)}
+.point em{font-style:normal;font-weight:700;color:var(--card-navy);margin-right:1cqw}
+.name{font-size:3.6cqw;font-weight:700;color:var(--card-navy);margin:0 0 3.2cqw;padding:1.6cqw 2.4cqw;background:#dfe9fb;display:inline-block;border-radius:3px;align-self:flex-start}
+.src{margin-top:auto;padding-top:3cqw;font-size:2.5cqw;line-height:1.45;color:var(--card-mute)}
+.strip{margin-top:auto;background:var(--card-navy);color:#fff;font-size:3.1cqw;padding:2.6cqw 3.2cqw;margin-left:-7.5%;margin-right:-7.5%;margin-bottom:-7%;line-height:1.5}
+.sub{margin:-1cqw 0 0;font-size:3.5cqw;line-height:1.5;color:var(--card-mute)}
+.cta{margin-top:auto;font-size:3.1cqw;color:var(--card-mute)}
+.card.sol-bg{background:var(--card-sol)}
+.fig{width:100%;height:auto;display:block;margin:0 0 3cqw}
+.fig.sm{max-height:26cqw;width:auto;max-width:100%;margin:0 auto 2.5cqw}
+.bub{display:inline-block;background:#fff;border:2px solid var(--card-ink);border-radius:14px;padding:1.6cqw 2.6cqw;font-size:3.4cqw;font-weight:700;line-height:1.35;color:var(--card-ink);margin:0 0 3cqw;align-self:flex-start}
+.memo{background:var(--memo);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.memo div{margin:3px 0}
+.memo .k{color:var(--ink-3);margin-right:6px}
+.memo .need{color:var(--warn);background:var(--warn-bg);padding:1px 6px;border-radius:3px}
+body.hide-memo .memo{display:none}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin:4px 0 24px;font-size:13.5px;color:var(--ink-2)}
+.note h2{font-size:15px;margin:0 0 10px;color:var(--ink)}
+.note h3{font-size:13.5px;margin:16px 0 6px;color:var(--ink-2)}
+.note p{margin:0 0 8px;max-width:80ch}
+.note .tags{font-size:12.5px;color:var(--blue);line-height:1.8}
+.note table{border-collapse:collapse;font-size:12.5px;width:100%}
+.note th,.note td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;color:var(--ink-2)}
+.note th{background:var(--memo);color:var(--ink)}
+.note[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){ .deck{transition:opacity .18s} .deck.swap{opacity:0} }
+
+.pane[hidden]{display:none}
+.story-plan[hidden]{display:none}
+.intro .toggle-memo{margin-top:8px}
+.memo{background:var(--memo);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.memo div{margin:3px 0}
+.memo .k{color:var(--ink-3);margin-right:6px}
+.memo .need{color:var(--warn);background:var(--warn-bg);padding:1px 6px;border-radius:3px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin:4px 0 24px;font-size:13.5px;color:var(--ink-2)}
+.note h2{font-size:15px;margin:0 0 10px;color:var(--ink)}
+.note h3{font-size:13.5px;margin:16px 0 6px;color:var(--ink-2)}
+.note p{margin:0 0 8px;max-width:80ch}
+.note .tags{font-size:12.5px;color:var(--blue);line-height:1.8}
+.note table{border-collapse:collapse;font-size:12.5px;width:100%}
+.note th,.note td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;color:var(--ink-2)}
+.note th{background:var(--memo);color:var(--ink)}
+.note[hidden]{display:none}
+#v05 .slot{container-type:inline-size}
+#v05 .fig.sm{max-height:26cqw;width:auto;max-width:100%;margin:0 auto 2.5cqw}
+#v05 .intro p{max-width:76ch}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hd">
+    <h1>가을 매트리스 케어 편 · 카드뉴스 4종 v03 윤문검토<small>2026-11-02 · v03 문장 검수·윤문 반영 · 카드 본문·헤드라인·안내 문구·ALT·제작 메모 교정, 미확정 수치·행사 조건은 메모로 분리 · 사실 검증 완료본 아님</small></h1>
+    <div class="tabs" role="tablist" aria-label="유형 선택"><button role="tab" aria-selected="true" data-v="v05">경험 질문형</button><button role="tab" aria-selected="false" data-v="v06">① 체크리스트형</button><button role="tab" aria-selected="false" data-v="v07">② 상담 Q&amp;A형</button><button role="tab" aria-selected="false" data-v="v08">③ 작업일지형</button></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="intro" style="padding-bottom:0">
+    <div class="story-plan" id="storyPlan" hidden><div class="plan">
+<h2>기획안 요약</h2>
+<div class="pgrid">
+<div><b>목적</b>가을 이불 세탁철(10~11월)에 '매트리스 케어' 상담 유입. 이불 세탁 행동에 매트리스 관리를 붙이는 인식 전환.</div>
+<div><b>타깃</b>이불 세탁·교체를 직접 하는 30~50대 가정. 알레르기 유발물질에 민감한 가족이 있는 집. (숙박업장은 별도 편)</div>
+<div><b>핵심 메시지</b>이불은 세탁으로, 매트리스는 따로. 세탁은 이불까지만 닿고(40℃ 사멸률 9.6%), 시트는 66%만 막는다.</div>
+<div><b>데이터 자산</b>사멸률 6.5 / 9.6 / 모두(30·40·60℃) · 유발물질 잔존 2.4% · 차단 66 / 94% · 침대 60개 조사 · 정향유 성분 세릭스 내추럴액 · 공식 7단계 중 발췌 4단계(01 환경조사 및 진단 · 02 약제 분무 · 04 매트리스 집진 · 05 프레임 클리닝). 수치는 매 안에서 같은 조건·출처로.</div>
+<div><b>테스트 설계</b>기본형(10/26 검수본)을 기준선으로 두고, 이 3안을 같은 기간·같은 CTA로 노출해 비교합니다. 수첩·채팅·작업일지 장치는 코퍼스에 없는 톤이라 발행 후보가 아니라 테스트 후보입니다.</div>
+<div><b>지표</b>넘김률(2→3장, 4→5장) · 저장률(경계 장, Q&amp;A 장) · 상담 클릭률 · 댓글의 '우리 집도' 반응. 광고 거부 신호는 1장 이탈률.</div>
+<div><b>발행 전 확정</b>상담 번호 · 각주 법무 문안 · 게시 제목 말머리와 사업부 코드. 서비스 정식 명칭과 STEP은 10/26 검수본 기준으로 반영했습니다.</div>
+<div><b>추천</b>★ ① 체크리스트형. 고객이 한 일을 먼저 인정하고 빈 곳 하나만 짚어 세스코 톤에 맞고, 경계 장이 저장 포인트입니다. 광고 우려가 크면 ② 상담 Q&amp;A형.</div>
+</div>
+</div>
+<div class="cmp"><table>
+<tbody><tr><th>안</th><th>맨 앞에 오는 것</th><th>전개 순서</th><th>셀프팁의 자리</th><th>광고 느낌</th><th>디자인 예시</th></tr>
+<tr><td>① 체크리스트형</td><td>고객이 한 행동</td><td>표지(질문) → 한 일 ✓✓✓ → 비어 있는 곳 → 근거 → 직접 할 것/맡길 것 → 서비스 → CTA</td><td>경계 장으로 변형</td><td>낮음</td><td>수첩·체크리스트</td></tr>
+<tr><td>② 상담 Q&amp;A형</td><td>고객 질문</td><td>표지 → Q1 이불만? → Q2 옮겨오나? → Q3 케어는 뭘 하나? → Q4 직접은? → CTA</td><td>Q4 답으로 흡수</td><td>낮음 (서비스가 답으로 등장)</td><td>채팅 상담</td></tr>
+<tr><td>③ 작업일지형</td><td>과정 예시(점검·관리)</td><td>표지(과정 예시) → 작업기록 01(STEP) → 작업 메모 ① → ② → 작업기록 02(서비스) → 관리 후 안내 + CTA</td><td>뒤로</td><td>높음 → 작업일지 형식으로 낮춤</td><td>작업일지 형식 예시</td></tr>
+</tbody></table></div>
+<div class="plan" style="margin-top:12px"><h2>윤문·표기 반영 (10/26 원고 대비)</h2><ul style="margin:6px 0 0 18px;padding:0;line-height:1.6">
+<li>LLM 티 제거: 부정 대구 "청소를 더 하자는 게 아닙니다 / 보자는 겁니다" 삭제, "이불은 됩니다. 매트리스는 안 됩니다" 대구 완화, "이불 이야기입니다"류 잘린 수사 풀어 씀, 격언형 표지 "열어보기 전엔 모릅니다" → 구체 장면 "오늘 열어 봤습니다", "달라진 게 없습니다·거기 남습니다" 구어 정리.</li>
+<li>검수본 표기: 서비스명 「세스코 매트리스 케어 솔루션」, STEP 공식 7단계 번호·명칭 발췌(01·02·04·05), 「나일론 차단 시트 94%」 → 「면 시트 아래 덧깐 나일론 매트리스 커버 94%」, 게시 제목 말머리 [위해요소]와 해시태그 #IPM.</li>
+<li>구조: ① 체크리스트형과 ③ 작업일지형의 서비스 장은 기본형 솔루션 카드를 공유하며, 검수본 STEP으로 고쳤습니다. 그 밖의 장 순서·역할·장치는 10/26 원고 그대로이고 사실·수치·출처는 바꾸지 않았습니다.</li>
+<li><b>v03 문장 검수·윤문(11/02):</b> ① 카드 2·3의 의미 중복 축소, 셀프 관리와 전문 관리 구분, 서로 다른 연구 수치를 한 실험처럼 묶지 않음. ② 기계적 상담 답변을 자연스러운 Q&amp;A로. ③ 실제 방문처럼 읽히는 '오늘' 문구를 지우고 <b>작업일지 형식의 과정 예시</b>임을 밝힘. 전후 비교 일러스트는 실제 결과가 아니라 연출임을 명시. 가상의 Q&amp;A·작업일지가 실제 상담·작업 사례로 오인되지 않도록 발행 전 디자인 확인 필요.</li>
+</ul></div></div>
+    <button class="toggle-memo" id="memoBtn" type="button">제작 메모 숨기기</button>
+  </section>
+<div class="pane" id="v05">
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-26 · 검수 하네스 3단(톤·표기·사실·윤문) 반영 · 원천소스 동일 · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p id="desc">경험 질문형 6장 — 표지(질문) → 근거 1 → 근거 2 → 셀프 팁 → 세스코 솔루션 → 마무리. 표지는 표지 후보 4(2026-10-27 채택), 덱 안 의문문은 표지 1회. v03 윤문: '매트리스 신호' 비약 제거, 사멸률·잔존율·차단율을 서로 다른 연구 지표로 구분, 셀프 팁 단정 완화. 사실·출처·서비스 정식명은 원천소스와 같습니다.</p>
+    <p class="ver">v03 윤문검토: '알레르기 걱정=매트리스 신호' 비약 제거, 연구 지표(사멸률·잔존율·차단율) 구분, 단정 완화. 사실 검증 완료본은 아니며 연구 수치의 실험 조건·문구와 서비스 STEP 정식명은 발행 전 확인 대상입니다. 회색 상자는 제작 메모(지면 비노출), 주황은 발행 전 확정 항목입니다.</p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 표지 (질문)</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 1 표지 (질문)">
+        <span class="logo">CESCO</span>
+        <span class="num">01 / 06</span>
+        <p class="head cover"><span class="l">이불은 빨았는데</span><span class="l j">매트리스는</span><span class="l j">그대로 두셨나요?</span></p><p class="sub">이불 세탁과 별개로 매트리스도 살펴보세요</p><div class="strip">이불 세탁하는 날 함께 챙기는 가을철 매트리스 관리법</div>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>2026-10-27 표지 후보 4 채택, 유형은 경험 질문형. 덱 안 의문문은 이 표지 1회만. v03 윤문: '반복되는 걱정=매트리스 신호' 비약 제거, 행동 제시로</div><div><span class="k">이미지</span>실사 + 초대형 타이포. 창문 연 침실, 햇볕에 말리는 이불. 헤드 1·2행 검정, 3행 파랑, 서브 회색. 부제는 하단 네이비 바. 서비스명 없음. 「☞ 옆으로 넘겨 확인하세요」는 로고 자리 고정 요소</div><div><span class="k">ALT</span>이불을 빨았는데 매트리스는 그대로 두었는지 묻는 가을철 매트리스 관리 카드뉴스 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> 근거 1</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 2 근거 1">
+        <span class="logo">CESCO</span>
+        <span class="num">02 / 06</span>
+        <p class="head"><span class="l">40℃ 세탁 시</span><span class="l j">진드기 사멸률 9.6%</span></p><svg class="fig sm" viewBox="0 0 400 150" role="img" aria-label="세탁 온도별 집먼지진드기 사멸률 비교">
+<g font-family="Noto Sans KR,sans-serif" text-anchor="middle">
+<rect x="40" y="110" width="60" height="18" rx="2" fill="#c9cfd9"></rect><text x="70" y="100" font-size="14" fill="#6b7280">6.5%</text><text x="70" y="145" font-size="12" fill="#6b7280">30℃</text>
+<rect x="170" y="100" width="60" height="28" rx="2" fill="#1457c8"></rect><text x="200" y="70" font-size="34" font-weight="900" fill="#1457c8">9.6%</text><text x="200" y="145" font-size="12" fill="#1457c8" font-weight="700">40℃</text>
+<rect x="300" y="20" width="60" height="108" rx="2" fill="#0b2d5c"></rect><text x="330" y="80" font-size="12" fill="#fff" font-weight="700">모두</text><text x="330" y="96" font-size="12" fill="#fff" font-weight="700">사멸</text><text x="330" y="145" font-size="12" fill="#0b2d5c">60℃·스팀워터</text>
+<text x="20" y="20" font-size="11" fill="#6b7280" text-anchor="start">진드기 사멸률</text>
+</g></svg><p class="body">한 연구에서 집먼지진드기 사멸률은 30℃ 세탁 시 6.5%, 40℃ 세탁 시 9.6%였습니다. 60℃와 스팀워터 조건에서는 모두 사멸했습니다. 같은 연구에서 40℃ 세탁 후 알레르기 유발물질(Der f 1)은 2.4%가 남았습니다. 사멸률과 잔존율은 서로 다른 항목을 잰 결과입니다.</p><p class="src">출처: Choi SY 외, Annals of Allergy, Asthma &amp; Immunology 100(6), 2008<br>※ 특정 실험 조건의 결과입니다. 사멸률과 세탁으로 씻겨 나간 비율은 다릅니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 사멸률 9.6%와 잔존 2.4%는 다른 지표 — 논문 실험 조건·문구 재확인</span></div><div><span class="k">강조</span>9.6%</div><div><span class="k">이미지</span>세탁 온도 3단 비교 그래픽(가안 SVG)</div><div><span class="k">ALT</span>40℃ 세탁의 집먼지진드기 사멸률은 9.6%, 60℃와 스팀워터 모드에서는 모두 사멸했다는 연구 결과</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> 근거 2</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 3 근거 2">
+        <span class="logo">CESCO</span>
+        <span class="num">03 / 06</span>
+        <p class="head"><span class="l">일반 면 시트의</span><span class="l j">유발물질 차단율 66%</span></p><svg class="fig sm" viewBox="0 0 400 150" role="img" aria-label="매트리스에서 시트 표면으로 옮겨가는 알레르기 유발물질, 면 시트 66%와 나일론 매트리스 커버 94% 비교">
+<g font-family="Noto Sans KR,sans-serif">
+<g><rect x="20" y="80" width="170" height="55" rx="6" fill="#dfe4ec"></rect><rect x="20" y="70" width="170" height="12" rx="3" fill="#f3b48a"></rect>
+<g fill="#6b7280"><circle cx="50" cy="100" r="3"></circle><circle cx="80" cy="115" r="3"></circle><circle cx="110" cy="98" r="3"></circle><circle cx="140" cy="118" r="3"></circle><circle cx="165" cy="102" r="3"></circle></g>
+<g fill="#1457c8"><circle cx="60" cy="58" r="3"></circle><circle cx="95" cy="52" r="3"></circle><circle cx="130" cy="58" r="3"></circle><circle cx="160" cy="50" r="3"></circle></g>
+<text x="105" y="30" font-size="13" fill="#15171c" text-anchor="middle" font-weight="700">면 시트 차단 66%</text></g>
+<g><rect x="210" y="80" width="170" height="55" rx="6" fill="#dfe4ec"></rect><rect x="210" y="76" width="170" height="6" rx="2" fill="#0b2d5c"></rect><rect x="210" y="66" width="170" height="10" rx="3" fill="#f3b48a"></rect>
+<g fill="#6b7280"><circle cx="240" cy="100" r="3"></circle><circle cx="270" cy="115" r="3"></circle><circle cx="300" cy="98" r="3"></circle><circle cx="330" cy="118" r="3"></circle><circle cx="355" cy="102" r="3"></circle></g>
+<circle cx="300" cy="52" r="3" fill="#1457c8"></circle>
+<text x="295" y="30" font-size="13" fill="#15171c" text-anchor="middle" font-weight="700">나일론 매트리스 커버 94%</text></g>
+<text x="20" y="148" font-size="10" fill="#6b7280">아래: 매트리스 · 위: 시트 표면 · 점: 알레르기 유발물질 · 오른쪽: 면 시트 아래 나일론 커버</text>
+</g></svg><p class="body">매트리스는 이불처럼 쉽게 세탁할 수 없습니다. 60개 침대를 조사한 연구에서는 알레르기 유발물질 차단율이 일반 면 시트 66%, 면 시트 아래 덧댄 나일론 매트리스 커버 94%로 나타났습니다. 이는 특정 연구 조건에서 측정한 값입니다. 시트를 교체하더라도 매트리스 상태는 따로 살펴보는 것이 좋습니다.</p><p class="src">출처: Jirapongsananuruk O 외, Annals of Allergy, Asthma &amp; Immunology 84(3), 2000<br>※ 알레르기 유발물질의 이동을 측정한 결과이며, 살아 있는 진드기의 이동률은 아닙니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">강조</span>66%</div><div><span class="k">이미지</span>매트리스 단면 위 시트 한 겹, 입자가 시트 위로 올라오는 표현. 오른쪽은 면 시트 아래 나일론 커버 한 겹 추가</div><div><span class="k">ALT</span>60개 침대 조사 연구에서 일반 면 시트의 알레르기 유발물질 차단율은 66%, 나일론 매트리스 커버는 94%였다는 연구 결과</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> 셀프 팁</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 4 셀프 팁">
+        <span class="logo">CESCO</span>
+        <span class="num">04 / 06</span>
+        <p class="head"><span class="l">이불을 빨 때</span><span class="l j">매트리스도 확인하세요</span></p><p class="tip"><b>1. 세탁 전 관리표시 확인</b>침구 소재에 허용된 온도와 세탁 방법을 따라 주세요. 고온 세탁이 불가능한 소재도 있습니다.</p><p class="tip"><b>2. 매트리스와 프레임 점검</b>시트를 벗긴 김에 매트리스 표면과 프레임 틈에 오염이 있는지 살펴보세요.</p><p class="tip"><b>3. 시트 교체와 별도로 관리</b>시트를 새로 깔아도 매트리스 안쪽까지 씻기지는 않습니다. 오염이 심하다면 추가 관리도 생각해 보세요.</p>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>v03 윤문: '전문 관리가 필요하다는 신호' 단정과 66% 수치 재인용 제거</div><div><span class="k">이미지</span>번호 3단 아이콘. 1·2는 손이 닿는 것, 3은 매트리스 속</div><div><span class="k">ALT</span>세탁 전 관리표시 확인, 매트리스·프레임 점검, 시트 교체와 별도 관리 3가지 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> 세스코 솔루션</span><span>로고: 솔루션</span></div>
+      <div class="card sol-bg" aria-label="CARD 5 세스코 솔루션">
+        <span class="logo sol">솔루션</span>
+        <span class="num">05 / 06</span>
+        <p class="head"><span class="l">매트리스와 프레임까지</span><span class="l j">단계별 전문 관리</span></p><p class="name">세스코 매트리스 케어 솔루션</p><p class="step"><em>STEP 01</em>환경조사 및 진단 | 매트리스 오염도 확인</p><p class="step"><em>STEP 02</em>약제 분무 | 정향유 성분 세릭스 내추럴액 사용</p><p class="step"><em>STEP 04</em>매트리스 집진 | 전문 장비로 진드기 사체·배설물 등 집진</p><p class="step"><em>STEP 05</em>프레임 클리닝 | 침대 프레임의 먼지와 오염물 관리</p><p class="src" style="margin-top:1cqw;padding-top:0">※ 전체 7단계 중 발췌</p><p class="point"><em>POINT 01</em>오염 상태를 먼저 확인하고 진드기를 관리합니다.<br><em>POINT 02</em>진드기 관리 후 사체와 배설물 등 잔여 오염물도 집진합니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: STEP 7단계 전부 노출 vs 발췌 표기 택일 (공식: 01 환경조사 및 진단 / 02 약제 분무 / 03 부가서비스 / 04 매트리스 집진 / 05 프레임 클리닝 / 06 매트리스 표면 코팅 / 07 빈대 모니터링 킷)</span> <span class="need">확인 필요: 정향유 성분 vs 정향나무 추출 성분 표기</span></div><div><span class="k">미기재</span>소요 시간·주기·알레르겐 제거율·증상 개선률은 원천소스에 없어 쓰지 않음</div><div><span class="k">이미지</span>작업 실사 + STEP 원형 라인</div><div><span class="k">ALT</span>세스코 매트리스 케어 솔루션은 환경조사 및 진단, 세릭스 내추럴액 약제 분무, 매트리스 집진, 프레임 클리닝 순으로 진행된다는 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 6</b> 마무리</span><span>로고: 솔루션</span></div>
+      <div class="card sol-bg" aria-label="CARD 6 마무리">
+        <span class="logo sol">솔루션</span>
+        <span class="num">06 / 06</span>
+        <p class="head"><span class="l">이불 세탁한 날,</span><span class="l j">매트리스도 살펴보세요</span></p><p class="body">이불과 시트를 세탁할 때, 평소 손이 잘 닿지 않는 매트리스와 프레임의 상태도 확인해 보세요. 추가 관리가 필요하다면 세스코 매트리스 케어 솔루션을 살펴보세요.</p><p class="cta">상담문의 (확정 후 기입)</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 상담 번호 — 해충방제 솔루션 계열 「상담문의 1588-1119 | 홈페이지 문의 www.cesco.co.kr」 / 라이프케어 계열 「고객센터 1661-0119」</span></div><div><span class="k">이미지</span>표지 톤 회귀. 정돈된 침대, 햇살</div><div><span class="k">ALT</span>이불 세탁한 날 매트리스와 프레임도 확인하고 필요하면 세스코 매트리스 케어 솔루션을 살펴보라는 마무리 안내</div></div>
+    </article></section>
+  <section class="note">
+    <h2>게시 요소</h2>
+    <p><b>게시 제목</b><br>[위해요소] 이불을 빨아도 그대로인 매트리스 속 진드기, 가을 침구 관리법</p>
+    <p class="tags">#IPM #세스코 #카드뉴스 #매트리스케어 #세스코매트리스케어 #집먼지진드기 #진드기 #가을이불빨래 #이불세탁 #침구교체 #40도세탁 #진드기사멸률 #알레르기유발물질 #알레르겐 #매트리스관리 #매트리스청소 #침구관리 #가을철위생 #환절기알레르기 #진드기관리 #사체배설물집진 #매트리스진드기 #침실위생 #세릭스내추럴액 #프레임관리</p>
+    <p>☞ 옆으로 넘겨 확인하세요</p>
+    <h3>게시 텍스트 (장표 전사)</h3>
+    <p>이불을 빨아도 다시 돌아오는 알레르기 걱정, 겪어보신 적 있으신가요?<br>반복되는 걱정, 매트리스 신호일 수 있습니다. 이불 세탁하는 날 함께 챙기는 가을철 매트리스 관리법.</p>
+    <p>[40℃ 세탁, 진드기 사멸률 9.6%] 가을볕에 말린 이불은 개운합니다. 하지만 세탁 모드별 진드기 사멸률은 30℃에서 6.5%, 40℃에서 9.6%였습니다. 60℃와 스팀워터 모드에서는 모두 죽었습니다. 다만 40℃ 세탁 뒤 알레르기 유발물질(Der f 1)은 2.4%만 남았습니다. (출처: Choi SY 외, Annals of Allergy, Asthma &amp; Immunology 100(6), 2008. 특정 실험 조건의 결과입니다. 사멸률과 세탁으로 씻겨 나간 비율은 다릅니다.)</p>
+    <p>[매트리스의 알레르기 유발물질, 면 시트 차단 66%] 매트리스는 이불처럼 걷어서 빨 수 없습니다. 그 안에 남은 진드기의 알레르기 유발물질은 시트 표면으로 옮겨갈 수 있습니다. 60개 침대를 조사한 연구에서 일반 면 시트의 차단 효율은 66%, 면 시트 아래 덧깐 나일론 매트리스 커버는 94%였습니다. 이불만 깨끗해져서는 안심할 수 없습니다. (출처: Jirapongsananuruk O 외, Annals of Allergy, Asthma &amp; Immunology 84(3), 2000. 알레르기 유발물질의 이동을 측정한 결과이며, 살아 있는 진드기의 이동률은 아닙니다.)</p>
+    <p>[이렇게 관리해 보세요] 1. 관리표시 확인 후 세탁 온도 맞추기: 60℃나 스팀워터 모드가 가능한 침구는 그 조건으로 세탁해 주세요. 2. 이불 걷어낸 날 매트리스·프레임 확인하기: 이불을 말리는 동안 매트리스 윗면과 프레임 틈을 함께 살펴 주세요. 3. 매트리스는 시트 교체로 끝내지 않기: 면 시트는 알레르기 유발물질을 66%만 막습니다. 매트리스 속 진드기와 사체·배설물은 세탁과 시트 교체로는 없애기 어렵습니다. 알레르기 걱정이 계속된다면 전문 관리가 필요하다는 신호입니다.</p>
+    <p>[조사·진단부터 집진까지, 매트리스와 프레임을 함께] 세스코 매트리스 케어 솔루션. STEP 01 환경조사 및 진단: 매트리스 오염도 모니터링. STEP 02 약제 분무: 정향유 성분 세릭스 내추럴액. STEP 04 매트리스 집진: 전문 장비로 사체·배설물·오염물질까지. STEP 05 프레임 클리닝: 세탁으로 닿지 않는 프레임까지. (전체 7단계 중 발췌) POINT 01 진드기 관리로 시작. POINT 02 살아 있는 진드기 관리 후 남은 사체·배설물까지 집진.</p>
+    <p>[이불 빨래하는 날, 매트리스도 세스코 하세요] 시트 교체에서 끝내지 말고 그 아래 매트리스와 프레임까지 살펴 두세요. 살아 있는 진드기부터 남은 사체·배설물까지, 가을 이불을 꺼내는 지금 세스코 매트리스 케어 솔루션으로 시작해 보세요.<br>(상담문의: 확정 후 기입)</p>
+    <p class="ver">* 연구 결과는 특정 실험 조건에서 측정한 것으로, 실제 세탁 환경과 침구 상태에 따라 다를 수 있습니다.<br>* 서비스 결과는 사용 환경과 오염 정도에 따라 다를 수 있습니다. <span class="need">확인 필요: 각주 문안 법무 확정</span></p>
+  </section>
+</div>
+<div class="pane" id="v06" hidden>
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-27 · 10/26 스토리 구성 6안(dh)에서 체크리스트형 · 상담 Q&amp;A형 · 작업일지형 3안 선별 · LLM 티 제거(Tier 1 교정)와 10/26 검수본 표기(서비스명·STEP·나일론 커버) 반영 · 같은 원천소스·같은 사실·같은 CTA · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p class="ver">v03 윤문검토본(사실 검증 완료본 아님). 세 안 모두 사실·출처·서비스 정식명·CTA는 같습니다. 바뀌는 건 맨 앞에 무엇을 두느냐와 셀프팁·서비스의 자리입니다. 디자인은 스토리 구성에 맞는 예시일 뿐이라 바꿔 입힐 수 있습니다. 회색 상자는 제작 메모, 주황은 발행 전 확정 항목입니다.</p>
+    <p id="verDesc" style="margin-top:14px"><span class="order"><span class="on">표지 · 질문</span><i>→</i><span class="">한 일 ✓✓✓</span><i>→</i><span class="">비어 있는 곳</span><i>→</i><span class="">근거</span><i>→</i><span class="">직접 / 맡기기</span><i>→</i><span class="">서비스</span><i>→</i><span class="">CTA</span></span><span class="why" style="display:block">수첩·체크리스트 디자인. 고객이 한 일을 먼저 적고 비어 있는 곳 하나를 보여준다. 셀프팁은 '직접 할 것 / 맡길 것' 경계 장으로 바뀜. 광고 느낌이 가장 낮은 스토리 구성.</span></p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 1 표지">
+        <span class="logo">CESCO</span>
+        <span class="num">G1 · 01 / 07</span>
+        <span class="ntag">가을 침구 체크</span><p class="head cover"><span class="l">이불 빨고 시트까지 바꿨다면,</span><span class="l j">매트리스도</span><span class="l j">확인하셨나요?</span></p><div class="strip">이불 세탁하는 날 함께 챙기는 가을철 매트리스 관리법</div>
+      </div>
+      <div class="memo"><div><span class="k">표지</span>표지만 의문. 수첩 질감, 형광 태그</div><div><span class="k">ALT</span>이불 세탁과 시트 교체 뒤 매트리스도 확인했는지 묻는 수첩 형식 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> 한 일</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 2 한 일">
+        <span class="logo">CESCO</span>
+        <span class="num">G1 · 02 / 07</span>
+        <p class="head"><span class="l">침구 관리 체크리스트,</span><span class="l j">한 가지가 남았습니다</span></p><ul class="nl"><li>이불 세탁</li><li>시트 교체</li><li>햇볕 건조</li><li class="q">매트리스</li></ul><p class="body">이불 세탁, 시트 교체, 건조까지 마쳤다면 그 아래 매트리스도 살펴볼 차례입니다. 매트리스는 이불처럼 세탁하기 어려워 따로 관리해야 합니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">주의</span>햇볕은 행동으로만. 효과는 어디서도 말하지 않음</div><div><span class="k">ALT</span>이불 세탁·시트 교체·햇볕 건조는 체크됐고 매트리스 항목만 남은 수첩 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> 남은 항목</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 3 남은 항목">
+        <span class="logo">CESCO</span>
+        <span class="num">G1 · 03 / 07</span>
+        <p class="head"><span class="l">새 시트를 덮어도</span><span class="l j">매트리스 오염은</span><span class="l j">남을 수 있습니다</span></p><p class="body">매트리스는 이불처럼 쉽게 세탁할 수 없습니다. 시트를 바꾼다고 매트리스 표면과 안쪽의 오염까지 없어지지는 않습니다. 오염 정도를 살펴보고 그에 맞게 관리해야 합니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">근거</span>사체·배설물은 [13]. v03: 카드 2와 겹치던 '걷어서 빨 수 없다' 반복 축소, '세탁 전과 똑같다' 단정 완화</div><div><span class="k">ALT</span>새 시트를 덮어도 매트리스 오염은 남을 수 있으니 오염 정도에 따라 관리 방법을 고르라는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> 근거</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 4 근거">
+        <span class="logo">CESCO</span>
+        <span class="num">G1 · 04 / 07</span>
+        <p class="head"><span class="l">세탁과 시트 차단 효과는</span><span class="l j">각각 다르게 확인해야 합니다</span></p><div class="nrow"><div class="on"><b>9.6<i>%</i></b><span>40℃ 세탁 진드기 사멸률</span></div><div><b>66<i>%</i></b><span>면 시트 유발물질 차단</span></div></div><p class="body">한 연구에서는 40℃ 세탁 시 집먼지진드기 사멸률이 9.6%였습니다. 다른 연구에서는 일반 면 시트의 알레르기 유발물질 차단율이 66%, 나일론 매트리스 커버는 94%로 나타났습니다. 서로 다른 연구에서 나온 수치이며 매트리스를 직접 세척한 결과는 아닙니다.</p><p class="src">출처: Choi SY 외, 2008 · Jirapongsananuruk O 외, 2000 (Annals of Allergy, Asthma &amp; Immunology) ※ 특정 실험 조건의 결과</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 연구 결과 일반화 여부 — 두 수치는 별개 연구(Choi 2008 / Jirapongsananuruk 2000)</span></div><div><span class="k">ALT</span>40℃ 세탁 사멸률 9.6%와 면 시트 차단 66%는 서로 다른 연구의 수치라는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> 집에서 / 추가로</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 5 집에서 / 추가로">
+        <span class="logo">CESCO</span>
+        <span class="num">G1 · 05 / 07</span>
+        <p class="head"><span class="l">집에서 할 수 있는 관리와</span><span class="l j">추가로 살펴볼 부분</span></p><div class="cols"><div><b>집에서 할 수 있는 관리</b>이불·시트·커버는 관리표시에 맞춰 세탁하고, 매트리스 표면과 프레임 틈도 살펴보세요.</div><div class="off"><b>오염이 걱정되는 부분</b>매트리스 안쪽 오염은 시트만 갈아서는 없애기 어려울 수 있습니다. 필요하다면 전문 관리를 받아 보세요.</div></div><p class="body">집에서 할 수 있는 관리부터 챙기고, 매트리스 상태에 따라 추가 관리가 필요한지 살펴보세요.</p>
+      </div>
+      <div class="memo"><div><span class="k">역할</span>셀프팁이 경계 장으로 변형. 저장 포인트. v03: '맡겨야 하는 것' 단정 대신 셀프 관리와 전문 관리 구분</div><div><span class="k">ALT</span>집에서 할 수 있는 침구·매트리스 관리와 전문 관리를 고려할 부분을 나눈 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 6</b> 솔루션 · 절차 + POINT</span><span>앞 장이 남긴 질문: 전문 관리는 뭘 하나</span></div>
+      <div class="card sol-bg" aria-label="CARD 6 솔루션 · 절차 + POINT">
+        <span class="logo sol">솔루션</span>
+        <span class="num">G1 · 06 / 07</span>
+        <p class="head"><span class="l">매트리스와 프레임까지</span><span class="l j">단계별 전문 관리</span></p><p class="name">세스코 매트리스 케어 솔루션</p><p class="step"><em>STEP 01</em>환경조사 및 진단 | 매트리스 오염도 확인</p><p class="step"><em>STEP 02</em>약제 분무 | 정향유 성분 세릭스 내추럴액 사용</p><p class="step"><em>STEP 04</em>매트리스 집진 | 전문 장비로 진드기 사체·배설물 등 집진</p><p class="step"><em>STEP 05</em>프레임 클리닝 | 침대 프레임의 먼지와 오염물 관리</p><p class="src">전체 7단계 중 발췌</p><p class="point"><em>POINT 01</em>오염 상태를 먼저 확인하고 진드기를 관리합니다.<br><em>POINT 02</em>진드기 관리 후 사체와 배설물 등 잔여 오염물도 집진합니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">표기</span>10/26 검수본 기준 — 서비스명 「매트리스 케어 솔루션」, STEP 공식 7단계 번호·명칭 발췌(01·02·04·05). v03 윤문: STEP 설명·POINT를 확인 가능한 범위로 정리</div><div><span class="k">확인</span><span class="need">확인 필요: 실제 STEP 번호·정식명과 표현(세릭스 내추럴액 등), 상담 번호, 법무 각주 최종 확인</span></div><div><span class="k">미기재</span>소요 시간·주기·알레르겐 제거율·증상 개선률은 POD에 없어 쓰지 않음</div><div><span class="k">이미지</span>작업 실사 + STEP 원형 라인 01~04</div><div><span class="k">ALT</span>세스코 매트리스 케어는 환경 조사와 진단, 세릭스 내추럴액 진드기 관리, 사체·배설물 집진, 프레임 관리 순으로 진행된다는 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 7</b> CTA</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg note" aria-label="CARD 7 CTA">
+        <span class="logo sol">솔루션</span>
+        <span class="num">G1 · 07 / 07</span>
+        <p class="head"><span class="l">침구 관리 체크리스트에</span><span class="l j">매트리스도 추가하세요</span></p><ul class="nl"><li>이불 세탁</li><li>시트 교체</li><li class="q">매트리스 관리</li></ul><p class="body">이불과 시트를 정리한 날, 매트리스 상태도 함께 확인해 보세요. 추가 관리가 필요하다면 세스코 매트리스 케어 솔루션을 살펴보세요.</p><p class="cta">상담문의 (확정 후 기입)</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 상담 번호</span></div><div><span class="k">ALT</span>침구 관리 체크리스트에 매트리스를 추가하고 필요하면 세스코 매트리스 케어 솔루션을 살펴보라는 마무리 카드</div></div>
+    </article></section>
+  <section class="post">
+    <h2>게시 요소 (세 안 공통)</h2>
+    <p><b>게시 제목</b><br>[위해요소] 이불을 빨아도 그대로인 매트리스 속 진드기, 가을 침구 관리법</p>
+    <p class="tags">#IPM #세스코 #카드뉴스 #매트리스케어 #세스코매트리스케어 #집먼지진드기 #진드기 #가을이불빨래 #이불세탁 #침구교체 #40도세탁 #진드기사멸률 #알레르기유발물질 #알레르겐 #매트리스관리 #매트리스청소 #침구관리 #가을철위생 #환절기알레르기 #진드기관리 #사체배설물집진 #매트리스진드기 #침실위생 #세릭스내추럴액 #프레임관리</p>
+    <h3>게시 텍스트</h3>
+    <p>채택한 안의 장표를 순서대로 전사합니다. 기본형 전사는 10/26 검수본(카드뉴스_가을매트리스케어_검수본_261026.html)을 따릅니다.</p>
+    <p class="foot">☞ 옆으로 넘겨 확인하세요 · 상담문의 (확정 후 기입)<br>* 연구 결과는 특정 실험 조건에서 측정한 것으로, 실제 세탁 환경과 침구 상태에 따라 다를 수 있습니다.<br>* 서비스 결과는 사용 환경과 오염 정도에 따라 다를 수 있습니다. [확인 필요: 각주 문안 법무 확정]</p>
+  </section>
+</div>
+<div class="pane" id="v07" hidden>
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-27 · 10/26 스토리 구성 6안(dh)에서 체크리스트형 · 상담 Q&amp;A형 · 작업일지형 3안 선별 · LLM 티 제거(Tier 1 교정)와 10/26 검수본 표기(서비스명·STEP·나일론 커버) 반영 · 같은 원천소스·같은 사실·같은 CTA · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p class="ver">v03 윤문검토본(사실 검증 완료본 아님). 세 안 모두 사실·출처·서비스 정식명·CTA는 같습니다. 바뀌는 건 맨 앞에 무엇을 두느냐와 셀프팁·서비스의 자리입니다. 디자인은 스토리 구성에 맞는 예시일 뿐이라 바꿔 입힐 수 있습니다. 회색 상자는 제작 메모, 주황은 발행 전 확정 항목입니다.</p>
+    <p id="verDesc" style="margin-top:14px"><span class="order"><span class="on">표지 · 질문 모음</span><i>→</i><span class="">Q1 이불만 빨면?</span><i>→</i><span class="">Q2 옮겨오나?</span><i>→</i><span class="">Q3 케어는 뭘 하나?</span><i>→</i><span class="">Q4 직접은?</span><i>→</i><span class="">CTA</span></span><span class="why" style="display:block">채팅 상담 디자인. 고객 질문 네 개가 곧 스토리 구성. 서비스는 광고가 아니라 세 번째 질문의 답으로 등장. 셀프팁은 네 번째 답으로 흡수.</span></p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 1 표지">
+        <span class="logo">CESCO</span>
+        <span class="num">G2 · 01 / 06</span>
+        <p class="head cover"><span class="l">이불만 빨면</span><span class="l j">침대 위생도 끝날까요?</span></p><div class="chat"><div class="msg q"><span class="who">고객</span>이불만 빨면 되는 거 아닌가요?</div><div class="msg a"><span class="who">세스코</span>침구와 매트리스는 관리 방법이 달라요.</div></div><div class="strip">가을 이불 세탁철 매트리스 상담 Q&amp;A</div>
+      </div>
+      <div class="memo"><div><span class="k">표지</span>표지만 의문. 첫 Q&amp;A를 미리 보기로</div><div><span class="k">ALT</span>이불만 빨면 침대 위생도 끝나는지 묻는 채팅 형식 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> Q1</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 2 Q1">
+        <span class="logo">CESCO</span>
+        <span class="num">G2 · 02 / 06</span>
+        <p class="chathead">Q1 / 4</p><div class="chat"><div class="msg q"><span class="who">고객</span>이불만 빨면 되는 거 아닌가요?</div><div class="msg a"><span class="who">세스코</span><b>이불은 세탁할 수 있지만 매트리스는 따로 관리해야 해요.</b>한 연구에서는 40℃ 세탁으로 진드기가 9.6% 사멸했고, 알레르기 유발물질은 2.4%가 남았어요. 서로 다른 항목을 측정한 결과예요. 이불을 세탁할 때 매트리스 상태도 살펴보세요.</div></div><p class="src">출처: Choi SY 외, Annals of Allergy, Asthma &amp; Immunology 100(6), 2008<br>※ 특정 실험 조건의 결과입니다. 사멸률과 세탁으로 씻겨 나간 비율은 다릅니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">남긴 질문</span>그럼 매트리스 진드기가 올라오나</div><div><span class="k">ALT</span>이불은 세탁하고 매트리스는 따로 관리해야 한다는 Q&amp;A 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> Q2</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 3 Q2">
+        <span class="logo">CESCO</span>
+        <span class="num">G2 · 03 / 06</span>
+        <p class="chathead">Q2 / 4</p><div class="chat"><div class="msg q"><span class="who">고객</span>새 시트로 갈면 매트리스 속 알레르기 유발물질도 막을 수 있나요?</div><div class="msg a"><span class="who">세스코</span><b>시트만으로 완전히 차단하기는 어려워요.</b>60개 침대를 조사한 연구에서 일반 면 시트의 차단율은 66%, 면 시트 아래 덧댄 나일론 매트리스 커버는 94%였습니다. 실제 효과는 사용 조건에 따라 달라질 수 있어요.</div></div><p class="src">출처: Jirapongsananuruk O 외, Annals of Allergy, Asthma &amp; Immunology 84(3), 2000<br>※ 알레르기 유발물질의 이동을 측정한 결과이며, 살아 있는 진드기의 이동률은 아닙니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">ALT</span>시트만으로는 매트리스 속 유발물질을 완전히 막기 어렵다는 Q&amp;A 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> Q3 · 서비스</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 4 Q3 · 서비스">
+        <span class="logo sol">솔루션</span>
+        <span class="num">G2 · 04 / 06</span>
+        <p class="chathead">Q3 / 4</p><div class="chat"><div class="msg q"><span class="who">고객</span>매트리스 케어는 뭘 하는 건가요?</div><div class="msg a"><span class="who">세스코</span><b>먼저 오염 상태를 확인해요.</b>이후 세릭스 내추럴액을 사용하는 진드기 관리, 매트리스 집진, 프레임 클리닝 등을 진행합니다. 전체 7단계 가운데 주요 과정을 소개한 거예요.</div></div><p class="name">세스코 매트리스 케어 솔루션</p>
+      </div>
+      <div class="memo"><div><span class="k">역할</span>서비스가 고객 질문의 답으로 등장. 광고 장이 아님</div><div><span class="k">표기</span>10/26 검수본 기준(서비스명·STEP 7단계 발췌)</div><div><span class="k">ALT</span>세스코 매트리스 케어가 오염 상태 확인 후 진드기 관리, 집진, 프레임 클리닝을 진행한다는 Q&amp;A 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> Q4 · 셀프</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 5 Q4 · 셀프">
+        <span class="logo">CESCO</span>
+        <span class="num">G2 · 05 / 06</span>
+        <p class="chathead">Q4 / 4</p><div class="chat"><div class="msg q"><span class="who">고객</span>직접 할 수 있는 건요?</div><div class="msg a"><span class="who">세스코</span><b>이불과 시트는 관리표시에 맞춰 세탁해 주세요.</b>시트를 벗긴 김에 매트리스 표면과 프레임 틈도 확인해 보세요. 오염이 걱정된다면 전문 관리 상담을 받아볼 수 있어요.</div></div>
+      </div>
+      <div class="memo"><div><span class="k">역할</span>셀프팁 흡수 + 경계 한 줄</div><div><span class="k">ALT</span>이불·시트는 세탁하고 매트리스·프레임을 확인한 뒤 필요하면 상담하라는 Q&amp;A 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 6</b> CTA</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 6 CTA">
+        <span class="logo sol">솔루션</span>
+        <span class="num">G2 · 06 / 06</span>
+        <p class="head"><span class="l">매트리스 관리가 궁금하다면</span><span class="l j">상담으로 확인하세요</span></p><div class="chat"><div class="msg q"><span class="who">고객</span>우리 집 매트리스도 봐 주실 수 있나요?</div><div class="msg a"><span class="who">세스코</span>상담을 신청하시면 매트리스 상태와 관리 방법을 안내해 드립니다.</div></div><p class="cta">상담문의 (확정 후 기입)</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 상담 번호</span></div><div><span class="k">ALT</span>상담으로 이어지는 채팅 형식 마무리 카드</div></div>
+    </article></section>
+  <section class="post">
+    <h2>게시 요소 (세 안 공통)</h2>
+    <p><b>게시 제목</b><br>[위해요소] 이불을 빨아도 그대로인 매트리스 속 진드기, 가을 침구 관리법</p>
+    <p class="tags">#IPM #세스코 #카드뉴스 #매트리스케어 #세스코매트리스케어 #집먼지진드기 #진드기 #가을이불빨래 #이불세탁 #침구교체 #40도세탁 #진드기사멸률 #알레르기유발물질 #알레르겐 #매트리스관리 #매트리스청소 #침구관리 #가을철위생 #환절기알레르기 #진드기관리 #사체배설물집진 #매트리스진드기 #침실위생 #세릭스내추럴액 #프레임관리</p>
+    <h3>게시 텍스트</h3>
+    <p>채택한 안의 장표를 순서대로 전사합니다. 기본형 전사는 10/26 검수본(카드뉴스_가을매트리스케어_검수본_261026.html)을 따릅니다.</p>
+    <p class="foot">☞ 옆으로 넘겨 확인하세요 · 상담문의 (확정 후 기입)<br>* 연구 결과는 특정 실험 조건에서 측정한 것으로, 실제 세탁 환경과 침구 상태에 따라 다를 수 있습니다.<br>* 서비스 결과는 사용 환경과 오염 정도에 따라 다를 수 있습니다. [확인 필요: 각주 문안 법무 확정]</p>
+  </section>
+</div>
+<div class="pane" id="v08" hidden>
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-27 · 10/26 스토리 구성 6안(dh)에서 체크리스트형 · 상담 Q&amp;A형 · 작업일지형 3안 선별 · LLM 티 제거(Tier 1 교정)와 10/26 검수본 표기(서비스명·STEP·나일론 커버) 반영 · 같은 원천소스·같은 사실·같은 CTA · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p class="ver">v03 윤문검토본(사실 검증 완료본 아님). 세 안 모두 사실·출처·서비스 정식명·CTA는 같습니다. 바뀌는 건 맨 앞에 무엇을 두느냐와 셀프팁·서비스의 자리입니다. 디자인은 스토리 구성에 맞는 예시일 뿐이라 바꿔 입힐 수 있습니다. 회색 상자는 제작 메모, 주황은 발행 전 확정 항목입니다.</p>
+    <p id="verDesc" style="margin-top:14px"><span class="order"><span class="on">표지 · 관리 전·후</span><i>→</i><span class="">오늘 한 일 (STEP)</span><i>→</i><span class="">왜 필요했나 1</span><i>→</i><span class="">왜 필요했나 2</span><i>→</i><span class="">서비스</span><i>→</i><span class="">고객이 챙길 것 + CTA</span></span><span class="why" style="display:block">담당자 작업일지 디자인. 관리 뒤 장면으로 시작하되 서비스명을 앞세우지 않고 '오늘 한 일'로 풀어 광고 느낌을 낮춤. 왜 필요했는지는 뒤에서. 작업 실사가 있으면 가장 강해짐.</span></p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 1 표지">
+        <span class="logo">CESCO</span>
+        <span class="num">G3 · 01 / 06</span>
+        <span class="ntag">작업일지 형식 · 과정 예시</span><p class="head cover"><span class="l">매트리스 케어는</span><span class="l j">어떻게 진행될까요?</span></p><svg class="fig" viewBox="0 0 400 150" role="img" aria-label="매트리스 케어 과정 예시 일러스트(점검·관리, 연출)">
+<rect x="0" y="0" width="195" height="150" fill="#f1efe9"></rect><rect x="205" y="0" width="195" height="150" fill="#eef4ff"></rect>
+<rect x="18" y="45" width="160" height="80" rx="8" fill="#e4e0d6" stroke="#c8c2b4" stroke-width="2"></rect>
+<g fill="#8b8372" opacity=".55"><ellipse cx="70" cy="75" rx="26" ry="11"></ellipse><ellipse cx="130" cy="105" rx="30" ry="12"></ellipse></g>
+<g fill="#5f574a"><circle cx="40" cy="60" r="2"></circle><circle cx="100" cy="60" r="2"></circle><circle cx="150" cy="70" r="2"></circle><circle cx="60" cy="115" r="2"></circle><circle cx="110" cy="85" r="2"></circle><circle cx="165" cy="115" r="2"></circle></g>
+<rect x="222" y="45" width="160" height="80" rx="8" fill="#fff" stroke="#b9c9e8" stroke-width="2"></rect>
+<g font-family="Noto Sans KR,sans-serif" font-size="12" font-weight="700"><text x="26" y="30" fill="#5f574a">점검</text><text x="230" y="30" fill="#1457c8">관리</text></g>
+<text x="390" y="142" font-family="Noto Sans KR,sans-serif" font-size="9" fill="#6b7280" text-anchor="end">연출 일러스트 · 실제 결과 아님</text>
+</svg><div class="strip">작업일지처럼 살펴보는 세스코 매트리스 케어 과정</div>
+      </div>
+      <div class="memo"><div><span class="k">표지</span>서비스명은 하단 바에만. 점검·관리 일러스트는 연출(실제 결과 아님) 표기 유지. 실사로 교체하더라도 실증 전후 비교처럼 보이지 않도록 주의</div><div><span class="k">ALT</span>세스코 매트리스 케어 과정을 작업일지 형식 예시로 보여주는 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> 작업기록 01</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg note" aria-label="CARD 2 작업기록 01">
+        <span class="logo sol">솔루션</span>
+        <span class="num">G3 · 02 / 06</span>
+        <span class="ntag">작업기록 01</span><p class="head"><span class="l j">점검부터 집진까지</span></p><ul class="nl"><li class="log"><b>01</b>환경조사 및 진단 · 매트리스 오염도 모니터링</li><li class="log"><b>02</b>약제 분무 · 정향유 성분 세릭스 내추럴액으로 진드기 관리</li><li class="log"><b>04</b>매트리스 집진 · 전문 장비로 사체·배설물·오염물질까지</li><li class="log"><b>05</b>프레임 클리닝 · 세탁으로 닿지 않는 프레임까지</li></ul><p class="src">※ 전체 7단계 중 일부 과정을 소개합니다.</p><p class="body">매트리스 오염 상태를 확인하고 진드기 관리, 집진, 프레임 클리닝 순으로 진행하는 주요 과정을 정리했습니다. 실제 작업 내용은 현장 상태와 서비스 절차에 따라 달라질 수 있습니다.</p><p class="name">세스코 매트리스 케어 솔루션</p>
+      </div>
+      <div class="memo"><div><span class="k">표기</span>10/26 검수본 기준(서비스명·STEP 7단계 발췌). v03: '오늘' 문구 제거, 과정 예시임을 명시</div><div><span class="k">ALT</span>매트리스 케어 솔루션의 주요 과정을 작업기록 형식으로 정리한 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> 작업 메모 ①</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 3 작업 메모 ①">
+        <span class="logo">CESCO</span>
+        <span class="num">G3 · 03 / 06</span>
+        <span class="ntag">작업 메모 ①</span><p class="head"><span class="l">이불 세탁과</span><span class="l j">매트리스 관리는 다릅니다</span></p><div class="nrow"><div class="on"><b>9.6<i>%</i></b><span>40℃ 세탁 사멸률</span></div><div><b>2.4<i>%</i></b><span>유발물질 잔존</span></div></div><p class="body">한 연구에서 40℃ 세탁 시 집먼지진드기 사멸률은 9.6%, 알레르기 유발물질(Der f 1) 잔존율은 2.4%였습니다. 세탁한 침구를 잰 결과입니다. 세탁이 어려운 매트리스는 따로 관리해야 합니다.</p><p class="src">출처: Choi SY 외, Annals of Allergy, Asthma &amp; Immunology 100(6), 2008<br>※ 특정 실험 조건의 결과입니다. 사멸률과 세탁으로 씻겨 나간 비율은 다릅니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 사멸률 9.6%와 잔존 2.4%는 다른 지표 — 논문 실험 조건·문구 재확인</span></div><div><span class="k">ALT</span>이불 세탁과 매트리스 관리는 다르다는 근거 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> 작업 메모 ②</span><span>로고: CESCO</span></div>
+      <div class="card note" aria-label="CARD 4 작업 메모 ②">
+        <span class="logo">CESCO</span>
+        <span class="num">G3 · 04 / 06</span>
+        <span class="ntag">작업 메모 ②</span><p class="head"><span class="l">시트 교체로</span><span class="l j">끝내지 않는 이유</span></p><p class="body">60개 침대를 조사한 연구에서 일반 면 시트의 알레르기 유발물질 차단율은 66%, 면 시트 아래 덧댄 나일론 매트리스 커버는 94%였습니다. 시트 교체와 별개로 매트리스 상태를 살펴보는 이유입니다.</p><p class="src">출처: Jirapongsananuruk O 외, Annals of Allergy, Asthma &amp; Immunology 84(3), 2000<br>※ 알레르기 유발물질의 이동을 측정한 결과이며, 살아 있는 진드기의 이동률은 아닙니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">ALT</span>면 시트 차단율 66%를 근거로 시트 교체와 별개로 매트리스를 살펴보는 이유 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> 작업기록 02 · 서비스</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg note" aria-label="CARD 5 작업기록 02 · 서비스">
+        <span class="logo sol">솔루션</span>
+        <span class="num">G3 · 05 / 06</span>
+        <span class="ntag">작업기록 02</span><p class="head"><span class="l j">매트리스와 프레임 관리</span></p><p class="name">세스코 매트리스 케어 솔루션</p><p class="step"><em>STEP 01</em>환경조사 및 진단 | 매트리스 오염도 확인</p><p class="step"><em>STEP 02</em>약제 분무 | 정향유 성분 세릭스 내추럴액 사용</p><p class="step"><em>STEP 04</em>매트리스 집진 | 전문 장비로 진드기 사체·배설물 등 집진</p><p class="step"><em>STEP 05</em>프레임 클리닝 | 침대 프레임의 먼지와 오염물 관리</p><p class="src">전체 7단계 중 발췌</p><p class="point"><em>POINT 01</em>오염 상태를 먼저 확인하고 진드기를 관리합니다.<br><em>POINT 02</em>진드기 관리 후 사체와 배설물 등 잔여 오염물도 집진합니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">표기</span>10/26 검수본 기준 — 서비스명 「매트리스 케어 솔루션」, STEP 공식 7단계 번호·명칭 발췌(01·02·04·05). v03 윤문: STEP 설명·POINT를 확인 가능한 범위로 정리</div><div><span class="k">확인</span><span class="need">확인 필요: 실제 STEP 번호·정식명과 표현(세릭스 내추럴액 등), 상담 번호, 법무 각주 최종 확인</span></div><div><span class="k">미기재</span>소요 시간·주기·알레르겐 제거율·증상 개선률은 POD에 없어 쓰지 않음</div><div><span class="k">이미지</span>작업 실사 + STEP 원형 라인 01~04</div><div><span class="k">ALT</span>세스코 매트리스 케어 솔루션의 STEP과 POINT를 작업기록 형식으로 정리한 서비스 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 6</b> 관리 후 안내 + CTA</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg note" aria-label="CARD 6 관리 후 안내 + CTA">
+        <span class="logo sol">솔루션</span>
+        <span class="num">G3 · 06 / 06</span>
+        <span class="ntag">관리 후 안내</span><p class="head"><span class="l">집에서도</span><span class="l j">이렇게 챙겨 주세요</span></p><ul class="nl"><li>이불과 시트는 관리표시에 맞춰 세탁하기</li><li>시트 교체할 때 매트리스 표면과 프레임도 살펴보기</li><li class="q">오염 상태에 따라 추가 관리 주기 상담하기</li></ul><p class="cta">상담문의 (확정 후 기입)</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 상담 번호</span> <span class="need">확인 필요: 권장 주기는 POD에 없어 '상담'으로만</span></div><div><span class="k">ALT</span>집에서 챙길 침구·매트리스 관리와 상담 안내 카드</div></div>
+    </article></section>
+  <section class="post">
+    <h2>게시 요소 (세 안 공통)</h2>
+    <p><b>게시 제목</b><br>[위해요소] 이불을 빨아도 그대로인 매트리스 속 진드기, 가을 침구 관리법</p>
+    <p class="tags">#IPM #세스코 #카드뉴스 #매트리스케어 #세스코매트리스케어 #집먼지진드기 #진드기 #가을이불빨래 #이불세탁 #침구교체 #40도세탁 #진드기사멸률 #알레르기유발물질 #알레르겐 #매트리스관리 #매트리스청소 #침구관리 #가을철위생 #환절기알레르기 #진드기관리 #사체배설물집진 #매트리스진드기 #침실위생 #세릭스내추럴액 #프레임관리</p>
+    <h3>게시 텍스트</h3>
+    <p>채택한 안의 장표를 순서대로 전사합니다. 기본형 전사는 10/26 검수본(카드뉴스_가을매트리스케어_검수본_261026.html)을 따릅니다.</p>
+    <p class="foot">☞ 옆으로 넘겨 확인하세요 · 상담문의 (확정 후 기입)<br>* 연구 결과는 특정 실험 조건에서 측정한 것으로, 실제 세탁 환경과 침구 상태에 따라 다를 수 있습니다.<br>* 서비스 결과는 사용 환경과 오염 정도에 따라 다를 수 있습니다. [확인 필요: 각주 문안 법무 확정]</p>
+  </section>
+</div>
+</main>
+<script>
+const KEYS=['v05', 'v06', 'v07', 'v08']; const PLAN=['v06', 'v07', 'v08'];
+const tabs=[...document.querySelectorAll('.tabs button')];
+function show(v,fromClick){
+  tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.v===v?'true':'false'));
+  KEYS.forEach(k=>{document.getElementById(k).hidden=(k!==v);});
+  const sp=document.getElementById('storyPlan'); if(sp) sp.hidden=!PLAN.includes(v);
+  window.scrollTo({top:0});
+  if(fromClick) history.replaceState(null,'','#'+v);
+}
+tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.v,true)));
+const initV=location.hash.slice(1);
+if(initV){ history.replaceState(null,'',location.pathname+location.search); addEventListener('load',()=>{history.replaceState(null,'','#'+initV); scrollTo(0,0);},{once:true}); }
+show(KEYS.includes(initV)?initV:KEYS[0]);
+const memoBtn=document.getElementById('memoBtn');
+memoBtn.addEventListener('click',()=>{const hidden=document.body.classList.toggle('hide-memo');memoBtn.textContent=hidden?'제작 메모 보이기':'제작 메모 숨기기';});
+</script>
+</body>
+</html>

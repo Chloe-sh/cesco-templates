@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>배수구 편 · 카드뉴스 4종 v03 윤문검토</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f5; --panel:#ffffff; --ink:#15171c; --ink-2:#4d5360; --ink-3:#7a8191;
+  --line:#d9dee6; --navy:#0b2d5c; --blue:#1457c8; --blue-soft:#e6eefc; --memo:#f5f6f8;
+  --card-bg:#ffffff; --card-ink:#15171c; --card-blue:#1457c8; --card-navy:#0b2d5c; --card-mute:#6b7280; --card-line:#d9dee6; --card-sol:#eef4ff;
+  --warn:#b4541a; --warn-bg:#fff4ea;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+    --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430;
+    --warn:#f0a66a; --warn-bg:#2b2016;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+  --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430;
+  --warn:#f0a66a; --warn-bg:#2b2016;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;line-height:1.6;word-break:keep-all}
+header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.hd{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding:14px 0}
+.hd h1{font-size:16px;font-weight:700;margin:0;color:var(--ink)}
+.hd h1 small{display:block;font-size:12px;font-weight:400;color:var(--ink-3)}
+.tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.tabs button{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);font:inherit;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tabs button[aria-selected="true"]{color:#0b1220} }
+:root[data-theme="dark"] .tabs button[aria-selected="true"]{color:#0b1220}
+.tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.intro{padding:22px 0 6px}
+.intro p{margin:0 0 6px;color:var(--ink-2);max-width:76ch}
+.intro .ver{font-size:13px;color:var(--ink-3)}
+.toggle-memo{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);border-radius:8px;padding:6px 12px;cursor:pointer;margin-top:8px}
+.deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;padding:18px 0 40px}
+@media (max-width:760px){.deck{grid-template-columns:1fr}}
+.deck[hidden]{display:none}
+.slot{display:flex;flex-direction:column;gap:10px;container-type:inline-size}
+.slot-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3)}
+.slot-meta b{color:var(--ink-2);font-weight:500}
+.card{position:relative;min-height:100cqw;width:100%;background:var(--card-bg);color:var(--card-ink);border:1px solid var(--line);border-radius:4px;padding:7% 7.5%;display:flex;flex-direction:column;overflow:visible;container-type:inline-size}
+.card.over{outline:2px dashed var(--warn)}
+.overbadge{display:inline-block;font-size:11px;color:var(--warn);background:var(--warn-bg);border-radius:3px;padding:1px 6px;margin-left:6px}
+.card .logo{position:absolute;top:5.5%;right:7.5%;font-size:2.9cqw;font-weight:900;letter-spacing:.04em;color:var(--card-navy)}
+.card .num{font-size:2.6cqw;color:var(--card-mute);margin-bottom:3.2cqw}
+.card .lab{font-size:2.8cqw;font-weight:700;color:var(--card-navy);margin:0 0 1.6cqw}
+.head{margin:0 0 4.2cqw;line-height:1.28;letter-spacing:-.01em}
+.head .l{display:block;font-weight:900;font-size:6.6cqw;color:var(--card-ink)}
+.head .l.j{color:var(--card-blue)}
+.head.cover .l{font-size:7.4cqw}
+.body{font-size:3.55cqw;line-height:1.62;color:var(--card-ink);margin:0}
+.body p{margin:0}
+.tip{margin:0 0 2.6cqw;font-size:3.4cqw;line-height:1.55}
+.tip b{display:block;font-weight:700;font-size:3.7cqw;color:var(--card-navy)}
+.tip:last-of-type{margin-bottom:0}
+.name{font-size:3.6cqw;font-weight:700;color:var(--card-navy);margin:0 0 3.2cqw;padding:1.6cqw 2.4cqw;background:#dfe9fb;display:inline-block;border-radius:3px;align-self:flex-start}
+.pt{margin:0 0 1.8cqw;font-size:3.4cqw;line-height:1.55}
+.pt b{color:var(--card-navy)}
+.src{margin-top:auto;padding-top:3cqw;font-size:2.5cqw;line-height:1.45;color:var(--card-mute)}
+.strip{margin-top:auto;background:var(--card-navy);color:#fff;font-size:3.1cqw;padding:2.6cqw 3.2cqw;margin-left:-7.5%;margin-right:-7.5%;margin-bottom:-7%;line-height:1.5}
+.sub{margin:-1cqw 0 0;font-size:3.5cqw;line-height:1.5;color:var(--card-mute)}
+.cta{margin-top:auto;font-size:3.1cqw;color:var(--card-mute)}
+.card.sol-bg{background:var(--card-sol)}
+.fine{font-size:2.5cqw;color:var(--card-mute);margin-top:2cqw}
+.price{margin:2cqw 0 0;font-size:3.6cqw;line-height:1.6}
+.price b{font-size:5.4cqw;color:var(--card-blue);font-weight:900}
+.badge{display:inline-block;background:var(--card-blue);color:#fff;font-size:2.7cqw;font-weight:700;padding:.8cqw 2cqw;border-radius:999px;margin-bottom:2.4cqw;align-self:flex-start}
+.memo{background:var(--memo);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.memo div{margin:3px 0}
+.memo .k{color:var(--ink-3);margin-right:6px}
+.memo .need{color:var(--warn);background:var(--warn-bg);padding:1px 6px;border-radius:3px}
+body.hide-memo .memo{display:none}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin:4px 0 24px;font-size:13.5px;color:var(--ink-2)}
+.note h2{font-size:15px;margin:0 0 10px;color:var(--ink)}
+.note h3{font-size:13.5px;margin:16px 0 6px;color:var(--ink-2)}
+.note p{margin:0 0 8px;max-width:80ch}
+.note table{border-collapse:collapse;font-size:12.5px;width:100%}
+.note th,.note td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;color:var(--ink-2)}
+.note th{background:var(--memo);color:var(--ink)}
+.note[hidden]{display:none}
+.need{color:var(--warn);background:var(--warn-bg);padding:1px 6px;border-radius:3px}
+@media (prefers-reduced-motion:no-preference){ .deck{transition:opacity .18s} .deck.swap{opacity:0} }
+
+.pane[hidden]{display:none}
+.story-plan[hidden]{display:none}
+.intro .toggle-memo{margin-top:8px}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hd">
+    <h1>배수구 편 · 카드뉴스 4종 v03 윤문검토<small>2026-11-02 · v03 문장 검수·윤문 반영 · 카드 본문·헤드라인·안내 문구·ALT·제작 메모 교정, 미확정 수치·행사 조건은 메모로 분리 · 사실 검증 완료본 아님</small></h1>
+    <div class="tabs" role="tablist" aria-label="유형 선택"><button role="tab" aria-selected="true" data-v="v01">수사 컨셉형</button><button role="tab" aria-selected="false" data-v="v02">원인 추적형</button><button role="tab" aria-selected="false" data-v="v03">경험 질문형</button><button role="tab" aria-selected="false" data-v="v04">연휴 프로모션</button></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="intro" style="padding-bottom:0">
+    <div class="story-plan" id="storyPlan" hidden></div>
+    <button class="toggle-memo" id="memoBtn" type="button">제작 메모 숨기기</button>
+  </section>
+<div class="pane" id="v01">
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-26 · 검수 하네스 3단(톤·표기·사실·윤문) 반영 · 원천소스 기존 발행 1098 · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p id="desc">수사 컨셉형 7장 — 사건 파일(표지) → 현장 확인 → 배수관 확인 → 추가 점검 → 재발 방지 ①② → 마무리. v03: '사건 보고서' 설정은 남기되 무혐의·범인·검거 등 확인하지 않은 원인을 확정하는 표현은 단서 확인 방식으로 조정. 수사 콘셉트를 더 살릴지는 최종 기획 판단.</p>
+    <p class="ver">v03 윤문검토: 단정·비약 완화, 추상 표현을 관리 행동으로 교체, 미확정 수치·행사 조건은 제작 메모로 분리했습니다(사실 검증 완료본 아님). 사실·출처·상품 정식명은 기존 발행 1098과 같습니다. 회색 상자는 제작 메모(지면 비노출), 주황은 발행 전 확정 항목입니다. 게시 제목·해시태그는 발행 확정 시 작성합니다.</p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 사건 파일 (표지)</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 1 사건 파일 (표지)">
+        <span class="logo">CESCO</span>
+        <span class="num">01 / 07</span>
+        <p class="num">주방 냄새 사건 보고서</p><p class="head cover"><span class="l">저녁마다 싱크대에서 나는</span><span class="l">퀴퀴한 냄새,</span><span class="l j">어디서 올까요?</span></p><div class="strip">주방 냄새의 원인을 찾는 사건 파일</div>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>v03 윤문: 용의자·알리바이·무혐의·범인·검거·여죄·종결 등 확인하지 않은 원인을 확정하는 수사 어휘는 단서 확인 방식으로 조정. '사건 보고서' 설정만 유지. 수사 콘셉트를 더 강하게 살릴지는 최종 기획 판단</div><div><span class="k">이미지</span>수사 보드 연출 — 코르크판에 핀으로 꽂힌 주방 사진들(싱크대·음쓰통·행주), 배수구 사진에만 물음표</div><div><span class="k">ALT</span>저녁마다 싱크대에서 나는 주방 냄새의 원인을 찾는 사건 보고서 형식 카드뉴스 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> 현장 확인</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 2 현장 확인">
+        <span class="logo">CESCO</span>
+        <span class="num">02 / 07</span>
+        <p class="num">주방 냄새 사건 보고서 · 현장 확인</p><p class="head"><span class="l">음식물통과 행주를</span><span class="l j">먼저 확인합니다</span></p><div class="pt"><b>단서 ① 음식물 쓰레기통</b> · 비운 뒤에도 통 안쪽에 찌꺼기가 남아 있지 않은지 확인합니다.</div><div class="pt"><b>단서 ② 행주</b> · 세탁한 행주를 충분히 말렸는지 확인합니다.</div><div class="pt"><b>단서 ③ 환기</b> · 창문을 열었을 때 냄새가 줄어드는지 살펴봅니다.</div><div class="pt"><b>다음 확인 장소</b> · 그래도 냄새가 남는다면 거름망 아래 배수관도 살펴볼 차례입니다.</div>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>v03 윤문: '무혐의' 확정 대신 확인 행동으로. 확인하지 않은 원인을 무혐의로 확정하지 않음</div><div><span class="k">이미지</span>수사 파일 3분할 — 음쓰통·행주·열린 창문 사진 위에 체크 표시, 마지막 줄에서 시선이 싱크대 바닥으로</div><div><span class="k">ALT</span>음식물 쓰레기통·행주·환기를 하나씩 확인하고 그래도 냄새가 남으면 배수관을 살펴보자는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> 배수관 확인</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 3 배수관 확인">
+        <span class="logo">CESCO</span>
+        <span class="num">03 / 07</span>
+        <p class="num">주방 냄새 사건 보고서 · 배수관 확인</p><p class="head"><span class="l">거름망 아래 배수관도</span><span class="l j">확인해 볼까요?</span></p><p class="body">배수관 안쪽에는 음식물 찌꺼기 등 유기물이 쌓일 수 있습니다. 이런 오염물이 부패하면 냄새가 날 수 있고, 습한 배수구 주변에서는 세균과 곰팡이도 자라기 쉽습니다.</p><p class="src">출처: 경향신문(2026.06.06) / WHO 「Guidelines for Indoor Air Quality: Dampness and Mould」 / 질병관리청 국가건강정보포털 「공기 오염」</p>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>사실 검증 반영 2곳 — '증식 속도가 빨라질 수 있습니다'는 표기 출처에 없어 '자라기 쉬운 환경', 출처는 문장을 실제로 뒷받침하는 문서로 재배치</div><div><span class="k">이미지</span>단면 일러스트 — 거름망 아래 배수관 내벽에 쌓인 오염물</div><div><span class="k">ALT</span>거름망 아래 배수관 안쪽에 쌓인 유기물이 냄새와 세균·곰팡이의 원인이 될 수 있다는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> 추가 점검</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 4 추가 점검">
+        <span class="logo">CESCO</span>
+        <span class="num">04 / 07</span>
+        <p class="num">주방 냄새 사건 보고서 · 추가 점검</p><p class="head"><span class="l">유기물이 쌓인 배수구,</span><span class="l j">해충도 모일 수 있습니다</span></p><p class="body">배수구에 남은 유기물은 일부 해충의 먹이가 되고, 그 주변은 번식 장소가 될 수 있습니다. 봉수나 트랩이 제대로 막아 주지 못하면 하수관 쪽 악취와 해충이 실내로 들어올 수도 있습니다.</p><p class="src">출처: 한국주거학회논문집 제36권 1호(2025) / 경향신문(2026.06.06)</p>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>v03 윤문: '벌레 알이 남아 있을 수 있습니다' 문장은 출처 범위 확인 전 본문에서 제외(제품 카드의 '벌레 알까지 세정' 문구는 원문 자산으로 유지)</div><div><span class="k">이미지</span>일러스트 — 하수관에서 배수구로 이어지는 경로. 해충 직접 묘사 대신 경로 화살표</div><div><span class="k">ALT</span>배수구에 쌓인 유기물이 해충 서식 환경이 될 수 있고 차단 기능이 약하면 악취·해충이 유입될 수 있다는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> 재발 방지 ①</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 5 재발 방지 ①">
+        <span class="logo">CESCO</span>
+        <span class="num">05 / 07</span>
+        <p class="num">재발 방지 ①</p><p class="head"><span class="l">배수관 안쪽 오염은</span><span class="l j">발포 세정으로 관리</span></p><p class="name">세스코 마이랩 배수구클리너</p><div class="pt">✔ 강력한 발포 기술로 깊고 굴곡진 배수관 속 찌든 때와 유기물을 깨끗하게 세정</div><div class="pt">✔ 배수구 속 <b>벌레 알까지</b> 간편 세정</div><div class="pt">✔ 가습기 살균제 이슈성분 불검출¹⁾</div><div class="pt">✔ 7종 파라벤류 방부제 불검출²⁾</div><p class="src">1) CMIT, MIT, BKC, DDAC<br>2) p-하이드록시벤조익애씨드, 메틸파라벤, 에칠파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤</p>
+      </div>
+      <div class="memo"><div><span class="k">이미지</span>제품 실사 + 발포 장면 — 거품이 배수관 굴곡을 채우는 연출</div><div><span class="k">ALT</span>세스코 마이랩 배수구클리너의 발포 세정과 불검출 시험 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 6</b> 재발 방지 ②</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 6 재발 방지 ②">
+        <span class="logo">CESCO</span>
+        <span class="num">06 / 07</span>
+        <p class="num">재발 방지 ②</p><p class="head"><span class="l">악취·해충 유입 경로는</span><span class="l j">배수구트랩으로 관리</span></p><p class="name">세스코 시설 보완 배수구트랩</p><div class="pt">✔ 높은 밀폐력으로 <b>악취 98%¹⁾ 저감</b></div><div class="pt">✔ 하수구를 통한 해충 침입과 이동 차단</div><div class="pt">✔ 물이 고이지 않고 배수 흐름을 원활하게 유지하는 공학적 디자인</div><div class="pt">✔ 녹슬지 않는 스테인리스 코어와 충격에 강한 고강도 플라스틱 소재(ABS)로 반영구적 사용 가능</div><p class="src">1) 세스코 자체 실험 결과 | 암모니아 악취 98% 저감 효과</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 「세스코 시설 보완 배수구트랩」은 세스코몰 카탈로그에 없는 표기(카탈로그: 실내 배수구트랩 서비스). 기존 발행 1098 표기 유지, 판매 형태·정식 명칭 담당자 확인</span></div><div><span class="k">이미지</span>제품 실사 + 연기 차단 실험 비교컷</div><div><span class="k">ALT</span>세스코 시설 보완 배수구트랩의 밀폐력과 해충 차단 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 7</b> 마무리</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 7 마무리">
+        <span class="logo">CESCO</span>
+        <span class="num">07 / 07</span>
+        <p class="num">주방 냄새 사건 보고서 · 마무리</p><p class="head"><span class="l">주방 냄새의 단서,</span><span class="l j">배수관 안쪽도 살펴보세요</span></p><p class="body">음식물통과 행주를 관리했는데도 냄새가 계속된다면 배수관 안쪽을 살펴보세요. 배수관 세정에는 세스코 마이랩 배수구클리너를, 배수구 입구 관리에는 세스코 시설 보완 배수구트랩을 쓰면 됩니다.</p><p class="cta">상담문의 1588-1119 · 세스코몰에서 만나보세요</p>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>v03 윤문: '종결·범인' 회수 문장과 격언형 마무리 제거, 제품은 용도별 활용 안내로</div><div><span class="k">ALT</span>음식물통과 행주를 관리해도 냄새가 계속되면 배수관 안쪽을 살펴보고 세정·트랩 제품을 활용하라는 마무리</div></div>
+    </article></section>
+  
+</div>
+<div class="pane" id="v02" hidden>
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-26 · 검수 하네스 3단(톤·표기·사실·윤문) 반영 · 원천소스 기존 발행 1098 · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p id="desc">원인 추적형 7장 — 표지 → 원인 → 확산 → 셀프 팁 → 세정 제품 → 차단 제품 → 마무리. 원안 1안(미스터리)에서 수사 어휘·라벨·후렴을 걷어낸 덱.</p>
+    <p class="ver">v03 윤문검토: 단정·비약 완화, 추상 표현을 관리 행동으로 교체, 미확정 수치·행사 조건은 제작 메모로 분리했습니다(사실 검증 완료본 아님). 사실·출처·상품 정식명은 기존 발행 1098과 같습니다. 회색 상자는 제작 메모(지면 비노출), 주황은 발행 전 확정 항목입니다. 게시 제목·해시태그는 발행 확정 시 작성합니다.</p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 1 표지">
+        <span class="logo">CESCO</span>
+        <span class="num">01 / 07</span>
+        <p class="head cover"><span class="l">청소해도 다시 나는</span><span class="l j">주방 냄새</span></p><p class="sub">싱크대 배수관 안쪽도 원인일 수 있습니다</p><div class="strip">배수구 세정·차단 관리</div>
+      </div>
+      <div class="memo"><div><span class="k">이미지</span>실사. 불 꺼진 저녁 주방, 싱크대 쪽 역광. 「☞ 옆으로 넘겨 확인하세요」는 로고 자리 고정 요소</div><div><span class="k">ALT</span>청소해도 다시 나는 주방 냄새의 원인이 배수관 안쪽일 수 있다는 카드뉴스 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> 원인</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 2 원인">
+        <span class="logo">CESCO</span>
+        <span class="num">02 / 07</span>
+        <p class="head"><span class="l">거름망 아래,</span><span class="l j">배수관 안쪽도 살펴보세요</span></p><p class="body">거름망을 청소해도 배수관 안쪽에는 음식물 찌꺼기 등 오염물이 남을 수 있습니다. 이런 오염물이 쌓여 부패하면 냄새가 날 수 있습니다. 습한 배수구 주변에서는 세균과 곰팡이도 자라기 쉽습니다.</p><p class="src">출처: 경향신문(2026.06.06) / WHO 「Guidelines for Indoor Air Quality: Dampness and Mould」 / 질병관리청 국가건강정보포털 「공기 오염」</p>
+      </div>
+      <div class="memo"><div><span class="k">이미지</span>단면 일러스트 — 거름망 아래 배수관 내벽에 쌓인 오염물</div><div><span class="k">ALT</span>거름망을 청소해도 배수관 안쪽에 오염물이 남아 냄새와 세균·곰팡이의 원인이 될 수 있다는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> 확산</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 3 확산">
+        <span class="logo">CESCO</span>
+        <span class="num">03 / 07</span>
+        <p class="head"><span class="l">악취와 일부 해충은</span><span class="l j">배수구를 통해</span><span class="l j">들어올 수 있습니다</span></p><p class="body">배수구에 쌓인 유기물은 일부 해충의 먹이가 되고, 그 주변은 번식 장소가 될 수 있습니다. 배수관의 봉수(악취를 막는 물)가 줄어들거나 트랩이 제대로 막아 주지 못하면 하수관의 냄새와 해충이 실내로 들어올 수도 있습니다.</p><p class="src">출처: 한국주거학회논문집 제36권 1호(2025) / 경향신문(2026.06.06)</p>
+      </div>
+      <div class="memo"><div><span class="k">이미지</span>일러스트 — 하수관에서 배수구로 이어지는 경로. 해충 직접 묘사 대신 경로 화살표</div><div><span class="k">ALT</span>배수구 유기물이 일부 해충의 번식 환경이 될 수 있고 봉수가 줄면 악취와 해충이 유입될 수 있다는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> 셀프 팁</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 4 셀프 팁">
+        <span class="logo">CESCO</span>
+        <span class="num">04 / 07</span>
+        <p class="lab">세스코 솔루션</p><p class="head"><span class="l">배수구를 관리할 때</span><span class="l j">확인할 세 가지</span></p><p class="tip"><b>1. 거름망과 덮개부터 청소</b>사용 빈도와 오염 상태를 보고 주기적으로 씻어 주세요.</p><p class="tip"><b>2. 배수구 차단 상태 확인</b>트랩이 제대로 설치되어 있고 정상 작동하는지 살펴보세요.</p><p class="tip"><b>3. 배수관 안쪽도 점검</b>손이 닿지 않는 배수관 안쪽은 적합한 세정 제품으로 관리해 주세요.</p><p class="src">출처: 경향신문(2026.06.06)</p>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>기존 발행 1098_5·1098_6 셀프 관리 3항 재배열. v03: '전문가 권장 주 1회' 단정 대신 사용 빈도·오염 상태 기준으로, 3번 끝줄이 제품 연결</div><div><span class="k">이미지</span>번호 3단 아이콘</div><div><span class="k">ALT</span>거름망·덮개 청소, 트랩 상태 확인, 배수관 안쪽 점검 3가지 배수구 관리 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> 세스코 솔루션 1</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 5 세스코 솔루션 1">
+        <span class="logo">CESCO</span>
+        <span class="num">05 / 07</span>
+        <p class="lab">세스코 솔루션</p><p class="head"><span class="l">배수관 안쪽은</span><span class="l j">발포 세정으로 관리</span></p><p class="name">세스코 마이랩 배수구클리너</p><div class="pt">✔ 강력한 발포 기술로 깊고 굴곡진 배수관 속 찌든 때와 유기물을 깨끗하게 세정</div><div class="pt">✔ 배수구 속 <b>벌레 알까지</b> 간편 세정</div><div class="pt">✔ 가습기 살균제 이슈성분 불검출¹⁾</div><div class="pt">✔ 7종 파라벤류 방부제 불검출²⁾</div><p class="src">1) CMIT, MIT, BKC, DDAC<br>2) p-하이드록시벤조익애씨드, 메틸파라벤, 에칠파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤</p>
+      </div>
+      <div class="memo"><div><span class="k">이미지</span>제품 실사 + 발포 장면 — 거품이 배수관 굴곡을 채우는 연출</div><div><span class="k">ALT</span>세스코 마이랩 배수구클리너의 발포 세정과 불검출 시험 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 6</b> 세스코 솔루션 2</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 6 세스코 솔루션 2">
+        <span class="logo">CESCO</span>
+        <span class="num">06 / 07</span>
+        <p class="lab">세스코 솔루션</p><p class="head"><span class="l">악취·해충 유입은</span><span class="l j">배수구트랩으로 관리</span></p><p class="name">세스코 시설 보완 배수구트랩</p><div class="pt">✔ 높은 밀폐력으로 <b>악취 98%¹⁾ 저감</b></div><div class="pt">✔ 하수구를 통한 해충 침입과 이동 차단</div><div class="pt">✔ 물이 고이지 않고 배수 흐름을 원활하게 유지하는 공학적 디자인</div><div class="pt">✔ 녹슬지 않는 스테인리스 코어와 충격에 강한 고강도 플라스틱 소재(ABS)로 반영구적 사용 가능</div><p class="src">1) 세스코 자체 실험 결과 | 암모니아 악취 98% 저감 효과</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 「세스코 시설 보완 배수구트랩」은 세스코몰 카탈로그에 없는 표기(카탈로그: 실내 배수구트랩 서비스). 기존 발행 1098 표기 유지, 판매 형태·정식 명칭 담당자 확인</span></div><div><span class="k">이미지</span>제품 실사 + 연기 차단 실험 비교컷</div><div><span class="k">ALT</span>세스코 시설 보완 배수구트랩의 밀폐력과 해충 차단 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 7</b> 마무리</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 7 마무리">
+        <span class="logo">CESCO</span>
+        <span class="num">07 / 07</span>
+        <p class="head"><span class="l">냄새가 반복된다면,</span><span class="l j">배수구 안쪽도 확인하세요</span></p><p class="body">음식물 쓰레기통과 거름망을 씻어도 냄새가 난다면 배수관 안쪽과 트랩 상태를 확인해 보세요. 배수관 내부는 세정 제품으로, 하수관 쪽 악취·해충 유입은 트랩으로 각각 관리할 수 있습니다.</p><p class="cta">상담문의 1588-1119 · 세스코몰에서 만나보세요</p>
+      </div>
+      <div class="memo"><div><span class="k">ALT</span>냄새가 반복되면 배수관 안쪽과 트랩 상태를 확인하고 세정·트랩으로 각각 관리하라는 마무리 안내</div></div>
+    </article></section>
+  
+</div>
+<div class="pane" id="v03" hidden>
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-26 · 검수 하네스 3단(톤·표기·사실·윤문) 반영 · 원천소스 기존 발행 1098 · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p id="desc">경험 질문형 5장 — 표지(질문) → 문제 → 셀프 팁 → 제품 → 마무리. 덱 안 의문문은 표지 1회.</p>
+    <p class="ver">v03 윤문검토: 단정·비약 완화, 추상 표현을 관리 행동으로 교체, 미확정 수치·행사 조건은 제작 메모로 분리했습니다(사실 검증 완료본 아님). 사실·출처·상품 정식명은 기존 발행 1098과 같습니다. 회색 상자는 제작 메모(지면 비노출), 주황은 발행 전 확정 항목입니다. 게시 제목·해시태그는 발행 확정 시 작성합니다.</p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 1 표지">
+        <span class="logo">CESCO</span>
+        <span class="num">01 / 05</span>
+        <p class="head cover"><span class="l">환기를 해도</span><span class="l j">주방 냄새가</span><span class="l j">다시 나나요?</span></p><div class="strip">냄새가 반복된다면 배수구도 살펴보세요</div>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>v03 윤문: '위생 신호'는 뜻이 불분명해 관리 행동으로 교체</div><div><span class="k">이미지</span>실사 — 창문을 활짝 연 주방</div><div><span class="k">ALT</span>환기를 해도 주방 냄새가 다시 나는지 묻고 배수구를 살펴보자는 카드뉴스 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> 문제</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 2 문제">
+        <span class="logo">CESCO</span>
+        <span class="num">02 / 05</span>
+        <p class="head"><span class="l">주방 냄새가 반복될 때,</span><span class="l j">배수구 안쪽도 확인하세요</span></p><p class="body">설거지를 마치고 음식물 쓰레기를 비웠는데도 싱크대에서 냄새가 난다면 배수관 안쪽을 살펴보세요. 찌꺼기가 쌓여 부패하면서 냄새가 날 수 있습니다. 습한 배수구 주변에서는 세균과 곰팡이가 자라기 쉽고, 일부 해충이 서식하기도 합니다.</p><p class="src">출처: 질병관리청 국가건강정보포털 「공기 오염」 / WHO 「Guidelines for Indoor Air Quality: Dampness and Mould」 / CDC 「Mold」</p>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>v03 윤문: 냄새를 세균·곰팡이로 단정하지 않고, 초파리·나방파리 특정과 호흡기·알레르기 연결 문장은 출처 범위 확인 전 제외</div><div><span class="k">이미지</span>실사 — 설거지 끝난 싱크대, 거름망 쪽으로 시선</div><div><span class="k">ALT</span>설거지를 끝내도 싱크대에서 냄새가 난다면 배수관 안쪽을 살펴보라는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> 셀프 팁</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 3 셀프 팁">
+        <span class="logo">CESCO</span>
+        <span class="num">03 / 05</span>
+        <p class="lab">세스코 솔루션</p><p class="head"><span class="l">집에서 할 수 있는</span><span class="l j">배수구 관리법</span></p><p class="tip"><b>1. 거름망과 덮개 세척</b>음식물 찌꺼기가 오래 남지 않도록 자주 확인하고 세척해 주세요.</p><p class="tip"><b>2. 트랩 상태 확인</b>배수구 입구에 틈이 생기지 않았는지, 차단 기능이 제대로 작동하는지 살펴보세요.</p><p class="tip"><b>3. 배수관 안쪽 관리</b>거름망 아래 배수관에도 오염물이 남을 수 있으니 적합한 제품으로 주기적으로 관리해 주세요.</p><p class="src">출처: 경향신문(2026.06.06)</p>
+      </div>
+      <div class="memo"><div><span class="k">참고</span>기존 발행 1098_5·1098_6 재배열. v03: 추상 권장 대신 구체 관리 행동</div><div><span class="k">ALT</span>거름망·덮개 세척, 트랩 상태 확인, 배수관 안쪽 관리 셀프 관리 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> 세스코 솔루션</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 4 세스코 솔루션">
+        <span class="logo">CESCO</span>
+        <span class="num">04 / 05</span>
+        <p class="lab">세스코 솔루션</p><p class="head"><span class="l">배수관 안쪽까지</span><span class="l j">발포 세정으로 관리</span></p><p class="name">세스코 마이랩 배수구클리너</p><div class="pt">✔ 강력한 발포 기술로 깊고 굴곡진 배수관 속 찌든 때와 유기물을 깨끗하게 세정</div><div class="pt">✔ 배수구 속 <b>벌레 알까지</b> 간편 세정</div><div class="pt">✔ 가습기 살균제 이슈성분 불검출¹⁾</div><div class="pt">✔ 7종 파라벤류 방부제 불검출²⁾</div><p class="src">1) CMIT, MIT, BKC, DDAC<br>2) p-하이드록시벤조익애씨드, 메틸파라벤, 에칠파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤</p>
+      </div>
+      <div class="memo"><div><span class="k">이미지</span>제품 실사 + 발포 장면</div><div><span class="k">ALT</span>세스코 마이랩 배수구클리너의 발포 세정과 불검출 시험 안내</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> 마무리</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 5 마무리">
+        <span class="logo">CESCO</span>
+        <span class="num">05 / 05</span>
+        <p class="head"><span class="l">이번 배수구 청소에는</span><span class="l j">안쪽까지 확인하세요</span></p><p class="body">거름망과 덮개는 직접 씻고, 손이 잘 닿지 않는 배수관 안쪽은 세스코 마이랩 배수구클리너로 관리해 보세요.</p><p class="cta">세스코몰에서 만나보세요 · 상담문의 1588-1119</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 본편 분량 합격선 1,200 미달(v03 윤문으로 더 짧아짐). 원인 장 1장 추가 여부 기획 판단</span></div><div><span class="k">ALT</span>거름망·덮개는 직접 씻고 배수관 안쪽은 세스코 마이랩 배수구클리너로 관리하라는 마무리</div></div>
+    </article></section>
+  
+</div>
+<div class="pane" id="v04" hidden>
+  <section class="intro"><p class="ver" style="margin-bottom:10px">2026-10-26 · 검수 하네스 3단(톤·표기·사실·윤문) 반영 · 원천소스 기존 발행 1098 · <b>2026-11-02 v03 문장 검수·윤문 반영</b></p>
+<p id="desc">연휴 프로모션 5장 — 표지 → 왜 배수구부터(봉수) → 고르는 기준 → 혜택 → 마무리. v03: 확인 전 효능 수치(98%·99.9%)와 행사 조건은 소비자 문구에서 빼고 제작 메모로 분리. 행사명·기간·가격·쿠폰, 제품별 시험성적서 확인 필수.</p>
+    <p class="ver">v03 윤문검토: 단정·비약 완화, 추상 표현을 관리 행동으로 교체, 미확정 수치·행사 조건은 제작 메모로 분리했습니다(사실 검증 완료본 아님). 사실·출처·상품 정식명은 기존 발행 1098과 같습니다. 회색 상자는 제작 메모(지면 비노출), 주황은 발행 전 확정 항목입니다. 게시 제목·해시태그는 발행 확정 시 작성합니다.</p>
+  </section>
+  <section class="deck">
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 1 표지">
+        <span class="logo">CESCO</span>
+        <span class="num">01 / 05</span>
+        <p class="badge">연휴 전 위생 점검</p><p class="head cover"><span class="l">집을 오래 비우기 전,</span><span class="l j">배수구도 챙기세요</span></p><p class="sub">집을 오래 비울 때 확인할 위생 관리 항목</p><div class="strip">{시즌 기획명: 확인 필요}</div>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 시즌 기획명·행사 기간 — 실제 프로모션 확정 후 기입</span></div><div><span class="k">ALT</span>집을 오래 비우기 전 배수구 위생 점검을 안내하는 카드뉴스 표지</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 2</b> 왜 배수구부터</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 2 왜 배수구부터">
+        <span class="logo">CESCO</span>
+        <span class="num">02 / 05</span>
+        <p class="head"><span class="l">집을 오래 비운다면</span><span class="l j">배수구 봉수도 확인</span></p><p class="body">배수구 트랩에 고인 물(봉수)은 하수관의 악취가 실내로 올라오지 않도록 막아 줍니다. 배수구를 오래 사용하지 않으면 봉수가 증발해 냄새가 올라올 수 있습니다. 집을 비우기 전 거름망과 배수관의 오염 상태를 확인하고, 트랩도 정상적으로 작동하는지 살펴보세요.</p><p class="src">출처: 한국주거학회논문집 제36권 1호(2025) / 경향신문(2026.06.06)</p>
+      </div>
+      <div class="memo"><div><span class="k">ALT</span>집을 오래 비우면 배수구 봉수가 증발해 냄새가 올라올 수 있으니 비우기 전 배수구와 트랩을 확인하라는 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 3</b> 고르는 기준</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 3 고르는 기준">
+        <span class="logo">CESCO</span>
+        <span class="num">03 / 05</span>
+        <p class="head"><span class="l">배수구 상태에 맞춰</span><span class="l j">세정 또는 차단</span></p><div class="pt"><b>배수관 안쪽에 찌꺼기가 쌓였다면</b><br>세스코 마이랩 배수구클리너<br>— 발포 세정으로 배수관 속 오염물 관리</div><div class="pt"><b>악취·해충 유입을 줄이고 싶다면</b><br>세스코 시설 보완 배수구트랩<br>— 하수관 쪽 유입 경로 차단</div><div class="pt"><b>사업장 배수관을 관리한다면</b><br>세스코 마이랩 마스터 배수관세정제<br>— 배수관 세정 및 악취 관리</div><p class="src">※ 제품별 세부 성능 수치는 시험 조건과 확인된 자료에 따라 최종 기재합니다.</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 「세스코 시설 보완 배수구트랩」은 세스코몰 카탈로그에 없는 표기(카탈로그: 실내 배수구트랩 서비스). 기존 발행 1098 표기 유지, 판매 형태·정식 명칭 담당자 확인</span> <span class="need">확인 필요: v03에서 뺀 원문 수치 — 배수구트랩 '밀폐력으로 악취 98% 저감'(세스코 자체 실험 | 암모니아), 마스터 배수관세정제 '하수구 악취 99.9% 탈취'(악취성분 4종: 메틸머캅탄·암모니아·트리메틸아민·황화수소). 4종 일괄 99.9%는 시험 물질별 조건·수치 미확인. 제품별 시험성적서로 확인 후 복원 여부 결정</span></div><div><span class="k">ALT</span>배수구 상태별로 배수구클리너, 배수구트랩, 마스터 배수관세정제를 고르는 기준 카드</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 4</b> 혜택</span><span>로고: CESCO</span></div>
+      <div class="card sol-bg" aria-label="CARD 4 혜택">
+        <span class="logo">CESCO</span>
+        <span class="num">04 / 05</span>
+        <p class="badge">연휴 집 점검 혜택</p><p class="head"><span class="l">배수구 관리 제품</span><span class="l j">행사 혜택 확인하기</span></p><div class="price">세스코 마이랩 배수구클리너 {규격} {혜택 수식어}<br><b>{할인율}%</b> 정상가 {정가}원 → 혜택가 <b>{할인가}원</b></div><div class="price">세스코 시설 보완 배수구트랩 {혜택 수식어}<br><b>{할인율}%</b> 정상가 {정가}원 → 혜택가 <b>{할인가}원</b></div><p class="fine">행사 기간: {시작일}~{종료일} · {쿠폰 조건}</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 할인율·가격·기간·쿠폰 조건 — 세스코몰 실제 프로모션 확정 후 기입. 중괄호 필드는 발행 전 반드시 채울 것. 카탈로그 참고값: 배수구클리너 5회분 8,300→7,500원(9%), 10회분×2 16,600→12,900원(22%), [2+1] 15회분 24,900→16,600원(33%)</span></div><div><span class="k">참고</span>상품명은 카탈로그 상품명(규격 포함) 그대로 기재</div></div>
+    </article>
+    <article class="slot">
+      <div class="slot-meta"><span><b>CARD 5</b> 마무리</span><span>로고: CESCO</span></div>
+      <div class="card" aria-label="CARD 5 마무리">
+        <span class="logo">CESCO</span>
+        <span class="num">05 / 05</span>
+        <p class="head"><span class="l">집을 비우기 전,</span><span class="l j">배수구 관리도 챙기세요</span></p><p class="body">장기간 집을 비우기 전에는 배수구를 청소하고 트랩 상태도 확인해 보세요. 필요한 배수구 관리 제품은 세스코몰에서 찾아보세요.</p><p class="cta">세스코몰 www.cescomall.co.kr</p>
+      </div>
+      <div class="memo"><div><span class="k">확인</span><span class="need">확인 필요: 프로모션 조건 문구 — 원문 '* 취소 후 재구매 시 할인 재적용 불가 · 마케팅 수신 동의 필수 / * 타 할인 혜택을 받는 고객은 해당 프로모션 적용 제외'는 취소·중복 할인·수신 동의 정책 확정 자료가 없어 v03 소비자 문구에서 제외. 확정 후 fine 문단으로 복원</span></div><div><span class="k">ALT</span>집을 비우기 전 배수구 청소와 트랩 확인을 권하고 세스코몰 제품 안내로 마무리하는 카드</div></div>
+    </article></section>
+  
+</div>
+</main>
+<script>
+const KEYS=['v01', 'v02', 'v03', 'v04']; const PLAN=[];
+const tabs=[...document.querySelectorAll('.tabs button')];
+function show(v,fromClick){
+  tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.v===v?'true':'false'));
+  KEYS.forEach(k=>{document.getElementById(k).hidden=(k!==v);});
+  const sp=document.getElementById('storyPlan'); if(sp) sp.hidden=!PLAN.includes(v);
+  window.scrollTo({top:0});
+  if(fromClick) history.replaceState(null,'','#'+v);
+}
+tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.v,true)));
+const initV=location.hash.slice(1);
+if(initV){ history.replaceState(null,'',location.pathname+location.search); addEventListener('load',()=>{history.replaceState(null,'','#'+initV); scrollTo(0,0);},{once:true}); }
+show(KEYS.includes(initV)?initV:KEYS[0]);
+const memoBtn=document.getElementById('memoBtn');
+memoBtn.addEventListener('click',()=>{const hidden=document.body.classList.toggle('hide-memo');memoBtn.textContent=hidden?'제작 메모 보이기':'제작 메모 숨기기';});
+</script>
+</body>
+</html>
