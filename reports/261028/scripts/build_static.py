@@ -91,7 +91,7 @@ CSS = r"""
 .cmp-h{font-size:13.5px;font-weight:900;color:var(--ink);margin:6px 0 10px}
 .cmp-h small{font-weight:600;color:var(--muted);font-size:11.5px;margin-left:8px}
 .memo{max-width:1280px}
-@media (max-width:760px){.lead,.blk{padding:12px 0 0}.panel,.feat,.opts{border-radius:0}.bizsec{padding:10px 0 30px}.row3{gap:14px}.row3 .ed{width:100%}}
+@media (max-width:760px){.panel{overflow-x:auto}.names td.n{white-space:normal}.lead,.blk{padding:12px 0 0}.panel,.feat,.opts{border-radius:0}.bizsec{padding:10px 0 30px}.row3{gap:14px}.row3 .ed{width:100%}}
 """
 
 def opts_table(bk):
