@@ -162,6 +162,23 @@ def tools_block():
 <div class="panel"><table class="names"><thead><tr><th style="width:18%">항목</th><th>내용</th></tr></thead><tbody>{tr}</tbody></table></div>
 <div class="row3" style="margin-top:16px">{figs}</div></div>'''
 
+def tools_more_block():
+    rows = [
+        ('D','스탬프형','게이지 대신 초록 체크 도장. 카드 2장에 도장과 결과 문장만 두고, 누르면 아래에 설명이 펼쳐집니다.','체크 스탬프(네모 스티커)와 같은 "도장" 말로 이어집니다. 글이 가장 적습니다.','도장만 있어 "무엇을 쟀는지"가 작은 글씨에만 있습니다.'),
+        ('E','한 줄 리스트형','아이콘, 결과 문장, 기준 안 칩을 한 줄에. 줄 아래 가는 단계 칸(초록이 이 사업장). 줄을 누르면 펼쳐집니다.','세로로 제일 짧고 항목이 늘어도 한 줄씩만 늘어납니다. 위쳌 AI 카드의 체크 줄과 닮았습니다.','게이지보다 눈에 덜 띕니다.'),
+        ('F','요약 카드형','파란 머리에 "2항목 모두 기준 안"을 크게, 아래에 결과 문장 2줄. 줄을 누르면 펼쳐집니다.','결론이 제일 먼저 보입니다. 화면 맨 아래 마무리 카드 역할을 합니다.','파란 머리가 위쳌 AI 카드와 겹쳐 보일 수 있습니다. 항목별 상태는 줄을 봐야 압니다.'),
+    ]
+    tr = ''.join(f'<tr><td class="n">{k} · {n}</td><td>{d}</td><td>{g}</td><td>{b}</td></tr>' for k,n,d,g,b in rows)
+    figs = ''
+    for k, nm in [('D','스탬프형'),('E','한 줄 리스트형'),('F','요약 카드형')]:
+        for bk in ['chicken','care']:
+            t = T.TPL[bk]
+            figs += f'<figure><figcaption><b>{k}안 · {nm}</b><small>{t["reg"]["name"]} · 블록만 떼어 본 것. 카드나 줄을 눌러 펼치고 접습니다</small></figcaption><div class="phone part"><div data-tools data-biz="{bk}" data-tv="{k}"></div></div></figure>'
+    return f'''<div class="blk" id="tools2"><h2>도구 측정 블록 · 같은 방향으로 더 그린 3안<small>게이지형과 같은 규칙(결과 문장 먼저, 글은 눌러야 보임)으로 모양만 바꾼 것</small></h2>
+<div class="sub">위 게이지형이 지금 들어가 있는 안입니다. 아래 셋 중 하나가 더 낫다고 보시면 그 안으로 바꿔 넣습니다. 펼쳤을 때 내용은 넷이 같습니다.</div>
+<div class="panel"><table class="names"><thead><tr><th style="width:14%">안</th><th style="width:32%">모양</th><th>좋은 점</th><th style="width:24%">걸리는 점</th></tr></thead><tbody>{tr}</tbody></table></div>
+<div class="row3" style="margin-top:16px">{figs}</div></div>'''
+
 def feat_notes(bk):
     t = T.TPL[bk]; o = t['owner']
     return f'''<div class="notes"><h3>화면 구성 (위에서 아래로)</h3><ol>
@@ -198,11 +215,12 @@ def build():
 <p>10/30 회의에서 나온 7가지를 반영한 판입니다. 업종마다 <b>상세페이지형</b>을 먼저 크게 두고, 같은 화면의 <b>장소정보 탭</b>을 옆에 붙였습니다. 사장님 선택 화면, 수치형, 인터뷰형은 아래에 참고로 있습니다. 장소정보 탭 UI는 11/02에 A 아이콘 그리드로, 도구 측정 블록은 게이지형으로 정해서 그 모양만 남겼습니다.</p>
 <p>화면 안의 탭, 카드, 체크박스는 다 눌러 볼 수 있습니다. 상호, 주소, 수치는 예시입니다.</p>
 <div class="chips"><span>① 장소정보 탭 (아이콘 그리드 확정)</span><span class="g">② {T.STICKER_NAME} 블루/화이트 멤버스</span><span class="y">③ 도구 측정 블록 (게이지형 확정)</span><span>④ 문장 손질</span><span>⑤ 상세페이지형 앞으로</span><span>⑥ 관리 구조</span><span>⑦ 명칭 후보</span></div>
-<div class="toc"><a href="#struct">관리 구조</a><a href="#naming">명칭 후보</a><a href="#place">장소정보 탭</a><a href="#tools">도구 측정 블록</a><a href="#chicken">치킨집</a><a href="#care">산후조리원</a><a href="#memo">확인 필요</a></div></div></div>
+<div class="toc"><a href="#struct">관리 구조</a><a href="#naming">명칭 후보</a><a href="#place">장소정보 탭</a><a href="#tools">도구 측정 블록</a><a href="#tools2">더 그린 3안</a><a href="#chicken">치킨집</a><a href="#care">산후조리원</a><a href="#memo">확인 필요</a></div></div></div>
 {struct_block()}
 {naming_block()}
 {place_block()}
 {tools_block()}
+{tools_more_block()}
 {secs}
 <div class="memo" id="memo"><h2>확인 필요, 출처</h2>
 <div class="tw"><table><thead><tr><th style="width:22%">항목</th><th>내용</th></tr></thead><tbody>

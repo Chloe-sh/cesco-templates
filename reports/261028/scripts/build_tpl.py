@@ -163,11 +163,11 @@ DRAIN_LV = [('청결','병원 내 조리시설 관리 수준'),('주의','경미
 DRAIN_EX = '배수구는 악취만의 문제가 아니라 세균 증식, 해충 유입의 원인이 됩니다! 배수구 전용 클린 서비스로 관리하는 사업장입니다.'
 TOOLS = {
 'chicken': [
-  dict(k='악취', hl='냄새 없이 쾌적해요', tool='악취측정기', easy='튀김 기름과 음식물 쓰레기 냄새를 측정기로 재요. 냄새에 예민한 분도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
-  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', tool='배관 내시경', easy='주방 바닥 배수구 안을 내시경으로 봐요. 기름때와 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.16')],
+  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='튀김 기름과 음식물 쓰레기 냄새를 측정기로 재요. 냄새에 예민한 분도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.16'),
+  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='주방 바닥 배수구 안을 내시경으로 봐요. 기름때와 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.16')],
 'care': [
-  dict(k='악취', hl='냄새 없이 쾌적해요', tool='악취측정기', easy='산모 방과 공용 화장실 냄새를 측정기로 재요. 출산 뒤 냄새에 예민해진 산모도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
-  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', tool='배관 내시경', easy='좌욕실과 조리실 배수구 안을 내시경으로 봐요. 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
+  dict(k='악취', hl='냄새 없이 쾌적해요', ic='💨', tool='악취측정기', easy='산모 방과 공용 화장실 냄새를 측정기로 재요. 출산 뒤 냄새에 예민해진 산모도 못 느낄 정도인지 봐요.', levels=ODOR_LV, ex=ODOR_EX, date='2026.10.15'),
+  dict(k='배수구 오염도', hl='배수구가 청결하게 관리되고 있어요', ic='🚿', tool='배관 내시경', easy='좌욕실과 조리실 배수구 안을 내시경으로 봐요. 찌꺼기가 쌓이면 냄새, 세균, 해충이 생기는 자리라서요.', levels=DRAIN_LV, ex=DRAIN_EX, date='2026.10.15')],
 'meat': [],
 }
 # 위쳌 AI 카드 (세스코 CT Way PPT 'WeCheck 시연' 상세 화면 구조: 인트로 + ✅ 3 / 매장정보 3 / 리뷰 한눈에 3)
@@ -350,20 +350,19 @@ EXTRA_CSS = r"""
 .tv-a .rl .on{color:#0B5E31}
 .tv-a .rq{margin:9px 0 10px;padding:0 0 0 10px;border-left:2px solid #C9A227;font-size:10.5px;color:var(--ink2);line-height:1.6}
 .tv-a .rf{padding:9px 14px 0;font-size:9.5px;color:#6B6B6B;display:flex;justify-content:space-between}
-/* B 게이지형 */
+/* B 게이지형 + 같은 방식 D·E·F */
 .tv-b{margin:0 16px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .tv-b .bh{display:flex;align-items:center;gap:8px}
 .tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
 .tv-b .bh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
 .tv-b .bh small{font-size:10.5px;color:var(--muted)}
 .tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.tv-b .g{border:1px solid var(--wc-line);border-radius:14px;padding:10px 8px 8px;text-align:center;background:#FAFCFF}
+.tv-b .g{font:inherit;cursor:pointer;position:relative;padding:10px 8px 22px;border:1px solid var(--wc-line);border-radius:14px;text-align:center;background:#FAFCFF;color:inherit}
+.tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
 .tv-b .g svg{width:100%;max-width:130px;display:block;margin:0 auto}
 .tv-b .g .gk{font-size:11.5px;font-weight:900;color:var(--ink);margin-top:-2px;line-height:1.3;word-break:keep-all}
 .tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:1px}
 .tv-b .g .gv{display:inline-block;margin-top:6px;font-size:11px;font-weight:900;color:#0B5E31;background:#E8F6EE;border-radius:999px;padding:2px 9px}
-.tv-b .g{font:inherit;cursor:pointer;position:relative;padding-bottom:22px}
-.tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
 .tv-b .g .more{position:absolute;left:0;right:0;bottom:6px;font-style:normal;font-size:9.5px;color:var(--muted);font-weight:700}
 .tv-b .g .more:after{content:" ⌄"}
 .tv-b .g.on .more{color:var(--wc)}.tv-b .g.on .more:after{content:" ⌃"}
@@ -377,6 +376,34 @@ EXTRA_CSS = r"""
 .tv-b .bl small{flex-basis:100%;font-size:10px;color:var(--muted);line-height:1.4;margin-top:1px}
 .tv-b .bx{font-size:10.5px;color:var(--ink2);line-height:1.6;margin-top:8px;background:var(--wc-bg);border-radius:10px;padding:8px 10px}
 .tv-b .bdt{font-size:10px;color:var(--muted);margin-top:5px;font-weight:700}
+/* D 스탬프형 */
+.tv-d .g{padding-top:14px}
+.tv-d .seal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:58px;height:58px;margin:0 auto 8px;border-radius:50%;border:2px solid #0E8F4A;outline:2px dashed #BFE5CF;outline-offset:3px;color:#0E8F4A;transform:rotate(-8deg)}
+.tv-d .seal i{font-style:normal;font-size:22px;font-weight:900;line-height:1}
+.tv-d .seal small{font-size:7px;font-weight:900;letter-spacing:.08em}
+.tv-d .g.on .seal{background:#E8F6EE}
+/* E 한 줄 리스트형 */
+.tv-e .gg{grid-template-columns:1fr;gap:6px;margin-top:10px}
+.tv-e .g{display:grid;grid-template-columns:34px 1fr auto;grid-template-rows:auto auto;align-items:center;gap:2px 10px;text-align:left;padding:10px 12px 10px 10px;border-radius:12px}
+.tv-e .g .ic{grid-row:1/3;width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid var(--wc-line);display:flex;align-items:center;justify-content:center;font-size:17px}
+.tv-e .g .gk{grid-column:2;grid-row:1;margin:0;font-size:12.5px}
+.tv-e .g .gv{margin:0;grid-column:3;grid-row:1;align-self:center;font-size:10px;padding:2px 7px}
+.tv-e .g .seg{grid-column:2/3;grid-row:2;display:flex;gap:2px;height:5px;margin-top:4px}
+.tv-e .g .seg i{flex:1;border-radius:2px;background:#E4E6E1}.tv-e .g .seg i.on{background:#0E8F4A}
+.tv-e .g:after{content:"⌄";grid-column:3;grid-row:2;justify-self:end;font-size:11px;line-height:1;color:var(--muted)}
+.tv-e .g.on:after{content:"⌃";color:var(--wc)}
+/* F 요약 카드형 */
+.tv-f{padding:0 14px 12px;overflow:hidden}
+.tv-f .top{margin:0 -14px;padding:16px 16px 14px;background:linear-gradient(135deg,#1A3668,#0072CE);color:#fff}
+.tv-f .top small{display:block;font-size:9.5px;font-weight:800;letter-spacing:.06em;opacity:.8}
+.tv-f .top b{display:block;font-size:20px;font-weight:900;margin-top:4px;line-height:1.2}
+.tv-f .top span{display:block;font-size:10.5px;opacity:.85;margin-top:3px}
+.tv-f .gg{grid-template-columns:1fr;gap:0;margin-top:4px}
+.tv-f .g{display:flex;align-items:center;gap:9px;text-align:left;padding:11px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:none;box-shadow:none}
+.tv-f .g.on{box-shadow:none;background:none}
+.tv-f .g .ok{flex:none;width:20px;height:20px;border-radius:50%;background:#0E8F4A;color:#fff;font-style:normal;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.tv-f .g .gk{margin:0;flex:1;font-size:12.5px;text-align:left}
+.tv-f .g .more{position:static;flex:none}
 /* C 점검 기록형 */
 .tv-c{margin:0 16px;background:#fff;border-radius:16px;padding:14px 14px 10px;border:1px solid var(--line)}
 .tv-c .ch{display:flex;align-items:center;gap:9px}
@@ -524,6 +551,8 @@ function toolsBlock(t, tv){
     const rows=T.map(x=>`<div class="ri"><div class="rt"><b>${x.k}</b><span class="rs"><i>✓</i>${x.levels[0][0]}</span><small>측정 도구 · ${x.tool}</small></div><p class="re">${x.easy}</p><div class="rb" style="--w:${(100/x.levels.length).toFixed(2)}%">${x.levels.map((l,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="rl">${x.levels.map((l,i)=>`<b class="${i===0?'on':''}">${l[0]}</b><span class="${i===0?'on':''}">${l[1]}</span>`).join('')}</div><p class="rq">${x.ex}</p></div>`).join('');
     return `<div class="tv-a"><div class="rh"><div><span class="no">CESCO · 측정 리포트</span><b>세스코가 전문적으로 체크했습니다</b></div><div class="dt">체크일<br><b>${T[0].date}</b></div></div>${rows}<div class="rf"><span>측정 장비로 직접 쟀어요. 기준 안이면 통과예요</span><span>${T.length}항목 모두 통과</span></div></div>`;
   }
+  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></div>`;
+  const head=(sub)=>`<div class="bh"><span class="lg">CESCO<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>${sub}</small></div></div>`;
   if(tv==='B'){
     const COL=['#0E8F4A','#E0A100','#E2641B','#C8102E'];
     const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
@@ -531,8 +560,19 @@ function toolsBlock(t, tv){
       const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
       return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0B5E31">✓</text></svg>`;};
     const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">${x.levels[0][0]} · 기준 안</span><i class="more">자세히</i></button>`).join('');
-    const bd=T.map((x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">체크일 ${x.date}</div></div>`).join('');
-    return `<div class="tv-b"><div class="bh"><span class="lg">CESCO<br>측정</span><div><b>세스코가 전문적으로 체크했습니다</b><small>측정 장비로 직접 쟀어요. 바늘이 초록이면 기준 안이에요</small></div></div><div class="gg">${gg}</div><div class="bd">${bd}</div></div>`;
+    return `<div class="tv-b" data-tvbox>${head('측정 장비로 직접 쟀어요. 바늘이 초록이면 기준 안이에요')}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+  }
+  if(tv==='D'){
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>CESCO</small></span><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><i class="more">자세히</i></button>`).join('');
+    return `<div class="tv-b tv-d" data-tvbox>${head('측정 장비로 직접 쟀어요. 도장이 찍혔으면 기준 안이에요')}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+  }
+  if(tv==='E'){
+    const rows=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="ic">${x.ic}</span><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">✓ 기준 안</span><span class="seg">${x.levels.map((l,j)=>`<i class="${j===0?'on':''}"></i>`).join('')}</span></button>`).join('');
+    return `<div class="tv-b tv-e" data-tvbox>${head('측정 장비로 직접 쟀어요. 초록 칸이 기준 안이에요')}<div class="gg">${rows}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+  }
+  if(tv==='F'){
+    const rows=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><i class="ok">✓</i><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><i class="more">자세히</i></button>`).join('');
+    return `<div class="tv-b tv-f" data-tvbox><div class="top"><small>CESCO 전문 측정 · ${T[0].date}</small><b>${T.length}항목 모두 기준 안</b><span>측정 장비로 직접 쟀어요</span></div><div class="gg">${rows}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
   }
   if(tv==='C'){
     const items=T.map(x=>`<div class="ci"><div class="ck">${x.k}<small>${x.tool}</small><span class="ok">✓ ${x.levels[0][0]}</span></div><p class="ce">${x.easy}</p><div class="ld">${x.levels.slice().reverse().map((l,i,arr)=>`<div class="${i===arr.length-1?'on':''}"><b>${l[0]}</b><span>${l[1]}</span></div>`).join('')}</div><div class="cm"><b>세스코 전문가 메모</b>${x.ex}</div><div class="cd">체크일 ${x.date}</div></div>`).join('');
@@ -680,7 +720,7 @@ document.addEventListener('input',e=>{
 document.addEventListener('click',e=>{
   const tb=e.target.closest('.tabs2 span[data-tab]'); if(tb){const el=tb.closest('[data-static]'); if(el){el.dataset.tab=tb.dataset.tab; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
   const pb=e.target.closest('.pvsel button[data-pv]'); if(pb){const el=document.querySelector(pb.closest('.pvsel').dataset.for); if(el){el.dataset.pv=pb.dataset.pv; el.dataset.tab='place'; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv}); pb.parentElement.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===pb));} return;}
-  const tg=e.target.closest('.tv-b .g[data-tg]'); if(tg){const box=tg.closest('.tv-b'); const k=tg.dataset.tg; const open=!tg.classList.contains('on'); box.querySelectorAll('.g').forEach(b=>b.classList.toggle('on',open&&b.dataset.tg===k)); box.querySelectorAll('.bp').forEach(b=>b.classList.toggle('on',open&&b.dataset.tgp===k)); return;}
+  const tg=e.target.closest('[data-tvbox] .g[data-tg]'); if(tg){const box=tg.closest('[data-tvbox]'); const k=tg.dataset.tg; const open=!tg.classList.contains('on'); box.querySelectorAll('.g').forEach(b=>b.classList.toggle('on',open&&b.dataset.tg===k)); box.querySelectorAll('.bp').forEach(b=>b.classList.toggle('on',open&&b.dataset.tgp===k)); return;}
   const mb=e.target.closest('.mtab[data-mt]'); if(mb){const el=mb.closest('[data-static]'); if(el){el.dataset.mt=mb.dataset.mt; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
 });
 function swGo(sw,k){const n=sw.children.length; k=(k+n)%n; const c=sw.children[k]; sw.scrollTo({left:c.offsetLeft-(sw.clientWidth-c.offsetWidth)/2-sw.offsetLeft*0,behavior:'smooth'});}
