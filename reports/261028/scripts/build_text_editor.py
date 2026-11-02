@@ -74,22 +74,23 @@ function applyEdits(){
   applying=false; save(); renderList();
 }
 new MutationObserver(()=>{ if(!applying) applyEdits(); }).observe(stage,{childList:true,subtree:true});
+const hasWord=n=>/[가-힣A-Za-z0-9]/.test(n.nodeValue);
 function nodeAt(x,y,el){
   let r=null;
   if(document.caretPositionFromPoint){const c=document.caretPositionFromPoint(x,y); r=c&&c.offsetNode;}
   else if(document.caretRangeFromPoint){const c=document.caretRangeFromPoint(x,y); r=c&&c.startContainer;}
-  if(r&&r.nodeType===3&&r.nodeValue.trim()&&el.contains(r)) return r;
-  // 글자 바깥(여백)을 눌렀을 때: 누른 요소 안의 글 조각 중 자리가 겹치는 것, 없으면 첫 조각
-  const ns=textNodes(el); if(!ns.length) return null;
+  if(r&&r.nodeType===3&&hasWord(r)&&el.contains(r)) return r;
+  // 아이콘(✅ 👶 같은 기호만 있는 조각)은 건너뛰고, 누른 자리와 겹치는 글 조각, 없으면 제일 긴 글 조각
+  const ns=textNodes(el).filter(hasWord); if(!ns.length) return null;
   for(const n of ns){const rg=document.createRange(); rg.selectNodeContents(n); for(const b of rg.getClientRects()){ if(x>=b.left-4&&x<=b.right+4&&y>=b.top-4&&y<=b.bottom+4) return n; }}
-  return ns[0];
+  return ns.slice().sort((a,b)=>b.nodeValue.trim().length-a.nodeValue.trim().length)[0];
 }
 let target=null;
 stage.addEventListener('click',e=>{
   const m=e.target.closest('mark.edt');
   let orig, cur, node;
   if(m){ orig=m.dataset.o; cur=m.textContent; node=m; }
-  else { const n=nodeAt(e.clientX,e.clientY,e.target); if(!n) return; orig=n.nodeValue.trim(); cur=orig; node=n; }
+  else { let n=nodeAt(e.clientX,e.clientY,e.target); if(!n&&e.target.parentElement&&stage.contains(e.target.parentElement)) n=nodeAt(e.clientX,e.clientY,e.target.parentElement); if(!n) return; orig=n.nodeValue.trim(); cur=orig; node=n; }
   e.preventDefault(); e.stopPropagation();
   target={orig};
   document.getElementById('ta').value=cur; document.getElementById('po').textContent=orig;
@@ -102,7 +103,17 @@ document.getElementById('ok').addEventListener('click',()=>{const n=document.get
 document.getElementById('undo').addEventListener('click',()=>setEdit(target.orig,target.orig));
 document.getElementById('cancel').addEventListener('click',()=>pop.hidden=true);
 document.getElementById('ta').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)) document.getElementById('ok').click(); if(e.key==='Escape') pop.hidden=true;});
-function save(){ try{localStorage.setItem(KEY, JSON.stringify(EDITS));}catch(e){} }
+let DB=null, dbReady=false, saveT=null;
+function save(){ try{localStorage.setItem(KEY, JSON.stringify(EDITS));}catch(e){} if(DB){ clearTimeout(saveT); saveT=setTimeout(saveDb,600); } }
+async function saveDb(){ try{ await DB.doc('edits/current').set({items:EDITS, at:Date.now()}); setSt('저장됨 · 클로드가 바로 읽을 수 있어요'); }catch(e){ setSt('저장 실패: '+(e&&e.code||e)); } }
+function setSt(t){ const el=document.getElementById('st'); if(el) el.textContent=t; }
+(async()=>{
+  if(!window.claude||!window.claude.use){ setSt('이 브라우저에만 저장됨 · "바뀐 글 복사"로 보내 주세요'); return; }
+  try{ DB=await window.claude.use('db'); }catch(e){ DB=null; }
+  if(!DB){ setSt('이 브라우저에만 저장됨 · "바뀐 글 복사"로 보내 주세요'); return; }
+  try{ const snap=await DB.doc('edits/current').get(); if(snap.exists){ const d=snap.data(); if(Array.isArray(d.items)&&(!EDITS.length||(d.at||0)>0)){ EDITS=d.items; try{localStorage.setItem(KEY, JSON.stringify(EDITS));}catch(e){} ren(); } } setSt('저장됨 · 클로드가 바로 읽을 수 있어요'); }
+  catch(e){ setSt('공유 저장소를 못 읽었어요: '+(e&&e.code||e)); }
+})();
 function renderList(){ const el=document.getElementById('list'); el.innerHTML=EDITS.length?EDITS.map((e,i)=>`<div class="e"><span class="o">${esc(e.o)}</span><span class="n">${esc(e.n)}</span><button type="button" data-rm="${i}">되돌리기</button></div>`).join(''):'<div class="empty">아직 고친 글이 없어요. 왼쪽 화면의 글자를 눌러 보세요.</div>'; document.getElementById('cnt').textContent=EDITS.length; }
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 document.getElementById('list').addEventListener('click',e=>{const b=e.target.closest('[data-rm]'); if(b){EDITS.splice(+b.dataset.rm,1); save(); ren();}});
@@ -130,6 +141,7 @@ def build():
 <div class="stage" id="stage"></div>
 <div class="side">
 <div class="bar"><button type="button" class="pri" id="copy">바뀐 글 복사</button><button type="button" id="reset">처음 글로</button><span style="font-size:12px;color:var(--muted);align-self:center">고친 글 <b id="cnt">0</b>개</span></div>
+<p class="msg" id="st" style="color:var(--muted)"></p>
 <p class="msg" id="msg"></p>
 <div class="list" id="list"></div>
 <pre class="out" id="out"></pre>
