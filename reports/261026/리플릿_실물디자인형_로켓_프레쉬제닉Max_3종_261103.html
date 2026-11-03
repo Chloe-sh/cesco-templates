@@ -1,51 +1,233 @@
 <!DOCTYPE html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>리플릿 실물 디자인형 · 프레쉬제닉 Max · 로켓 3종 (산업체·소규모·가정집) · 2026-11-03</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
-:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--blue:#0072CE}
-*{box-sizing:border-box}
-html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
-.wrap{max-width:1400px;margin:0 auto;padding:28px 16px 60px}
-header.top{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px}
-.kicker{font-size:13px;color:var(--blue);font-weight:700;margin-bottom:4px}
-h1{font-size:24px;line-height:1.3;margin:0 0 6px;font-weight:800}
-.meta{color:var(--ink2);font-size:14px}
-.docnav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 8px;display:flex;flex-wrap:wrap;gap:6px;z-index:5}
-.docnav a{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink2);text-decoration:none;font-weight:600}
-.docnav a:hover,.docnav a.on{border-color:var(--blue);color:var(--blue)}
-.doc{margin-top:40px;padding-top:20px;border-top:3px solid var(--ink)}
-.doc:first-of-type{margin-top:16px}
-.doc .kicker{margin-bottom:0}
-.doc h2{font-size:20px;margin:2px 0 4px;font-weight:800}
-.doc .memo{font-size:13px;color:var(--ink2);margin:0 0 10px}
-.doc .memo a{color:var(--blue)}
-iframe{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;display:block;height:1200px}
-@media print{.docnav,header.top{display:none}.doc{border:0;margin:0;padding:0;page-break-after:always}iframe{border:0}}
-</style></head><body><div class="wrap">
-<header class="top"><div class="kicker">리플릿 · 로켓 · 실물 디자인형</div><h1>프레쉬제닉 Max 변기세정기 · 로켓 리플릿 3종</h1><div class="meta">2026-11-03 · 산업체(식품제조공장) · 소규모(음식점) · 가정집 · 원고는 10/28 기본형 확정 문안, 로켓별로 © 코드와 유형 표기만 다름 · 각 리플릿 안의 버튼으로 앞·뒷면 보기, 메모 숨기기, 인쇄 미리보기를 쓸 수 있습니다.</div></header>
-<nav class="docnav"><a href="#industry">산업체 · 식품제조공장</a><a href="#small">소규모 · 음식점</a><a href="#home">가정집</a></nav>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>리플릿 실물 디자인형 · 프레쉬제닉 Max · 로켓 3종 비교 (산업체·소규모·가정집) · 2026-11-03</title>
+<style>/* 세스코 리플릿 — 실물 디자인형 공용 CSS (2026-10-28 회의 결정 반영)
+   규격: A4 세로 1장 앞·뒷면(2P). 화면에서는 앞·뒷면을 나란히 비교, 인쇄(@page A4)에서는 면당 1장.
+   지면 안 글자·여백은 모두 cqw(지면 폭 기준 %) 단위 — 화면 폭이 달라도, 인쇄로 넘어가도 비율이 같다. 1cqw = 2.1mm.
+   층 구분: 지면 카피(기본) · 이미지 자리(.slot, 회색 점선) · 메모 층(.memo/.pct/.dnote — '메모 숨기기'로 사라짐) · [확인 필요](.need, 주황)
+   규약 정본: ../references/leaflet-real-design-spec.md */
+:root{--stage:#d9dee6;--paper:#fff;--ink:#1c2430;--ink-2:#4b5563;--ink-3:#7c8592;--navy:#0f3c7a;--blue:#1e6fd9;--wash:#e9f1fb;--wash-2:#f4f7fb;--line:#d5dde8;
+--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200;--hero:#1b2a3f;--tag:#ff7a2f;--need:#fff0e6;--need-ink:#b4530a;--ok:#1f7a45;--bad:#c2410c;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--stage:#1a1f27;}}
+:root[data-theme="dark"]{--stage:#1a1f27;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--stage)}
+body{color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all;padding:20px 16px 56px}
+.wrap{max-width:1240px;margin:0 auto}
+/* ── 상단 바(지면 밖) ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.bar h1{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.bar .sub{font-size:11.5px;color:var(--ink-3)}
+.bar .chips{display:flex;gap:5px;flex-wrap:wrap}
+.bar .chip{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-2);background:#fff}
+.bar .chip.type{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.bar .btns{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.bar button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 11px;border-radius:16px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+/* ── 디자이너 노트(지면 밖) ── */
+.dnote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--tag);border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.55;color:var(--ink-2);margin-bottom:16px}
+.dnote h2{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.dnote h2 span{display:inline-block;background:var(--tag);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.dnote table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.dnote th{background:var(--wash-2);color:var(--ink);text-align:left;white-space:nowrap;width:96px;padding:5px 8px;border:1px solid var(--line);vertical-align:top}
+.dnote td{padding:5px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dnote td b{color:var(--navy)}
+/* ── 대지: 앞·뒷면 나란히 ── */
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media (max-width:1080px){.spread{grid-template-columns:1fr}}
+@media (max-width:640px){.spread{overflow-x:auto;padding-bottom:8px}.page{min-width:560px}}
+body[data-view="front"] .page.back,body[data-view="back"] .page.front{display:none}
+body[data-view="front"] .spread,body[data-view="back"] .spread{grid-template-columns:minmax(0,620px);justify-content:center}
+.page{position:relative;background:var(--paper);width:100%;aspect-ratio:210/297;container-type:inline-size;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 3px rgba(0,0,0,.08),0 18px 40px -12px rgba(15,60,122,.25)}
+.page .side{position:absolute;top:0;left:0;z-index:3;background:var(--navy);color:#fff;font-size:1.35cqw;font-weight:700;padding:.4cqw 1.6cqw;border-radius:0 0 .8cqw 0;letter-spacing:.05em}
+.page .fill{position:absolute;top:0;right:0;z-index:3;font-size:1.3cqw;font-weight:700;padding:.4cqw 1.4cqw;border-radius:0 0 0 .8cqw;background:var(--ok);color:#fff}
+.page .fill.bad{background:var(--bad)}
+.pad{padding:0 5.2cqw;display:flex;flex-direction:column;flex:1 0 auto}
+.pad>*+*{margin-top:1.4cqw}
+.page p{font-size:1.72cqw;line-height:1.6}
+/* 메모 층 */
+.memo{background:var(--memo);color:var(--memo-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:500;font-size:.92em}
+.pct{position:absolute;right:.6cqw;top:-.9cqw;z-index:2;font-size:1.15cqw;font-weight:800;color:var(--memo-ink);background:var(--memo);padding:.1cqw .9cqw;border-radius:999px;pointer-events:none}
+.blk{position:relative}
+body.hide-memo .memo,body.hide-memo .pct,body.hide-memo .dnote,body.hide-memo .fill{display:none}
+body.hide-memo .slot{color:transparent}
+.need{background:var(--need);color:var(--need-ink);border:1px dashed var(--need-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:700;font-size:.92em}
+/* 이미지 자리 */
+.slot{background:var(--slot);border:.22cqw dashed var(--slot-line);border-radius:.9cqw;color:var(--ink-3);font-size:1.3cqw;line-height:1.45;padding:1.1cqw 1.3cqw;display:flex;flex-direction:column;justify-content:flex-end;min-height:var(--h,8cqw)}
+.slot b{display:block;font-weight:800;color:var(--ink-2);font-size:1.25cqw;margin-bottom:.2cqw}
+.slot.grow{flex:1 1 auto}
+.hero .slot,.band .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45);color:#fff}
+.hero .slot b,.band .slot b{color:#fff}
+/* ── 앞면 블록 ── */
+.lock{display:flex;justify-content:space-between;align-items:baseline;padding:3.6cqw 5.2cqw 0;font-size:1.5cqw;font-weight:700;color:var(--ink-2)}
+.lock .brand{font-size:2.2cqw;font-weight:900;color:var(--navy);letter-spacing:.02em}
+.lock .brand small{font-size:1.4cqw;font-weight:600;color:var(--ink-2);margin-left:.8cqw;letter-spacing:0}
+.lock .badge{background:var(--blue);color:#fff;font-size:1.3cqw;padding:.25cqw 1.1cqw;border-radius:.4cqw;margin-right:.8cqw}
+.hero{position:relative;background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:3.2cqw 5.2cqw 3cqw;display:grid;grid-template-columns:1.2fr .8fr;gap:3cqw;margin-top:2.2cqw}
+.bubbles{display:flex;flex-direction:column;gap:.7cqw;margin-bottom:2cqw}
+.bubble{align-self:flex-start;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:2cqw 2cqw 2cqw .4cqw;padding:.7cqw 1.6cqw;font-size:1.55cqw;line-height:1.45}
+.hero h1{font-size:4.3cqw;line-height:1.22;font-weight:900;letter-spacing:-.025em}
+.hero .sub{margin-top:1.4cqw;font-size:1.8cqw;font-weight:600;opacity:.95}
+.hero .sub2{margin-top:.5cqw;font-size:1.5cqw;opacity:.85}
+.hero .slot{min-height:100%}
+.why h2{font-size:2.5cqw;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:1cqw;letter-spacing:-.02em}
+.why h2 .q{background:var(--navy);color:#fff;font-size:1.6cqw;width:3cqw;height:3cqw;display:inline-flex;align-items:center;justify-content:center;border-radius:.4cqw;flex:none}
+.why .ans{margin-top:1cqw;font-size:1.65cqw;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;margin-top:1.6cqw}
+.card{border:1px solid var(--line);border-top:.4cqw solid var(--navy);border-radius:0 0 .9cqw .9cqw;padding:1.2cqw 1.4cqw 1.3cqw;display:flex;flex-direction:column}
+.card .ico{width:5.2cqw;height:5.2cqw;border-radius:50%;background:var(--slot);border:.2cqw dashed var(--slot-line);color:var(--ink-3);font-size:1.05cqw;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:.9cqw;line-height:1.2}
+.card b{font-size:1.65cqw;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.card p{font-size:1.4cqw;line-height:1.55;color:var(--ink-2);margin-top:.5cqw}
+.stat{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:1.4cqw;align-items:stretch}
+.stat>div{background:var(--wash-2);border-radius:.9cqw;padding:1.3cqw 1.5cqw}
+.stat .v{font-size:4.2cqw;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.03em}
+.stat .v small{font-size:1.8cqw;font-weight:800;margin-left:.2cqw}
+.stat .l{font-size:1.3cqw;line-height:1.45;color:var(--ink-2);margin-top:.7cqw}
+.stat .cap{font-size:1.55cqw;font-weight:800;color:var(--navy);margin-bottom:.6cqw}
+.stat ul{list-style:none;font-size:1.45cqw;font-weight:700;color:var(--navy)}
+.stat ul li::before{content:"☑ ";color:var(--blue)}
+.band{position:relative;background:var(--navy);color:#fff;padding:2.6cqw 5.2cqw;margin:1.6cqw -5.2cqw 0;display:grid;grid-template-columns:1fr 17cqw;gap:2.4cqw;align-items:center}
+.band .pre{font-size:1.6cqw;line-height:1.6;opacity:.92}
+.band .name{font-size:3.1cqw;font-weight:900;margin-top:.8cqw;letter-spacing:-.02em;line-height:1.25}
+.band .spec{margin-top:1cqw;font-size:1.3cqw;opacity:.85;padding-top:.8cqw;border-top:1px solid rgba(255,255,255,.3)}
+.band .slot{min-height:12cqw}
+.bridge{font-size:1.65cqw;color:var(--ink);background:var(--wash);border-left:.5cqw solid var(--blue);padding:1.1cqw 1.6cqw;border-radius:0 .8cqw .8cqw 0}
+/* ── 뒷면 블록 ── */
+.p2head{padding-top:3.2cqw}
+.p2head .k{font-size:1.6cqw;color:var(--ink-2);font-weight:600}
+.p2head h2{font-size:2.9cqw;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.02em;margin-top:.3cqw}
+.adv{display:grid;grid-template-columns:1fr 15cqw;gap:2.4cqw}
+.alist{display:flex;flex-direction:column;gap:.9cqw}
+.a{display:grid;grid-template-columns:4.6cqw 1fr;gap:1.4cqw;align-items:start}
+.a .no{width:4.6cqw;height:4.6cqw;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5cqw;font-weight:900}
+.a h3{font-size:1.78cqw;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.a p{font-size:1.4cqw;line-height:1.5;margin-top:.35cqw;color:var(--ink)}
+.col{display:flex;flex-direction:column;gap:1.2cqw}
+.col .slot{flex:1 1 auto}
+sup{font-size:.65em;color:var(--blue);font-weight:700;line-height:0}
+table.t{width:100%;border-collapse:collapse;font-size:1.4cqw}
+table.t th{background:var(--wash);color:var(--navy);font-weight:700;padding:.65cqw .8cqw;border:1px solid var(--line);text-align:center}
+table.t td{padding:.6cqw .8cqw;border:1px solid var(--line);text-align:center;vertical-align:middle}
+table.t td.l{text-align:left}
+table.t td.pr{font-weight:900;color:var(--blue);font-size:1.6cqw}
+table.t td s{color:var(--ink-3);font-weight:400;font-size:1.25cqw;margin-right:.4cqw}
+table.t.spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:16%;white-space:nowrap}
+table.t.spec td:nth-child(even){text-align:left}
+.proof{background:var(--wash-2);border-radius:.9cqw;padding:1.1cqw 1.4cqw}
+.proof .cert{font-size:1.55cqw;font-weight:900;color:var(--navy);border-left:.45cqw solid var(--navy);padding-left:1cqw;margin-bottom:.8cqw}
+.fine{font-size:1.1cqw;line-height:1.48;color:var(--ink-2)}
+.fine p{font-size:1.1cqw;line-height:1.48}
+.fine p+p{margin-top:.15cqw}
+.fnote{margin-top:auto;padding-top:1.2cqw;border-top:1px solid var(--line)}
+.cross{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.cross>div{border:1px solid var(--line);border-radius:.9cqw;padding:1cqw 1.3cqw}
+.cross h4{font-size:1.65cqw;font-weight:900;color:var(--navy)}
+.cross p{font-size:1.4cqw;color:var(--ink-2);margin-top:.4cqw}
+.cross .lbl{display:inline-block;background:var(--navy);color:#fff;font-size:1.15cqw;font-weight:700;padding:.2cqw 1cqw;border-radius:.3cqw;margin-bottom:.5cqw}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw;margin-top:1cqw}
+.mini .slot{min-height:5cqw;font-size:1.1cqw;padding:.7cqw}
+.cta{display:grid;grid-template-columns:1fr 8cqw;gap:2cqw;align-items:center;background:var(--navy);color:#fff;border-radius:1cqw;padding:1.2cqw 2cqw}
+.cta h5{font-size:2cqw;font-weight:900}
+.cta h5 small{font-size:1.4cqw;font-weight:500;opacity:.9;margin-left:.8cqw}
+.cta p{font-size:1.35cqw;opacity:.9;margin-top:.4cqw}
+.cta .qr{width:8cqw;height:8cqw;background:#fff;border-radius:.6cqw;color:var(--ink-3);font-size:1.1cqw;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+/* 관리 단계형(STEP) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.step{border:1px solid var(--line);border-radius:.9cqw;overflow:hidden;display:flex;flex-direction:column}
+.step .slot{border-radius:0;border-width:0 0 .22cqw;min-height:9cqw}
+.step .tx{padding:1cqw 1.2cqw 1.2cqw}
+.step .sn{font-size:1.2cqw;font-weight:900;color:var(--blue);letter-spacing:.04em}
+.step h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.3;margin-top:.1cqw}
+.step p{font-size:1.35cqw;line-height:1.5;color:var(--ink-2);margin-top:.4cqw}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.pt{background:var(--wash-2);border-radius:.9cqw;padding:1.2cqw 1.4cqw}
+.pt .pn{font-size:1.2cqw;font-weight:900;color:var(--blue)}
+.pt h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;margin-top:.2cqw}
+.pt p{font-size:1.35cqw;line-height:1.5;color:var(--ink);margin-top:.4cqw}
+/* 가격표형 */
+.lineup{display:flex;flex-direction:column;gap:.7cqw}
+.li{display:grid;grid-template-columns:6.5cqw 1fr;gap:1.2cqw;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.7cqw}
+.li .slot{min-height:5.6cqw;font-size:1.05cqw;padding:.6cqw}
+.li .no{display:inline-block;width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3cqw;font-weight:900;text-align:center;line-height:2.6cqw;margin-right:.6cqw;vertical-align:middle}
+.li h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;display:inline}
+.li p{font-size:1.25cqw;line-height:1.45;color:var(--ink-2);margin-top:.25cqw}
+/* Q&A형 */
+.qa{display:flex;flex-direction:column;gap:.7cqw}
+.qa>div{display:grid;grid-template-columns:4.2cqw 1fr;gap:1.2cqw}
+.qa .qn{width:4.2cqw;height:4.2cqw;border-radius:.6cqw;background:var(--navy);color:#fff;font-size:1.5cqw;font-weight:900;display:flex;align-items:center;justify-content:center}
+.qa h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.35}
+.qa p{font-size:1.36cqw;line-height:1.5;margin-top:.3cqw;color:var(--ink)}
+table.t.cmp th.rec{background:var(--navy);color:#fff}
+table.t.cmp td{text-align:left;font-size:1.22cqw;vertical-align:top;padding:.5cqw .7cqw}
+table.t.cmp td:first-child{background:var(--wash-2);font-weight:700;color:var(--navy);width:13%;white-space:nowrap;text-align:center}
+table.t.cmp td ul{list-style:none}
+table.t.cmp td li::before{content:"· "}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+/* 푸터 */
+.pf{margin-top:auto;padding:1.1cqw 5.2cqw 1.5cqw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-size:1.25cqw;color:var(--ink-2)}
+.pf .logo{font-weight:900;font-size:2.4cqw;color:var(--navy);line-height:1}
+.pf .logo small{display:block;font-size:1.15cqw;font-weight:600;letter-spacing:.14em;margin-top:.3cqw;color:var(--ink-2)}
+.pf .tel{font-size:1.9cqw;font-weight:900;color:var(--navy)}
+.pf .tel small{display:block;font-size:1.15cqw;font-weight:500;color:var(--ink-2)}
+.pf.full{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.pf .addr{font-size:1.15cqw;line-height:1.55}
+.pf .card{border:1px dashed var(--slot-line);width:19cqw;height:7cqw;font-size:1.2cqw;color:var(--ink-3);display:flex;align-items:center;justify-content:center;text-align:center;border-radius:.5cqw}
+/* 인쇄 */
+@page{size:A4 portrait;margin:0}
+@media print{
+ body{background:#fff;padding:0}
+ .bar,.dnote,.page .side,.page .fill,.pct{display:none!important}
+ .spread{display:block}
+ .page{width:210mm;height:297mm;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
+ .page:last-child{break-after:auto;page-break-after:auto}
+ .memo{background:transparent;color:inherit}
+}
 
-<section class="doc" id="industry"><div class="kicker">로켓 산업체</div><h2>식품제조공장 × 프레쉬제닉 Max</h2><p class="memo">단독 파일: <a href="리플릿_실물디자인형_로켓_산업체_식품공장_프레쉬제닉Max_261102.html" target="_blank">리플릿_실물디자인형_로켓_산업체_식품공장_프레쉬제닉Max_261102.html</a></p>
-<iframe src="리플릿_실물디자인형_로켓_산업체_식품공장_프레쉬제닉Max_261102.html" title="산업체 식품제조공장 × 프레쉬제닉 Max 리플릿" loading="eager"></iframe></section>
-
-<section class="doc" id="small"><div class="kicker">로켓 소규모 사장님</div><h2>음식점 × 프레쉬제닉 Max</h2><p class="memo">단독 파일: <a href="리플릿_실물디자인형_로켓_소규모_음식점_프레쉬제닉Max_261102.html" target="_blank">리플릿_실물디자인형_로켓_소규모_음식점_프레쉬제닉Max_261102.html</a></p>
-<iframe src="리플릿_실물디자인형_로켓_소규모_음식점_프레쉬제닉Max_261102.html" title="소규모 음식점 × 프레쉬제닉 Max 리플릿" loading="eager"></iframe></section>
-
-<section class="doc" id="home"><div class="kicker">로켓 가정집</div><h2>가정집 × 프레쉬제닉 Max</h2><p class="memo">단독 파일: <a href="리플릿_실물디자인형_로켓_가정집_프레쉬제닉Max_261102.html" target="_blank">리플릿_실물디자인형_로켓_가정집_프레쉬제닉Max_261102.html</a></p>
-<iframe src="리플릿_실물디자인형_로켓_가정집_프레쉬제닉Max_261102.html" title="가정집 × 프레쉬제닉 Max 리플릿" loading="eager"></iframe></section>
+/* ── 3종 비교 보기(통합 페이지 전용) ── */
+.wrap{max-width:none;padding:0 20px 60px}
+.topbar{position:sticky;top:0;z-index:30;background:var(--paper,#fff);border-bottom:2px solid #111;padding:12px 0 10px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.topbar h1{font-size:18px;margin:0;font-weight:800}
+.topbar .sub{font-size:12px;color:#555}
+.topbar .btns{margin-left:auto;display:flex;gap:6px}
+.topbar button{font:inherit;font-size:12px;font-weight:700;padding:5px 12px;border:1px solid #ccc;border-radius:999px;background:#fff;cursor:pointer}
+.topbar button[aria-pressed="true"]{background:#0A3568;color:#fff;border-color:#0A3568}
+.cmp{display:grid;grid-template-columns:repeat(3,minmax(560px,1fr));gap:22px;align-items:start;overflow-x:auto;padding-bottom:10px}
+.col>h2{position:sticky;top:58px;z-index:10;background:var(--paper,#fff);margin:0 0 8px;padding:6px 0;font-size:15px;font-weight:800;display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #ddd}
+.col>h2 .n{color:#0072CE}
+.col>h2 a{margin-left:auto;font-size:11px;font-weight:600;color:#777;text-decoration:none}
+.col>h2 a:hover{color:#0072CE;text-decoration:underline}
+.col .lab{font-size:11px;font-weight:700;color:#777;margin:10px 0 4px;letter-spacing:.04em}
+.col .page{min-width:0;margin-bottom:6px}
+@media print{.topbar,.col>h2,.col .lab{display:none}.cmp{display:block}.col .page{margin:0}}
+</style></head>
+<body data-view="both">
+<div class="wrap">
+<header class="topbar"><h1>프레쉬제닉 Max 변기세정기 · 로켓 리플릿 3종 비교</h1><span class="sub">2026-11-03 · 산업체 · 소규모 · 가정집을 좌우로 놓고, 열마다 앞면 → 뒷면이 내려옵니다 · 원고는 10/28 기본형 확정 문안</span><div class="btns"><button id="memo-toggle" aria-pressed="false">메모 숨기기</button><button id="print">인쇄 미리보기</button></div></header>
+<main class="cmp">
+<section class="col" id="industry"><h2><span class="n">산업체 · 식품제조공장</span><a href="리플릿_실물디자인형_로켓_산업체_식품공장_프레쉬제닉Max_261102.html" target="_blank">단독 파일 열기</a></h2>
+<div class="lab">앞면 · FRONT</div><article class="page front"><span class="side">앞면 · FRONT</span><span class="fill">측정 중</span><div class="lock"><span><span class="brand">CESCO<small>Viruscare 세스코항균안전</small></span></span><span>자동 변기세정기</span></div><div class="blk "><span class="pct">30%</span><div class="hero"><div><div class="bubbles"><div class="bubble">“아침에 닦아도 점심이면 다시 생기는 변기 얼룩”</div><div class="bubble">“문을 열자마자 올라오는 화장실 냄새, 손님이 먼저 압니다”</div><div class="bubble">“하루 몇 번씩 들어가 닦기에는 손이 모자란 사업장 화장실”</div></div><h1>닦아도 다시 쌓이는<br>변기 오염과 악취</h1><div class="sub">사업장 화장실 위생은 재방문과 매출로 이어집니다</div></div><div class="slot"><b>이미지 · 표지 연출컷</b>문이 열린 공용 화장실 전경, 밝은 톤. 제품은 보이지 않게(상품은 아래 선언 밴드에서 처음 등장) / 문제가 생기는 공간을 먼저 보여 주는 역할</div></div></div><div class="pad"><div class="blk "><span class="pct">32%</span><div class="why"><h2><span class="q">?</span>변기 오염과 악취, 왜 자꾸 생길까요?</h2><p class="ans">변기는 사용할수록 오염이 쌓이고, 대소변이 분해되는 과정에서 악취 물질이 계속 발생합니다. 하루 한두 번 청소로는 다음 청소 전까지 쌓이는 오염과 냄새를 막기 어렵습니다.</p><div class="cards"><div class="card"><div class="ico">아이콘<br>변기 얼룩</div><b>사용할수록 쌓이는 변기 오염</b><p>많은 사람이 수시로 쓰는 공용 변기는 쓸수록 오염이 축적됩니다. 화장실에서 눈에 가장 잘 보이는 오염입니다.</p></div><div class="card"><div class="ico">아이콘<br>요석 결정</div><b>소변에서 생기는 요석</b><p>관리하지 않으면 변기에 갈색으로 딱딱하게 쌓여 방문 고객에게 좋지 않은 인상을 남깁니다.</p></div><div class="card"><div class="ico">아이콘<br>냄새 분자</div><b>대소변이 분해되며 생기는 악취 물질</b><p>암모니아는 코를 찌르는 냄새, 트리메틸아민은 생선 비린내의 원인 물질입니다. 악취는 지속적으로 생깁니다.</p></div></div></div></div><div class="blk "><span class="pct">14%</span><div class="stat"><div><div class="v">95.7<small>%</small><sup>1)</sup></div><div class="l">화장실이 비위생적이면 홀·주방도 비위생적으로 느껴진다</div></div><div><div class="v">94<small>%</small><sup>2)</sup></div><div class="l">화장실 위생 상태가 사업장 방문 결정에 영향을 미친다</div></div><div><div class="cap">위생수준 판단 요소 TOP3<sup>3)</sup></div><ul><li>청소상태</li><li>변기오염도</li><li>악취관리</li></ul></div></div></div><div class="slot grow" style="--h:6cqw"><b>이미지 · 1면 중단 와이드 (여백 흡수 자리)</b>손님이 드나드는 사업장 화장실 입구, 밝은 톤 / 글이 줄면 이 자리가 늘어나 공란을 흡수</div><div class="blk "><span class="pct">24%</span><p class="bridge">변기 오염은 쌓이기 전에 주기적으로 세정해야 하고, 악취는 냄새를 덮기 전에 원인 물질을 줄여야 합니다. 사람이 매번 들어가 닦지 않아도 이 두 가지를 자동으로 반복하는 장치가 사업장 화장실에 필요합니다.</p><div class="band"><div><div class="pre">따로 신경 쓰지 않아도 자동으로 변기를 세정해 오염과 악취를 상시 관리하는</div><div class="name">세스코 프레쉬제닉 Max 변기세정기</div><div class="spec">자동 변기세정기 ㅣ 벽면 부착형 ㅣ 전문 컨설턴트 상담 후 설치하는 렌탈 상품(간편렌탈 상담)</div></div><div class="slot"><b>제품 누끼</b>정면, 벽면 부착 상태 1컷 / 상품이 처음 등장하는 자리</div></div></div><div class="fine fnote"><p>1) 2) 3) 2025.04.08~04.09, 30~69세 남녀 300명 대상 온라인 설문조사(엠브레인). 사업장 방문고객 인식 조사.</p></div></div><footer class="pf"><div class="logo">CESCO<small>VIRUSCARE 세스코항균안전</small></div><div class="tel">1588-1119<small>간편렌탈 상담 ㅣ www.cescomall.co.kr</small></div></footer></article>
+<div class="lab">뒷면 · BACK</div><article class="page back"><span class="side">뒷면 · BACK</span><span class="fill">측정 중</span><div class="pad"><div class="p2head"><div class="k">세스코 프레쉬제닉 Max 변기세정기</div><h2>20분마다 자동 세정,<br>악취는 원인 물질부터 제거합니다</h2></div><div class="blk "><span class="pct">40%</span><div class="adv"><div class="alist"><div class="a"><div class="no">01</div><div><h3>20분마다 자동 세정, 2달 내내 일정한 세정력</h3><p>자동으로 세정액이 토출되어 오염을 상시 관리합니다. 2달 내내 일정한 세정력으로 오염 축적을 막습니다.</p></div></div><div class="a"><div class="no">02</div><div><h3>요석 발생 억제</h3><p>소변으로 생기는 요석 발생을 억제합니다. 기존 자사 제품 대비 유효성분 함량을 늘려 적은 양으로도 강력한 세정·탈취력을 냅니다.</p></div></div><div class="a"><div class="no">03</div><div><h3>악취 원인물질 제거 · 암모니아 99.7%<sup>4)</sup> · 트리메틸아민 95%<sup>5)</sup> 탈취</h3><p>냄새의 원인 물질을 제거하고, 마스킹 향료(오조닉향)로 악취를 2중 제어합니다.</p></div></div><div class="a"><div class="no">04</div><div><h3>가습기 살균제 이슈성분 7종<sup>6)</sup> · 파라벤류 7종<sup>7)</sup> 불검출</h3><p>세정력·탈취력 검증에 더해 성분 유해물질 불검출 검사까지 완료했습니다.</p></div></div><div class="a"><div class="no">05</div><div><h3>어떤 인테리어에도 어우러지는 컴팩트한 디자인</h3><p>컴팩트한 사이즈로 비좁은 공간에도 설치할 수 있고, 어떤 화장실 인테리어에도 자연스럽게 어우러집니다.</p></div></div></div><div class="col"><div class="slot" style="--h:14cqw"><b>제품 누끼</b>소변기 위 벽면 부착</div><div class="slot" style="--h:14cqw"><b>제품 누끼</b>양변기 옆 벽면 부착</div><div class="slot grow" style="--h:4cqw"><b>아이콘 5</b>타이머·변기 / 요석 억제 / 냄새 차단 / 성분 검증 / 벽면 설치 — 특장점 01~05와 1:1</div></div></div></div><div class="blk "><span class="pct">16%</span><table class="t spec"><tr><td>제품명</td><td>프레쉬제닉 Max 변기세정기</td><td>설치 타입</td><td>벽면 부착형</td></tr><tr><td>크기</td><td>90(W) × 67(D) × 220(H) mm</td><td>케미컬 용기</td><td>펌프 방식 PE 용기 345ml</td></tr><tr><td>등록비</td><td>30,000원</td><td>방문주기 / 의무사용</td><td>2개월 / 3년</td></tr><tr><td>월 요금</td><td colspan="3"><s>정상가 23,900원</s> <b>22,900원</b> · 세스코몰 2026.07 기준, 계약 조건에 따라 변동 <span class="need">[확인 필요: 10월 기준 재확인]</span></td></tr></table></div><div class="blk "><span class="pct">16%</span><div class="proof"><div class="cert">공인시험기관(FITI시험연구원) 시험완료 <span class="memo">10/28 결정: 시험성적서 이미지 2컷 자리를 없애고 이 각주 패널로 대체</span></div><div class="fine"><p>4) 암모니아 탈취율: FITI시험연구원, 탈취 가공 제품의 탈취성능 평가방법 가스 검지관법(FITI TM F 0003:2022), 액상 시료 5g을 5L 백에 넣고 시험가스 3L 주입, 초기농도 100ppm, 2시간 경과 후 측정. 시험성적서 번호 <span class="need">[확인 필요: 성적서 번호·발급일]</span></p><p>5) 트리메틸아민 탈취율: 4)와 같은 시험, 초기농도 28ppm, 2시간 경과 후 측정.</p><p>6) 가습기 살균제 이슈성분 7종 불검출: CMIT, MIT, BKC, PHMG, PGH, PHMB, DDAC (FITI시험연구원, 정량한계 1mg/kg 미만).</p><p>7) 파라벤류 7종 불검출: p-하이드록시벤조익애씨드, 메칠·에칠·프로필·이소프로필·부틸·이소부틸파라벤 (FITI시험연구원).</p><p>※ 상기 탈취율은 제한된 실험 조건에서 측정한 결과이며, 사용 환경(화장실 면적, 환기 상태, 이용 인원 등)에 따라 결과가 달라질 수 있음.</p></div></div></div><div class="blk "><span class="pct">18%</span><div class="cross"><div><span class="lbl">계약 시 제공</span><h4>제품 부착형 POP를 함께 드립니다</h4><p>방문객 위생까지 생각하는 사업장임을 보여 줍니다.</p><div class="slot" style="--h:4cqw"><b>POP 스티커</b>CESCO Viruscare ㅣ 세스코 과학으로 만든 자동센서 변기세정기 ㅣ 변기오염, 세정·탈취 상시 관리</div></div><div><span class="lbl">함께하면 더 좋은 제품</span><h4>세스코 화장실 위생관리 패키지</h4><p>패키지 상품에만 제공되는 할인 혜택. <span class="need">[확인 필요: 패키지 적용 시 제품별 월 요금]</span></p><div class="mini"><div class="slot"><b>누끼</b>방향탈취기 에어제닉 Max</div><div class="slot"><b>누끼</b>자동 변기세정기 프레쉬제닉 Max</div><div class="slot"><b>누끼</b>자동 손세정기 핸드제닉</div><div class="slot"><b>누끼</b>자동 손소독기 새니제닉</div></div></div></div></div><div class="blk "><span class="pct">10%</span><div class="cta"><div><h5>간편렌탈 상담 1588-1119<small>세스코몰 www.cescomall.co.kr</small></h5><p>전문 컨설턴트 상담 후 설치합니다. 사업장 화장실 크기와 이용 인원에 맞춰 안내해 드립니다.</p></div><div class="qr">QR<br>세스코몰<br>(선택)</div></div></div></div><footer class="pf full"><div class="logo">CESCO<small>VIRUSCARE 세스코항균안전</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr<br>©Rocket_FoodFactory_FRG_V.2_2026.10 CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer></article></section>
+<section class="col" id="small"><h2><span class="n">소규모 · 음식점</span><a href="리플릿_실물디자인형_로켓_소규모_음식점_프레쉬제닉Max_261102.html" target="_blank">단독 파일 열기</a></h2>
+<div class="lab">앞면 · FRONT</div><article class="page front"><span class="side">앞면 · FRONT</span><span class="fill">측정 중</span><div class="lock"><span><span class="brand">CESCO<small>Viruscare 세스코항균안전</small></span></span><span>음식점 · 카페 · 베이커리 사장님께</span></div><div class="blk "><span class="pct">30%</span><div class="hero"><div><div class="bubbles"><div class="bubble">“아침에 닦아도 점심이면 다시 생기는 변기 얼룩”</div><div class="bubble">“문을 열자마자 올라오는 화장실 냄새, 손님이 먼저 압니다”</div><div class="bubble">“하루 몇 번씩 들어가 닦기에는 손이 모자란 사업장 화장실”</div></div><h1>닦아도 다시 쌓이는<br>변기 오염과 악취</h1><div class="sub">사업장 화장실 위생은 재방문과 매출로 이어집니다</div></div><div class="slot"><b>이미지 · 표지 연출컷</b>문이 열린 공용 화장실 전경, 밝은 톤. 제품은 보이지 않게(상품은 아래 선언 밴드에서 처음 등장) / 문제가 생기는 공간을 먼저 보여 주는 역할</div></div></div><div class="pad"><div class="blk "><span class="pct">32%</span><div class="why"><h2><span class="q">?</span>변기 오염과 악취, 왜 자꾸 생길까요?</h2><p class="ans">변기는 사용할수록 오염이 쌓이고, 대소변이 분해되는 과정에서 악취 물질이 계속 발생합니다. 하루 한두 번 청소로는 다음 청소 전까지 쌓이는 오염과 냄새를 막기 어렵습니다.</p><div class="cards"><div class="card"><div class="ico">아이콘<br>변기 얼룩</div><b>사용할수록 쌓이는 변기 오염</b><p>많은 사람이 수시로 쓰는 공용 변기는 쓸수록 오염이 축적됩니다. 화장실에서 눈에 가장 잘 보이는 오염입니다.</p></div><div class="card"><div class="ico">아이콘<br>요석 결정</div><b>소변에서 생기는 요석</b><p>관리하지 않으면 변기에 갈색으로 딱딱하게 쌓여 방문 고객에게 좋지 않은 인상을 남깁니다.</p></div><div class="card"><div class="ico">아이콘<br>냄새 분자</div><b>대소변이 분해되며 생기는 악취 물질</b><p>암모니아는 코를 찌르는 냄새, 트리메틸아민은 생선 비린내의 원인 물질입니다. 악취는 지속적으로 생깁니다.</p></div></div></div></div><div class="blk "><span class="pct">14%</span><div class="stat"><div><div class="v">95.7<small>%</small><sup>1)</sup></div><div class="l">화장실이 비위생적이면 홀·주방도 비위생적으로 느껴진다</div></div><div><div class="v">94<small>%</small><sup>2)</sup></div><div class="l">화장실 위생 상태가 사업장 방문 결정에 영향을 미친다</div></div><div><div class="cap">위생수준 판단 요소 TOP3<sup>3)</sup></div><ul><li>청소상태</li><li>변기오염도</li><li>악취관리</li></ul></div></div></div><div class="slot grow" style="--h:6cqw"><b>이미지 · 1면 중단 와이드 (여백 흡수 자리)</b>손님이 드나드는 사업장 화장실 입구, 밝은 톤 / 글이 줄면 이 자리가 늘어나 공란을 흡수</div><div class="blk "><span class="pct">24%</span><p class="bridge">변기 오염은 쌓이기 전에 주기적으로 세정해야 하고, 악취는 냄새를 덮기 전에 원인 물질을 줄여야 합니다. 사람이 매번 들어가 닦지 않아도 이 두 가지를 자동으로 반복하는 장치가 사업장 화장실에 필요합니다.</p><div class="band"><div><div class="pre">따로 신경 쓰지 않아도 자동으로 변기를 세정해 오염과 악취를 상시 관리하는</div><div class="name">세스코 프레쉬제닉 Max 변기세정기</div><div class="spec">자동 변기세정기 ㅣ 벽면 부착형 ㅣ 전문 컨설턴트 상담 후 설치하는 렌탈 상품(간편렌탈 상담)</div></div><div class="slot"><b>제품 누끼</b>정면, 벽면 부착 상태 1컷 / 상품이 처음 등장하는 자리</div></div></div><div class="fine fnote"><p>1) 2) 3) 2025.04.08~04.09, 30~69세 남녀 300명 대상 온라인 설문조사(엠브레인). 사업장 방문고객 인식 조사.</p></div></div><footer class="pf"><div class="logo">CESCO<small>VIRUSCARE 세스코항균안전</small></div><div class="tel">1588-1119<small>간편렌탈 상담 ㅣ www.cescomall.co.kr</small></div></footer></article>
+<div class="lab">뒷면 · BACK</div><article class="page back"><span class="side">뒷면 · BACK</span><span class="fill">측정 중</span><div class="pad"><div class="p2head"><div class="k">세스코 프레쉬제닉 Max 변기세정기</div><h2>20분마다 자동 세정,<br>악취는 원인 물질부터 제거합니다</h2></div><div class="blk "><span class="pct">40%</span><div class="adv"><div class="alist"><div class="a"><div class="no">01</div><div><h3>20분마다 자동 세정, 2달 내내 일정한 세정력</h3><p>자동으로 세정액이 토출되어 오염을 상시 관리합니다. 2달 내내 일정한 세정력으로 오염 축적을 막습니다.</p></div></div><div class="a"><div class="no">02</div><div><h3>요석 발생 억제</h3><p>소변으로 생기는 요석 발생을 억제합니다. 기존 자사 제품 대비 유효성분 함량을 늘려 적은 양으로도 강력한 세정·탈취력을 냅니다.</p></div></div><div class="a"><div class="no">03</div><div><h3>악취 원인물질 제거 · 암모니아 99.7%<sup>4)</sup> · 트리메틸아민 95%<sup>5)</sup> 탈취</h3><p>냄새의 원인 물질을 제거하고, 마스킹 향료(오조닉향)로 악취를 2중 제어합니다.</p></div></div><div class="a"><div class="no">04</div><div><h3>가습기 살균제 이슈성분 7종<sup>6)</sup> · 파라벤류 7종<sup>7)</sup> 불검출</h3><p>세정력·탈취력 검증에 더해 성분 유해물질 불검출 검사까지 완료했습니다.</p></div></div><div class="a"><div class="no">05</div><div><h3>어떤 인테리어에도 어우러지는 컴팩트한 디자인</h3><p>컴팩트한 사이즈로 비좁은 공간에도 설치할 수 있고, 어떤 화장실 인테리어에도 자연스럽게 어우러집니다.</p></div></div></div><div class="col"><div class="slot" style="--h:14cqw"><b>제품 누끼</b>소변기 위 벽면 부착</div><div class="slot" style="--h:14cqw"><b>제품 누끼</b>양변기 옆 벽면 부착</div><div class="slot grow" style="--h:4cqw"><b>아이콘 5</b>타이머·변기 / 요석 억제 / 냄새 차단 / 성분 검증 / 벽면 설치 — 특장점 01~05와 1:1</div></div></div></div><div class="blk "><span class="pct">16%</span><table class="t spec"><tr><td>제품명</td><td>프레쉬제닉 Max 변기세정기</td><td>설치 타입</td><td>벽면 부착형</td></tr><tr><td>크기</td><td>90(W) × 67(D) × 220(H) mm</td><td>케미컬 용기</td><td>펌프 방식 PE 용기 345ml</td></tr><tr><td>등록비</td><td>30,000원</td><td>방문주기 / 의무사용</td><td>2개월 / 3년</td></tr><tr><td>월 요금</td><td colspan="3"><s>정상가 23,900원</s> <b>22,900원</b> · 세스코몰 2026.07 기준, 계약 조건에 따라 변동 <span class="need">[확인 필요: 10월 기준 재확인]</span></td></tr></table></div><div class="blk "><span class="pct">16%</span><div class="proof"><div class="cert">공인시험기관(FITI시험연구원) 시험완료 <span class="memo">10/28 결정: 시험성적서 이미지 2컷 자리를 없애고 이 각주 패널로 대체</span></div><div class="fine"><p>4) 암모니아 탈취율: FITI시험연구원, 탈취 가공 제품의 탈취성능 평가방법 가스 검지관법(FITI TM F 0003:2022), 액상 시료 5g을 5L 백에 넣고 시험가스 3L 주입, 초기농도 100ppm, 2시간 경과 후 측정. 시험성적서 번호 <span class="need">[확인 필요: 성적서 번호·발급일]</span></p><p>5) 트리메틸아민 탈취율: 4)와 같은 시험, 초기농도 28ppm, 2시간 경과 후 측정.</p><p>6) 가습기 살균제 이슈성분 7종 불검출: CMIT, MIT, BKC, PHMG, PGH, PHMB, DDAC (FITI시험연구원, 정량한계 1mg/kg 미만).</p><p>7) 파라벤류 7종 불검출: p-하이드록시벤조익애씨드, 메칠·에칠·프로필·이소프로필·부틸·이소부틸파라벤 (FITI시험연구원).</p><p>※ 상기 탈취율은 제한된 실험 조건에서 측정한 결과이며, 사용 환경(화장실 면적, 환기 상태, 이용 인원 등)에 따라 결과가 달라질 수 있음.</p></div></div></div><div class="blk "><span class="pct">18%</span><div class="cross"><div><span class="lbl">계약 시 제공</span><h4>제품 부착형 POP를 함께 드립니다</h4><p>방문객 위생까지 생각하는 사업장임을 보여 줍니다.</p><div class="slot" style="--h:4cqw"><b>POP 스티커</b>CESCO Viruscare ㅣ 세스코 과학으로 만든 자동센서 변기세정기 ㅣ 변기오염, 세정·탈취 상시 관리</div></div><div><span class="lbl">함께하면 더 좋은 제품</span><h4>세스코 화장실 위생관리 패키지</h4><p>패키지 상품에만 제공되는 할인 혜택. <span class="need">[확인 필요: 패키지 적용 시 제품별 월 요금]</span></p><div class="mini"><div class="slot"><b>누끼</b>방향탈취기 에어제닉 Max</div><div class="slot"><b>누끼</b>자동 변기세정기 프레쉬제닉 Max</div><div class="slot"><b>누끼</b>자동 손세정기 핸드제닉</div><div class="slot"><b>누끼</b>자동 손소독기 새니제닉</div></div></div></div></div><div class="blk "><span class="pct">10%</span><div class="cta"><div><h5>간편렌탈 상담 1588-1119<small>세스코몰 www.cescomall.co.kr</small></h5><p>전문 컨설턴트 상담 후 설치합니다. 사업장 화장실 크기와 이용 인원에 맞춰 안내해 드립니다.</p></div><div class="qr">QR<br>세스코몰<br>(선택)</div></div></div></div><footer class="pf full"><div class="logo">CESCO<small>VIRUSCARE 세스코항균안전</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr<br>©Rocket_Restaurant_FRG_V.2_2026.10 CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer></article></section>
+<section class="col" id="home"><h2><span class="n">가정집</span><a href="리플릿_실물디자인형_로켓_가정집_프레쉬제닉Max_261102.html" target="_blank">단독 파일 열기</a></h2>
+<div class="lab">앞면 · FRONT</div><article class="page front"><span class="side">앞면 · FRONT</span><span class="fill">측정 중</span><div class="lock"><span><span class="brand">CESCO<small>Viruscare 세스코항균안전</small></span></span><span>자동 변기세정기</span></div><div class="blk "><span class="pct">30%</span><div class="hero"><div><div class="bubbles"><div class="bubble">“아침에 닦아도 점심이면 다시 생기는 변기 얼룩”</div><div class="bubble">“문을 열자마자 올라오는 화장실 냄새, 손님이 먼저 압니다”</div><div class="bubble">“하루 몇 번씩 들어가 닦기에는 손이 모자란 사업장 화장실”</div></div><h1>닦아도 다시 쌓이는<br>변기 오염과 악취</h1><div class="sub">사업장 화장실 위생은 재방문과 매출로 이어집니다</div></div><div class="slot"><b>이미지 · 표지 연출컷</b>문이 열린 공용 화장실 전경, 밝은 톤. 제품은 보이지 않게(상품은 아래 선언 밴드에서 처음 등장) / 문제가 생기는 공간을 먼저 보여 주는 역할</div></div></div><div class="pad"><div class="blk "><span class="pct">32%</span><div class="why"><h2><span class="q">?</span>변기 오염과 악취, 왜 자꾸 생길까요?</h2><p class="ans">변기는 사용할수록 오염이 쌓이고, 대소변이 분해되는 과정에서 악취 물질이 계속 발생합니다. 하루 한두 번 청소로는 다음 청소 전까지 쌓이는 오염과 냄새를 막기 어렵습니다.</p><div class="cards"><div class="card"><div class="ico">아이콘<br>변기 얼룩</div><b>사용할수록 쌓이는 변기 오염</b><p>많은 사람이 수시로 쓰는 공용 변기는 쓸수록 오염이 축적됩니다. 화장실에서 눈에 가장 잘 보이는 오염입니다.</p></div><div class="card"><div class="ico">아이콘<br>요석 결정</div><b>소변에서 생기는 요석</b><p>관리하지 않으면 변기에 갈색으로 딱딱하게 쌓여 방문 고객에게 좋지 않은 인상을 남깁니다.</p></div><div class="card"><div class="ico">아이콘<br>냄새 분자</div><b>대소변이 분해되며 생기는 악취 물질</b><p>암모니아는 코를 찌르는 냄새, 트리메틸아민은 생선 비린내의 원인 물질입니다. 악취는 지속적으로 생깁니다.</p></div></div></div></div><div class="blk "><span class="pct">14%</span><div class="stat"><div><div class="v">95.7<small>%</small><sup>1)</sup></div><div class="l">화장실이 비위생적이면 홀·주방도 비위생적으로 느껴진다</div></div><div><div class="v">94<small>%</small><sup>2)</sup></div><div class="l">화장실 위생 상태가 사업장 방문 결정에 영향을 미친다</div></div><div><div class="cap">위생수준 판단 요소 TOP3<sup>3)</sup></div><ul><li>청소상태</li><li>변기오염도</li><li>악취관리</li></ul></div></div></div><div class="slot grow" style="--h:6cqw"><b>이미지 · 1면 중단 와이드 (여백 흡수 자리)</b>손님이 드나드는 사업장 화장실 입구, 밝은 톤 / 글이 줄면 이 자리가 늘어나 공란을 흡수</div><div class="blk "><span class="pct">24%</span><p class="bridge">변기 오염은 쌓이기 전에 주기적으로 세정해야 하고, 악취는 냄새를 덮기 전에 원인 물질을 줄여야 합니다. 사람이 매번 들어가 닦지 않아도 이 두 가지를 자동으로 반복하는 장치가 사업장 화장실에 필요합니다.</p><div class="band"><div><div class="pre">따로 신경 쓰지 않아도 자동으로 변기를 세정해 오염과 악취를 상시 관리하는</div><div class="name">세스코 프레쉬제닉 Max 변기세정기</div><div class="spec">자동 변기세정기 ㅣ 벽면 부착형 ㅣ 전문 컨설턴트 상담 후 설치하는 렌탈 상품(간편렌탈 상담)</div></div><div class="slot"><b>제품 누끼</b>정면, 벽면 부착 상태 1컷 / 상품이 처음 등장하는 자리</div></div></div><div class="fine fnote"><p>1) 2) 3) 2025.04.08~04.09, 30~69세 남녀 300명 대상 온라인 설문조사(엠브레인). 사업장 방문고객 인식 조사.</p></div></div><footer class="pf"><div class="logo">CESCO<small>VIRUSCARE 세스코항균안전</small></div><div class="tel">1588-1119<small>간편렌탈 상담 ㅣ www.cescomall.co.kr</small></div></footer></article>
+<div class="lab">뒷면 · BACK</div><article class="page back"><span class="side">뒷면 · BACK</span><span class="fill">측정 중</span><div class="pad"><div class="p2head"><div class="k">세스코 프레쉬제닉 Max 변기세정기</div><h2>20분마다 자동 세정,<br>악취는 원인 물질부터 제거합니다</h2></div><div class="blk "><span class="pct">40%</span><div class="adv"><div class="alist"><div class="a"><div class="no">01</div><div><h3>20분마다 자동 세정, 2달 내내 일정한 세정력</h3><p>자동으로 세정액이 토출되어 오염을 상시 관리합니다. 2달 내내 일정한 세정력으로 오염 축적을 막습니다.</p></div></div><div class="a"><div class="no">02</div><div><h3>요석 발생 억제</h3><p>소변으로 생기는 요석 발생을 억제합니다. 기존 자사 제품 대비 유효성분 함량을 늘려 적은 양으로도 강력한 세정·탈취력을 냅니다.</p></div></div><div class="a"><div class="no">03</div><div><h3>악취 원인물질 제거 · 암모니아 99.7%<sup>4)</sup> · 트리메틸아민 95%<sup>5)</sup> 탈취</h3><p>냄새의 원인 물질을 제거하고, 마스킹 향료(오조닉향)로 악취를 2중 제어합니다.</p></div></div><div class="a"><div class="no">04</div><div><h3>가습기 살균제 이슈성분 7종<sup>6)</sup> · 파라벤류 7종<sup>7)</sup> 불검출</h3><p>세정력·탈취력 검증에 더해 성분 유해물질 불검출 검사까지 완료했습니다.</p></div></div><div class="a"><div class="no">05</div><div><h3>어떤 인테리어에도 어우러지는 컴팩트한 디자인</h3><p>컴팩트한 사이즈로 비좁은 공간에도 설치할 수 있고, 어떤 화장실 인테리어에도 자연스럽게 어우러집니다.</p></div></div></div><div class="col"><div class="slot" style="--h:14cqw"><b>제품 누끼</b>소변기 위 벽면 부착</div><div class="slot" style="--h:14cqw"><b>제품 누끼</b>양변기 옆 벽면 부착</div><div class="slot grow" style="--h:4cqw"><b>아이콘 5</b>타이머·변기 / 요석 억제 / 냄새 차단 / 성분 검증 / 벽면 설치 — 특장점 01~05와 1:1</div></div></div></div><div class="blk "><span class="pct">16%</span><table class="t spec"><tr><td>제품명</td><td>프레쉬제닉 Max 변기세정기</td><td>설치 타입</td><td>벽면 부착형</td></tr><tr><td>크기</td><td>90(W) × 67(D) × 220(H) mm</td><td>케미컬 용기</td><td>펌프 방식 PE 용기 345ml</td></tr><tr><td>등록비</td><td>30,000원</td><td>방문주기 / 의무사용</td><td>2개월 / 3년</td></tr><tr><td>월 요금</td><td colspan="3"><s>정상가 23,900원</s> <b>22,900원</b> · 세스코몰 2026.07 기준, 계약 조건에 따라 변동 <span class="need">[확인 필요: 10월 기준 재확인]</span></td></tr></table></div><div class="blk "><span class="pct">16%</span><div class="proof"><div class="cert">공인시험기관(FITI시험연구원) 시험완료 <span class="memo">10/28 결정: 시험성적서 이미지 2컷 자리를 없애고 이 각주 패널로 대체</span></div><div class="fine"><p>4) 암모니아 탈취율: FITI시험연구원, 탈취 가공 제품의 탈취성능 평가방법 가스 검지관법(FITI TM F 0003:2022), 액상 시료 5g을 5L 백에 넣고 시험가스 3L 주입, 초기농도 100ppm, 2시간 경과 후 측정. 시험성적서 번호 <span class="need">[확인 필요: 성적서 번호·발급일]</span></p><p>5) 트리메틸아민 탈취율: 4)와 같은 시험, 초기농도 28ppm, 2시간 경과 후 측정.</p><p>6) 가습기 살균제 이슈성분 7종 불검출: CMIT, MIT, BKC, PHMG, PGH, PHMB, DDAC (FITI시험연구원, 정량한계 1mg/kg 미만).</p><p>7) 파라벤류 7종 불검출: p-하이드록시벤조익애씨드, 메칠·에칠·프로필·이소프로필·부틸·이소부틸파라벤 (FITI시험연구원).</p><p>※ 상기 탈취율은 제한된 실험 조건에서 측정한 결과이며, 사용 환경(화장실 면적, 환기 상태, 이용 인원 등)에 따라 결과가 달라질 수 있음.</p></div></div></div><div class="blk "><span class="pct">18%</span><div class="cross"><div><span class="lbl">계약 시 제공</span><h4>제품 부착형 POP를 함께 드립니다</h4><p>방문객 위생까지 생각하는 사업장임을 보여 줍니다.</p><div class="slot" style="--h:4cqw"><b>POP 스티커</b>CESCO Viruscare ㅣ 세스코 과학으로 만든 자동센서 변기세정기 ㅣ 변기오염, 세정·탈취 상시 관리</div></div><div><span class="lbl">함께하면 더 좋은 제품</span><h4>세스코 화장실 위생관리 패키지</h4><p>패키지 상품에만 제공되는 할인 혜택. <span class="need">[확인 필요: 패키지 적용 시 제품별 월 요금]</span></p><div class="mini"><div class="slot"><b>누끼</b>방향탈취기 에어제닉 Max</div><div class="slot"><b>누끼</b>자동 변기세정기 프레쉬제닉 Max</div><div class="slot"><b>누끼</b>자동 손세정기 핸드제닉</div><div class="slot"><b>누끼</b>자동 손소독기 새니제닉</div></div></div></div></div><div class="blk "><span class="pct">10%</span><div class="cta"><div><h5>간편렌탈 상담 1588-1119<small>세스코몰 www.cescomall.co.kr</small></h5><p>전문 컨설턴트 상담 후 설치합니다. 사업장 화장실 크기와 이용 인원에 맞춰 안내해 드립니다.</p></div><div class="qr">QR<br>세스코몰<br>(선택)</div></div></div></div><footer class="pf full"><div class="logo">CESCO<small>VIRUSCARE 세스코항균안전</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr<br>©Rocket_Home_FRG_V.2_2026.10 CESCO Co.,Ltd All rights reserved.</div><div class="card">명함스티커 부착</div></footer></article></section>
+</main>
 </div>
 <script>
 (function(){
- // iframe 높이를 안쪽 문서에 맞춤 (같은 폴더라 같은 출처)
- var frames=[].slice.call(document.querySelectorAll('iframe'));
- function fit(f){try{var d=f.contentDocument;if(!d||!d.body||d.readyState!=='complete')return;var h=Math.max(d.documentElement.scrollHeight,d.body.scrollHeight);if(h>200&&Math.abs(h+8-f.offsetHeight)>4)f.style.height=(h+8)+'px';}catch(e){}}
- function fitAll(){frames.forEach(fit);}
- function watch(f){try{var b=f.contentDocument.body;if(!b||f._w)return;f._w=1;new MutationObserver(function(){fit(f)}).observe(b,{attributes:true,subtree:true,attributeFilter:['class','data-view','aria-pressed']});}catch(e){}}
- frames.forEach(function(f){f.addEventListener('load',function(){fit(f);watch(f);setTimeout(function(){fit(f)},600);});});
- var n=0,t=setInterval(function(){fitAll();frames.forEach(watch);if(++n>20)clearInterval(t);},300);
- window.addEventListener('resize',fitAll);window.addEventListener('load',fitAll);
- // 현재 섹션 버튼 강조
- var links=[].slice.call(document.querySelectorAll('.docnav a'));
- function mark(){var y=window.scrollY+80,cur=links[0];links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s&&s.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur)});}
- window.addEventListener('scroll',mark);mark();
+ var body=document.body;
+ var mt=document.getElementById('memo-toggle');mt.addEventListener('click',function(){body.classList.toggle('hide-memo');mt.setAttribute('aria-pressed',body.classList.contains('hide-memo')?'true':'false');});
+ document.getElementById('print').addEventListener('click',function(){window.print();});
+ function measure(){document.querySelectorAll('.page').forEach(function(p){
+  var badge=p.querySelector('.fill');if(!badge)return;
+  var over=p.scrollHeight-p.clientHeight;var mm=Math.round(over*297/p.clientHeight);
+  var grow=0;p.querySelectorAll('.slot.grow').forEach(function(s){grow+=s.getBoundingClientRect().height;});
+  var pct=Math.round(grow/p.clientHeight*100);
+  if(over>2){badge.textContent='지면 초과 약 '+mm+'mm · 본문을 줄이세요';badge.classList.add('bad');}
+  else{badge.textContent='지면 OK · 이미지 자리가 여백 '+pct+'% 흡수';badge.classList.remove('bad');}
+ });}
+ window.addEventListener('resize',measure);window.addEventListener('load',measure);measure();
 })();
-</script></body></html>
+</script>
+</body></html>
