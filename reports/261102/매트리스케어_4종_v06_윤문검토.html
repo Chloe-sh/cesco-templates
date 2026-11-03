@@ -120,6 +120,52 @@ body.hide-memo .memo{display:none}
 .ck li::before{content:"✓";flex:none;width:5.2cqw;height:5.2cqw;border-radius:1cqw;background:var(--card-blue);color:#fff;font-size:3.4cqw;font-weight:900;display:flex;align-items:center;justify-content:center}
 .ck li.q{color:#b3261e}
 .ck li.q::before{content:"";background:#fff;border:2px solid #b3261e;box-sizing:border-box}
+
+/* 원본(스토리구성3안 v03)에서 옮겨 온 유형별 규칙: 기획 요약, 체크리스트형, 상담 Q&A형, 작업일지형 */
+.nrow{display:flex;gap:2cqw;margin:1cqw 0 3cqw}
+.nrow div{flex:1;border:1px solid var(--card-line);border-radius:3px;padding:2.4cqw 1cqw;text-align:center}
+.nrow div.on{background:var(--card-blue);border-color:var(--card-blue);color:#fff}
+.nrow b{display:block;font-size:9cqw;line-height:1;font-weight:900}
+.nrow b i{font-style:normal;font-size:4.5cqw}
+.nrow span{display:block;font-size:2.8cqw;margin-top:1.4cqw;opacity:.85}
+.cmp{overflow-x:auto;margin:6px 0 14px}
+.cmp table{border-collapse:collapse;font-size:12.5px;min-width:760px;width:100%}
+.cmp th,.cmp td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;color:var(--ink-2)}
+.cmp th{background:var(--memo);color:var(--ink)}
+.cols{display:flex;gap:2cqw;margin:1cqw 0 3cqw}
+.cols div{flex:1;border:1px solid var(--card-line);border-radius:3px;padding:2.4cqw 2.4cqw;font-size:3.2cqw;line-height:1.5}
+.cols div b{display:block;font-size:3.4cqw;margin-bottom:1cqw;color:var(--card-navy)}
+.cols div.off{background:var(--card-navy);color:#fff}.cols div.off b{color:#fff}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:6px 0 16px}
+.plan h2{font-size:15px;margin:0 0 10px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px 18px;font-size:13px;color:var(--ink-2);line-height:1.55}
+.pgrid b{display:block;color:var(--navy);font-size:12px;margin-bottom:2px}
+.order{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 4px;font-size:12.5px}
+.order span{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink-2)}
+.order span.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.order i{color:var(--ink-3);font-style:normal}
+.why{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+.nl{list-style:none;margin:0 0 2cqw;padding:0;font-size:4cqw;line-height:6cqw;font-weight:700}
+.nl li::before{content:"☑";color:var(--card-blue);margin-right:2cqw}
+.nl li.q::before{content:"☐";color:#b3261e}
+.nl li.q{color:#b3261e}
+.nl li.log::before{content:"·";color:var(--card-navy)}
+.nl li.log{font-weight:500;font-size:3.5cqw}
+.nl li.log b{color:var(--card-navy);margin-right:1cqw}
+.ntag{display:inline-block;background:#ffd54a;color:#15171c;font-size:2.8cqw;font-weight:700;padding:.4cqw 2cqw;transform:rotate(-2deg);margin-bottom:2cqw}
+.chat{display:flex;flex-direction:column;gap:2cqw;margin:0 0 2cqw}
+.msg{max-width:84%;padding:2.2cqw 3cqw;border-radius:3.5cqw;font-size:3.4cqw;line-height:1.5}
+.msg.q{align-self:flex-start;background:#eef0f4;color:var(--card-ink);border-bottom-left-radius:1cqw}
+.msg.a{align-self:flex-end;background:var(--card-blue);color:#fff;border-bottom-right-radius:1cqw}
+.msg.a b{display:block;font-weight:900;margin-bottom:.6cqw}
+.msg .who{display:block;font-size:2.6cqw;opacity:.7;margin-bottom:.6cqw}
+.chathead{font-size:3cqw;color:var(--card-mute);text-align:center;margin:0 0 2cqw}
+.post{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:40px}
+.post h2{font-size:15px;margin:0 0 10px}
+.post h3{font-size:13.5px;margin:18px 0 6px;color:var(--ink-2)}
+.post p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2);max-width:80ch}
+.post .tags{font-size:12.5px;color:var(--blue);line-height:1.8}
+.post .foot{font-size:12px;color:var(--ink-3)}
 </style>
 </head>
 <body>
