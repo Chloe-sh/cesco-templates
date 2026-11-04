@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>세스코 카케어 코어 · 왜 세스코인가</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--amber:#b35c00;--amber-soft:#fff4e5;--green:#1b7f3b;--green-soft:#e8f5ec;--navy:#0A3568}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px}
+.kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+h2{font-size:20px;margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px}
+h2 .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+h3{font-size:16px;margin:24px 0 8px;font-weight:700;color:var(--blue)}
+p{margin:0 0 10px}
+.lead{font-size:16px;color:var(--ink2)}
+ul,ol{margin:0 0 10px;padding-left:22px}
+li{margin:3px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;font-size:13px;color:var(--ink2)}
+td.k{background:var(--soft);font-weight:700;white-space:nowrap}
+.box{border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:6px;background:var(--soft);padding:14px 18px;margin:14px 0}
+.box b.h{display:block;margin-bottom:6px;color:var(--navy)}
+.box p{margin:0 0 6px;font-size:14px}
+.small{font-size:13px;color:var(--ink2)}
+.need{color:var(--amber);font-weight:700}
+.need.inline{background:var(--amber-soft);border-radius:3px;padding:0 4px}
+.gray{color:var(--ink3)}
+.big{font-size:17px;font-weight:800}
+.big.blue{color:var(--blue)}
+.sum{font-weight:700;margin-top:14px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+.toc a{display:inline-block;padding:3px 10px;border:1px solid var(--line);border-radius:999px;font-size:12.5px;color:var(--ink2);text-decoration:none}
+.toc a:hover{border-color:var(--blue);color:var(--blue)}
+.faq-q{font-weight:800;margin-top:18px}
+.faq-q .q{color:var(--blue);margin-right:6px}
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
+.docnav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 8px;display:flex;flex-wrap:wrap;gap:6px;z-index:5}
+.docnav a{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink2);text-decoration:none;font-weight:600}
+.docnav a:hover{border-color:var(--blue);color:var(--blue)}
+.doc{margin-top:56px;padding-top:28px;border-top:3px solid var(--ink)}
+.doc .kicker{font-size:13px;color:var(--blue);font-weight:700}
+.doc h1{font-size:26px;margin:4px 0 6px}
+.doc .memo{font-size:13px;color:var(--ink2);margin:0 0 8px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 6px}
+@media (max-width:720px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card .t{font-weight:800}
+.card .d{font-size:12.5px;color:var(--ink3);margin-left:6px}
+.card dl{margin:8px 0 0;font-size:13.5px}
+.card dt{font-weight:700;margin-top:6px}
+.card dd{margin:0;color:var(--ink2)}
+.st{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:4px;background:#f1f1f1;color:var(--ink2)}
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0 6px}
+@media (max-width:720px){.chain{grid-template-columns:1fr}}
+.chain div{border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;padding:10px 12px;font-size:13.5px;background:#fff}
+.chain div b{display:block;color:var(--blue);font-size:12.5px;margin-bottom:4px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media (max-width:720px){.vs{grid-template-columns:1fr}}
+.vs div{border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:14px}
+.vs div.cesco{border-color:var(--blue);background:var(--blue-soft)}
+.vs div b{display:block;margin-bottom:6px}
+@media (max-width:720px){.wrap{padding:28px 16px 60px}h1{font-size:23px}table{font-size:13px;display:block;overflow-x:auto}th,td{padding:7px 6px}}
+@media print{.wrap{padding:0;max-width:none}h2{break-after:avoid}table,.box{break-inside:avoid}a{color:inherit;text-decoration:none}}
+
+h2 .sub{font-size:13px;color:var(--ink3);font-weight:600}
+ol.copy{list-style:none;margin:0;padding:0;counter-reset:c}
+ol.copy li{counter-increment:c;display:grid;grid-template-columns:34px 1fr 150px;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);align-items:start}
+ol.copy li::before{content:counter(c,decimal-leading-zero);color:var(--blue);font-weight:800;font-size:13px;padding-top:3px}
+ol.copy .l1{font-weight:700;font-size:15.5px}
+ol.copy .l2{font-weight:700;font-size:15.5px;margin-top:1px}
+ol.copy .note{font-size:12px;color:var(--ink3);margin-top:4px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:4px;background:var(--soft);color:var(--ink2);margin-top:3px;white-space:nowrap}
+.tag.b{background:var(--blue-soft);color:var(--blue)}
+.strip{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0 14px;font-size:13px;color:var(--ink2)}
+.strip span{background:var(--soft);border-radius:4px;padding:2px 8px}
+
+.chain3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 10px}
+@media (max-width:720px){.chain3{grid-template-columns:1fr}}
+.chain3>div{border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;padding:12px 14px;font-size:14px;background:#fff}
+.chain3>div>b{display:block;color:var(--blue);margin-bottom:6px}
+.chain3 p{margin:0 0 8px}
+.chain3 p.key{font-weight:800;color:var(--navy);margin:0}
+</style></head>
+<body><div class="wrap"><header class="top"><div class="kicker">세스코 콘텐츠 템플릿 · 시하</div><h1>세스코 카케어 코어 · 왜 세스코여야만 하는가</h1></header>
+<p class="lead">차별성 한 장(공간 × 증명 × 안전), "왜 세스코인가" 납득형 헤드카피 30, 마케팅 전략 카케어 편 8장(11/02 전략 3건과 같은 구조), 카케어 메인 헤드카피 30을 한 파일에 묶었습니다. 상품별 헤드카피 150안은 <a href="카케어_헤드카피_180안_261104.html">별도 파일</a>입니다. 주황은 확인이 필요한 항목, 회색은 원천소스에 없는 제안입니다.</p>
+<nav class="docnav"><a href="#diff">① 차별성 한 장</a><a href="#why30">② 왜 세스코인가 30</a><a href="#carcare">③ 마케팅 전략 8장</a><a href="#main">④ 메인 헤드카피 30</a></nav>
+<h2 id="diff"><span class="num">00</span>차별성 한 장 · 왜 세스코여야만 하는가</h2>
+<p class="big blue"><b>세스코 카케어의 차별성은 "제품이 좋다"가 아니라 차 안을 위생 관리 대상으로 본 주체가 세스코뿐이라는 데서 나옵니다.</b></p>
+<p>세 축은 <b>공간 × 증명 × 안전</b>입니다. 셋 중 하나만 있으면 경쟁사도 흉내 냅니다. 과학 연구소는 다른 대기업에도 있고 순한 성분은 친환경 브랜드도 말합니다. 셋이 한 회사에 동시에 있고, 그 회사가 50여 년 사람이 머무는 공간을 관리해 온 곳은 세스코뿐입니다. <span class="need inline">["50여 년" 표기 확인]</span></p>
+<div class="chain3">
+<div><b>① 공간 · 위생 전문 기업</b><p>경쟁 브랜드는 자동차 용품 회사입니다. 차를 보고 제품 단위로 관리합니다. 광택·얼룩·향. 세스코는 사람이 머무는 공간을 보고 구역 단위로 관리합니다. 집·사무실·식당·병원을 진단 → 처방 → 검증으로 관리해 온 방식을 차에 적용하니 차 안이 33곳(13·11·9)으로 쪼개집니다. 33곳 구획은 공간 위생 관리 회사가 늘 하던 일에서 나온 결과라 제품 회사는 만들 수 없습니다.</p><p class="key">"세스코는 탈취제를 만든 게 아니라, 차 안에 위생 관리 기준을 만들었습니다."</p></div>
+<div><b>② 증명 · 과학 연구소</b><p>세스코 과학연구소·바이러스 연구소가 개발했습니다. 더 센 포인트는 어디서 검증했느냐입니다. 가장 오염이 심한 렌터카·중고차 실차에서 악취 성분을 포집·정량 분석해 원인 물질을 밝혀냈고(4-에테닐피리딘·암모니아·트리메틸아민) 사계절 네 번의 필드 테스트와 내장재 소재별 검증을 거쳤습니다. 경쟁사 제품 설명은 세정력·소재 호환·향에서 끝납니다. 세스코는 어떤 물질을 얼마나 없앴는지를 말합니다. 차량 위생에 돈을 쓰는 렌터카·중고차 기업이 먼저 채택한 기준을 개인 고객이 같은 제품으로 쓴다는 구도도 소비자 브랜드가 흉내 내기 어렵습니다.</p><p class="key">"실험실 수치가 아니라, 가장 더러운 차에서 통한 기준입니다."</p></div>
+<div><b>③ 안전 · 밀폐 공간의 기준</b><p>차 안은 집보다 조건이 나쁩니다. 1.5평 밀폐, 손과 피부가 닿는 면적 비율이 높고 아이·임산부·반려동물이 함께 탑니다. 뿌리는 제품의 흡입 가능성까지 봐야 합니다. 그래서 살균소독제는 효능·효과 시험에 더해 경피·흡입 위해성 평가를 거친 기후에너지환경부 승인 살생물제품(0125-0038)입니다. 성분은 사탕수수 주정 100% 식품첨가물, 가습기 살균제 이슈 성분(CMIT·MIT·BKC·DDAC) 불검출, 피부 저자극입니다. 티슈는 계면활성제 무첨가, 제습제는 무향. 핵심은 수치보다, 그 수치가 아이가 만지는 버클에 뿌려도 되는 성분에서 나왔다는 점입니다. 경쟁 제품은 효과와 안전 중 하나를 말합니다. 세스코는 둘 다 승인·성적서로 말합니다.</p><p class="key">"살균력은 정부가 승인했고, 성분은 식품첨가물입니다."</p></div>
+</div>
+<p><b>한 줄로 묶으면  </b>위생 전문 기업이 차 안을 공간으로 보고 33곳을 나눴고, 과학 연구소가 가장 험한 차에서 증명했고, 밀폐 공간 기준으로 안전성까지 검증했습니다. 그래서 세스코 카케어는 차량용품이 아니라 차량 위생 솔루션입니다.</p>
+<p><b>숨은 차별점 · 루틴  </b>탈취캔 월 1회, 제습제 부풀면 교체, 여름 시트·겨울 발매트. 세스코는 제품을 팔고 끝내지 않고 "언제 무엇을"을 정해 줍니다. 관리 회사의 습관이고 제품 회사는 잘 하지 않는 일입니다. 구매 후 문자(전략 07장)로 이 루틴을 안내합니다.</p>
+
+<h2 id="why30"><span class="num">00-2</span>"왜 세스코인가" 납득형 헤드카피 30 <span class="sub">둘째 줄에 반드시 세스코여야 하는 이유</span></h2>
+<p class="small"><span class="gray">앞의 메인 30안이 '문제 → 해결'이었다면 이 30안은 둘째 줄에 반드시 '세스코여야 하는 이유'가 들어갑니다. 공간(1~10) · 증명(11~20) · 안전(21~27) · 루틴·종합(28~30).</span></p>
+<ol class="copy">
+<li><div><div class="l1">탈취제를 만든 게 아닙니다.</div><div class="l2">차 안에 위생 관리 기준을 먼저 만들고 그 기준대로 제품을 만들었습니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">자동차 용품 회사는 차를 보고 세스코는 그 안에 앉은 사람을 봅니다.</div><div class="l2">집·사무실·병원을 관리해 온 방식 그대로</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">차 안을 33곳으로 나눈 회사는</div><div class="l2">차를 공간으로 본 회사뿐입니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">핸들·시트·시트 아래, 남는 오염이 다르면 처방도 달라야 합니다.</div><div class="l2">세스코가 식당 주방과 화장실을 다르게 관리하는 이유와 같습니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">광택과 향은 차의 문제고,</div><div class="l2">균과 냄새 원인과 습기는 공간의 문제입니다. 세스코는 후자를 맡습니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">집에서 매트리스·배수구·공기를 관리해 주던 회사가</div><div class="l2">같은 눈으로 차 안을 봤습니다. 거실과 다를 게 없었습니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">제품이 먼저가 아니라 진단이 먼저.</div><div class="l2">세스코가 공간을 관리하는 순서는 차에서도 바뀌지 않습니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">좋은 탈취제는 여러 회사가 만듭니다.</div><div class="l2">차 안 어디에 무엇이 남는지 지도를 그린 회사는 세스코입니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">집보다 오래 머무는 1.5평을</div><div class="l2">집과 같은 기준으로 관리해 주는 곳이 지금까지 없었습니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">차 안 위생을 '관리'라고 부르려면 진단·처방·검증이 있어야 합니다.</div><div class="l2">세스코 카케어에는 셋 다 있습니다</div></div><div class="tagcol"><span class="tag b">공간</span></div></li>
+<li><div><div class="l1">실험실 수치가 아니라,</div><div class="l2">가장 더러운 차에서 통한 기준입니다</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">세스코 과학연구소는 중고차의 냄새를 코로 맡지 않고 성분으로 분석했습니다.</div><div class="l2">그래서 원인 물질을 압니다</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">담배 냄새를 '없애는 향'이 아니라 담배 냄새 원인 물질(4-에테닐피리딘)을 99% 잡는 처방.</div><div class="l2">분석이 있어야 나오는 숫자입니다</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">렌터카 회사는 차량 위생에 비용을 씁니다.</div><div class="l2">그 회사가 고른 기준을 개인 고객이 같은 제품으로 씁니다</div><div class="note"><span class="need">사명 병기 시 공개 동의</span></div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">봄·여름·가을·겨울 네 번의 필드 테스트는</div><div class="l2">차 안 온도가 계절마다 냄새를 바꾼다는 걸 아는 회사만 합니다</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">가죽·하이그로시·디스플레이에 먼저 뿌려 봤습니다.</div><div class="l2">내장재가 상하면 위생 관리가 아니라 손상이니까요</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">세스코 바이러스 연구소가 차량 표면에서 검증한 세균 14종·바이러스 2종.</div><div class="l2">연구소가 있는 회사만 균 이름을 댈 수 있습니다</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">주요 모빌리티 기업의 차량 관리에 이미 쓰이고 있습니다.</div><div class="l2">개인용으로 포장만 바꾼 게 아니라, 같은 솔루션입니다</div><div class="note"><span class="need">사명 병기 시 공개 동의</span></div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">수백 대의 렌터카·중고차를 직접 관리하며 완성했습니다.</div><div class="l2">셀프 키트는 그 현장의 축약본입니다</div><div class="note">"수백 대" 블로그 10/02 원문 표현</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">효과를 '느낌'으로 말하지 않습니다.</div><div class="l2">포집하고, 정량하고, 사계절 반복했습니다</div></div><div class="tagcol"><span class="tag">증명</span></div></li>
+<li><div><div class="l1">살균력은 정부가 승인했고,</div><div class="l2">성분은 식품첨가물입니다. 둘 다 갖춘 차량용 살균소독제</div></div><div class="tagcol"><span class="tag">안전</span></div></li>
+<li><div><div class="l1">차 안은 창문을 닫으면 밀폐됩니다.</div><div class="l2">그래서 뿌리는 제품은 흡입까지 평가받은 살생물제품이어야 합니다</div></div><div class="tagcol"><span class="tag">안전</span></div></li>
+<li><div><div class="l1">세균 14종 99.999%라는 숫자보다 중요한 것,</div><div class="l2">그 숫자가 사탕수수 주정 100% 식품첨가물 성분에서 나왔다는 사실</div></div><div class="tagcol"><span class="tag">안전</span></div></li>
+<li><div><div class="l1">아이가 입으로 가져가는 안전벨트 버클에 뿌려도 되는 기준.</div><div class="l2">가습기 살균제 이슈 성분(CMIT·MIT·BKC·DDAC) 불검출로 확인했습니다</div><div class="note"><span class="need">4종/5종 표기 통일</span></div></div><div class="tagcol"><span class="tag">안전</span></div></li>
+<li><div><div class="l1">효과만 말하는 제품, 순한 성분만 말하는 제품.</div><div class="l2">세스코는 둘 다 승인서와 성적서로 말합니다</div></div><div class="tagcol"><span class="tag">안전</span></div></li>
+<li><div><div class="l1">임산부·아이·반려동물이 같이 타는 공간이라서</div><div class="l2">성분 하나하나에 가장 엄격한 원칙을 적용했습니다</div><div class="note">상세페이지 원문 소재</div></div><div class="tagcol"><span class="tag">안전</span></div></li>
+<li><div><div class="l1">세스코가 병원 표면에 쓰는 살균 기준을 그대로 차 안으로 가져왔습니다.</div><div class="l2">낮춘 게 아니라 옮긴 것입니다</div></div><div class="tagcol"><span class="tag">안전</span></div></li>
+<li><div><div class="l1">제품을 팔고 끝내는 회사가 아니라</div><div class="l2">한 달에 한 번, 계절이 바뀔 때마다 "지금 어디를"을 알려 주는 회사입니다</div></div><div class="tagcol"><span class="tag b">루틴</span></div></li>
+<li><div><div class="l1">위생 전문 기업이 차 안을 공간으로 봤고 과학연구소가 실제 차에서 증명했고,</div><div class="l2">밀폐 공간 기준으로 안전까지 확인했습니다. 셋을 한 회사가 합니다</div></div><div class="tagcol"><span class="tag b">종합</span></div></li>
+<li><div><div class="l1">50여 년 사람이 머무는 공간을 관리해 온 회사가</div><div class="l2">이제 집보다 오래 머무는 공간까지 맡습니다</div><div class="note"><span class="need">"50여 년" 표기 확인</span></div></div><div class="tagcol"><span class="tag b">종합</span></div></li>
+</ol>
+
+<section class="doc" id="carcare"><div class="kicker">마케팅 전략</div><h1>세스코 마이랩 카케어 5종</h1><p class="memo">2026-11-04 | 리플렛·상세페이지·카드뉴스·FAQ·컨설팅포인트 작성의 기준이 되는 문서입니다 | 주황: 자료 확인이 필요한 부분 / 회색: 원천소스에 없는 제안</p><div class="toc"><a href="#carcare-s1">1 마케팅 방향성</a><a href="#carcare-s2">2 커뮤니케이션 메시지</a><a href="#carcare-s3">3 쓸 수 있는 표현</a><a href="#carcare-s4">4 컨설팅 포인트</a><a href="#carcare-s5">5 상품별 핵심 전략 (마케팅포털 게시 형식)</a><a href="#carcare-s6">6 문장 후보</a><a href="#carcare-s7">7 구매 후 관리 알림 문자</a><a href="#carcare-s8">8 FAQ</a></div>
+
+<h2 id="carcare-s1"><span class="num">01</span>마케팅 방향성</h2>
+<p class="big blue"><b>세스코 카케어는 차를 닦는 제품이 아닙니다. 차 안을 사람이 머무는 공간으로 보고 세스코가 50여 년 공간을 관리해 온 방식 그대로 관리하는 위생 솔루션입니다.</b> <span class="need inline">["50여 년" 표기 확인]</span></p>
+<p>차량용품을 고를 때 사람들은 광택, 얼룩 제거, 향을 봅니다. 국내 차량 관리 시장의 주요 브랜드도 외관 관리가 중심입니다. 그런데 차 안은 매일 몇 시간씩 가족이 타는 곳이고 창문을 닫으면 1.5평 남짓한 밀폐 공간이 됩니다. 핸들에 남는 균, 시트에 배는 냄새, 바닥에 고이는 습기에는 세차와 방향제가 닿지 않습니다. 차가 깨끗하다는 것과 위생이 관리되었다는 것은 다른 문제입니다.</p>
+<p>이 문서의 메시지는 모두 아래 흐름을 따릅니다. 어느 채널에서든 이 순서를 지키면 "왜 세스코여야 하는가"가 설명 없이 전달됩니다.</p>
+<div class="chain">
+<div><b>① 차 안은 공간이다</b>집보다 오래 머무는 1.5평의 작은 거실. 매일 타고, 가족이 타고, 창문을 닫으면 밀폐됩니다.</div>
+<div><b>② 공간 위생은 세스코의 일이다</b>집·사무실·식당·병원. 사람이 머무는 공간의 오염 원인을 분석하고 처방해 온 회사입니다.</div>
+<div><b>③ 그래서 차도 같은 방식으로</b>차 안을 33곳으로 구획해 진단하고 오염 원인별로 살균·탈취·제습을 처방합니다.</div>
+<div><b>④ 기준도 공간 위생 기준으로</b>밀폐 공간에서 뿌리는 제품이라 흡입까지 평가한 살생물제품 승인, 식품첨가물 100% 성분, 유해물질 불검출.</div>
+<div><b>⑤ 가장 험한 현장이 먼저 썼다</b>렌터카·중고차 실제 차량에서 악취 성분을 분석하고 사계절 반복 테스트. 모빌리티 기업이 쓰는 기준을 내 차에.</div>
+</div>
+<p><b>구매를 고민하는 고객에게  </b>차량용품을 고르는 기준에 "차 안을 공간으로 관리하는가"를 더합니다. 향이 좋은지가 아니라 냄새의 원인을 없애는지, 닦인 뒤에 균이 실제로 줄어드는지, 밀폐된 차 안에서 매일 뿌려도 되는 성분인지를 보게 합니다.</p>
+<p><b>이미 사용하는 고객에게  </b>구매 뒤에도 "어디를, 언제, 무엇으로" 관리하는지 알려 드립니다(7장). 탈취캔 월 1회, 제습제 교체, 여름·겨울 전환 시점처럼 차 안 위생이 루틴이 되도록 돕습니다. 한 번 팔고 끝나지 않고 반복 구매로 이어지는 관리입니다.</p>
+<p><b>세스코의 강점  </b>세스코는 공간을 청소하거나 약제를 쓰는 대상으로만 보지 않습니다. 공간의 특성과 오염 원인을 먼저 분석하고 진단 결과에 따라 관리 방법을 설계합니다. 카케어도 같습니다. 차 안 33곳을 나누고 구역마다 남는 오염이 다르다는 것을 확인한 뒤에 제품을 만들었습니다. 제품보다 진단이 먼저입니다.</p>
+<p><b>경쟁 구도  </b>기존 카케어 브랜드와 같은 선반에서 "더 좋은 탈취제"로 경쟁하지 않습니다. 선반을 바꿉니다. 외관 관리 브랜드와 비교하는 대신 집 안 위생 관리(매트리스·배수구·공기)와 같은 줄에 차 안 위생을 놓습니다. 그러면 기존 카케어 브랜드 대신 "지금까지 차 안 위생을 아무도 관리해 주지 않았다"가 비교 대상이 됩니다.</p>
+<p><b>피할 것  </b>"깨끗한 차", "상쾌한 차 안"처럼 결과만 말하지 않습니다. 살균·탈취·제습·99%·16종 같은 수치는 나란히 늘어놓는 대신 33곳 구역을 설명하는 근거로 씁니다. "국내 유일·최초"는 경쟁 비교 근거가 없어 쓰지 않습니다. 교육자료의 계약 금액·업체 매출·ATP 수치는 내부 수치이므로 대외 콘텐츠에서 제외합니다.</p>
+
+<h2 id="carcare-s2"><span class="num">02</span>커뮤니케이션 메시지</h2>
+<p class="big"><b>세차를 마치고 방향제까지 두었는데 핸들에 남은 균과 시트에 밴 냄새, 바닥에 고인 습기는 그대로입니다.</b></p>
+<p class="big blue"><b>세스코는 차 안을 하나의 공간으로 보고 다르게 관리합니다.</b></p>
+<div class="box"><b class="h"><b>WHY 1.  </b><b>공간을 보는 눈 : 차 안을 33곳으로 나눠 진단합니다</b></b><p>같은 차 안이라도 위치마다 오염의 원인이 다릅니다. 핸들·기어·버튼처럼 손이 닿는 곳에는 세균과 바이러스가 남습니다. 대시보드·컵홀더·글로브 박스처럼 오염이 쌓이는 곳에는 먼지와 찌든 때가, 시트·천장·공조·시트 아래처럼 냄새가 남는 곳에는 악취 원인 물질과 곰팡이가 남습니다.</p><p>세스코는 차량 실내를 손이 닿는 곳 13곳, 오염이 쌓이는 곳 11곳, 냄새가 남는 곳 9곳, 모두 33개 위생 관리 포인트로 세분화했습니다. 구역마다 필요한 관리가 살균인지, 세정인지, 탈취인지, 제습인지를 정한 뒤 그에 맞는 제품을 만들었습니다. 세스코가 집과 사업장에서 하는 방식(진단 → 처방)을 차에 그대로 옮겼습니다.</p><p>근거: 상세페이지·블로그·매거진 v4 공통(33 POINTS, 13·11·9) / 교육자료 §4 차량 공간 구획화</p></div>
+<div class="box"><b class="h"><b>WHY 2.  </b><b>실차에서 증명 : 가장 험한 차에서 먼저 검증했습니다</b></b><p>실험실 수치만으로는 차 안의 냄새가 빠지지 않습니다. 세스코 과학연구소는 오염과 냄새가 가장 많이 쌓이는 렌터카·중고차 현장에서 출발했습니다. 실제 차량 실내의 악취 성분을 포집·정량 분석해 원인을 규명했습니다(악취 원인 분석). 대형 렌터카·중고차의 다양한 오염 환경에서 반복 테스트하고(가혹 조건 테스트) 디스플레이·하이그로시·가죽 등 내장재 소재별로 손상·변색을 확인했습니다(소재 안전성). 봄·여름·가을·겨울 네 번의 필드 테스트도 거쳤습니다(사계절 내구성).</p><p>이 솔루션은 국내 대형 렌터카 기업의 실제 차량으로 완성됐고 지금은 주요 모빌리티 기업의 차량 관리에 쓰입니다. 차량 위생에 돈을 쓰는 기업이 먼저 선택한 기준을 개인 고객의 차에 그대로 제공합니다.</p><p>근거: 상세페이지 "세스코 실차 검증 프로젝트" 4항 / 블로그 10/02 / 교육자료 §8 GC/MS 분석 <span class="need inline">[SK렌터카·K Car·오토핸즈 사명 공개 동의 확인. 동의 전에는 "국내 대형 렌터카 기업", "주요 모빌리티 기업"으로]</span></p></div>
+<div class="box"><b class="h"><b>WHY 3.  </b><b>밀폐 공간의 기준 : 성분부터 효과까지 집 안 위생 기준으로 검증했습니다</b></b><p>차 안은 창문을 닫으면 밀폐되는 데다 손과 피부가 자주 닿고 아이·임산부·반려동물이 함께 탑니다. 뿌리는 제품의 흡입 가능성까지 봐야 하는 환경입니다. 이 환경에 맞춰 세스코는 카케어 살균소독제를 기후에너지환경부 승인 살생물제품으로 만들었습니다. 효능·효과 시험과 인체 위해성 평가(경피·흡입)를 거쳤고 성분은 사탕수수 기원 주정 100% 식품첨가물로 처방했습니다. 가습기 살균제 이슈 성분(CMIT·MIT·BKC·DDAC)을 포함한 유해물질 불검출과 피부 저자극 판정까지 확인했습니다.</p><p>살균은 세균 14종 99.999%, 인플루엔자 A·코로나19 바이러스 2종 99.99%. 탈취는 담배 냄새 원인 물질(4-에테닐피리딘)과 암모니아·트리메틸아민 99%. 세스코가 보는 것은 수치보다 그 수치가 나온 성분입니다. 밀폐된 차 안에서 매일 써도 되는 성분에서 나온 숫자입니다.</p><p>근거: 라벨 정본(승인번호 0125-0038, 에탄올 52.14% w/w, 주정 58 v/v%) / 상세페이지 각주 / d01 ⑰ 고정 각주 <span class="need inline">[유해물질 불검출 "4종"(매거진) vs "5종"(상세·라벨, 차아염소산나트륨 포함) 표기 통일]</span></p></div>
+<p><b>WHY 1·2·3이 카케어를 고르는 첫 번째 이유입니다. 5종이 살균·탈취·제습 3축으로 33곳을 빠짐없이 맡는다는 구성이 "무엇을 사야 하나"를 정하는 두 번째 이유입니다.</b></p>
+
+<h3>기존 카케어와 무엇이 다른가</h3>
+<div class="vs">
+<div><b>기존 카케어</b>광택·스크래치·얼룩처럼 눈으로 보는 겉모습을 관리합니다. 루틴은 외관 세차 → 내부 진공·물걸레 → 방향제 거치. 제품은 세정력·소재 호환·향을 말합니다. 만든 회사는 자동차 용품 회사입니다.</div>
+<div class="cesco"><b>세스코 카케어</b>세균·바이러스·악취 원인·습기를 기준으로 증명해야 하는 위생 관리입니다. 루틴은 외관 세차 → 내부 정돈 → 보이지 않는 균·악취·습기 제어. 제품은 어느 구역의 어떤 오염을 없애는지를 말합니다. 만든 회사는 공간 위생 관리 회사입니다.</div>
+</div>
+<p class="small"><span class="gray">매거진 v4 p.12 "기존 카케어와 무엇이 다른가" 블록과 교육자료 §2 브랜드 포지셔닝(외관 관리 중심 브랜드 ↔ 차량 실내 공간 위생 관리 브랜드)을 합쳤습니다. 경쟁 브랜드명은 대외 콘텐츠에 쓰지 않습니다.</span></p>
+
+<h3>고객이 기억할 문장</h3>
+<ul>
+<li>&quot;차가 깨끗하다는 것과 위생이 관리되었다는 것은 다른 문제입니다.&quot; (매거진 v4 표지 원문)</li>
+<li>&quot;때로는 집보다 오래 머무르는 1.5평의 작은 거실, 차량에서도 안심할 수 있도록.&quot; (상세페이지 원문)</li>
+<li>&quot;매일 머무는 공간 위생을 관리하는 세스코가, 이제 차 안의 위생까지 관리합니다.&quot; (상세페이지 원문)</li>
+<li>&quot;세차와 방향제로는 닿지 않는 차 안 33곳.&quot; (매거진 v4 원문)</li>
+<li>&quot;세스코가 집에서 하는 일을, 차에서도 합니다.&quot; <span class="gray">(제안)</span></li>
+</ul>
+
+<h2 id="carcare-s3"><span class="num">03</span>쓸 수 있는 표현</h2>
+<p class="small"><span class="gray">모든 콘텐츠에 들어갈 표현을 근거에 따라 세 가지로 나눴습니다. 그대로 쓰거나, 이 범위 안에서 바꿔 씁니다. 마이랩 제품 정식 표기는 라벨 전사와 세스코몰이 정본입니다.</span></p>
+<h3>사용 가능</h3>
+<table>
+<thead><tr><th><b>텍스트</b></th><th><b>근거</b></th></tr></thead><tbody>
+<tr><td>차량 실내 33개 위생 관리 포인트 / 손이 닿는 곳 13 · 오염이 쌓이는 곳 11 · 냄새가 남는 곳 9</td><td>상세페이지·블로그·매거진 공통. 구역 명칭은 상세페이지 표기(손이 닿는 곳 / 오염이 쌓이는 곳 / 냄새가 남는 곳)</td></tr>
+<tr><td>약 1.5평, 창문을 닫으면 밀폐되는 공간 / 집보다 오래 머무르는 1.5평의 작은 거실</td><td>상세페이지·블로그 원문</td></tr>
+<tr><td>세스코 실차 검증 프로젝트 4항: 악취 원인 분석 · 가혹 조건 테스트 · 소재 안전성 검증 · 사계절 내구성 테스트</td><td>상세페이지 원문</td></tr>
+<tr><td>국내 대형 렌터카 기업의 실제 차량으로 사계절 반복 테스트 / 주요 모빌리티 기업의 차량 관리에 활용</td><td>상세페이지·블로그 원문(사명 미기재 버전)</td></tr>
+<tr><td>기후에너지환경부 승인 살생물제품(살균소독제) / 승인번호 0125-0038</td><td>라벨 정본. d01 ⑰ 고정 각주 4요소 필수</td></tr>
+<tr><td>세균 14종 99.999% 살균 · 바이러스 2종(인플루엔자 A H1N1, SARS-CoV-2 XBB.1.5) 99.99% 살멸 / 생활시설 표면 살균·살바이러스(비다공성)</td><td>상세페이지·라벨. 균주는 한글명(학명), ATCC 번호 없이</td></tr>
+<tr><td>사탕수수 기원 주정 100% 식품첨가물 성분 / 사탕수수 주정 58 v/v% 함유</td><td>상세페이지·라벨(식품위생법 표시)</td></tr>
+<tr><td>경피·흡입 위해성 평가 결과 위해 우려 없음</td><td>상세페이지 각주(화학제품안전법 고시 제2024-24호)</td></tr>
+<tr><td>피부 저자극 테스트 완료(인체피부 일차 자극 테스트)</td><td>상세페이지</td></tr>
+<tr><td>다용도 살균클리닝 티슈: 유해세균 4종(대장균·황색포도상구균·녹농균·장내구균) 99.999% 살균 / 계면활성제 무첨가 / 물얼룩·잔여물 방지 확인</td><td>상세페이지·매거진 각주</td></tr>
+<tr><td>마스터 차량용 전문탈취제: 4-에테닐피리딘(니코틴 유사오염원)·트리메틸아민·암모니아 99% 탈취 / 24시간 후 탈취력 지속</td><td>상세페이지·매거진 각주 3)</td></tr>
+<tr><td>마스터 차량용 탈취캔: 암모니아·트리메틸아민 99% 탈취 / 월 1회 순환 탈취 권장 / 20분</td><td>상세페이지·매거진 각주 4)</td></tr>
+<tr><td>슬림형 탈취제습제: 중량 대비 400% 흡습 / 암모니아·트리메틸아민·이소발레릭산(발냄새 원인) 99% 제거 / 교체 습한 환경 약 1개월, 건조한 환경 약 3개월</td><td>상세페이지·매거진 각주 5)</td></tr>
+<tr><td>핸들커버 오염도 평균 5,300 RLU, 검사소 화장실 변기 200 RLU, 약 26배(한국교통안전공단 2012, 오염도 측정값)</td><td>상세페이지 각주. "세균 수" 대신 "오염도"로 표기</td></tr>
+<tr><td>곰팡이는 습도 60%를 넘으면 빠르게 번식(미국 EPA 실내 습도 권장 30~50%)</td><td>매거진 v4 각주 3)</td></tr>
+<tr><td>5종 풀세트 37,900원(정가 90,600원) / 3종 세트 A·B 19,200원 / 단품 살균소독제 10,000원 · 티슈 9,200원 · 전문탈취제 35,000원 · 탈취캔 24,000원 · 제습제 9,900원</td><td>세스코몰 카탈로그(2026-10 수집, 온라인 회원 등급가). 게재 시점에 가격 다시 확인</td></tr>
+<tr><td>상품코드 풀세트 G2000001759 / 3종 A G2000001760 / 3종 B G2000001761 / 살균소독제 G2000001734 / 티슈 G2000001740</td><td>세스코몰 카탈로그</td></tr>
+<tr><td>마이랩 1개를 살 때마다 100원 기부</td><td>세스코몰 상세 보조 정보</td></tr>
+</tbody></table>
+<h3>확인 후 사용 가능</h3>
+<table>
+<thead><tr><th><b>텍스트</b></th><th><b>확인할 것</b></th></tr></thead><tbody>
+<tr><td>SK렌터카와 함께 실제 차량의 악취 원인을 분석 / K Car·오토핸즈 등 주요 모빌리티 기업에 도입</td><td>사명 공개 동의(매거진 v4 확인 항목). 상세페이지·블로그에는 사명이 이미 실려 있어 "기존 발행물 범위 내 사용"인지 확인</td></tr>
+<tr><td>사람이 머무는 공간을 50여 년 관리해 온</td><td>"50여 년" 표기(매거진 v4 확인 항목)</td></tr>
+<tr><td>핸들 세균 변기 대비 최대 250배</td><td>리플릿 본문 수치. 상세·매거진 각주(26배, 한국교통안전공단)와 불일치. 가이드북 2p 캡처에 250배 근거 있음 → 출처 확정 후 하나로 통일</td></tr>
+<tr><td>유해물질 5종 불검출(차아염소산나트륨·CMIT·MIT·DDAC·BKC, KCL)</td><td>매거진은 "주요 유해물질 4종". 라벨·상세 기준 5종으로 통일할지</td></tr>
+<tr><td>티슈 원단: 엠보싱 / 멜트블로운</td><td>리플릿 "엠보싱" vs 상세 "멜트블로운". 원단 표기 통일(매거진 확인 항목 04)</td></tr>
+<tr><td>영국 애스턴대 중고차 5대 실내 6곳 세균 비교(2022 발표)</td><td>블로그 원문에는 있지만 "표본이 작은 해외 조사" 단서 필수. 리플릿·POP처럼 짧은 지면에는 쓰지 않음</td></tr>
+<tr><td>진드기·아토피·천식·라임병 등 질환 연관 표현</td><td>매거진 심의 수준 결정 대기(확인 항목 02·03). 결정 전에는 "호흡기에 자극을 줄 수 있습니다" 수준까지만</td></tr>
+<tr><td>공조 시스템 안쪽(증발기) 곰팡이 점검</td><td>원천소스는 "공조 시스템 안쪽"까지. 증발기·에바포레이터 문장은 제조사 정비 안내 출처 확인 전 보류(확인 항목 06)</td></tr>
+<tr><td>세스코몰 회원 혜택(3% 적립, 진단 서비스 무료권, 첫 구매 100원·앱 5% 쿠폰)</td><td>혜택 조건·기간 확인(확인 항목 05)</td></tr>
+<tr><td>3종 세트 A = 살균소독제 + 티슈 + 전문탈취제 / B = 살균소독제 + 티슈 + 탈취캔</td><td>정가 합산(56,700 / 45,700원)으로 역산한 구성. 세스코몰 상세 구성품 표기로 확정</td></tr>
+<tr><td>악취 차량 GC/MS 분석: 담배 악취 물질 32.4%, 향료 32.6%(2025.08 렌터카 1대)</td><td>교육자료 내부 수치. 대외 인용은 담당자 확인. 쓴다면 "방향제 성분이 악취 성분과 비슷한 비중으로 검출"처럼 비율 없이</td></tr>
+<tr><td>전문탈취제 작용 기작: 흡착 + 중화(폴리옥시에틸렌계·시트러스계)</td><td>교육자료 §8. 상세페이지 표기와 맞춰 쓸지 마이랩개발팀 확인</td></tr>
+</tbody></table>
+<h3>사용 불가</h3>
+<table>
+<thead><tr><th><b>텍스트</b></th><th><b>이유</b></th></tr></thead><tbody>
+<tr><td>국내 유일 차량 위생 솔루션 / 국내 최초 카케어</td><td>경쟁 비교 조사가 없음. "국내 유일·최초"는 공인 인정을 받은 항목에만</td></tr>
+<tr><td>불스원·카렉스·소낙스 대비 ○○ (브랜드 직접 비교)</td><td>교육자료 내부 포지셔닝. 표시광고법. 대외 표현은 "기존 카케어는 외관 관리 중심" 선에서</td></tr>
+<tr><td>SK렌터카 연간 ○천만 원 / 르노 전시장 ○백만 원 / 매출 ○억</td><td>교육자료 내부 계약·매출 수치</td></tr>
+<tr><td>ATP 2,000 → 30 RLU / 매트 곰팡이 21만 마리 / 악취 저감률 80%</td><td>교육자료 내부 실험 수치. 공인 성적서 없음</td></tr>
+<tr><td>코로나 바이러스 완전 차단 / 100% 살균 / 모든 세균</td><td>승인통지서 기재 효능(세균 14종·바이러스 2종) 범위 밖. d01 ⑰</td></tr>
+<tr><td>공기 살균 / 차 안 공기를 소독</td><td>살균소독제는 비다공성 표면 전용, 공기소독 용도 불가(상세페이지 고지)</td></tr>
+<tr><td>천식·아토피를 예방합니다 / 치료 효과</td><td>질환 예방·치료 표현은 생활화학제품 광고 불가. 심의 수준 결정 전까지 "자극", "악화시킬 수 있다" 수준도 보류</td></tr>
+<tr><td>곡물발효살균제 · 살균티슈 · 섬유탈취제(차량용 지칭 시)</td><td>교육자료 약칭. 정식명은 세스코 마이랩 살균소독제 / 다용도 살균클리닝 티슈 / 마스터 차량용 전문탈취제</td></tr>
+<tr><td>살균소독제 70의 수치(바이러스 3종, 승인번호 0125-0039)를 카케어 살균소독제에 사용</td><td>다른 제품. 승인번호·에탄올 함량·바이러스 종수가 모두 다름(라벨 정본 주석)</td></tr>
+<tr><td>향기로 기분 좋은 차 안 / 상쾌한 향</td><td>방향제 카테고리로 읽힘. 세스코 카케어는 향이 아니라 원인 제거가 메시지</td></tr>
+<tr><td>세차 안 하셔도 됩니다</td><td>세차의 대체가 아니라 세차의 마지막 단계. 상세·매거진 공통 포지션</td></tr>
+</tbody></table>
+
+<h2 id="carcare-s4"><span class="num">04</span>컨설팅 포인트</h2>
+<h3>4-1. 로켓별로 짤 수 있는 전략</h3>
+<table>
+<thead><tr><th><b>로켓</b></th><th><b>대상 고객</b></th><th><b>니즈</b></th><th><b>첫 메시지</b></th><th><b>진단·체험</b></th><th><b>연계 상품</b></th></tr></thead><tbody>
+<tr><td>영유아 가정<br>(카시트·안전벨트 버클)</td><td>매트리스케어·마이랩 구매 고객, 세스코몰 육아 카테고리 고객</td><td>아이가 입으로 가져가는 버클·버튼, 카시트 패브릭의 균</td><td>손이 닿는 13곳. 닦기와 살균은 다른 관리</td><td>육안: 버클·윈도우 스위치 손자국 / 체험: 티슈 한 장으로 닦기 → 살균소독제 분사 시연</td><td>5종 풀세트 또는 3종 A, 매트리스케어, 마이랩 살균소독제 70(집용)</td></tr>
+<tr><td>반려동물 동반 운전자</td><td>마이랩 반려동물 탈취제 구매 고객, 펫 커뮤니티</td><td>털·흙·배변 오염, 켄넬 냄새, 산책 후 진드기 유입</td><td>켄넬·이동장도 뿌리면 살균. 시트에 밴 냄새는 원인 제거</td><td>육안: 뒷좌석 시트·켄넬 / 체험: 전문탈취제 시트 분사 24시간 뒤 비교</td><td>풀세트, 마이랩 반려동물 탈취제, 이염방지시트</td></tr>
+<tr><td>중고차 구매자·장기 운전자<br>(담배·체취·히터 냄새)</td><td>세스코몰 탈취 카테고리 조회 고객, 중고차 플랫폼 제휴 <span class="gray">(제안)</span></td><td>방향제로 덮어도 다시 올라오는 냄새, 에어컨·히터 첫 가동 냄새</td><td>향으로 덮지 않고 원인을 없앱니다. 담배 냄새 원인 물질 99%</td><td>육안: 에어컨 최대 세기로 냄새 확인 / 체험: 탈취캔 20분 순환 → 전후 비교</td><td>3종 B(탈취캔 구성), 전문탈취제 단품 반복 구매</td></tr>
+<tr><td>출퇴근·장거리 운전자<br>(차 안이 두 번째 거실)</td><td>세스코몰 가입 고객, 가정 IPM 계약 고객</td><td>매일 몇 시간을 보내는 공간인데 관리는 세차만</td><td>집보다 오래 머무는 1.5평. 집 안 위생과 같은 기준으로</td><td>셀프 체크 6항(매거진 v4) → 해당 항목 수에 따라 3종/5종 안내</td><td>풀세트, 가정 IPM 복합(차 + 집)</td></tr>
+<tr><td>사업장 계약 고객의 영업차<br>(사장님·원장님, 배달·서비스 차량)</td><td>IPM·FIC 계약 사업장, 식당·학원·병원의 통근·배달 차량</td><td>손님·직원이 함께 타는 차, 식재료 냄새, 다중 이용 오염</td><td>사업장에서 받으시는 위생 기준을 영업차에도</td><td>육안: 방문 시 차량 동행 점검 / 도구: <span class="need inline">[ATP 측정 사용 가능 여부 확인]</span></td><td>B2C 풀세트 다량 구매, 차량 대수가 많으면 B2B 솔루션(전문 인력 방문) 연결</td></tr>
+<tr><td>렌터카·법인차·전시장 담당자<br>(B2B)</td><td>렌터카·카셰어링·중고차·신차 전시장·서비스 차량 운영사</td><td>반납 차량 클레임, 위생 분쟁, 악취차 감가, 운영 표준화</td><td>국내 대형 렌터카 기업이 실제 차량에서 검증한 기준</td><td>교육자료 4가지 솔루션(Self+인증 / 전문 인력 방문 / 악취 저감 / 케미컬 판매) 중 운영 형태에 맞게 제안</td><td>B2B 케미컬 공급 + 인증마크, 악취 저감 전문 서비스. 상세 조건은 모빌리티 사업 담당</td></tr>
+</tbody></table>
+<p class="small"><span class="gray">※ 영유아·반려동물·중고차·렌터카 B2B 로켓, 셀프 체크 6항, 실차 검증 협력사, 4가지 솔루션 구조는 원천소스(상세페이지·매거진·교육자료)에 있는 내용입니다. 중고차 플랫폼 제휴, 가정 IPM 복합, 사업장 영업차 접근은 제안입니다. B2B 가격·로열티는 교육자료 내부 수치이므로 이 문서에 쓰지 않았습니다.</span></p>
+
+<h3>로켓별로 전할 메시지</h3>
+<p>로켓마다 대상 고객과 니즈에 맞춰 검증된 차별점을 1~2개씩 연결했습니다. 모든 메시지의 끝은 같은 자리로 돌아옵니다. "세스코가 공간에서 하던 일을, 차에서도 합니다."</p>
+<table>
+<thead><tr><th><b>로켓</b></th><th><b>세스코가 전할 메시지</b></th></tr></thead><tbody>
+<tr><td class="k"><b>영유아 가정</b></td><td>아이는 안전벨트 버클과 창문 버튼을 만지고 그 손을 입으로 가져갑니다. 손때를 걷어내는 닦기와 남은 균을 줄이는 살균은 서로 다른 관리입니다. 세스코 카케어 살균소독제는 밀폐된 차 안에서 아이와 함께 쓰는 제품이라 식품첨가물 100% 성분으로 만들었고 흡입까지 평가한 살생물제품 승인도 받았습니다. 집 안 위생을 관리하는 기준 그대로입니다.</td></tr>
+<tr><td class="k"><b>반려동물 동반</b></td><td>산책 뒤 시트에 남은 흙과 털, 켄넬에 배는 냄새는 방향제로 덮이지 않습니다. 세스코는 냄새의 원인 물질(암모니아·트리메틸아민)을 99% 탈취하는 전문탈취제와 켄넬·이동장에도 뿌리는 살균소독제를 제안합니다. 사람과 반려동물이 같이 머무는 공간을 세스코는 그렇게 관리해 왔습니다.</td></tr>
+<tr><td class="k"><b>중고차 구매자·장기 운전자</b></td><td>가장 빼기 어려운 담배 냄새는 섬유 깊숙이 배어 있다가 에어컨을 켤 때마다 공조 안쪽에서 다시 올라옵니다. 세스코는 실제 중고차·렌터카의 냄새를 성분까지 분석해 원인 물질을 밝혀냈습니다. 그 결과가 전문탈취제와 순환 탈취캔입니다. 향을 더하지 않습니다. 원인을 빼는 탈취입니다.</td></tr>
+<tr><td class="k"><b>출퇴근·장거리 운전자</b></td><td>하루 몇 시간을 보내는 1.5평 공간인데 관리는 세차와 방향제가 전부였습니다. 세스코는 차 안을 33곳으로 나눠 봅니다. 집 안을 관리할 때와 같은 기준입니다. 세차의 마지막 단계에 살균·탈취·제습을 더하면 차 안 위생이 완성됩니다.</td></tr>
+<tr><td class="k"><b>사업장 계약 고객의 영업차</b></td><td>사장님 매장에서 받으시는 위생 관리, 그 기준으로 영업차 안을 관리합니다. 손님과 직원이 함께 타는 차, 식재료를 싣는 차는 매장의 연장입니다. 차량이 여러 대면 세스코 전문 인력이 방문하는 B2B 솔루션으로 연결해 드립니다.</td></tr>
+<tr><td class="k"><b>렌터카·법인차 담당자</b></td><td>반납 차량의 냄새 클레임과 위생 분쟁은 담당자 혼자 해결하기 어렵습니다. 세스코 카케어는 국내 대형 렌터카 기업의 실제 차량에서 사계절 반복 테스트로 완성한 솔루션입니다. 사용 기준 교육과 품질 점검을 거치면 세스코 인증마크로 위생 관리 사실을 고객에게 보여 드립니다. 위생 관리에 쓰던 비용이 고객에게 보여 줄 수 있는 근거가 됩니다.</td></tr>
+</tbody></table>
+
+<h2 id="carcare-s5"><span class="num">05</span>상품별 핵심 전략 (마케팅포털 게시 형식)</h2>
+<p class="small"><span class="gray">마케팅포털 "상품별 핵심 전략" 형식으로 작성했습니다. 02에는 제품 설명만 들어가므로 컨설턴트가 고객에게 하는 말은 부록으로 뺐습니다. 사명 공개 동의와 확인 항목이 정리되면 03과 주황 부분을 채워 게시합니다.</span></p>
+<p><b>[카케어][마이랩] 차 안을 하나의 공간으로 보고 33곳을 관리하는 &#x27;세스코 마이랩 카케어 5종&#x27;</b></p>
+<p><span class="gray">[ALT안] [카케어][마이랩] 세차와 방향제로는 닿지 않는 차 안 33곳을 살균·탈취·제습으로 관리하는 &#x27;세스코 마이랩 카케어 5종&#x27;</span></p>
+<p>#카케어 #차량위생 #세스코마이랩카케어 #차안33곳 #상품별핵심전략 #상품별컨설팅</p>
+<p><span class="gray">[대표 이미지: 차량 실내 투시도 위 33 포인트 맵(흰·빨강·검정 점) + 5종 제품을 구역 옆에 배치. 제품 단독 컷이 아니라 "공간 위에 놓인 제품"으로]</span></p>
+<p>Why CESCO | 전문가의 시각으로 상품 바라보기 | 상품 스펙 익히기 | 이런 고객에게 추천해요 | 함께 제안하면 좋은 상품</p>
+
+<h3>[01. Why CESCO]</h3>
+<p>차 안은 매일 타는 공간입니다. 그런데 세차를 마친 뒤에도 핸들에 남은 균, 시트에 밴 냄새, 바닥에 고인 습기는 눈에 보이지 않습니다.</p>
+<p>외관 세차와 방향제만으로는 차 안 위생을 지킬 수 없습니다. 손이 반복해서 닿는 접촉면에는 세균과 바이러스가 남습니다. 섬유와 공조 안쪽에는 악취 원인 물질이 배고 시동이 꺼진 뒤 틈새에는 습기가 고입니다. 1.5평 밀폐 공간 곳곳에 이 세 가지가 함께 있습니다.</p>
+<p>세스코는 집과 사무실, 식당부터 병원까지 사람이 머무는 공간을 관리해 온 방식으로 차량 실내를 33개 위생 관리 포인트로 나눴습니다. 세스코 마이랩 카케어 5종은 구역별 오염 원인에 맞춰 살균·탈취·제습하도록 개발한 제품입니다.</p>
+<p>※ 세스코는 공간을 청소하거나 약제를 쓰는 대상으로만 보지 않고 공간의 특성과 오염 원인을 분석해 진단 결과에 따라 관리 방법을 설계합니다. 세스코 과학연구소는 오염과 냄새가 가장 많이 쌓이는 렌터카·중고차 현장에서 실제 차량의 악취 성분을 분석했습니다. 여기에 사계절 반복 테스트와 내장재 소재별 검증을 거쳐 카케어 솔루션을 완성했습니다. 이 솔루션은 국내 대형 렌터카 기업의 실제 차량으로 검증됐고 주요 모빌리티 기업의 차량 관리에 쓰입니다. 밀폐된 차 안에서 매일 쓰는 제품이기에 살균소독제는 흡입 위해성까지 평가한 기후에너지환경부 승인 살생물제품으로, 성분은 식품첨가물 100%로 처방했습니다. <span class="need inline">[협력사 사명 공개 동의 후 SK렌터카·K Car·오토핸즈 병기 / "50여 년" 표기 확인]</span></p>
+<p class="small"><span class="gray">[맨 위로 돌아가기]</span></p>
+
+<h3>[02. 전문가의 시각으로 상품 바라보기]</h3>
+<p>1. 세스코 마이랩 카케어 5종은 차량 실내 전용 위생 관리 세트입니다. 관리 대상은 외관이 아닌 차 안, 하는 일은 광택이 아닌 살균·탈취·제습입니다. 세차를 대신하지는 않습니다. 세차의 마지막 단계에 더하는 관리입니다.</p>
+<p><span class="gray">살균소독제 500ml · 다용도 살균클리닝 티슈 50매 · 마스터 차량용 전문탈취제 500ml · 마스터 차량용 탈취캔 150g · 슬림형 탈취제습제 30g×10</span></p>
+<p>2. 같은 차 안이라도 위치마다 남는 오염이 다릅니다. 세스코는 차량 실내를 손이 닿는 곳 13곳(핸들·기어 레버·센터페시아·도어 손잡이·안전벨트 등, 세균·바이러스), 오염이 쌓이는 곳 11곳(대시보드·컵홀더·글로브 박스·트렁크 등, 먼지·찌든 때·세균), 냄새가 남는 곳 9곳(시트·천장·발매트·에어컨 공조·시트 하단 등, 악취·곰팡이)으로 나눴습니다. 구역이 정해지면 필요한 관리도 정해집니다.</p>
+<p><span class="gray">[WHY 1 공간을 보는 눈] 33 POINTS = 13 + 11 + 9 / 상세페이지·블로그·매거진 공통</span></p>
+<p>3. 손이 닿는 13곳에는 살균소독제를 씁니다. 세스코 바이러스 연구소에서 핸들·시트·대시보드·문 손잡이 등 손이 자주 닿는 표면에서 세균 14종 99.999%, 인플루엔자 A·코로나19 바이러스 2종 99.99% 살균 효과를 검증했습니다. 기후에너지환경부 승인 살생물제품으로 효능·효과 시험과 경피·흡입 위해성 평가를 모두 거쳤습니다. 성분은 사탕수수 기원 주정 100% 식품첨가물이고 유해물질 불검출과 피부 저자극 판정도 받았습니다. 단단한 표면에 15~20cm 거리에서 분사하고 5분 방치합니다.</p>
+<p><span class="gray">[WHY 3 밀폐 공간의 기준] 승인번호 0125-0038 / 비다공성 표면 전용, 공기소독 불가 / d01 ⑰ 고정 각주 필수</span></p>
+<p>4. 오염이 쌓이는 11곳은 다용도 살균클리닝 티슈로 닦습니다. 컵홀더 얼룩, 대시보드 먼지, 디스플레이 손자국을 닦으면서 유해세균 4종을 99.999% 살균합니다. 계면활성제 무첨가 처방이라 물얼룩과 잔여물이 남지 않습니다. 디스플레이·클러스터에서 실제 테스트한 결과입니다. 티슈 한 장으로 세정과 살균을 한 번에 끝냅니다.</p>
+<p><span class="gray">유해세균 4종(대장균·황색포도상구균·녹농균·장내구균) / 식품첨가물 100% 성분 / 피부 저자극 <span class="need inline">[원단 표기: 엠보싱 vs 멜트블로운 통일]</span></span></p>
+<p>5. 냄새가 남는 9곳은 두 제품이 나눠 맡습니다. 시트·천장·발매트에 깊숙이 밴 담배 냄새·체취는 마스터 차량용 전문탈취제가 맡습니다. 원인 물질(4-에테닐피리딘·트리메틸아민·암모니아)을 99% 탈취하며 탈취력은 24시간 뒤에도 유지됩니다. 손이 닿지 않는 에어컨 공조 안쪽은 마스터 차량용 탈취캔이 미세 입자를 공기 흐름에 실어 20분 동안 순환 탈취합니다. 월 1회, 에어컨 최대 세기·내부 순환 모드로 켜고 뒷좌석 바닥에 세워 분사합니다. 두 제품 모두 실제 중고차·렌터카의 냄새 성분을 분석해 원인 물질을 밝혀낸 뒤 만들었습니다.</p>
+<p><span class="gray">[WHY 2 실차에서 증명] 악취 원인 분석 → 가혹 조건 테스트 → 소재 안전성 → 사계절 내구성 / 여름은 시트, 겨울은 발매트 중심(계절별 냄새 부위, 리플릿 확정 문안)</span></p>
+<p>6. 시동이 꺼진 뒤 남는 습기는 슬림형 탈취제습제로 잡습니다. 시트 아래·도어 포켓·트렁크처럼 공기가 멈추는 틈새에 두면 중량 대비 400% 흡습하면서 암모니아·트리메틸아민·이소발레릭산(발냄새 원인)을 99% 제거합니다. 파우치가 부풀어 말랑해지면 교체할 때입니다(습한 환경 약 1개월, 건조한 환경 약 3개월).</p>
+<p><span class="gray">습기 케어 / 곰팡이는 습도 60% 초과 시 빠르게 번식(EPA) / 무향</span></p>
+<p class="small"><span class="gray">[맨 위로 돌아가기]</span></p>
+
+<h3>[03. 상품 스펙 익히기]</h3>
+<p>* 두 손가락을 이용해 화면을 확대/축소할 수 있습니다.</p>
+<table>
+<thead><tr><th><b>구분</b></th><th><b>살균소독제</b></th><th><b>다용도 살균클리닝 티슈</b></th><th><b>마스터 차량용 전문탈취제</b></th><th><b>마스터 차량용 탈취캔</b></th><th><b>슬림형 탈취제습제</b></th></tr></thead><tbody>
+<tr><td class="k">관리 축</td><td>살균 케어</td><td>살균 케어</td><td>악취 케어</td><td>악취 케어</td><td>습기 케어</td></tr>
+<tr><td class="k">담당 구역</td><td>손이 닿는 곳 13</td><td>오염이 쌓이는 곳 11</td><td>냄새가 남는 곳 9 (섬유)</td><td>냄새가 남는 곳 9 (공조)</td><td>냄새가 남는 곳 9 (틈새 습기)</td></tr>
+<tr><td class="k">용량</td><td>500ml</td><td>50매 (20×20cm)</td><td>500ml</td><td>150g</td><td>30g×10개입 (무향)</td></tr>
+<tr><td class="k">핵심 수치</td><td>세균 14종 99.999% · 바이러스 2종 99.99%</td><td>유해세균 4종 99.999%</td><td>악취 원인 물질 3종 99% · 24시간 지속</td><td>암모니아·트리메틸아민 99%</td><td>흡습 400% · 악취 3종 99%</td></tr>
+<tr><td class="k">검증·인증</td><td>기후에너지환경부 승인 살생물제품(0125-0038) · 식품첨가물 100% · 유해물질 불검출 · 피부 저자극</td><td>식품첨가물 100% · 피부 저자극 · 물얼룩 방지 확인</td><td>공인시험기관 탈취력 · 소재 안전성 · 사계절 테스트</td><td>공인시험기관 탈취력</td><td>공인시험기관 탈취력</td></tr>
+<tr><td class="k">사용법</td><td>15~20cm 거리 분사 후 5분 방치, 비다공성 표면</td><td>닦은 뒤 다시 닦을 필요 없음</td><td>시트·매트 수시 분사. 여름 시트, 겨울 발매트</td><td>월 1회, 내부 순환·최대 풍량 20분, 분사 후 15분 환기</td><td>시트 아래·도어 포켓·트렁크 비치, 부풀면 교체</td></tr>
+<tr><td class="k">단품 가격</td><td>10,000원 (정가 12,000)</td><td>9,200원 (정가 9,700)</td><td>35,000원</td><td>24,000원</td><td>9,900원</td></tr>
+<tr><td class="k">상품코드</td><td>G2000001734</td><td>G2000001740</td><td><span class="need inline">[코드 확인]</span></td><td><span class="need inline">[코드 확인]</span></td><td><span class="need inline">[코드 확인]</span></td></tr>
+</tbody></table>
+<table>
+<thead><tr><th><b>세트</b></th><th><b>구성</b></th><th><b>가격(회원가 / 정가)</b></th><th><b>상품코드</b></th><th><b>누구에게</b></th></tr></thead><tbody>
+<tr><td class="k">5종 풀세트</td><td>살균소독제 + 티슈 + 전문탈취제 + 탈취캔 + 제습제</td><td>37,900 / 90,600원 (58%)</td><td>G2000001759</td><td>33곳 전부. 첫 구매 기본 제안</td></tr>
+<tr><td class="k">3종 세트 A</td><td>살균소독제 + 티슈 + 전문탈취제 <span class="need inline">[구성 확정]</span></td><td>19,200 / 56,700원 (66%)</td><td>G2000001760</td><td>시트 냄새(담배·체취·반려동물)가 주 고민</td></tr>
+<tr><td class="k">3종 세트 B</td><td>살균소독제 + 티슈 + 탈취캔 <span class="need inline">[구성 확정]</span></td><td>19,200 / 45,700원 (57%)</td><td>G2000001761</td><td>에어컨·히터 냄새가 주 고민</td></tr>
+</tbody></table>
+<p class="small"><span class="gray">가격은 세스코몰 2026-10 수집 기준 온라인 회원 등급가입니다. 게시 시점에 재확인합니다. 상품고시정보는 세스코몰 "상세정보 별도표기"를 따릅니다. 소비자 상담 1588-1119.</span></p>
+<p class="small"><span class="gray">[맨 위로 돌아가기]</span></p>
+
+<h3>[04. 이런 고객에게 추천해요]</h3>
+<p>✔ 아이가 안전벨트 버클과 창문 버튼을 만지고 입으로 가져가는 영유아 가정</p>
+<p>✔ 산책 뒤 반려동물과 함께 타서 시트와 켄넬 냄새가 신경 쓰이는 가정</p>
+<p>✔ 방향제를 써도 담배·체취·히터 냄새가 다시 올라오는 중고차 구매자와 장기 운전자</p>
+<p>✔ 출퇴근과 장거리로 하루 몇 시간을 차 안에서 보내는 운전자</p>
+<p>✔ 매장 위생 관리를 받고 있고 손님·직원·식재료를 싣는 영업차가 있는 사장님·원장님</p>
+<p>✔ 반납 차량 클레임과 위생 분쟁을 줄여야 하는 렌터카·카셰어링·중고차·법인차 담당자 (B2B 솔루션 연결)</p>
+<p class="small"><span class="gray">[맨 위로 돌아가기]</span></p>
+
+<h3>[05. 함께 제안하면 좋은 상품]</h3>
+<p>세스코 마이랩 카케어를 쓰는 고객은 눈에 보이지 않는 곳까지 관리되는지를 기준으로 제품을 고를 가능성이 높습니다. 차 안을 공간으로 보고 관리하기로 한 고객이라면 다음 대화는 차의 앞뒤에 있는 집과 매장으로 이어 가면 됩니다.</p>
+<p>✔ 차에서 내려 집으로 들어가는 동선으로 이야기를 이어 보세요. 집 안 접촉면은 차 안 살균소독제와 같은 기준으로 관리하는 <b>세스코 마이랩 살균소독제 70</b>으로, 차 안 습기·곰팡이에 민감한 고객에게는 <b>매트리스케어</b>와 <b>실내 공기 솔루션</b>으로 연결합니다. <span class="gray">(복합 제안은 제안. 연계 프로모션 조건은 D2C사업팀 확인)</span></p>
+<p>✔ 반려동물 동반 고객에게는 <b>마이랩 반려동물 탈취제</b>와 <b>이염방지시트</b>를, 영업차가 있는 사업장 고객에게는 차량 대수에 따라 <b>B2B 카케어 솔루션</b>(세스코 전문 인력 방문·인증마크)을 안내합니다.</p>
+<p>• 세스코 마이랩 살균소독제 70 (집 안 접촉면)</p>
+<p>• 매트리스케어 / 실내 공기 솔루션</p>
+<p>• 마이랩 반려동물 탈취제 · 이염방지시트</p>
+<p>• B2B 카케어 솔루션 (모빌리티 사업 담당 연결)</p>
+<p class="small"><span class="gray">[맨 위로 돌아가기]</span></p>
+
+<h3>[부록. 현장 대화 흐름] (포털 등록 시 제외, 컨설턴트 교육용)</h3>
+<p>컨설턴트가 고객에게 02의 내용을 설명하는 순서입니다. 실제로 확인할 수 있는 질문과 답만 적었습니다. 어디서 시작하든 흐름은 "세스코가 집에서 하는 일을 차에서도 한다"로 끝납니다.</p>
+<table>
+<thead><tr><th><b>순서</b></th><th><b>먼저 꺼내는 말</b></th><th><b>이어서 하는 말</b></th><th><b>02 번호</b></th></tr></thead><tbody>
+<tr><td class="k">진입</td><td>&quot;차 안에서 하루에 몇 시간 정도 보내세요?&quot;</td><td>&quot;창문 닫으면 1.5평쯤 되는 밀폐 공간이에요. 집에서는 매트리스도 배수구도 관리하시잖아요. 그런데 차 안은 세차가 전부인 경우가 많아요. 저희는 차 안도 하나의 공간으로 봐요.&quot;</td><td>1</td></tr>
+<tr><td class="k">WHY 1</td><td>&quot;핸들하고 시트하고, 남는 오염이 같을까요?&quot;</td><td>&quot;달라요. 핸들은 손에서 옮는 균이고 시트는 배어드는 냄새, 시트 아래는 습기죠. 그래서 차 안을 33곳으로 나눠서 구역마다 다르게 관리해요. 집이나 매장에서 하는 방식 그대로예요.&quot;</td><td>2</td></tr>
+<tr><td class="k">WHY 2</td><td>&quot;렌터카 반납할 때 냄새 때문에 곤란했던 적 있으세요?&quot;</td><td>&quot;이 솔루션을 만든 곳이 바로 렌터카·중고차 현장이에요. 실제 차의 냄새를 성분까지 분석하고 사계절 반복 테스트도 했어요. 가장 험한 차에서 통한 기준을 고객님 차에 그대로 드리는 거예요.&quot;</td><td>5</td></tr>
+<tr><td class="k">WHY 3</td><td>&quot;차 안에서 뿌리는 거라 성분이 제일 걱정되시죠?&quot;</td><td>&quot;맞아요, 밀폐 공간이라 저희도 그걸 먼저 봤어요. 살균소독제는 흡입까지 평가해서 정부 승인을 받은 살생물제품이에요. 성분은 사탕수수 주정 100% 식품첨가물이고요. 아이가 만지는 버클에 뿌려도 되는 기준이에요.&quot;</td><td>3</td></tr>
+<tr><td class="k">선택 이유 1</td><td>&quot;가장 신경 쓰이는 게 냄새예요, 아니면 아이 손 닿는 데예요?&quot;</td><td>&quot;시트 쪽 냄새면 전문탈취제가 든 3종 A요. 에어컨 켤 때 올라오면 탈취캔이 든 3종 B. 둘 다면 5종이 33곳을 빠짐없이 맡아요.&quot;</td><td>03 표</td></tr>
+<tr><td class="k">선택 이유 2</td><td>&quot;방향제 지금 쓰고 계세요?&quot;</td><td>&quot;방향제는 냄새를 덮는 거예요. 저희 탈취제는 냄새 원인 물질을 없애니까 24시간 뒤에도 유지되고요. 세차 끝나고 마지막에 뿌린다고 생각하시면 돼요.&quot;</td><td>5</td></tr>
+<tr><td class="k">마무리</td><td>&quot;세스코가 집에서 하는 일을 차에서도 하는 거예요.&quot;</td><td>&quot;한 달에 한 번 탈취캔, 제습제는 부풀면 교체, 여름·겨울 바뀔 때 시트하고 발매트. 이 루틴은 구매 뒤에 문자로 알려 드려요.&quot;</td><td>7장</td></tr>
+</tbody></table>
+
+<h3>현장에서 지킬 것</h3>
+<ul>
+<li>경쟁 브랜드 이름을 입에 올리지 않습니다. 다른 탈취제 대신 "지금까지 차 안 위생을 관리해 준 곳이 없었다"와 비교합니다.</li>
+<li>수치보다 33곳 구역을 먼저 말합니다. 수치는 구역을 설명하는 근거로 씁니다. 고객이 물으면 답합니다.</li>
+<li>"공기 살균", "코로나 차단"이라고 말하지 않습니다. 살균소독제는 표면 전용이고 승인 범위는 세균 14종·바이러스 2종입니다.</li>
+<li>질환 이름(아토피·천식·라임병)으로 겁주지 않습니다. 심의 수준이 정해지기 전까지 "자극이 될 수 있다"까지만 말합니다.</li>
+<li>세차를 깎아내리는 말은 피합니다. 세차의 대체가 아니라 세차의 마지막 단계입니다.</li>
+<li>협력사 이름은 사명 공개 동의가 확인되기 전까지 "국내 대형 렌터카 기업", "주요 모빌리티 기업"으로 말합니다. 계약 금액은 말하지 않습니다.</li>
+<li>핸들 오염도는 "약 26배, 오염도 측정값 기준"으로만 말합니다. "250배"는 각주가 통일될 때까지 보류합니다.</li>
+</ul>
+
+<h2 id="carcare-s6"><span class="num">06</span>문장 후보</h2>
+<h3>서브타이틀 (문제 인식)</h3>
+<p>☐ 세차를 마치고 방향제까지 두었는데 핸들에 남은 균과 시트에 밴 냄새는 그대로라면?</p>
+<p>☐ 차가 깨끗한 것과 위생이 관리된 것은 다른 문제입니다.</p>
+<p>☐ 집은 매트리스도 배수구도 관리하는데 차 안은 세차가 전부였습니다.</p>
+<p>☐ 창문을 닫으면 1.5평. 매일 타는 밀폐 공간, 누가 관리해 주고 있나요?</p>
+<p>☐ 외관은 세차가, 냄새는 방향제가. 그럼 균과 습기는요?</p>
+<h3>타이틀</h3>
+<p>☐ 세스코가 집에서 하는 일을, 차에서도 합니다.</p>
+<p>☐ 차 안을 하나의 공간으로 보고 33곳을 관리하는 카케어</p>
+<p>☐ 세차와 방향제로는 닿지 않는 차 안 33곳</p>
+<p>☐ 매일 머무는 공간 위생을 관리하는 세스코가, 이제 차 안의 위생까지</p>
+<p>☐ 차를 닦는 제품이 아닙니다. 차 안을 관리하는 세스코입니다.</p>
+<h3>본문 WHY 1 공간을 보는 눈</h3>
+<p>☐ 핸들은 균, 시트는 냄새, 시트 아래는 습기. 같은 차 안이라도 남는 오염이 다릅니다.</p>
+<p>☐ 손이 닿는 곳 13, 오염이 쌓이는 곳 11, 냄새가 남는 곳 9. 세스코는 차 안을 33곳으로 나눠 봅니다.</p>
+<p>☐ 제품이 먼저가 아니라 진단이 먼저. 세스코가 공간을 관리하는 순서입니다.</p>
+<h3>본문 WHY 2 실차에서 증명</h3>
+<p>☐ 가장 험한 렌터카·중고차에서 먼저 검증했습니다.</p>
+<p>☐ 실제 차 안의 냄새를 성분까지 분석해 원인 물질을 밝혀냈습니다.</p>
+<p>☐ 봄·여름·가을·겨울, 네 번의 필드 테스트를 거친 카케어.</p>
+<p>☐ 차량 위생에 돈을 쓰는 기업이 먼저 선택한 기준을 내 차에.</p>
+<h3>본문 WHY 3 밀폐 공간의 기준</h3>
+<p>☐ 밀폐된 차 안이니까 성분부터 효과까지 꼼꼼하게.</p>
+<p>☐ 흡입까지 평가한 정부 승인 살생물제품. 성분은 사탕수수 주정 100% 식품첨가물.</p>
+<p>☐ 아이가 입으로 가져가는 안전벨트 버클에 뿌려도 되는 기준으로 만들었습니다.</p>
+<p>☐ 가습기 살균제 이슈 성분(CMIT·MIT·BKC·DDAC) 불검출 확인.</p>
+<h3>본문 구성 (3축 5종)</h3>
+<p>☐ 살균·탈취·제습, 세 가지 관리로 33곳을 빠짐없이 맡는 5종.</p>
+<p>☐ 뿌리고(살균소독제), 닦고(티슈), 없애고(전문탈취제), 돌리고(탈취캔), 두는(제습제) 다섯 가지.</p>
+<p>☐ 향을 더하지 않습니다. 냄새의 원인을 뺍니다.</p>
+<p>☐ 한 달에 한 번 20분, 에어컨 속 냄새까지 순환 탈취.</p>
+<h3>클로징</h3>
+<p>☐ 세차의 마지막 단계는 세스코 카케어 5종으로 완성하세요. (매거진 v4 원문)</p>
+<p>☐ 집에서 쓰던 기준 그대로, 차 안도 세스코가 관리합니다.</p>
+<p>☐ 차 안도 사람이 머무는 공간입니다. 세스코가 관리합니다.</p>
+<p>☐ 지금 내 차는 어떤 상태인지, 셀프 체크 6항부터 확인해 보세요.</p>
+<p class="small"><span class="gray">※ 3장의 "사용 가능" 표현 안에서만 골랐습니다. 매거진·상세페이지 원문 문장은 출처를 괄호로 달았고 나머지는 이 문서의 제안입니다.</span></p>
+
+<h2 id="carcare-s7"><span class="num">07</span>구매 후 관리 알림 문자 (배송부터 계절 전환까지)</h2>
+<p>카케어는 렌탈과 달리 세스코몰에서 구매하는 상품입니다. 관리사가 방문하지 않으니 고객이 "어디를, 언제, 무엇으로" 관리하는지 아는 접점은 이 문자입니다. 이 문자로 차 안 위생을 루틴으로 만들고 탈취캔·제습제의 재구매 시점을 알려 드립니다. 말투는 세스코 문자 기준대로 조용히 챙겨 주는 투로 씁니다. <span class="gray">보내는 시점과 문안은 제안입니다. 세스코몰 발송 조건·수신 동의 범위는 확인이 필요합니다.</span></p>
+<table>
+<thead><tr><th><b>단계</b></th><th><b>시점</b></th><th><b>목적</b></th><th><b>핵심 문장</b></th></tr></thead><tbody>
+<tr><td class="k">① 배송 완료</td><td>배송 완료 당일</td><td>5종이 어디를 맡는지 한 줄로, 첫 사용 순서 안내</td><td>&quot;차 안 33곳, 오늘부터 세스코가 함께 관리합니다.&quot;</td></tr>
+<tr><td class="k">② 첫 루틴</td><td>배송 7일 후</td><td>탈취캔 첫 사용(20분)과 제습제 비치 확인. 사용법 영상 링크</td><td>&quot;에어컨 켤 때 냄새, 이번 주말 20분이면 됩니다.&quot;</td></tr>
+<tr><td class="k">③ 월간 루틴</td><td>배송 30일 후, 이후 매월</td><td>탈취캔 월 1회, 제습제 상태 확인(부풀었는지)</td><td>&quot;한 달이 지났습니다. 탈취캔 한 번, 제습제 한 번 확인해 주세요.&quot;</td></tr>
+<tr><td class="k">④ 계절 전환</td><td>6월 초(여름) · 10월 말(겨울)</td><td>여름은 시트·장마 습기, 겨울은 발매트·히터 첫 가동 냄새</td><td>&quot;히터 처음 켜기 전, 탈취캔 한 번 돌려 주세요.&quot;</td></tr>
+<tr><td class="k">⑤ 재구매</td><td>배송 90일 후</td><td>탈취캔·제습제 소진 시점. 단품 재구매 또는 3종 안내, 세스코몰 적립 혜택</td><td>&quot;세 달 동안 차 안, 어떠셨나요?&quot;</td></tr>
+</tbody></table>
+<h3>문안 시안 ① 배송 완료 (당일)</h3>
+<p>[세스코] 고객님, 세스코 마이랩 카케어가 도착했습니다</p>
+<p>차 안 33곳, 오늘부터 세스코가 함께 관리합니다. 집에서 하는 위생 관리와 같은 기준입니다.</p>
+<p>처음 하실 순서만 알려 드립니다.</p>
+<p>1. 핸들·기어·도어 손잡이에 살균소독제를 뿌리고 5분 두세요. (손이 닿는 곳)</p>
+<p>2. 컵홀더·대시보드는 티슈 한 장으로 닦으면 끝입니다. (오염이 쌓이는 곳)</p>
+<p>3. 시트와 발매트에는 전문탈취제, 시트 아래에는 제습제입니다. (냄새가 남는 곳)</p>
+<p>탈취캔은 시간 여유가 있는 날 20분이면 됩니다. 다음 주에 다시 알려 드리겠습니다.</p>
+<p>고객센터 1588-1119</p>
+<p>[버튼] 33곳 관리 가이드 보기</p>
+<h3>문안 시안 ③ 월간 루틴 (30일 후)</h3>
+<p>[세스코] 고객님, 카케어 한 달이 지났습니다</p>
+<p>두 가지만 확인해 주세요.</p>
+<p>✔ 탈취캔, 이달에 한 번 돌리셨나요?</p>
+<p>에어컨 최대 세기, 내부 순환으로 켜고 뒷좌석 바닥에 세워 분사하세요. 20분 뒤 시동을 끄고 15분 환기하면 됩니다. 에어컨 공조 안쪽에 남은 냄새는 이렇게 해야 닿습니다.</p>
+<p>✔ 제습제가 부풀어 말랑해졌나요?</p>
+<p>부풀었으면 새것으로 바꿔 주세요. 장마철이면 한 달, 건조한 계절이면 세 달쯤 갑니다.</p>
+<p>고객센터 1588-1119</p>
+<p>[버튼] 탈취캔 사용법 영상</p>
+<h3>문안 시안 ④ 계절 전환 (10월 말, 겨울)</h3>
+<p>[세스코] 고객님, 히터 켜기 전에 한 가지만</p>
+<p>에어컨에서 히터로 바뀌는 때입니다. 여름 내 공조 안쪽에 남아 있던 냄새가 히터 바람을 타고 올라올 수 있습니다.</p>
+<p>히터를 처음 켜는 날, 송풍구를 모두 열고 탈취캔을 한 번 돌려 주세요. 겨울에는 냄새가 시트보다 발매트에 먼저 배니 전문탈취제는 발매트부터입니다.</p>
+<p>눈에 젖은 매트는 충분히 말리세요. 시트 아래 제습제도 함께 확인해 주세요.</p>
+<p>고객센터 1588-1119</p>
+<p>[버튼] 겨울 차 안 관리 가이드</p>
+<p class="small"><span class="gray">※ 발송 시점·버튼 구성·가이드 링크 목적지는 예시입니다. 세스코몰 구매 고객 문자 발송 조건, 광고성 정보 수신 동의 범위, 재구매 혜택 조건은 D2C사업팀 확인이 필요합니다.</span></p>
+
+<h2 id="carcare-s8"><span class="num">08</span>FAQ (셀프 관리 팁과 함께)</h2>
+<p>검색으로 들어오는 질문에 답하는 형식입니다. 먼저 고객이 직접 할 수 있는 관리를 알려 드리고 마지막에 직접 할 수 없는 부분을 세스코의 관리로 잇습니다. 형식은 세스코몰 정본(Q / (CESCO 답변))을 따릅니다.</p>
+
+<p class="faq-q"><span class="q">Q</span>세차도 하고 실내 청소도 하는데 차 안 위생 관리가 따로 필요한가요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 세차와 실내 청소는 눈에 보이는 먼지와 얼룩을 없애는 데 효과적입니다. 먼저 하셔야 하는 관리입니다.</p>
+<p>2. 다만 닦아도 핸들·버클에 남은 균은 줄지 않습니다. 방향제는 시트에 밴 냄새의 원인을 없애지 못하고 시트 아래 습기는 시동이 꺼진 뒤 그대로 남습니다.</p>
+<p>3. 세스코는 차 안을 33곳으로 나눠 세차 뒤에 남는 균·냄새 원인·습기를 살균·탈취·제습으로 관리합니다. 세차를 대신하는 것이 아니라 세차의 마지막 단계입니다.</p>
+
+<p class="faq-q"><span class="q">Q</span>세스코는 해충 방제 회사인데 왜 차량용품을 만들었나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 세스코는 집과 사무실, 식당, 병원처럼 사람이 머무는 공간의 오염 원인을 분석하고 위생 관리 방법을 설계해 온 회사입니다. 해충은 그중 한 분야입니다.</p>
+<p>2. 차 안도 사람이 매일 머무는 공간입니다. 창문을 닫으면 1.5평 남짓한 밀폐 공간이 됩니다. 손이 반복해서 닿고 가족이 함께 탑니다. 그런데 관리는 세차에서 멈추는 경우가 많았습니다.</p>
+<p>3. 세스코는 차량을 또 하나의 생활 공간으로 봤습니다. 공간을 관리하던 방식 그대로 차 안을 33곳으로 나눠 진단하고 구역별 제품을 만들었습니다. 오염이 가장 많이 쌓이는 렌터카·중고차 현장에서 실제 차량으로 검증했습니다.</p>
+
+<p class="faq-q"><span class="q">Q</span>핸들이나 안전벨트 버클은 어떻게 소독하나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 주행 뒤나 동승자가 내린 뒤 핸들·기어·도어 손잡이·버튼류를 먼저 닦으세요. 눈에 보이는 오염이 없어도 손이 닿는 표면은 계속 오염됩니다.</p>
+<p>2. 닦기는 손때와 먼지를 걷어내고 살균은 남은 균을 줄입니다. 다른 관리입니다. 아이가 입으로 가져가는 버클·창문 버튼은 닦은 뒤 살균까지 해 주세요.</p>
+<p>3. 세스코 마이랩 살균소독제는 기후에너지환경부 승인 살생물제품입니다. 단단한 표면에 15~20cm 거리에서 뿌리고 5분 두면 세균 14종을 99.999%, 인플루엔자 A·코로나19 바이러스 2종을 99.99% 살균하는 효과를 검증받았습니다. 성분은 사탕수수 기원 주정 100% 식품첨가물입니다.</p>
+
+<p class="faq-q"><span class="q">Q</span>밀폐된 차 안에서 뿌려도 안전한가요? 아이·반려동물이 타는데요.</p>
+<p>(CESCO 답변)</p>
+<p>1. 분사한 뒤에는 창문을 열어 환기해 주세요. 탈취캔은 분사 종료 5분 후 시동을 끄고 15분 이상 환기합니다.</p>
+<p>2. 세스코는 밀폐된 차 안이라는 조건부터 따졌습니다. 살균소독제는 경피·흡입 위해성 평가를 거쳐 살생물제품 승인을 받았습니다. 가습기 살균제 이슈 성분(CMIT·MIT·BKC·DDAC)을 포함한 유해물질 불검출, 피부 저자극 판정도 확인했습니다. 성분은 식품첨가물 100%입니다.</p>
+<p>3. 살균소독제는 켄넬·이동장에 뿌려 살균소독해도 됩니다. 단, 비다공성(단단한) 표면 전용이고 공기소독 용도로는 쓰지 않습니다.</p>
+
+<p class="faq-q"><span class="q">Q</span>방향제를 쓰는데 왜 냄새가 다시 올라오나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 음식물이나 음료를 흘렸다면 냄새가 고착되기 전에 바로 닦고 충분히 말리는 것이 좋습니다. 담배·체취는 시트·천장·발매트 섬유 깊숙이 배어듭니다.</p>
+<p>2. 방향제는 향으로 냄새를 덮습니다. 원인 물질이 섬유와 공조 안쪽에 남아 있으면 향이 옅어질 때 다시 올라옵니다. 향과 섞여 또 다른 냄새가 되기도 합니다.</p>
+<p>3. 세스코 마스터 차량용 전문탈취제는 담배 냄새 원인 물질(4-에테닐피리딘)과 암모니아·트리메틸아민을 99% 탈취합니다. 탈취력은 24시간 뒤에도 유지됩니다. 실제 중고차·렌터카의 냄새 성분을 분석해 원인 물질을 밝혀낸 뒤 만들었습니다. 여름은 시트, 겨울은 발매트부터 뿌려 주세요.</p>
+
+<p class="faq-q"><span class="q">Q</span>에어컨을 켤 때 나는 냄새는 어떻게 하나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 에어컨 필터는 연 2회 이상 교체하세요. 필터에 먼지와 습기가 뒤엉키면 곰팡이와 냄새가 생기기 쉽습니다.</p>
+<p>2. 필터를 바꿔도 냄새가 나는 건 공조 시스템 안쪽에 남은 냄새가 바람을 타고 다시 퍼지기 때문입니다. 손이 닿지 않는 곳입니다.</p>
+<p>3. 세스코 마스터 차량용 탈취캔은 미세 입자가 공기 흐름을 타고 공조 안쪽까지 들어가 순환 탈취합니다. 한 달에 한 번, 에어컨 최대 세기·내부 순환 모드로 켜고 뒷좌석 바닥에 세워 분사합니다. 20분이면 됩니다. 에어컨↔히터 전환 시점과 장거리 여행 뒤에도 권합니다.</p>
+
+<p class="faq-q"><span class="q">Q</span>차 안 습기는 어떻게 관리하나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 젖은 우산이나 신발은 차 안에 오래 두지 마세요. 매트에 남은 물기는 충분히 말리고 비·눈 오는 날은 환기합니다.</p>
+<p>2. 시트 아래·도어 포켓·트렁크처럼 공기가 멈추는 곳은 습도가 높아지기 쉽습니다. 곰팡이는 습도 60%를 넘으면 빠르게 번식합니다. 시동이 꺼진 뒤에는 에어컨으로 말릴 수 없습니다.</p>
+<p>3. 세스코 슬림형 탈취제습제는 좁은 틈새에 두기만 해도 중량 대비 400% 흡습하면서 암모니아·트리메틸아민·이소발레릭산(발냄새 원인)을 99% 제거합니다. 파우치가 부풀어 말랑해지면 교체합니다(습한 환경 약 1개월, 건조한 환경 약 3개월).</p>
+
+<p class="faq-q"><span class="q">Q</span>디스플레이나 가죽 시트에 써도 손상이 없나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 어떤 제품이든 눈에 띄지 않는 부분에 먼저 시험한 뒤 쓰시는 것이 안전합니다.</p>
+<p>2. 세스코는 디스플레이·하이그로시·가죽 등 차량 내장재 소재별로 손상·변색이 없는지 소재 안전성 테스트를 거쳤습니다. 다용도 살균클리닝 티슈는 디스플레이·클러스터(계기판)에서 물얼룩과 잔여물이 남지 않는지 실제로 테스트했습니다. 계면활성제 무첨가라 다시 닦아낼 필요도 없습니다.</p>
+<p>3. 살균소독제는 비다공성 표면 전용입니다. 패브릭 시트에는 전문탈취제를 쓰세요.</p>
+
+<p class="faq-q"><span class="q">Q</span>5종 풀세트와 3종 세트, 어떤 걸 골라야 하나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 차 안 33곳을 모두 관리하시려면 살균·탈취·제습이 다 들어간 5종 풀세트입니다. 처음 시작하시는 분께 권합니다.</p>
+<p>2. 시트에 밴 냄새(담배·체취·반려동물)가 주 고민이면 전문탈취제가 든 3종 세트 A, 에어컨·히터를 켤 때 올라오는 냄새가 주 고민이면 탈취캔이 든 3종 세트 B입니다. 살균소독제와 티슈는 두 세트에 모두 들어 있습니다. <span class="need inline">[세트 구성 확정 후 게시]</span></p>
+<p>3. 탈취캔과 제습제는 쓰면서 소진되는 제품이라 단품으로 재구매하실 수 있습니다. 세스코몰 회원은 구매 금액의 3%가 적립됩니다. <span class="need inline">[혜택 조건 확인]</span></p>
+
+<p class="faq-q"><span class="q">Q</span>렌터카·중고차에서 검증했다는 게 무슨 뜻인가요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 렌터카와 중고차는 여러 사람이 타고 내려 오염과 냄새가 가장 많이 쌓이는 차량입니다. 세스코는 가장 어려운 조건에서 출발했습니다.</p>
+<p>2. 세스코 과학연구소는 국내 대형 렌터카 기업의 실제 차량에서 악취 성분을 포집·분석해 원인을 규명했습니다. 다양한 오염 환경에서 반복 테스트하고 내장재 소재별 안전성을 확인했습니다. 봄·여름·가을·겨울 네 번의 필드 테스트를 거쳐 솔루션을 완성했습니다.</p>
+<p>3. 이 솔루션은 지금 주요 모빌리티 기업의 차량 관리에 쓰입니다. 차량 위생에 돈을 쓰는 기업이 먼저 선택한 기준입니다. 개인 고객의 차에도 같은 제품으로 제공합니다. <span class="need inline">[사명 공개 동의 후 SK렌터카·K Car·오토핸즈 병기]</span></p>
+
+<p class="faq-q"><span class="q">Q</span>영업용 차량이 여러 대인데 회사 차량도 관리해 주나요?</p>
+<p>(CESCO 답변)</p>
+<p>1. 차량이 몇 대면 세스코몰에서 5종 풀세트를 대수만큼 구매해 직원분들이 직접 관리하시면 됩니다. 관리 순서는 구매 뒤 문자로 안내해 드립니다.</p>
+<p>2. 차량이 많거나 반납 차량 클레임·위생 분쟁이 잦은 렌터카·카셰어링·중고차·법인 차량에는 세스코 전문 인력이 방문하는 B2B 카케어 솔루션이 있습니다. 세스코 사용 기준 교육·품질 점검을 거치면 인증마크도 제공합니다. 고객센터 1588-1119로 문의해 주시면 모빌리티 사업 담당이 연락드립니다. <span class="need inline">[B2B 문의 채널·담당 확인]</span></p>
+
+</section>
+<section class="doc" id="main-sec">
+<h2 id="main"><span class="num">09</span>세스코 카케어 · 메인 헤드카피 30 <span class="sub">표지용 · 제품명 없음</span></h2>
+<div class="strip"><span>차 안은 공간이다</span><span>33곳</span><span>실차 검증</span><span>밀폐 공간의 기준</span><span>세차의 마지막 단계</span></div>
+<ol class="copy">
+<li><div><div class="l1">세차를 마치고 방향제까지 두었는데,</div><div class="l2">핸들에 남은 균, 시트에 밴 냄새, 바닥에 고인 습기는 그대로입니다</div></div><div class="tagcol"><span class="tag">상황</span></div></li>
+<li><div><div class="l1">창문을 닫으면 1.5평.</div><div class="l2">매일 타는 밀폐 공간, 위생은 누가 관리해 주고 있나요?</div></div><div class="tagcol"><span class="tag">되묻기</span></div></li>
+<li><div><div class="l1">집은 매트리스도 배수구도 관리하면서,</div><div class="l2">차 안은 세차가 전부였습니다</div></div><div class="tagcol"><span class="tag">되묻기</span></div></li>
+<li><div><div class="l1">차가 깨끗하다는 것과</div><div class="l2">위생이 관리되었다는 것은 다른 문제입니다</div><div class="note">매거진 v4 표지 원문</div></div><div class="tagcol"><span class="tag b">재정의</span></div></li>
+<li><div><div class="l1">자동차 용품을 만들지 않습니다.</div><div class="l2">세스코는 차 안이라는 공간을 관리합니다</div><div class="note">"가전제품을 만들지 않습니다" 문형(공통 규칙 헤드라인 예시)</div></div><div class="tagcol"><span class="tag b">재정의</span></div></li>
+<li><div><div class="l1">핸들은 균, 시트는 냄새, 시트 아래는 습기.</div><div class="l2">같은 차 안이라도 남는 오염이 다릅니다</div></div><div class="tagcol"><span class="tag">상황</span></div></li>
+<li><div><div class="l1">손이 닿는 곳 13, 오염이 쌓이는 곳 11, 냄새가 남는 곳 9.</div><div class="l2">세스코는 차 안을 33곳으로 나눠 봅니다</div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">세차와 방향제로는 닿지 않는 차 안 33곳,</div><div class="l2">집과 같은 기준으로 관리합니다</div></div><div class="tagcol"><span class="tag b">연결</span></div></li>
+<li><div><div class="l1">매일 잡는 핸들, 닦았는데 왜 찝찝할까?</div><div class="l2">닦기는 손때를 걷어내고 살균은 남은 균을 줄입니다</div></div><div class="tagcol"><span class="tag">되묻기</span></div></li>
+<li><div><div class="l1">한 조사에서 핸들커버 오염도는</div><div class="l2">검사소 화장실 변기의 약 26배였습니다</div><div class="note"><span class="need">26배(한국교통안전공단 2012, 오염도 측정값) 각주 필수 · 250배 사용 불가</span></div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">아이가 입으로 가져가는 안전벨트 버클,</div><div class="l2">마지막으로 살균한 게 언제인가요?</div></div><div class="tagcol"><span class="tag">호명</span></div></li>
+<li><div><div class="l1">등하원 카시트부터 산책 뒤 켄넬까지,</div><div class="l2">가족이 타는 차라면 세차 다음 단계가 필요합니다</div></div><div class="tagcol"><span class="tag">호명</span></div></li>
+<li><div><div class="l1">방향제를 뿌렸는데 냄새가 더 불쾌해졌다면,</div><div class="l2">원인은 시트와 공조 안쪽에 그대로 남아 있습니다</div></div><div class="tagcol"><span class="tag">상황</span></div></li>
+<li><div><div class="l1">향을 더하지 않습니다.</div><div class="l2">냄새의 원인 물질을 뺍니다</div></div><div class="tagcol"><span class="tag b">재정의</span></div></li>
+<li><div><div class="l1">가장 험한 렌터카·중고차에서 먼저 검증했습니다.</div><div class="l2">실제 차 안의 냄새를 성분까지 분석한 카케어</div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">봄·여름·가을·겨울, 네 번의 실차 필드 테스트.</div><div class="l2">실험실 수치가 아니라 실제 차에서 증명했습니다</div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">차량 위생에 돈을 쓰는 기업이 먼저 선택한 기준,</div><div class="l2">이제 내 차에 같은 제품으로</div><div class="note"><span class="need">사명 병기 시 공개 동의 확인</span></div></div><div class="tagcol"><span class="tag b">연결</span></div></li>
+<li><div><div class="l1">밀폐된 차 안에서 뿌리는 거니까,</div><div class="l2">흡입까지 평가한 살생물제품 승인 기준으로 만들었습니다</div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">가습기 살균제 이슈 성분(CMIT·MIT·BKC·DDAC) 불검출.</div><div class="l2">아이와 함께 타는 차 안의 성분 기준입니다</div><div class="note"><span class="need">4종/5종 표기 통일</span></div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">사탕수수 주정 100% 식품첨가물 성분으로 살균하고,</div><div class="l2">24시간 가는 탈취로 냄새 원인을 없앱니다</div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">집과 사무실, 식당부터 병원까지 관리해 온 세스코가</div><div class="l2">이제 집보다 오래 머무는 1.5평, 차 안까지</div><div class="note">상세페이지 원문 변형</div></div><div class="tagcol"><span class="tag b">연결</span></div></li>
+<li><div><div class="l1">외관은 세차가, 향은 방향제가.</div><div class="l2">그럼 균과 습기는 누가?</div></div><div class="tagcol"><span class="tag">되묻기</span></div></li>
+<li><div><div class="l1">출퇴근부터 주말 가족 외출까지, 차 안은 두 번째 거실입니다.</div><div class="l2">거실처럼 관리하세요</div></div><div class="tagcol"><span class="tag">상황</span></div></li>
+<li><div><div class="l1">세차의 마지막 단계는</div><div class="l2">살균·탈취·제습, 세 가지 관리로 완성됩니다</div><div class="note">매거진 v4 클로징 변형(제품명 제외)</div></div><div class="tagcol"><span class="tag b">연결</span></div></li>
+<li><div><div class="l1">뿌리고, 닦고, 없애고, 돌리고, 두는 다섯 가지.</div><div class="l2">차 안 33곳을 빠짐없이 맡습니다</div></div><div class="tagcol"><span class="tag">수치</span></div></li>
+<li><div><div class="l1">여름엔 시트, 겨울엔 발매트.</div><div class="l2">계절마다 냄새가 배는 자리가 다릅니다</div><div class="note">리플릿 확정 문안(계절별 냄새 부위)</div></div><div class="tagcol"><span class="tag">상황</span></div></li>
+<li><div><div class="l1">히터를 처음 켜는 날 올라오는 그 냄새,</div><div class="l2">여름 내내 공조 안쪽에 남아 있었습니다</div></div><div class="tagcol"><span class="tag">상황</span></div></li>
+<li><div><div class="l1">비 오는 날 젖은 우산 하나로</div><div class="l2">시트 아래는 곰팡이가 자라기 좋은 습도가 됩니다</div><div class="note">습도 60% 각주(EPA) 연결 가능</div></div><div class="tagcol"><span class="tag">상황</span></div></li>
+<li><div><div class="l1">지금 내 차는 어떤 상태인지,</div><div class="l2">셀프 체크 6항 중 하나라도 해당되면 점검부터</div><div class="note">매거진 v4 셀프 체크 6항 연결</div></div><div class="tagcol"><span class="tag">호명</span></div></li>
+<li><div><div class="l1">반납 차량 냄새 클레임, 담당자 혼자 막을 수 없습니다.</div><div class="l2">차량 위생도 역시 세스코여야만 합니다</div><div class="note">B2B(렌터카·카셰어링·법인) 전용 단정형</div></div><div class="tagcol"><span class="tag b">연결·B2B</span></div></li>
+</ol>
+
+
+</section>
+<div class="foot">원천소스: 세스코몰 상세페이지 8건(2026-10-08 수집) · 블로그 2026-10-02 · 라이프케어매거진 Vol.14 카케어 v4(2026-10-27) · 마이랩 제품 라벨 전사(2026-07) · 세스코몰 카탈로그 · 공통 브랜드 언어 원칙 d01 · BC본부 모빌리티 교육자료 V2(내부, 수치 미인용). 형식 기준: 11/02 마케팅 전략 3건, 11/02 로켓 리플릿 실물 시안.</div></div></body></html>
