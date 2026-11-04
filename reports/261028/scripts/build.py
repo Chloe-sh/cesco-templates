@@ -815,7 +815,7 @@ def build_all():
     idx = open(os.path.join(OUT, 'index.html'), encoding='utf-8').read()
     for k, v in ids.items():
         idx = idx.replace(f'href="{k}" target="_blank"', f'href="#{v}" target="_top"')
-    idx = idx.replace('href="../261026/index.html"', 'href="https://cescomktsh-wq.github.io/cesco-templates/reports/261026/index.html" target="_blank"')
+    idx = idx.replace('href="../261026/index.html"', 'href="https://chloe-sh.github.io/cesco-templates/reports/261026/index.html" target="_blank"')
     srcdoc = html.escape(idx, quote=True)
     doc = f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">

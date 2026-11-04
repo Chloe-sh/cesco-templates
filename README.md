@@ -2,7 +2,7 @@
 
 세스코 채널별 콘텐츠 템플릿 기준. 채널 16개·유형 35종(문서 55건)을 단일 HTML로 담은 열람 페이지다.
 
-- **열람 링크 (직원 공유용)**: https://cescomktsh-wq.github.io/cesco-templates/
+- **열람 링크 (직원 공유용)**: https://chloe-sh.github.io/cesco-templates/
 - 이전 배포처였던 Claude 아티팩트(cb7f4d40)는 이 저장소로 이관됐다. 앞으로 링크는 위 GitHub Pages 주소를 쓴다.
 
 ## 갱신 방법
