@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>세스코 카드뉴스 시안 · 코로나19 × 트루살균 공기청정기 판테온 (기본형 / 오해 교정형)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f5; --panel:#ffffff; --ink:#15171c; --ink-2:#4d5360; --ink-3:#7a8191;
+  --line:#d9dee6; --navy:#0b2d5c; --blue:#1457c8; --blue-soft:#e6eefc; --memo:#f5f6f8; --mark:#fff3a3;
+  --card-bg:#ffffff; --card-ink:#15171c; --card-blue:#1457c8; --card-navy:#0b2d5c; --card-mute:#6b7280; --card-line:#d9dee6; --card-sol:#eef4ff;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ color-scheme:dark;
+    --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+    --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430; --mark:#4a4320; }
+}
+:root[data-theme="dark"]{ color-scheme:dark;
+  --bg:#101318; --panel:#181c24; --ink:#eef1f5; --ink-2:#c3c9d4; --ink-3:#8b93a3;
+  --line:#2b313c; --navy:#9fbdf0; --blue:#6f9cf0; --blue-soft:#1b2740; --memo:#1f2430; --mark:#4a4320; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;line-height:1.6;word-break:keep-all}
+header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.hd{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding:14px 0}
+.hd h1{font-size:16px;font-weight:700;margin:0}
+.hd h1 small{display:block;font-size:12px;font-weight:400;color:var(--ink-3)}
+.tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.tabs button{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);font:inherit;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+:root[data-theme="dark"] .tabs button[aria-selected="true"],
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tabs button[aria-selected="true"]{color:#0b1220} }
+.tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.plan-head{padding:24px 0 6px}
+.plan-head h2{font-size:18px;margin:0 0 8px}
+.ptitle{margin:0 0 6px;font-size:14px}
+.k{display:inline-block;font-size:11px;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:1px 7px;border-radius:4px;margin-right:8px;vertical-align:middle}
+.lead{margin:0 0 6px;color:var(--ink-2);max-width:80ch;font-size:13.5px}
+.relay{margin:8px 0 0;font-size:13px;color:var(--ink-2)}
+.relay summary{cursor:pointer;color:var(--ink-3)}
+.relay p{margin:6px 0 0;max-width:90ch}
+.deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;padding:18px 0 24px}
+@media (max-width:760px){.deck{grid-template-columns:1fr}}
+.slot{display:flex;flex-direction:column;gap:10px}
+.slot-meta{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--ink-3)}
+.slot-meta b{color:var(--ink-2);font-weight:500}
+.card{position:relative;aspect-ratio:1/1;width:100%;background:var(--card-bg);color:var(--card-ink);border:1px solid var(--line);border-radius:4px;padding:7% 7.5%;display:flex;flex-direction:column;overflow:hidden;container-type:inline-size}
+.card .logo{position:absolute;top:5.5%;right:7.5%;font-size:2.9cqw;font-weight:900;letter-spacing:.04em;color:var(--card-navy)}
+.card .logo.sol{color:#fff;background:var(--card-navy);padding:.4cqw 1.6cqw;border-radius:3px;font-size:2.5cqw;letter-spacing:0}
+.card .num{font-size:2.6cqw;color:var(--card-mute);margin-bottom:3.2cqw}
+.head{margin:0 0 4.2cqw;line-height:1.28;letter-spacing:-.01em}
+.head .l{display:block;font-weight:900;font-size:6.2cqw;color:var(--card-ink)}
+.head .l.j{color:var(--card-blue)}
+.head.cover .l{font-size:7.4cqw}
+.body{font-size:3.45cqw;line-height:1.6;color:var(--card-ink);margin:0}
+.body p{margin:0 0 1.6cqw}
+.body mark{background:var(--mark);color:inherit;padding:0 .2cqw}
+.tip,.point,.step,.chk{margin:0 0 2.4cqw;font-size:3.3cqw;line-height:1.5}
+.tip b,.point b,.step b,.chk b{display:block;font-weight:700;font-size:3.5cqw;color:var(--card-navy)}
+.tip em,.point em,.step em,.chk em{font-style:normal;color:var(--card-blue);margin-right:.6cqw}
+.point{padding-top:2cqw;border-top:1px solid var(--card-line)}
+.point:first-child{border-top:0;padding-top:0}
+.check{font-size:3.1cqw;line-height:1.5;margin:0 0 1.4cqw}
+.name{font-size:3.4cqw;font-weight:700;color:var(--card-navy);margin:0 0 3cqw;padding:1.4cqw 2.4cqw;background:#dfe9fb;display:inline-block;border-radius:3px}
+:root[data-theme="dark"] .name{background:#1b2740}
+.src{margin-top:auto;padding-top:2.4cqw;font-size:2.5cqw;line-height:1.45;color:var(--card-mute)}
+.disc{margin-top:auto;font-size:2.4cqw;line-height:1.45;color:var(--card-mute)}
+.disc + .src{margin-top:1cqw}
+.strip{margin-top:auto;background:var(--card-navy);color:#fff;font-size:3.1cqw;padding:2.6cqw 3.2cqw;margin-left:-7.5%;margin-right:-7.5%;margin-bottom:-7%;line-height:1.5}
+.strip small{display:block;opacity:.75;font-size:2.6cqw;margin-top:.6cqw}
+.sub{margin:-1cqw 0 0;font-size:3.5cqw;line-height:1.5;color:var(--card-mute)}
+.cta{margin-top:2cqw;font-size:3.1cqw;color:var(--card-navy);font-weight:700}
+.wnote{font-size:2.6cqw;color:var(--card-mute)}
+.card.sol-bg{background:var(--card-sol)}
+.memo{background:var(--memo);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-size:12.5px;color:var(--ink-2);display:grid;gap:4px}
+.memo .k{min-width:62px;text-align:center}
+.appx{font-size:13px;color:var(--ink-2);padding:6px 0}
+.appx ul{margin:4px 0 0;padding-left:18px}
+.tags{font-size:13px;color:var(--ink-2);padding:10px 0 30px;word-break:break-all}
+#post pre, .memo-sec pre{white-space:pre-wrap;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;font:inherit;font-size:14px;line-height:1.7;margin:18px 0 30px}
+.memo-sec{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin:18px 0}
+.memo-sec h3{font-size:15px;margin:0 0 10px}
+.memo-sec h4{font-size:14px;margin:14px 0 6px}
+.memo-sec table{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0 14px;display:block;overflow:auto}
+.memo-sec th,.memo-sec td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.memo-sec th{background:var(--memo)}
+.memo-sec blockquote{margin:0 0 12px;padding:8px 12px;border-left:3px solid var(--blue);background:var(--blue-soft);font-size:13.5px}
+.memo-sec p,.memo-sec li{font-size:13.5px;color:var(--ink-2)}
+.memo-sec pre{font-size:13px}
+footer{padding:20px 0 40px;font-size:12px;color:var(--ink-3)}
+@media print{header{position:static}.memo,.relay,footer,.tabs{display:none}.plan[hidden]{display:block}.deck{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <h1>세스코 카드뉴스 시안 · 코로나19 × 트루살균 공기청정기 판테온 (기본형 / 오해 교정형)<small>세스코 카드뉴스 시안 · 1:1 장표 · 하이라이트는 형광펜 지정 문장 · 생성 2026-11-06</small></h1>
+  <div class="tabs" role="tablist"><button role="tab" aria-selected="true" aria-controls="plan-0" data-target="plan-0">1안</button><button role="tab" aria-selected="false" aria-controls="plan-1" data-target="plan-1">2안</button><button role="tab" aria-selected="false" aria-controls="post" data-target="post">게시 텍스트</button><button role="tab" aria-selected="false" aria-controls="memo" data-target="memo">작업 메모</button></div>
+</div></header>
+<main class="wrap">
+<section class="memo-sec top-memo"><h3>작업 메모</h3><p>작업 메모 첫 줄: <b>추천안(오해 교정형)으로 진행</b> / 담당자 유형 선택 답이 없어 카탈로그 §3 추천 순서 2번(타깃의 통념 2~3개 + 각 근거 있음)에 따라 골랐다. 기본형 1안 + 오해 교정형 1안, 총 2안. 두 안은 사실·출처·서비스 정식명·CTA가 같고 표지가 하는 일과 장 순서만 다르다.</p><p><b>치명 주의 (출고 차단 항목)</b>: 코로나19 바이러스 99.99% 살균 시험은 <b>UV파워 공기살균기 센스미</b>로만 완료된 시험이다(고려대의대 바이러스병연구소, 880L 챔버). 트루살균 공기청정기 <b>판테온의 공인 수치는 인플루엔자(H1N1) 99.99%·부유바이러스 99.9%·부유세균 99.9%·극초미세먼지 99.999%</b>까지다. 이 원고의 어느 장에도 &quot;판테온이 코로나19 바이러스를 살균한다&quot;는 문장을 쓰지 않았고, 마무리 장과 ALT에서도 코로나19와 판테온을 한 문장에 두지 않았다. 디자인·검수 단계에서도 추가하지 않는다.</p></section>
+
+<section class="plan" id="plan-0" role="tabpanel" >
+  <div class="plan-head">
+    <h2>[1안] 기본형 / 10장 + 부록</h2>
+    <p class="ptitle"><span class="k">게시 제목</span>[위해요소] 독감과 함께 돌아온 코로나19, 겨울 실내 공기 바이러스 관리법</p>
+    
+    <details class="relay"><summary>헤드 릴레이 (헤드만 이어 읽기)</summary><p>기침하는 가족 한 명, 바이러스는 3시간까지 머물 수 있다(표지) → 그래서 지금 얼마나? 독감 입원 2배, 코로나19 입원 매주 200명 안팎(통계) → 왜 한 집에서? 공기 중에서 3시간, 기침 한 번에 8m(원인) → 왜 겨울에? 창문 닫는 겨울, 머무는 시간이 길어진다(시즌) → 누가 더? 65세 이상이라면 한 번의 감염도 다르다(타깃) → 손 씻으면 되잖아? 손 씻기와 마스크만으로는 공기 속 바이러스는 남는다(무력화) → 그럼? 이렇게 관리해 보세요(팁+브릿지) → 세스코는? 청정과 살균을 한 번에(솔루션) → 믿을 수 있나? 살아 있는 바이러스로 직접 반복 시험(검증) → 지금이 바로, 공기도 함께 관리할 때(CTA) ✔ 통과</p></details>
+  </div>
+  <div class="deck">
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+  <div class="card" aria-label="CARD 1 표지">
+    <span class="logo">CESCO</span>
+    <span class="num">표지</span>
+    <h3 class="head cover"><span class="l">기침하는 가족 한 명,</span><span class="l">닫힌 거실 공기 속에</span><span class="l">바이러스는</span><span class="l">3시간까지 머물 수 있습니다</span></h3><div class="body"></div><p class="sub">독감과 함께 돌아온 코로나19, 겨울 실내 공기 관리법</p><div class="strip">한 집에서 차례로 앓는 겨울 감기, 원인은 실내 공기일 수 있습니다<small>CESCO 로고 / ☞ 옆으로 넘겨 확인하세요</small></div>
+  </div>
+  <div class="memo"><div><span class="k">이미지</span>실사 / 겨울 저녁 창문 닫힌 거실, 소파에서 기침하는 가족 한 명과 옆자리 아이 / &quot;닫힌 공기 속 3시간&quot;이라는 헤드의 장면을 그대로 보여 준다</div><div><span class="k">ALT</span>창문을 닫은 겨울 거실에서 가족 한 명이 기침하면 코로나19 바이러스가 공기 중에 최대 3시간까지 머물 수 있다는 세스코 카드뉴스 표지.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 2</b> 문제 맥락화 (통계)</span><span>앞 장이 남긴 질문: 그래서 지금 실제로 얼마나 퍼져 있나</span></div>
+  <div class="card" aria-label="CARD 2 문제 맥락화 (통계)">
+    <span class="logo">CESCO</span>
+    <span class="num">02</span>
+    <h3 class="head"><span class="l">독감 입원 2배,</span><span class="l j">코로나19 입원도 매주 200명 안팎</span></h3><div class="body"><p>질병관리청 표본감시에서 2026년 44주차(10월 25~31일) 인플루엔자 입원환자는 병원급 223곳에서 461명으로, 지난해 같은 주 174명의 2배를 넘었습니다. 독감 유행 속에서도 코로나19 입원은 끊이지 않았습니다. 병원급 코로나19 입원환자는 8월 말 115명에서 4주 만에 337명까지 늘었고 10월에도 매주 170~290명이 입원했습니다. <mark>10월 중순 기준, 바이러스 호흡기 감염으로 입원한 환자 5명 중 1명은 코로나19였습니다</mark>.</p></div><div class="src">출처: 질병관리청, 감염병 표본감시 주간소식지 41~42주차 및 보도자료, 2026.11.6</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>10월 중순 기준, 바이러스 호흡기 감염으로 입원한 환자 5명 중 1명은 코로나19였습니다.</div><div><span class="k">강조</span>2배 / 매주 170~290명 / 5명 중 1명</div><div><span class="k">이미지</span>인포그래픽 / 차분한 남색·회색 / 독감 입원 174명→461명 막대 2개와 코로나19 주별 입원 꺾은선(115→196→308→337, 이후 10월 291→174 하향 구간 포함)을 나란히 두어 &quot;독감 유행 속에서도 코로나19 입원이 이어진다&quot;를 보여 준다</div><div><span class="k">ALT</span>2026년 44주차 독감 입원환자 461명(전년 174명의 2배 이상), 코로나19 입원환자 10월 매주 170~290명, 10월 중순 바이러스 호흡기 감염 입원 5명 중 1명이 코로나19라는 질병관리청 표본감시 수치.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 3</b> 원인 폭로 (공기 전파)</span><span>앞 장이 남긴 질문: 왜 한 집 안에서 차례로 앓게 되나</span></div>
+  <div class="card" aria-label="CARD 3 원인 폭로 (공기 전파)">
+    <span class="logo">CESCO</span>
+    <span class="num">03</span>
+    <h3 class="head"><span class="l">공기 중에서 3시간,</span><span class="l j">기침 한 번에 최대 8m?!</span></h3><div class="body"><p>기침하는 가족이 방으로 들어가도 거실 공기는 그대로 남습니다. 미국 국립보건원(NIH) 연구에서 코로나19 바이러스는 실험 조건의 공기 중에서 3시간 동안 감염력을 유지했습니다. MIT 연구에서는 기침이나 재채기로 나온 작은 물방울(에어로졸)이 최대 8m까지 퍼졌습니다. <mark>증상이 없는 사람 한 명이 머물다 간 공기도 몇 시간 동안 감염의 통로가 될 수 있습니다</mark>.</p></div><div class="src">출처: van Doremalen 외, NEJM, 2020(미국 NIH) / Bourouiba, JAMA, 2020(MIT)</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>증상이 없는 사람 한 명이 머물다 간 공기도 몇 시간 동안 감염의 통로가 될 수 있습니다.</div><div><span class="k">강조</span>3시간 / 최대 8m</div><div><span class="k">이미지</span>일러스트 단면도 / 거실 평면 위에 기침 지점에서 8m 반경이 퍼지고 시계가 3시간을 가리키는 그림 / 헤드 숫자 두 개를 공간과 시간으로 번역</div><div><span class="k">ALT</span>코로나19 바이러스는 실험 조건의 공기 중에서 3시간 동안 감염력을 유지하고(NEJM 2020) 기침·재채기 에어로졸은 최대 8m까지 확산해(JAMA 2020) 한 집 안 연쇄 감염의 경로가 된다는 설명 장표.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 4</b> 왜 하필 지금 (겨울)</span><span>앞 장이 남긴 질문: 여름에도 있던 바이러스인데 왜 겨울에 더 문제인가</span></div>
+  <div class="card" aria-label="CARD 4 왜 하필 지금 (겨울)">
+    <span class="logo">CESCO</span>
+    <span class="num">04</span>
+    <h3 class="head"><span class="l">창문 닫는 겨울,</span><span class="l j">바이러스가 머무는 시간은 길어집니다</span></h3><div class="body"><p>기온이 떨어지면 창문을 여는 횟수가 줄어듭니다. 바뀌지 않은 실내 공기 속에 바이러스도 그대로 남습니다. 난방으로 건조해진 공기는 코와 기관지 점막을 말려 바이러스를 막는 힘을 떨어뜨립니다. <mark>실내가 건조할수록 인플루엔자 바이러스가 공기 중에서 감염력을 더 오래 유지한다는 연구 결과도 있습니다</mark>. 환기는 줄고 공기는 마르는 겨울이 한 해 중 실내 공기 관리가 가장 필요한 시기입니다.</p></div><div class="src">출처: 질병관리청 겨울철 건강수칙(국가건강정보포털) / Noti 외, PLoS ONE, 2013(미국 NIOSH)</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>실내가 건조할수록 인플루엔자 바이러스가 공기 중에서 감염력을 더 오래 유지한다는 연구 결과도 있습니다.</div><div><span class="k">강조</span>창문 닫는 겨울 / 건조</div><div><span class="k">이미지</span>일러스트 / 닫힌 창과 라디에이터, 바뀌지 않은 실내 공기 속에 머무는 입자들 / &quot;환기가 줄어 머문다&quot;는 기전을 한 컷으로</div><div><span class="k">ALT</span>겨울에는 환기가 줄어 실내 공기 속 바이러스가 그대로 남고, 난방 건조로 호흡기 점막의 방어력이 떨어지며, 건조할수록 인플루엔자 바이러스가 공기 중에서 감염력을 오래 유지한다는 장표.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 5</b> 타깃 심화 (고령 가족)</span><span>앞 장이 남긴 질문: 우리 집에서 누가 가장 조심해야 하나</span></div>
+  <div class="card" aria-label="CARD 5 타깃 심화 (고령 가족)">
+    <span class="logo">CESCO</span>
+    <span class="num">05</span>
+    <h3 class="head"><span class="l">65세 이상이라면</span><span class="l j">한 번의 감염도 다릅니다</span></h3><div class="body"><p>2026년 44주차 <mark>독감 입원환자 461명 가운데 64.9%가 65세 이상이었습니다</mark>. 코로나19도 고령층과 면역이 약한 분에게는 여전히 중증으로 이어질 수 있다고 질병관리청에서는 안내합니다. 그런데 65세 이상의 코로나19 백신 접종률은 10월 30일 기준 32.8%에 머물렀습니다. 어르신이 오래 머무는 거실이라면 공기 관리 기준을 한 단계 높여야 합니다.</p></div><div class="src">출처: 질병관리청 보도자료, 2026.11.6 / 질병관리청 집계(연합뉴스 2026.11.2 보도)</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>독감 입원환자 461명 가운데 64.9%가 65세 이상이었습니다.</div><div><span class="k">강조</span>64.9% / 32.8%</div><div><span class="k">이미지</span>실사 / 거실 소파에 앉은 어르신과 담요, 옆에 손주 / 헤드의 &quot;65세 이상&quot;을 집 안 장면으로</div><div><span class="k">ALT</span>2026년 44주차 독감 입원환자의 64.9%가 65세 이상이고 65세 이상 코로나19 백신 접종률은 10월 30일 기준 32.8%여서, 고령 가족이 있는 집은 공기 관리 기준을 높여야 한다는 장표.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 6</b> 셀프 수단의 범위</span><span>앞 장이 남긴 질문: 손 씻고 마스크 쓰면 되는 것 아닌가</span></div>
+  <div class="card" aria-label="CARD 6 셀프 수단의 범위">
+    <span class="logo">CESCO</span>
+    <span class="num">06</span>
+    <h3 class="head"><span class="l">손 씻기와 마스크만으로는</span><span class="l j">공기 속 바이러스는 남습니다</span></h3><div class="body"><p>손 씻기와 기침 예절, 사람 많은 곳의 마스크는 지금도 질병관리청이 권하는 기본 수칙입니다. 손과 표면에 묻은 바이러스는 이 습관으로 줄일 수 있습니다. 집 안에서 마스크를 벗고 식탁과 소파를 함께 쓰는 사이, <mark>공기 중에 떠 있는 바이러스는 손 씻기로는 닿지 않는 영역입니다</mark>. 질병관리청 예방수칙도 손 씻기·기침 예절·마스크와 함께 '실내 자주 환기'를 따로 권합니다.</p></div><div class="src">출처: 질병관리청 호흡기감염병 예방수칙, 2026.11</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>공기 중에 떠 있는 바이러스는 손 씻기로는 닿지 않는 영역입니다.</div><div><span class="k">강조</span>공기 속 바이러스</div><div><span class="k">이미지</span>일러스트 / 세면대에서 손 씻는 손과 그 위 거실 공기 중에 남아 있는 입자 레이어 / &quot;손이 닿는 곳&quot;과 &quot;닿지 않는 공기&quot;를 층으로 분리</div><div><span class="k">ALT</span>손 씻기·마스크는 표면 바이러스에 유효하지만 집 안 공기 중에 떠 있는 바이러스는 그대로 남으므로, 질병관리청 수칙대로 환기를 더해야 한다는 장표.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 7</b> 셀프 관리 팁</span><span>앞 장이 남긴 질문: 그럼 공기는 무엇부터 하나</span></div>
+  <div class="card" aria-label="CARD 7 셀프 관리 팁">
+    <span class="logo">CESCO</span>
+    <span class="num">07</span>
+    <h3 class="head"><span class="l">이렇게 관리해 보세요</span></h3><div class="body"><div class="tip"><b><em>TIP 01.</em> 하루 3회 이상, 한 번에 10분 이상 환기</b><span>추운 날에도 마주보는 창문을 함께 열어 공기를 바꿔 주세요.</span></div><div class="tip"><b><em>TIP 02.</em> 실내 습도 40~60% 유지</b><span>가습기나 젖은 수건으로 습도를 40~60%로 맞춰 주세요. 습도가 적정하면 호흡기 점막이 마르지 않고, 공기 중 바이러스가 감염력을 오래 유지하기 어렵습니다.</span></div><div class="tip"><b><em>TIP 03.</em> 기침하는 가족은 방을 따로</b><span>독감이나 감기 증상이 있는 가족은 방을 분리하고 그 방부터 집중 환기해 주세요. 다만 환기와 습도 관리로도 <mark>이미 공기 중에 떠 있는 바이러스를 없애는 일은 다른 문제입니다</mark>.</span></div></div><div class="src">출처: 질병관리청 생활방역 세부수칙·겨울철 건강수칙</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>이미 공기 중에 떠 있는 바이러스를 없애는 일은 다른 문제입니다.</div><div><span class="k">강조</span>10분 이상 / 40~60%</div><div><span class="k">이미지</span>아이콘 3종 / 열린 창·습도계·닫힌 방문 / TIP 1·2·3 각 한 아이콘, 세 번째 아이콘 옆에 공기 입자를 남겨 브릿지 암시</div><div><span class="k">ALT</span>겨울 실내 공기 셀프 관리 팁 세 가지(하루 3회 10분 이상 환기, 실내 습도 40~60% 유지, 증상 있는 가족 방 분리)와 공기 중 바이러스 제거는 별도 방법이 필요하다는 안내.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 8</b> 세스코 솔루션 ① 구조</span><span>앞 장이 남긴 질문: 공기 중에 떠 있는 바이러스는 어떻게 없애나</span></div>
+  <div class="card sol-bg" aria-label="CARD 8 세스코 솔루션 ① 구조">
+    <span class="logo sol">CESCO Air</span>
+    <span class="num">08</span>
+    <h3 class="head"><span class="l">청정과 살균을 한 번에,</span><span class="l j">공기 자체를 살균하는 2 in 1</span></h3><div class="name">트루살균 공기청정기 판테온</div><div class="body"><div class="point"><b><em>Point 01.</em> 별도의 살균엔진</b><span>미세먼지를 거르는 청정엔진 옆에, 공기를 직접 살균하는 살균엔진을 하나 더 두었습니다.</span></div><div class="point"><b><em>Point 02.</em> 360° 입체 설계 UV살균터널 pro™</b><span><mark>흡입된 공기가 UV살균터널 pro™를 지나며 바이러스·세균의 유전자가 물리적으로 파괴됩니다</mark>.</span></div><div class="point"><b><em>Point 03.</em> 환기 타이밍을 알려 주는 6가지 초정밀 센서</b><span>극초미세먼지·CO₂·VOCs·온도·습도 등을 측정하고, 실외 공기질 표시등이 녹색이면 창문을 열기 좋은 때입니다.</span></div></div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>흡입된 공기가 UV살균터널 pro™를 지나며 바이러스·세균의 유전자가 물리적으로 파괴됩니다.</div><div><span class="k">강조</span>살균엔진 / 360° 입체 설계 / 6가지 초정밀 센서</div><div><span class="k">이미지</span>제품 컷 + 단면 일러스트 / 코튼 화이트 판테온, 공기가 청정엔진→살균엔진(UV 터널)을 지나는 흐름 화살표 / Point 01·02의 &quot;별도 살균엔진&quot; 구조를 보여 준다</div><div><span class="k">ALT</span>트루살균 공기청정기 판테온은 청정엔진과 별도 살균엔진(UV살균터널 pro™)으로 공기 속 바이러스·세균 유전자를 물리적으로 파괴하고, 6가지 초정밀 센서로 환기 타이밍을 알려 준다는 솔루션 장표.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 9</b> 세스코 솔루션 ② 검증</span><span>앞 장이 남긴 질문: 그 살균력은 누가 확인했나</span></div>
+  <div class="card sol-bg" aria-label="CARD 9 세스코 솔루션 ② 검증">
+    <span class="logo sol">CESCO Air</span>
+    <span class="num">09</span>
+    <h3 class="head"><span class="l">살아 있는 바이러스로</span><span class="l j">직접 반복 시험했습니다</span></h3><div class="name">트루살균 공기청정기 판테온</div><div class="body"><p><mark>살아 있는 고위험 바이러스를 다룰 수 있는 BSL-3 시설을 갖춘 고려대의대 바이러스병연구소에서 직접 시험했습니다</mark>.</p><div class="check">✔ 공기 중 인플루엔자(H1N1) 바이러스 99.99% 살균 [고려대의대 바이러스병연구소 공동연구, 4,500L 챔버 30분 가동·3회 비교, 25평형]</div><div class="check">✔ 공기 중 부유바이러스 99.9%(25평형)·99.8%(20평형) 감소 [한국산업기술시험원, 30㎥ 챔버 30분]</div><div class="check">✔ 공기 중 부유세균 99.9% 감소 [한국산업기술시험원, 30㎥ 챔버 60분]</div><div class="check">✔ 0.01㎛ 이하 극초미세먼지 99.999% 제거 [KOTITI시험연구원, 29.5㎥ 챔버 1시간]</div></div><div class="disc">※상기 감소율은 제한된 실험 조건에서 측정한 결과이며, 실제 사용 환경(공간 크기, 공기 유입량, 설치 위치 등)에 따라 달라질 수 있습니다.</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>살아 있는 고위험 바이러스를 다룰 수 있는 BSL-3 시설을 갖춘 고려대의대 바이러스병연구소에서 직접 시험했습니다.</div><div><span class="k">강조</span>99.99% / 99.9% / 99.999%</div><div><span class="k">이미지</span>인포그래픽 / 수치 4개를 시험기관 로고 자리와 함께 배치, 각 수치 아래 조건 1줄 / &quot;수치는 혼자 다니지 않는다&quot; 3점 세트 그대로</div><div><span class="k">ALT</span>트루살균 공기청정기 판테온의 살균·청정 시험 결과(인플루엔자(H1N1) 99.99%, 고려대의대 바이러스병연구소 공동연구 / 부유바이러스 99.9%·부유세균 99.9%, 한국산업기술시험원 / 극초미세먼지 99.999%, KOTITI)와 면책 문구.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 10</b> 마무리 + CTA</span><span>앞 장이 남긴 질문: 그래서 지금 무엇을 하나</span></div>
+  <div class="card sol-bg" aria-label="CARD 10 마무리 + CTA">
+    <span class="logo sol">CESCO Air</span>
+    <span class="num">10</span>
+    <h3 class="head"><span class="l">지금이 바로,</span><span class="l j">공기도 함께 관리할 때입니다</span></h3><div class="body"><p>손 씻기와 환기는 오늘부터 직접 할 수 있습니다. <mark>공기 중에 떠 있는 바이러스·세균 관리는 세스코 트루살균 공기청정기 판테온에 맡겨 보세요</mark>. 기침하는 가족이 있는 거실부터 시작해 보세요. 독감이 함께 도는 겨울, 온 가족이 숨 쉬는 공기부터 점검하세요.</p><div class="cta">상담문의 1588-1119 | 세스코몰 cescomall.co.kr</div></div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>공기 중에 떠 있는 바이러스·세균 관리는 세스코 트루살균 공기청정기 판테온에 맡겨 보세요.</div><div><span class="k">강조</span>트루살균 공기청정기 판테온</div><div><span class="k">이미지</span>실사 / 표지와 같은 거실, 이번엔 창문 열린 낮 풍경과 판테온이 놓인 구석, 가족이 편안히 앉은 장면 / 표지의 장면으로 돌아와 결과 상태를 보여 준다</div><div><span class="k">ALT</span>독감이 함께 유행하는 겨울, 집 안 공기 중 바이러스·세균 관리를 트루살균 공기청정기 판테온으로 시작하자는 마무리 장표. 상담 1588-1119.</div></div>
+</article></div>
+  <div class="appx"><b>부록 (S9)</b><ul><li>부록 1. 코로나19·독감 관련기사 스캔 (질병관리청 2026.11.6 보도 기준)</li><li>부록 2. 판테온 컨설팅 플랜 표지</li></ul></div>
+  <div class="tags"><span class="k">해시태그</span>#air #공기청정기 #공기살균청정기 #트루살균공기청정기 #판테온 #Pantheon #카드뉴스 #코로나19 #코로나 #독감 #인플루엔자 #바이러스 #세균 #감염 #호흡기감염 #실내공기 #공기질 #공기질관리 #겨울철 #환기 #습도 #UV살균터널 #공기살균 #판테온카드뉴스 #공기질카드뉴스</div>
+</section>
+<section class="plan" id="plan-1" role="tabpanel" hidden>
+  <div class="plan-head">
+    <h2>[2안] 오해 교정형 / 8장 + 부록</h2>
+    <p class="ptitle"><span class="k">게시 제목</span>[위해요소] 손 씻고 마스크도 썼는데, 올겨울 코로나19 집 안 공기 관리법</p>
+    <p class="lead">표지가 하는 일: 독자의 노력(손 씻기·마스크)을 인정한 뒤 빈 곳 하나를 질문으로 남긴다. 본편은 통념 3개를 하나씩 교정하는 릴레이. 사실·출처·정식명·CTA는 1안과 동일.</p>
+    <details class="relay"><summary>헤드 릴레이 (헤드만 이어 읽기)</summary><p>손 씻고 마스크도 썼는데 왜 차례로 앓을까?(표지) → 가벼운 감기라서? 코로나19 입원, 매주 200명 안팎(오해① 교정·전환점) → 그래도 손 씻으면? 손 씻기와 마스크만으로는 공기 속 바이러스는 남는다(오해② 교정) → 공기청정기 있는데? 공기청정기가 걸러 낸 바이러스, 그 자리에서 살균됐을까?(오해③ 교정) → 그럼 뭘 하나? 이렇게 관리해 보세요(팁+브릿지) → 공기 자체를 살균하는 2 in 1(솔루션) → 살아 있는 바이러스로 직접 반복 시험(검증) → 지금이 바로, 공기도 함께 관리할 때(CTA) ✔ 통과</p></details>
+  </div>
+  <div class="deck">
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 1</b> 표지</span><span>로고: CESCO</span></div>
+  <div class="card" aria-label="CARD 1 표지">
+    <span class="logo">CESCO</span>
+    <span class="num">표지</span>
+    <h3 class="head cover"><span class="l">손 씻고</span><span class="l">마스크도 썼는데</span><span class="l">왜 한 집에서</span><span class="l">차례로 앓을까?</span></h3><div class="body"></div><p class="sub">독감과 함께 돌아온 코로나19, 겨울 실내 공기 관리법</p><div class="strip">집 안 연쇄 감염, 원인은 손이 닿지 않는 공기일 수 있습니다<small>CESCO 로고 / ☞ 옆으로 넘겨 확인하세요</small></div>
+  </div>
+  <div class="memo"><div><span class="k">이미지</span>실사 / 현관에 걸린 마스크와 세면대 손세정제, 그 너머 거실에서 기침하는 가족 / &quot;다 했는데&quot;의 증거물과 남은 빈칸을 한 프레임에</div><div><span class="k">ALT</span>손 씻기와 마스크를 지켰는데도 한 집에서 가족이 차례로 앓는 이유를 묻는 세스코 카드뉴스 표지.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 2</b> 오해 ① 교정 (전환점)</span><span>앞 장이 남긴 질문: 코로나19는 이제 가벼운 감기 아닌가</span></div>
+  <div class="card" aria-label="CARD 2 오해 ① 교정 (전환점)">
+    <span class="logo">CESCO</span>
+    <span class="num">02</span>
+    <h3 class="head"><span class="l">&quot;이제 감기 정도라던데&quot;</span><span class="l j">코로나19 입원, 매주 200명 안팎</span></h3><div class="body"><p>질병관리청 표본감시에서 병원급 코로나19 입원환자는 2026년 8월 말 115명에서 4주 만에 337명으로 늘었고 10월에도 매주 170~290명이 입원했습니다. 10월 중순 기준, 바이러스 호흡기 감염으로 입원한 환자 5명 중 1명이 코로나19였습니다. 같은 기간 독감 입원환자의 64.9%는 65세 이상이었습니다. <mark>젊은 가족에게는 감기여도, 함께 사는 부모님에게는 입원일 수 있습니다</mark>.</p></div><div class="src">출처: 질병관리청, 감염병 표본감시 주간소식지 41~42주차 및 보도자료, 2026.11.6</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>젊은 가족에게는 감기여도, 함께 사는 부모님에게는 입원일 수 있습니다.</div><div><span class="k">강조</span>매주 170~290명 / 5명 중 1명 / 64.9%</div><div><span class="k">이미지</span>인포그래픽 / 1안 CARD 2와 같은 데이터, 여기선 &quot;감기&quot; 말풍선 위에 입원 수치 막대를 겹쳐 통념과 수치의 간격을 보여 준다</div><div><span class="k">ALT</span>코로나19를 가벼운 감기로 여기는 통념과 달리 2026년 10월 병원급 입원환자가 매주 170~290명이고 독감 입원의 64.9%가 65세 이상이라는 질병관리청 수치.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 3</b> 오해 ② 교정 (공기 전파)</span><span>앞 장이 남긴 질문: 그래도 손 씻기와 마스크면 막을 수 있지 않나</span></div>
+  <div class="card" aria-label="CARD 3 오해 ② 교정 (공기 전파)">
+    <span class="logo">CESCO</span>
+    <span class="num">03</span>
+    <h3 class="head"><span class="l">손 씻기와 마스크만으로는</span><span class="l j">공기 속 바이러스는 남습니다</span></h3><div class="body"><p>손 씻기와 기침 예절, 사람 많은 곳의 마스크는 지금도 질병관리청이 권하는 기본입니다. 손과 표면에 묻은 바이러스는 이 습관으로 줄어듭니다. 문제는 집 안입니다. 마스크를 벗고 식탁과 소파를 함께 쓰는 사이, 코로나19 바이러스는 실험 조건의 공기 중에서 3시간 동안 감염력을 유지했고(NIH) 기침이나 재채기로 나온 작은 물방울은 최대 8m까지 퍼졌습니다(MIT). 질병관리청 예방수칙도 손 씻기·기침 예절·마스크와 함께 '실내 자주 환기'를 따로 권합니다.</p></div><div class="src">출처: 질병관리청 예방수칙, 2026.11 / van Doremalen 외, NEJM, 2020 / Bourouiba, JAMA, 2020</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>코로나19 바이러스는 실험 조건의 공기 중에서 3시간 동안 감염력을 유지했고 기침이나 재채기로 나온 작은 물방울은 최대 8m까지 퍼졌습니다.</div><div><span class="k">강조</span>3시간 / 최대 8m</div><div><span class="k">이미지</span>일러스트 / 왼쪽 세면대(손이 닿는 곳), 오른쪽 거실 공기 중 입자와 8m 화살표(닿지 않는 곳) 2분할 / 범위 분리를 그대로</div><div><span class="k">ALT</span>손 씻기·마스크는 표면 바이러스에 유효하지만 집 안 공기 중 코로나19 바이러스는 실험 조건에서 3시간 감염력 유지·최대 8m 확산하므로 질병관리청 수칙대로 환기 등 별도 관리가 필요하다는 장표.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 4</b> 오해 ③ 교정 (공기청정기)</span><span>앞 장이 남긴 질문: 우리 집엔 공기청정기가 있으니 바이러스도 걸러지지 않나</span></div>
+  <div class="card" aria-label="CARD 4 오해 ③ 교정 (공기청정기)">
+    <span class="logo">CESCO</span>
+    <span class="num">04</span>
+    <h3 class="head"><span class="l">공기청정기가 걸러 낸 바이러스,</span><span class="l j">그 자리에서 살균됐을까?!</span></h3><div class="body"><p>공기청정기의 헤파필터는 먼지와 바이러스가 실린 입자를 걸러 냅니다. 걸러 내는 것(포집)과 살균(불활성화)은 다른 단계입니다(미국 EPA). <mark>걸러진 입자 속 바이러스가 그 자리에서 살균되는지는 필터만으로는 보장되지 않습니다</mark>. 거실에 공기청정기가 돌아가고 있어도, 공기 중 바이러스까지 관리되는지는 확인해 보세요.</p></div><div class="src">출처: 미국 EPA, What is a HEPA filter</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>걸러진 입자 속 바이러스가 그 자리에서 살균되는지는 필터만으로는 보장되지 않습니다.</div><div><span class="k">강조</span>포집 / 살균</div><div><span class="k">이미지</span>일러스트 / 필터 단면에 걸린 입자 한 컷, 옆에 &quot;살균 단계 없음&quot; 라벨 / 포집과 살균이 다른 단계라는 사실만 보여 준다. 판테온 UV 터널 그림은 CARD 6에서</div><div><span class="k">ALT</span>공기청정기 헤파필터는 먼지와 바이러스가 실린 입자를 걸러 내지만 포집과 살균은 다른 단계이며, 걸러진 입자 속 바이러스의 살균은 필터만으로 보장되지 않는다는 오해 교정 장표.</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 5</b> 셀프 관리 팁</span><span>앞 장이 남긴 질문: 그럼 공기는 무엇부터 하나</span></div>
+  <div class="card" aria-label="CARD 5 셀프 관리 팁">
+    <span class="logo">CESCO</span>
+    <span class="num">05</span>
+    <h3 class="head"><span class="l">이렇게 관리해 보세요</span></h3><div class="body"><div class="tip"><b><em>TIP 01.</em> 하루 3회 이상, 한 번에 10분 이상 환기</b><span>추운 날에도 마주보는 창문을 함께 열어 공기를 바꿔 주세요.</span></div><div class="tip"><b><em>TIP 02.</em> 실내 습도 40~60% 유지</b><span>가습기나 젖은 수건으로 습도를 40~60%로 맞춰 주세요. 습도가 적정하면 호흡기 점막이 마르지 않고, 공기 중 바이러스가 감염력을 오래 유지하기 어렵습니다.</span></div><div class="tip"><b><em>TIP 03.</em> 기침하는 가족은 방을 따로</b><span>독감이나 감기 증상이 있는 가족은 방을 분리하고 그 방부터 집중 환기해 주세요. 다만 환기와 습도 관리로도 <mark>이미 공기 중에 떠 있는 바이러스를 없애는 일은 다른 문제입니다</mark>.</span></div></div><div class="src">출처: 질병관리청 생활방역 세부수칙·겨울철 건강수칙</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>이미 공기 중에 떠 있는 바이러스를 없애는 일은 다른 문제입니다.</div><div><span class="k">강조</span>10분 이상 / 40~60%</div><div><span class="k">이미지</span>아이콘 3종 / 열린 창·습도계·닫힌 방문 / TIP 1·2·3 각 한 아이콘, 세 번째 아이콘 옆에 공기 입자를 남겨 브릿지 암시</div><div><span class="k">ALT</span>겨울 실내 공기 셀프 관리 팁 세 가지(하루 3회 10분 이상 환기, 실내 습도 40~60% 유지, 증상 있는 가족 방 분리)와 공기 중 바이러스 제거는 별도 방법이 필요하다는 안내.</div><div><span class="k">동일</span>1안 CARD 7 · (헤드 「이렇게 관리해 보세요」 / TIP 1 하루 3회 10분 이상 환기 / TIP 2 습도 40~60% / TIP 3 기침하는 가족은 방을 따로 + 한계 브릿지 문장).</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 6</b> 세스코 솔루션 ① 구조</span><span>앞 장이 남긴 질문: 공기 중에 떠 있는 바이러스는 어떻게 없애나</span></div>
+  <div class="card sol-bg" aria-label="CARD 6 세스코 솔루션 ① 구조">
+    <span class="logo sol">CESCO Air</span>
+    <span class="num">06</span>
+    <h3 class="head"><span class="l">청정과 살균을 한 번에,</span><span class="l j">공기 자체를 살균하는 2 in 1</span></h3><div class="name">트루살균 공기청정기 판테온</div><div class="body"><div class="point"><b><em>Point 01.</em> 별도의 살균엔진</b><span>미세먼지를 거르는 청정엔진 옆에, 공기를 직접 살균하는 살균엔진을 하나 더 두었습니다.</span></div><div class="point"><b><em>Point 02.</em> 360° 입체 설계 UV살균터널 pro™</b><span><mark>흡입된 공기가 UV살균터널 pro™를 지나며 바이러스·세균의 유전자가 물리적으로 파괴됩니다</mark>.</span></div><div class="point"><b><em>Point 03.</em> 환기 타이밍을 알려 주는 6가지 초정밀 센서</b><span>극초미세먼지·CO₂·VOCs·온도·습도 등을 측정하고, 실외 공기질 표시등이 녹색이면 창문을 열기 좋은 때입니다.</span></div></div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>흡입된 공기가 UV살균터널 pro™를 지나며 바이러스·세균의 유전자가 물리적으로 파괴됩니다.</div><div><span class="k">강조</span>살균엔진 / 360° 입체 설계 / 6가지 초정밀 센서</div><div><span class="k">이미지</span>제품 컷 + 단면 일러스트 / 코튼 화이트 판테온, 공기가 청정엔진→살균엔진(UV 터널)을 지나는 흐름 화살표 / Point 01·02의 &quot;별도 살균엔진&quot; 구조를 보여 준다</div><div><span class="k">ALT</span>트루살균 공기청정기 판테온은 청정엔진과 별도 살균엔진(UV살균터널 pro™)으로 공기 속 바이러스·세균 유전자를 물리적으로 파괴하고, 6가지 초정밀 센서로 환기 타이밍을 알려 준다는 솔루션 장표.</div><div><span class="k">동일</span>1안 CARD 8</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 7</b> 세스코 솔루션 ② 검증</span><span>앞 장이 남긴 질문: 그 살균력은 누가 확인했나</span></div>
+  <div class="card sol-bg" aria-label="CARD 7 세스코 솔루션 ② 검증">
+    <span class="logo sol">CESCO Air</span>
+    <span class="num">07</span>
+    <h3 class="head"><span class="l">살아 있는 바이러스로</span><span class="l j">직접 반복 시험했습니다</span></h3><div class="name">트루살균 공기청정기 판테온</div><div class="body"><p><mark>살아 있는 고위험 바이러스를 다룰 수 있는 BSL-3 시설을 갖춘 고려대의대 바이러스병연구소에서 직접 시험했습니다</mark>.</p><div class="check">✔ 공기 중 인플루엔자(H1N1) 바이러스 99.99% 살균 [고려대의대 바이러스병연구소 공동연구, 4,500L 챔버 30분 가동·3회 비교, 25평형]</div><div class="check">✔ 공기 중 부유바이러스 99.9%(25평형)·99.8%(20평형) 감소 [한국산업기술시험원, 30㎥ 챔버 30분]</div><div class="check">✔ 공기 중 부유세균 99.9% 감소 [한국산업기술시험원, 30㎥ 챔버 60분]</div><div class="check">✔ 0.01㎛ 이하 극초미세먼지 99.999% 제거 [KOTITI시험연구원, 29.5㎥ 챔버 1시간]</div></div><div class="disc">※상기 감소율은 제한된 실험 조건에서 측정한 결과이며, 실제 사용 환경(공간 크기, 공기 유입량, 설치 위치 등)에 따라 달라질 수 있습니다.</div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>살아 있는 고위험 바이러스를 다룰 수 있는 BSL-3 시설을 갖춘 고려대의대 바이러스병연구소에서 직접 시험했습니다.</div><div><span class="k">강조</span>99.99% / 99.9% / 99.999%</div><div><span class="k">이미지</span>인포그래픽 / 수치 4개를 시험기관 로고 자리와 함께 배치, 각 수치 아래 조건 1줄 / &quot;수치는 혼자 다니지 않는다&quot; 3점 세트 그대로</div><div><span class="k">ALT</span>트루살균 공기청정기 판테온의 살균·청정 시험 결과(인플루엔자(H1N1) 99.99%, 고려대의대 바이러스병연구소 공동연구 / 부유바이러스 99.9%·부유세균 99.9%, 한국산업기술시험원 / 극초미세먼지 99.999%, KOTITI)와 면책 문구.</div><div><span class="k">동일</span>1안 CARD 9</div></div>
+</article>
+<article class="slot">
+  <div class="slot-meta"><span><b>CARD 8</b> 마무리 + CTA</span><span>앞 장이 남긴 질문: 그래서 지금 무엇을 하나</span></div>
+  <div class="card sol-bg" aria-label="CARD 8 마무리 + CTA">
+    <span class="logo sol">CESCO Air</span>
+    <span class="num">08</span>
+    <h3 class="head"><span class="l">지금이 바로,</span><span class="l j">공기도 함께 관리할 때입니다</span></h3><div class="body"><p>손 씻기와 마스크는 지금처럼 이어 가세요. 남은 한 곳, 공기 중 바이러스·세균 관리는 세스코 트루살균 공기청정기 판테온에 맡겨 보세요. 기침하는 가족이 있는 거실부터 시작해 보세요. 독감이 함께 도는 겨울, 온 가족이 숨 쉬는 공기부터 점검하세요.</p><div class="cta">상담문의 1588-1119 | 세스코몰 cescomall.co.kr</div></div>
+  </div>
+  <div class="memo"><div><span class="k">하이라이트</span>공기 중에 떠 있는 바이러스·세균 관리는 세스코 트루살균 공기청정기 판테온에 맡겨 보세요.</div><div><span class="k">강조</span>트루살균 공기청정기 판테온</div><div><span class="k">이미지</span>실사 / 표지와 같은 거실, 이번엔 창문 열린 낮 풍경과 판테온이 놓인 구석, 가족이 편안히 앉은 장면 / 표지의 장면으로 돌아와 결과 상태를 보여 준다</div><div><span class="k">ALT</span>독감이 함께 유행하는 겨울, 집 안 공기 중 바이러스·세균 관리를 트루살균 공기청정기 판테온으로 시작하자는 마무리 장표. 상담 1588-1119.</div><div><span class="k">동일</span>1안 CARD 10 · 본문 첫 두 문장만 표지 질문을 거두는 평서문으로: 「손 씻기와 마스크는 지금처럼 이어 가세요. 남은 한 곳, 공기 중 바이러스·세균 관리는 세스코 트루살균 공기청정기 판테온에 맡겨 보세요.」</div></div>
+</article></div>
+  <div class="appx"><b>부록 (S9)</b><ul><li>1안과 동일.</li></ul></div>
+  <div class="tags"><span class="k">해시태그</span>1안과 동일 (24개)</div>
+</section>
+<section id="post" role="tabpanel" hidden><div class="plan-head"><h2>게시 텍스트 (장표 전사 · 1안 기준, 2안은 CARD 1~4와 CARD 8 본문 첫 두 문장을 교체)</h2><p class="lead">이미지에만 있는 정보가 없도록 장표 수치·출처를 그대로 전사한 게시 본문입니다.</p></div><pre>[위해요소] 독감과 함께 돌아온 코로나19, 겨울 실내 공기 바이러스 관리법
+
+기침하는 가족 한 명, 닫힌 거실 공기 속에 바이러스는 3시간까지 머물 수 있습니다.
+한 집에서 차례로 앓는 겨울 감기, 원인은 실내 공기일 수 있습니다.
+
+■ 독감 입원 2배, 코로나19 입원도 매주 200명 안팎
+질병관리청 표본감시에서 2026년 44주차(10월 25~31일) 인플루엔자 입원환자는 병원급 223곳에서 461명으로, 지난해 같은 주 174명의 2배를 넘었습니다. 병원급 코로나19 입원환자는 8월 말 115명에서 4주 만에 337명까지 늘었고 10월에도 매주 170~290명이 입원했습니다. 10월 중순 기준, 바이러스 호흡기 감염으로 입원한 환자 5명 중 1명은 코로나19였습니다.
+출처: 질병관리청, 감염병 표본감시 주간소식지 41~42주차 및 보도자료, 2026.11.6
+
+■ 공기 중에서 3시간, 기침 한 번에 최대 8m?!
+미국 국립보건원(NIH) 연구에서 코로나19 바이러스는 실험 조건의 공기 중에서 3시간 동안 감염력을 유지했습니다. MIT 연구에서는 기침이나 재채기로 나온 에어로졸이 최대 8m까지 퍼졌습니다. 증상이 없는 사람 한 명이 머물다 간 공기도 몇 시간 동안 감염의 통로가 될 수 있습니다.
+출처: van Doremalen 외, NEJM, 2020 / Bourouiba, JAMA, 2020
+
+■ 창문 닫는 겨울, 바이러스가 머무는 시간은 길어집니다
+기온이 떨어지면 창문을 여는 횟수가 줄어듭니다. 난방으로 건조해진 공기는 코와 기관지 점막을 말려 바이러스를 막는 힘을 떨어뜨립니다. 실내가 건조할수록 인플루엔자 바이러스가 공기 중에서 감염력을 더 오래 유지한다는 연구 결과도 있습니다.
+출처: 질병관리청 겨울철 건강수칙 / Noti 외, PLoS ONE, 2013
+
+■ 65세 이상이라면 한 번의 감염도 다릅니다
+2026년 44주차 독감 입원환자 461명 가운데 64.9%가 65세 이상이었습니다. 코로나19도 고령층과 면역이 약한 분에게는 여전히 중증으로 이어질 수 있다고 질병관리청에서는 안내합니다. 65세 이상의 코로나19 백신 접종률은 10월 30일 기준 32.8%에 머물렀습니다.
+출처: 질병관리청, 2026.11
+
+■ 손 씻기와 마스크만으로는 공기 속 바이러스는 남습니다
+손과 표면에 묻은 바이러스는 손 씻기·마스크로 줄일 수 있습니다. 집 안 공기 중에 떠 있는 바이러스는 손 씻기로는 닿지 않는 영역입니다. 질병관리청 예방수칙도 '실내 자주 환기'를 따로 권합니다.
+
+■ 이렇게 관리해 보세요
+TIP 1. 하루 3회 이상, 한 번에 10분 이상 마주보는 창문을 함께 열어 환기
+TIP 2. 실내 습도 40~60% 유지
+TIP 3. 기침하는 가족은 방을 따로. 다만 이미 공기 중에 떠 있는 바이러스를 없애는 일은 다른 문제입니다.
+출처: 질병관리청 생활방역 세부수칙·겨울철 건강수칙
+
+■ 트루살균 공기청정기 판테온: 청정과 살균을 한 번에, 공기 자체를 살균하는 2 in 1
+Point 01. 별도의 살균엔진: 미세먼지를 거르는 청정엔진 옆에, 공기를 직접 살균하는 살균엔진을 하나 더 두었습니다.
+Point 02. 360° 입체 설계 UV살균터널 pro™: 흡입된 공기가 UV살균터널 pro™를 지나며 바이러스·세균의 유전자가 물리적으로 파괴됩니다.
+Point 03. 6가지 초정밀 센서: 극초미세먼지·CO₂·VOCs·온도·습도 등을 측정하고 실외 공기질 표시등이 환기 타이밍을 알려 줍니다.
+
+■ 살아 있는 바이러스로 직접 반복 시험했습니다
+✔ 공기 중 인플루엔자(H1N1) 바이러스 99.99% 살균 [고려대의대 바이러스병연구소 공동연구, 4,500L 챔버 30분 가동·3회 비교, 25평형]
+✔ 공기 중 부유바이러스 99.9%(25평형)·99.8%(20평형) 감소 [한국산업기술시험원, 30㎥ 챔버 30분]
+✔ 공기 중 부유세균 99.9% 감소 [한국산업기술시험원, 30㎥ 챔버 60분]
+✔ 0.01㎛ 이하 극초미세먼지 99.999% 제거 [KOTITI시험연구원, 29.5㎥ 챔버 1시간]
+※상기 감소율은 제한된 실험 조건에서 측정한 결과이며, 실제 사용 환경(공간 크기, 공기 유입량, 설치 위치 등)에 따라 달라질 수 있습니다.
+
+■ 지금이 바로, 공기도 함께 관리할 때입니다
+공기 중에 떠 있는 바이러스·세균 관리는 세스코 트루살균 공기청정기 판테온에 맡겨 보세요. 상담문의 1588-1119 | 세스코몰 cescomall.co.kr
+
+#air #공기청정기 #공기살균청정기 #트루살균공기청정기 #판테온 #Pantheon #카드뉴스 #코로나19 #코로나 #독감 #인플루엔자 #바이러스 #세균 #감염 #호흡기감염 #실내공기 #공기질 #공기질관리 #겨울철 #환기 #습도 #UV살균터널 #공기살균 #판테온카드뉴스 #공기질카드뉴스
+
+---</pre></section>
+<section id="memo" role="tabpanel" hidden><div class="plan-head"><h2>작업 메모 (내부용)</h2><p class="lead">유형 추천·SOURCE PACK·훅 후보·미사용 소재·SOURCE LOG. 발행물에는 싣지 않습니다.</p></div><article class="memo-sec"><h3>0. 카드뉴스 유형 추천 / 코로나19 겨울 재유행 × 판테온 (주제 한 줄: &quot;독감과 함께 돌아온 코로나19, 집 안 공기 관리&quot;)</h3><pre>① 기본형 (항상)             현행 구조. 문제 → 근거 → 왜 지금 → 셀프 팁 → 솔루션 → CTA
+② 추천 신규 유형: 오해 교정형   이 소재에는 근거가 붙는 통념이 3개 있다: &quot;코로나19는 이제 가벼운 감기&quot;(질병관리청 표본감시: 병원급 입원환자 10월 매주 170~290명), &quot;손 씻기와 마스크면 충분&quot;(질병관리청 예방수칙이 '실내 자주 환기'를 따로 권고), &quot;공기청정기가 있으니 바이러스도 걸러진다&quot;(헤파필터의 포집과 살균은 다른 단계 / 미국 EPA)
+   대안 1: 채팅형 / 코로나19는 광고 거부감이 큰 소재라 Q&amp;A 상담 구조가 안전하고, &quot;공기청정기로 바이러스가 잡히나요?&quot;처럼 검색에 반복되는 질문이 있다
+   대안 2: 원인 추적형 / &quot;한 집에서 차례로 앓는다&quot;는 증상에서 공기 전파(NEJM 3시간·JAMA 8m) 기전으로 거슬러 가는 흐름이 가능하고, 기본형과 장 순서가 가까워 가장 안전하다
+
+직접 고르기 → https://cescomktsh-wq.github.io/cesco-templates/#d103/cardnews
+   (유형 카드의 썸네일 = 전체 캡처, 열기 ↗ = 실제 페이지, 버전 보기 = 다른 주제 편)
+규칙 보기  → https://cescomktsh-wq.github.io/cesco-templates/#d60 (§1 유형 선택)
+
+고르신 유형을 알려 주시면 기본형 1안 + 그 유형 1안으로 제작합니다. 답이 없으면 추천안(②)으로 진행합니다.</pre><p>※ 오해 교정형은 11/4 보고에서 &quot;파일럿·보류&quot; 상태다. 담당자가 보류 유지를 원하면 대안 1(채팅형)으로 2안을 다시 짠다. 사실·출처는 그대로 쓸 수 있다.</p></article><article class="memo-sec"><h3>1. SOURCE PACK 요약 (내부용 · 검수 반영)</h3><table><thead><tr><th>구분</th><th>사실</th><th>출처</th></tr></thead><tbody><tr><td>서브타입</td><td>위해요소 계몽형 → 전환형 CTA(판테온 상담)</td><td></td></tr><tr><td>사업부</td><td>#air</td><td></td></tr><tr><td>정식명 (SSOT)</td><td>트루살균 공기청정기 판테온 (20평/코튼 화이트) · (20평/포레스트 그린) · (25평/코튼 화이트) · (25평/포레스트 그린)</td><td>cesco-mall 카탈로그 EADS531·541·731·741</td></tr><tr><td>가격</td><td>20평 렌탈 월 34,900원 / 25평 월 37,900원 (세스코몰 카탈로그 2026-07 수집 기준) / 계몽형 CTA에는 싣지 않음</td><td>cesco-mall 카탈로그</td></tr><tr><td>D1</td><td>2026년 44주차(10/25~31) 인플루엔자 병원급(223곳) 입원환자 461명, 전년 같은 주 174명의 2배 이상. 입원환자 중 65세 이상 64.9%</td><td>질병관리청 보도자료 2026-11-06</td></tr><tr><td>D2</td><td>코로나19 병원급 입원환자: 35주(8/23~29) 115명 → 36주 196 → 37주 308 → 38주 337명. 10월(40~44주) 291 → 241 → 223 → 199 → 174명</td><td>질병관리청 감염병 표본감시 주간소식지 38~44주차</td></tr><tr><td>D3</td><td>바이러스성 급성호흡기감염증 입원환자 중 코로나19 비중 41주 20.7%·42주 18.1%·43주 17.7% (44주 13.6%)</td><td>질병관리청 주간소식지 41~44주차</td></tr><tr><td>D4</td><td>65세 이상 코로나19 백신 접종률 32.8% (10월 30일 기준)</td><td>질병관리청 집계(연합뉴스 2026-11-02 보도)</td></tr><tr><td>D5</td><td>질병관리청 호흡기감염병 예방수칙: 손 씻기, 기침 예절, 사람 많은 곳 마스크, 실내 자주 환기. 환기 수칙: 1일 3회 이상, 회당 10분 이상 맞통풍. 겨울철 적정 습도 40~60%</td><td>질병관리청 2026-11-06 / 생활방역 세부수칙 / 한랭질환 예방 건강수칙</td></tr><tr><td>D5-2</td><td>질병관리청: 코로나19는 고령층·면역저하자에게 여전히 중증으로 이어질 수 있음</td><td>질병관리청 2026-10 당부</td></tr><tr><td>D6</td><td>코로나19 바이러스, 실험 조건의 공기 중(에어로졸)에서 3시간 동안 감염력 유지 (NIH/NIAID)</td><td>van Doremalen 외, NEJM 2020 [해외 문헌 / 국내 공인 출처 없음]</td></tr><tr><td>D7</td><td>기침·재채기로 나온 가스 구름이 최대 7~8m 도달 (MIT)</td><td>Bourouiba, JAMA 2020 [해외 문헌]</td></tr><tr><td>D8</td><td>실내가 건조할수록 인플루엔자 바이러스가 공기 중에서 감염력을 더 오래 유지</td><td>Noti 외, PLoS ONE 2013 (미국 NIOSH) [해외 문헌]</td></tr><tr><td>D9</td><td>겨울: 환기 감소 + 난방 건조로 호흡기 점막이 말라 방어력 저하</td><td>질병관리청 겨울철 건강수칙(국가건강정보포털)</td></tr><tr><td>D10</td><td>헤파필터는 0.3㎛ 입자를 99.97% 이상 포집(바이러스가 실린 입자 포함). 포집과 불활성화는 별개</td><td>미국 EPA</td></tr><tr><td>E1</td><td>판테온: 공기 중 인플루엔자(H1N1) 바이러스 99.99% 살균 / BSL-3 시설을 갖춘 고려대 바이러스병 연구소에서 4,500L 특수 챔버, 30분 가동, 3회 비교, 25평형</td><td>세스코 과학연구소·고려대의대 바이러스병연구소 공동연구 (카드뉴스 284_9·285_9 각주 원문)</td></tr><tr><td>E2</td><td>판테온: 부유바이러스(Phi-X174) 30분 가동 25평형 99.9%·20평형 99.8% 감소 / 부유세균(S.epidermidis) 60분 가동 99.9% 감소, 30㎥ 챔버</td><td>한국산업기술시험원(KTL) (카드뉴스 284_9 각주 원문) / [확인 필요: 20평 상세페이지는 부유바이러스 99.9% 표기]</td></tr><tr><td>E3</td><td>판테온: 0.01㎛ 이하 극초미세먼지 99.999% 제거, (29.5±0.5)㎥ 챔버 1시간</td><td>KOTITI시험연구원 (카드뉴스 284_9 각주 원문) / [확인 필요: 상세페이지 상단은 0.1㎛ 표기]</td></tr><tr><td>E4</td><td>판테온 구조: 청정엔진 + 별도 살균엔진(UV살균터널 pro™, 상세페이지 원문 &quot;360°입체 설계로 공기를 직접 살균하는 UV살균터널 Pro™&quot;)이 흡입된 공기 속 바이러스·세균 유전자를 물리적으로 파괴. 6가지 초정밀 센서(극초미세먼지·CO₂·VOCs·온도·습도 등 / 라돈 센서는 별도 옵션)로 실외 공기질 표시등이 환기 타이밍 안내</td><td>상세페이지 G2000001211</td></tr><tr><td>면책</td><td>※상기 감소율은 제한된 실험 조건에서 측정한 결과이며, 실제 사용 환경(공간 크기, 공기 유입량, 설치 위치 등)에 따라 달라질 수 있습니다.</td><td>전 발행물 공통</td></tr></tbody></table></article><article class="memo-sec"><h3>2. 표지 훅 후보 (4유형 × 2안 내부 생성 → 스크롤 테스트 3문 선별)</h3><ol><li><b>위협·경고형</b> ★ 기본형 표지 추천 / 「기침하는 가족 한 명, / 닫힌 거실 공기 속에 / 바이러스는 / 3시간까지 머물 수 있습니다」 (장치 ①②⑤)</li><li><b>질문형·노력 배반</b> ★ 오해 교정형 표지 추천 / 「손 씻고 마스크도 썼는데 / 왜 한 집에서 / 차례로 앓을까?」 (장치 ⑧⑨)</li><li><b>통념반전형</b> / 「끝난 줄 알았던 코로나19, / 올겨울 / 독감과 함께 돌아왔습니다」 (장치 ②⑥)</li><li>(탈락) 팁·제안형 「환기 10분, 습도 40%, / 겨울 집안 공기 지키는 세 가지」: 답이 헤드에 다 들어 있어 다음 장 넘길 이유가 약함</li><li>(탈락) 위협·경고형 「이번 주 독감 입원 461명, / 코로나19 입원도 매주 200명」: 숫자 병렬 리듬(792 복제 경고), 타사 제품에 붙여도 성립</li></ol></article><article class="memo-sec"><h3>6. 미사용 소재</h3><ul><li>코로나19 바이러스 99.99% 살균(센스미 시험): 판테온 단독 덱이라 제외. 센스미 크로스셀 장을 추가할 때만 사용.</li><li>코로나19 국가예방접종 필수예방접종 전환(10/12~2027.6.30 무료): 백신 안내는 세스코 메시지 범위 밖. 게시 텍스트 말미 &quot;예방접종도 함께 챙기세요&quot; 1줄로 넣을지 담당자 판단.</li><li>&quot;실내 습도 30% 이하 인플루엔자 감염력 2~3배&quot;(기존 발행 285): 원 논문 미확인(검수 F11)으로 제외. 복귀 시 재검증 필수.</li><li>&quot;따뜻한 공기는 위로만 움직여 순환 약화&quot;(기존 발행 406): 공인 외부 근거 없음(검수 F12)으로 제외.</li><li>&quot;UV-C LED 1~3개로 필터를 제균하는 제품&quot; 비교 서술(기존 발행 284·상세페이지): 표시광고법 비교광고 리스크(검수 F15)로 제외.</li><li>가격(20평 렌탈 월 34,900원): 계몽형 CTA 관행 밖(검수 L1). 프로모션 전환 시 &quot;세스코몰 카탈로그 기준&quot; 단서와 함께 사용.</li><li>변이 바이러스 명칭, 어린이집·사회복지시설 운영 팁(285), 백신 효과 수치: 제외.</li></ul></article><article class="memo-sec"><h3>7. SOURCE LOG (내부용)</h3><ul><li>질병관리청 보도자료 「독감 입원환자 2배 이상 늘어」 2026-11-06 / <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148975199" target="_blank" rel="noopener">https://www.korea.kr/news/policyNewsView.do?newsId=148975199</a></li><li>질병관리청 감염병 표본감시 주간소식지 41주차 / <a href="https://dportal.kdca.go.kr/pot/bbs/BD_selectBbs.do?q_bbsSn=1010&amp;q_bbsDocNo=20261015164902053&amp;q_clsfNo=2" target="_blank" rel="noopener">https://dportal.kdca.go.kr/pot/bbs/BD_selectBbs.do?q_bbsSn=1010&amp;q_bbsDocNo=20261015164902053&amp;q_clsfNo=2</a></li><li>42주차 / <a href="https://dportal.kdca.go.kr/pot/bbs/BD_selectBbs.do?q_bbsSn=1010&amp;q_bbsDocNo=20261022164832775&amp;q_clsfNo=2" target="_blank" rel="noopener">https://dportal.kdca.go.kr/pot/bbs/BD_selectBbs.do?q_bbsSn=1010&amp;q_bbsDocNo=20261022164832775&amp;q_clsfNo=2</a></li><li>43주차 / <a href="https://dportal.kdca.go.kr/pot/bbs/BD_selectBbs.do?q_bbsDocNo=20261029165104848&amp;q_bbsSn=1010&amp;q_clsfNo=2" target="_blank" rel="noopener">https://dportal.kdca.go.kr/pot/bbs/BD_selectBbs.do?q_bbsDocNo=20261029165104848&amp;q_bbsSn=1010&amp;q_clsfNo=2</a></li><li>코로나19 입원 35~40주 추이: 뉴시스 2026-10-22(질병관리청 표본감시 인용) / <a href="https://www.newsis.com/view/NISX20261015_0003826984" target="_blank" rel="noopener">https://www.newsis.com/view/NISX20261015_0003826984</a></li><li>65세 이상 코로나19 접종률 32.8%(10/30 기준): 연합뉴스 2026-11-02 / <a href="https://www.yna.co.kr/view/AKR20261102089200530" target="_blank" rel="noopener">https://www.yna.co.kr/view/AKR20261102089200530</a></li><li>질병관리청 생활방역 세부수칙(환기 1일 3회·10분 이상) / <a href="https://www.kdca.go.kr/bbs/kdca/245/224301/download.do" target="_blank" rel="noopener">https://www.kdca.go.kr/bbs/kdca/245/224301/download.do</a></li><li>질병관리청 한랭질환 예방 건강수칙(적정 습도 40~60%) / <a href="https://www.kdca.go.kr/bbs/kdca/263/305217/download.do" target="_blank" rel="noopener">https://www.kdca.go.kr/bbs/kdca/263/305217/download.do</a></li><li>질병관리청 국가건강정보포털 겨울철 건강수칙 / <a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=2047" target="_blank" rel="noopener">https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=2047</a></li><li>van Doremalen N. 외, NEJM 2020, DOI 10.1056/NEJMc2004973 (공기 중 3시간) [해외 문헌]</li><li>Bourouiba L., JAMA 2020, DOI 10.1001/jama.2020.4756 (7~8m) [해외 문헌]</li><li>Noti JD 외, PLoS ONE 2013 (저습도에서 인플루엔자 감염성 잔존 ↑) [해외 문헌]</li><li>미국 EPA, What is a HEPA filter / <a href="https://www.epa.gov/indoor-air-quality-iaq/what-hepa-filter" target="_blank" rel="noopener">https://www.epa.gov/indoor-air-quality-iaq/what-hepa-filter</a></li><li>판테온 시험 수치·조건: 세스코 카드뉴스 284_9·285_9 각주 원문(mkp.cesco.co.kr/contents/cardNews/detail/284·285) + 세스코몰 상세페이지 G2000001211 / [확인 필요: 20평 부유바이러스 99.8% vs 상세 99.9%, 극초미세먼지 0.01㎛ vs 0.1㎛ 표기]</li><li>정식명·가격: cesco-mall 카탈로그(2026-07 수집)</li></ul></article><article class="memo-sec"><h3>8. 참조 코퍼스</h3><ul><li>284 [위해요소] 코로나19 재확산, 여름마다 반복되는 이유와 예방·관리 방법 (2025-11-06)</li><li>285 [위해요소] 겨울철 독감의 위험성과 예방·관리 Tip (2025-11-06)</li><li>406 [상품 소개] 판테온 + 센스미 + 에어컨클리닝, 세가지 솔루션으로 겨울철 실내 공기질 관리 (2025-12-02)</li><li>표지 헤드 뱅크 A·B·C형, 본편 헤드 뱅크 §1·§4·§5·§7·§9·§10</li></ul></article></section>
+<footer>원본: final.md · build_cardnews_html.mjs (cesco-review-harness) · 수치·출처·상품명은 원고와 글자 단위로 같아야 합니다. 바뀌면 원고를 고치고 다시 빌드하세요.</footer>
+</main>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tabs [role=tab]');
+  var panels=document.querySelectorAll('[role=tabpanel]');
+  var top=document.querySelector('.top-memo');
+  function show(id){
+    tabs.forEach(function(t){t.setAttribute('aria-selected',String(t.dataset.target===id));});
+    panels.forEach(function(p){p.hidden=(p.id!==id);});
+    if(top) top.hidden=(id==='post');
+    try{localStorage.setItem('cardnews-tab',id);}catch(e){}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.target);});});
+  var saved=null; try{saved=localStorage.getItem('cardnews-tab');}catch(e){}
+  if(saved && document.getElementById(saved)) show(saved);
+})();
+</script>
+</body>
+</html>
