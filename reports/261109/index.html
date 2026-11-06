@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세스코 11/11 보고 자료</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--amber:#b35c00;--amber-soft:#fff4e5;--green:#1b7f3b;--green-soft:#e8f5ec}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px}
+.kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+h2{font-size:20px;margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px}
+h2 .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+h3{font-size:16px;margin:24px 0 8px;font-weight:700}
+p{margin:0 0 10px}
+.lead{font-size:16px;color:var(--ink2)}
+ul,ol{margin:0 0 10px;padding-left:22px}
+li{margin:3px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;font-size:13px;color:var(--ink2);white-space:nowrap}
+td.c,th.c{text-align:center;white-space:nowrap}
+.box{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px;background:var(--soft);padding:14px 18px;margin:14px 0}
+.box.amber{border-left-color:var(--amber);background:var(--amber-soft)}
+.box b.h{display:block;margin-bottom:6px}
+.small{font-size:13px;color:var(--ink2)}
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
+@media (max-width:720px){.wrap{padding:28px 16px 60px}h1{font-size:23px}table{font-size:13px}th,td{padding:7px 6px}}
+@media print{.wrap{padding:0;max-width:none}h2{break-after:avoid}table,.box{break-inside:avoid}a{color:inherit;text-decoration:none}}
+.st{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:4px;white-space:nowrap}
+.st.done{background:var(--green-soft);color:var(--green)}
+.st.run{background:var(--blue-soft);color:var(--blue)}
+.st.todo{background:#f1f1f1;color:var(--ink2)}
+.st.hold{background:var(--amber-soft);color:var(--amber)}
+td ul{margin:0;padding-left:18px}
+td li{margin:2px 0}
+.lnk{font-size:12.5px;color:var(--blue);white-space:nowrap}
+.today{background:#fffbe6;padding:0 4px;border-radius:3px}
+.strip{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 4px;font-size:14px;color:var(--ink2)}
+.strip b{color:var(--ink)}
+.out a{font-weight:600}
+.out .chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;line-height:1.25;padding:5px 11px;border:1px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.chip .type{font-size:10px;font-weight:600;color:var(--blue);opacity:.75;letter-spacing:.02em}
+.chip.old{background:#fff;border-color:var(--line);color:var(--ink2)}
+.chip.old .type{color:var(--ink3);opacity:1}
+.chip:hover{border-color:var(--blue)}
+@media print{.chip{border-color:#bbb}}
+/* 최신판 총정리 */
+.latest td:first-child{white-space:nowrap}
+.latest .v{display:flex;flex-direction:column;gap:4px}
+.latest .v a{font-weight:700;color:var(--blue);text-decoration:none}
+.latest .v a:hover{text-decoration:underline}
+.latest .v .d{font-size:12px;color:var(--ink3)}
+.latest .hist{font-size:12.5px;color:var(--ink2);line-height:1.6}
+.latest .hist a{color:var(--ink2);text-decoration:underline dotted;text-underline-offset:3px}
+.latest .hist s{color:var(--ink3)}
+.latest .hist .arr{color:var(--ink3);padding:0 3px}
+.grp td{background:var(--soft);font-weight:800;font-size:13px;color:var(--ink2);padding:6px 10px}
+.need{color:var(--amber);font-weight:700}
+details.fold{margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+details.fold>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;font-size:20px;font-weight:800}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+details.fold>summary .hint{margin-left:auto;font-size:12px;font-weight:500;color:var(--muted,#6b7280)}
+details.fold[open]>summary .hint .c{display:none}details.fold:not([open])>summary .hint .o{display:none}
+details.fold h2{display:none}
+@media print{details.fold{display:block}details.fold>summary .hint{display:none}details.fold:not([open])>*:not(summary){display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">세스코 콘텐츠 템플릿 · 시하</div>
+  <h1>11/11(수) 보고 자료</h1>
+  <div class="meta">
+    <span><b>기준일</b> 2026-11-06 (금)</span>
+    <span><b>마스터 템플릿</b> <a href="https://chloe-sh.github.io/cesco-templates/" target="_blank" rel="noopener">chloe-sh.github.io/cesco-templates</a></span>
+    <span><b>작성</b> 김선희</span>
+  </div>
+</header>
+
+<p class="lead">11/3 미팅 리포트(팀장님께 공유한 결정·진행 예정·확인 요청 사항)를 기준으로 이번 주 작업을 정리했습니다. 이번 주에 메일로 전달드린 카드뉴스·카케어 키카피와 새로 받은 요청 3건, 11/6에 반영한 카드뉴스 유형 추천과 고객 메시지 초안집을 함께 담았습니다. <b>00 제작물 최신판 총정리</b>, <b>01 템플릿</b>(카드뉴스·CRM 메시지·솔루션 페이지·장소별 추천·인스타그램), <b>02 콘텐츠·요청 건</b>(11월 카드뉴스·카케어·신규 요청·위쳌·내부 AI), <b>03 다음 주와 대기·결정 사항</b>입니다.</p>
+
+<div class="strip">
+  <span><b>이번 주 전달</b> 카드뉴스 3편 · 카케어 키카피 2회 · 미팅 리포트 1</span>
+  <span><b>이번 주 반영</b> 카드뉴스 유형 추천 · 고객 메시지 105건</span>
+  <span><b>신규 요청</b> 3건 (11/10~11/11 전달)</span>
+  <span><b>세스코 확인</b> 회신 대기 5 · 이월 2</span>
+</div>
+
+<!-- ───────────────────────── 0 ───────────────────────── -->
+<h2 id="s0"><span class="num">00</span>제작물 최신판 총정리</h2>
+<p class="small">11/3 보고 표에 이번 주 작업을 더했습니다. 바뀐 행만 날짜를 새로 적었고, 바뀌지 않은 리플릿·매거진·POP 행은 <a href="../261102/index.html#s0" target="_blank">11/3 보고 자료</a>와 같습니다.</p>
+
+<table class="latest">
+<thead><tr><th style="width:18%">포맷</th><th style="width:30%">최신판</th><th>비고</th><th class="c" style="width:11%">상태</th></tr></thead>
+<tbody>
+<tr class="grp"><td colspan="4">카드뉴스</td></tr>
+<tr><td>11월 마케팅포털 카드뉴스</td><td><div class="v"><span>판테온·에어컨클리닝 (B2C · B2B 2안)</span><span>에어커튼 (B2B)</span><span>세탁세제</span><span>비데</span><span class="d">11/3 · 11/4 · 11/5 메일 전달(pptx) · 비데는 11/6 전달 예정</span></div></td><td class="hist">10/27 받은 원천소스 4건으로 만들었습니다. 판테온·에어컨클리닝은 실내 공기 오염과 관리 이유, 에어커튼은 문이 열릴 때 들어오는 외부 오염·해충과 빠져나가는 난방열, 세탁세제는 진드기 사체·배설물 알레르기 유발 물질이 중심입니다.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>카드뉴스 유형 추천</td><td><div class="v"><a href="../../index.html#d60" target="_blank">유형 10개 표 + 추천 순서 (d60 §1)</a><a href="../261106/카드뉴스_코로나19_판테온_시안_261106.html" target="_blank">샘플 · 코로나19 × 판테온 (기본형 / 오해 교정형)</a><a href="../../index.html#d103/cardnews" target="_blank">카드뉴스 유형 갤러리</a><span class="d">11/06 · 세스코 Claude에서 바로 사용</span></div></td><td class="hist"><b>11/3 결정:</b> 고정 템플릿 하나 대신 여러 유형을 두고, 원천소스에 맞는 유형을 LLM이 먼저 추천합니다. 이제 기본형 1안 + 추천 유형 1안, 총 2안이 함께 나옵니다. 샘플은 "코로나 바이러스 + 판테온" 키워드만 넣고 만든 결과입니다.</td><td class="c"><span class="st done">완료</span></td></tr>
+<tr><td>인스타그램 · 박사·요원 화자형</td><td><div class="v"><span>매트리스케어 · 주방후드 샘플</span><span class="d">11/4 · 11/6 내부 샘플</span></div></td><td class="hist"><b>11/3 결정:</b> 캐릭터는 말하는 사람이고 중심은 위생 정보입니다. 11/3 받은 캐릭터 자료로 카드뉴스 원천소스를 박사·요원 화자 버전으로 만들어 보고 있습니다.</td><td class="c"><span class="st run">진행</span></td></tr>
+<tr class="grp"><td colspan="4">CRM 메시지</td></tr>
+<tr><td>고객 메시지 초안집</td><td><div class="v"><a href="고객메시지_초안집_261106.html" target="_blank">상황별 고객 메시지 105건</a><span class="d">11/06 · 정보 안내형 69 · 관리 체감형 16 · 관계 강화형 14 · 마케팅·전환형 6</span></div></td><td class="hist">10/29 팀장님 문의 건(정기문자 구성으로 Claude가 문자를 만들지 않음)에 따라 문자 템플릿을 Claude Code 하네스에 연결하고 출력 테스트를 마쳤습니다. 13개 발송 상황군과 발송 계기 10건에 방문 전·후 기본형을 더했고, 린트 점검 결과는 통과 91 · 경고 14 · 실패 0입니다.</td><td class="c"><span class="st done">완료</span></td></tr>
+<tr class="grp"><td colspan="4">마케팅 전략 · 카케어</td></tr>
+<tr><td>카케어 메인 키카피</td><td><div class="v"><a href="../261102/카케어_코어_261104.html" target="_blank">카케어 코어 · 클로드 / GPT 버전</a><span class="d">11/3 1차(메일 본문) · 11/4 하네스 결과</span></div></td><td class="hist">김정민 부문장님 요청(11/3). B2B·B2C 모두에 쓸 상위 메시지와 로켓별 소비자형 헤드카피를 나눴습니다. 근거는 33개 위생 관리 포인트와 렌터카·중고차 실차 확인입니다. 상단 버튼으로 두 버전을 비교합니다.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr><td>마케팅 전략 기준 문서</td><td><div class="v"><a href="../261102/마케팅전략_3건_261102.html" target="_blank">3건 (슬림온 · 에어컨 클리닝 · 블루제닉)</a><a href="../261102/마케팅전략_카케어_261104.html" target="_blank">카케어 편</a><span class="d">11/03 · 11/04</span></div></td><td class="hist">11/3 보고와 같습니다.</td><td class="c"><span class="st todo">피드백 대기</span></td></tr>
+<tr class="grp"><td colspan="4">신규 요청 (이번 주 접수)</td></tr>
+<tr><td>카케어 선물세트(5종·3종) 상세페이지 상단 요약</td><td><div class="v"><span>기획 · 라이팅</span><span class="d">11/4 김정민 부문장님 요청 · 11/11까지 전달</span></div></td><td class="hist">제품별 상세 설명 위에 들어가는 요약 부분입니다. 세스코 PM 초안은 참고만 하고 새로 구성합니다.</td><td class="c"><span class="st run">진행</span></td></tr>
+<tr><td>냉난방기 클리닝 로켓별 리플릿</td><td><div class="v"><span>소규모 · 공동주택 · 가정집 3종</span><span class="d">11/5 권재연 책임님 요청 · AI 초안 11/10 전달</span></div></td><td class="hist">겨울 시즌 클리닝을 권하는 리플릿입니다. 기존 리플릿과 카드뉴스 메시지를 참고하고, 지금 쓰는 리플릿보다 세스코 톤앤매너에 맞춥니다.</td><td class="c"><span class="st run">진행</span></td></tr>
+<tr><td>주방후드 클리닝 세스코몰 상세페이지</td><td><div class="v"><span>가정집 대상</span><span class="d">11/5 권재연 책임님 요청 · AI 초안 11/10 전달</span></div></td><td class="hist">라이프케어 자체 페이지안, 기존 카드뉴스·리플릿, 세스코몰 상세 구성과 에어컨 클리닝 상세 기획안을 참고합니다.</td><td class="c"><span class="st run">진행</span></td></tr>
+<tr class="grp"><td colspan="4">페이지 템플릿 · 위쳌</td></tr>
+<tr><td>솔루션 페이지</td><td><div class="v"><a href="../261026/솔루션페이지_서비스_빈대방제_261027.html" target="_blank">서비스 · 빈대방제 (1차)</a><a href="../261026/솔루션페이지_환경가전_공기청정기_판테온_1안_이렇게까지도입_261027.html" target="_blank">판테온 1안 (1차)</a><span class="d">10/27 1차 · 11/3 결정으로 재정리 중</span></div></td><td class="hist"><b>11/3 결정:</b> 모든 페이지를 한 템플릿으로 만들지 않고 상품 유형별 기본 골자를 둡니다. 서비스형은 문제·오염원 / 관리 필요성 / 서비스 프로세스 / 상품 구성 순서이고, 렌탈 제품형은 흐름을 따로 둡니다. 판테온 1안·2안은 기본형 하나에 강조할 POD만 바꾸는 방식으로 합칩니다. 마이랩은 지금 페이지 기준입니다.</td><td class="c"><span class="st run">진행</span></td></tr>
+<tr><td>장소별 추천 페이지</td><td><div class="v"><a href="../261026/장소별추천_시안_가정집_외식업장_유통시설_v6_261027.html" target="_blank">가정집 · 외식업장 · 유통시설 (1차)</a><span class="d">10/27 1차 · 하단 추천 상품 영역 추가 중</span></div></td><td class="hist"><b>11/3 결정:</b> 가정집은 생활 고민 / 방치했을 때의 영향 / 세스코 관리 영역 / 멤버스·과학연구소·FAQ 순서입니다. 외식업장도 같은 흐름이고, 글이 길어지지 않게 중간에 이미지를 둡니다. FAQ는 GEO에도 씁니다.</td><td class="c"><span class="st run">진행</span><br><span class="st todo" style="margin-top:4px">세스코 검토 대기</span></td></tr>
+<tr><td>위쳌 사업장 상세</td><td><div class="v"><a href="../261028/wecheck_draft_261028_치킨집.html" target="_blank">치킨집 (1차)</a><a href="../261028/wecheck_draft_261028_산후조리원.html" target="_blank">산후조리원 (1차)</a><span class="d">11/03 1차 · 실서비스 문구로 다시 쓰는 중</span></div></td><td class="hist"><b>11/3 결정:</b> 치킨집·산후조리원을 먼저 완성합니다. 보고용 문구를 실제 서비스에 쓸 세스코 말투로 다시 쓰고, 엑셀의 업종별 위생 정보도 지금 페이지 구조에 맞게 다시 씁니다. 수치형·상세페이지형·인터뷰형은 업종별로 적용해 본 뒤 정합니다.</td><td class="c"><span class="st run">진행</span></td></tr>
+<tr class="grp"><td colspan="4">11월 말 보고 준비</td></tr>
+<tr><td>통합 베리에이션 샘플</td><td><div class="v"><span>마이랩 세탁세제 원천소스 1개</span><span class="d">11월 말 보고용</span></div></td><td class="hist">같은 원천소스로 상세페이지 / 리플릿 / 카드뉴스 / 라이프케어 매거진 / 컨설팅 포인트를 차례로 만듭니다. 11월 카드뉴스 세탁세제(11/5)와 세탁 솔루션 리플릿 최종본(11/3)을 함께 소스로 씁니다.</td><td class="c"><span class="st todo">시작 전</span></td></tr>
+<tr><td>2027년 운영 제안서</td><td><div class="v"><span>초안</span><span class="d">11월 말 완료 보고와 함께</span></div></td><td class="hist">① 브랜드 언어·리라이팅 ② LLM 콘텐츠 제작 시스템 ③ 2027 콘텐츠 운영으로 이어서 설명합니다. 원천소스 발굴, 콘텐츠 캘린더, LLM 베리에이션, 품질 검수, 채널 확산을 담습니다.</td><td class="c"><span class="st todo">시작 전</span></td></tr>
+</tbody>
+</table>
+
+<!-- ───────────────────────── 1 ───────────────────────── -->
+<details class="fold" id="s1" open><summary><span class="num">01</span>템플릿<span class="hint"><span class="c">펼치기 ▾</span><span class="o">접기 ▴</span></span></summary>
+<p class="small">상태는 11/06 기준입니다. 11/3 미팅 리포트 「시하 진행 예정 사항」 1~3번과 5번입니다.</p>
+<table>
+<thead><tr><th>포맷</th><th class="c">상태</th><th>이번 주 반영</th><th>산출물</th></tr></thead>
+<tbody>
+
+<tr><td><b>카드뉴스</b><br><span class="small">유형 추천</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li><b>원천소스를 넣으면 기본형 1안과 추천 유형 1안, 총 2안이 나옵니다.</b> 11/3 결정대로 유형을 먼저 추천하고, 담당자가 고르지 않으면 추천 순서대로 정합니다.</li>
+<li>마스터 템플릿 <a href="../../index.html#d60" target="_blank">카드뉴스(d60)</a> §1에 유형 10개 표와 추천 순서를 넣었습니다. 프로모션형 / 오해 교정형 / 경험 질문형 / 수사 컨셉형 / 체크리스트형 / 채팅형 / 작업일지형 순으로 원천소스 신호를 보고, 맞는 게 없으면 원인 추적형입니다.</li>
+<li>직전 2편이 신규 유형이면 이번 편은 기본형으로 돌립니다. 한 편에 유형을 섞지 않습니다.</li>
+<li>세스코 Claude에서 "깃허브에서 스킬 가져와서 세스코 카드뉴스 만들어줘"라고 요청하면 바로 씁니다(11/6 구글챗 안내). 유형을 눈으로 보고 고르려면 <a href="../../index.html#d103/cardnews" target="_blank">유형 갤러리</a>를 엽니다.</li>
+<li>샘플은 코로나19 × 판테온입니다. 시험 범위 밖의 표현이 나가지 않도록 점검 항목을 원고 안에 남겼습니다(코로나19 살균 시험은 센스미로만 완료).</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../261106/카드뉴스_코로나19_판테온_시안_261106.html" target="_blank"><span class="type">샘플 · 2안</span>코로나19 × 판테온</a><a class="chip" href="../../index.html#d60" target="_blank"><span class="type">마스터</span>d60 §1 유형 추천</a><a class="chip" href="../../index.html#d103/cardnews" target="_blank"><span class="type">갤러리</span>카드뉴스 유형</a></div></td></tr>
+
+<tr><td><b>CRM 메시지</b><br><span class="small">문자 템플릿 연결</span></td><td class="c"><span class="st done">완료</span></td><td><ul>
+<li><b>문자 템플릿을 Claude Code 하네스에 연결하고 출력 테스트를 마쳤습니다.</b> 11/3에 "진행 중"으로 바꿨던 항목입니다.</li>
+<li>정보성(알림톡·LMS) · 개인화 CRM · 홍보성(광고) 규칙을 나눠 적용했고, 홍보성은 (광고) 표기와 080 수신거부를 넣습니다.</li>
+<li>테스트 결과로 상황별 초안 105건을 만들었습니다. 상담·신규 고객부터 B2B 사업장까지 13개 상황군과 발송 계기 10건입니다.</li>
+<li>린트 점검은 통과 91 · 경고 14 · 실패 0입니다. 변수는 #{이름} 자리이고 발송 시스템 서식에 맞춰 바꿉니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="고객메시지_초안집_261106.html" target="_blank"><span class="type">초안집 · 105건</span>고객 메시지 초안집</a></div></td></tr>
+
+<tr><td><b>솔루션 페이지</b><br><span class="small">유형별 기본 골자</span></td><td class="c"><span class="st run">진행</span></td><td><ul>
+<li>서비스형과 렌탈 제품형의 기본 흐름을 나눠 정리하고 있습니다.</li>
+<li>1안·2안으로 나눈 구조를 빼고 기본형 하나에 바뀌는 부분만 둡니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip old" href="../261026/솔루션페이지_서비스_빈대방제_261027.html" target="_blank"><span class="type">10/27 1차</span>빈대방제</a><a class="chip old" href="../261026/솔루션페이지_생활위생용품_세스코마이랩_261027.html" target="_blank"><span class="type">10/27 1차</span>세스코 마이랩</a></div></td></tr>
+
+<tr><td><b>장소별 추천 페이지</b><br><span class="small">가정집 · 외식업장</span></td><td class="c"><span class="st run">진행</span></td><td><ul>
+<li>1차 구조는 그대로 두고 하단에 추천 상품 영역을 넣고 있습니다.</li>
+<li>세스코 내부 검토 의견을 받으면 함께 반영합니다(03 대기 ①).</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip old" href="../261026/장소별추천_시안_가정집_외식업장_유통시설_v6_261027.html" target="_blank"><span class="type">10/27 1차</span>장소별 추천 v6</a></div></td></tr>
+
+<tr><td><b>인스타그램 콘텐츠</b><br><span class="small">박사·요원 화자형</span></td><td class="c"><span class="st run">진행</span></td><td><ul>
+<li>11/3 받은 캐릭터 디자인 가이드로 매트리스케어·주방후드 샘플을 만들었습니다.</li>
+<li>캐릭터 성향을 더 살리고 실제 카드뉴스 형태로 다듬어 다음 보고에 공유드립니다.</li>
+</ul></td>
+<td class="out"><span class="small">다음 보고에 공유</span></td></tr>
+</tbody>
+</table>
+</details>
+
+<!-- ───────────────────────── 2 ───────────────────────── -->
+<details class="fold" id="s2" open><summary><span class="num">02</span>콘텐츠 · 요청 건<span class="hint"><span class="c">펼치기 ▾</span><span class="o">접기 ▴</span></span></summary>
+<table>
+<thead><tr><th>항목</th><th class="c">상태</th><th>이번 주 반영</th><th>산출물</th></tr></thead>
+<tbody>
+
+<tr><td><b>11월 마케팅포털 카드뉴스</b><br><span class="small">원천소스 4건</span></td><td class="c"><span class="st todo">피드백 대기</span></td><td><ul>
+<li>11/3 판테온·에어컨클리닝: 실내 공기 오염과 관리 이유 중심, B2C·B2B 2안.</li>
+<li>11/4 에어커튼: 제품 특성에 맞춰 B2B. 문이 열릴 때 들어오는 외부 오염·해충과 빠져나가는 난방열 중심.</li>
+<li>11/5 세탁세제: 진드기 사체·배설물 알레르기 유발 물질 중심. 세부 메모는 파일 안에 있습니다.</li>
+<li>비데(겨울철 노로바이러스)는 11/6 전달 예정입니다.</li>
+</ul></td>
+<td class="out"><span class="small">메일 첨부(pptx) · 장재혁 책임님</span></td></tr>
+
+<tr><td><b>카케어 메인 키카피</b></td><td class="c"><span class="st todo">피드백 대기</span></td><td><ul>
+<li>11/3 1차: 상위 메시지 3안과 로켓별 헤드카피(일반 차량 · 아이 동승 · 반려 · 렌터카 · 중고차)를 나눠 드렸습니다.</li>
+<li>11/4: 하네스로 다시 뽑은 결과를 클로드 / GPT 버전으로 드렸습니다. "왜 세스코인가"가 더 드러나도록 차별성 세 축(위생 전문 기업 · 과학 연구소 · 밀폐 공간 기준)을 앞에 두었습니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip" href="../261102/카케어_코어_261104.html" target="_blank"><span class="type">클로드 / GPT</span>카케어 코어</a></div></td></tr>
+
+<tr><td><b>신규 요청 3건</b></td><td class="c"><span class="st run">진행</span></td><td><ul>
+<li>카케어 선물세트(5종·3종) 상세페이지 상단 요약: 11/11(수)까지 전달.</li>
+<li>냉난방기 클리닝 로켓별 리플릿 3종(소규모 · 공동주택 · 가정집): AI 초안을 11/10(화)에 전달하고 방향을 확인한 뒤 보완합니다.</li>
+<li>주방후드 클리닝 가정집 세스코몰 상세페이지: AI 초안을 11/10(화)에 전달하고 방향을 확인한 뒤 보완합니다.</li>
+</ul></td>
+<td class="out"><span class="small">메일로 전달 예정</span></td></tr>
+
+<tr><td><b>위쳌(WeCheck)</b><br><span class="small">치킨집 · 산후조리원</span></td><td class="c"><span class="st run">진행</span></td><td><ul>
+<li>치킨집·산후조리원 문구를 실제 서비스 수준으로 다시 쓰고 있습니다.</li>
+<li>사업주가 고를 항목과 AI 추천 문구 구조를 함께 정리합니다.</li>
+<li>두 업종을 마치면 다른 업종으로 넓힙니다.</li>
+</ul></td>
+<td class="out"><div class="chips"><a class="chip old" href="../261028/wecheck_draft_261028.html" target="_blank"><span class="type">11/03 1차</span>치킨집 · 산후조리원</a></div></td></tr>
+
+<tr><td><b>세스코 내부 AI 환경</b><br><span class="small">Bedrock · Claude</span></td><td class="c"><span class="st run">진행</span></td><td><ul>
+<li>11/5 김정민 부문장님 메일로 필요한 것을 받았습니다: 압축 파일에 빠진 파일, Git 권한 3명(김성민 책임 · 임준규 책임 · 이유진 매니저), 개발자 분과 직접 연락할 담당자.</li>
+<li>11/5에 메일로 회신드렸습니다.</li>
+<li>Git 권한은 각자의 깃허브 아이디가 있어야 드릴 수 있습니다(03 대기 ⑤).</li>
+</ul></td>
+<td class="out"><span class="small">메일 회신</span></td></tr>
+</tbody>
+</table>
+</details>
+
+<!-- ───────────────────────── 3 ───────────────────────── -->
+<h2 id="s3"><span class="num">03</span>다음 주 · 세스코 대기 · 결정</h2>
+
+<h3>다음 주 할 일</h3>
+<table>
+<thead><tr><th>항목</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td><b>신규 요청 3건</b></td><td>냉난방기 클리닝 리플릿 3종과 주방후드 클리닝 상세페이지 AI 초안은 11/10(화), 카케어 선물세트 상단 요약은 11/11(수)까지 전달합니다.</td></tr>
+<tr><td><b>솔루션 페이지</b></td><td>서비스형 / 렌탈 제품형 기본 골자를 마무리하고, 1안·2안 구조를 기본형 + 바뀌는 부분으로 바꿉니다.</td></tr>
+<tr><td><b>장소별 추천 페이지</b></td><td>하단 추천 상품 영역을 넣고, 세스코 검토 의견이 오면 반영합니다.</td></tr>
+<tr><td><b>위쳌</b></td><td>치킨집·산후조리원 문구 리라이팅을 마치고 사업주 선택 항목을 정리합니다.</td></tr>
+<tr><td><b>인스타그램</b></td><td>박사·요원 화자형 샘플을 실제 카드뉴스 형태로 다듬어 공유합니다.</td></tr>
+<tr><td><b>카드뉴스</b></td><td>11월 4편 피드백을 반영합니다. 세스코에서 유형 추천을 써 보시고 형태가 다르게 나오면 알려 주시면 바로 고칩니다.</td></tr>
+<tr><td><b>통합 베리에이션 · 2027 제안서</b></td><td>마이랩 세탁세제 원천소스로 상세페이지부터 만들기 시작하고, 2027 운영 제안서 뼈대를 잡습니다. 11월 말 보고용입니다.</td></tr>
+<tr><td><b>내부 AI 지원</b></td><td>Git 권한과 파일 전달 범위를 정하고, 필요하면 목적별 프롬프트를 추가합니다.</td></tr>
+</tbody>
+</table>
+
+<h3>세스코에서 받을 것</h3>
+<p class="small">11/3 미팅 리포트 「세스코 확인 및 전달 요청 사항」 5건 중 2건은 받았습니다. 나머지와 이번 주 전달분 피드백입니다.</p>
+<table>
+<thead><tr><th>항목</th><th class="c">상태</th><th>메모</th></tr></thead>
+<tbody>
+<tr><td>① 장소별 추천 페이지 1차 기획안 검토 의견</td><td class="c"><span class="st todo">회신 대기</span></td><td>가정집·외식업장. 11/3 요청.</td></tr>
+<tr><td>② 위쳌 샘플 · 사업주 선택 항목 구조 확인</td><td class="c"><span class="st todo">회신 대기</span></td><td>치킨집·산후조리원. 확인되면 다음 업종으로 넘어갑니다.</td></tr>
+<tr><td>③ 2027 신제품 출시 · 시즈널 일정</td><td class="c"><span class="st todo">공유 요청</span></td><td>연간 콘텐츠 캘린더와 운영 제안서에 필요합니다.</td></tr>
+<tr><td>④ 11월 카드뉴스 · 카케어 키카피 피드백</td><td class="c"><span class="st todo">회신 대기</span></td><td>카드뉴스 3편(11/3~11/5), 카케어 키카피(11/3 · 11/4).</td></tr>
+<tr><td>⑤ Git 권한용 깃허브 아이디 3명</td><td class="c"><span class="st todo">공유 요청</span></td><td>김성민 책임 · 임준규 책임 · 이유진 매니저. 메일 주소만으로는 권한을 드릴 수 없습니다.</td></tr>
+<tr><td>인스타그램 캐릭터 자료</td><td class="c"><span class="st done">받음</span></td><td>11/3 복혜미 책임님 「세스코 캐릭터 자료 공유 건」.</td></tr>
+<tr><td>Bedrock 개발 미팅 결과 · 필요 파일</td><td class="c"><span class="st done">받음</span></td><td>11/5 김정민 부문장님 메일.</td></tr>
+<tr><td>우수사례 실제 적용본 · 결합상품 리플릿 회신</td><td class="c"><span class="st todo">이월</span></td><td>10/21 · 10/23 요청분.</td></tr>
+<tr><td>표기법 가이드라인 최종 컨펌 · 리플릿 확인 항목</td><td class="c"><span class="st todo">이월</span></td><td>10/21 · 10/28 보고분.</td></tr>
+</tbody>
+</table>
+
+<h3>결정이 필요한 것</h3>
+<div class="box amber">
+  <b class="h">카드뉴스</b>
+  <ol>
+    <li><b>11월 4편 채택안</b> 판테온·에어컨클리닝 B2C / B2B 중 발행할 안.</li>
+    <li><b>유형 추천 운영</b> 기본형 1안 + 추천 1안을 매번 함께 받을지, 기본형만 받고 추천은 필요할 때만 받을지.</li>
+  </ol>
+  <b class="h">카케어</b>
+  <ol start="3">
+    <li><b>메인 키카피 방향</b> 클로드 / GPT 버전 중 어느 쪽을 기준으로 다듬을지. 선물세트 상단 요약에도 같은 메시지를 씁니다.</li>
+  </ol>
+  <b class="h">내부 AI</b>
+  <ol start="4">
+    <li><b>Git 연결 방식</b> 지금 쓰는 세스코 전용 깃허브(비공개)를 IT 부서가 그대로 연결할지, 보안 검토 후 회사 깃허브를 따로 만들지(11/4 구글챗 논의).</li>
+  </ol>
+</div>
+
+<div class="foot">
+  산출물은 표의 버튼으로 열립니다. 웹 주소: <a href="https://chloe-sh.github.io/cesco-templates/reports/261109/" target="_blank">chloe-sh.github.io/cesco-templates/reports/261109/</a> · 이전 보고: <a href="../261102/index.html" target="_blank">11/03 보고 자료</a> · 모든 시안 캡처: <a href="../../index.html#d103" target="_blank">마스터 템플릿 시안 갤러리</a></div>
+
+</div>
+</body>
+</html>

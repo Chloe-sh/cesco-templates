@@ -1,0 +1,5434 @@
+<title>세스코 메시지 초안집</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<style>
+/* 레이아웃: 상단 요약 + 고정 필터바 + 4개 분류 섹션(카드 그리드) + 상황→초안 색인표 */
+:root{
+  --bg:#f6f7f4; --surface:#ffffff; --fg:#1b2430; --muted:#5d6878; --line:#d9ded8;
+  --accent:#0b4ea2; --accent-soft:#e3ecf8;
+  --info:#0b4ea2; --info-bg:#e3ecf8; --crm:#1f7a4d; --crm-bg:#e2f3e9; --promo:#b4531a; --promo-bg:#fbe9dc;
+  --pass:#1f7a4d; --pass-bg:#e2f3e9; --warn:#9a6b00; --warn-bg:#fff3cc; --fail:#b3261e; --fail-bg:#fde3e1;
+  --bubble:#eef2ee; --g1:#0b4ea2; --g2:#1f7a4d; --g3:#7a4a9a; --g4:#b4531a;
+  --display:'Nanum Myeongjo',Georgia,serif; --body:'Noto Sans KR',system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141a21; --surface:#1c242e; --fg:#e8ecef; --muted:#a3adb9; --line:#303b48;
+  --accent:#7fb2f0; --accent-soft:#1f3350; --info:#7fb2f0; --info-bg:#1f3350; --crm:#6fcf97; --crm-bg:#1b3a2a; --promo:#f0a06a; --promo-bg:#45291a;
+  --pass:#6fcf97; --pass-bg:#1b3a2a; --warn:#f2c94c; --warn-bg:#3f3312; --fail:#f28b82; --fail-bg:#4a1f1c; --bubble:#232d38;
+  --g1:#7fb2f0; --g2:#6fcf97; --g3:#c69ae0; --g4:#f0a06a; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#141a21; --surface:#1c242e; --fg:#e8ecef; --muted:#a3adb9; --line:#303b48;
+  --accent:#7fb2f0; --accent-soft:#1f3350; --info:#7fb2f0; --info-bg:#1f3350; --crm:#6fcf97; --crm-bg:#1b3a2a; --promo:#f0a06a; --promo-bg:#45291a;
+  --pass:#6fcf97; --pass-bg:#1b3a2a; --warn:#f2c94c; --warn-bg:#3f3312; --fail:#f28b82; --fail-bg:#4a1f1c; --bubble:#232d38;
+  --g1:#7fb2f0; --g2:#6fcf97; --g3:#c69ae0; --g4:#f0a06a; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:clamp(28px,4vw,40px);font-weight:800}
+h2{font-size:clamp(22px,3vw,30px);font-weight:800}
+h3{font-size:17px;font-weight:700;font-family:var(--body)}
+a{color:var(--accent)}
+.hero{padding:40px 0 24px;border-bottom:1px solid var(--line)}
+.hero .lede{max-width:66ch;color:var(--muted);margin:12px 0 0}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 0}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums;font-family:var(--display)}
+.stat span{font-size:12px;color:var(--muted)}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:24px 0 0}
+.legend a{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:8px;padding:14px 16px}
+.legend a.G1{border-top-color:var(--g1)} .legend a.G2{border-top-color:var(--g2)} .legend a.G3{border-top-color:var(--g3)} .legend a.G4{border-top-color:var(--g4)}
+.legend b{display:block;font-size:16px;margin-bottom:4px}
+.legend p{margin:0;font-size:13px;color:var(--muted)}
+.legend small{display:block;margin-top:8px;font-size:12px;color:var(--fg)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bar .tabs{display:flex;flex-wrap:wrap;gap:6px}
+.bar button,.bar select,.bar input{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 12px}
+.bar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.bar input{flex:1 1 180px;min-width:0;border-radius:8px}
+.bar .count{font-size:12px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.group{padding:36px 0 8px}
+.group-h{max-width:70ch;margin-bottom:18px;border-left:4px solid var(--accent);padding-left:14px}
+#G1 .group-h{border-color:var(--g1)} #G2 .group-h{border-color:var(--g2)} #G3 .group-h{border-color:var(--g3)} #G4 .group-h{border-color:var(--g4)}
+.group-h .lede{margin:8px 0 0;color:var(--muted)}
+.group-h .rule{margin:6px 0 0;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card[hidden]{display:none}
+.card-h{display:flex;flex-direction:column;gap:6px}
+.card-t{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.num{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cat{font-size:12px;color:var(--muted)}
+.card-t h3{flex-basis:100%}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.badge,.chip,.pill{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.chip{border-color:var(--line);color:var(--muted)}
+.badge.info{background:var(--info-bg);color:var(--info)} .badge.crm{background:var(--crm-bg);color:var(--crm)} .badge.promo{background:var(--promo-bg);color:var(--promo)}
+.pill.pass{background:var(--pass-bg);color:var(--pass)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.fail{background:var(--fail-bg);color:var(--fail)}
+.dir{margin:0;font-size:13px;color:var(--muted)} .dir q{color:var(--fg);font-style:italic}
+.bubble-wrap{position:relative}
+.bubble{margin:0;background:var(--bubble);border-radius:12px 12px 12px 4px;padding:14px 16px;font:inherit;font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;max-height:520px;overflow:auto}
+.copy{position:absolute;top:8px;right:8px;font:inherit;font-size:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:3px 10px;cursor:pointer;opacity:.85}
+.copy:hover,.copy:focus-visible{opacity:1;outline:2px solid var(--accent);outline-offset:1px}
+.card-f{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-top:auto}
+.findings{flex-basis:100%;font-size:12px}
+.findings summary{cursor:pointer;color:var(--warn)}
+.findings ul{margin:6px 0 0;padding-left:18px} .findings li{margin:2px 0}
+.index{padding:36px 0 0}
+.index .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface);margin-top:14px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:8px 12px;border-top:1px solid var(--line)}
+tr:first-child th,tr:first-child td{border-top:0}
+th{white-space:nowrap;width:180px;font-weight:500}
+.map{display:inline-block;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:1px 9px;margin:2px 2px 2px 0;font-size:12px;border-left-width:4px}
+.map.G1{border-left-color:var(--g1)} .map.G2{border-left-color:var(--g2)} .map.G3{border-left-color:var(--g3)} .map.G4{border-left-color:var(--g4)}
+.notes{margin-top:28px;font-size:13px;color:var(--muted);max-width:70ch} .notes li{margin:4px 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+@media (max-width:480px){.cards{grid-template-columns:1fr}.bubble{max-height:none}}
+</style>
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">CESCO · 고객 메시지 · 상황별 초안 · 2026-11-06</p>
+  <h1>세스코 고객 메시지 초안집</h1>
+  <p class="lede">13개 발송 상황군 91건과 발송 계기 10건, 그리고 방문 전·후 기본형을 더한 105건을 네 가지 메시지 성격으로 묶었습니다. 모든 초안은 cesco-message 스킬의 유형별 규칙(정보성·개인화 CRM·홍보성)으로 쓰고 린트 하네스 <code>check_message.mjs</code>를 통과시켰습니다. 변수는 <code>#{이름}</code> 자리이며 발송 시스템 서식에 맞춰 바꿔 씁니다.</p>
+  <div class="stats">
+    <div class="stat"><b>105</b><span>초안 전체</span></div>
+    <div class="stat"><b>69</b><span>정보성</span></div>
+    <div class="stat"><b>30</b><span>개인화 CRM</span></div>
+    <div class="stat"><b>6</b><span>홍보성(광고)</span></div>
+    <div class="stat"><b>91 / 14 / 0</b><span>린트 PASS / WARN / FAIL</span></div>
+  </div>
+  <div class="legend">
+    <a href="#G1" class="G1"><b>정보 안내형 · 69건</b><p>계약, 방문, 결제, 설치 등 고객이 반드시 알아야 하는 정보. 신속성과 정확성이 중요합니다.</p><small>정보성 메시지 규칙(알림톡·LMS)</small></a><a href="#G2" class="G2"><b>관리 체감형 · 16건</b><p>점검 결과, 관리 이력, 개선 사항 등 세스코 서비스의 가치를 고객이 체감하도록 돕는 메시지입니다.</p><small>개인화 CRM 규칙(담당 컨설턴트 발신)</small></a><a href="#G3" class="G3"><b>관계 강화형 · 14건</b><p>첫 서비스, 이용 1주년, 장기 이용 감사, 고객 의견 반영 등 고객과의 관계를 쌓는 메시지입니다.</p><small>개인화 CRM 규칙(공식 명의 또는 담당 컨설턴트)</small></a><a href="#G4" class="G4"><b>마케팅·전환형 · 6건</b><p>신규 서비스, 계절별 추천, 추가 관리 제안, 재구매와 혜택 안내 등 고객 행동을 유도하는 메시지입니다. 광고성 메시지는 수신동의와 발송 요건을 별도로 확인해야 합니다.</p><small>홍보성 메시지 규칙((광고) 표기·080 수신거부 의무)</small></a>
+  </div>
+</header>
+
+<nav class="bar" aria-label="필터">
+  <div class="tabs" role="group" aria-label="분류">
+    <button type="button" data-g="" aria-pressed="true">전체</button>
+    <button type="button" data-g="G1" aria-pressed="false">정보 안내형</button><button type="button" data-g="G2" aria-pressed="false">관리 체감형</button><button type="button" data-g="G3" aria-pressed="false">관계 강화형</button><button type="button" data-g="G4" aria-pressed="false">마케팅·전환형</button>
+  </div>
+  <select id="cat" aria-label="상황군"><option value="">상황군 전체</option><option value="1">1. 상담·신규 고객</option><option value="2">2. 계약·가입</option><option value="3">3. 설치·첫 이용</option><option value="4">4. 방문 일정</option><option value="5">5. 정기 서비스</option><option value="6">6. 위생 점검·특이사항</option><option value="7">7. 제품 유지관리</option><option value="8">8. 결제·요금</option><option value="9">9. 계약 갱신·변경</option><option value="10">10. 고객 불편·VOC</option><option value="11">11. 온라인몰·구매</option><option value="12">12. 고객 관계·브랜드 CRM</option><option value="13">13. B2B 사업장 특화</option><option value="14">14. 발송 계기별</option></select>
+  <select id="type" aria-label="메시지 유형"><option value="">유형 전체</option><option value="info">정보성</option><option value="crm">개인화 CRM</option><option value="promo">홍보성</option></select>
+  <input id="q" type="search" placeholder="상황·문구 검색" aria-label="검색">
+  <span class="count" id="count"></span>
+</nav>
+
+<section class="group" id="G1">
+  <div class="group-h">
+    <p class="eyebrow">분류 1 · 69건</p>
+    <h2>정보 안내형</h2>
+    <p class="lede">계약, 방문, 결제, 설치 등 고객이 반드시 알아야 하는 정보. 신속성과 정확성이 중요합니다.</p>
+    <p class="rule">적용 규칙: 정보성 메시지 규칙(알림톡·LMS)</p>
+  </div>
+  <div class="cards"><article class="card" id="m1" data-g="G1" data-cat="1" data-type="info" data-q="무료진단 신청 접수 상담·신규 고객 [세스코] 무료진단 신청 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+신청하신 무료 위생진단이 정상 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 신청 서비스: #{서비스명}
+■ 진단 장소: #{주소}
+■ 상담 연락 예정: 접수 후 1영업일 이내
+
+※ 세스코 상담 담당자가 입력하신 번호로 연락드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">001</span><span class="cat">1. 상담·신규 고객</span><h3>무료진단 신청 접수</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 무료진단 신청 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+신청하신 무료 위생진단이 정상 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 신청 서비스: #{서비스명}
+■ 진단 장소: #{주소}
+■ 상담 연락 예정: 접수 후 1영업일 이내
+
+※ 세스코 상담 담당자가 입력하신 번호로 연락드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 무료진단 신청 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+신청하신 무료 위생진단이 정상 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 신청 서비스: #{서비스명}
+■ 진단 장소: #{주소}
+■ 상담 연락 예정: 접수 후 1영업일 이내
+
+※ 세스코 상담 담당자가 입력하신 번호로 연락드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>237자 · 368바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m2" data-g="G1" data-cat="1" data-type="info" data-q="상담 예약 확정 상담·신규 고객 [세스코] 상담 예약 확정 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 상담 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 상담 일시: #{m월 d일(요일) 오후 h시}
+■ 상담 방법: #{방문 상담/전화 상담}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 일정 변경이 필요하시면 상담 전날까지 알려 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">002</span><span class="cat">1. 상담·신규 고객</span><h3>상담 예약 확정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 상담 예약 확정 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 상담 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 상담 일시: #{M월 D일(요일) 오후 H시}
+■ 상담 방법: #{방문 상담/전화 상담}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 일정 변경이 필요하시면 상담 전날까지 알려 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 상담 예약 확정 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 상담 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 상담 일시: #{M월 D일(요일) 오후 H시}
+■ 상담 방법: #{방문 상담/전화 상담}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 일정 변경이 필요하시면 상담 전날까지 알려 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>255자 · 392바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m3" data-g="G1" data-cat="1" data-type="info" data-q="상담 부재중 재연락 상담·신규 고객 [세스코] 상담 재연락 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 상담을 위해 연락드렸으나 연결되지 않아 다시 연락드릴 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 연락 시도 일시: #{m월 d일(요일) 오후 h시}
+■ 재연락 예정: #{m월 d일(요일) 오전/오후}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 편하신 시간이 있으시면 답장으로 알려 주시면 그 시간에 맞춰 연락드리겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">003</span><span class="cat">1. 상담·신규 고객</span><h3>상담 부재중 재연락</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 상담 재연락 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 상담을 위해 연락드렸으나 연결되지 않아 다시 연락드릴 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 연락 시도 일시: #{M월 D일(요일) 오후 H시}
+■ 재연락 예정: #{M월 D일(요일) 오전/오후}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 편하신 시간이 있으시면 답장으로 알려 주시면 그 시간에 맞춰 연락드리겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 상담 재연락 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 상담을 위해 연락드렸으나 연결되지 않아 다시 연락드릴 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 연락 시도 일시: #{M월 D일(요일) 오후 H시}
+■ 재연락 예정: #{M월 D일(요일) 오전/오후}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 편하신 시간이 있으시면 답장으로 알려 주시면 그 시간에 맞춰 연락드리겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>288자 · 448바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m4" data-g="G1" data-cat="1" data-type="info" data-q="상담 완료 감사 상담·신규 고객 [세스코] 상담 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 진행한 상담 내용을 정리해 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 상담 내용: #{상담 요약 한 줄}
+■ 제안 서비스: #{서비스명}
+■ 다음 단계: #{견적서 발송/무료체험 일정 안내}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 상담 중 궁금하셨던 점은 언제든 담당자에게 다시 물어보셔도 됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">004</span><span class="cat">1. 상담·신규 고객</span><h3>상담 완료 감사</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 상담 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 진행한 상담 내용을 정리해 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 상담 내용: #{상담 요약 한 줄}
+■ 제안 서비스: #{서비스명}
+■ 다음 단계: #{견적서 발송/무료체험 일정 안내}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 상담 중 궁금하셨던 점은 언제든 담당자에게 다시 물어보셔도 됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 상담 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 진행한 상담 내용을 정리해 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 상담 내용: #{상담 요약 한 줄}
+■ 제안 서비스: #{서비스명}
+■ 다음 단계: #{견적서 발송/무료체험 일정 안내}
+■ 상담 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 상담 중 궁금하셨던 점은 언제든 담당자에게 다시 물어보셔도 됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>283자 · 441바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m5" data-g="G1" data-cat="1" data-type="info" data-q="견적서 발송 상담·신규 고객 [세스코] 견적서 발송 안내
+
+안녕하세요, #{고객명} 고객님.
+상담 내용을 바탕으로 작성한 견적서를 보내드립니다.
+아래 내용을 확인해 주세요.
+
+■ 견적 서비스: #{서비스명}
+■ 견적 금액: 월 #{금액}원(부가세 포함)
+■ 견적 유효기간: #{m월 d일(요일)}까지
+■ 견적서 확인: #{url}
+
+※ 공간 규모나 서비스 범위가 달라지면 금액이 조정될 수 있습니다.
+
+견적서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">005</span><span class="cat">1. 상담·신규 고객</span><h3>견적서 발송</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 견적서 발송 안내
+
+안녕하세요, #{고객명} 고객님.
+상담 내용을 바탕으로 작성한 견적서를 보내드립니다.
+아래 내용을 확인해 주세요.
+
+■ 견적 서비스: #{서비스명}
+■ 견적 금액: 월 #{금액}원(부가세 포함)
+■ 견적 유효기간: #{M월 D일(요일)}까지
+■ 견적서 확인: #{URL}
+
+※ 공간 규모나 서비스 범위가 달라지면 금액이 조정될 수 있습니다.
+
+견적서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 견적서 발송 안내
+
+안녕하세요, #{고객명} 고객님.
+상담 내용을 바탕으로 작성한 견적서를 보내드립니다.
+아래 내용을 확인해 주세요.
+
+■ 견적 서비스: #{서비스명}
+■ 견적 금액: 월 #{금액}원(부가세 포함)
+■ 견적 유효기간: #{M월 D일(요일)}까지
+■ 견적서 확인: #{URL}
+
+※ 공간 규모나 서비스 범위가 달라지면 금액이 조정될 수 있습니다.
+
+견적서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>288자 · 441바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m6" data-g="G1" data-cat="1" data-type="info" data-q="견적 검토 안내 상담·신규 고객 [세스코] 견적 검토 안내
+
+안녕하세요, #{고객명} 고객님.
+보내드린 견적서를 검토하실 때 참고하실 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 견적 유효기간: #{m월 d일(요일)}까지
+■ 포함 내용: #{정기 방문 횟수, 점검 범위, 장비}
+■ 궁금한 점 문의: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 견적 조건을 조정하고 싶으시면 담당자에게 말씀해 주세요. 공간 상황에 맞춰 다시 설계해 드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">006</span><span class="cat">1. 상담·신규 고객</span><h3>견적 검토 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 견적 검토 안내
+
+안녕하세요, #{고객명} 고객님.
+보내드린 견적서를 검토하실 때 참고하실 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 견적 유효기간: #{M월 D일(요일)}까지
+■ 포함 내용: #{정기 방문 횟수, 점검 범위, 장비}
+■ 궁금한 점 문의: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 견적 조건을 조정하고 싶으시면 담당자에게 말씀해 주세요. 공간 상황에 맞춰 다시 설계해 드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 견적 검토 안내
+
+안녕하세요, #{고객명} 고객님.
+보내드린 견적서를 검토하실 때 참고하실 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 견적 유효기간: #{M월 D일(요일)}까지
+■ 포함 내용: #{정기 방문 횟수, 점검 범위, 장비}
+■ 궁금한 점 문의: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 견적 조건을 조정하고 싶으시면 담당자에게 말씀해 주세요. 공간 상황에 맞춰 다시 설계해 드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>310자 · 484바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m7" data-g="G1" data-cat="1" data-type="info" data-q="무료체험 일정 안내 상담·신규 고객 [세스코] 무료체험 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+신청하신 무료체험 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 체험 서비스: #{서비스명/장비명}
+■ 설치(시작) 일시: #{m월 d일(요일) 오후 h시}
+■ 체험 기간: #{m월 d일}~#{m월 d일}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 체험 종료 7일 전에 이용 방법과 전환 안내를 다시 보내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">007</span><span class="cat">1. 상담·신규 고객</span><h3>무료체험 일정 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 무료체험 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+신청하신 무료체험 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 체험 서비스: #{서비스명/장비명}
+■ 설치(시작) 일시: #{M월 D일(요일) 오후 H시}
+■ 체험 기간: #{M월 D일}~#{M월 D일}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 체험 종료 7일 전에 이용 방법과 전환 안내를 다시 보내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 무료체험 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+신청하신 무료체험 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 체험 서비스: #{서비스명/장비명}
+■ 설치(시작) 일시: #{M월 D일(요일) 오후 H시}
+■ 체험 기간: #{M월 D일}~#{M월 D일}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 체험 종료 7일 전에 이용 방법과 전환 안내를 다시 보내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>333자 · 518바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m8" data-g="G1" data-cat="2" data-type="info" data-q="계약설계서 발송 계약·가입 [세스코] 계약설계서 도착 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님 공간에 맞춰 설계한 계약설계서가 도착했습니다.
+아래 링크를 누르시면 계약 내용과 약관을 확인하실 수 있습니다.
+
+■ 계약 서비스: #{서비스명}
+■ 계약설계서: #{url}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약설계서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">008</span><span class="cat">2. 계약·가입</span><h3>계약설계서 발송</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 계약설계서 도착 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님 공간에 맞춰 설계한 계약설계서가 도착했습니다.
+아래 링크를 누르시면 계약 내용과 약관을 확인하실 수 있습니다.
+
+■ 계약 서비스: #{서비스명}
+■ 계약설계서: #{URL}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약설계서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 계약설계서 도착 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님 공간에 맞춰 설계한 계약설계서가 도착했습니다.
+아래 링크를 누르시면 계약 내용과 약관을 확인하실 수 있습니다.
+
+■ 계약 서비스: #{서비스명}
+■ 계약설계서: #{URL}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약설계서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>265자 · 419바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m9" data-g="G1" data-cat="2" data-type="info" data-q="전자계약서 서명 요청 계약·가입 [세스코] 전자계약서 서명 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+계약 체결을 위해 전자계약서 서명이 필요해 안내해 드립니다.
+아래 링크에서 내용을 확인하신 후 서명해 주세요.
+
+■ 계약 서비스: #{서비스명}
+■ 서명 기한: #{m월 d일(요일)}까지
+■ 전자계약서: #{url}
+
+[꼭 확인해 주세요]
+※ 서명 링크는 발송일로부터 7일간 유효합니다.
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 서명하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">009</span><span class="cat">2. 계약·가입</span><h3>전자계약서 서명 요청</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 전자계약서 서명 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+계약 체결을 위해 전자계약서 서명이 필요해 안내해 드립니다.
+아래 링크에서 내용을 확인하신 후 서명해 주세요.
+
+■ 계약 서비스: #{서비스명}
+■ 서명 기한: #{M월 D일(요일)}까지
+■ 전자계약서: #{URL}
+
+[꼭 확인해 주세요]
+※ 서명 링크는 발송일로부터 7일간 유효합니다.
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 서명하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 전자계약서 서명 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+계약 체결을 위해 전자계약서 서명이 필요해 안내해 드립니다.
+아래 링크에서 내용을 확인하신 후 서명해 주세요.
+
+■ 계약 서비스: #{서비스명}
+■ 서명 기한: #{M월 D일(요일)}까지
+■ 전자계약서: #{URL}
+
+[꼭 확인해 주세요]
+※ 서명 링크는 발송일로부터 7일간 유효합니다.
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 서명하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>329자 · 518바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m10" data-g="G1" data-cat="2" data-type="info" data-q="계약 체결 완료 계약·가입 [세스코] 계약 체결 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 체결이 완료됐습니다.
+세스코 가족이 되신 것을 진심으로 환영합니다.
+
+■ 계약 체결일: #{m월 d일(요일)}
+■ 서비스 시작: #{m월 d일(요일)}
+■ 계약서 확인: #{url}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">010</span><span class="cat">2. 계약·가입</span><h3>계약 체결 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 계약 체결 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 체결이 완료됐습니다.
+세스코 가족이 되신 것을 진심으로 환영합니다.
+
+■ 계약 체결일: #{M월 D일(요일)}
+■ 서비스 시작: #{M월 D일(요일)}
+■ 계약서 확인: #{URL}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 계약 체결 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 체결이 완료됐습니다.
+세스코 가족이 되신 것을 진심으로 환영합니다.
+
+■ 계약 체결일: #{M월 D일(요일)}
+■ 서비스 시작: #{M월 D일(요일)}
+■ 계약서 확인: #{URL}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>285자 · 437바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m11" data-g="G1" data-cat="2" data-type="info" data-q="담당 컨설턴트 배정 계약·가입 [세스코] 담당 컨설턴트 배정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님 공간을 관리할 서비스 담당자가 배정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 소속: 세스코 #{지역단}
+■ 연락처: #{담당자 연락처}
+■ 첫 방문 예정: #{m월 d일(요일) 오후 h시}
+
+※ 담당자가 첫 방문 전에 직접 연락드려 일정을 다시 확인합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">011</span><span class="cat">2. 계약·가입</span><h3>담당 컨설턴트 배정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 담당 컨설턴트 배정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님 공간을 관리할 서비스 담당자가 배정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 소속: 세스코 #{지역단}
+■ 연락처: #{담당자 연락처}
+■ 첫 방문 예정: #{M월 D일(요일) 오후 H시}
+
+※ 담당자가 첫 방문 전에 직접 연락드려 일정을 다시 확인합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 담당 컨설턴트 배정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님 공간을 관리할 서비스 담당자가 배정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 소속: 세스코 #{지역단}
+■ 연락처: #{담당자 연락처}
+■ 첫 방문 예정: #{M월 D일(요일) 오후 H시}
+
+※ 담당자가 첫 방문 전에 직접 연락드려 일정을 다시 확인합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>327자 · 515바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m12" data-g="G1" data-cat="2" data-type="info" data-q="첫 서비스 안내 계약·가입 [세스코] 첫 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+첫 정기 서비스 일정과 당일 진행 내용을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{m월 d일(요일) 오후 h시}
+■ 진행 내용: 공간 전체 점검, 해충 서식 환경 확인, 장비 설치
+- 소요 시간: 약 #{n}분
+- 준비 사항: 주방·창고 등 점검 공간 출입 가능하도록 준비
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 첫 방문은 공간 상태를 꼼꼼히 확인하는 날이라 평소보다 시간이 조금 더 걸릴 수 있습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">012</span><span class="cat">2. 계약·가입</span><h3>첫 서비스 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 첫 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+첫 정기 서비스 일정과 당일 진행 내용을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{M월 D일(요일) 오후 H시}
+■ 진행 내용: 공간 전체 점검, 해충 서식 환경 확인, 장비 설치
+- 소요 시간: 약 #{N}분
+- 준비 사항: 주방·창고 등 점검 공간 출입 가능하도록 준비
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 첫 방문은 공간 상태를 꼼꼼히 확인하는 날이라 평소보다 시간이 조금 더 걸릴 수 있습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 첫 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+첫 정기 서비스 일정과 당일 진행 내용을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{M월 D일(요일) 오후 H시}
+■ 진행 내용: 공간 전체 점검, 해충 서식 환경 확인, 장비 설치
+- 소요 시간: 약 #{N}분
+- 준비 사항: 주방·창고 등 점검 공간 출입 가능하도록 준비
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 첫 방문은 공간 상태를 꼼꼼히 확인하는 날이라 평소보다 시간이 조금 더 걸릴 수 있습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>390자 · 616바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m13" data-g="G1" data-cat="2" data-type="info" data-q="멤버스 가입 안내 계약·가입 [세스코] 세스코멤버스 가입 완료
+
+안녕하세요, #{고객명} 고객님.
+세스코멤버스 가입이 완료됐습니다.
+앞으로 서비스 일정 확인, 리포트 열람, 멤버스 혜택을 앱에서 이용하실 수 있습니다.
+
+■ 가입일: #{m월 d일(요일)}
+■ 회원 등급: #{등급명}
+■ 멤버스 앱: #{url}
+
+※ 로그인은 가입 시 인증한 휴대폰 번호로 하실 수 있습니다.
+
+멤버스 혜택 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">013</span><span class="cat">2. 계약·가입</span><h3>멤버스 가입 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 세스코멤버스 가입 완료
+
+안녕하세요, #{고객명} 고객님.
+세스코멤버스 가입이 완료됐습니다.
+앞으로 서비스 일정 확인, 리포트 열람, 멤버스 혜택을 앱에서 이용하실 수 있습니다.
+
+■ 가입일: #{M월 D일(요일)}
+■ 회원 등급: #{등급명}
+■ 멤버스 앱: #{URL}
+
+※ 로그인은 가입 시 인증한 휴대폰 번호로 하실 수 있습니다.
+
+멤버스 혜택 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 세스코멤버스 가입 완료
+
+안녕하세요, #{고객명} 고객님.
+세스코멤버스 가입이 완료됐습니다.
+앞으로 서비스 일정 확인, 리포트 열람, 멤버스 혜택을 앱에서 이용하실 수 있습니다.
+
+■ 가입일: #{M월 D일(요일)}
+■ 회원 등급: #{등급명}
+■ 멤버스 앱: #{URL}
+
+※ 로그인은 가입 시 인증한 휴대폰 번호로 하실 수 있습니다.
+
+멤버스 혜택 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>277자 · 427바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m14" data-g="G1" data-cat="2" data-type="info" data-q="개인정보 동의 요청 계약·가입 [세스코] 개인정보 수집·이용 동의 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+서비스 제공을 위해 개인정보 수집·이용 동의가 필요해 안내해 드립니다.
+아래 링크에서 내용을 확인하신 후 동의해 주세요.
+
+■ 동의 항목: 서비스 이용 계약 이행을 위한 개인정보 수집·이용
+■ 동의 기한: #{m월 d일(요일)}까지
+■ 동의 페이지: #{url}
+
+[꼭 확인해 주세요]
+※ 동의하지 않으시면 서비스 일정 안내와 리포트 발송이 제한될 수 있습니다.
+※ 동의 내용은 멤버스 앱에서 언제든 확인하고 철회하실 수 있습니다.
+
+동의 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">014</span><span class="cat">2. 계약·가입</span><h3>개인정보 동의 요청</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 개인정보 수집·이용 동의 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+서비스 제공을 위해 개인정보 수집·이용 동의가 필요해 안내해 드립니다.
+아래 링크에서 내용을 확인하신 후 동의해 주세요.
+
+■ 동의 항목: 서비스 이용 계약 이행을 위한 개인정보 수집·이용
+■ 동의 기한: #{M월 D일(요일)}까지
+■ 동의 페이지: #{URL}
+
+[꼭 확인해 주세요]
+※ 동의하지 않으시면 서비스 일정 안내와 리포트 발송이 제한될 수 있습니다.
+※ 동의 내용은 멤버스 앱에서 언제든 확인하고 철회하실 수 있습니다.
+
+동의 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 개인정보 수집·이용 동의 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+서비스 제공을 위해 개인정보 수집·이용 동의가 필요해 안내해 드립니다.
+아래 링크에서 내용을 확인하신 후 동의해 주세요.
+
+■ 동의 항목: 서비스 이용 계약 이행을 위한 개인정보 수집·이용
+■ 동의 기한: #{M월 D일(요일)}까지
+■ 동의 페이지: #{URL}
+
+[꼭 확인해 주세요]
+※ 동의하지 않으시면 서비스 일정 안내와 리포트 발송이 제한될 수 있습니다.
+※ 동의 내용은 멤버스 앱에서 언제든 확인하고 철회하실 수 있습니다.
+
+동의 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>369자 · 589바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m15" data-g="G1" data-cat="3" data-type="info" data-q="제품 설치 일정 확정 설치·첫 이용 [세스코] 제품 설치 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+신청하신 제품의 설치 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 제품: #{제품명}
+■ 설치 일시: #{m월 d일(요일) 오후 h시}
+■ 설치 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 일정 변경이 필요하시면 설치 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">015</span><span class="cat">3. 설치·첫 이용</span><h3>제품 설치 일정 확정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 제품 설치 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+신청하신 제품의 설치 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 제품: #{제품명}
+■ 설치 일시: #{M월 D일(요일) 오후 H시}
+■ 설치 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 일정 변경이 필요하시면 설치 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 제품 설치 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+신청하신 제품의 설치 일정이 확정돼 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 제품: #{제품명}
+■ 설치 일시: #{M월 D일(요일) 오후 H시}
+■ 설치 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 일정 변경이 필요하시면 설치 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>321자 · 505바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m16" data-g="G1" data-cat="3" data-type="info" data-q="설치 전 준비사항 설치·첫 이용 [세스코] 설치 전 준비사항 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} #{제품명} 설치를 앞두고 준비하실 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 위치: 벽면 콘센트에서 1.5m 이내, 통풍이 되는 공간
+■ 준비 사항
+- 설치 위치 주변 물건 정리
+- #{정수기: 수도 배관 접근 가능 여부 확인}
+■ 소요 시간: 약 #{n}분
+
+※ 설치 위치가 정해지지 않으셨다면 담당자가 방문 당일 함께 정해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">016</span><span class="cat">3. 설치·첫 이용</span><h3>설치 전 준비사항</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 설치 전 준비사항 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} #{제품명} 설치를 앞두고 준비하실 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 위치: 벽면 콘센트에서 1.5m 이내, 통풍이 되는 공간
+■ 준비 사항
+- 설치 위치 주변 물건 정리
+- #{정수기: 수도 배관 접근 가능 여부 확인}
+■ 소요 시간: 약 #{N}분
+
+※ 설치 위치가 정해지지 않으셨다면 담당자가 방문 당일 함께 정해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 설치 전 준비사항 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} #{제품명} 설치를 앞두고 준비하실 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 위치: 벽면 콘센트에서 1.5m 이내, 통풍이 되는 공간
+■ 준비 사항
+- 설치 위치 주변 물건 정리
+- #{정수기: 수도 배관 접근 가능 여부 확인}
+■ 소요 시간: 약 #{N}분
+
+※ 설치 위치가 정해지지 않으셨다면 담당자가 방문 당일 함께 정해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>366자 · 573바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m17" data-g="G1" data-cat="3" data-type="info" data-q="설치 당일 안내 설치·첫 이용 [세스코] 설치 당일 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 설치를 위해 담당자가 오늘 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 시간: #{m월 d일(요일) 오후 h시}
+■ 설치 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 담당자가 도착 30분 전에 다시 연락드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">017</span><span class="cat">3. 설치·첫 이용</span><h3>설치 당일 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 설치 당일 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 설치를 위해 담당자가 오늘 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 시간: #{M월 D일(요일) 오후 H시}
+■ 설치 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 담당자가 도착 30분 전에 다시 연락드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 설치 당일 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 설치를 위해 담당자가 오늘 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 시간: #{M월 D일(요일) 오후 H시}
+■ 설치 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 담당자가 도착 30분 전에 다시 연락드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>298자 · 464바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m18" data-g="G1" data-cat="3" data-type="info" data-q="설치 완료 설치·첫 이용 [세스코] 제품 설치 완료
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 설치가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 설치일: #{m월 d일(요일)}
+■ 설치 위치: #{위치}
+■ 다음 점검 예정: #{m월 d일(요일)}
+■ 사용 설명서: #{url}
+
+※ 설치 후 24시간 안에 이상 소음이나 누수가 느껴지면 담당자에게 바로 연락해 주세요.
+
+사용 설명서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">018</span><span class="cat">3. 설치·첫 이용</span><h3>설치 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 제품 설치 완료
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 설치가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 설치일: #{M월 D일(요일)}
+■ 설치 위치: #{위치}
+■ 다음 점검 예정: #{M월 D일(요일)}
+■ 사용 설명서: #{URL}
+
+※ 설치 후 24시간 안에 이상 소음이나 누수가 느껴지면 담당자에게 바로 연락해 주세요.
+
+사용 설명서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 제품 설치 완료
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 설치가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 설치일: #{M월 D일(요일)}
+■ 설치 위치: #{위치}
+■ 다음 점검 예정: #{M월 D일(요일)}
+■ 사용 설명서: #{URL}
+
+※ 설치 후 24시간 안에 이상 소음이나 누수가 느껴지면 담당자에게 바로 연락해 주세요.
+
+사용 설명서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>330자 · 507바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m19" data-g="G1" data-cat="3" data-type="info" data-q="제품 사용법 안내 설치·첫 이용 [세스코] #{제품명} 사용법 안내
+
+안녕하세요, #{고객명} 고객님.
+설치하신 #{제품명}을 편하게 사용하실 수 있도록 기본 사용법을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 전원: 본체 상단 버튼을 2초간 누르면 켜지고 꺼집니다
+■ 운전 모드: 자동 모드로 두시면 공간 상태에 맞춰 스스로 조절됩니다
+■ 필터 교체 알림: 표시등이 주황색으로 바뀌면 교체 시기입니다
+■ 자세한 설명: #{url}
+
+※ 사용 중 궁금한 점은 담당자에게 언제든 물어보셔도 됩니다.
+
+사용 설명서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">019</span><span class="cat">3. 설치·첫 이용</span><h3>제품 사용법 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{제품명} 사용법 안내
+
+안녕하세요, #{고객명} 고객님.
+설치하신 #{제품명}을 편하게 사용하실 수 있도록 기본 사용법을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 전원: 본체 상단 버튼을 2초간 누르면 켜지고 꺼집니다
+■ 운전 모드: 자동 모드로 두시면 공간 상태에 맞춰 스스로 조절됩니다
+■ 필터 교체 알림: 표시등이 주황색으로 바뀌면 교체 시기입니다
+■ 자세한 설명: #{URL}
+
+※ 사용 중 궁금한 점은 담당자에게 언제든 물어보셔도 됩니다.
+
+사용 설명서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] #{제품명} 사용법 안내
+
+안녕하세요, #{고객명} 고객님.
+설치하신 #{제품명}을 편하게 사용하실 수 있도록 기본 사용법을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 전원: 본체 상단 버튼을 2초간 누르면 켜지고 꺼집니다
+■ 운전 모드: 자동 모드로 두시면 공간 상태에 맞춰 스스로 조절됩니다
+■ 필터 교체 알림: 표시등이 주황색으로 바뀌면 교체 시기입니다
+■ 자세한 설명: #{URL}
+
+※ 사용 중 궁금한 점은 담당자에게 언제든 물어보셔도 됩니다.
+
+사용 설명서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>388자 · 624바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m20" data-g="G1" data-cat="3" data-type="info" data-q="첫 사용 후 불편사항 확인 설치·첫 이용 [세스코] 첫 사용 불편사항 확인 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 설치한 지 일주일이 됐습니다.
+사용하시면서 불편한 점은 없으셨는지 확인하고자 연락드립니다.
+
+■ 설치일: #{m월 d일(요일)}
+■ 확인 항목: 소음, 성능, 설치 위치, 사용법
+■ 불편사항 남기기: #{url}
+
+※ 남겨 주신 내용은 담당자가 확인한 뒤 1영업일 이내에 연락드립니다.
+
+불편사항 남기기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">020</span><span class="cat">3. 설치·첫 이용</span><h3>첫 사용 후 불편사항 확인</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 첫 사용 불편사항 확인 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 설치한 지 일주일이 됐습니다.
+사용하시면서 불편한 점은 없으셨는지 확인하고자 연락드립니다.
+
+■ 설치일: #{M월 D일(요일)}
+■ 확인 항목: 소음, 성능, 설치 위치, 사용법
+■ 불편사항 남기기: #{URL}
+
+※ 남겨 주신 내용은 담당자가 확인한 뒤 1영업일 이내에 연락드립니다.
+
+불편사항 남기기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 첫 사용 불편사항 확인 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 설치한 지 일주일이 됐습니다.
+사용하시면서 불편한 점은 없으셨는지 확인하고자 연락드립니다.
+
+■ 설치일: #{M월 D일(요일)}
+■ 확인 항목: 소음, 성능, 설치 위치, 사용법
+■ 불편사항 남기기: #{URL}
+
+※ 남겨 주신 내용은 담당자가 확인한 뒤 1영업일 이내에 연락드립니다.
+
+불편사항 남기기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>334자 · 526바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m21" data-g="G1" data-cat="4" data-type="info" data-q="정기 방문 예정 방문 일정 [세스코] 방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+약속드린 정기 서비스 방문일이 다가와 일정을 미리 안내해 드립니다.
+
+세스코 서비스 담당자가 직접 방문해 눈에 보이는 곳은 물론, 해충이 숨어들기 쉬운 틈새까지 꼼꼼히 살피겠습니다.
+아래 내용을 확인해 주세요.
+
+■ 점검 서비스: #{서비스명}
+■ 방문 일정: #{m월 d일(요일) 오전/오후 h시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 방문 일정 변경이 필요하시면 방문 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">021</span><span class="cat">4. 방문 일정</span><h3>정기 방문 예정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+약속드린 정기 서비스 방문일이 다가와 일정을 미리 안내해 드립니다.
+
+세스코 서비스 담당자가 직접 방문해 눈에 보이는 곳은 물론, 해충이 숨어들기 쉬운 틈새까지 꼼꼼히 살피겠습니다.
+아래 내용을 확인해 주세요.
+
+■ 점검 서비스: #{서비스명}
+■ 방문 일정: #{M월 D일(요일) 오전/오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 방문 일정 변경이 필요하시면 방문 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+약속드린 정기 서비스 방문일이 다가와 일정을 미리 안내해 드립니다.
+
+세스코 서비스 담당자가 직접 방문해 눈에 보이는 곳은 물론, 해충이 숨어들기 쉬운 틈새까지 꼼꼼히 살피겠습니다.
+아래 내용을 확인해 주세요.
+
+■ 점검 서비스: #{서비스명}
+■ 방문 일정: #{M월 D일(요일) 오전/오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 방문 일정 변경이 필요하시면 방문 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>392자 · 628바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m22" data-g="G1" data-cat="4" data-type="info" data-q="방문 하루 전 안내 방문 일정 [세스코] 내일 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+내일 정기 서비스 방문이 예정돼 있어 다시 한번 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{m월 d일(요일) 오후 h시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 점검 공간에 출입할 수 있도록 준비해 주시면 서비스가 더 빠르게 진행됩니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">022</span><span class="cat">4. 방문 일정</span><h3>방문 하루 전 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 내일 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+내일 정기 서비스 방문이 예정돼 있어 다시 한번 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 점검 공간에 출입할 수 있도록 준비해 주시면 서비스가 더 빠르게 진행됩니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 내일 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+내일 정기 서비스 방문이 예정돼 있어 다시 한번 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 점검 공간에 출입할 수 있도록 준비해 주시면 서비스가 더 빠르게 진행됩니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>313자 · 493바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m23" data-g="G1" data-cat="4" data-type="info" data-q="방문 당일 안내 방문 일정 [세스코] 오늘 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 정기 서비스를 위해 담당자가 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 시간: #{오후 h시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 담당자가 도착 전에 다시 연락드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">023</span><span class="cat">4. 방문 일정</span><h3>방문 당일 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 오늘 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 정기 서비스를 위해 담당자가 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 시간: #{오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 담당자가 도착 전에 다시 연락드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 오늘 방문 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 정기 서비스를 위해 담당자가 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 시간: #{오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 담당자가 도착 전에 다시 연락드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>277자 · 435바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m24" data-g="G1" data-cat="4" data-type="info" data-q="일정 변경 요청 방문 일정 [세스코] 방문 일정 변경 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+예정된 방문 일정을 부득이하게 조정해야 해 안내해 드립니다.
+가능하신 일정을 알려 주시면 그에 맞춰 다시 방문하겠습니다.
+
+■ 기존 일정: #{m월 d일(요일) 오후 h시}
+■ 변경 사유: #{사유}
+■ 조정 가능 일정: #{m월 d일(요일)}~#{m월 d일(요일)}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 일정 변경으로 불편을 드려 죄송합니다. 답장이나 전화로 편하신 시간을 알려 주세요.
+
+일정 선택하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">024</span><span class="cat">4. 방문 일정</span><h3>일정 변경 요청</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 방문 일정 변경 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+예정된 방문 일정을 부득이하게 조정해야 해 안내해 드립니다.
+가능하신 일정을 알려 주시면 그에 맞춰 다시 방문하겠습니다.
+
+■ 기존 일정: #{M월 D일(요일) 오후 H시}
+■ 변경 사유: #{사유}
+■ 조정 가능 일정: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 일정 변경으로 불편을 드려 죄송합니다. 답장이나 전화로 편하신 시간을 알려 주세요.
+
+일정 선택하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 방문 일정 변경 요청 안내
+
+안녕하세요, #{고객명} 고객님.
+예정된 방문 일정을 부득이하게 조정해야 해 안내해 드립니다.
+가능하신 일정을 알려 주시면 그에 맞춰 다시 방문하겠습니다.
+
+■ 기존 일정: #{M월 D일(요일) 오후 H시}
+■ 변경 사유: #{사유}
+■ 조정 가능 일정: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 일정 변경으로 불편을 드려 죄송합니다. 답장이나 전화로 편하신 시간을 알려 주세요.
+
+일정 선택하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>398자 · 623바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m25" data-g="G1" data-cat="4" data-type="info" data-q="방문 일정 재확정 방문 일정 [세스코] 방문 일정 재확정 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 대로 방문 일정이 변경돼 다시 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 변경된 일정: #{m월 d일(요일) 오후 h시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 변경된 일정에 맞춰 방문 전날 다시 안내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">025</span><span class="cat">4. 방문 일정</span><h3>방문 일정 재확정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 방문 일정 재확정 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 대로 방문 일정이 변경돼 다시 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 변경된 일정: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 변경된 일정에 맞춰 방문 전날 다시 안내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 방문 일정 재확정 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 대로 방문 일정이 변경돼 다시 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 변경된 일정: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 변경된 일정에 맞춰 방문 전날 다시 안내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>298자 · 468바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m26" data-g="G1" data-cat="4" data-type="info" data-q="방문 지연 안내 방문 일정 [세스코] 방문 지연 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 예정된 방문이 앞선 일정 지연으로 늦어지고 있어 안내해 드립니다.
+
+■ 기존 도착 예정: #{오후 h시}
+■ 변경 도착 예정: #{오후 h시 m분}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 기다리기 어려우시면 담당자에게 연락해 주세요. 일정을 다시 잡아 드리겠습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">026</span><span class="cat">4. 방문 일정</span><h3>방문 지연 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 방문 지연 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 예정된 방문이 앞선 일정 지연으로 늦어지고 있어 안내해 드립니다.
+
+■ 기존 도착 예정: #{오후 H시}
+■ 변경 도착 예정: #{오후 H시 M분}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 기다리기 어려우시면 담당자에게 연락해 주세요. 일정을 다시 잡아 드리겠습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 방문 지연 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 예정된 방문이 앞선 일정 지연으로 늦어지고 있어 안내해 드립니다.
+
+■ 기존 도착 예정: #{오후 H시}
+■ 변경 도착 예정: #{오후 H시 M분}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 기다리기 어려우시면 담당자에게 연락해 주세요. 일정을 다시 잡아 드리겠습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>310자 · 487바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m27" data-g="G1" data-cat="4" data-type="info" data-q="부재로 인한 재방문 안내 방문 일정 [세스코] 재방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 방문했으나 부재중이셔서 서비스를 진행하지 못해 재방문 일정을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{m월 d일(요일) 오후 h시}
+■ 재방문 예정: #{m월 d일(요일) 오후 h시}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 재방문 일정이 맞지 않으시면 담당자에게 편하신 시간을 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">027</span><span class="cat">4. 방문 일정</span><h3>부재로 인한 재방문 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 재방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 방문했으나 부재중이셔서 서비스를 진행하지 못해 재방문 일정을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{M월 D일(요일) 오후 H시}
+■ 재방문 예정: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 재방문 일정이 맞지 않으시면 담당자에게 편하신 시간을 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 재방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+오늘 방문했으나 부재중이셔서 서비스를 진행하지 못해 재방문 일정을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 방문 일시: #{M월 D일(요일) 오후 H시}
+■ 재방문 예정: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 재방문 일정이 맞지 않으시면 담당자에게 편하신 시간을 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>336자 · 529바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m28" data-g="G1" data-cat="5" data-type="info" data-q="당월 관리 안내 정기 서비스 [세스코] 이번 달 정기 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+이번 달 정기 서비스 일정과 관리 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 관리 서비스: #{서비스명}
+■ 이번 달 방문: #{m월 d일(요일)}
+■ 중점 관리: #{계절·공간별 중점 항목}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 방문 전날 다시 한번 안내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">028</span><span class="cat">5. 정기 서비스</span><h3>당월 관리 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 이번 달 정기 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+이번 달 정기 서비스 일정과 관리 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 관리 서비스: #{서비스명}
+■ 이번 달 방문: #{M월 D일(요일)}
+■ 중점 관리: #{계절·공간별 중점 항목}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 방문 전날 다시 한번 안내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 이번 달 정기 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+이번 달 정기 서비스 일정과 관리 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 관리 서비스: #{서비스명}
+■ 이번 달 방문: #{M월 D일(요일)}
+■ 중점 관리: #{계절·공간별 중점 항목}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 방문 전날 다시 한번 안내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>319자 · 499바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m29" data-g="G1" data-cat="5" data-type="info" data-q="서비스 시작 안내 정기 서비스 [세스코] 서비스 시작 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 정기 서비스가 시작됩니다.
+앞으로 진행되는 내용을 안내해 드립니다.
+
+■ 서비스 시작일: #{m월 d일(요일)}
+■ 방문 주기: #{월 n회}
+■ 진행 내용: 공간 점검, 해충 서식 환경 관리, 결과 리포트 발송
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 방문 때마다 점검 결과를 문자와 멤버스 앱으로 보내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">029</span><span class="cat">5. 정기 서비스</span><h3>서비스 시작 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 서비스 시작 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 정기 서비스가 시작됩니다.
+앞으로 진행되는 내용을 안내해 드립니다.
+
+■ 서비스 시작일: #{M월 D일(요일)}
+■ 방문 주기: #{월 N회}
+■ 진행 내용: 공간 점검, 해충 서식 환경 관리, 결과 리포트 발송
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 방문 때마다 점검 결과를 문자와 멤버스 앱으로 보내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 서비스 시작 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 정기 서비스가 시작됩니다.
+앞으로 진행되는 내용을 안내해 드립니다.
+
+■ 서비스 시작일: #{M월 D일(요일)}
+■ 방문 주기: #{월 N회}
+■ 진행 내용: 공간 점검, 해충 서식 환경 관리, 결과 리포트 발송
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 방문 때마다 점검 결과를 문자와 멤버스 앱으로 보내드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>351자 · 551바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m30" data-g="G1" data-cat="5" data-type="info" data-q="관리 완료 정기 서비스 [세스코] 정기 서비스 완료
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} 정기 서비스가 잘 마무리됐습니다.
+늘 머무시는 곳인 만큼, 평소 손이 닿지 않아 무심코 지나치기 쉬운 구석까지 하나하나 정성껏 살펴드렸습니다.
+
+■ 서비스일: #{m월 d일(요일)}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 점검 결과: 멤버스 앱에서 확인
+
+※ 점검 결과 상세 내용은 담당자가 별도 문자로 보내드립니다.
+
+점검 결과 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">030</span><span class="cat">5. 정기 서비스</span><h3>관리 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 정기 서비스 완료
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 정기 서비스가 잘 마무리됐습니다.
+늘 머무시는 곳인 만큼, 평소 손이 닿지 않아 무심코 지나치기 쉬운 구석까지 하나하나 정성껏 살펴드렸습니다.
+
+■ 서비스일: #{M월 D일(요일)}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 점검 결과: 멤버스 앱에서 확인
+
+※ 점검 결과 상세 내용은 담당자가 별도 문자로 보내드립니다.
+
+점검 결과 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 정기 서비스 완료
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 정기 서비스가 잘 마무리됐습니다.
+늘 머무시는 곳인 만큼, 평소 손이 닿지 않아 무심코 지나치기 쉬운 구석까지 하나하나 정성껏 살펴드렸습니다.
+
+■ 서비스일: #{M월 D일(요일)}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 점검 결과: 멤버스 앱에서 확인
+
+※ 점검 결과 상세 내용은 담당자가 별도 문자로 보내드립니다.
+
+점검 결과 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>361자 · 573바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m32" data-g="G1" data-cat="5" data-type="info" data-q="서비스 확인서 발송 정기 서비스 [세스코] 서비스 확인서 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} 진행한 정기 서비스의 확인서를 보내드립니다.
+아래 내용을 확인해 주세요.
+
+■ 서비스일: #{m월 d일(요일)}
+■ 서비스 내용: #{서비스명}
+■ 서비스 확인서: #{url}
+
+※ 확인서는 멤버스 앱의 서비스 이력에서도 언제든 다시 보실 수 있습니다.
+
+서비스 확인서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">032</span><span class="cat">5. 정기 서비스</span><h3>서비스 확인서 발송</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 서비스 확인서 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 진행한 정기 서비스의 확인서를 보내드립니다.
+아래 내용을 확인해 주세요.
+
+■ 서비스일: #{M월 D일(요일)}
+■ 서비스 내용: #{서비스명}
+■ 서비스 확인서: #{URL}
+
+※ 확인서는 멤버스 앱의 서비스 이력에서도 언제든 다시 보실 수 있습니다.
+
+서비스 확인서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 서비스 확인서 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 진행한 정기 서비스의 확인서를 보내드립니다.
+아래 내용을 확인해 주세요.
+
+■ 서비스일: #{M월 D일(요일)}
+■ 서비스 내용: #{서비스명}
+■ 서비스 확인서: #{URL}
+
+※ 확인서는 멤버스 앱의 서비스 이력에서도 언제든 다시 보실 수 있습니다.
+
+서비스 확인서 확인하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>324자 · 505바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m33" data-g="G1" data-cat="5" data-type="info" data-q="다음 방문 일정 안내 정기 서비스 [세스코] 다음 방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+다음 정기 서비스 방문 일정을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 다음 방문: #{m월 d일(요일) 오후 h시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 일정 변경이 필요하시면 방문 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">033</span><span class="cat">5. 정기 서비스</span><h3>다음 방문 일정 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 다음 방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+다음 정기 서비스 방문 일정을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 다음 방문: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 일정 변경이 필요하시면 방문 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 다음 방문 일정 안내
+
+안녕하세요, #{고객명} 고객님.
+다음 정기 서비스 방문 일정을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 다음 방문: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 일정 변경이 필요하시면 방문 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>302자 · 475바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m42" data-g="G1" data-cat="7" data-type="info" data-q="필터 교체 시기 제품 유지관리 [세스코] 필터 교체 시기 안내
+
+안녕하세요, #{고객명} 고객님.
+사용 중인 #{제품명}의 필터 교체 시기가 다가와 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 제품: #{제품명}
+■ 교체 대상: #{필터명}
+■ 교체 예정: #{m월 d일(요일)} 정기 방문 시
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 필터는 정해진 주기에 교체해야 성능이 유지됩니다. 방문 시 담당자가 교체해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">042</span><span class="cat">7. 제품 유지관리</span><h3>필터 교체 시기</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 필터 교체 시기 안내
+
+안녕하세요, #{고객명} 고객님.
+사용 중인 #{제품명}의 필터 교체 시기가 다가와 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 제품: #{제품명}
+■ 교체 대상: #{필터명}
+■ 교체 예정: #{M월 D일(요일)} 정기 방문 시
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 필터는 정해진 주기에 교체해야 성능이 유지됩니다. 방문 시 담당자가 교체해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 필터 교체 시기 안내
+
+안녕하세요, #{고객명} 고객님.
+사용 중인 #{제품명}의 필터 교체 시기가 다가와 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 제품: #{제품명}
+■ 교체 대상: #{필터명}
+■ 교체 예정: #{M월 D일(요일)} 정기 방문 시
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 필터는 정해진 주기에 교체해야 성능이 유지됩니다. 방문 시 담당자가 교체해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>341자 · 535바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m43" data-g="G1" data-cat="7" data-type="info" data-q="소모품 교체 안내 제품 유지관리 [세스코] 소모품 교체 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}의 소모품 교체 시기가 됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 교체 대상: #{소모품명}
+■ 교체 방법: #{방문 교체/택배 발송 후 자가 교체}
+■ 교체 예정: #{m월 d일(요일)}
+■ 교체 안내 영상: #{url}
+
+※ 자가 교체가 어려우시면 담당자에게 말씀해 주세요. 방문 시 교체해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">043</span><span class="cat">7. 제품 유지관리</span><h3>소모품 교체 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 소모품 교체 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}의 소모품 교체 시기가 됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 교체 대상: #{소모품명}
+■ 교체 방법: #{방문 교체/택배 발송 후 자가 교체}
+■ 교체 예정: #{M월 D일(요일)}
+■ 교체 안내 영상: #{URL}
+
+※ 자가 교체가 어려우시면 담당자에게 말씀해 주세요. 방문 시 교체해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 소모품 교체 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}의 소모품 교체 시기가 됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 교체 대상: #{소모품명}
+■ 교체 방법: #{방문 교체/택배 발송 후 자가 교체}
+■ 교체 예정: #{M월 D일(요일)}
+■ 교체 안내 영상: #{URL}
+
+※ 자가 교체가 어려우시면 담당자에게 말씀해 주세요. 방문 시 교체해 드립니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>328자 · 508바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m44" data-g="G1" data-cat="7" data-type="info" data-q="정기 점검 시기 제품 유지관리 [세스코] 제품 정기 점검 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}의 정기 점검 시기가 돼 일정을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 점검 제품: #{제품명}
+■ 점검 일시: #{m월 d일(요일) 오후 h시}
+■ 점검 내용: 성능 확인, 내부 세척, 소모품 상태 점검
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 일정 변경이 필요하시면 점검 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">044</span><span class="cat">7. 제품 유지관리</span><h3>정기 점검 시기</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 제품 정기 점검 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}의 정기 점검 시기가 돼 일정을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 점검 제품: #{제품명}
+■ 점검 일시: #{M월 D일(요일) 오후 H시}
+■ 점검 내용: 성능 확인, 내부 세척, 소모품 상태 점검
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 일정 변경이 필요하시면 점검 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 제품 정기 점검 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}의 정기 점검 시기가 돼 일정을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 점검 제품: #{제품명}
+■ 점검 일시: #{M월 D일(요일) 오후 H시}
+■ 점검 내용: 성능 확인, 내부 세척, 소모품 상태 점검
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 일정 변경이 필요하시면 점검 전날까지 담당자에게 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>337자 · 529바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m45" data-g="G1" data-cat="7" data-type="info" data-q="제품 관리 방법 제품 유지관리 [세스코] #{제품명} 관리 방법 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 오래 깨끗하게 사용하실 수 있는 관리 방법을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 매일: #{예: 코크 주변 마른 천으로 닦기}
+■ 매주: #{예: 물받이 분리 세척}
+■ 매달: #{예: 외부 먼지 제거, 필터 표시등 확인}
+■ 자세한 설명: #{url}
+
+※ 정기 방문 때 담당자가 내부 세척과 소모품 점검을 함께 진행합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">045</span><span class="cat">7. 제품 유지관리</span><h3>제품 관리 방법</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{제품명} 관리 방법 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 오래 깨끗하게 사용하실 수 있는 관리 방법을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 매일: #{예: 코크 주변 마른 천으로 닦기}
+■ 매주: #{예: 물받이 분리 세척}
+■ 매달: #{예: 외부 먼지 제거, 필터 표시등 확인}
+■ 자세한 설명: #{URL}
+
+※ 정기 방문 때 담당자가 내부 세척과 소모품 점검을 함께 진행합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] #{제품명} 관리 방법 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 오래 깨끗하게 사용하실 수 있는 관리 방법을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 매일: #{예: 코크 주변 마른 천으로 닦기}
+■ 매주: #{예: 물받이 분리 세척}
+■ 매달: #{예: 외부 먼지 제거, 필터 표시등 확인}
+■ 자세한 설명: #{URL}
+
+※ 정기 방문 때 담당자가 내부 세척과 소모품 점검을 함께 진행합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>352자 · 547바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m46" data-g="G1" data-cat="7" data-type="info" data-q="사용 중 주의사항 제품 유지관리 [세스코] #{제품명} 사용 주의사항 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 사용하실 때 꼭 지켜 주셔야 할 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 위치: 직사광선과 열기구 가까이 두지 마세요
+■ 전원: 멀티탭보다 벽면 콘센트에 직접 연결해 주세요
+■ 세척: 본체에 물을 직접 뿌리지 마세요
+
+[꼭 확인해 주세요]
+※ 이상 소음이나 냄새가 나면 전원을 끄고 담당자에게 연락해 주세요.
+※ 임의로 분해하시면 무상 수리 대상에서 제외될 수 있습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">046</span><span class="cat">7. 제품 유지관리</span><h3>사용 중 주의사항</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{제품명} 사용 주의사항 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 사용하실 때 꼭 지켜 주셔야 할 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 위치: 직사광선과 열기구 가까이 두지 마세요
+■ 전원: 멀티탭보다 벽면 콘센트에 직접 연결해 주세요
+■ 세척: 본체에 물을 직접 뿌리지 마세요
+
+[꼭 확인해 주세요]
+※ 이상 소음이나 냄새가 나면 전원을 끄고 담당자에게 연락해 주세요.
+※ 임의로 분해하시면 무상 수리 대상에서 제외될 수 있습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] #{제품명} 사용 주의사항 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명}을 사용하실 때 꼭 지켜 주셔야 할 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 설치 위치: 직사광선과 열기구 가까이 두지 마세요
+■ 전원: 멀티탭보다 벽면 콘센트에 직접 연결해 주세요
+■ 세척: 본체에 물을 직접 뿌리지 마세요
+
+[꼭 확인해 주세요]
+※ 이상 소음이나 냄새가 나면 전원을 끄고 담당자에게 연락해 주세요.
+※ 임의로 분해하시면 무상 수리 대상에서 제외될 수 있습니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>383자 · 619바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m47" data-g="G1" data-cat="7" data-type="info" data-q="as 신청 접수 제품 유지관리 [세스코] 수리 신청 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+신청하신 #{제품명} 수리 요청이 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{m월 d일(요일)}
+■ 신고 내용: #{증상}
+■ 방문 예정: #{m월 d일(요일) 오후 h시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 방문 전에 담당자가 연락드려 증상을 한 번 더 확인합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">047</span><span class="cat">7. 제품 유지관리</span><h3>AS 신청 접수</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 수리 신청 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+신청하신 #{제품명} 수리 요청이 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 신고 내용: #{증상}
+■ 방문 예정: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 방문 전에 담당자가 연락드려 증상을 한 번 더 확인합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 수리 신청 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+신청하신 #{제품명} 수리 요청이 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 신고 내용: #{증상}
+■ 방문 예정: #{M월 D일(요일) 오후 H시}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 방문 전에 담당자가 연락드려 증상을 한 번 더 확인합니다.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>317자 · 490바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m48" data-g="G1" data-cat="7" data-type="info" data-q="수리 완료 안내 제품 유지관리 [세스코] 수리 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 수리가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 수리일: #{m월 d일(요일)}
+■ 조치 내용: #{교체 부품/조치}
+■ 수리 비용: #{무상/금액}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 수리 후 같은 증상이 다시 나타나면 담당자에게 바로 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">048</span><span class="cat">7. 제품 유지관리</span><h3>수리 완료 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 수리 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 수리가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 수리일: #{M월 D일(요일)}
+■ 조치 내용: #{교체 부품/조치}
+■ 수리 비용: #{무상/금액}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 수리 후 같은 증상이 다시 나타나면 담당자에게 바로 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 수리 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+#{제품명} 수리가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 수리일: #{M월 D일(요일)}
+■ 조치 내용: #{교체 부품/조치}
+■ 수리 비용: #{무상/금액}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 수리 후 같은 증상이 다시 나타나면 담당자에게 바로 연락해 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>309자 · 480바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m49" data-g="G1" data-cat="8" data-type="info" data-q="결제 예정일 결제·요금 [세스코] 이용요금 결제 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+이번 달 이용요금 결제 예정일을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 결제 예정일: #{m월 d일(요일)}
+■ 결제 금액: #{금액}원
+■ 결제 수단: #{카드/계좌 끝 4자리}
+
+※ 결제 수단 변경은 멤버스 앱 또는 세스코 고객센터에서 하실 수 있습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">049</span><span class="cat">8. 결제·요금</span><h3>결제 예정일</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 이용요금 결제 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+이번 달 이용요금 결제 예정일을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 결제 예정일: #{M월 D일(요일)}
+■ 결제 금액: #{금액}원
+■ 결제 수단: #{카드/계좌 끝 4자리}
+
+※ 결제 수단 변경은 멤버스 앱 또는 세스코 고객센터에서 하실 수 있습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 이용요금 결제 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+이번 달 이용요금 결제 예정일을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 결제 예정일: #{M월 D일(요일)}
+■ 결제 금액: #{금액}원
+■ 결제 수단: #{카드/계좌 끝 4자리}
+
+※ 결제 수단 변경은 멤버스 앱 또는 세스코 고객센터에서 하실 수 있습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>262자 · 399바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m50" data-g="G1" data-cat="8" data-type="info" data-q="자동이체 실패 결제·요금 [세스코] 자동이체 실패 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} 이용요금 자동이체가 처리되지 않아 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 미처리 금액: #{금액}원
+■ 재출금 예정: #{m월 d일(요일)}
+■ 출금 계좌: #{은행명 끝 4자리}
+
+[꼭 확인해 주세요]
+※ 재출금일 전까지 계좌 잔액을 확인해 주세요.
+※ 다른 방법으로 납부를 원하시면 세스코 고객센터로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">050</span><span class="cat">8. 결제·요금</span><h3>자동이체 실패</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 자동이체 실패 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 이용요금 자동이체가 처리되지 않아 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 미처리 금액: #{금액}원
+■ 재출금 예정: #{M월 D일(요일)}
+■ 출금 계좌: #{은행명 끝 4자리}
+
+[꼭 확인해 주세요]
+※ 재출금일 전까지 계좌 잔액을 확인해 주세요.
+※ 다른 방법으로 납부를 원하시면 세스코 고객센터로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 자동이체 실패 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 이용요금 자동이체가 처리되지 않아 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 미처리 금액: #{금액}원
+■ 재출금 예정: #{M월 D일(요일)}
+■ 출금 계좌: #{은행명 끝 4자리}
+
+[꼭 확인해 주세요]
+※ 재출금일 전까지 계좌 잔액을 확인해 주세요.
+※ 다른 방법으로 납부를 원하시면 세스코 고객센터로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>310자 · 477바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m51" data-g="G1" data-cat="8" data-type="info" data-q="카드 승인 실패 결제·요금 [세스코] 카드 결제 실패 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} 이용요금 카드 결제가 승인되지 않아 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 미결제 금액: #{금액}원
+■ 결제 카드: #{카드사 끝 4자리}
+■ 재결제 예정: #{m월 d일(요일)}
+■ 결제 수단 변경: #{url}
+
+[꼭 확인해 주세요]
+※ 카드 한도 초과나 유효기간 만료가 주요 원인입니다. 카드 정보를 확인해 주세요.
+※ 재결제도 실패하면 서비스 이용이 제한될 수 있습니다.
+
+결제 수단 변경하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">051</span><span class="cat">8. 결제·요금</span><h3>카드 승인 실패</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 카드 결제 실패 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 이용요금 카드 결제가 승인되지 않아 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 미결제 금액: #{금액}원
+■ 결제 카드: #{카드사 끝 4자리}
+■ 재결제 예정: #{M월 D일(요일)}
+■ 결제 수단 변경: #{URL}
+
+[꼭 확인해 주세요]
+※ 카드 한도 초과나 유효기간 만료가 주요 원인입니다. 카드 정보를 확인해 주세요.
+※ 재결제도 실패하면 서비스 이용이 제한될 수 있습니다.
+
+결제 수단 변경하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 카드 결제 실패 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 이용요금 카드 결제가 승인되지 않아 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 미결제 금액: #{금액}원
+■ 결제 카드: #{카드사 끝 4자리}
+■ 재결제 예정: #{M월 D일(요일)}
+■ 결제 수단 변경: #{URL}
+
+[꼭 확인해 주세요]
+※ 카드 한도 초과나 유효기간 만료가 주요 원인입니다. 카드 정보를 확인해 주세요.
+※ 재결제도 실패하면 서비스 이용이 제한될 수 있습니다.
+
+결제 수단 변경하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>357자 · 548바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m52" data-g="G1" data-cat="8" data-type="info" data-q="미납요금 안내 결제·요금 [세스코] 이용요금 미납 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월} 이용요금이 아직 납부되지 않아 안내해 드립니다.
+아래 내용을 확인하시고 납부해 주세요.
+
+■ 미납 금액: #{금액}원
+■ 납부 기한: #{m월 d일(요일)}까지
+■ 납부 방법: 세스코 홈페이지 납부 또는 가상계좌 입금
+■ 납부 페이지: #{url}
+
+[꼭 확인해 주세요]
+※ 이미 납부하셨다면 이 메시지는 무시하셔도 됩니다.
+※ 기한이 지나면 서비스가 일시 중단될 수 있습니다.
+
+이용요금 납부하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">052</span><span class="cat">8. 결제·요금</span><h3>미납요금 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 이용요금 미납 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월} 이용요금이 아직 납부되지 않아 안내해 드립니다.
+아래 내용을 확인하시고 납부해 주세요.
+
+■ 미납 금액: #{금액}원
+■ 납부 기한: #{M월 D일(요일)}까지
+■ 납부 방법: 세스코 홈페이지 납부 또는 가상계좌 입금
+■ 납부 페이지: #{URL}
+
+[꼭 확인해 주세요]
+※ 이미 납부하셨다면 이 메시지는 무시하셔도 됩니다.
+※ 기한이 지나면 서비스가 일시 중단될 수 있습니다.
+
+이용요금 납부하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 이용요금 미납 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월} 이용요금이 아직 납부되지 않아 안내해 드립니다.
+아래 내용을 확인하시고 납부해 주세요.
+
+■ 미납 금액: #{금액}원
+■ 납부 기한: #{M월 D일(요일)}까지
+■ 납부 방법: 세스코 홈페이지 납부 또는 가상계좌 입금
+■ 납부 페이지: #{URL}
+
+[꼭 확인해 주세요]
+※ 이미 납부하셨다면 이 메시지는 무시하셔도 됩니다.
+※ 기한이 지나면 서비스가 일시 중단될 수 있습니다.
+
+이용요금 납부하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>336자 · 522바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m53" data-g="G1" data-cat="8" data-type="info" data-q="결제 완료 확인 결제·요금 [세스코] 이용요금 결제 완료
+
+안녕하세요, #{고객명} 고객님.
+#{m월} 이용요금 결제가 정상 처리됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 결제일: #{m월 d일(요일)}
+■ 결제 금액: #{금액}원
+■ 결제 수단: #{카드/계좌 끝 4자리}
+■ 영수증: #{url}
+
+※ 영수증은 멤버스 앱의 결제 내역에서도 확인하실 수 있습니다.
+
+영수증 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">053</span><span class="cat">8. 결제·요금</span><h3>결제 완료 확인</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 이용요금 결제 완료
+
+안녕하세요, #{고객명} 고객님.
+#{M월} 이용요금 결제가 정상 처리됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 결제일: #{M월 D일(요일)}
+■ 결제 금액: #{금액}원
+■ 결제 수단: #{카드/계좌 끝 4자리}
+■ 영수증: #{URL}
+
+※ 영수증은 멤버스 앱의 결제 내역에서도 확인하실 수 있습니다.
+
+영수증 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 이용요금 결제 완료
+
+안녕하세요, #{고객명} 고객님.
+#{M월} 이용요금 결제가 정상 처리됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 결제일: #{M월 D일(요일)}
+■ 결제 금액: #{금액}원
+■ 결제 수단: #{카드/계좌 끝 4자리}
+■ 영수증: #{URL}
+
+※ 영수증은 멤버스 앱의 결제 내역에서도 확인하실 수 있습니다.
+
+영수증 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>271자 · 407바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m54" data-g="G1" data-cat="8" data-type="info" data-q="납부방법 변경 결제·요금 [세스코] 납부방법 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 납부방법 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경일: #{m월 d일(요일)}
+■ 변경 전: #{기존 수단}
+■ 변경 후: #{변경 수단 끝 4자리}
+■ 적용 시점: #{m월} 결제분부터
+
+※ 본인이 변경하지 않으셨다면 세스코 고객센터로 바로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">054</span><span class="cat">8. 결제·요금</span><h3>납부방법 변경</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 납부방법 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 납부방법 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경일: #{M월 D일(요일)}
+■ 변경 전: #{기존 수단}
+■ 변경 후: #{변경 수단 끝 4자리}
+■ 적용 시점: #{M월} 결제분부터
+
+※ 본인이 변경하지 않으셨다면 세스코 고객센터로 바로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 납부방법 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 납부방법 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경일: #{M월 D일(요일)}
+■ 변경 전: #{기존 수단}
+■ 변경 후: #{변경 수단 끝 4자리}
+■ 적용 시점: #{M월} 결제분부터
+
+※ 본인이 변경하지 않으셨다면 세스코 고객센터로 바로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>266자 · 407바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m55" data-g="G1" data-cat="8" data-type="info" data-q="서비스 요금 변경 안내 결제·요금 [세스코] 서비스 이용요금 변경 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월}부터 적용되는 #{서비스명} 이용요금 변경 내용을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 변경 사유: #{약제·장비 원가 상승 등}
+■ 현재 요금: 월 #{금액}원
+■ 변경 요금: 월 #{금액}원
+■ 적용 시점: #{m월 d일(요일)} 결제분부터
+
+[꼭 확인해 주세요]
+※ 변경 내용에 동의하지 않으시면 적용일 전까지 세스코 고객센터로 알려 주세요.
+※ 요금 변경과 관계없이 서비스 내용과 방문 주기는 그대로 유지됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">055</span><span class="cat">8. 결제·요금</span><h3>서비스 요금 변경 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 서비스 이용요금 변경 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월}부터 적용되는 #{서비스명} 이용요금 변경 내용을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 변경 사유: #{약제·장비 원가 상승 등}
+■ 현재 요금: 월 #{금액}원
+■ 변경 요금: 월 #{금액}원
+■ 적용 시점: #{M월 D일(요일)} 결제분부터
+
+[꼭 확인해 주세요]
+※ 변경 내용에 동의하지 않으시면 적용일 전까지 세스코 고객센터로 알려 주세요.
+※ 요금 변경과 관계없이 서비스 내용과 방문 주기는 그대로 유지됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 서비스 이용요금 변경 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월}부터 적용되는 #{서비스명} 이용요금 변경 내용을 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 변경 사유: #{약제·장비 원가 상승 등}
+■ 현재 요금: 월 #{금액}원
+■ 변경 요금: 월 #{금액}원
+■ 적용 시점: #{M월 D일(요일)} 결제분부터
+
+[꼭 확인해 주세요]
+※ 변경 내용에 동의하지 않으시면 적용일 전까지 세스코 고객센터로 알려 주세요.
+※ 요금 변경과 관계없이 서비스 내용과 방문 주기는 그대로 유지됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>363자 · 564바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m56" data-g="G1" data-cat="9" data-type="info" data-q="계약 만료 예정 계약 갱신·변경 [세스코] 계약 만료 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 만료일이 다가와 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 계약 만료일: #{m월 d일(요일)}
+■ 계약 서비스: #{서비스명}
+■ 갱신 안내 예정: 만료 30일 전
+
+※ 갱신이나 변경을 원하시면 담당자 또는 세스코 고객센터로 말씀해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">056</span><span class="cat">9. 계약 갱신·변경</span><h3>계약 만료 예정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 계약 만료 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 만료일이 다가와 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 계약 만료일: #{M월 D일(요일)}
+■ 계약 서비스: #{서비스명}
+■ 갱신 안내 예정: 만료 30일 전
+
+※ 갱신이나 변경을 원하시면 담당자 또는 세스코 고객센터로 말씀해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 계약 만료 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 만료일이 다가와 미리 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 계약 만료일: #{M월 D일(요일)}
+■ 계약 서비스: #{서비스명}
+■ 갱신 안내 예정: 만료 30일 전
+
+※ 갱신이나 변경을 원하시면 담당자 또는 세스코 고객센터로 말씀해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>267자 · 412바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m57" data-g="G1" data-cat="9" data-type="info" data-q="갱신 사전 안내 계약 갱신·변경 [세스코] 계약 갱신 사전 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} 만료되는 #{서비스명} 계약의 갱신 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 갱신 기간: #{m월 d일}~#{m월 d일}
+■ 갱신 조건: #{월 금액, 방문 주기}
+■ 갱신 방법: #{url}에서 확인 후 서명
+
+[꼭 확인해 주세요]
+※ 만료일까지 별도 의사 표시가 없으면 같은 조건으로 자동 갱신됩니다.
+※ 조건 변경을 원하시면 만료일 전까지 담당자에게 말씀해 주세요.
+
+갱신 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">057</span><span class="cat">9. 계약 갱신·변경</span><h3>갱신 사전 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 계약 갱신 사전 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 만료되는 #{서비스명} 계약의 갱신 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 갱신 기간: #{M월 D일}~#{M월 D일}
+■ 갱신 조건: #{월 금액, 방문 주기}
+■ 갱신 방법: #{URL}에서 확인 후 서명
+
+[꼭 확인해 주세요]
+※ 만료일까지 별도 의사 표시가 없으면 같은 조건으로 자동 갱신됩니다.
+※ 조건 변경을 원하시면 만료일 전까지 담당자에게 말씀해 주세요.
+
+갱신 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 계약 갱신 사전 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 만료되는 #{서비스명} 계약의 갱신 내용을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 갱신 기간: #{M월 D일}~#{M월 D일}
+■ 갱신 조건: #{월 금액, 방문 주기}
+■ 갱신 방법: #{URL}에서 확인 후 서명
+
+[꼭 확인해 주세요]
+※ 만료일까지 별도 의사 표시가 없으면 같은 조건으로 자동 갱신됩니다.
+※ 조건 변경을 원하시면 만료일 전까지 담당자에게 말씀해 주세요.
+
+갱신 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>348자 · 536바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m58" data-g="G1" data-cat="9" data-type="info" data-q="갱신 완료 계약 갱신·변경 [세스코] 계약 갱신 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 갱신이 완료됐습니다.
+앞으로도 변함없이 고객님 공간을 관리하겠습니다.
+
+■ 갱신 계약 기간: #{m월 d일}~#{m월 d일}
+■ 계약 서비스: #{서비스명}
+■ 계약서 확인: #{url}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">058</span><span class="cat">9. 계약 갱신·변경</span><h3>갱신 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 계약 갱신 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 갱신이 완료됐습니다.
+앞으로도 변함없이 고객님 공간을 관리하겠습니다.
+
+■ 갱신 계약 기간: #{M월 D일}~#{M월 D일}
+■ 계약 서비스: #{서비스명}
+■ 계약서 확인: #{URL}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 계약 갱신 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 갱신이 완료됐습니다.
+앞으로도 변함없이 고객님 공간을 관리하겠습니다.
+
+■ 갱신 계약 기간: #{M월 D일}~#{M월 D일}
+■ 계약 서비스: #{서비스명}
+■ 계약서 확인: #{URL}
+
+※ 계약 내용이 다르거나 본인이 작성하지 않은 경우 세스코 고객센터로 연락해 주세요.
+
+계약서 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>278자 · 429바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m59" data-g="G1" data-cat="9" data-type="info" data-q="명의변경 계약 갱신·변경 [세스코] 명의변경 진행 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 계약 명의변경이 접수돼 진행 상황을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{m월 d일(요일)}
+■ 변경 내용: 계약자 명의 변경(양도인 → 양수인)
+■ 필요 서류: 양수인 신분증, 사업자등록증(사업장인 경우)
+■ 서류 제출: #{url}
+
+[꼭 확인해 주세요]
+※ 양수인(새 계약자)의 서명이 완료돼야 명의변경이 마무리됩니다.
+※ 변경 전 미납 요금이 있으면 먼저 정리해 주세요.
+
+서류 제출하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">059</span><span class="cat">9. 계약 갱신·변경</span><h3>명의변경</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 명의변경 진행 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 계약 명의변경이 접수돼 진행 상황을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 변경 내용: 계약자 명의 변경(양도인 → 양수인)
+■ 필요 서류: 양수인 신분증, 사업자등록증(사업장인 경우)
+■ 서류 제출: #{URL}
+
+[꼭 확인해 주세요]
+※ 양수인(새 계약자)의 서명이 완료돼야 명의변경이 마무리됩니다.
+※ 변경 전 미납 요금이 있으면 먼저 정리해 주세요.
+
+서류 제출하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 명의변경 진행 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 계약 명의변경이 접수돼 진행 상황을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 변경 내용: 계약자 명의 변경(양도인 → 양수인)
+■ 필요 서류: 양수인 신분증, 사업자등록증(사업장인 경우)
+■ 서류 제출: #{URL}
+
+[꼭 확인해 주세요]
+※ 양수인(새 계약자)의 서명이 완료돼야 명의변경이 마무리됩니다.
+※ 변경 전 미납 요금이 있으면 먼저 정리해 주세요.
+
+서류 제출하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>347자 · 545바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m60" data-g="G1" data-cat="9" data-type="info" data-q="주소지 변경 계약 갱신·변경 [세스코] 서비스 주소 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 서비스 주소 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경일: #{m월 d일(요일)}
+■ 변경 주소: #{새 주소}
+■ 다음 방문: #{m월 d일(요일)} 새 주소로 방문
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 지역이 바뀌어 담당자가 변경되는 경우 별도로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">060</span><span class="cat">9. 계약 갱신·변경</span><h3>주소지 변경</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 서비스 주소 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 서비스 주소 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경일: #{M월 D일(요일)}
+■ 변경 주소: #{새 주소}
+■ 다음 방문: #{M월 D일(요일)} 새 주소로 방문
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 지역이 바뀌어 담당자가 변경되는 경우 별도로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 서비스 주소 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 서비스 주소 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경일: #{M월 D일(요일)}
+■ 변경 주소: #{새 주소}
+■ 다음 방문: #{M월 D일(요일)} 새 주소로 방문
+■ 담당자: #{담당자명} 서비스 컨설턴트
+
+※ 지역이 바뀌어 담당자가 변경되는 경우 별도로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>281자 · 431바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m61" data-g="G1" data-cat="9" data-type="info" data-q="서비스 변경·추가 계약 갱신·변경 [세스코] 서비스 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 서비스 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경 내용: #{추가/변경된 서비스명}
+■ 적용 시작: #{m월 d일(요일)}
+■ 변경 후 요금: 월 #{금액}원
+■ 변경 계약서: #{url}
+
+※ 변경된 서비스는 다음 정기 방문부터 적용됩니다.
+
+변경 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">061</span><span class="cat">9. 계약 갱신·변경</span><h3>서비스 변경·추가</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 서비스 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 서비스 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경 내용: #{추가/변경된 서비스명}
+■ 적용 시작: #{M월 D일(요일)}
+■ 변경 후 요금: 월 #{금액}원
+■ 변경 계약서: #{URL}
+
+※ 변경된 서비스는 다음 정기 방문부터 적용됩니다.
+
+변경 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 서비스 변경 완료
+
+안녕하세요, #{고객명} 고객님.
+요청하신 서비스 변경이 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 변경 내용: #{추가/변경된 서비스명}
+■ 적용 시작: #{M월 D일(요일)}
+■ 변경 후 요금: 월 #{금액}원
+■ 변경 계약서: #{URL}
+
+※ 변경된 서비스는 다음 정기 방문부터 적용됩니다.
+
+변경 내용 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>269자 · 407바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m62" data-g="G1" data-cat="9" data-type="info" data-q="계약 해지 접수 계약 갱신·변경 [세스코] 해지 요청 접수 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 #{서비스명} 계약 해지가 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{m월 d일(요일)}
+■ 해지 예정일: #{m월 d일(요일)}
+■ 장비 회수: #{m월 d일(요일)} 담당자 방문
+
+[꼭 확인해 주세요]
+※ 해지 예정일까지 서비스는 정상 제공됩니다.
+※ 위약금이나 미납 요금이 있는 경우 별도로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">062</span><span class="cat">9. 계약 갱신·변경</span><h3>계약 해지 접수</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 해지 요청 접수 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 #{서비스명} 계약 해지가 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 해지 예정일: #{M월 D일(요일)}
+■ 장비 회수: #{M월 D일(요일)} 담당자 방문
+
+[꼭 확인해 주세요]
+※ 해지 예정일까지 서비스는 정상 제공됩니다.
+※ 위약금이나 미납 요금이 있는 경우 별도로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 해지 요청 접수 안내
+
+안녕하세요, #{고객명} 고객님.
+요청하신 #{서비스명} 계약 해지가 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 해지 예정일: #{M월 D일(요일)}
+■ 장비 회수: #{M월 D일(요일)} 담당자 방문
+
+[꼭 확인해 주세요]
+※ 해지 예정일까지 서비스는 정상 제공됩니다.
+※ 위약금이나 미납 요금이 있는 경우 별도로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>304자 · 466바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m63" data-g="G1" data-cat="9" data-type="info" data-q="해지 완료 계약 갱신·변경 [세스코] 계약 해지 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 해지가 완료됐습니다.
+그동안 세스코를 믿고 공간을 맡겨 주셔서 감사합니다.
+
+■ 해지일: #{m월 d일(요일)}
+■ 장비 회수: 완료
+■ 최종 정산: #{정산 금액 또는 없음}
+
+※ 다시 세스코가 필요하실 때 언제든 연락 주세요. 고객님 공간의 관리 이력은 그대로 보관됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">063</span><span class="cat">9. 계약 갱신·변경</span><h3>해지 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 계약 해지 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 해지가 완료됐습니다.
+그동안 세스코를 믿고 공간을 맡겨 주셔서 감사합니다.
+
+■ 해지일: #{M월 D일(요일)}
+■ 장비 회수: 완료
+■ 최종 정산: #{정산 금액 또는 없음}
+
+※ 다시 세스코가 필요하실 때 언제든 연락 주세요. 고객님 공간의 관리 이력은 그대로 보관됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 계약 해지 완료
+
+안녕하세요, #{고객명} 고객님.
+고객님의 #{서비스명} 계약 해지가 완료됐습니다.
+그동안 세스코를 믿고 공간을 맡겨 주셔서 감사합니다.
+
+■ 해지일: #{M월 D일(요일)}
+■ 장비 회수: 완료
+■ 최종 정산: #{정산 금액 또는 없음}
+
+※ 다시 세스코가 필요하실 때 언제든 연락 주세요. 고객님 공간의 관리 이력은 그대로 보관됩니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>275자 · 427바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m64" data-g="G1" data-cat="10" data-type="info" data-q="불편사항 접수 고객 불편·voc [세스코] 불편사항 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+남겨 주신 불편사항이 접수됐습니다. 불편을 드려 죄송합니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{m월 d일(요일)}
+■ 접수 내용: #{불편 내용 요약}
+■ 처리 담당: #{담당 부서/담당자}
+■ 연락 예정: 1영업일 이내
+
+※ 처리 진행 상황은 단계마다 문자로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">064</span><span class="cat">10. 고객 불편·VOC</span><h3>불편사항 접수</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 불편사항 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+남겨 주신 불편사항이 접수됐습니다. 불편을 드려 죄송합니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 접수 내용: #{불편 내용 요약}
+■ 처리 담당: #{담당 부서/담당자}
+■ 연락 예정: 1영업일 이내
+
+※ 처리 진행 상황은 단계마다 문자로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 불편사항 접수 완료
+
+안녕하세요, #{고객명} 고객님.
+남겨 주신 불편사항이 접수됐습니다. 불편을 드려 죄송합니다.
+아래 내용을 확인해 주세요.
+
+■ 접수일: #{M월 D일(요일)}
+■ 접수 내용: #{불편 내용 요약}
+■ 처리 담당: #{담당 부서/담당자}
+■ 연락 예정: 1영업일 이내
+
+※ 처리 진행 상황은 단계마다 문자로 안내드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>267자 · 411바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m65" data-g="G1" data-cat="10" data-type="info" data-q="담당자 배정 고객 불편·voc [세스코] 불편사항 담당자 배정 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항의 처리 담당자가 배정됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 처리 담당자: #{담당자명} #{직책}
+■ 연락처: #{담당자 연락처}
+■ 처리 예정: #{m월 d일(요일)}까지
+
+※ 담당자가 오늘 중으로 직접 연락드려 상황을 확인하겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">065</span><span class="cat">10. 고객 불편·VOC</span><h3>담당자 배정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 불편사항 담당자 배정 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항의 처리 담당자가 배정됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 처리 담당자: #{담당자명} #{직책}
+■ 연락처: #{담당자 연락처}
+■ 처리 예정: #{M월 D일(요일)}까지
+
+※ 담당자가 오늘 중으로 직접 연락드려 상황을 확인하겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 불편사항 담당자 배정 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항의 처리 담당자가 배정됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 처리 담당자: #{담당자명} #{직책}
+■ 연락처: #{담당자 연락처}
+■ 처리 예정: #{M월 D일(요일)}까지
+
+※ 담당자가 오늘 중으로 직접 연락드려 상황을 확인하겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>277자 · 428바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m66" data-g="G1" data-cat="10" data-type="info" data-q="처리 진행 현황 고객 불편·voc [세스코] 불편사항 처리 진행 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항의 처리 진행 상황을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 현재 단계: #{원인 확인 완료/조치 진행 중}
+■ 조치 내용: #{조치 내용}
+■ 완료 예정: #{m월 d일(요일)}
+
+※ 진행 중 궁금한 점은 처리 담당자 #{담당자명}(#{연락처})에게 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">066</span><span class="cat">10. 고객 불편·VOC</span><h3>처리 진행 현황</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 불편사항 처리 진행 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항의 처리 진행 상황을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 현재 단계: #{원인 확인 완료/조치 진행 중}
+■ 조치 내용: #{조치 내용}
+■ 완료 예정: #{M월 D일(요일)}
+
+※ 진행 중 궁금한 점은 처리 담당자 #{담당자명}(#{연락처})에게 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 불편사항 처리 진행 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항의 처리 진행 상황을 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 현재 단계: #{원인 확인 완료/조치 진행 중}
+■ 조치 내용: #{조치 내용}
+■ 완료 예정: #{M월 D일(요일)}
+
+※ 진행 중 궁금한 점은 처리 담당자 #{담당자명}(#{연락처})에게 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>296자 · 452바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m67" data-g="G1" data-cat="10" data-type="info" data-q="해결 지연 안내 고객 불편·voc [세스코] 불편사항 처리 지연 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항 처리가 예정보다 늦어지고 있어 안내해 드립니다. 기다리게 해 드려 죄송합니다.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 지연 사유: #{부품 수급/추가 점검 필요 등}
+■ 변경된 완료 예정: #{m월 d일(요일)}
+■ 처리 담당자: #{담당자명}(#{연락처})
+
+※ 처리가 완료되는 대로 바로 안내드리겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">067</span><span class="cat">10. 고객 불편·VOC</span><h3>해결 지연 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 불편사항 처리 지연 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항 처리가 예정보다 늦어지고 있어 안내해 드립니다. 기다리게 해 드려 죄송합니다.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 지연 사유: #{부품 수급/추가 점검 필요 등}
+■ 변경된 완료 예정: #{M월 D일(요일)}
+■ 처리 담당자: #{담당자명}(#{연락처})
+
+※ 처리가 완료되는 대로 바로 안내드리겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 불편사항 처리 지연 안내
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항 처리가 예정보다 늦어지고 있어 안내해 드립니다. 기다리게 해 드려 죄송합니다.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 지연 사유: #{부품 수급/추가 점검 필요 등}
+■ 변경된 완료 예정: #{M월 D일(요일)}
+■ 처리 담당자: #{담당자명}(#{연락처})
+
+※ 처리가 완료되는 대로 바로 안내드리겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>294자 · 454바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m68" data-g="G1" data-cat="10" data-type="info" data-q="처리 완료 고객 불편·voc [세스코] 불편사항 처리 완료
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항 처리가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 조치 내용: #{조치 내용}
+■ 완료일: #{m월 d일(요일)}
+■ 처리 담당자: #{담당자명}
+
+※ 같은 문제가 다시 생기면 담당자에게 바로 연락해 주세요. 우선 처리하겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">068</span><span class="cat">10. 고객 불편·VOC</span><h3>처리 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 불편사항 처리 완료
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항 처리가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 조치 내용: #{조치 내용}
+■ 완료일: #{M월 D일(요일)}
+■ 처리 담당자: #{담당자명}
+
+※ 같은 문제가 다시 생기면 담당자에게 바로 연락해 주세요. 우선 처리하겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 불편사항 처리 완료
+
+안녕하세요, #{고객명} 고객님.
+접수하신 불편사항 처리가 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 접수 내용: #{불편 내용 요약}
+■ 조치 내용: #{조치 내용}
+■ 완료일: #{M월 D일(요일)}
+■ 처리 담당자: #{담당자명}
+
+※ 같은 문제가 다시 생기면 담당자에게 바로 연락해 주세요. 우선 처리하겠습니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>269자 · 414바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m69" data-g="G1" data-cat="10" data-type="info" data-q="서비스 재방문 안내 고객 불편·voc [세스코] 재방문 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+불편사항 조치를 위해 담당자가 다시 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 재방문 일시: #{m월 d일(요일) 오후 h시}
+■ 조치 내용: #{재처리/추가 점검}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 재방문 비용은 청구되지 않습니다. 일정이 맞지 않으시면 담당자에게 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">069</span><span class="cat">10. 고객 불편·VOC</span><h3>서비스 재방문 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 재방문 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+불편사항 조치를 위해 담당자가 다시 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 재방문 일시: #{M월 D일(요일) 오후 H시}
+■ 조치 내용: #{재처리/추가 점검}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 재방문 비용은 청구되지 않습니다. 일정이 맞지 않으시면 담당자에게 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 재방문 서비스 안내
+
+안녕하세요, #{고객명} 고객님.
+불편사항 조치를 위해 담당자가 다시 방문할 예정입니다.
+아래 내용을 확인해 주세요.
+
+■ 재방문 일시: #{M월 D일(요일) 오후 H시}
+■ 조치 내용: #{재처리/추가 점검}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 연락처: #{담당자 연락처}
+
+※ 재방문 비용은 청구되지 않습니다. 일정이 맞지 않으시면 담당자에게 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>334자 · 528바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m71" data-g="G1" data-cat="10" data-type="info" data-q="만족도 조사 고객 불편·voc [세스코] 서비스 만족도 평가 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} 진행한 #{서비스명}는 만족스러우셨나요?
+고객님의 의견은 다음 서비스를 더 꼼꼼하게 준비하는 데 쓰입니다.
+
+■ 평가 대상: #{m월 d일(요일)} #{서비스명}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 소요 시간: 약 1분
+■ 평가 페이지: #{url}
+
+※ 평가 링크는 7일간 유효합니다.
+
+서비스 만족도 평가하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">071</span><span class="cat">10. 고객 불편·VOC</span><h3>만족도 조사</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 서비스 만족도 평가 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 진행한 #{서비스명}는 만족스러우셨나요?
+고객님의 의견은 다음 서비스를 더 꼼꼼하게 준비하는 데 쓰입니다.
+
+■ 평가 대상: #{M월 D일(요일)} #{서비스명}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 소요 시간: 약 1분
+■ 평가 페이지: #{URL}
+
+※ 평가 링크는 7일간 유효합니다.
+
+서비스 만족도 평가하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 서비스 만족도 평가 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 진행한 #{서비스명}는 만족스러우셨나요?
+고객님의 의견은 다음 서비스를 더 꼼꼼하게 준비하는 데 쓰입니다.
+
+■ 평가 대상: #{M월 D일(요일)} #{서비스명}
+■ 담당자: #{담당자명} 서비스 컨설턴트
+■ 소요 시간: 약 1분
+■ 평가 페이지: #{URL}
+
+※ 평가 링크는 7일간 유효합니다.
+
+서비스 만족도 평가하기
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>352자 · 546바이트</span><span>하단: 서비스 문의형</span></footer>
+</article>
+<article class="card" id="m72" data-g="G1" data-cat="11" data-type="info" data-q="주문 완료 온라인몰·구매 [세스코몰] 주문 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+세스코몰 주문이 정상 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{n}건
+■ 결제 금액: #{금액}원
+■ 배송 예정: #{m월 d일(요일)}
+■ 주문 상세: #{url}
+
+※ 주문 취소는 배송 시작 전까지 세스코몰에서 직접 하실 수 있습니다.
+
+주문 내역 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">072</span><span class="cat">11. 온라인몰·구매</span><h3>주문 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코몰] 주문 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+세스코몰 주문이 정상 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{N}건
+■ 결제 금액: #{금액}원
+■ 배송 예정: #{M월 D일(요일)}
+■ 주문 상세: #{URL}
+
+※ 주문 취소는 배송 시작 전까지 세스코몰에서 직접 하실 수 있습니다.
+
+주문 내역 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코몰] 주문 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+세스코몰 주문이 정상 접수됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{N}건
+■ 결제 금액: #{금액}원
+■ 배송 예정: #{M월 D일(요일)}
+■ 주문 상세: #{URL}
+
+※ 주문 취소는 배송 시작 전까지 세스코몰에서 직접 하실 수 있습니다.
+
+주문 내역 확인하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>272자 · 409바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m73" data-g="G1" data-cat="11" data-type="info" data-q="배송 시작 온라인몰·구매 [세스코몰] 배송 시작 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 상품의 배송이 시작됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{n}건
+■ 택배사: #{택배사}
+■ 송장번호: #{송장번호}
+■ 도착 예정: #{m월 d일(요일)}
+
+※ 배송 조회는 송장번호로 택배사 홈페이지에서 하실 수 있습니다.
+
+배송 조회하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">073</span><span class="cat">11. 온라인몰·구매</span><h3>배송 시작</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코몰] 배송 시작 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 상품의 배송이 시작됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{N}건
+■ 택배사: #{택배사}
+■ 송장번호: #{송장번호}
+■ 도착 예정: #{M월 D일(요일)}
+
+※ 배송 조회는 송장번호로 택배사 홈페이지에서 하실 수 있습니다.
+
+배송 조회하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코몰] 배송 시작 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 상품의 배송이 시작됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{N}건
+■ 택배사: #{택배사}
+■ 송장번호: #{송장번호}
+■ 도착 예정: #{M월 D일(요일)}
+
+※ 배송 조회는 송장번호로 택배사 홈페이지에서 하실 수 있습니다.
+
+배송 조회하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>264자 · 404바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m74" data-g="G1" data-cat="11" data-type="info" data-q="배송 완료 온라인몰·구매 [세스코몰] 배송 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 상품이 배송 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{n}건
+■ 배송 완료: #{m월 d일(요일) 오후 h시}
+■ 받는 곳: #{배송지}
+
+※ 상품이 도착하지 않았거나 파손됐다면 세스코 고객센터로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">074</span><span class="cat">11. 온라인몰·구매</span><h3>배송 완료</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코몰] 배송 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 상품이 배송 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{N}건
+■ 배송 완료: #{M월 D일(요일) 오후 H시}
+■ 받는 곳: #{배송지}
+
+※ 상품이 도착하지 않았거나 파손됐다면 세스코 고객센터로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코몰] 배송 완료 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 상품이 배송 완료됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 주문 상품: #{상품명} 외 #{N}건
+■ 배송 완료: #{M월 D일(요일) 오후 H시}
+■ 받는 곳: #{배송지}
+
+※ 상품이 도착하지 않았거나 파손됐다면 세스코 고객센터로 연락해 주세요.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>243자 · 371바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m75" data-g="G1" data-cat="11" data-type="info" data-q="일시품절 온라인몰·구매 [세스코몰] 주문 제품 일시 품절 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 #{상품명}이 일시 품절돼 안내해 드립니다.
+기다리게 해 드려 죄송합니다.
+
+■ 품절 상품: #{상품명}
+■ 재입고 예정: #{m월 d일(요일)}
+■ 처리 방법: 입고 즉시 발송 또는 주문 취소 선택
+
+[꼭 확인해 주세요]
+※ 주문 취소를 원하시면 세스코몰 주문 내역에서 바로 하실 수 있습니다.
+※ 별도 의사 표시가 없으면 입고 즉시 발송해 드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">075</span><span class="cat">11. 온라인몰·구매</span><h3>일시품절</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코몰] 주문 제품 일시 품절 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 #{상품명}이 일시 품절돼 안내해 드립니다.
+기다리게 해 드려 죄송합니다.
+
+■ 품절 상품: #{상품명}
+■ 재입고 예정: #{M월 D일(요일)}
+■ 처리 방법: 입고 즉시 발송 또는 주문 취소 선택
+
+[꼭 확인해 주세요]
+※ 주문 취소를 원하시면 세스코몰 주문 내역에서 바로 하실 수 있습니다.
+※ 별도 의사 표시가 없으면 입고 즉시 발송해 드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코몰] 주문 제품 일시 품절 안내
+
+안녕하세요, #{고객명} 고객님.
+주문하신 #{상품명}이 일시 품절돼 안내해 드립니다.
+기다리게 해 드려 죄송합니다.
+
+■ 품절 상품: #{상품명}
+■ 재입고 예정: #{M월 D일(요일)}
+■ 처리 방법: 입고 즉시 발송 또는 주문 취소 선택
+
+[꼭 확인해 주세요]
+※ 주문 취소를 원하시면 세스코몰 주문 내역에서 바로 하실 수 있습니다.
+※ 별도 의사 표시가 없으면 입고 즉시 발송해 드립니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>314자 · 490바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m76" data-g="G1" data-cat="11" data-type="info" data-q="재입고 안내 온라인몰·구매 [세스코몰] 재입고 안내
+
+안녕하세요, #{고객명} 고객님.
+재입고 알림을 신청하신 #{상품명}이 다시 입고됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 상품: #{상품명}
+■ 입고일: #{m월 d일(요일)}
+■ 상품 페이지: #{url}
+
+※ 재입고 수량이 한정돼 있어 다시 품절될 수 있습니다.
+
+상품 보러가기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">076</span><span class="cat">11. 온라인몰·구매</span><h3>재입고 안내</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코몰] 재입고 안내
+
+안녕하세요, #{고객명} 고객님.
+재입고 알림을 신청하신 #{상품명}이 다시 입고됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 상품: #{상품명}
+■ 입고일: #{M월 D일(요일)}
+■ 상품 페이지: #{URL}
+
+※ 재입고 수량이 한정돼 있어 다시 품절될 수 있습니다.
+
+상품 보러가기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코몰] 재입고 안내
+
+안녕하세요, #{고객명} 고객님.
+재입고 알림을 신청하신 #{상품명}이 다시 입고됐습니다.
+아래 내용을 확인해 주세요.
+
+■ 상품: #{상품명}
+■ 입고일: #{M월 D일(요일)}
+■ 상품 페이지: #{URL}
+
+※ 재입고 수량이 한정돼 있어 다시 품절될 수 있습니다.
+
+상품 보러가기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>244자 · 369바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m77" data-g="G1" data-cat="11" data-type="info" data-q="상품 후기 요청 온라인몰·구매 [세스코몰] 상품 후기 작성 안내
+
+안녕하세요, #{고객명} 고객님.
+#{m월 d일(요일)} 받으신 #{상품명}은 어떠셨나요?
+사용 후기를 남겨 주시면 다음 고객의 선택에 도움이 됩니다.
+
+■ 상품: #{상품명}
+■ 후기 작성: #{url}
+■ 작성 혜택: 세스코몰 포인트 #{n}p 적립
+
+※ 포인트는 후기 등록 다음 날 적립됩니다.
+
+후기 작성하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">077</span><span class="cat">11. 온라인몰·구매</span><h3>상품 후기 요청</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코몰] 상품 후기 작성 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 받으신 #{상품명}은 어떠셨나요?
+사용 후기를 남겨 주시면 다음 고객의 선택에 도움이 됩니다.
+
+■ 상품: #{상품명}
+■ 후기 작성: #{URL}
+■ 작성 혜택: 세스코몰 포인트 #{N}P 적립
+
+※ 포인트는 후기 등록 다음 날 적립됩니다.
+
+후기 작성하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코몰] 상품 후기 작성 안내
+
+안녕하세요, #{고객명} 고객님.
+#{M월 D일(요일)} 받으신 #{상품명}은 어떠셨나요?
+사용 후기를 남겨 주시면 다음 고객의 선택에 도움이 됩니다.
+
+■ 상품: #{상품명}
+■ 후기 작성: #{URL}
+■ 작성 혜택: 세스코몰 포인트 #{N}P 적립
+
+※ 포인트는 후기 등록 다음 날 적립됩니다.
+
+후기 작성하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>264자 · 399바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m79" data-g="G1" data-cat="11" data-type="info" data-q="포인트 소멸 예정 온라인몰·구매 [세스코몰] 포인트 소멸 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 세스코몰 포인트 일부가 곧 소멸될 예정이라 안내해 드립니다.
+아래 내용을 확인하시고 소멸 예정일까지 사용해 주세요.
+
+■ 소멸 예정 포인트: #{n}p
+■ 소멸 예정일: #{m월 d일(요일)} 밤 12시
+■ 포인트 사용: #{url}
+
+[꼭 확인해 주세요]
+※ 소멸 예정일까지 사용하지 않으시면 자동 소멸됩니다.
+※ 이 메시지는 고객님이 체결하신 거래에 따라 지급된 포인트 안내입니다.
+
+포인트 사용하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">079</span><span class="cat">11. 온라인몰·구매</span><h3>포인트 소멸 예정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코몰] 포인트 소멸 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 세스코몰 포인트 일부가 곧 소멸될 예정이라 안내해 드립니다.
+아래 내용을 확인하시고 소멸 예정일까지 사용해 주세요.
+
+■ 소멸 예정 포인트: #{N}P
+■ 소멸 예정일: #{M월 D일(요일)} 밤 12시
+■ 포인트 사용: #{URL}
+
+[꼭 확인해 주세요]
+※ 소멸 예정일까지 사용하지 않으시면 자동 소멸됩니다.
+※ 이 메시지는 고객님이 체결하신 거래에 따라 지급된 포인트 안내입니다.
+
+포인트 사용하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코몰] 포인트 소멸 예정 안내
+
+안녕하세요, #{고객명} 고객님.
+고객님의 세스코몰 포인트 일부가 곧 소멸될 예정이라 안내해 드립니다.
+아래 내용을 확인하시고 소멸 예정일까지 사용해 주세요.
+
+■ 소멸 예정 포인트: #{N}P
+■ 소멸 예정일: #{M월 D일(요일)} 밤 12시
+■ 포인트 사용: #{URL}
+
+[꼭 확인해 주세요]
+※ 소멸 예정일까지 사용하지 않으시면 자동 소멸됩니다.
+※ 이 메시지는 고객님이 체결하신 거래에 따라 지급된 포인트 안내입니다.
+
+포인트 사용하기
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>338자 · 531바이트</span><span>하단: 안내 정보형</span></footer>
+</article>
+<article class="card" id="m93" data-g="G1" data-cat="13" data-type="info" data-q="영업시간에 맞춘 방문 조정 b2b 사업장 특화 [세스코] 방문 시간 조정 안내
+
+안녕하세요, #{고객명} 고객님.
+사업장 영업시간에 맞춰 방문 시간을 조정하고자 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 현재 방문 시간: #{오후 h시}
+■ 조정 제안: #{영업 전 오전 h시/마감 후 오후 h시}
+■ 조정 사유: 영업 중 점검으로 인한 불편 최소화
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 제안 시간이 맞지 않으시면 편하신 시간대를 답장으로 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+cesco science. on life">
+  <header class="card-h">
+    <div class="card-t"><span class="num">093</span><span class="cat">13. B2B 사업장 특화</span><h3>영업시간에 맞춘 방문 조정</h3></div>
+    <div class="meta"><span class="badge info">정보성</span><span class="chip">알림톡</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] 방문 시간 조정 안내
+
+안녕하세요, #{고객명} 고객님.
+사업장 영업시간에 맞춰 방문 시간을 조정하고자 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 현재 방문 시간: #{오후 H시}
+■ 조정 제안: #{영업 전 오전 H시/마감 후 오후 H시}
+■ 조정 사유: 영업 중 점검으로 인한 불편 최소화
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 제안 시간이 맞지 않으시면 편하신 시간대를 답장으로 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life</pre><button class="copy" type="button" data-copy="[세스코] 방문 시간 조정 안내
+
+안녕하세요, #{고객명} 고객님.
+사업장 영업시간에 맞춰 방문 시간을 조정하고자 안내해 드립니다.
+아래 내용을 확인해 주세요.
+
+■ 현재 방문 시간: #{오후 H시}
+■ 조정 제안: #{영업 전 오전 H시/마감 후 오후 H시}
+■ 조정 사유: 영업 중 점검으로 인한 불편 최소화
+■ 담당자: #{담당자명} 서비스 컨설턴트(#{연락처})
+
+※ 제안 시간이 맞지 않으시면 편하신 시간대를 답장으로 알려 주세요.
+
+서비스 관련 문의사항이 있으실 경우 세스코 고객센터로 문의해 주시기 바랍니다.
+■ 문의: 세스코 고객센터(1588-1119)
+
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life">복사</button></div>
+  <footer class="card-f"><span>357자 · 564바이트</span><span>하단: 서비스 문의형</span></footer>
+</article></div>
+</section>
+<section class="group" id="G2">
+  <div class="group-h">
+    <p class="eyebrow">분류 2 · 16건</p>
+    <h2>관리 체감형</h2>
+    <p class="lede">점검 결과, 관리 이력, 개선 사항 등 세스코 서비스의 가치를 고객이 체감하도록 돕는 메시지입니다.</p>
+    <p class="rule">적용 규칙: 개인화 CRM 규칙(담당 컨설턴트 발신)</p>
+  </div>
+  <div class="cards"><article class="card" id="m31" data-g="G2" data-cat="5" data-type="crm" data-q="점검 결과 전달 정기 서비스 [세스코] #{고객명} 고객님, 안녕하세요.
+오늘 #{서비스명} 관리를 위해 #{공간} 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{n}마리가 포획돼 서식 환경을 제거하기 위해 #{처리 내용} 처리를 완료했습니다.
+특히 #{특이사항 위치}에서 #{특이사항 내용}이 확인돼 #{조치}했습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 꾸준히 관리하시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">031</span><span class="cat">5. 정기 서비스</span><h3>점검 결과 전달</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 #{서비스명} 관리를 위해 #{공간} 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 서식 환경을 제거하기 위해 #{처리 내용} 처리를 완료했습니다.
+특히 #{특이사항 위치}에서 #{특이사항 내용}이 확인돼 #{조치}했습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 꾸준히 관리하시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 #{서비스명} 관리를 위해 #{공간} 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 서식 환경을 제거하기 위해 #{처리 내용} 처리를 완료했습니다.
+특히 #{특이사항 위치}에서 #{특이사항 내용}이 확인돼 #{조치}했습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 꾸준히 관리하시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>374자 · 608바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m34" data-g="G2" data-cat="5" data-type="crm" data-q="관리 기간 누적 안내 정기 서비스 [세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 #{n}개월이 됐습니다. 그동안 어떤 부분을 챙겼는지 정리해 드립니다.
+지금까지 #{n}회 점검했고, 첫 방문 때 확인된 #{초기 문제}는 #{n}회차부터 추가 흔적이 나오지 않고 있습니다.
+특히 #{집중 관리 구역}은 계절이 바뀔 때마다 서식 환경을 다시 점검해 왔습니다.
+앞으로도 다음 방문 전까지 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 상태가 다음 방문까지 유지됩니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">034</span><span class="cat">5. 정기 서비스</span><h3>관리 기간 누적 안내</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 2</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 #{N}개월이 됐습니다. 그동안 어떤 부분을 챙겼는지 정리해 드립니다.
+지금까지 #{N}회 점검했고, 첫 방문 때 확인된 #{초기 문제}는 #{N}회차부터 추가 흔적이 나오지 않고 있습니다.
+특히 #{집중 관리 구역}은 계절이 바뀔 때마다 서식 환경을 다시 점검해 왔습니다.
+앞으로도 다음 방문 전까지 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 상태가 다음 방문까지 유지됩니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 #{N}개월이 됐습니다. 그동안 어떤 부분을 챙겼는지 정리해 드립니다.
+지금까지 #{N}회 점검했고, 첫 방문 때 확인된 #{초기 문제}는 #{N}회차부터 추가 흔적이 나오지 않고 있습니다.
+특히 #{집중 관리 구역}은 계절이 바뀔 때마다 서식 환경을 다시 점검해 왔습니다.
+앞으로도 다음 방문 전까지 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 상태가 다음 방문까지 유지됩니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>349자 · 577바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 2건 · 사유: 누적 보고형. 방문 보고 규칙(C2 &quot;오늘 진행&quot;)은 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m35" data-g="G2" data-cat="6" data-type="crm" data-q="해충 활동 징후 확인 위생 점검·특이사항 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{n}마리가 포획돼 서식 환경을 제거하기 위해 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{해충 종} 활동 흔적이 새로 확인돼 모니터링 장비를 추가 설치했습니다.
+다음 방문 전까지 #{위치} 주변에 음식물이나 포장 박스를 두지 말아 주세요. #{해충 종}은 먹이와 숨을 곳이 있으면 빠르게 늘어나기 때문에 치워 두시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">035</span><span class="cat">6. 위생 점검·특이사항</span><h3>해충 활동 징후 확인</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 서식 환경을 제거하기 위해 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{해충 종} 활동 흔적이 새로 확인돼 모니터링 장비를 추가 설치했습니다.
+다음 방문 전까지 #{위치} 주변에 음식물이나 포장 박스를 두지 말아 주세요. #{해충 종}은 먹이와 숨을 곳이 있으면 빠르게 늘어나기 때문에 치워 두시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 서식 환경을 제거하기 위해 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{해충 종} 활동 흔적이 새로 확인돼 모니터링 장비를 추가 설치했습니다.
+다음 방문 전까지 #{위치} 주변에 음식물이나 포장 박스를 두지 말아 주세요. #{해충 종}은 먹이와 숨을 곳이 있으면 빠르게 늘어나기 때문에 치워 두시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>413자 · 679바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m36" data-g="G2" data-cat="6" data-type="crm" data-q="해충 모니터링 결과 위생 점검·특이사항 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 매장에 설치된 모니터링 장비 #{n}대를 점검했습니다.
+지난 방문 이후 #{해충 종} #{n}마리가 포획됐고, 지난달 #{n}마리에 비해 #{줄었습니다/늘었습니다}.
+특히 #{구역}의 포획 수가 가장 많아 해당 구역에 #{처리 내용} 처리를 추가로 했습니다.
+다음 방문 전까지 #{구역} 바닥의 물기와 음식물 찌꺼기를 영업 마감 후 정리해 주세요. 습기와 먹이가 함께 있으면 서식지가 되기 때문에 정리해 두시면 포획 수가 계속 줄어듭니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">036</span><span class="cat">6. 위생 점검·특이사항</span><h3>해충 모니터링 결과</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 매장에 설치된 모니터링 장비 #{N}대를 점검했습니다.
+지난 방문 이후 #{해충 종} #{N}마리가 포획됐고, 지난달 #{N}마리에 비해 #{줄었습니다/늘었습니다}.
+특히 #{구역}의 포획 수가 가장 많아 해당 구역에 #{처리 내용} 처리를 추가로 했습니다.
+다음 방문 전까지 #{구역} 바닥의 물기와 음식물 찌꺼기를 영업 마감 후 정리해 주세요. 습기와 먹이가 함께 있으면 서식지가 되기 때문에 정리해 두시면 포획 수가 계속 줄어듭니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 매장에 설치된 모니터링 장비 #{N}대를 점검했습니다.
+지난 방문 이후 #{해충 종} #{N}마리가 포획됐고, 지난달 #{N}마리에 비해 #{줄었습니다/늘었습니다}.
+특히 #{구역}의 포획 수가 가장 많아 해당 구역에 #{처리 내용} 처리를 추가로 했습니다.
+다음 방문 전까지 #{구역} 바닥의 물기와 음식물 찌꺼기를 영업 마감 후 정리해 주세요. 습기와 먹이가 함께 있으면 서식지가 되기 때문에 정리해 두시면 포획 수가 계속 줄어듭니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>387자 · 634바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m37" data-g="G2" data-cat="6" data-type="crm" data-q="특정 구역 집중관리 안내 위생 점검·특이사항 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+전체 구역을 점검했고, #{구역}에서 #{해충 종} #{n}마리가 포획돼 이 구역을 집중 관리 구역으로 지정했습니다.
+특히 #{구역}의 #{세부 위치}에서 #{발견 내용}이 확인돼 #{처리 내용}을 했습니다.
+다음 방문까지 #{구역}은 매 방문마다 우선 점검하겠습니다. 다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 함께 관리하시면 효과가 더 빨리 나타납니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">037</span><span class="cat">6. 위생 점검·특이사항</span><h3>특정 구역 집중관리 안내</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+전체 구역을 점검했고, #{구역}에서 #{해충 종} #{N}마리가 포획돼 이 구역을 집중 관리 구역으로 지정했습니다.
+특히 #{구역}의 #{세부 위치}에서 #{발견 내용}이 확인돼 #{처리 내용}을 했습니다.
+다음 방문까지 #{구역}은 매 방문마다 우선 점검하겠습니다. 다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 함께 관리하시면 효과가 더 빨리 나타납니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+전체 구역을 점검했고, #{구역}에서 #{해충 종} #{N}마리가 포획돼 이 구역을 집중 관리 구역으로 지정했습니다.
+특히 #{구역}의 #{세부 위치}에서 #{발견 내용}이 확인돼 #{처리 내용}을 했습니다.
+다음 방문까지 #{구역}은 매 방문마다 우선 점검하겠습니다. 다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 함께 관리하시면 효과가 더 빨리 나타납니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>392자 · 639바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m38" data-g="G2" data-cat="6" data-type="crm" data-q="위생 취약 요소 발견 위생 점검·특이사항 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}의 #{취약 요소: 배관 틈, 문틈, 환기구 등}이 해충이 드나들 수 있는 통로로 확인돼 오늘은 임시로 막아 두었습니다.
+다음 방문 전까지 #{위치}의 #{취약 요소}를 보수해 주세요. 통로가 열려 있으면 처리 후에도 밖에서 다시 들어오기 때문에 막아 두셔야 오늘 처리 효과가 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">038</span><span class="cat">6. 위생 점검·특이사항</span><h3>위생 취약 요소 발견</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}의 #{취약 요소: 배관 틈, 문틈, 환기구 등}이 해충이 드나들 수 있는 통로로 확인돼 오늘은 임시로 막아 두었습니다.
+다음 방문 전까지 #{위치}의 #{취약 요소}를 보수해 주세요. 통로가 열려 있으면 처리 후에도 밖에서 다시 들어오기 때문에 막아 두셔야 오늘 처리 효과가 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}의 #{취약 요소: 배관 틈, 문틈, 환기구 등}이 해충이 드나들 수 있는 통로로 확인돼 오늘은 임시로 막아 두었습니다.
+다음 방문 전까지 #{위치}의 #{취약 요소}를 보수해 주세요. 통로가 열려 있으면 처리 후에도 밖에서 다시 들어오기 때문에 막아 두셔야 오늘 처리 효과가 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>403자 · 658바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m39" data-g="G2" data-cat="6" data-type="crm" data-q="추가 점검 필요 위생 점검·특이사항 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인됐는데, 정확한 원인을 찾으려면 #{천장/벽체 내부 등}를 한 번 더 살펴봐야 합니다.
+정기 일정과 별도로 #{m월 d일(요일)}에 추가 점검을 하려 합니다. 어려우시면 가능한 날짜를 알려 주세요. 원인을 빨리 찾아야 처리 범위를 넓히지 않아도 되기 때문에 일정을 서둘러 잡았습니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">039</span><span class="cat">6. 위생 점검·특이사항</span><h3>추가 점검 필요</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인됐는데, 정확한 원인을 찾으려면 #{천장/벽체 내부 등}를 한 번 더 살펴봐야 합니다.
+정기 일정과 별도로 #{M월 D일(요일)}에 추가 점검을 하려 합니다. 어려우시면 가능한 날짜를 알려 주세요. 원인을 빨리 찾아야 처리 범위를 넓히지 않아도 되기 때문에 일정을 서둘러 잡았습니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인됐는데, 정확한 원인을 찾으려면 #{천장/벽체 내부 등}를 한 번 더 살펴봐야 합니다.
+정기 일정과 별도로 #{M월 D일(요일)}에 추가 점검을 하려 합니다. 어려우시면 가능한 날짜를 알려 주세요. 원인을 빨리 찾아야 처리 범위를 넓히지 않아도 되기 때문에 일정을 서둘러 잡았습니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>408자 · 665바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m40" data-g="G2" data-cat="6" data-type="crm" data-q="고객 실천사항 안내 위생 점검·특이사항 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인돼 집중 처리했습니다.
+다음 방문 전까지 세 가지만 챙겨 주세요. 영업 마감 후 배수구 덮개 닫기, 음식물 쓰레기는 당일 배출, 창고 박스는 바닥에서 띄워 보관. 이 세 곳이 해충의 먹이와 은신처가 되기 때문에 챙겨 주시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">040</span><span class="cat">6. 위생 점검·특이사항</span><h3>고객 실천사항 안내</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인돼 집중 처리했습니다.
+다음 방문 전까지 세 가지만 챙겨 주세요. 영업 마감 후 배수구 덮개 닫기, 음식물 쓰레기는 당일 배출, 창고 박스는 바닥에서 띄워 보관. 이 세 곳이 해충의 먹이와 은신처가 되기 때문에 챙겨 주시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인돼 집중 처리했습니다.
+다음 방문 전까지 세 가지만 챙겨 주세요. 영업 마감 후 배수구 덮개 닫기, 음식물 쓰레기는 당일 배출, 창고 박스는 바닥에서 띄워 보관. 이 세 곳이 해충의 먹이와 은신처가 되기 때문에 챙겨 주시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>406자 · 667바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m41" data-g="G2" data-cat="6" data-type="crm" data-q="관리 결과 개선 안내 위생 점검·특이사항 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수가 첫 방문 #{n}마리에서 오늘은 #{n}마리로 줄었습니다.
+특히 집중 관리해 온 #{구역}에서는 이번 방문에 추가 흔적이 확인되지 않았습니다.
+지금 상태를 유지하려면 다음 방문 전까지 #{당부 행동}을 계속해 주세요. #{문제 원리}이기 때문에 멈추면 다시 늘어날 수 있습니다.
+사장님께서 함께 챙겨 주신 덕분에 나온 결과입니다. 사장님 매장 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">041</span><span class="cat">6. 위생 점검·특이사항</span><h3>관리 결과 개선 안내</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수가 첫 방문 #{N}마리에서 오늘은 #{N}마리로 줄었습니다.
+특히 집중 관리해 온 #{구역}에서는 이번 방문에 추가 흔적이 확인되지 않았습니다.
+지금 상태를 유지하려면 다음 방문 전까지 #{당부 행동}을 계속해 주세요. #{문제 원리}이기 때문에 멈추면 다시 늘어날 수 있습니다.
+사장님께서 함께 챙겨 주신 덕분에 나온 결과입니다. 사장님 매장 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리를 위해 매장 구석구석 서비스를 진행했습니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수가 첫 방문 #{N}마리에서 오늘은 #{N}마리로 줄었습니다.
+특히 집중 관리해 온 #{구역}에서는 이번 방문에 추가 흔적이 확인되지 않았습니다.
+지금 상태를 유지하려면 다음 방문 전까지 #{당부 행동}을 계속해 주세요. #{문제 원리}이기 때문에 멈추면 다시 늘어날 수 있습니다.
+사장님께서 함께 챙겨 주신 덕분에 나온 결과입니다. 사장님 매장 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>354자 · 580바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m90" data-g="G2" data-cat="13" data-type="crm" data-q="사업장 정기점검 결과 b2b 사업장 특화 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 사업장 정기 점검을 위해 #{사업장 구역} 전체 서비스를 진행했습니다.
+#{n}개 구역을 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 모니터링 장비 #{n}대는 모두 정상 작동 중입니다.
+특히 #{구역}에서 #{발견 내용}이 확인돼 #{조치}했습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 현장 직원분들께도 공유해 주시면 효과가 유지됩니다.
+점검 상세 리포트는 멤버스 앱에 올려 두었습니다. 사업장 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">090</span><span class="cat">13. B2B 사업장 특화</span><h3>사업장 정기점검 결과</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 사업장 정기 점검을 위해 #{사업장 구역} 전체 서비스를 진행했습니다.
+#{N}개 구역을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 모니터링 장비 #{N}대는 모두 정상 작동 중입니다.
+특히 #{구역}에서 #{발견 내용}이 확인돼 #{조치}했습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 현장 직원분들께도 공유해 주시면 효과가 유지됩니다.
+점검 상세 리포트는 멤버스 앱에 올려 두었습니다. 사업장 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 사업장 정기 점검을 위해 #{사업장 구역} 전체 서비스를 진행했습니다.
+#{N}개 구역을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 모니터링 장비 #{N}대는 모두 정상 작동 중입니다.
+특히 #{구역}에서 #{발견 내용}이 확인돼 #{조치}했습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 현장 직원분들께도 공유해 주시면 효과가 유지됩니다.
+점검 상세 리포트는 멤버스 앱에 올려 두었습니다. 사업장 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>363자 · 588바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m92" data-g="G2" data-cat="13" data-type="crm" data-q="명절·성수기 사전점검 b2b 사업장 특화 [세스코] #{고객명} 사장님, 안녕하세요.
+#{명절/성수기}를 앞두고 오늘 사업장 사전 점검 서비스를 진행했습니다.
+#{n}개 구역을 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 성수기 전 식자재 보관 구역은 추가로 살폈습니다.
+특히 #{구역}은 물량이 늘어나는 시기에 박스 적재가 많아져 #{조치}를 미리 해 두었습니다.
+성수기 동안 입고된 박스는 당일 정리해 주세요. 박스 틈과 바닥 습기가 겹치면 짧은 기간에도 서식지가 되기 때문에 바로 치우시면 바쁜 시기에도 상태가 유지됩니다.
+바쁜 시기 사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">092</span><span class="cat">13. B2B 사업장 특화</span><h3>명절·성수기 사전점검</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+#{명절/성수기}를 앞두고 오늘 사업장 사전 점검 서비스를 진행했습니다.
+#{N}개 구역을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 성수기 전 식자재 보관 구역은 추가로 살폈습니다.
+특히 #{구역}은 물량이 늘어나는 시기에 박스 적재가 많아져 #{조치}를 미리 해 두었습니다.
+성수기 동안 입고된 박스는 당일 정리해 주세요. 박스 틈과 바닥 습기가 겹치면 짧은 기간에도 서식지가 되기 때문에 바로 치우시면 바쁜 시기에도 상태가 유지됩니다.
+바쁜 시기 사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+#{명절/성수기}를 앞두고 오늘 사업장 사전 점검 서비스를 진행했습니다.
+#{N}개 구역을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 성수기 전 식자재 보관 구역은 추가로 살폈습니다.
+특히 #{구역}은 물량이 늘어나는 시기에 박스 적재가 많아져 #{조치}를 미리 해 두었습니다.
+성수기 동안 입고된 박스는 당일 정리해 주세요. 박스 틈과 바닥 습기가 겹치면 짧은 기간에도 서식지가 되기 때문에 바로 치우시면 바쁜 시기에도 상태가 유지됩니다.
+바쁜 시기 사장님 매장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>416자 · 687바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m94" data-g="G2" data-cat="13" data-type="crm" data-q="위생관리 이력 안내 b2b 사업장 특화 [세스코] #{고객명} 사장님, 안녕하세요.
+사장님 매장의 지난 #{n}개월 위생관리 이력을 정리해 드립니다.
+총 #{n}회 점검했고, #{해충 종} 포획 수는 #{m월} #{n}마리에서 #{m월} #{n}마리로 줄었습니다. 추가 요청 처리 #{n}건, 장비 교체 #{n}건을 진행했습니다.
+특히 #{구역}은 #{m월}부터 집중 관리 구역으로 지정해 매 방문마다 우선 점검해 왔습니다.
+이력 전체는 멤버스 앱의 관리 이력에서 보실 수 있고, 위생 점검 기록이 필요하실 때 그대로 출력해 쓰실 수 있습니다.
+사업장 위생은 세스코가 함께 지키겠습니다. 궁금한 점은 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">094</span><span class="cat">13. B2B 사업장 특화</span><h3>위생관리 이력 안내</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+사장님 매장의 지난 #{N}개월 위생관리 이력을 정리해 드립니다.
+총 #{N}회 점검했고, #{해충 종} 포획 수는 #{M월} #{N}마리에서 #{M월} #{N}마리로 줄었습니다. 추가 요청 처리 #{N}건, 장비 교체 #{N}건을 진행했습니다.
+특히 #{구역}은 #{M월}부터 집중 관리 구역으로 지정해 매 방문마다 우선 점검해 왔습니다.
+이력 전체는 멤버스 앱의 관리 이력에서 보실 수 있고, 위생 점검 기록이 필요하실 때 그대로 출력해 쓰실 수 있습니다.
+사업장 위생은 세스코가 함께 지키겠습니다. 궁금한 점은 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+사장님 매장의 지난 #{N}개월 위생관리 이력을 정리해 드립니다.
+총 #{N}회 점검했고, #{해충 종} 포획 수는 #{M월} #{N}마리에서 #{M월} #{N}마리로 줄었습니다. 추가 요청 처리 #{N}건, 장비 교체 #{N}건을 진행했습니다.
+특히 #{구역}은 #{M월}부터 집중 관리 구역으로 지정해 매 방문마다 우선 점검해 왔습니다.
+이력 전체는 멤버스 앱의 관리 이력에서 보실 수 있고, 위생 점검 기록이 필요하실 때 그대로 출력해 쓰실 수 있습니다.
+사업장 위생은 세스코가 함께 지키겠습니다. 궁금한 점은 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>343자 · 553바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 이력 보고형. 방문 보고 규칙 C2는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C5</b> 당부에 이유가 없음 — E블록은 {행동 요청}+{원리}+{효과 지속 약속}</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m95" data-g="G2" data-cat="13" data-type="crm" data-q="사업장 관리 리포트 b2b 사업장 특화 [세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리 서비스를 진행하고 사업장 관리 리포트를 보내드립니다.
+#{n}개 구역을 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 리포트에는 구역별 포획 수와 처리 내역, 사진이 담겨 있습니다.
+특히 #{구역}에서 #{발견 내용}이 확인돼 리포트에 별도 표시해 두었습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 현장 직원분들과 공유해 주시면 효과가 유지됩니다.
+👉 사업장 관리 리포트 확인하기 #{url}
+사업장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">095</span><span class="cat">13. B2B 사업장 특화</span><h3>사업장 관리 리포트</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리 서비스를 진행하고 사업장 관리 리포트를 보내드립니다.
+#{N}개 구역을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 리포트에는 구역별 포획 수와 처리 내역, 사진이 담겨 있습니다.
+특히 #{구역}에서 #{발견 내용}이 확인돼 리포트에 별도 표시해 두었습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 현장 직원분들과 공유해 주시면 효과가 유지됩니다.
+👉 사업장 관리 리포트 확인하기 #{URL}
+사업장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+오늘 정기 관리 서비스를 진행하고 사업장 관리 리포트를 보내드립니다.
+#{N}개 구역을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 리포트에는 구역별 포획 수와 처리 내역, 사진이 담겨 있습니다.
+특히 #{구역}에서 #{발견 내용}이 확인돼 리포트에 별도 표시해 두었습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 현장 직원분들과 공유해 주시면 효과가 유지됩니다.
+👉 사업장 관리 리포트 확인하기 #{URL}
+사업장 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>407자 · 663바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m97" data-g="G2" data-cat="14" data-type="crm" data-q="정기관리 3회 완료 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+오늘 세 번째 정기 서비스를 진행했습니다. 그동안 어떤 부분을 집중 관리했는지 정리해 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수는 1회차 #{n}마리, 2회차 #{n}마리, 오늘은 #{n}마리입니다.
+특히 1회차에 확인된 #{초기 문제}는 #{조치}를 거쳐 오늘은 추가 흔적이 없었습니다.
+다음 방문 전까지 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 흐름을 유지하면 다음 회차에는 더 줄어듭니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">097</span><span class="cat">14. 발송 계기별</span><h3>정기관리 3회 완료</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>그동안 어떤 부분을 집중 관리했는지 알려드립니다.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 세 번째 정기 서비스를 진행했습니다. 그동안 어떤 부분을 집중 관리했는지 정리해 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수는 1회차 #{N}마리, 2회차 #{N}마리, 오늘은 #{N}마리입니다.
+특히 1회차에 확인된 #{초기 문제}는 #{조치}를 거쳐 오늘은 추가 흔적이 없었습니다.
+다음 방문 전까지 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 흐름을 유지하면 다음 회차에는 더 줄어듭니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 세 번째 정기 서비스를 진행했습니다. 그동안 어떤 부분을 집중 관리했는지 정리해 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수는 1회차 #{N}마리, 2회차 #{N}마리, 오늘은 #{N}마리입니다.
+특히 1회차에 확인된 #{초기 문제}는 #{조치}를 거쳐 오늘은 추가 흔적이 없었습니다.
+다음 방문 전까지 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 흐름을 유지하면 다음 회차에는 더 줄어듭니다.
+고객님 공간 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>383자 · 621바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m100" data-g="G2" data-cat="14" data-type="crm" data-q="관리 취약 요소 발견 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+오늘 정기 관리를 위해 댁 구석구석 서비스를 진행했습니다. 오늘 확인된 부분과 가정에서 실천하실 관리법을 알려 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}의 #{취약 요소}가 해충이 머물기 쉬운 환경으로 확인돼 오늘 #{조치}했습니다.
+다음 방문 전까지 #{실천 행동}해 주세요. #{문제 원리}이기 때문에 가정에서 함께 챙기시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+고객님 가정 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">100</span><span class="cat">14. 발송 계기별</span><h3>관리 취약 요소 발견</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>오늘 확인된 부분과 가정에서 실천할 관리법을 알려드립니다.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 정기 관리를 위해 댁 구석구석 서비스를 진행했습니다. 오늘 확인된 부분과 가정에서 실천하실 관리법을 알려 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}의 #{취약 요소}가 해충이 머물기 쉬운 환경으로 확인돼 오늘 #{조치}했습니다.
+다음 방문 전까지 #{실천 행동}해 주세요. #{문제 원리}이기 때문에 가정에서 함께 챙기시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+고객님 가정 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 정기 관리를 위해 댁 구석구석 서비스를 진행했습니다. 오늘 확인된 부분과 가정에서 실천하실 관리법을 알려 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다.
+특히 #{위치}의 #{취약 요소}가 해충이 머물기 쉬운 환경으로 확인돼 오늘 #{조치}했습니다.
+다음 방문 전까지 #{실천 행동}해 주세요. #{문제 원리}이기 때문에 가정에서 함께 챙기시면 오늘 처리 효과가 다음 방문까지 유지됩니다.
+고객님 가정 위생은 세스코가 함께 지키겠습니다. 다음 방문 전이라도 걱정되시는 게 생기면 언제든 연락 주세요. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>399자 · 654바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m101" data-g="G2" data-cat="14" data-type="crm" data-q="현장 관리 효과 확인 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+오늘 정기 관리를 진행했습니다. 이전 점검과 비교해 달라진 부분을 알려 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수가 지난 방문 #{n}마리에서 오늘은 #{n}마리로 줄었습니다.
+특히 지난 방문 때 흔적이 있던 #{위치}는 오늘 추가 흔적이 확인되지 않았습니다.
+다음 방문 전까지 #{당부 행동}을 계속해 주세요. #{문제 원리}이기 때문에 멈추면 다시 늘어날 수 있습니다.
+고객님께서 함께 챙겨 주신 덕분입니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">101</span><span class="cat">14. 발송 계기별</span><h3>현장 관리 효과 확인</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>이전 점검과 비교해 달라진 부분을 확인해 보세요.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 정기 관리를 진행했습니다. 이전 점검과 비교해 달라진 부분을 알려 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수가 지난 방문 #{N}마리에서 오늘은 #{N}마리로 줄었습니다.
+특히 지난 방문 때 흔적이 있던 #{위치}는 오늘 추가 흔적이 확인되지 않았습니다.
+다음 방문 전까지 #{당부 행동}을 계속해 주세요. #{문제 원리}이기 때문에 멈추면 다시 늘어날 수 있습니다.
+고객님께서 함께 챙겨 주신 덕분입니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 정기 관리를 진행했습니다. 이전 점검과 비교해 달라진 부분을 알려 드립니다.
+#{점검 구역}을 점검했고, #{해충 종} 포획 수가 지난 방문 #{N}마리에서 오늘은 #{N}마리로 줄었습니다.
+특히 지난 방문 때 흔적이 있던 #{위치}는 오늘 추가 흔적이 확인되지 않았습니다.
+다음 방문 전까지 #{당부 행동}을 계속해 주세요. #{문제 원리}이기 때문에 멈추면 다시 늘어날 수 있습니다.
+고객님께서 함께 챙겨 주신 덕분입니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>347자 · 566바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article></div>
+</section>
+<section class="group" id="G3">
+  <div class="group-h">
+    <p class="eyebrow">분류 3 · 14건</p>
+    <h2>관계 강화형</h2>
+    <p class="lede">첫 서비스, 이용 1주년, 장기 이용 감사, 고객 의견 반영 등 고객과의 관계를 쌓는 메시지입니다.</p>
+    <p class="rule">적용 규칙: 개인화 CRM 규칙(공식 명의 또는 담당 컨설턴트)</p>
+  </div>
+  <div class="cards"><article class="card" id="m70" data-g="G3" data-cat="10" data-type="crm" data-q="개선 결과 확인 고객 불편·voc [세스코] #{고객명} 고객님, 안녕하세요.
+지난 #{m월 d일} 말씀해 주신 #{불편 내용}에 대해 조치한 뒤 상태를 확인하고자 연락드립니다.
+조치 후 #{n}일이 지났고, 지난 방문 때 #{확인 결과}를 확인했습니다.
+특히 말씀해 주신 #{구체 지점}은 다시 점검해 #{조치}해 두었습니다.
+혹시 지금도 불편한 점이 남아 있다면 이 문자에 답장으로 알려 주세요. 작은 것이라도 남아 있으면 원인이 다른 데 있을 수 있기 때문에 다시 살펴보겠습니다.
+말씀해 주신 덕분에 더 꼼꼼히 챙길 수 있었습니다. 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">070</span><span class="cat">10. 고객 불편·VOC</span><h3>개선 결과 확인</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+지난 #{M월 D일} 말씀해 주신 #{불편 내용}에 대해 조치한 뒤 상태를 확인하고자 연락드립니다.
+조치 후 #{N}일이 지났고, 지난 방문 때 #{확인 결과}를 확인했습니다.
+특히 말씀해 주신 #{구체 지점}은 다시 점검해 #{조치}해 두었습니다.
+혹시 지금도 불편한 점이 남아 있다면 이 문자에 답장으로 알려 주세요. 작은 것이라도 남아 있으면 원인이 다른 데 있을 수 있기 때문에 다시 살펴보겠습니다.
+말씀해 주신 덕분에 더 꼼꼼히 챙길 수 있었습니다. 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+지난 #{M월 D일} 말씀해 주신 #{불편 내용}에 대해 조치한 뒤 상태를 확인하고자 연락드립니다.
+조치 후 #{N}일이 지났고, 지난 방문 때 #{확인 결과}를 확인했습니다.
+특히 말씀해 주신 #{구체 지점}은 다시 점검해 #{조치}해 두었습니다.
+혹시 지금도 불편한 점이 남아 있다면 이 문자에 답장으로 알려 주세요. 작은 것이라도 남아 있으면 원인이 다른 데 있을 수 있기 때문에 다시 살펴보겠습니다.
+말씀해 주신 덕분에 더 꼼꼼히 챙길 수 있었습니다. 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>315자 · 515바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: VOC 후속형. 방문 보고 규칙 C2·C3는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C3</b> 점검·처리 수치(포획 마리 수·점검 대수 등) 없음 — 리포트 자동 추출 블록 확인</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m81" data-g="G3" data-cat="12" data-type="crm" data-q="첫 서비스 100일 고객 관계·브랜드 crm [세스코] #{고객명} 고객님, 안녕하세요.
+세스코와 함께한 지 오늘로 100일이 됐습니다.
+그동안 #{n}회 점검했고, 첫 방문 때 살핀 #{초기 문제}는 이제 추가 흔적이 나오지 않고 있습니다.
+특히 #{집중 관리 구역}은 매 방문마다 우선 점검해 왔습니다.
+앞으로도 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 상태가 유지됩니다.
+100일 동안 세스코를 믿어 주셔서 감사합니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">081</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>첫 서비스 100일</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 2</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+세스코와 함께한 지 오늘로 100일이 됐습니다.
+그동안 #{N}회 점검했고, 첫 방문 때 살핀 #{초기 문제}는 이제 추가 흔적이 나오지 않고 있습니다.
+특히 #{집중 관리 구역}은 매 방문마다 우선 점검해 왔습니다.
+앞으로도 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 상태가 유지됩니다.
+100일 동안 세스코를 믿어 주셔서 감사합니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+세스코와 함께한 지 오늘로 100일이 됐습니다.
+그동안 #{N}회 점검했고, 첫 방문 때 살핀 #{초기 문제}는 이제 추가 흔적이 나오지 않고 있습니다.
+특히 #{집중 관리 구역}은 매 방문마다 우선 점검해 왔습니다.
+앞으로도 #{당부 행동}을 이어 주세요. #{문제 원리}이기 때문에 지금 상태가 유지됩니다.
+100일 동안 세스코를 믿어 주셔서 감사합니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>280자 · 455바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 2건 · 사유: 관계형. 방문 보고 규칙 C2는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m82" data-g="G3" data-cat="12" data-type="crm" data-q="이용 1주년 고객 관계·브랜드 crm [세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 1년이 됐습니다.
+지난 1년 동안 #{n}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{n}마리에서 최근 #{n}마리로 줄었습니다.
+계절이 바뀔 때마다 #{집중 관리 구역}의 서식 환경을 다시 살폈습니다.
+다가오는 #{계절}에는 #{계절 관리 포인트}를 챙겨 주세요. #{문제 원리}이기 때문에 미리 준비하시면 지난해보다 수월합니다.
+1년 동안 세스코를 믿어 주셔서 감사합니다. 앞으로도 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">082</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>이용 1주년</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 1년이 됐습니다.
+지난 1년 동안 #{N}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{N}마리에서 최근 #{N}마리로 줄었습니다.
+계절이 바뀔 때마다 #{집중 관리 구역}의 서식 환경을 다시 살폈습니다.
+다가오는 #{계절}에는 #{계절 관리 포인트}를 챙겨 주세요. #{문제 원리}이기 때문에 미리 준비하시면 지난해보다 수월합니다.
+1년 동안 세스코를 믿어 주셔서 감사합니다. 앞으로도 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 1년이 됐습니다.
+지난 1년 동안 #{N}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{N}마리에서 최근 #{N}마리로 줄었습니다.
+계절이 바뀔 때마다 #{집중 관리 구역}의 서식 환경을 다시 살폈습니다.
+다가오는 #{계절}에는 #{계절 관리 포인트}를 챙겨 주세요. #{문제 원리}이기 때문에 미리 준비하시면 지난해보다 수월합니다.
+1년 동안 세스코를 믿어 주셔서 감사합니다. 앞으로도 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>314자 · 513바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 관계형. 방문 보고 규칙 C2는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C4</b> 현장 특이사항(수기 D블록) 없음 — 저장 템플릿 일괄 발송 의심</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m83" data-g="G3" data-cat="12" data-type="crm" data-q="장기 이용 감사 고객 관계·브랜드 crm #{고객명} 고객님께
+세스코와 함께해 오신 시간이 #{n}년이 됐습니다.
+가족이 매일 숨 쉬고 생활하는 공간을 오랜 시간 저희에게 맡겨 주신 것은 단순한 서비스 계약이 아니라 가족의 건강한 일상 그 자체입니다.
+그 신뢰만큼 세스코도 더 무겁게 책임지겠습니다.
+앞으로도 고객님과 가족분들의 건강하고 쾌적한 일상을 세스코가 변함없이 함께 지키겠습니다.
+#{yyyy년 m월}
+세스코 대표이사 #{대표이사명} 드림
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">083</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>장기 이용 감사</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">아너스·크라운</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">#{고객명} 고객님께
+세스코와 함께해 오신 시간이 #{N}년이 됐습니다.
+가족이 매일 숨 쉬고 생활하는 공간을 오랜 시간 저희에게 맡겨 주신 것은 단순한 서비스 계약이 아니라 가족의 건강한 일상 그 자체입니다.
+그 신뢰만큼 세스코도 더 무겁게 책임지겠습니다.
+앞으로도 고객님과 가족분들의 건강하고 쾌적한 일상을 세스코가 변함없이 함께 지키겠습니다.
+#{YYYY년 M월}
+세스코 대표이사 #{대표이사명} 드림
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="#{고객명} 고객님께
+세스코와 함께해 오신 시간이 #{N}년이 됐습니다.
+가족이 매일 숨 쉬고 생활하는 공간을 오랜 시간 저희에게 맡겨 주신 것은 단순한 서비스 계약이 아니라 가족의 건강한 일상 그 자체입니다.
+그 신뢰만큼 세스코도 더 무겁게 책임지겠습니다.
+앞으로도 고객님과 가족분들의 건강하고 쾌적한 일상을 세스코가 변함없이 함께 지키겠습니다.
+#{YYYY년 M월}
+세스코 대표이사 #{대표이사명} 드림
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>255자 · 426바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 아너스·크라운 레터형. 혜택 어휘 없이 안부만</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C3</b> 점검·처리 수치(포획 마리 수·점검 대수 등) 없음 — 리포트 자동 추출 블록 확인</li><li><b>WARN C4</b> 현장 특이사항(수기 D블록) 없음 — 저장 템플릿 일괄 발송 의심</li></ul></details></footer>
+</article>
+<article class="card" id="m84" data-g="G3" data-cat="12" data-type="crm" data-q="계절별 위생 관리 안내 고객 관계·브랜드 crm [세스코] #{고객명} 고객님, 안녕하세요.
+#{계절}이 시작돼 이 시기에 고객님 공간에서 챙기실 부분을 알려 드립니다.
+#{계절}에는 #{해충 종}이 #{실내로 들어오는/번식하는} 시기라 지난해 이맘때 #{n}건의 추가 요청이 있었습니다.
+특히 고객님 공간은 #{공간 특성}이라 #{구역}을 먼저 살펴보시면 좋습니다.
+다음 방문 전까지 #{계절 당부 행동}해 주세요. #{문제 원리}이기 때문에 미리 챙기시면 #{계절} 내내 수월합니다.
+다음 방문 때 #{계절 중점 점검}을 함께 진행하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">084</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>계절별 위생 관리 안내</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+#{계절}이 시작돼 이 시기에 고객님 공간에서 챙기실 부분을 알려 드립니다.
+#{계절}에는 #{해충 종}이 #{실내로 들어오는/번식하는} 시기라 지난해 이맘때 #{N}건의 추가 요청이 있었습니다.
+특히 고객님 공간은 #{공간 특성}이라 #{구역}을 먼저 살펴보시면 좋습니다.
+다음 방문 전까지 #{계절 당부 행동}해 주세요. #{문제 원리}이기 때문에 미리 챙기시면 #{계절} 내내 수월합니다.
+다음 방문 때 #{계절 중점 점검}을 함께 진행하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+#{계절}이 시작돼 이 시기에 고객님 공간에서 챙기실 부분을 알려 드립니다.
+#{계절}에는 #{해충 종}이 #{실내로 들어오는/번식하는} 시기라 지난해 이맘때 #{N}건의 추가 요청이 있었습니다.
+특히 고객님 공간은 #{공간 특성}이라 #{구역}을 먼저 살펴보시면 좋습니다.
+다음 방문 전까지 #{계절 당부 행동}해 주세요. #{문제 원리}이기 때문에 미리 챙기시면 #{계절} 내내 수월합니다.
+다음 방문 때 #{계절 중점 점검}을 함께 진행하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>330자 · 536바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 계절 정보형. 방문 보고 규칙 C2·C3는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C3</b> 점검·처리 수치(포획 마리 수·점검 대수 등) 없음 — 리포트 자동 추출 블록 확인</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m85" data-g="G3" data-cat="12" data-type="crm" data-q="생활환경별 관리 팁 고객 관계·브랜드 crm [세스코] #{고객명} 고객님, 안녕하세요.
+#{반려동물과 함께/아이가 있는/1인 가구} 가정에서 자주 놓치는 위생 관리 포인트를 알려 드립니다.
+#{생활환경}에서는 #{취약 지점}에 #{오염 요소}가 쌓이기 쉽습니다.
+특히 고객님 댁은 지난 방문 때 #{관찰 내용}을 확인해 이 부분을 더 챙기시면 좋습니다.
+일주일에 한 번 #{관리 행동}해 주세요. #{문제 원리}이기 때문에 짧게라도 꾸준히 하시면 다음 방문까지 상태가 유지됩니다.
+고객님 가정 위생은 세스코가 함께 지키겠습니다. 궁금한 점은 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">085</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>생활환경별 관리 팁</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+#{반려동물과 함께/아이가 있는/1인 가구} 가정에서 자주 놓치는 위생 관리 포인트를 알려 드립니다.
+#{생활환경}에서는 #{취약 지점}에 #{오염 요소}가 쌓이기 쉽습니다.
+특히 고객님 댁은 지난 방문 때 #{관찰 내용}을 확인해 이 부분을 더 챙기시면 좋습니다.
+일주일에 한 번 #{관리 행동}해 주세요. #{문제 원리}이기 때문에 짧게라도 꾸준히 하시면 다음 방문까지 상태가 유지됩니다.
+고객님 가정 위생은 세스코가 함께 지키겠습니다. 궁금한 점은 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+#{반려동물과 함께/아이가 있는/1인 가구} 가정에서 자주 놓치는 위생 관리 포인트를 알려 드립니다.
+#{생활환경}에서는 #{취약 지점}에 #{오염 요소}가 쌓이기 쉽습니다.
+특히 고객님 댁은 지난 방문 때 #{관찰 내용}을 확인해 이 부분을 더 챙기시면 좋습니다.
+일주일에 한 번 #{관리 행동}해 주세요. #{문제 원리}이기 때문에 짧게라도 꾸준히 하시면 다음 방문까지 상태가 유지됩니다.
+고객님 가정 위생은 세스코가 함께 지키겠습니다. 궁금한 점은 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>320자 · 525바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 생활 정보형. 방문 보고 규칙 C2·C3는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C3</b> 점검·처리 수치(포획 마리 수·점검 대수 등) 없음 — 리포트 자동 추출 블록 확인</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m89" data-g="G3" data-cat="13" data-type="crm" data-q="신규 개업 고객 환영 b2b 사업장 특화 [세스코] #{고객명} 사장님, 안녕하세요.
+개업을 축하드립니다. 오늘부터 사장님 매장의 위생은 세스코가 함께 챙기겠습니다.
+개업 초기에는 공사 자재와 포장 박스를 통해 해충이 따라 들어오는 경우가 많아 첫 방문 때 #{구역}을 먼저 살피겠습니다.
+특히 #{업종}은 #{업종 취약 지점}이 주요 관리 지점이라 이 부분을 중점 점검 구역으로 잡았습니다.
+첫 방문 전까지 포장 박스는 매장 안에 쌓아 두지 말고 바로 배출해 주세요. 박스 틈은 바퀴가 옮겨 다니는 통로이기 때문에 치워 두시면 초기 유입을 막을 수 있습니다.
+바쁘신 개업 시기에 위생은 저희가 챙기겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">089</span><span class="cat">13. B2B 사업장 특화</span><h3>신규 개업 고객 환영</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+개업을 축하드립니다. 오늘부터 사장님 매장의 위생은 세스코가 함께 챙기겠습니다.
+개업 초기에는 공사 자재와 포장 박스를 통해 해충이 따라 들어오는 경우가 많아 첫 방문 때 #{구역}을 먼저 살피겠습니다.
+특히 #{업종}은 #{업종 취약 지점}이 주요 관리 지점이라 이 부분을 중점 점검 구역으로 잡았습니다.
+첫 방문 전까지 포장 박스는 매장 안에 쌓아 두지 말고 바로 배출해 주세요. 박스 틈은 바퀴가 옮겨 다니는 통로이기 때문에 치워 두시면 초기 유입을 막을 수 있습니다.
+바쁘신 개업 시기에 위생은 저희가 챙기겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+개업을 축하드립니다. 오늘부터 사장님 매장의 위생은 세스코가 함께 챙기겠습니다.
+개업 초기에는 공사 자재와 포장 박스를 통해 해충이 따라 들어오는 경우가 많아 첫 방문 때 #{구역}을 먼저 살피겠습니다.
+특히 #{업종}은 #{업종 취약 지점}이 주요 관리 지점이라 이 부분을 중점 점검 구역으로 잡았습니다.
+첫 방문 전까지 포장 박스는 매장 안에 쌓아 두지 말고 바로 배출해 주세요. 박스 틈은 바퀴가 옮겨 다니는 통로이기 때문에 치워 두시면 초기 유입을 막을 수 있습니다.
+바쁘신 개업 시기에 위생은 저희가 챙기겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>371자 · 621바이트</span><span>하단: 👤 담당자 서명</span></footer>
+</article>
+<article class="card" id="m91" data-g="G3" data-cat="13" data-type="crm" data-q="업종별 위생 주의사항 b2b 사업장 특화 [세스코] #{고객명} 사장님, 안녕하세요.
+#{업종} 사업장에서 이 시기에 특히 신경 쓰실 위생 포인트를 알려 드립니다.
+#{업종}은 #{업종 특성}이라 #{취약 지점}에서 #{해충 종} 문제가 생기기 쉽습니다. 지난해 같은 업종 사업장에서 #{n}%가 이 지점에서 첫 흔적이 발견됐습니다.
+특히 사장님 매장은 지난 방문 때 #{관찰 내용}이 있어 이 부분을 먼저 챙기시면 좋습니다.
+영업 마감 후 #{관리 행동}해 주세요. #{문제 원리}이기 때문에 매일 짧게 하시는 편이 효과가 큽니다.
+다음 방문 때 #{중점 점검 항목}을 함께 확인하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">091</span><span class="cat">13. B2B 사업장 특화</span><h3>업종별 위생 주의사항</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 2</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 사장님, 안녕하세요.
+#{업종} 사업장에서 이 시기에 특히 신경 쓰실 위생 포인트를 알려 드립니다.
+#{업종}은 #{업종 특성}이라 #{취약 지점}에서 #{해충 종} 문제가 생기기 쉽습니다. 지난해 같은 업종 사업장에서 #{N}%가 이 지점에서 첫 흔적이 발견됐습니다.
+특히 사장님 매장은 지난 방문 때 #{관찰 내용}이 있어 이 부분을 먼저 챙기시면 좋습니다.
+영업 마감 후 #{관리 행동}해 주세요. #{문제 원리}이기 때문에 매일 짧게 하시는 편이 효과가 큽니다.
+다음 방문 때 #{중점 점검 항목}을 함께 확인하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 사장님, 안녕하세요.
+#{업종} 사업장에서 이 시기에 특히 신경 쓰실 위생 포인트를 알려 드립니다.
+#{업종}은 #{업종 특성}이라 #{취약 지점}에서 #{해충 종} 문제가 생기기 쉽습니다. 지난해 같은 업종 사업장에서 #{N}%가 이 지점에서 첫 흔적이 발견됐습니다.
+특히 사장님 매장은 지난 방문 때 #{관찰 내용}이 있어 이 부분을 먼저 챙기시면 좋습니다.
+영업 마감 후 #{관리 행동}해 주세요. #{문제 원리}이기 때문에 매일 짧게 하시는 편이 효과가 큽니다.
+다음 방문 때 #{중점 점검 항목}을 함께 확인하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>360자 · 584바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 2건 · 사유: 업종 정보형. 방문 보고 규칙 C2·C3는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m96" data-g="G3" data-cat="14" data-type="crm" data-q="첫 서비스 완료 후 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+오늘 첫 정기 서비스를 진행했습니다. 세스코와 함께하는 위생 관리가 시작됐습니다.
+첫 방문이라 #{공간} 전체를 점검했고, #{해충 종} #{n}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 모니터링 장비 #{n}대를 설치했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인돼 이곳을 집중 관리 구역으로 잡았습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 첫 달에 함께 챙기시면 이후 관리가 훨씬 수월합니다.
+앞으로 방문 때마다 오늘처럼 점검 내용을 문자로 보내드리겠습니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">096</span><span class="cat">14. 발송 계기별</span><h3>첫 서비스 완료 후</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill pass">PASS</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>세스코와 함께하는 위생 관리가 시작되었습니다.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 첫 정기 서비스를 진행했습니다. 세스코와 함께하는 위생 관리가 시작됐습니다.
+첫 방문이라 #{공간} 전체를 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 모니터링 장비 #{N}대를 설치했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인돼 이곳을 집중 관리 구역으로 잡았습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 첫 달에 함께 챙기시면 이후 관리가 훨씬 수월합니다.
+앞으로 방문 때마다 오늘처럼 점검 내용을 문자로 보내드리겠습니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+오늘 첫 정기 서비스를 진행했습니다. 세스코와 함께하는 위생 관리가 시작됐습니다.
+첫 방문이라 #{공간} 전체를 점검했고, #{해충 종} #{N}마리가 포획돼 #{처리 내용} 처리를 완료했습니다. 모니터링 장비 #{N}대를 설치했습니다.
+특히 #{위치}에서 #{발견 내용}이 확인돼 이곳을 집중 관리 구역으로 잡았습니다.
+다음 방문 전까지 #{당부 행동}해 주세요. #{문제 원리}이기 때문에 첫 달에 함께 챙기시면 이후 관리가 훨씬 수월합니다.
+앞으로 방문 때마다 오늘처럼 점검 내용을 문자로 보내드리겠습니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다. 감사합니다.
+📅 다음 방문 예정일: #{다음 방문일}
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>392자 · 643바이트</span><span>하단: 📅 예정일 + 👤 담당자</span></footer>
+</article>
+<article class="card" id="m98" data-g="G3" data-cat="14" data-type="crm" data-q="이용 1주년 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 1년이 됐습니다. 지난 1년을 짧게 돌아봅니다.
+총 #{n}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{n}마리에서 최근 #{n}마리로 줄었습니다.
+특히 #{집중 관리 구역}은 계절마다 서식 환경을 다시 살펴 지금은 안정된 상태입니다.
+2년 차에는 #{다음 관리 계획}을 진행하려 합니다. #{이유}이기 때문에 미리 말씀드립니다.
+1년 동안 세스코를 믿어 주셔서 감사합니다. 고객님 공간 위생은 앞으로도 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">098</span><span class="cat">14. 발송 계기별</span><h3>이용 1주년</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 2</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>지난 1년간 고객님의 공간을 관리해 왔습니다.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 1년이 됐습니다. 지난 1년을 짧게 돌아봅니다.
+총 #{N}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{N}마리에서 최근 #{N}마리로 줄었습니다.
+특히 #{집중 관리 구역}은 계절마다 서식 환경을 다시 살펴 지금은 안정된 상태입니다.
+2년 차에는 #{다음 관리 계획}을 진행하려 합니다. #{이유}이기 때문에 미리 말씀드립니다.
+1년 동안 세스코를 믿어 주셔서 감사합니다. 고객님 공간 위생은 앞으로도 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+세스코가 고객님 공간을 관리한 지 1년이 됐습니다. 지난 1년을 짧게 돌아봅니다.
+총 #{N}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{N}마리에서 최근 #{N}마리로 줄었습니다.
+특히 #{집중 관리 구역}은 계절마다 서식 환경을 다시 살펴 지금은 안정된 상태입니다.
+2년 차에는 #{다음 관리 계획}을 진행하려 합니다. #{이유}이기 때문에 미리 말씀드립니다.
+1년 동안 세스코를 믿어 주셔서 감사합니다. 고객님 공간 위생은 앞으로도 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>313자 · 511바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 2건 · 사유: 관계형. 방문 보고 규칙 C2는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m99" data-g="G3" data-cat="14" data-type="crm" data-q="계절 변화 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+겨울이 시작돼 실내 환경에서 살펴보실 부분을 알려 드립니다.
+겨울에는 난방으로 실내가 건조해지고, 바깥 추위를 피해 #{해충 종}이 실내 틈새로 들어오는 시기입니다.
+특히 고객님 공간은 지난 방문 때 #{관찰 내용}이 있어 #{구역}의 틈새를 먼저 살펴보시면 좋습니다.
+창틀과 문틈을 한 번 점검해 주세요. 틈이 열려 있으면 바깥에서 들어오는 통로가 되기 때문에 막아 두시면 겨울 내내 수월합니다.
+다음 방문 때 겨울철 중점 점검을 함께 진행하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">099</span><span class="cat">14. 발송 계기별</span><h3>계절 변화</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>겨울철 실내 환경, 이런 부분을 살펴보세요.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+겨울이 시작돼 실내 환경에서 살펴보실 부분을 알려 드립니다.
+겨울에는 난방으로 실내가 건조해지고, 바깥 추위를 피해 #{해충 종}이 실내 틈새로 들어오는 시기입니다.
+특히 고객님 공간은 지난 방문 때 #{관찰 내용}이 있어 #{구역}의 틈새를 먼저 살펴보시면 좋습니다.
+창틀과 문틈을 한 번 점검해 주세요. 틈이 열려 있으면 바깥에서 들어오는 통로가 되기 때문에 막아 두시면 겨울 내내 수월합니다.
+다음 방문 때 겨울철 중점 점검을 함께 진행하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+겨울이 시작돼 실내 환경에서 살펴보실 부분을 알려 드립니다.
+겨울에는 난방으로 실내가 건조해지고, 바깥 추위를 피해 #{해충 종}이 실내 틈새로 들어오는 시기입니다.
+특히 고객님 공간은 지난 방문 때 #{관찰 내용}이 있어 #{구역}의 틈새를 먼저 살펴보시면 좋습니다.
+창틀과 문틈을 한 번 점검해 주세요. 틈이 열려 있으면 바깥에서 들어오는 통로가 되기 때문에 막아 두시면 겨울 내내 수월합니다.
+다음 방문 때 겨울철 중점 점검을 함께 진행하겠습니다. 걱정되시는 게 생기면 언제든 연락 주세요.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>332자 · 555바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 계절 정보형. 방문 보고 규칙 C2·C3는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C3</b> 점검·처리 수치(포획 마리 수·점검 대수 등) 없음 — 리포트 자동 추출 블록 확인</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m102" data-g="G3" data-cat="14" data-type="crm" data-q="서비스 만족도 평가 이후 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+#{m월 d일} 남겨 주신 서비스 평가 의견을 확인했습니다.
+말씀해 주신 #{의견 요약}은 다음 방문부터 #{반영 내용}으로 바꾸겠습니다.
+특히 #{구체 지적}은 제가 놓친 부분이라 다음 방문 때 먼저 살피겠습니다.
+혹시 더 바라시는 점이 있으면 이 문자에 답장으로 알려 주세요. 작은 의견이라도 서비스를 고객님 공간에 맞추는 데 쓰이기 때문에 언제든 환영입니다.
+의견 남겨 주셔서 감사합니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">102</span><span class="cat">14. 발송 계기별</span><h3>서비스 만족도 평가 이후</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>남겨주신 의견을 확인했습니다.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+#{M월 D일} 남겨 주신 서비스 평가 의견을 확인했습니다.
+말씀해 주신 #{의견 요약}은 다음 방문부터 #{반영 내용}으로 바꾸겠습니다.
+특히 #{구체 지적}은 제가 놓친 부분이라 다음 방문 때 먼저 살피겠습니다.
+혹시 더 바라시는 점이 있으면 이 문자에 답장으로 알려 주세요. 작은 의견이라도 서비스를 고객님 공간에 맞추는 데 쓰이기 때문에 언제든 환영입니다.
+의견 남겨 주셔서 감사합니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+#{M월 D일} 남겨 주신 서비스 평가 의견을 확인했습니다.
+말씀해 주신 #{의견 요약}은 다음 방문부터 #{반영 내용}으로 바꾸겠습니다.
+특히 #{구체 지적}은 제가 놓친 부분이라 다음 방문 때 먼저 살피겠습니다.
+혹시 더 바라시는 점이 있으면 이 문자에 답장으로 알려 주세요. 작은 의견이라도 서비스를 고객님 공간에 맞추는 데 쓰이기 때문에 언제든 환영입니다.
+의견 남겨 주셔서 감사합니다. 고객님 공간 위생은 세스코가 함께 지키겠습니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>301자 · 499바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 의견 반영형. 방문 보고 규칙 C2·C3는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C3</b> 점검·처리 수치(포획 마리 수·점검 대수 등) 없음 — 리포트 자동 추출 블록 확인</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article>
+<article class="card" id="m103" data-g="G3" data-cat="14" data-type="crm" data-q="장기 이용 고객 발송 계기별 #{고객명} 고객님께
+오랜 시간 세스코와 함께해 주셔서 감사합니다.
+#{n}년 동안 고객님 공간을 맡겨 주신 신뢰를 세스코는 무겁게 기억하고 있습니다.
+그동안 계절이 바뀌고 공간이 달라질 때마다 세스코도 함께 살폈습니다.
+앞으로도 고객님과 가족분들의 건강하고 쾌적한 일상을 세스코가 변함없이 함께 지키겠습니다.
+#{yyyy년 m월}
+세스코 대표이사 #{대표이사명} 드림
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">103</span><span class="cat">14. 발송 계기별</span><h3>장기 이용 고객</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">아너스·크라운</span><span class="pill warn">WARN 3</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>오랜 시간 세스코와 함께해 주셔서 감사합니다.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">#{고객명} 고객님께
+오랜 시간 세스코와 함께해 주셔서 감사합니다.
+#{N}년 동안 고객님 공간을 맡겨 주신 신뢰를 세스코는 무겁게 기억하고 있습니다.
+그동안 계절이 바뀌고 공간이 달라질 때마다 세스코도 함께 살폈습니다.
+앞으로도 고객님과 가족분들의 건강하고 쾌적한 일상을 세스코가 변함없이 함께 지키겠습니다.
+#{YYYY년 M월}
+세스코 대표이사 #{대표이사명} 드림
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="#{고객명} 고객님께
+오랜 시간 세스코와 함께해 주셔서 감사합니다.
+#{N}년 동안 고객님 공간을 맡겨 주신 신뢰를 세스코는 무겁게 기억하고 있습니다.
+그동안 계절이 바뀌고 공간이 달라질 때마다 세스코도 함께 살폈습니다.
+앞으로도 고객님과 가족분들의 건강하고 쾌적한 일상을 세스코가 변함없이 함께 지키겠습니다.
+#{YYYY년 M월}
+세스코 대표이사 #{대표이사명} 드림
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>234자 · 391바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 3건 · 사유: 아너스·크라운 레터형. 혜택 어휘 없이 안부만</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C3</b> 점검·처리 수치(포획 마리 수·점검 대수 등) 없음 — 리포트 자동 추출 블록 확인</li><li><b>WARN C4</b> 현장 특이사항(수기 D블록) 없음 — 저장 템플릿 일괄 발송 의심</li></ul></details></footer>
+</article>
+<article class="card" id="m104" data-g="G3" data-cat="14" data-type="crm" data-q="계약 만료 전 발송 계기별 [세스코] #{고객명} 고객님, 안녕하세요.
+계약 만료일 #{m월 d일}을 앞두고 그동안의 관리 내용을 돌아보고 앞으로의 계획을 말씀드립니다.
+지난 #{n}개월 동안 #{n}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{n}마리에서 최근 #{n}마리로 줄었습니다.
+특히 #{집중 관리 구역}은 #{m월}부터 추가 흔적이 확인되지 않아 안정된 상태입니다.
+다음 계약 기간에는 #{다음 관리 계획}을 제안드립니다. #{이유}이기 때문에 지금 상태를 유지하면서 관리 범위를 조정할 수 있습니다.
+갱신과 관련해 궁금한 점은 제게 바로 연락 주세요. 그동안 세스코를 믿어 주셔서 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">
+  <header class="card-h">
+    <div class="card-t"><span class="num">104</span><span class="cat">14. 발송 계기별</span><h3>계약 만료 전</h3></div>
+    <div class="meta"><span class="badge crm">CRM</span><span class="chip">LMS</span><span class="chip">멤버스</span><span class="pill warn">WARN 2</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>그동안의 관리 내용을 돌아보고, 앞으로의 관리 계획을 안내드립니다.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">[세스코] #{고객명} 고객님, 안녕하세요.
+계약 만료일 #{M월 D일}을 앞두고 그동안의 관리 내용을 돌아보고 앞으로의 계획을 말씀드립니다.
+지난 #{N}개월 동안 #{N}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{N}마리에서 최근 #{N}마리로 줄었습니다.
+특히 #{집중 관리 구역}은 #{M월}부터 추가 흔적이 확인되지 않아 안정된 상태입니다.
+다음 계약 기간에는 #{다음 관리 계획}을 제안드립니다. #{이유}이기 때문에 지금 상태를 유지하면서 관리 범위를 조정할 수 있습니다.
+갱신과 관련해 궁금한 점은 제게 바로 연락 주세요. 그동안 세스코를 믿어 주셔서 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}</pre><button class="copy" type="button" data-copy="[세스코] #{고객명} 고객님, 안녕하세요.
+계약 만료일 #{M월 D일}을 앞두고 그동안의 관리 내용을 돌아보고 앞으로의 계획을 말씀드립니다.
+지난 #{N}개월 동안 #{N}회 점검했고, #{해충 종} 포획 수는 첫 방문 #{N}마리에서 최근 #{N}마리로 줄었습니다.
+특히 #{집중 관리 구역}은 #{M월}부터 추가 흔적이 확인되지 않아 안정된 상태입니다.
+다음 계약 기간에는 #{다음 관리 계획}을 제안드립니다. #{이유}이기 때문에 지금 상태를 유지하면서 관리 범위를 조정할 수 있습니다.
+갱신과 관련해 궁금한 점은 제게 바로 연락 주세요. 그동안 세스코를 믿어 주셔서 감사합니다.
+👤 세스코 #{지역단} 담당 컨설턴트 #{담당자명}">복사</button></div>
+  <footer class="card-f"><span>349자 · 570바이트</span><span>하단: 👤 담당자 서명</span><details class="findings"><summary>린트 WARN 2건 · 사유: 갱신 안내형. 방문 보고 규칙 C2는 해당 없음</summary><ul><li><b>WARN C2</b> 방문 확인 문장(&quot;오늘 … 서비스를 진행했습니다&quot;) 없음</li><li><b>WARN C6</b> 📅 다음 방문 예정일 없음</li></ul></details></footer>
+</article></div>
+</section>
+<section class="group" id="G4">
+  <div class="group-h">
+    <p class="eyebrow">분류 4 · 6건</p>
+    <h2>마케팅·전환형</h2>
+    <p class="lede">신규 서비스, 계절별 추천, 추가 관리 제안, 재구매와 혜택 안내 등 고객 행동을 유도하는 메시지입니다. 광고성 메시지는 수신동의와 발송 요건을 별도로 확인해야 합니다.</p>
+    <p class="rule">적용 규칙: 홍보성 메시지 규칙((광고) 표기·080 수신거부 의무)</p>
+  </div>
+  <div class="cards"><article class="card" id="m78" data-g="G4" data-cat="11" data-type="promo" data-q="재구매 시기 온라인몰·구매 (광고) [세스코몰] #{상품명} 재구매 혜택 안내
+
+지난 #{m월 d일} 구매하신 #{상품명}을 다 쓰실 때가 됐습니다. 재구매 고객 혜택을 안내해 드립니다.
+
+◆ 재구매 고객 할인
+■ 기간: #{m월 d일(요일)}~#{m월 d일(요일)}
+■ 혜택: 재구매 시 #{n}% 할인
+■ 조건: 동일 상품 재구매 시 자동 적용
+■ 바로가기: #{url}
+
+① #{상품명}
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 할인은 세스코몰 로그인 후 자동 적용됩니다.
+─────
+세스코 과학으로 관리합니다.
+cesco science. on life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">
+  <header class="card-h">
+    <div class="card-t"><span class="num">078</span><span class="cat">11. 온라인몰·구매</span><h3>재구매 시기</h3></div>
+    <div class="meta"><span class="badge promo">홍보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">(광고) [세스코몰] #{상품명} 재구매 혜택 안내
+
+지난 #{M월 D일} 구매하신 #{상품명}을 다 쓰실 때가 됐습니다. 재구매 고객 혜택을 안내해 드립니다.
+
+◆ 재구매 고객 할인
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 재구매 시 #{N}% 할인
+■ 조건: 동일 상품 재구매 시 자동 적용
+■ 바로가기: #{URL}
+
+① #{상품명}
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 할인은 세스코몰 로그인 후 자동 적용됩니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200</pre><button class="copy" type="button" data-copy="(광고) [세스코몰] #{상품명} 재구매 혜택 안내
+
+지난 #{M월 D일} 구매하신 #{상품명}을 다 쓰실 때가 됐습니다. 재구매 고객 혜택을 안내해 드립니다.
+
+◆ 재구매 고객 할인
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 재구매 시 #{N}% 할인
+■ 조건: 동일 상품 재구매 시 자동 적용
+■ 바로가기: #{URL}
+
+① #{상품명}
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 할인은 세스코몰 로그인 후 자동 적용됩니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">복사</button></div>
+  <footer class="card-f"><span>349자 · 512바이트</span><span>하단: 홍보 하단 고지</span></footer>
+</article>
+<article class="card" id="m80" data-g="G4" data-cat="11" data-type="promo" data-q="장바구니 이탈 온라인몰·구매 (광고) [세스코몰] 장바구니 상품 #{n}% 쿠폰 안내
+담아 두신 #{상품명}, 오늘 쓸 수 있는 쿠폰을 넣어 드렸습니다.
+
+수신거부: 앱알림 설정 &gt; 수신거부">
+  <header class="card-h">
+    <div class="card-t"><span class="num">080</span><span class="cat">11. 온라인몰·구매</span><h3>장바구니 이탈</h3></div>
+    <div class="meta"><span class="badge promo">홍보성</span><span class="chip">앱푸시</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">(광고) [세스코몰] 장바구니 상품 #{N}% 쿠폰 안내
+담아 두신 #{상품명}, 오늘 쓸 수 있는 쿠폰을 넣어 드렸습니다.
+
+수신거부: 앱알림 설정 &gt; 수신거부</pre><button class="copy" type="button" data-copy="(광고) [세스코몰] 장바구니 상품 #{N}% 쿠폰 안내
+담아 두신 #{상품명}, 오늘 쓸 수 있는 쿠폰을 넣어 드렸습니다.
+
+수신거부: 앱알림 설정 &gt; 수신거부">복사</button></div>
+  <footer class="card-f"><span>88자 · 140바이트</span><span>하단: 앱푸시 수신거부</span></footer>
+</article>
+<article class="card" id="m86" data-g="G4" data-cat="12" data-type="promo" data-q="신규 서비스 출시 고객 관계·브랜드 crm (광고) [세스코] #{신규 서비스명} 출시 안내
+
+#{고객 문제 한 줄}을 위한 새로운 서비스가 나왔습니다. 출시 기념 혜택을 안내해 드립니다.
+
+◆ #{신규 서비스명} 출시 기념
+■ 기간: #{m월 d일(요일)}~#{m월 d일(요일)}
+■ 혜택: 첫 달 이용료 #{n}% 할인
+■ 조건: 기존 서비스 이용 고객 신청 시
+■ 바로가기: #{url}
+
+① #{신규 서비스명}
+    정상가 월 #{금액}원 → 혜택가 월 #{금액}원
+
+※ 서비스 지역과 공간 조건에 따라 신청이 제한될 수 있습니다.
+─────
+세스코 과학으로 관리합니다.
+cesco science. on life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">
+  <header class="card-h">
+    <div class="card-t"><span class="num">086</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>신규 서비스 출시</h3></div>
+    <div class="meta"><span class="badge promo">홍보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">(광고) [세스코] #{신규 서비스명} 출시 안내
+
+#{고객 문제 한 줄}을 위한 새로운 서비스가 나왔습니다. 출시 기념 혜택을 안내해 드립니다.
+
+◆ #{신규 서비스명} 출시 기념
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 첫 달 이용료 #{N}% 할인
+■ 조건: 기존 서비스 이용 고객 신청 시
+■ 바로가기: #{URL}
+
+① #{신규 서비스명}
+    정상가 월 #{금액}원 → 혜택가 월 #{금액}원
+
+※ 서비스 지역과 공간 조건에 따라 신청이 제한될 수 있습니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200</pre><button class="copy" type="button" data-copy="(광고) [세스코] #{신규 서비스명} 출시 안내
+
+#{고객 문제 한 줄}을 위한 새로운 서비스가 나왔습니다. 출시 기념 혜택을 안내해 드립니다.
+
+◆ #{신규 서비스명} 출시 기념
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 첫 달 이용료 #{N}% 할인
+■ 조건: 기존 서비스 이용 고객 신청 시
+■ 바로가기: #{URL}
+
+① #{신규 서비스명}
+    정상가 월 #{금액}원 → 혜택가 월 #{금액}원
+
+※ 서비스 지역과 공간 조건에 따라 신청이 제한될 수 있습니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">복사</button></div>
+  <footer class="card-f"><span>368자 · 544바이트</span><span>하단: 홍보 하단 고지</span></footer>
+</article>
+<article class="card" id="m87" data-g="G4" data-cat="12" data-type="promo" data-q="고객 전용 혜택 고객 관계·브랜드 crm (광고) [세스코] 멤버스 고객 전용 #{n}% 할인 안내
+
+세스코 서비스를 이용 중인 고객님께만 드리는 추가 관리 혜택을 안내해 드립니다.
+
+◆ 멤버스 고객 전용 추가 서비스 할인
+■ 기간: #{m월 d일(요일)}~#{m월 d일(요일)}
+■ 혜택: #{추가 서비스명} 첫 회 #{n}% 할인
+■ 조건: 정기 서비스 이용 고객
+■ 바로가기: #{url}
+
+① #{추가 서비스명}
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 혜택은 계약 1건당 1회 적용됩니다.
+─────
+세스코 과학으로 관리합니다.
+cesco science. on life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">
+  <header class="card-h">
+    <div class="card-t"><span class="num">087</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>고객 전용 혜택</h3></div>
+    <div class="meta"><span class="badge promo">홍보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">(광고) [세스코] 멤버스 고객 전용 #{N}% 할인 안내
+
+세스코 서비스를 이용 중인 고객님께만 드리는 추가 관리 혜택을 안내해 드립니다.
+
+◆ 멤버스 고객 전용 추가 서비스 할인
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: #{추가 서비스명} 첫 회 #{N}% 할인
+■ 조건: 정기 서비스 이용 고객
+■ 바로가기: #{URL}
+
+① #{추가 서비스명}
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 혜택은 계약 1건당 1회 적용됩니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200</pre><button class="copy" type="button" data-copy="(광고) [세스코] 멤버스 고객 전용 #{N}% 할인 안내
+
+세스코 서비스를 이용 중인 고객님께만 드리는 추가 관리 혜택을 안내해 드립니다.
+
+◆ 멤버스 고객 전용 추가 서비스 할인
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: #{추가 서비스명} 첫 회 #{N}% 할인
+■ 조건: 정기 서비스 이용 고객
+■ 바로가기: #{URL}
+
+① #{추가 서비스명}
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 혜택은 계약 1건당 1회 적용됩니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">복사</button></div>
+  <footer class="card-f"><span>351자 · 517바이트</span><span>하단: 홍보 하단 고지</span></footer>
+</article>
+<article class="card" id="m88" data-g="G4" data-cat="12" data-type="promo" data-q="휴면 고객 재접촉 고객 관계·브랜드 crm (광고) [세스코] 재이용 고객 #{n}% 할인 안내
+
+#{yyyy년 m월}까지 세스코 서비스를 이용하셨던 고객님께 다시 시작하실 수 있는 혜택을 안내해 드립니다.
+
+◆ 재이용 고객 혜택
+■ 기간: #{m월 d일(요일)}~#{m월 d일(요일)}
+■ 혜택: 첫 달 이용료 #{n}% 할인, 무료 위생진단 1회
+■ 조건: 서비스 종료 후 6개월 이상 지난 고객
+■ 바로가기: #{url}
+
+① #{서비스명}
+    정상가 월 #{금액}원 → 혜택가 월 #{금액}원
+
+※ 이전 관리 이력이 보관돼 있어 첫 방문부터 이어서 관리할 수 있습니다.
+─────
+세스코 과학으로 관리합니다.
+cesco science. on life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">
+  <header class="card-h">
+    <div class="card-t"><span class="num">088</span><span class="cat">12. 고객 관계·브랜드 CRM</span><h3>휴면 고객 재접촉</h3></div>
+    <div class="meta"><span class="badge promo">홍보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  
+  <div class="bubble-wrap"><pre class="bubble">(광고) [세스코] 재이용 고객 #{N}% 할인 안내
+
+#{YYYY년 M월}까지 세스코 서비스를 이용하셨던 고객님께 다시 시작하실 수 있는 혜택을 안내해 드립니다.
+
+◆ 재이용 고객 혜택
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 첫 달 이용료 #{N}% 할인, 무료 위생진단 1회
+■ 조건: 서비스 종료 후 6개월 이상 지난 고객
+■ 바로가기: #{URL}
+
+① #{서비스명}
+    정상가 월 #{금액}원 → 혜택가 월 #{금액}원
+
+※ 이전 관리 이력이 보관돼 있어 첫 방문부터 이어서 관리할 수 있습니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200</pre><button class="copy" type="button" data-copy="(광고) [세스코] 재이용 고객 #{N}% 할인 안내
+
+#{YYYY년 M월}까지 세스코 서비스를 이용하셨던 고객님께 다시 시작하실 수 있는 혜택을 안내해 드립니다.
+
+◆ 재이용 고객 혜택
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 첫 달 이용료 #{N}% 할인, 무료 위생진단 1회
+■ 조건: 서비스 종료 후 6개월 이상 지난 고객
+■ 바로가기: #{URL}
+
+① #{서비스명}
+    정상가 월 #{금액}원 → 혜택가 월 #{금액}원
+
+※ 이전 관리 이력이 보관돼 있어 첫 방문부터 이어서 관리할 수 있습니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">복사</button></div>
+  <footer class="card-f"><span>388자 · 575바이트</span><span>하단: 홍보 하단 고지</span></footer>
+</article>
+<article class="card" id="m105" data-g="G4" data-cat="14" data-type="promo" data-q="고객 업종별 성수기 발송 계기별 (광고) [세스코] #{업종} 성수기 사전점검 #{n}% 할인 안내
+
+바빠지는 시기, 사업장 위생 관리도 미리 점검하세요. #{업종} 사업장을 위한 성수기 사전점검 혜택을 안내해 드립니다.
+
+◆ 성수기 사전점검 서비스
+■ 기간: #{m월 d일(요일)}~#{m월 d일(요일)}
+■ 혜택: 사전점검 1회 #{n}% 할인
+■ 조건: #{업종} 사업장, 정기 서비스 이용 고객
+■ 바로가기: #{url}
+
+① 성수기 사전점검(식자재 보관 구역·주방·배수구)
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 성수기 2주 전까지 신청하시면 성수기 시작 전 방문이 가능합니다.
+─────
+세스코 과학으로 관리합니다.
+cesco science. on life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">
+  <header class="card-h">
+    <div class="card-t"><span class="num">105</span><span class="cat">14. 발송 계기별</span><h3>고객 업종별 성수기</h3></div>
+    <div class="meta"><span class="badge promo">홍보성</span><span class="chip">LMS</span><span class="pill pass">PASS</span></div>
+  </header>
+  <p class="dir">발송 방향 <q>바빠지는 시기, 사업장 위생 관리도 미리 점검하세요.</q></p>
+  <div class="bubble-wrap"><pre class="bubble">(광고) [세스코] #{업종} 성수기 사전점검 #{N}% 할인 안내
+
+바빠지는 시기, 사업장 위생 관리도 미리 점검하세요. #{업종} 사업장을 위한 성수기 사전점검 혜택을 안내해 드립니다.
+
+◆ 성수기 사전점검 서비스
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 사전점검 1회 #{N}% 할인
+■ 조건: #{업종} 사업장, 정기 서비스 이용 고객
+■ 바로가기: #{URL}
+
+① 성수기 사전점검(식자재 보관 구역·주방·배수구)
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 성수기 2주 전까지 신청하시면 성수기 시작 전 방문이 가능합니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200</pre><button class="copy" type="button" data-copy="(광고) [세스코] #{업종} 성수기 사전점검 #{N}% 할인 안내
+
+바빠지는 시기, 사업장 위생 관리도 미리 점검하세요. #{업종} 사업장을 위한 성수기 사전점검 혜택을 안내해 드립니다.
+
+◆ 성수기 사전점검 서비스
+■ 기간: #{M월 D일(요일)}~#{M월 D일(요일)}
+■ 혜택: 사전점검 1회 #{N}% 할인
+■ 조건: #{업종} 사업장, 정기 서비스 이용 고객
+■ 바로가기: #{URL}
+
+① 성수기 사전점검(식자재 보관 구역·주방·배수구)
+    정상가 #{금액}원 → 혜택가 #{금액}원
+
+※ 성수기 2주 전까지 신청하시면 성수기 시작 전 방문이 가능합니다.
+─────
+세스코 과학으로 관리합니다.
+CESCO Science. ON Life
+고객센터: 1588-1119
+무료수신거부: 080-701-0200">복사</button></div>
+  <footer class="card-f"><span>407자 · 614바이트</span><span>하단: 홍보 하단 고지</span></footer>
+</article></div>
+</section>
+
+<section class="index">
+  <h2>상황 → 초안 색인</h2>
+  <p class="lede" style="color:var(--muted);margin:8px 0 0">발송 상황 리스트 순서 그대로입니다. 색 띠가 분류(파랑 정보 안내 · 초록 관리 체감 · 보라 관계 강화 · 주황 마케팅·전환)를 뜻합니다.</p>
+  <div class="tbl"><table><tbody><tr><th>1. 상담·신규 고객</th><td><a href="#m1" class="map G1">무료진단 신청 접수</a> <a href="#m2" class="map G1">상담 예약 확정</a> <a href="#m3" class="map G1">상담 부재중 재연락</a> <a href="#m4" class="map G1">상담 완료 감사</a> <a href="#m5" class="map G1">견적서 발송</a> <a href="#m6" class="map G1">견적 검토 안내</a> <a href="#m7" class="map G1">무료체험 일정 안내</a></td></tr><tr><th>2. 계약·가입</th><td><a href="#m8" class="map G1">계약설계서 발송</a> <a href="#m9" class="map G1">전자계약서 서명 요청</a> <a href="#m10" class="map G1">계약 체결 완료</a> <a href="#m11" class="map G1">담당 컨설턴트 배정</a> <a href="#m12" class="map G1">첫 서비스 안내</a> <a href="#m13" class="map G1">멤버스 가입 안내</a> <a href="#m14" class="map G1">개인정보 동의 요청</a></td></tr><tr><th>3. 설치·첫 이용</th><td><a href="#m15" class="map G1">제품 설치 일정 확정</a> <a href="#m16" class="map G1">설치 전 준비사항</a> <a href="#m17" class="map G1">설치 당일 안내</a> <a href="#m18" class="map G1">설치 완료</a> <a href="#m19" class="map G1">제품 사용법 안내</a> <a href="#m20" class="map G1">첫 사용 후 불편사항 확인</a></td></tr><tr><th>4. 방문 일정</th><td><a href="#m21" class="map G1">정기 방문 예정</a> <a href="#m22" class="map G1">방문 하루 전 안내</a> <a href="#m23" class="map G1">방문 당일 안내</a> <a href="#m24" class="map G1">일정 변경 요청</a> <a href="#m25" class="map G1">방문 일정 재확정</a> <a href="#m26" class="map G1">방문 지연 안내</a> <a href="#m27" class="map G1">부재로 인한 재방문 안내</a></td></tr><tr><th>5. 정기 서비스</th><td><a href="#m28" class="map G1">당월 관리 안내</a> <a href="#m29" class="map G1">서비스 시작 안내</a> <a href="#m30" class="map G1">관리 완료</a> <a href="#m31" class="map G2">점검 결과 전달</a> <a href="#m32" class="map G1">서비스 확인서 발송</a> <a href="#m33" class="map G1">다음 방문 일정 안내</a> <a href="#m34" class="map G2">관리 기간 누적 안내</a></td></tr><tr><th>6. 위생 점검·특이사항</th><td><a href="#m35" class="map G2">해충 활동 징후 확인</a> <a href="#m36" class="map G2">해충 모니터링 결과</a> <a href="#m37" class="map G2">특정 구역 집중관리 안내</a> <a href="#m38" class="map G2">위생 취약 요소 발견</a> <a href="#m39" class="map G2">추가 점검 필요</a> <a href="#m40" class="map G2">고객 실천사항 안내</a> <a href="#m41" class="map G2">관리 결과 개선 안내</a></td></tr><tr><th>7. 제품 유지관리</th><td><a href="#m42" class="map G1">필터 교체 시기</a> <a href="#m43" class="map G1">소모품 교체 안내</a> <a href="#m44" class="map G1">정기 점검 시기</a> <a href="#m45" class="map G1">제품 관리 방법</a> <a href="#m46" class="map G1">사용 중 주의사항</a> <a href="#m47" class="map G1">AS 신청 접수</a> <a href="#m48" class="map G1">수리 완료 안내</a></td></tr><tr><th>8. 결제·요금</th><td><a href="#m49" class="map G1">결제 예정일</a> <a href="#m50" class="map G1">자동이체 실패</a> <a href="#m51" class="map G1">카드 승인 실패</a> <a href="#m52" class="map G1">미납요금 안내</a> <a href="#m53" class="map G1">결제 완료 확인</a> <a href="#m54" class="map G1">납부방법 변경</a> <a href="#m55" class="map G1">서비스 요금 변경 안내</a></td></tr><tr><th>9. 계약 갱신·변경</th><td><a href="#m56" class="map G1">계약 만료 예정</a> <a href="#m57" class="map G1">갱신 사전 안내</a> <a href="#m58" class="map G1">갱신 완료</a> <a href="#m59" class="map G1">명의변경</a> <a href="#m60" class="map G1">주소지 변경</a> <a href="#m61" class="map G1">서비스 변경·추가</a> <a href="#m62" class="map G1">계약 해지 접수</a> <a href="#m63" class="map G1">해지 완료</a></td></tr><tr><th>10. 고객 불편·VOC</th><td><a href="#m64" class="map G1">불편사항 접수</a> <a href="#m65" class="map G1">담당자 배정</a> <a href="#m66" class="map G1">처리 진행 현황</a> <a href="#m67" class="map G1">해결 지연 안내</a> <a href="#m68" class="map G1">처리 완료</a> <a href="#m69" class="map G1">서비스 재방문 안내</a> <a href="#m70" class="map G3">개선 결과 확인</a> <a href="#m71" class="map G1">만족도 조사</a></td></tr><tr><th>11. 온라인몰·구매</th><td><a href="#m72" class="map G1">주문 완료</a> <a href="#m73" class="map G1">배송 시작</a> <a href="#m74" class="map G1">배송 완료</a> <a href="#m75" class="map G1">일시품절</a> <a href="#m76" class="map G1">재입고 안내</a> <a href="#m77" class="map G1">상품 후기 요청</a> <a href="#m78" class="map G4">재구매 시기</a> <a href="#m79" class="map G1">포인트 소멸 예정</a> <a href="#m80" class="map G4">장바구니 이탈</a></td></tr><tr><th>12. 고객 관계·브랜드 CRM</th><td><a href="#m81" class="map G3">첫 서비스 100일</a> <a href="#m82" class="map G3">이용 1주년</a> <a href="#m83" class="map G3">장기 이용 감사</a> <a href="#m84" class="map G3">계절별 위생 관리 안내</a> <a href="#m85" class="map G3">생활환경별 관리 팁</a> <a href="#m86" class="map G4">신규 서비스 출시</a> <a href="#m87" class="map G4">고객 전용 혜택</a> <a href="#m88" class="map G4">휴면 고객 재접촉</a></td></tr><tr><th>13. B2B 사업장 특화</th><td><a href="#m89" class="map G3">신규 개업 고객 환영</a> <a href="#m90" class="map G2">사업장 정기점검 결과</a> <a href="#m91" class="map G3">업종별 위생 주의사항</a> <a href="#m92" class="map G2">명절·성수기 사전점검</a> <a href="#m93" class="map G1">영업시간에 맞춘 방문 조정</a> <a href="#m94" class="map G2">위생관리 이력 안내</a> <a href="#m95" class="map G2">사업장 관리 리포트</a></td></tr><tr><th>14. 발송 계기별</th><td><a href="#m96" class="map G3">첫 서비스 완료 후</a> <a href="#m97" class="map G2">정기관리 3회 완료</a> <a href="#m98" class="map G3">이용 1주년</a> <a href="#m99" class="map G3">계절 변화</a> <a href="#m100" class="map G2">관리 취약 요소 발견</a> <a href="#m101" class="map G2">현장 관리 효과 확인</a> <a href="#m102" class="map G3">서비스 만족도 평가 이후</a> <a href="#m103" class="map G3">장기 이용 고객</a> <a href="#m104" class="map G3">계약 만료 전</a> <a href="#m105" class="map G4">고객 업종별 성수기</a></td></tr></tbody></table></div>
+  <ul class="notes">
+    <li>정보성 알림톡은 카카오 템플릿 사전 승인이 필요하고 광고를 담을 수 없습니다. 변수 서식(#{ } 또는 $ $)은 발송 시스템에 맞춥니다.</li>
+    <li>홍보성 6건은 수신동의 고객에게만 발송하며, (광고) 표기와 무료수신거부 080-701-0200을 뺄 수 없습니다. 상품명·가격은 cesco-mall 기준으로 대조합니다.</li>
+    <li>개인화 CRM은 담당 컨설턴트 명의라 고객센터 번호를 쓰지 않습니다. 등급별 월 발송 상한(패밀리 2·멤버스 3·플러스 2·아너스 1회, 방문 합산)과 트리거 없는 발송 금지를 지킵니다. 아너스·크라운 2건은 대표이사 레터형으로 혜택 어휘를 쓰지 않았습니다.</li>
+    <li>린트 WARN 14건은 모두 관계형·정보형 CRM에서 서비스 직후 문자 전용 규칙(C2 방문 확인·C3 수치·C6 예정일)이 뜬 것으로, 카드마다 사유를 적어 두었습니다. 수치 변수는 린트 때 예시 값으로 치환했습니다.</li>
+  </ul>
+</section>
+</div>
+<div class="toast" id="toast" role="status">복사했습니다</div>
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  var tabs=[].slice.call(document.querySelectorAll('.bar .tabs button'));
+  var cat=document.getElementById('cat'),type=document.getElementById('type'),q=document.getElementById('q'),count=document.getElementById('count');
+  var g='';
+  function apply(){
+    var c=cat.value,t=type.value,s=q.value.trim().toLowerCase(),n=0;
+    cards.forEach(function(el){
+      var ok=(!g||el.dataset.g===g)&&(!c||el.dataset.cat===c)&&(!t||el.dataset.type===t)&&(!s||el.dataset.q.indexOf(s)>=0);
+      el.hidden=!ok; if(ok)n++;
+    });
+    document.querySelectorAll('.group').forEach(function(sec){ sec.hidden=!sec.querySelector('.card:not([hidden])'); });
+    count.textContent=n+' / '+cards.length+'건';
+  }
+  tabs.forEach(function(b){ b.addEventListener('click',function(){ g=b.dataset.g; tabs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')}); apply(); }); });
+  cat.addEventListener('change',apply); type.addEventListener('change',apply); q.addEventListener('input',apply);
+  var toast=document.getElementById('toast'),tm;
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.copy'); if(!b)return;
+    var txt=b.getAttribute('data-copy');
+    function done(){ toast.classList.add('on'); clearTimeout(tm); tm=setTimeout(function(){toast.classList.remove('on')},1400); }
+    function fallback(){ var pre=b.previousElementSibling; var r=document.createRange(); r.selectNodeContents(pre); var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r); toast.textContent='본문을 선택했습니다. 복사해 주세요'; done(); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){toast.textContent='복사했습니다';done();},fallback); } else fallback();
+  });
+  var h=location.hash.replace('#',''); if(/^G[1-4]$/.test(h)){ var b=tabs.filter(function(x){return x.dataset.g===h})[0]; if(b)b.click(); }
+  apply();
+})();
+</script>
