@@ -51,7 +51,7 @@ function card(it, skipTpl) {
 let body = '';
 body += `<article class="doc" id="d103" hidden><header class="dochead"><div class="crumb"><span class="cr-code">··</span><span class="cr-name">개요</span><span class="cr-sep">/</span><span class="cr-label">시안 갤러리</span><span class="stat s-ok">${capDate} 캡처</span></div><div class="path">${capDir}/ · reports/ 폴더의 시안 ${total}건을 ${capDate}에 캡처 · 재생성은 scripts/capture_reports.mjs → scripts/build_gallery.mjs</div></header>`;
 body += `<h1>시안 갤러리 — 템플릿별 시안 ${total}건 한눈에 보기</h1>`;
-body += `<p class="idx-lead">10월에 만든 시안을 채널별로 모았습니다. 템플릿을 고를 때 글로 된 규칙보다 완성된 모습부터 보고 싶을 때 씁니다. <strong>썸네일을 누르면 전체 캡처</strong>가 크게 열리고, <strong>열기 ↗</strong>는 탭·스와이프가 그대로 움직이는 실제 페이지를 새 창에 엽니다. 카드 아래 칩은 그 시안이 따른 템플릿 문서입니다.</p>`;
+body += `<p class="idx-lead">10월에 만든 시안을 채널별로 모았습니다. 채널 칩을 누르면 주소가 <code>#d103/채널키</code>로 바뀌어 그 채널만 보이는 링크를 공유할 수 있습니다(카드뉴스 유형 고르기: <code>#d103/cardnews</code>). 템플릿을 고를 때 글로 된 규칙보다 완성된 모습부터 보고 싶을 때 씁니다. <strong>썸네일을 누르면 전체 캡처</strong>가 크게 열리고, <strong>열기 ↗</strong>는 탭·스와이프가 그대로 움직이는 실제 페이지를 새 창에 엽니다. 카드 아래 칩은 그 시안이 따른 템플릿 문서입니다.</p>`;
 body += `<div class="wide gal-filter" role="tablist" aria-label="채널 필터"><button type="button" class="gal-chip on" data-gal="all">전체 <b>${total}</b></button>`;
 for (const g of groups) body += `<button type="button" class="gal-chip" data-gal="${g.key}">${esc(g.label)} <b>${g.items.length}</b></button>`;
 body += `</div>`;
@@ -134,15 +134,28 @@ const css = `
 const js = `
   // 시안 갤러리: 채널 필터 + 전체 캡처 라이트박스
   var lb = document.getElementById('gal-lb');
+  // 채널 필터. 주소는 #d103/<채널키> 로 남겨 링크로 공유할 수 있다 (예: #d103/cardnews).
+  function galApply(k){
+    var chip = document.querySelector('.gal-chip[data-gal="' + k + '"]');
+    if(!chip) return false;
+    document.querySelectorAll('.gal-chip').forEach(function(c){ c.classList.toggle('on', c === chip); });
+    document.querySelectorAll('.gal-group').forEach(function(g){ g.classList.toggle('hide', k !== 'all' && g.dataset.galGroup !== k); });
+    var h = k === 'all' ? '#d103' : '#d103/' + k;
+    if(location.hash !== h) history.replaceState(null, '', h);
+    return true;
+  }
+  function galFromHash(){
+    var m = (location.hash || '').match(/^#d103\\/([a-z0-9_-]+)$/i);
+    if(!m) return;
+    go('d103', false);
+    galApply(m[1]);
+  }
+  window.addEventListener('hashchange', galFromHash);
+  setTimeout(galFromHash, 0);
   function lbClose(){ if(lb){ lb.hidden = true; document.getElementById('gal-lb-img').src = ''; } }
   document.addEventListener('click', function(e){
     var chip = e.target.closest('.gal-chip');
-    if(chip){
-      var k = chip.dataset.gal;
-      document.querySelectorAll('.gal-chip').forEach(function(c){ c.classList.toggle('on', c === chip); });
-      document.querySelectorAll('.gal-group').forEach(function(g){ g.classList.toggle('hide', k !== 'all' && g.dataset.galGroup !== k); });
-      return;
-    }
+    if(chip){ galApply(chip.dataset.gal); return; }
     var th = e.target.closest('.gal-thumb');
     if(th && lb){
       document.getElementById('gal-lb-img').src = th.dataset.full;
