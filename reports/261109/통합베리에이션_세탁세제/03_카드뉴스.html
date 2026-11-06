@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>03 카드뉴스 · 세탁세제 프리미엄 · 기본형 1안 + 체크리스트형 1안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--bg:#eef1f5;--panel:#fff;--ink:#15171c;--ink-2:#4d5360;--ink-3:#7a8191;--line:#d9dee6;--navy:#0b2d5c;--blue:#1457c8;--blue-soft:#e6eefc;--memo:#f5f6f8;--card-sol:#eef4ff;--warn:#b4541a;--warn-bg:#fff4ea;--green:#1b7f3b}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;line-height:1.6;word-break:keep-all}
+header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.hd{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding:12px 0}
+.hd h1{font-size:16px;font-weight:800;margin:0}
+.hd h1 small{display:block;font-size:12px;font-weight:400;color:var(--ink-3)}
+.topnav{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 0}
+.topnav a{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font-size:12.5px;color:var(--ink-2);text-decoration:none;font-weight:600;background:#fff}
+.topnav a.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.intro{padding:22px 0 8px}
+.intro p{margin:0 0 6px;color:var(--ink-2);max-width:78ch}
+.intro .ver{font-size:13px;color:var(--ink-3)}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.btnrow button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);border-radius:8px;padding:6px 14px;cursor:pointer}
+.btnrow button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.plan{display:none}
+.plan.on{display:block}
+.plan-h{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:14px 0 6px;font-size:13.5px;color:var(--ink-2)}
+.plan-h b{color:var(--ink)}
+.deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;padding:14px 0 30px}
+@media (max-width:760px){.deck{grid-template-columns:1fr}}
+.slot{display:flex;flex-direction:column;gap:10px;min-width:0}
+.slot-meta{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-3)}
+.slot-meta b{color:var(--ink-2);font-weight:600}
+.card{position:relative;aspect-ratio:1/1;width:100%;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:7% 7.5%;display:flex;flex-direction:column;overflow:hidden;container-type:inline-size}
+.card .logo{position:absolute;top:5.5%;right:7.5%;font-size:2.9cqw;font-weight:900;letter-spacing:.04em;color:var(--navy)}
+.card .num{font-size:2.6cqw;color:var(--ink-3);margin:0 0 3cqw}
+.head{margin:0 0 4cqw;line-height:1.28;letter-spacing:-.01em}
+.head .l{display:block;font-weight:900;font-size:6.2cqw}
+.head .l.j{color:var(--blue)}
+.head.cover .l{font-size:7cqw}
+.body{font-size:3.45cqw;line-height:1.62;margin:0}
+.body p{margin:0 0 1.6cqw}
+.body p:last-child{margin-bottom:0}
+.tip{margin:0 0 2.4cqw;font-size:3.3cqw;line-height:1.5}
+.tip b{display:block;font-weight:700;font-size:3.6cqw;color:var(--navy)}
+.tip:last-of-type{margin-bottom:0}
+.name{font-size:3.5cqw;font-weight:700;color:var(--navy);margin:0 0 3cqw;padding:1.5cqw 2.4cqw;background:#dfe9fb;display:inline-block;border-radius:3px;align-self:flex-start}
+.pts{list-style:none;margin:0;padding:0;font-size:3.35cqw;line-height:1.5}
+.pts li{padding:1.2cqw 0;border-top:1px solid var(--line)}
+.pts li:first-child{border-top:0}
+.pts li::before{content:"✔ ";color:var(--green);font-weight:700}
+.checks{list-style:none;margin:0;padding:0;font-size:3.5cqw;line-height:1.5}
+.checks li{padding:1.4cqw 0;border-top:1px solid var(--line)}
+.checks li:first-child{border-top:0}
+.checks li::before{content:"☑ ";margin-right:1cqw;color:var(--blue)}
+.checks li.empty::before{content:"☐ ";color:var(--warn)}
+.checks li.empty{color:var(--warn);font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:3cqw;font-size:3.2cqw;line-height:1.5}
+.two b{display:block;color:var(--navy);font-size:3.4cqw;margin-bottom:1cqw}
+.two ul{margin:0;padding-left:3.4cqw}
+.src{margin-top:auto;padding-top:2.6cqw;font-size:2.45cqw;line-height:1.45;color:var(--ink-3)}
+.strip{margin-top:auto;background:var(--navy);color:#fff;font-size:3cqw;padding:2.6cqw 3.2cqw;margin-left:-7.5%;margin-right:-7.5%;margin-bottom:-7%;line-height:1.5}
+.sub{margin:-1cqw 0 0;font-size:3.5cqw;line-height:1.5;color:var(--ink-3)}
+.cta{margin-top:auto;padding-top:2cqw;font-size:3cqw;color:var(--ink-3)}
+.card.sol{background:var(--card-sol)}
+.fine{font-size:2.6cqw;color:var(--ink-3);margin-top:2cqw}
+sup{font-size:.7em;color:var(--blue)}
+.alts{display:grid;gap:6px}
+.alts-t{font-size:12px;color:var(--ink-3)}
+.alts button{appearance:none;text-align:left;font:inherit;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:8px 12px;cursor:pointer;display:grid;gap:2px}
+.alts button b{font-size:12px;color:var(--blue);font-weight:500}
+.alts button span{font-size:14px;font-weight:700}
+.alts button small{font-size:12px;color:var(--ink-3)}
+.alts button[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.memo{background:var(--memo);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.memo div{margin:3px 0}
+.memo .k{color:var(--ink-3);margin-right:6px}
+.need{color:var(--warn);background:var(--warn-bg);padding:1px 6px;border-radius:3px;font-weight:700}
+.gray{color:var(--ink-3)}
+body.hide-memo .memo{display:none}
+.post{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin:10px 0 28px}
+.post h2{font-size:15px;margin:0 0 10px}
+.post h3{font-size:13.5px;margin:16px 0 6px;color:var(--ink-2)}
+.post p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2);max-width:82ch}
+.post .tags{font-size:12.5px;color:var(--blue);line-height:1.8}
+.post pre{white-space:pre-wrap;font:inherit;font-size:13px;color:var(--ink-2);background:var(--memo);border-radius:6px;padding:12px 14px;margin:0}
+.post ol,.post ul{font-size:13.5px;color:var(--ink-2);margin:0 0 8px;padding-left:20px}
+</style>
+</head>
+<body>
+<header><div class="wrap hd"><h1>세탁세제 프리미엄 · 겨울 이불 편 · 카드뉴스 2안<small>원천소스 1개 → 5종 · 03 · 기본형 1안 + 체크리스트형 1안 · 사실·출처·정식명·CTA 동일, 표지가 하는 일과 장 순서만 다름 · 2026-11-07</small></h1></div></header>
+<main class="wrap">
+<nav class="topnav"><a href="index.html">허브</a><a href="01_상세페이지.html">01 상세페이지</a><a href="02_리플릿.html">02 리플릿</a><a class="on" href="03_카드뉴스.html">03 카드뉴스</a><a href="04_라이프케어매거진.html">04 라이프케어 매거진</a><a href="05_컨설팅포인트.html">05 컨설팅 포인트</a></nav>
+<section class="intro">
+<p>11월 마케팅포털 카드뉴스 세탁세제 편(11/5 장재혁 전달본)의 소재를 그대로 씁니다. 두꺼운 겨울 이불을 꺼내는 시기에, 세탁해도 일부 남는 진드기 사체·배설물 속 알레르기 유발 물질을 다루고, 진드기 사체·배설물 세척 테스트와 성분 검사를 마친 세스코 마이랩 세탁세제 프리미엄으로 닫습니다. 외부 연구 인용 4건은 전달본을 승계했습니다.</p>
+<p class="ver">d60 §1 추천 순서로 고른 추가안은 <b>체크리스트형(인정 선행)</b>입니다. 이유와 대안은 아래 작업 메모에 있습니다. 카드 아래 회색 상자는 제작 메모(지면 비노출)이고, 주황 표시는 발행 전 확정이 필요한 항목입니다.</p>
+<div class="btnrow"><button data-plan="a" aria-pressed="true">1안 · 기본형 (9장)</button><button data-plan="b" aria-pressed="false">2안 · 체크리스트형 (7장)</button><button id="memoBtn" type="button">제작 메모 숨기기</button></div>
+</section>
+
+<!-- ═══════════ 1안 기본형 ═══════════ -->
+<section class="plan on" id="plan-a">
+<div class="plan-h"><b>1안 · 기본형</b> · 표지가 사실 판정을 완결하고, 문제 → 근거 → 타깃 → 셀프 범위 → TIP → 솔루션 2장 → CTA로 갑니다(10장 골격 중 S1·S2·S3·S4a·S5·S6·S7×2·S8, 표지 리프라이즈 없음). 헤드 릴레이: 남아 있을 수 있다 → 얼마나? 84% → 왜 남나? 사체·배설물 → 조금 남으면? 민감하면 증상 → 그럼? 헹굼으로 → 어떻게? TIP → 세제는? 테스트한 세제 → 성분은? 검사 → 행동.</div>
+<div class="deck">
+
+<div class="slot"><div class="slot-meta"><b>CARD 1 · 표지</b><span>사실 판정형 (대상·시점·판정 완결)</span></div>
+<div class="card"><span class="logo">CESCO</span>
+<p class="head cover" id="coverA"><span class="l">올해 초 빨아 넣은</span><span class="l">겨울 이불에도</span><span class="l j">진드기 알레르기 유발 물질이</span><span class="l j">남아 있을 수 있습니다</span></p>
+<p class="sub">겨울 이불 꺼내기 전 챙기는 세탁 가이드</p>
+<div class="strip">세탁을 해도 일부는 섬유에 남습니다 · ☞ 옆으로 넘겨 확인하세요</div></div>
+<div class="alts"><span class="alts-t">표지 대안</span>
+<button type="button" aria-pressed="true" data-c="0"><b>★ 채택 · 사실 판정형</b><span>올해 초 빨아 넣은 겨울 이불에도 진드기 알레르기 유발 물질이 남아 있을 수 있습니다</span><small>기본형 규칙(표지에서 판정 완결). 11/5 전달본 질문형 표지는 2안으로 이동</small></button>
+<button type="button" aria-pressed="false" data-c="1"><b>전달본 ALT안</b><span>장롱 속 겨울 이불에 남은 진드기 사체와 배설물은 모두 사라졌을까요?</span><small>11/5 전달본 메인 카피 ALT안. 질문형이라 기본형 표지로는 후순위</small></button>
+<button type="button" aria-pressed="false" data-c="2"><b>수치 선행형</b><span>세탁기로 빨아도 평균 84%만 줄어드는 겨울 이불 속 진드기 알레르기 유발 물질</span><small>수치를 표지로 올린 안. 2장과 수치가 겹쳐 후순위</small></button></div>
+<div class="memo"><div><span class="k">이미지</span>장롱에서 꺼낸 두꺼운 겨울 이불을 안고 있는 손, 밝은 침실. 제품 없음</div><div><span class="k">표기</span>전달본 메모대로 카드뉴스에서는 '세탁하다' 대신 친근한 '빨다'를 표지에서만 씁니다. '작년·지난해'는 이불 빨래가 봄맞이로 이뤄지는 점을 고려해 '올해 초'로</div><div><span class="k">ALT</span>올해 초 세탁해 보관한 겨울 이불에도 진드기 알레르기 유발 물질이 남아 있을 수 있다는 내용의 카드뉴스 표지</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 2 · 문제 맥락화 (S2)</b><span>통계 오프닝</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">도입부</p>
+<p class="head"><span class="l">세탁기로 빨아도</span><span class="l j">평균 84%만 줄었습니다</span></p>
+<div class="body"><p>두꺼운 겨울 이불을 꺼낼 때입니다. 잘 빨아 보관한 이불, 바로 덮어도 괜찮을까요? 세탁을 하더라도 진드기 알레르기 유발 물질이 모두 제거되는 것은 아닙니다.</p><p>침구와 옷을 가정용 세탁기로 세탁한 연구에서 진드기 알레르겐은 평균 84% 감소했습니다. 대부분 씻겨 나갔지만 일부는 여전히 남아 있었습니다.</p></div>
+<p class="src">출처: Arlian L.G. 외, J Allergy Clin Immunol, 2003</p></div>
+<div class="memo"><div><span class="k">이미지</span>세탁기 안 이불 + 84% 막대 그래프(남은 부분을 색으로)</div><div><span class="k">하이라이트</span>"평균 84% 감소" · 강조어 "일부는 여전히 남아"</div><div><span class="k">확인</span><span class="need">[확인 필요: 외부 연구 수치(84%) 원문 확인 · 11/5 전달본 승계]</span></div><div><span class="k">ALT</span>가정용 세탁기로 침구와 옷을 세탁한 연구에서 진드기 알레르겐이 평균 84% 감소했고 일부는 남아 있었다는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 3 · 원인 (S3)</b><span>1장 1리스크 · 위험의 별명</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">문제 인식 ①</p>
+<p class="head"><span class="l">진드기가 죽어도 남을 수 있는</span><span class="l j">알레르기 유발 물질</span></p>
+<div class="body"><p>진드기를 없애는 것과 알레르기 유발 물질을 제거하는 것은 다른 문제입니다. 진드기의 사체와 배설물에 알레르기 반응을 일으키는 성분인 알레르겐이 들어 있기 때문입니다.</p><p>고온 세탁으로 진드기를 사멸시켜도 이 성분은 일부가 섬유에 붙어 장시간 남아 있습니다. 진드기를 없앤 카펫 시료를 18개월 보관한 연구에서도 알레르겐 농도는 뚜렷하게 줄지 않았습니다.</p></div>
+<p class="src">출처: de Boer R. 외, Clin Exp Allergy, 1995</p></div>
+<div class="memo"><div><span class="k">이미지</span>섬유 단면 확대 일러스트. 진드기 사체·배설물 입자가 섬유 사이에 남은 모습</div><div><span class="k">하이라이트</span>"18개월 보관한 연구에서도 알레르겐 농도는 뚜렷하게 줄지 않았습니다"</div><div><span class="k">ALT</span>진드기를 없애도 사체와 배설물 속 알레르겐은 섬유에 오래 남으며, 18개월 보관 연구에서도 농도가 줄지 않았다는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 4 · 타깃 심화 (S4a)</b><span>민감 대상</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">문제 인식 ②</p>
+<p class="head"><span class="l">소량의 진드기 알레르겐도</span><span class="l j">위험할 수 있습니다</span></p>
+<div class="body"><p>소량의 진드기 알레르겐이라도 민감한 사람에게는 알레르기 증상을 일으키거나 악화시킬 수 있습니다.</p><p>특히 이불은 잠자는 동안 얼굴과 목, 손발에 닿기 때문에 눈에 보이지 않는 알레르겐까지 관리해 주는 것이 좋습니다.</p></div>
+<p class="src">출처: Maestrelli P. 외, Clin Exp Allergy, 2001</p></div>
+<div class="memo"><div><span class="k">이미지</span>이불을 덮고 자는 사람의 얼굴·목 부위 클로즈업, 과장 없는 톤</div><div><span class="k">하이라이트</span>"잠자는 동안 얼굴과 목, 손발에 닿기 때문에"</div><div><span class="k">ALT</span>소량의 진드기 알레르겐도 민감한 사람에게 증상을 일으킬 수 있고, 이불은 자는 동안 얼굴·목·손발에 닿는다는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 5 · 셀프 수단의 범위 (S5)</b><span>할 수 있는 것 / 세제의 역할</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">대상 강조</p>
+<p class="head"><span class="l">60℃ 세탁이 어렵다면</span><span class="l j">헹굼으로 줄일 수 있습니다</span></p>
+<div class="body"><p>진드기 알레르겐은 물에 녹는 성질이 있습니다. 그래서 진드기를 사멸시키는 60℃ 이상의 고온 세탁이 어려운 이불이라도, 충분한 헹굼으로 알레르겐을 줄일 수 있습니다.</p><p>이때 진드기 사체·배설물 세척 테스트를 완료한 세제를 함께 쓰면 알레르겐을 더욱 효과적으로 제거할 수 있습니다.</p></div>
+<p class="src">출처: 대한소아알레르기호흡기학회(KAPARD), 집먼지진드기 알레르기 환경관리 가이드라인</p></div>
+<div class="memo"><div><span class="k">이미지</span>세탁기 헹굼 코스 다이얼 클로즈업 또는 물에 녹는 입자 도해</div><div><span class="k">하이라이트</span>"충분한 헹굼으로 알레르겐을 줄일 수 있습니다"</div><div><span class="k">ALT</span>진드기 알레르겐은 물에 녹아 고온 세탁이 어려워도 충분한 헹굼으로 줄일 수 있고, 사체·배설물 세척 테스트 세제를 함께 쓰면 좋다는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 6 · 셀프 관리 TIP (S6)</b><span>고정 리추얼 헤드</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">셀프팁</p>
+<p class="head"><span class="l">이렇게 관리해 보세요</span></p>
+<div class="tip"><b>TIP 1. 세탁 표시부터 확인</b>이불 커버와 충전재의 세탁 표시로 물세탁·고온 세탁·건조기 사용이 가능한지 확인해 주세요.</div>
+<div class="tip"><b>TIP 2. 세제는 권장량에 맞게, 헹굼은 충분히</b>세제를 과다하게 넣으면 세제 찌꺼기가 남을 수 있으니 이불 무게에 맞는 권장량만 넣고, 세탁기의 이불 코스로 충분히 헹궈 주세요.</div>
+<div class="tip"><b>TIP 3. 속까지 완전히 건조</b>충전재 속에 축축한 곳이 없을 때까지 말려 주세요.</div>
+<p class="fine">예민한 피부라면 진드기 사체·배설물 세척 테스트와 피부 자극 테스트를 받은 세제가 좋습니다.</p></div>
+<div class="memo"><div><span class="k">이미지</span>세탁 표시 라벨 · 계량캡 · 건조대 아이콘 3개, TIP과 1:1</div><div><span class="k">설계</span>마지막 문장이 7장 제품으로 자연 연결(한계 선언 브릿지 역할)</div><div><span class="k">ALT</span>겨울 이불 세탁 팁 세 가지, 세탁 표시 확인, 권장량과 충분한 헹굼, 속까지 건조를 안내하는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 7 · 세스코 솔루션 ① (S7)</b><span>Why CESCO · 세척 테스트</span></div>
+<div class="card sol"><span class="logo">CESCO</span><p class="num">Why CESCO</p>
+<p class="head"><span class="l">진드기 사체와 배설물까지</span><span class="l j">씻어내는지 테스트했습니다</span></p>
+<p class="name">세스코 마이랩 세탁세제 프리미엄</p>
+<ul class="pts"><li>진드기 사체·배설물 제거 테스트 완료<sup>1)</sup></li><li>꽃가루·반려동물 털 제거 테스트, 미세먼지 세척 테스트 완료<sup>1)</sup></li><li>8종 맞춤 효소로 생활 얼룩·찌든 때 세척</li></ul>
+<p class="src">1) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음.</p></div>
+<div class="memo"><div><span class="k">이미지</span>본품 2 L 누끼 + 테스트 항목 4종 아이콘(진드기·꽃가루·털·미세먼지)</div><div><span class="k">표기</span>전달본의 '반려동물 털·비듬'에서 비듬은 각주 시험에 없어 제외(수정요청표 36번). '시험 완료'는 리플릿 최종본과 같은 '테스트 완료'로</div><div><span class="k">확인</span><span class="need">[확인 필요: '비듬' 근거 확인 (근거가 확보되면 복귀)]</span></div><div><span class="k">ALT</span>세스코 마이랩 세탁세제 프리미엄은 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트와 미세먼지 세척 테스트를 완료했고 8종 효소로 생활 얼룩을 세척한다는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 8 · 세스코 솔루션 ② (S7)</b><span>Why CESCO · 성분</span></div>
+<div class="card sol"><span class="logo">CESCO</span><p class="num">Why CESCO</p>
+<p class="head"><span class="l">피부에 오래 닿는 이불이라,</span><span class="l j">세제 성분까지 검사했습니다</span></p>
+<p class="name">세스코 마이랩 세탁세제 프리미엄</p>
+<ul class="pts"><li>인체 피부 자극 시험 더마테스트 엑설런트 등급</li><li>대한아토피협회 추천</li><li>알러젠 프리향, 고시 알레르기 반응 가능 물질 26종 불검출<sup>2)</sup></li><li>인공 색소·형광증백제·파라벤류 6종·가습기 살균제 이슈 성분 4종 불검출<sup>2)</sup></li></ul>
+<p class="src">2) 기후에너지환경부 고시 알레르기 반응 가능 물질 26종, 파라벤류 방부제 6종, 가습기 살균제 이슈 성분 4종(MIT, CMIT, DDAC, BKC), 형광증백제 불검출 테스트 완료.</p></div>
+<div class="memo"><div><span class="k">이미지</span>인증 마크 2종(공식 아트워크) + 불검출 항목 리스트 아이콘</div><div><span class="k">확인</span><span class="need">[확인 필요: 대한아토피협회 표기(POD '추천품 인증 마크' / 리플릿 '추천 우수 등급') · 26종 물질명 전문은 게시 텍스트 각주에]</span></div><div><span class="k">ALT</span>세스코 마이랩 세탁세제 프리미엄의 더마테스트 엑설런트 등급, 대한아토피협회 추천, 알레르기 반응 가능 물질 26종과 유해 성분 불검출을 안내하는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 9 · 마무리 + CTA (S8)</b><span>브랜드·제품명 호명으로 닫기</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">맺음말</p>
+<p class="head"><span class="l">겨울 이불 꺼내는 날,</span><span class="l j">한 번 더 세탁하고 덮으세요</span></p>
+<div class="body"><p>빨아서 넣어 둔 이불에도 진드기 알레르기 유발 물질이 남아 있을 수 있습니다. 알레르겐은 저절로 사라지지 않으니 겨울 이불을 다시 사용하기 전, 세탁 표시를 확인하고 소재에 맞는 방법과 세제로 한 번 더 세탁하는 것이 좋습니다.</p><p>진드기 사체·배설물 세척 성능부터 세제 성분까지 살핀 세스코 마이랩 세탁세제 프리미엄으로 올겨울 첫 빨래를 시작해 보세요.</p></div>
+<p class="cta">세스코몰 www.cescomall.co.kr ㅣ 고객센터 1588-1119</p></div>
+<div class="memo"><div><span class="k">이미지</span>갓 세탁해 햇빛에 널린 겨울 이불, 제품은 작게 하단</div><div><span class="k">설계</span>표지의 구체 소재(빨아서 넣어 둔 이불·겨울 이불)를 평문으로 회수. 격언체 신규 창작 없음. 표지 리프라이즈 장 없음(2026-10-26 결정)</div><div><span class="k">ALT</span>겨울 이불을 꺼내기 전 세탁 표시를 확인하고 한 번 더 세탁하되, 세스코 마이랩 세탁세제 프리미엄으로 시작하라는 마무리 카드</div></div></div>
+
+</div></section>
+
+<!-- ═══════════ 2안 체크리스트형 ═══════════ -->
+<section class="plan" id="plan-b">
+<div class="plan-h"><b>2안 · 체크리스트형 (인정 선행 · 수첩)</b> · 표지(질문) → 한 일 ✓✓✓ → 비어 있는 곳 → 근거 → 직접 할 것 / 세제가 할 것 → 제품 → 질문을 거두는 CTA. 독자가 봄에 이미 한 일을 먼저 인정하고 빈 칸 하나만 짚습니다. 사실·출처·정식명·CTA는 1안과 같고, 수치(84%·18개월)는 3·4장에서 1회씩만 씁니다.</div>
+<div class="deck">
+
+<div class="slot"><div class="slot-meta"><b>CARD 1 · 표지 (질문)</b><span>답은 미룸 · 의문문은 표지 1회</span></div>
+<div class="card"><span class="logo">CESCO</span>
+<p class="head cover"><span class="l">올해 초</span><span class="l">빨아 넣은 겨울 이불,</span><span class="l j">바로 덮어도</span><span class="l j">괜찮을까?</span></p>
+<p class="sub">꺼내기 전에 확인하는 세 가지, 그리고 비어 있는 한 칸</p>
+<div class="strip">겨울 이불 꺼내기 전 챙기는 세탁 체크리스트 · ☞ 옆으로 넘겨 확인하세요</div></div>
+<div class="memo"><div><span class="k">이미지</span>수첩 느낌의 체크리스트 종이 위에 놓인 접힌 겨울 이불 컷</div><div><span class="k">표기</span>11/5 전달본 메인 카피 그대로. 체크리스트형은 표지가 질문이고 본편은 평서로 간다</div><div><span class="k">ALT</span>올해 초 빨아 넣은 겨울 이불을 바로 덮어도 되는지 묻는 체크리스트형 카드뉴스 표지</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 2 · 한 일 ✓✓✓</b><span>인정 선행</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">겨울 이불 체크리스트</p>
+<p class="head"><span class="l">봄에 넣기 전,</span><span class="l j">이미 세 가지는 하셨습니다</span></p>
+<ul class="checks"><li>이불 커버와 충전재의 세탁 표시를 확인하고 물세탁했다</li><li>세제는 이불 무게에 맞는 권장량만 넣고 이불 코스로 충분히 헹궜다</li><li>충전재 속까지 완전히 말려서 보관했다</li></ul>
+<p class="fine">세 가지를 지켰다면 보이는 오염과 세제 찌꺼기는 대부분 정리된 상태입니다.</p></div>
+<div class="memo"><div><span class="k">이미지</span>체크 표시 3개가 채워진 수첩 일러스트</div><div><span class="k">설계</span>체크 항목 3개는 원천소스 셀프팁 3항(세탁 표시 · 권장량·헹굼 · 건조)을 '이미 한 일'로 바꾼 것. 수치 없음</div><div><span class="k">ALT</span>겨울 이불을 넣기 전 세탁 표시 확인, 권장량과 충분한 헹굼, 완전 건조 세 가지를 이미 했다고 인정하는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 3 · 비어 있는 곳</b><span>빈 칸 하나 · 저장 포인트</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">겨울 이불 체크리스트</p>
+<p class="head"><span class="l">그런데 네 번째 칸이</span><span class="l j">비어 있습니다</span></p>
+<div class="body"><p>세탁을 하더라도 진드기 알레르기 유발 물질이 모두 제거되는 것은 아닙니다. 침구와 옷을 가정용 세탁기로 세탁한 연구에서 진드기 알레르겐은 평균 84% 감소했습니다. 대부분 씻겨 나갔지만 일부는 여전히 남아 있었습니다.</p></div>
+<ul class="checks" style="margin-top:2cqw"><li class="empty">세탁 후 섬유에 남은 진드기 알레르기 유발 물질까지 씻어냈다</li></ul>
+<p class="src">출처: Arlian L.G. 외, J Allergy Clin Immunol, 2003</p></div>
+<div class="memo"><div><span class="k">이미지</span>체크 3개 아래 비어 있는 네 번째 칸을 크게</div><div><span class="k">하이라이트</span>"평균 84% 감소" · 강조어 "일부는 여전히 남아"</div><div><span class="k">확인</span><span class="need">[확인 필요: 외부 연구 수치(84%) 원문 확인 · 11/5 전달본 승계]</span></div><div><span class="k">ALT</span>가정용 세탁기 세탁 후에도 진드기 알레르겐이 평균 84%만 줄어 일부가 남는다며 네 번째 빈 칸을 보여 주는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 4 · 근거</b><span>왜 비어 있나</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">왜 비어 있을까요</p>
+<p class="head"><span class="l">진드기가 죽어도</span><span class="l j">알레르기 유발 물질은 남습니다</span></p>
+<div class="body"><p>진드기의 사체와 배설물에 알레르기 반응을 일으키는 성분이 들어 있어, 고온 세탁으로 진드기를 사멸시켜도 이 성분은 일부가 섬유에 붙어 장시간 남아 있습니다. 진드기를 없앤 카펫 시료를 18개월 보관한 연구에서도 알레르겐 농도는 뚜렷하게 줄지 않았습니다.</p><p>소량이라도 민감한 사람에게는 알레르기 증상을 일으키거나 악화시킬 수 있고, 이불은 잠자는 동안 얼굴과 목, 손발에 닿습니다.</p></div>
+<p class="src">출처: de Boer R. 외, Clin Exp Allergy, 1995 / Maestrelli P. 외, Clin Exp Allergy, 2001</p></div>
+<div class="memo"><div><span class="k">이미지</span>섬유 단면 확대 일러스트 + 이불을 덮고 자는 얼굴 부위 작은 컷</div><div><span class="k">하이라이트</span>"18개월 보관한 연구에서도 알레르겐 농도는 뚜렷하게 줄지 않았습니다"</div><div><span class="k">ALT</span>진드기 사체·배설물 속 알레르겐이 세탁 후에도 섬유에 오래 남고 소량으로도 민감한 사람에게 증상을 일으킬 수 있다는 근거 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 5 · 직접 할 것 / 세제가 할 것</b><span>범위 나누기</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">네 번째 칸을 채우려면</p>
+<p class="head"><span class="l">직접 할 것,</span><span class="l j">세제가 할 것</span></p>
+<div class="two"><div><b>직접 할 것</b><ul><li>세탁 표시 확인</li><li>세제는 권장량만, 헹굼은 충분히. 진드기 알레르겐은 물에 녹는 성질이 있어 60℃ 고온 세탁이 어려워도 헹굼으로 줄일 수 있습니다</li><li>속까지 완전히 건조</li></ul></div><div><b>세제가 할 것</b><ul><li>진드기 사체·배설물을 씻어내는지 세척 테스트를 거친 것</li><li>피부에 오래 닿는 이불이니 피부 자극 테스트를 받은 것</li></ul></div></div>
+<p class="src">출처: 대한소아알레르기호흡기학회(KAPARD), 집먼지진드기 알레르기 환경관리 가이드라인</p></div>
+<div class="memo"><div><span class="k">이미지</span>좌우 2단 아이콘(손 / 세제 용기)</div><div><span class="k">설계</span>셀프 관리를 폄하하지 않고 범위를 나눈다. '세제가 할 것' 두 줄이 6장 제품의 조건이 된다</div><div><span class="k">ALT</span>직접 할 것 세 가지와 세제가 해야 할 것 두 가지를 나누어 보여 주는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 6 · 제품</b><span>Why CESCO</span></div>
+<div class="card sol"><span class="logo">CESCO</span><p class="num">Why CESCO</p>
+<p class="head"><span class="l">비어 있던 한 칸,</span><span class="l j">이 세제가 채웁니다</span></p>
+<p class="name">세스코 마이랩 세탁세제 프리미엄</p>
+<ul class="pts"><li>진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 · 미세먼지 세척 테스트 완료<sup>1)</sup></li><li>인체 피부 자극 시험 더마테스트 엑설런트 등급 · 대한아토피협회 추천</li><li>알러젠 프리향, 고시 알레르기 반응 가능 물질 26종 불검출<sup>2)</sup> · 인공 색소·형광증백제·파라벤류 6종·가습기 살균제 이슈 성분 4종 불검출<sup>2)</sup></li><li>8종 맞춤 효소로 생활 얼룩·찌든 때 세척</li></ul>
+<p class="src">1) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음. 2) 기후에너지환경부 고시 알레르기 반응 가능 물질 26종, 파라벤류 방부제 6종, 가습기 살균제 이슈 성분 4종(MIT, CMIT, DDAC, BKC), 형광증백제 불검출 테스트 완료.</p></div>
+<div class="memo"><div><span class="k">이미지</span>본품 2 L 누끼 + 네 번째 칸에 체크가 채워지는 연출</div><div><span class="k">확인</span><span class="need">[확인 필요: 대한아토피협회 표기 · '비듬' 제외 유지]</span></div><div><span class="k">ALT</span>세스코 마이랩 세탁세제 프리미엄의 알레르기 유발 물질 4종 테스트, 더마테스트 엑설런트, 대한아토피협회 추천, 26종 불검출, 8종 효소를 안내하는 카드</div></div></div>
+
+<div class="slot"><div class="slot-meta"><b>CARD 7 · CTA (질문 거두기)</b><span>평서 조건문으로 닫기</span></div>
+<div class="card"><span class="logo">CESCO</span><p class="num">맺음말</p>
+<p class="head"><span class="l">네 번째 칸을 채우면</span><span class="l j">바로 덮어도 됩니다</span></p>
+<ul class="checks"><li>세탁 표시 확인</li><li>권장량과 충분한 헹굼</li><li>속까지 건조</li><li>진드기 사체·배설물까지 씻어내는지 테스트한 세제</li></ul>
+<div class="body" style="margin-top:2cqw"><p>알레르겐은 저절로 사라지지 않으니 겨울 이불을 다시 사용하기 전 한 번 더 세탁하는 것이 좋습니다. 세스코 마이랩 세탁세제 프리미엄으로 올겨울 첫 빨래를 시작해 보세요.</p></div>
+<p class="cta">세스코몰 www.cescomall.co.kr ㅣ 고객센터 1588-1119</p></div>
+<div class="memo"><div><span class="k">이미지</span>체크 4개가 모두 채워진 수첩 + 개킨 겨울 이불</div><div><span class="k">설계</span>표지 질문("바로 덮어도 괜찮을까?")을 평서 조건문으로 거둔다. 표지 리프라이즈 없음</div><div><span class="k">ALT</span>네 가지 체크를 모두 채우면 겨울 이불을 덮어도 된다며 세스코 마이랩 세탁세제 프리미엄으로 첫 빨래를 권하는 마무리 카드</div></div></div>
+
+</div></section>
+
+<!-- 게시 텍스트 -->
+<section class="post">
+<h2>게시 텍스트 (마케팅포털 등록용 · 두 안 공통)</h2>
+<h3>게시 제목</h3>
+<p><b>[마이랩][세탁세제] 올해 초 빨아 넣은 겨울 이불, 바로 덮어도 괜찮을까? 겨울 이불 꺼내기 전 챙기는 세탁 가이드</b></p>
+<p class="gray">ALT: [마이랩][세탁세제] 빨아서 넣어 둔 겨울 이불에도 남는 진드기 알레르기 유발 물질, 꺼내기 전 세탁 관리 방법</p>
+<h3>해시태그</h3>
+<p class="tags">#카드뉴스 #세스코 #세스코마이랩 #마이랩 #세탁세제프리미엄 #세탁세제 #겨울이불 #이불빨래 #이불세탁 #집먼지진드기 #진드기알레르기 #알레르기유발물질 #아토피 #더마테스트 #대한아토피협회 #세탁가이드 #세스코몰</p>
+<h3>장표 전사 (1안 기본형 기준 · 2안은 장 순서만 다름)</h3>
+<pre>두꺼운 겨울 이불을 꺼낼 때입니다. 잘 빨아 보관한 이불, 바로 덮어도 괜찮을까요? 세탁을 하더라도 진드기 알레르기 유발 물질이 모두 제거되는 것은 아닙니다. 침구와 옷을 가정용 세탁기로 세탁한 연구에서 진드기 알레르겐은 평균 84% 감소했습니다. 대부분 씻겨 나갔지만 일부는 여전히 남아 있었습니다. (출처: Arlian L.G. 외, J Allergy Clin Immunol, 2003)
+
+진드기를 없애는 것과 알레르기 유발 물질을 제거하는 것은 다른 문제입니다. 진드기의 사체와 배설물에 알레르기 반응을 일으키는 성분인 알레르겐이 들어 있기 때문입니다. 고온 세탁으로 진드기를 사멸시켜도 이 성분은 일부가 섬유에 붙어 장시간 남아 있습니다. 진드기를 없앤 카펫 시료를 18개월 보관한 연구에서도 알레르겐 농도는 뚜렷하게 줄지 않았습니다. (출처: de Boer R. 외, Clin Exp Allergy, 1995)
+
+소량의 진드기 알레르겐이라도 민감한 사람에게는 알레르기 증상을 일으키거나 악화시킬 수 있습니다. 특히 이불은 잠자는 동안 얼굴과 목, 손발에 닿기 때문에 눈에 보이지 않는 알레르겐까지 관리해 주는 것이 좋습니다. (출처: Maestrelli P. 외, Clin Exp Allergy, 2001)
+
+진드기 알레르겐은 물에 녹는 성질이 있습니다. 그래서 진드기를 사멸시키는 60℃ 이상의 고온 세탁이 어려운 이불이라도, 충분한 헹굼으로 알레르겐을 줄일 수 있습니다. 이때 진드기 사체·배설물 세척 테스트를 완료한 세제를 함께 쓰면 알레르겐을 더욱 효과적으로 제거할 수 있습니다. (출처: 대한소아알레르기호흡기학회(KAPARD), 집먼지진드기 알레르기 환경관리 가이드라인)
+
+이렇게 관리해 보세요
+TIP 1. 세탁 표시부터 확인. 이불 커버와 충전재의 세탁 표시로 물세탁·고온 세탁·건조기 사용이 가능한지 확인해 주세요.
+TIP 2. 세제는 권장량에 맞게, 헹굼은 충분히. 세제를 과다하게 넣으면 세제 찌꺼기가 남을 수 있으니 이불 무게에 맞는 권장량만 넣고, 세탁기의 이불 코스로 충분히 헹궈 주세요.
+TIP 3. 속까지 완전히 건조. 충전재 속에 축축한 곳이 없을 때까지 말려 주세요.
+예민한 피부라면 진드기 사체·배설물 세척 테스트와 피부 자극 테스트를 받은 세제가 좋습니다.
+
+Why CESCO · 세스코 마이랩 세탁세제 프리미엄
+진드기 사체와 배설물까지 씻어내는지 테스트했습니다. 진드기 사체·배설물 제거 테스트 완료, 꽃가루·반려동물 털 제거 테스트와 미세먼지 세척 테스트 완료, 8종 맞춤 효소로 생활 얼룩·찌든 때 세척.
+피부에 오래 닿는 이불이라, 세제 성분까지 검사했습니다. 인체 피부 자극 시험 더마테스트 엑설런트 등급, 대한아토피협회 추천, 알러젠 프리향(고시 알레르기 반응 가능 물질 26종 불검출), 인공 색소·형광증백제·파라벤류 6종·가습기 살균제 이슈 성분 4종 불검출.
+1) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음.
+2) 기후에너지환경부 고시 알레르기 반응 가능 물질 26종(아밀신남알, 벤질알코올, 신나밀알코올, 시트랄, 유제놀, 하이드록시시트로넬알, 이소유제놀, 아밀신나밀알코올, 벤질살리실레이트, 신남알, 쿠마린, 제라니올, 아니실 알코올, 벤질신나메이트, 파네솔, 릴리알, 리날로올, 벤조산벤질, 시트로넬롤, 헥실신남알, 리모넨, 메칠2-옥티노에이트, 알파-이소메칠이오논, 리랄, 아트라놀, 클로로아트라놀), 파라벤류 방부제 6종(메틸파라벤, 에틸파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤), 가습기 살균제 이슈 성분 4종(MIT, CMIT, DDAC, BKC), 형광증백제 불검출 테스트 완료.
+
+겨울 이불 꺼내는 날, 한 번 더 세탁하고 덮으세요. 빨아서 넣어 둔 이불에도 진드기 알레르기 유발 물질이 남아 있을 수 있습니다. 알레르겐은 저절로 사라지지 않으니 겨울 이불을 다시 사용하기 전, 세탁 표시를 확인하고 소재에 맞는 방법과 세제로 한 번 더 세탁하는 것이 좋습니다. 진드기 사체·배설물 세척 성능부터 세제 성분까지 살핀 세스코 마이랩 세탁세제 프리미엄으로 올겨울 첫 빨래를 시작해 보세요. 세스코몰 www.cescomall.co.kr ㅣ 고객센터 1588-1119</pre>
+</section>
+
+<!-- 작업 메모 -->
+<section class="post">
+<h2>작업 메모</h2>
+<p><b>추천안으로 진행</b>(담당 선택 전). 고른 유형은 체크리스트형이고, 이유는 원천소스에 독자가 이미 한 관리 루틴("잘 빨아 보관한 이불")과 셀프 팁 3항이 있어서입니다.</p>
+<h3>카드뉴스 유형 추천 · 세탁세제 (원천소스: 11/5 전달 카드뉴스 세탁세제 편 · 겨울 이불·진드기 사체·배설물 알레르기 유발 물질)</h3>
+<pre>① 기본형 (항상)             현행 구조. 문제 → 근거 → 왜 지금 → 셀프 팁 → 솔루션 → CTA
+② 추천 신규 유형: 체크리스트형   원천소스에 "잘 빨아 보관한 이불, 바로 덮어도 괜찮을까요?"와 "이렇게 관리해 보세요 1·2·3"처럼
+                              독자가 이미 하고 있는 관리 루틴(이불 빨래)과 셀프 팁 3항이 있어서 (추천 순서 5번 · 상태 테스트 후보)
+   대안 1: 오해 교정형 — "세탁하면 다 없어진다 / 진드기를 죽이면 끝이다 / 조금 남은 건 괜찮다" 통념 3개에 각각 출처(Arlian 2003 · de Boer 1995 · Maestrelli 2001)가 있음.
+                       추천 순서 2번에 먼저 걸리지만 상태가 파일럿(11/4 보고 보류)이라 대안으로
+   대안 2: 일상 상황형(테스트형 T1) — "두꺼운 겨울 이불을 꺼낼 때입니다" 시즌 루틴 소재. 실험 유형이라 대안 자리에만
+
+직접 고르기 → https://chloe-sh.github.io/cesco-templates/#d103/cardnews
+규칙 보기  → https://chloe-sh.github.io/cesco-templates/#d60 (§1 유형 선택)</pre>
+<h3>참조 사례</h3>
+<ul><li>11/5 전달본 · 마케팅포털 카드뉴스 세탁세제(원천소스, 장표 구조 표지 → 도입부 → 문제 인식 ①② → 대상 강조 → 셀프팁 → Why CESCO ×2 → 맺음말)</li><li>기본형 참조본 · 가을 매트리스 케어 편(갤러리 g73, 10장 골격)</li><li>체크리스트형 참조본 · 매트리스케어 4종 v06의 인정 선행형(갤러리 g75)</li></ul>
+<h3>미사용 소재</h3>
+<ul><li>세척력 12% 향상(1 L 대비) · 모락셀라균 97% 세척 · 아세트산 99% 탈취: 이번 편의 질문 사슬(진드기 알레르기 유발 물질)과 맞지 않아 뺐습니다. 다른 편(쉰내 편)에서 씁니다.</li><li>런칭 프로모션 가격(~12/31): 프로모션형이 아니라 넣지 않았습니다. 캡션 하단에 세스코몰 링크만.</li><li>전달본의 '반려동물 털·비듬' 중 비듬: 각주 시험 범위 밖(수정요청표 36번).</li></ul>
+<h3>발행 전 확인</h3>
+<ul><li><span class="need">[확인 필요: 외부 연구 인용 4건(Arlian 2003 · de Boer 1995 · Maestrelli 2001 · KAPARD 가이드라인)의 수치·표현 원문 확인]</span> (11/5 전달본 승계, 검수 하네스 2단 미실시)</li><li><span class="need">[확인 필요: 대한아토피협회 표기 통일 · '알러젠 프리향' 표기 통일]</span></li></ul>
+</section>
+</main>
+<script>
+(function(){
+ var btns=document.querySelectorAll('.btnrow button[data-plan]');
+ btns.forEach(function(b){b.addEventListener('click',function(){
+  btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  document.querySelectorAll('.plan').forEach(function(p){p.classList.toggle('on',p.id==='plan-'+b.dataset.plan)});
+ })});
+ var m=document.getElementById('memoBtn');m.addEventListener('click',function(){document.body.classList.toggle('hide-memo');m.textContent=document.body.classList.contains('hide-memo')?'제작 메모 보이기':'제작 메모 숨기기';});
+ var covers=[
+  ['올해 초 빨아 넣은','겨울 이불에도','진드기 알레르기 유발 물질이','남아 있을 수 있습니다'],
+  ['장롱 속 겨울 이불에 남은','진드기 사체와 배설물은','모두 사라졌을까요?'],
+  ['세탁기로 빨아도','평균 84%만 줄어드는','겨울 이불 속','진드기 알레르기 유발 물질']
+ ];
+ var head=document.getElementById('coverA');
+ document.querySelectorAll('#plan-a .alts button').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('#plan-a .alts button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  var lines=covers[+b.dataset.c];head.innerHTML=lines.map(function(t,i){return '<span class="l'+(i>=Math.ceil(lines.length/2)?' j':'')+'">'+t+'</span>'}).join('');
+ })});
+})();
+</script>
+</body>
+</html>

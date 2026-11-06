@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 리플릿 · 세스코 마이랩 세탁세제 프리미엄 · 제품 리플릿 기본형 · 실물 디자인형</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<!-- 세스코 리플릿 실물 디자인형 · 규약 cesco-leaflet/references/leaflet-real-design-spec.md · 공용 CSS leaflet-real-design.css 인라인
+     규격 A4 세로 1장 앞·뒷면(2P) · 접지 없음 · 재단 여백 3mm는 인쇄소 사양에 따라 디자이너가 추가
+     층: 지면 카피(기본) / 회색 점선 = 이미지 자리 / 노란 메모 = 제작 메모(지면 미노출) / 주황 = [확인 필요] -->
+<style>
+:root{--stage:#d9dee6;--paper:#fff;--ink:#1c2430;--ink-2:#4b5563;--ink-3:#7c8592;--navy:#0f3c7a;--blue:#1e6fd9;--wash:#e9f1fb;--wash-2:#f4f7fb;--line:#d5dde8;
+--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200;--hero:#1b2a3f;--tag:#ff7a2f;--need:#fff0e6;--need-ink:#b4530a;--ok:#1f7a45;--bad:#c2410c;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--stage);overflow-x:hidden}
+body{color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all;padding:20px 16px 56px}
+.wrap{max-width:1240px;margin:0 auto}
+.topnav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.topnav a{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font-size:12.5px;color:var(--ink-2);text-decoration:none;font-weight:600;background:#fff}
+.topnav a.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.bar h1{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.bar .sub{font-size:11.5px;color:var(--ink-3)}
+.bar .chips{display:flex;gap:5px;flex-wrap:wrap}
+.bar .chip{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-2);background:#fff}
+.bar .chip.type{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.bar .btns{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.bar h1,.bar .sub{min-width:0}
+@media (max-width:640px){.bar .btns{margin-left:0;flex:1 1 100%}.bar h1{flex:1 1 100%}}
+.bar button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 11px;border-radius:16px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.dnote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--tag);border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.55;color:var(--ink-2);margin-bottom:16px}
+.dnote h2{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.dnote h2 span{display:inline-block;background:var(--tag);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.dnote table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.dnote th{background:var(--wash-2);color:var(--ink);text-align:left;white-space:nowrap;width:96px;padding:5px 8px;border:1px solid var(--line);vertical-align:top}
+.dnote td{padding:5px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dnote td b{color:var(--navy)}
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media (max-width:1080px){.spread{grid-template-columns:1fr}}
+body[data-view="front"] .page.back,body[data-view="back"] .page.front{display:none}
+body[data-view="front"] .spread,body[data-view="back"] .spread{grid-template-columns:minmax(0,620px);justify-content:center}
+.page{position:relative;background:var(--paper);width:100%;aspect-ratio:210/297;container-type:inline-size;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 3px rgba(0,0,0,.08),0 18px 40px -12px rgba(15,60,122,.25)}
+.page .side{position:absolute;top:0;left:0;z-index:3;background:var(--navy);color:#fff;font-size:1.35cqw;font-weight:700;padding:.4cqw 1.6cqw;border-radius:0 0 .8cqw 0;letter-spacing:.05em}
+.page .fill{position:absolute;top:0;right:0;z-index:3;font-size:1.3cqw;font-weight:700;padding:.4cqw 1.4cqw;border-radius:0 0 0 .8cqw;background:var(--ok);color:#fff}
+.page .fill.bad{background:var(--bad)}
+.pad{padding:0 5.2cqw;display:flex;flex-direction:column;flex:1 0 auto}
+.pad>*+*{margin-top:1.4cqw}
+.page p{font-size:1.72cqw;line-height:1.6}
+.memo{background:var(--memo);color:var(--memo-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:500;font-size:.92em}
+.pct{position:absolute;right:.6cqw;top:-.9cqw;z-index:2;font-size:1.15cqw;font-weight:800;color:var(--memo-ink);background:var(--memo);padding:.1cqw .9cqw;border-radius:999px;pointer-events:none}
+.blk{position:relative}
+body.hide-memo .memo,body.hide-memo .pct,body.hide-memo .dnote,body.hide-memo .fill{display:none}
+body.hide-memo .slot{color:transparent}
+.need{background:var(--need);color:var(--need-ink);border:1px dashed var(--need-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:700;font-size:.92em}
+.gray{color:var(--ink-3)}
+.slot{background:var(--slot);border:.22cqw dashed var(--slot-line);border-radius:.9cqw;color:var(--ink-3);font-size:1.3cqw;line-height:1.45;padding:1.1cqw 1.3cqw;display:flex;flex-direction:column;justify-content:flex-end;min-height:var(--h,8cqw)}
+.slot b{display:block;font-weight:800;color:var(--ink-2);font-size:1.25cqw;margin-bottom:.2cqw}
+.slot.grow{flex:1 1 auto}
+.hero .slot,.band .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45);color:#fff}
+.hero .slot b,.band .slot b{color:#fff}
+.lock{display:flex;justify-content:space-between;align-items:baseline;padding:3.6cqw 5.2cqw 0;font-size:1.5cqw;font-weight:700;color:var(--ink-2)}
+.lock .brand{font-size:2.2cqw;font-weight:900;color:var(--navy);letter-spacing:.02em}
+.lock .brand small{font-size:1.4cqw;font-weight:600;color:var(--ink-2);margin-left:.8cqw;letter-spacing:0}
+.hero{position:relative;background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:3.2cqw 5.2cqw 3cqw;display:grid;grid-template-columns:1.2fr .8fr;gap:3cqw;margin-top:2.2cqw}
+.bubbles{display:flex;flex-direction:column;gap:.7cqw;margin-bottom:2cqw}
+.bubble{align-self:flex-start;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:2cqw 2cqw 2cqw .4cqw;padding:.7cqw 1.6cqw;font-size:1.55cqw;line-height:1.45}
+.hero h1{font-size:4.3cqw;line-height:1.22;font-weight:900;letter-spacing:-.025em}
+.hero .sub{margin-top:1.4cqw;font-size:1.8cqw;font-weight:600;opacity:.95}
+.hero .slot{min-height:100%}
+.why h2{font-size:2.5cqw;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:1cqw;letter-spacing:-.02em}
+.why h2 .q{background:var(--navy);color:#fff;font-size:1.6cqw;width:3cqw;height:3cqw;display:inline-flex;align-items:center;justify-content:center;border-radius:.4cqw;flex:none}
+.why .ans{margin-top:1cqw;font-size:1.65cqw;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;margin-top:1.6cqw}
+.card{border:1px solid var(--line);border-top:.4cqw solid var(--navy);border-radius:0 0 .9cqw .9cqw;padding:1.2cqw 1.4cqw 1.3cqw;display:flex;flex-direction:column}
+.card .ico{width:5.2cqw;height:5.2cqw;border-radius:50%;background:var(--slot);border:.2cqw dashed var(--slot-line);color:var(--ink-3);font-size:1.05cqw;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:.9cqw;line-height:1.2}
+.card b{font-size:1.65cqw;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.card p{font-size:1.4cqw;line-height:1.55;color:var(--ink-2);margin-top:.5cqw}
+.stat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4cqw;align-items:stretch}
+.stat>div{background:var(--wash-2);border-radius:.9cqw;padding:1.3cqw 1.5cqw}
+.stat .v{font-size:4.2cqw;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.03em}
+.stat .v small{font-size:1.8cqw;font-weight:800;margin-left:.2cqw}
+.stat .l{font-size:1.3cqw;line-height:1.45;color:var(--ink-2);margin-top:.7cqw}
+.band{position:relative;background:var(--navy);color:#fff;padding:2.6cqw 5.2cqw;margin:1.6cqw -5.2cqw 0;display:grid;grid-template-columns:1fr 17cqw;gap:2.4cqw;align-items:center}
+.band .pre{font-size:1.6cqw;line-height:1.6;opacity:.92}
+.band .name{font-size:3.1cqw;font-weight:900;margin-top:.8cqw;letter-spacing:-.02em;line-height:1.25}
+.band .spec{margin-top:1cqw;font-size:1.3cqw;opacity:.85;padding-top:.8cqw;border-top:1px solid rgba(255,255,255,.3)}
+.band .slot{min-height:12cqw}
+.bridge{font-size:1.65cqw;color:var(--ink);background:var(--wash);border-left:.5cqw solid var(--blue);padding:1.1cqw 1.6cqw;border-radius:0 .8cqw .8cqw 0}
+.p2head{padding-top:3.2cqw}
+.p2head .k{font-size:1.6cqw;color:var(--ink-2);font-weight:600}
+.p2head h2{font-size:2.9cqw;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.02em;margin-top:.3cqw}
+.adv{display:grid;grid-template-columns:1fr 15cqw;gap:2.4cqw}
+.alist{display:flex;flex-direction:column;gap:.9cqw}
+.a{display:grid;grid-template-columns:4.6cqw 1fr;gap:1.4cqw;align-items:start}
+.a .no{width:4.6cqw;height:4.6cqw;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5cqw;font-weight:900}
+.a h3{font-size:1.78cqw;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.a p{font-size:1.4cqw;line-height:1.5;margin-top:.35cqw;color:var(--ink)}
+.col{display:flex;flex-direction:column;gap:1.2cqw}
+.col .slot{flex:1 1 auto}
+sup{font-size:.65em;color:var(--blue);font-weight:700;line-height:0}
+table.t{width:100%;border-collapse:collapse;font-size:1.4cqw}
+table.t th{background:var(--wash);color:var(--navy);font-weight:700;padding:.65cqw .8cqw;border:1px solid var(--line);text-align:center}
+table.t td{padding:.6cqw .8cqw;border:1px solid var(--line);text-align:center;vertical-align:middle}
+table.t td.l{text-align:left}
+table.t td.pr{font-weight:900;color:var(--blue);font-size:1.6cqw}
+table.t td s{color:var(--ink-3);font-weight:400;font-size:1.25cqw;margin-right:.4cqw}
+table.t.spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:16%;white-space:nowrap}
+table.t.spec td:nth-child(even){text-align:left}
+.proof{background:var(--wash-2);border-radius:.9cqw;padding:1.1cqw 1.4cqw}
+.proof .cert{font-size:1.55cqw;font-weight:900;color:var(--navy);border-left:.45cqw solid var(--navy);padding-left:1cqw;margin-bottom:.8cqw}
+.fine{font-size:1.1cqw;line-height:1.48;color:var(--ink-2)}
+.fine p{font-size:1.1cqw;line-height:1.48}
+.fine p+p{margin-top:.15cqw}
+.fnote{margin-top:auto;padding-top:1.2cqw;border-top:1px solid var(--line)}
+.cross{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.cross>div{border:1px solid var(--line);border-radius:.9cqw;padding:1cqw 1.3cqw}
+.cross h4{font-size:1.65cqw;font-weight:900;color:var(--navy)}
+.cross p{font-size:1.4cqw;color:var(--ink-2);margin-top:.4cqw}
+.cross .lbl{display:inline-block;background:var(--navy);color:#fff;font-size:1.15cqw;font-weight:700;padding:.2cqw 1cqw;border-radius:.3cqw;margin-bottom:.5cqw}
+.cross .slot{min-height:5cqw;margin-top:.6cqw}
+.cta{display:grid;grid-template-columns:1fr 8cqw;gap:2cqw;align-items:center;background:var(--navy);color:#fff;border-radius:1cqw;padding:1.2cqw 2cqw}
+.cta h5{font-size:2cqw;font-weight:900}
+.cta h5 small{font-size:1.4cqw;font-weight:500;opacity:.9;margin-left:.8cqw}
+.cta p{font-size:1.35cqw;opacity:.9;margin-top:.4cqw}
+.cta .qr{width:8cqw;height:8cqw;background:#fff;border-radius:.6cqw;color:var(--ink-3);font-size:1.1cqw;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+.pf{margin-top:auto;padding:1.1cqw 5.2cqw 1.5cqw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-size:1.25cqw;color:var(--ink-2)}
+.pf .logo{font-weight:900;font-size:2.4cqw;color:var(--navy);line-height:1}
+.pf .logo small{display:block;font-size:1.15cqw;font-weight:600;letter-spacing:.14em;margin-top:.3cqw;color:var(--ink-2)}
+.pf .tel{font-size:1.9cqw;font-weight:900;color:var(--navy)}
+.pf .tel small{display:block;font-size:1.15cqw;font-weight:500;color:var(--ink-2)}
+.pf.full{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.pf .addr{font-size:1.15cqw;line-height:1.55}
+.pf .card{border:1px dashed var(--slot-line);width:19cqw;height:7cqw;font-size:1.2cqw;color:var(--ink-3);display:flex;align-items:center;justify-content:center;text-align:center;border-radius:.5cqw}
+@page{size:A4 portrait;margin:0}
+@media print{
+ body{background:#fff;padding:0}
+ .bar,.dnote,.topnav,.page .side,.page .fill,.pct{display:none!important}
+ .spread{display:block}
+ .page{width:210mm;height:297mm;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
+ .page:last-child{break-after:auto;page-break-after:auto}
+ .memo{background:transparent;color:inherit}
+}
+</style>
+</head>
+<body data-view="both">
+<div class="wrap">
+<nav class="topnav"><a href="index.html">허브</a><a href="01_상세페이지.html">01 상세페이지</a><a class="on" href="02_리플릿.html">02 리플릿</a><a href="03_카드뉴스.html">03 카드뉴스</a><a href="04_라이프케어매거진.html">04 라이프케어 매거진</a><a href="05_컨설팅포인트.html">05 컨설팅 포인트</a></nav>
+<header class="bar"><h1>세스코 마이랩 세탁세제 프리미엄 · 제품 리플릿 기본형 · 실물 디자인형</h1><span class="sub">원천소스 1개 → 5종 · 02 · 2026-11-07</span><div class="chips"><span class="chip type">기본형</span><span class="chip">A4 세로 1장 앞·뒷면(2P)</span><span class="chip">접지 없음 · 판형 확인 필요</span><span class="chip">성적서 이미지 없음 · 각주 패널</span><span class="chip">원천소스 POD 260810 · 리플릿 배포본 261103 · 가격 261001</span></div><div class="btns"><button data-view="both" aria-pressed="true">앞·뒷면 나란히</button><button data-view="front" aria-pressed="false">앞면만</button><button data-view="back" aria-pressed="false">뒷면만</button><button id="memo-toggle" aria-pressed="false">메모 숨기기</button><button id="print">인쇄 미리보기</button></div></header>
+<section class="dnote"><h2><span>디자이너 노트</span>기본형 · 세스코 마이랩 세탁세제 프리미엄</h2><table>
+<tr><th>유형 선택</th><td><b>기본형</b> · 가격표형·관리 단계형·Q&amp;A형 셋에 해당하지 않는 보통 제품. 세스코 배포본(261103)은 세탁관리 솔루션 3-STEP 통합 리플릿이고, 이 시안은 그중 세탁세제 프리미엄 한 제품만 떼어 제품 리플릿 여섯 자리(문제 제기 → 근거 → 제품 소개 → 특장점·각주 → 가격·문의)로 다시 썼습니다.</td></tr>
+<tr><th>앞면 역할</th><td><b>핵심</b> · 고객 말 3개 → 문제 헤드 → ✅ 원인 즉답 + 카드 3 + 근거 수치 2 → 해결책 → 선언 밴드(상품명 첫 등장 + 한 줄 정의 + 스펙 1줄). 표지에 제품명 없음. 앞면 수치(84% · 18개월)의 각주 1)·2)는 앞면 하단에.</td></tr>
+<tr><th>뒷면 역할</th><td><b>세부</b> · 특장점 5(제품 수치 USP는 여기서만 1회) → 스펙·가격 표 → 근거 각주 패널 → 함께 쓰는 제품 → 상담·주문 띠 → 4줄 푸터·©·명함스티커. 상품 정의문·원인 서술·고객 말풍선은 뒷면에서 반복하지 않음.</td></tr>
+<tr><th>지면 배분</th><td>앞면 히어로 30 · 원인 30 · 수치 14 · 해결책·선언 26 (중단 와이드 연출컷이 남는 지면 흡수) / 뒷면 특장점 40 · 스펙·가격 18 · 근거 16 · 연계 16 · 상담 10 (아이콘 열이 흡수)</td></tr>
+<tr><th>근거 처리</th><td>시험성적서 이미지 자리 없음. 제품 성능 수치 3)~8)은 세스코 마이랩 서식(제품명 + 대상 + 수치 + 결과, 시험기관·조건 없음) + 환경 문구 1회. 앞면 문제 근거 1)·2)는 외부 연구 출처 각주(카드뉴스 11/5 전달본 승계).</td></tr>
+<tr><th>중복 점검</th><td>상품명 2회(앞면 밴드 · 뒷면 헤드 라벨)만 허용 · 12자 이상 같은 문장 앞뒤 0건(기계 대조 완료, 예외: 상품명·URL·전화 · 뒷면 각주 6)의 물질명 나열은 근거 표기) · 수치 USP 각 1회 · 고객 말풍선·원인 앞면만 · 4줄 푸터 뒷면만(앞면은 로크업 + 전화 1줄)</td></tr>
+<tr><th>확인 필요</th><td>단품 판매가(가격표에 2개 이상 구성만) · 리필 용량 1.7 L/1.75 L 통일 · © 코드(제품 리플릿 신규 코드·발행 월) · 판형(A4 2P 낱장, 접지 여부) · 앞면 외부 연구 수치 2건 원문 확인 · 대한아토피협회 표기</td></tr>
+</table></section>
+<main class="spread">
+
+<!-- ───── 앞면 ───── -->
+<article class="page front"><span class="side">앞면 · FRONT</span><span class="fill">측정 중</span>
+<div class="lock"><span><span class="brand">CESCO<small>Mylab 세스코 마이랩</small></span></span><span>세탁세제 · 생활과학 연구소</span></div>
+<div class="blk"><span class="pct">30%</span><div class="hero"><div><div class="bubbles"><div class="bubble">“바싹 말렸는데 입으면 쉰내가 올라와서 다시 빨아요”</div><div class="bubble">“빨았는데도 옷에서 반려동물 털이 계속 나와요”</div><div class="bubble">“아이가 빤 옷 입고 가려워해서 세제부터 바꿔야 하나 고민이에요”</div></div><h1>빨았는데도<br>옷에 남는 것이 있습니다</h1><div class="sub">세탁 후 옷에 남는 오염까지 관리하고 계신가요?</div></div><div class="slot"><b>이미지 · 표지 연출컷</b>갓 개킨 흰 수건과 아이 옷이 쌓인 세탁실, 밝은 톤. 제품은 보이지 않게(상품은 아래 선언 밴드에서 처음 등장) / 매일 피부에 닿는 섬유를 먼저 보여 주는 역할</div></div></div>
+<div class="pad">
+<div class="blk"><span class="pct">30%</span><div class="why"><h2><span class="q">?</span>세탁을 했는데 왜 냄새와 자극이 남을까요?</h2><p class="ans">눈에 보이는 얼룩은 씻겨 나가도, 섬유의 미세한 틈새에는 찌든 오염과 함께 악취 원인 세균, 알레르기 유발 물질이 세탁 후에도 남아 있을 수 있습니다. 매일 피부에 닿는 옷이니 보이는 얼룩만 지워서는 충분하지 않습니다.</p><div class="cards"><div class="card"><div class="ico">아이콘<br>얼룩 8유형</div><b>성분이 다른 생활 얼룩</b><p>피지·땀, 전분, 지방, 과일·소스, 화장품. 성분이 다른 얼룩을 한 가지 세정 성분으로만 씻으면 일부는 섬유 틈새에 남아 누렇게 쌓입니다.</p></div><div class="card"><div class="ico">아이콘<br>쉰내 원인균</div><b>마른 뒤에도 올라오는 쉰내</b><p>빨래 쉰내의 원인은 섬유에 남은 모락셀라균입니다. 덜 마른 탓이 아니라, 남은 균이 땀에 젖을 때 다시 냄새를 만듭니다.</p></div><div class="card"><div class="ico">아이콘<br>알레르기 유발 물질</div><b>털어내도 남는 알레르기 유발 물질</b><p>진드기 사체·배설물, 미세먼지, 꽃가루, 반려동물 털은 털어내도 섬유 틈새에 남아 장시간 피부에 닿으면 자극의 원인이 될 수 있습니다.</p></div></div></div></div>
+<div class="blk"><span class="pct">14%</span><div class="stat"><div><div class="v">84<small>%</small><sup>1)</sup></div><div class="l">가정용 세탁기로 침구·옷을 세탁했을 때 줄어든 진드기 알레르기 유발 물질. 나머지는 섬유에 남았습니다</div></div><div><div class="v">18<small>개월</small><sup>2)</sup></div><div class="l">진드기를 없앤 뒤에도 알레르기 유발 물질 농도가 뚜렷이 줄지 않은 보관 기간</div></div><div><div class="v">8<small>가지</small></div><div class="l">생활 얼룩의 성분 유형. 피지·땀, 고기·우유, 전분, 지방, 과일·소스, 화장품, 옷감 손상, 컬러</div></div></div></div>
+<div class="slot grow" style="--h:6cqw"><b>이미지 · 1면 중단 와이드 (여백 흡수 자리)</b>세탁기에서 꺼낸 빨래를 건조대에 너는 장면, 밝은 톤 / 글이 줄면 이 자리가 늘어나 공란을 흡수</div>
+<div class="blk"><span class="pct">26%</span><p class="bridge">얼룩은 성분별로 나눠 분해하고, 쉰내는 향으로 덮는 대신 원인균부터 세척하고, 피부에 닿는 섬유에 남는 알레르기 유발 물질까지 씻어내는 세제가 필요합니다. 세스코 생활과학 연구소가 그 셋을 각각 시험한 세탁세제를 제안합니다.</p><div class="band"><div><div class="pre">오염 유형별 8종 효소로 찌든 오염을 분해하고, 악취 원인균과 알레르기 유발 물질까지 씻어내는</div><div class="name">세스코 마이랩 세탁세제 프리미엄</div><div class="spec">농축 액체 · 그린 플로럴향 ㅣ 2 L · 리필 1.7 L ㅣ 특장점·가격은 뒷면</div></div><div class="slot"><b>제품 누끼</b>본품 2 L 정면 + 투명 계량캡 / 상품이 처음 등장하는 자리</div></div></div>
+<div class="fine fnote"><p>1) 가정용 세탁기로 침구·의류를 세탁한 연구에서 진드기 알레르겐 평균 84% 감소. 출처: Arlian L.G. 외, J Allergy Clin Immunol, 2003. <span class="need">[확인 필요: 원문 수치]</span> 2) 진드기를 없앤 카펫 시료를 18개월 보관해도 알레르겐 농도는 뚜렷하게 줄지 않음. 출처: de Boer R. 외, Clin Exp Allergy, 1995.</p></div>
+</div>
+<footer class="pf"><div class="logo">CESCO<small>MYLAB 세스코 마이랩</small></div><div class="tel">1588-1119<small>세스코몰 www.cescomall.co.kr</small></div></footer></article>
+
+<!-- ───── 뒷면 ───── -->
+<article class="page back"><span class="side">뒷면 · BACK</span><span class="fill">측정 중</span>
+<div class="pad">
+<div class="p2head"><div class="k">세스코 마이랩 세탁세제 프리미엄</div><h2>얼룩·냄새·알레르기 유발 물질,<br>세 가지를 따로 시험했습니다</h2></div>
+<div class="blk"><span class="pct">40%</span><div class="adv"><div class="alist">
+<div class="a"><div class="no">01</div><div><h3>효소 8종 처방 · 세척력 12%<sup>3)</sup> 향상</h3><p>기존 세탁세제 1 L 대비. 얼룩 유형마다 프로테아제 2종·셀룰라아제 2종·아밀라아제·리파아제·펙티나아제·만나나아제를 나눠 처방했습니다.</p></div></div>
+<div class="a"><div class="no">02</div><div><h3>빨래 쉰내 원인균 모락셀라균 97%<sup>4)</sup> 세척</h3><p>쉰내를 향으로 덮지 않고 원인균부터 씻어냅니다. 생균수 감소율 테스트 완료.</p></div></div>
+<div class="a"><div class="no">03</div><div><h3>아세트산 99%<sup>5)</sup> 탈취 · 소취 성분 함유</h3><p>땀 냄새 원인 성분을 탈취하고, 소취 성분 베타사이클로덱스트린이 남는 냄새를 붙잡아 헹궈 냅니다. 세탁세제·탈취제 품목 신고 제품.</p></div></div>
+<div class="a"><div class="no">04</div><div><h3>알레르기 유발 물질 4종<sup>6)</sup> 세척 테스트 완료</h3><p>앞면의 네 가지를 항목별로 각각 테스트했습니다. 이불·베개 커버, 속옷, 아이 옷 세탁에 맞습니다.</p></div></div>
+<div class="a"><div class="no">05</div><div><h3>알러젠 프리향 · 더마테스트 엑설런트 · 대한아토피협회 추천</h3><p>유해 성분 37종<sup>7)</sup> 불검출(알레르기 유발 물질 26종 · 파라벤류 6종 · 가습기 살균제 이슈 성분 4종 · 형광증백제), 인공 색소 무첨가.</p></div></div>
+</div><div class="col"><div class="slot" style="--h:9cqw"><b>제품 누끼</b>본품 2 L 정면</div><div class="slot" style="--h:7cqw"><b>제품 누끼</b>리필 1.7 L 파우치</div><div class="slot grow" style="--h:3cqw"><b>아이콘 5 (여백 흡수 자리)</b>효소 / 원인균 / 냄새 분자 / 알레르기 유발 물질 4종 / 인증 마크 · 특장점 01~05와 1:1</div></div></div></div>
+<div class="blk"><span class="pct">18%</span><table class="t spec"><tr><td>품목 · 제형</td><td>세탁세제, 탈취제(신고번호 CB26-03-0012) · 액체형 · 원액(중성) · 농축 · 그린 플로럴향</td><td>표준사용량</td><td>물 5 L에 세제 7 mL (투명 계량캡)</td></tr><tr><td>용량</td><td>본품 2 L · 리필 1.7 L <span class="need">[확인 필요: 고시 1.75 L]</span></td><td>유통기한</td><td>제조일로부터 24개월</td></tr></table>
+<table class="t" style="margin-top:1cqw"><thead><tr><th class="l">런칭 프로모션 구성 · ~12월 31일 · 전 채널 · 무료배송</th><th>정상가</th><th>프로모션가</th></tr></thead><tbody><tr><td class="l">세탁세제 프리미엄 2 L × 2</td><td><s>37,400원</s></td><td class="pr">19,700원</td></tr><tr><td class="l">세탁세제 프리미엄 2 L + 리필 1.7 L</td><td><s>33,800원</s></td><td class="pr">17,500원</td></tr><tr><td class="l">세탁세제 프리미엄 2 L + 리필 1.7 L + 이염방지시트 40매</td><td><s>46,800원</s></td><td class="pr">23,800원</td></tr></tbody></table><p class="fine" style="margin-top:.5cqw">* 2026.10.13~12.31 런칭 프로모션 가격(세스코몰 기준). 리필 2개(15,300원)·3개·박스 구성과 온라인회원가·멤버스가는 세스코몰 참조. <span class="need">[확인 필요: 단품 1개 판매가]</span></p></div>
+<div class="blk"><span class="pct">16%</span><div class="proof"><div class="cert">세스코 마이랩 세탁세제 프리미엄 시험 결과 <span class="memo">성적서 이미지 자리 없이 각주 패널로(10/28 결정)</span></div><div class="fine"><p>3) 세스코 마이랩 세탁세제 프리미엄: 세스코 마이랩 세탁세제 1 L 대비 생활 찌든때 세척력 12% 향상(자사 테스트).</p><p>4) 세스코 마이랩 세탁세제 프리미엄: 모락셀라균 97% 세척(생균수 감소율 테스트 완료).</p><p>5) 세스코 마이랩 세탁세제 프리미엄: 땀 냄새 원인 성분 아세트산 99% 초과 탈취 테스트 완료.</p><p>6) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료.</p><p>7) 기후에너지환경부 고시 알레르기 반응 가능 물질 26종(아밀신남알, 벤질알코올, 신나밀알코올, 시트랄, 유제놀, 하이드록시시트로넬알, 이소유제놀, 아밀신나밀알코올, 벤질살리실레이트, 신남알, 쿠마린, 제라니올, 아니실 알코올, 벤질신나메이트, 파네솔, 릴리알, 리날로올, 벤조산벤질, 시트로넬롤, 헥실신남알, 리모넨, 메칠2-옥티노에이트, 알파-이소메칠이오논, 리랄, 아트라놀, 클로로아트라놀) · 파라벤류 방부제 6종(메틸파라벤, 에틸파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤) · 가습기 살균제 이슈 성분 4종(MIT, CMIT, DDAC, BKC) · 형광증백제 불검출 테스트 완료.</p><p>※ 사용 환경에 따라 결과가 달라질 수 있음.</p></div></div></div>
+<div class="blk"><span class="pct">16%</span><div class="cross"><div><span class="lbl">함께 쓰면 좋은 제품</span><h4>세스코 마이랩 이염방지시트 40매</h4><p>세탁기에 함께 넣기만 하면 이염률 91%<sup>8)</sup> 감소 확인. 염료·형광증백제·미세먼지를 흡착하는 비스코스 100% 식물성 시트.</p><p class="fine" style="margin-top:.4cqw">8) 세스코 마이랩 이염방지시트: 이염률 91% 감소 확인(이염 성능 테스트 완료). 사용 환경에 따라 결과가 달라질 수 있음.</p></div><div><span class="lbl">세탁 단계별 관리</span><h4>세탁조클리너 · <span class="gray">섬유유연제 프리미엄(12월 출시)</span></h4><p>세탁조 묵은 때와 세제 찌꺼기는 세탁조클리너로 1개월 루틴 관리.</p><div class="slot" style="--h:3cqw"><b>제품 누끼 3</b>이염방지시트 · 세탁조클리너 · 섬유유연제 프리미엄(출시 후)</div></div></div></div>
+<div class="blk"><span class="pct">10%</span><div class="cta" style="padding:.9cqw 2cqw;grid-template-columns:1fr 6cqw"><div><h5>세스코몰 www.cescomall.co.kr<small>고객센터 1588-1119 · 세트 구성·사용량은 담당 서비스 컨설턴트에게</small></h5></div><div class="qr" style="width:6cqw;height:6cqw">QR<br>(선택)</div></div></div>
+</div>
+<footer class="pf full"><div class="logo">CESCO<small>MYLAB 세스코 마이랩</small></div><div class="addr">주소 서울시 강동구 상일로10길 46(상일동) 세스코 타워센터 (우)05288 ㅣ 대표전화 1588-1119 ㅣ Fax 02-488-1720<br>고객센터 월~금 08:30~18:00 / 토 09:00~13:00 / 일·공휴일 휴무 ㅣ www.cesco.co.kr / www.cescomall.co.kr<br>©MYLAB_LDP_v.1_2026.11 CESCO Co.,Ltd All rights reserved. <span class="need">[확인 필요: © 코드·발행 월]</span></div><div class="card">명함스티커 부착</div></footer></article>
+</main>
+</div>
+<script>
+(function(){
+ var body=document.body;
+ document.querySelectorAll('.bar button[data-view]').forEach(function(b){b.addEventListener('click',function(){
+  body.dataset.view=b.dataset.view;document.querySelectorAll('.bar button[data-view]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});measure();});});
+ var mt=document.getElementById('memo-toggle');mt.addEventListener('click',function(){body.classList.toggle('hide-memo');mt.setAttribute('aria-pressed',body.classList.contains('hide-memo')?'true':'false');});
+ document.getElementById('print').addEventListener('click',function(){window.print();});
+ function measure(){document.querySelectorAll('.page').forEach(function(p){
+  var badge=p.querySelector('.fill');if(!badge)return;
+  var over=p.scrollHeight-p.clientHeight;var mm=Math.round(over*297/p.clientHeight);
+  var grow=0;p.querySelectorAll('.slot.grow').forEach(function(s){grow+=s.getBoundingClientRect().height;});
+  var pct=Math.round(grow/p.clientHeight*100);
+  if(over>2){badge.textContent='지면 초과 약 '+mm+'mm · 본문을 줄이세요';badge.classList.add('bad');}
+  else{badge.textContent='지면 OK · 이미지 자리가 여백 '+pct+'% 흡수';badge.classList.remove('bad');}
+ });}
+ window.addEventListener('resize',measure);window.addEventListener('load',measure);measure();
+})();
+</script>
+</body>
+</html>

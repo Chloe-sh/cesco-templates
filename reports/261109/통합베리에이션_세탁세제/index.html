@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>원천소스 1개 → 5종 · 세스코 마이랩 세탁세제 프리미엄 통합 베리에이션</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--amber:#b35c00;--amber-soft:#fff4e5;--green:#1b7f3b;--green-soft:#e8f5ec;--navy:#0A3568}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all;overflow-x:hidden}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px}
+.kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+h2{font-size:20px;margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px}
+h2 .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+h3{font-size:16px;margin:24px 0 8px;font-weight:700;color:var(--blue)}
+p{margin:0 0 10px}
+.lead{font-size:16px;color:var(--ink2)}
+ul,ol{margin:0 0 10px;padding-left:22px}
+li{margin:3px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;font-size:13px;color:var(--ink2)}
+td.k{background:var(--soft);font-weight:700;white-space:nowrap;width:24%}
+.need{color:var(--amber);font-weight:700;background:var(--amber-soft);border-radius:3px;padding:0 4px}
+.gray{color:var(--ink3)}
+.small{font-size:13px;color:var(--ink2)}
+/* 한눈에 보기 */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin:16px 0 6px}
+.flow .n{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--soft);font-size:13.5px}
+.flow .n b{display:block;font-size:14.5px;color:var(--navy);margin-bottom:4px}
+.flow .arr{color:var(--ink3);font-size:20px;text-align:center}
+.glance{border:1px solid var(--line);border-left:5px solid var(--navy);border-radius:8px;padding:18px 20px;margin:14px 0;background:#fff}
+.glance .one{font-size:19px;font-weight:800;line-height:1.45;color:var(--navy);margin-bottom:12px}
+.usp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 12px}
+.usp div{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--soft)}
+.usp div b{display:block;color:var(--navy);font-size:14.5px;margin-bottom:4px}
+.usp div b::before{content:"☑ ";color:var(--blue)}
+.usp div p{font-size:13.5px;color:var(--ink2);margin:0}
+.kv{display:grid;grid-template-columns:90px 1fr;gap:6px 12px;font-size:14px}
+.kv dt{font-weight:800;color:var(--ink2)}
+.kv dd{margin:0}
+/* 5종 카드 */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 6px}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.card .no{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.04em}
+.card .t{font-weight:800;font-size:16px}
+.card .t a{color:var(--ink);text-decoration:none}
+.card .t a:hover{color:var(--blue)}
+.card .d{font-size:13.5px;color:var(--ink2)}
+.card .tpl{font-size:12.5px;color:var(--ink3)}
+.card .open{margin-top:auto;font-size:13px;font-weight:700;color:var(--blue);text-decoration:none}
+.st{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:4px;background:#f1f1f1;color:var(--ink2)}
+.box{border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:6px;background:var(--soft);padding:14px 18px;margin:14px 0}
+.box b.h{display:block;margin-bottom:6px;color:var(--navy)}
+.box p{margin:0 0 6px;font-size:14px}
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
+@media (max-width:720px){.wrap{padding:28px 16px 60px}h1{font-size:23px}.flow{grid-template-columns:1fr}.flow .arr{transform:rotate(90deg)}.usp,.cards{grid-template-columns:1fr}table{font-size:12.5px;table-layout:fixed}th,td{padding:6px 5px;word-break:break-word}td.k{width:32%;white-space:normal}.cmp td.k{width:34%}.kv{grid-template-columns:76px 1fr}}
+@media print{.wrap{padding:0;max-width:none}h2{break-after:avoid}table,.box,.card{break-inside:avoid}a{color:inherit;text-decoration:none}}
+</style></head>
+<body><div class="wrap">
+<header class="top"><div class="kicker">세스코 콘텐츠 템플릿 · 시하 · 11월 말 보고용 통합 베리에이션 샘플</div><h1>원천소스 1개 → 콘텐츠 5종<br><span style="font-size:20px;color:var(--ink2);font-weight:700">세스코 마이랩 세탁세제 프리미엄</span></h1>
+<div class="meta"><span><b>기준</b> 11/3 주간 미팅 결정 · 11/11 보고 자료 「11월 말 보고 준비」</span><span><b>작성</b> 2026-11-07 (금)</span><span><b>규칙</b> 원천소스 7개 밖의 사실·수치는 만들지 않음 · 주황 [확인 필요] · 회색 = 원천소스에 없는 제안</span></div></header>
+
+<p class="lead">같은 원천소스(POD·기획안·기존 상세페이지·수정요청표·리플릿 배포본·프로모션 가격·11월 카드뉴스)로 공통 메시지 시트 한 장을 먼저 만들고, 그 시트 하나로 상세페이지·리플릿·카드뉴스·라이프케어 매거진·컨설팅 포인트 5종을 차례로 만들었습니다. 다섯 파일의 메시지·사실·수치·상품명은 같고, 채널 템플릿에 따라 자리와 분량만 다릅니다.</p>
+
+<div class="flow"><div class="n"><b>원천소스 7개</b>POD · 기획안 · 기존 상세페이지 · 수정요청표 · 리플릿 배포본 · 프로모션 가격 · 11월 카드뉴스</div><div class="arr">→</div><div class="n"><b>공통 메시지 시트 1장</b>핵심 메시지 1줄 · USP 3 · 근거 수치 8 · 타깃 3 · 가격 · 연계 상품</div><div class="arr">→</div><div class="n"><b>채널 5종</b>상세페이지 · 리플릿 · 카드뉴스 2안 · 매거진 · 컨설팅 포인트</div></div>
+
+<h2><span class="num">00</span>한눈에 보기 · 공통 메시지 시트 요약</h2>
+<div class="glance">
+<div class="one">빨아도 옷에 남는 것이 있습니다. 눈에 보이는 얼룩뿐 아니라 세탁 후에도 섬유에 남는 악취 원인균과 알레르기 유발 물질까지 씻어내는 세탁세제.</div>
+<div class="usp">
+<div><b>강력하게 기능하도록</b><p>오염 유형별 8종 효소, 기존 세탁세제 1 L 대비 세척력 12% 향상(자사 테스트)</p></div>
+<div><b>엄격한 기준으로</b><p>빨래 쉰내 원인균 모락셀라균 97% 세척, 땀 냄새 원인 성분 아세트산 99% 탈취, 소취 성분 함유</p></div>
+<div><b>까다로운 검증을 거쳐</b><p>알레르기 유발 물질 4종 세척 테스트 완료, 알러젠 프리향(26종 불검출), 더마테스트 엑설런트, 대한아토피협회 추천, 유해 성분 37종 불검출</p></div>
+</div>
+<dl class="kv">
+<dt>근거</dt><dd>세스코 마이랩 서식(시험기관 없이 제품명 + 대상 + 수치 + 결과): 세척력 12%(1 L 대비, 자사 테스트) · 모락셀라균 97% 세척(생균수 감소율 테스트 완료) · 아세트산 99% 초과 탈취 테스트 완료 · 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료 · 알레르기 반응 가능 물질 26종 · 파라벤류 6종 · 가습기 살균제 이슈 성분 4종 · 형광증백제 불검출 · 인공 색소 무첨가. 외부 연구(카드뉴스·매거진·리플릿 앞면): 세탁 후 진드기 알레르겐 평균 84% 감소(Arlian 2003) · 18개월 보관 후에도 농도 유지(de Boer 1995) · 소량도 증상(Maestrelli 2001) · 헹굼으로 감소(KAPARD)</dd>
+<dt>타깃</dt><dd>① 민감성 피부·아토피·알레르기 가구(아이를 키우거나 피부가 예민한 고객) ② 반려동물 보유 가구 ③ 실내 건조·덜 말린 냄새 고민 고객. 시즌 축: 11~12월 겨울 이불 꺼내는 가정</dd>
+<dt>상품</dt><dd>세스코 마이랩 세탁세제 프리미엄 · 본품 2 L · 리필 1.7 L · 액체형 · 원액(중성) · 농축 · 그린 플로럴향 · 표준사용량 물 5 L에 7 mL · 신고번호 CB26-03-0012(세탁세제, 탈취제) · 유통기한 24개월</dd>
+<dt>가격</dt><dd>런칭 프로모션 2026.10.13~12.31 전 채널 무료배송: 2 L × 2 37,400 → 19,700원 · 리필 1.7 L × 2 30,200 → 15,300원 · 2 L + 리필 1.7 L 33,800 → 17,500원 · 2 L + 리필 + 이염방지시트 46,800 → 23,800원</dd>
+<dt>연계</dt><dd>이염방지시트 40매(이염률 91% 감소 확인) · 세탁조클리너 · <span class="gray">섬유유연제 프리미엄(12월 출시 예정)</span></dd>
+<dt>CTA</dt><dd>세스코몰 www.cescomall.co.kr · 고객센터 1588-1119 · (매거진) 환경위생진단 신청하기</dd>
+<dt>톤</dt><dd>공통 브랜드 언어 원칙(d01): 근거 먼저 해법 다음, 수치에는 각주 1:1, 셀프 관리를 먼저 주고 한계를 선언한 뒤 제품으로, 질병 원인·치료 단정 없음, 비교 표현 없음, 세스코 마이랩은 시험기관·조건을 쓰지 않음</dd>
+</dl>
+</div>
+
+<h3>같은 메시지가 채널마다 어떻게 바뀌나</h3>
+<table>
+<thead><tr><th style="width:18%">채널</th><th>맨 앞에 오는 것 (헤드)</th><th>제품이 등장하는 자리</th><th>수치를 쓰는 방식</th></tr></thead><tbody>
+<tr><td class="k">상세페이지</td><td>고객 말풍선 4 → "매일 피부에 닿는 옷이니까, 보이는 얼룩만 지워서는 충분하지 않습니다"</td><td>② WHY CESCO에서 개발 이유로 첫 등장, ⑦ ☑ 챕터 3개에서 증명</td><td>8개 수치 전부, 섹션마다 각주 재기재</td></tr>
+<tr><td class="k">리플릿</td><td>"빨았는데도 옷에 남는 것이 있습니다" + 고객 말 3</td><td>앞면 선언 밴드(첫 등장 1회), 뒷면 특장점 5</td><td>앞면은 문제 근거 2개(84%·18개월), 뒷면은 제품 수치 각 1회</td></tr>
+<tr><td class="k">카드뉴스 (기본형)</td><td>"올해 초 빨아 넣은 겨울 이불에도 진드기 알레르기 유발 물질이 남아 있을 수 있습니다"</td><td>7·8장 Why CESCO 2장</td><td>겨울 이불 질문 사슬에 맞는 수치만(4종 테스트·26종 불검출), 12%·97%·99%는 미사용 소재로</td></tr>
+<tr><td class="k">카드뉴스 (체크리스트형)</td><td>"올해 초 빨아 넣은 겨울 이불, 바로 덮어도 괜찮을까?" → 한 일 ✓✓✓</td><td>6장 "비어 있던 한 칸, 이 세제가 채웁니다"</td><td>기본형과 같은 수치, 3·4장에서 1회씩</td></tr>
+<tr><td class="k">매거진</td><td>"빨아서 넣어 둔 겨울 이불에 진드기 알레르기 유발 물질이 남아 있다?" Q&amp;A 3</td><td>전환 블록("연구합니다") 뒤 03 Professional Solution STEP 1</td><td>Q&amp;A는 외부 연구 수치, 03은 제품 수치 배지 2 + CHECK POINT</td></tr>
+<tr><td class="k">컨설팅 포인트</td><td>"빨아도 옷에 남는 것이 있습니다. 얼룩, 쉰내 원인균, 알레르기 유발 물질 세 가지를 따로 시험했습니다"</td><td>고객이 고른 문제 하나의 POD만 먼저, 나머지는 리플릿 뒷면으로</td><td>로켓별로 수치 1~2개만, "테스트를 마쳤습니다"와 함께 말함</td></tr>
+</tbody></table>
+
+<h2><span class="num">01</span>콘텐츠 5종</h2>
+<div class="cards">
+<div class="card"><div class="no">01 · 세스코몰 상품 상세</div><div class="t"><a href="01_상세페이지.html">상세페이지</a></div><div class="d">기존 최신 상세페이지(260824)에 수정요청표 36건을 반영하고 각주를 마이랩 서식으로 바꾼 전체 지면. 표지 → WHY CESCO → 브랜드 → 제안문 → 3연 → 아이콘 6 → ☑ 챕터 3(POINT 리셋) → 성분 → 사용법·세탁량 가이드 → 라인업·연계 → FAQ 7 → 법정 블록.</div><div class="tpl">템플릿 03 마이랩 소비재형 · A. 3연 뼈대형 · 이미지 자리·제작 메모 토글</div><a class="open" href="01_상세페이지.html">열기 →</a></div>
+<div class="card"><div class="no">02 · 제품 리플릿 기본형</div><div class="t"><a href="02_리플릿.html">리플릿 (실물 디자인형 A4 2P)</a></div><div class="d">앞면 핵심(고객 말 3 → 문제 헤드 → 원인 카드 3 → 근거 수치 2 → 선언 밴드), 뒷면 세부(특장점 5 → 스펙·프로모션 가격 → 각주 패널 → 연계 → 상담 띠 → 4줄 푸터). 성적서 이미지 없이 각주 패널, 앞뒤 같은 문장 없음, 두 면 "지면 OK" 배지.</div><div class="tpl">d59 제품 리플릿 §5 실물 디자인형 · 디자이너 노트 7행 · 앞·뒷면 나란히 / 인쇄 미리보기</div><a class="open" href="02_리플릿.html">열기 →</a></div>
+<div class="card"><div class="no">03 · 카드뉴스 2안</div><div class="t"><a href="03_카드뉴스.html">카드뉴스 · 기본형 9장 + 체크리스트형 7장</a></div><div class="d">11월 카드뉴스 세탁세제 편(겨울 이불·진드기 사체·배설물) 소재. d60 §1 추천 순서로 고른 추가안은 체크리스트형(독자가 이미 한 이불 빨래를 인정하고 빈 칸 하나만 짚음). 대안: 오해 교정형 · 일상 상황형. 표지 대안 3, 게시 텍스트, 작업 메모 포함.</div><div class="tpl">d60 정보성 · d102 A/B/C 템플릿 10장 골격 · 유형 카탈로그 추천 블록</div><a class="open" href="03_카드뉴스.html">열기 →</a></div>
+<div class="card"><div class="no">04 · 라이프케어 매거진 3단형</div><div class="t"><a href="04_라이프케어매거진.html">라이프케어 매거진 · 빨아서 넣어 둔 겨울 이불 편</a></div><div class="d">생성 전 정리(콘텐츠 흐름 3문장 · 액션 아이템 5 · 참고 자료 표)를 먼저 두고, 커버(=목차) → 01 Q&amp;A 3 + 진단 CTA → 02 Self Solution TIP 4 → 전환 블록("연구합니다") → 03 Professional Solution 2카드 → 마이랩 클로징 → 공유 모듈.</div><div class="tpl">d81 라이프케어매거진 가정집 대상 · 3단형 · 서비스 컨설턴트 1:1 전달용</div><a class="open" href="04_라이프케어매거진.html">열기 →</a></div>
+<div class="card"><div class="no">05 · 컨설팅 포인트</div><div class="t"><a href="05_컨설팅포인트.html">컨설팅 포인트 (상담 말하기 포인트)</a></div><div class="d">마케팅 전략 기준 문서 8장 구조의 「04 컨설팅 포인트」 장 형식. 고객이 기억할 문장 → 4-1 로켓 6개 표(대상·니즈·첫 메시지·진단·체험·연계) → 로켓별 전할 메시지 → 말하는 순서 3단계 → 함께 제안 → 쓸 수 있는/없는 표현 → 현장에서 지킬 것 → 근거 메모.</div><div class="tpl">마케팅전략_3건_261102 「04 컨설팅 포인트」 · 로켓 표 모바일 스택</div><a class="open" href="05_컨설팅포인트.html">열기 →</a></div>
+<div class="card" style="background:var(--soft)"><div class="no">만든 순서</div><div class="t">원천소스 → 시트 → 5종 → 대조</div><div class="d">① 원천소스 7개를 읽고 수치·상품명·타깃·가격을 팩트 시트로 잠금 ② cesco-osmu-campaign 절차대로 공통 메시지 시트 작성 ③ 채널 스킬(cesco-detail-page · cesco-leaflet · cesco-cardnews · cesco-lifecare-magazine · cesco-writing)의 템플릿 슬롯에 맞춰 5종 생성 ④ 5종의 수치·상품명을 시트와 대조(아래 02) ⑤ 확인이 필요한 항목은 지어내지 않고 [확인 필요]로 남김.</div><div class="tpl">검수 하네스(cesco-review-harness) 3단 검수는 미실시 · 외부 사실 검증(퍼플렉시티) 미연동</div></div>
+</div>
+
+<h2><span class="num">02</span>5종 수치·상품명 대조</h2>
+<p class="small">공통 메시지 시트의 항목이 5종 어디에 쓰였는지 표시했습니다. ○ = 같은 수치·표기로 사용, – = 그 채널에서 의도적으로 미사용(사유는 각 파일 메모).</p>
+<table class="cmp">
+<thead><tr><th>항목</th><th>상세</th><th>리플릿</th><th>카드뉴스</th><th>매거진</th><th>컨설팅</th></tr></thead><tbody>
+<tr><td class="k">상품 정식명 세스코 마이랩 세탁세제 프리미엄</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
+<tr><td class="k">2 L · 리필 1.7 L</td><td>○</td><td>○</td><td>–</td><td>○</td><td>○</td></tr>
+<tr><td class="k">8종 효소 · 세척력 12%</td><td>○</td><td>○</td><td>8종만 (12% 미사용)</td><td>8종만</td><td>○</td></tr>
+<tr><td class="k">모락셀라균 97% 세척 · 아세트산 99% 탈취</td><td>○</td><td>○</td><td>– (질문 사슬 밖)</td><td>–</td><td>○</td></tr>
+<tr><td class="k">알레르기 유발 물질 4종 테스트</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
+<tr><td class="k">알러젠 프리향 · 26종 불검출 · 6종 · 4종 · 형광증백제 · 인공 색소</td><td>○</td><td>○ (37종)</td><td>○</td><td>○</td><td>○</td></tr>
+<tr><td class="k">더마테스트 엑설런트 · 대한아토피협회 추천</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
+<tr><td class="k">표준사용량 물 5 L에 7 mL</td><td>○</td><td>○</td><td>–</td><td>○</td><td>○</td></tr>
+<tr><td class="k">런칭 프로모션 가격(~12/31)</td><td>– (단품가 확인 필요)</td><td>○ 3구성</td><td>– (프로모션형 아님)</td><td>– (부속물로 제안)</td><td>○</td></tr>
+<tr><td class="k">외부 연구 84% · 18개월 · 소량 · 헹굼</td><td>–</td><td>84% · 18개월</td><td>○ 4건</td><td>○ 4건</td><td>84% · 18개월</td></tr>
+<tr><td class="k">이염방지시트 91%</td><td>○</td><td>○</td><td>–</td><td>○</td><td>○</td></tr>
+</tbody></table>
+
+<h2><span class="num">03</span>[확인 필요] 모음 · 13항목</h2>
+<p class="small">다섯 파일에 주황으로 남긴 항목을 중복 없이 모았습니다. 원천소스끼리 어긋나거나 원천소스에 없는 값은 지어내지 않고 남겼습니다. 항목이 확정되면 다섯 파일에 같은 값으로 한 번에 반영합니다.</p>
+<table>
+<thead><tr><th style="width:5%">#</th><th>항목</th><th style="width:34%">근거 · 현재 처리</th><th style="width:18%">영향 파일</th></tr></thead><tbody>
+<tr><td>1</td><td><span class="need">리필 용량 표기 1.75 L / 1.7 L 통일</span></td><td>고시·POD는 1.75 L, 세스코몰 상품명·리플릿 배포본·가격표는 1.7 L. 5종은 1.7 L로 두고 법정 블록만 고시대로 1.75 L</td><td>상세 · 리플릿 · 매거진 · 컨설팅</td></tr>
+<tr><td>2</td><td><span class="need">단품 1개 판매가</span></td><td>프로모션 가격표(261001)에는 2개 이상 구성만 있음. 상세페이지 제품 정보 판매가 공란</td><td>상세 · 리플릿 · 컨설팅</td></tr>
+<tr><td>3</td><td><span class="need">'알러젠 프리향' / '알레르겐' 표기 통일</span> (수정요청표 29번)</td><td>향 이름은 리플릿 배포본대로 '알러젠 프리향', 물질은 '알레르기 유발 물질'로 통일해 둠. 카드뉴스 외부 연구 인용문만 '알레르겐' 유지</td><td>5종 전체</td></tr>
+<tr><td>4</td><td><span class="need">반려동물 '털·비듬' 중 비듬 근거</span> (수정요청표 36번)</td><td>11/5 카드뉴스 전달본에 '비듬' 포함. 각주 시험은 '반려동물 털 제거 테스트'만 있어 5종에서 제외</td><td>카드뉴스 · 상세 · 컨설팅</td></tr>
+<tr><td>5</td><td><span class="need">모락셀라균 97% 표현 통일</span> (세척 / 제거 / 감소율, 수정요청표 34번)</td><td>리플릿 배포본 "97% 세척(생균수 감소율 테스트 완료)"으로 통일. 상세페이지 그래프 '제거'도 '세척'으로</td><td>상세 · 리플릿</td></tr>
+<tr><td>6</td><td><span class="need">대한아토피협회 표기</span></td><td>POD '추천품 인증 마크' / 리플릿 배포본 '추천 우수 등급'. 5종은 '대한아토피협회 추천'으로 둠</td><td>5종 전체</td></tr>
+<tr><td>7</td><td><span class="need">컨셉명 노출 여부</span> ('마이크로 딥클린' POD / '하이제닉 클린' 상품기획서 가칭)</td><td>5종 모두 미노출. 확정되면 상세 ② WHY CESCO 뒤 컨셉 밴드 1회</td><td>상세 · 컨설팅</td></tr>
+<tr><td>8</td><td><span class="need">외부 연구 인용 4건 원문 수치 재확인</span> (Arlian 2003 · de Boer 1995 · Maestrelli 2001 · KAPARD 가이드라인)</td><td>11/5 전달본 승계. 검수 하네스 2단(퍼플렉시티) 미실시라 발행 전 원문 확인 필요</td><td>카드뉴스 · 매거진 · 리플릿 앞면 · 컨설팅</td></tr>
+<tr><td>9</td><td><span class="need">리플릿 © 코드 · 발행 월 · 판형</span></td><td>배포본 코드 MYLAB_PRM_V.1_2026.10은 3-STEP 통합 리플릿 것. 제품 리플릿 신규 코드 필요. 판형 A4 2P 낱장 기본, 접지 여부</td><td>리플릿</td></tr>
+<tr><td>10</td><td><span class="need">세탁량 가이드 수치</span> (일반 40/70/100/130 ml · 드럼 30/40/70/100 ml)</td><td>기획안(260907) 수치. 라벨·패키지 표기와 같은지</td><td>상세</td></tr>
+<tr><td>11</td><td><span class="need">피지·땀 얼룩 성분 서술</span> (수정요청표 35번)</td><td>기존 상세 "피지와 땀은 단백질" 문장은 연구소 확인 전이라 '피지·땀 얼룩은 프로테아제 1제 담당'까지만</td><td>상세</td></tr>
+<tr><td>12</td><td><span class="need">리필·1 L 라인의 알러젠 프리향·8종 효소 적용 여부</span></td><td>상세 ⑪ 라인업 공통 배지 확정용</td><td>상세</td></tr>
+<tr><td>13</td><td><span class="need">매거진 호수 · 세탁조클리너 가격</span></td><td>매거진 vol 번호는 발행 순서 확정 후. 세탁조클리너 가격은 원천소스에 없음</td><td>매거진 · 컨설팅</td></tr>
+</tbody></table>
+
+<h3>원천소스에 없는 제안 (회색으로 표시한 것)</h3>
+<ul class="small">
+<li>컨설팅 포인트의 로켓 「사업장 계약 고객 자택」과 매트리스케어 연계, 상세페이지·리플릿의 섬유유연제 프리미엄 카드(12월 출시 예정분)</li>
+<li>매거진 Q&amp;A 마감 CTA를 코퍼스 고정 문구(환경위생진단 신청하기)로 둔 것, 프로모션 가격을 매거진 부속물로 돌린 것, 부속물 구성(11월 카드뉴스 · vol 01 커버 · 세탁관리 솔루션 리플릿)</li>
+<li>카드뉴스 표지 대안 3개 중 수치 선행형, 2안 체크리스트형의 체크 항목 문구(원천소스 셀프팁 3항을 '이미 한 일'로 바꾼 것)</li>
+</ul>
+
+<h2><span class="num">04</span>사용한 원천소스 (읽기 전용 · 저장소에 복사하지 않음)</h2>
+<table>
+<thead><tr><th>파일</th><th>이 작업에서 쓴 것</th></tr></thead><tbody>
+<tr><td>상세페이지·솔루션페이지 / 260810_받음_김정민_세탁세제 pod_상세페이지 제작 요청용_시하전달.xlsx</td><td>POD 기준 자료: 제안문, 개발 배경·타깃 3, 핵심 포인트, 3연(강력·엄격·까다로운) 수치 전부, 표시사항·주의사항·응급처치, 상품기획서(가칭·타깃·리텐션 프로모션)</td></tr>
+<tr><td>상세페이지·솔루션페이지 / 260907_받음_시하기획_세탁세제 상세페이지 기획안_디자인작업요청서_수정본_SiHAW_260907.xlsx</td><td>세탁량 가이드 표, 상품고시정보</td></tr>
+<tr><td>상세페이지·솔루션페이지 / 260824_받음_시하기획_마이랩_세탁세제_프리미엄_상세페이지_FAQ_추가_260824.html</td><td>기존 최신 상세페이지 본문·FAQ 7문항·섹션 구성</td></tr>
+<tr><td>상세페이지·솔루션페이지 / 261012_받음_시하 W. 임다해_세탁세제프리미엄_이염방지시트_상세페이지_수정요청표_SiHAW_261012.xlsx</td><td>세스코 수정 요청 36건(오탈자·띄어쓰기·표기 통일·내용 확인) 반영, 확인 항목 3건은 [확인 필요]로</td></tr>
+<tr><td>리플릿·POP / 261103_받음_김정민_261030_마이랩 세탁관리 솔루션 리플렛_2p_[배포용].pdf</td><td>세스코 최종 배포본: 각주 1)~8) 문안(97% 세척·생균수 감소율, 26종 물질명 전문, 37종 불검출), 3-STEP 헤드, 이염방지시트·섬유유연제 문안, 푸터</td></tr>
+<tr><td>리플릿·POP / 261001_받음_김정민_세탁세제, 이염방지시트 프로모션 가격.xlsx</td><td>런칭 프로모션 10/13~12/31 전 채널 무료배송, 10개 구성의 정상가·온라인회원가·멤버스가·프로모션가</td></tr>
+<tr><td>카드뉴스 / 261105_보냄_장재혁_261105_SiHAW_마케팅포털_카드뉴스_세탁세제.pptx</td><td>11월 카드뉴스: 겨울 이불 시즌, 외부 연구 인용 4건, 셀프팁 3, Why CESCO 2장 문안, 표지·ALT안, 시하 표기 메모('빨다'·'올해 초')</td></tr>
+</tbody></table>
+<p class="small">규칙·템플릿: 마스터 템플릿 index.html(d01 공통 브랜드 언어 원칙 · d05 마이랩 소비재형 · d59 제품 리플릿 · d60 카드뉴스 정보성 · d81 라이프케어매거진 가정집 · d102 A/B/C 초안 생성 템플릿), reports/261102/마케팅전략_3건_261102.html(8장 구조 · 04 컨설팅 포인트), cesco-skills(cesco-osmu-campaign · cesco-detail-page · cesco-leaflet 실물 디자인형 규격 · cesco-cardnews 유형 카탈로그·GEO 가이드 · cesco-lifecare-magazine 코퍼스 vol 01 · cesco-writing 서사구조).</p>
+
+<div class="foot">세스코 콘텐츠 템플릿 · 통합 베리에이션 샘플 · 2026-11-07 · 모든 파일은 Pretendard, 단일 HTML, 휴대폰 폭 가로 스크롤 없음 · 원천소스 파일은 저장소에 복사하지 않음</div>
+</div></body></html>

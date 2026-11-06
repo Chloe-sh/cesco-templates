@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>01 상세페이지 · 세스코 마이랩 세탁세제 프리미엄 (통합 베리에이션)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--amber:#b35c00;--amber-soft:#fff4e5;--green:#1b7f3b;--green-soft:#e8f5ec;--navy:#0A3568;--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all;overflow-x:hidden}
+.wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+.topnav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.topnav a{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font-size:12.5px;color:var(--ink2);text-decoration:none;font-weight:600}
+.topnav a.on{background:var(--navy);border-color:var(--navy);color:#fff}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:24px}
+.kicker{font-size:13px;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:26px;line-height:1.3;margin:0 0 8px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+p{margin:0 0 10px}
+.lead{font-size:15.5px;color:var(--ink2)}
+.need{color:var(--amber);font-weight:700;background:var(--amber-soft);border-radius:3px;padding:0 4px}
+.gray{color:var(--ink3)}
+.memo{display:block;background:var(--memo);color:var(--memo-ink);border-radius:4px;padding:6px 10px;font-size:12.5px;line-height:1.55;margin:8px 0}
+.memo b{color:var(--memo-ink)}
+body.hide-memo .memo,body.hide-memo .slot,body.hide-memo .pct{display:none}
+.tools{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+.tools button{font:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 12px;border-radius:16px;cursor:pointer}
+.tools button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.legend{font-size:12.5px;color:var(--ink2);margin-top:8px}
+.legend span{display:inline-block;margin-right:12px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin-right:4px}
+/* 상세페이지 지면 */
+.page{max-width:720px;margin:28px auto 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.sec{position:relative;padding:34px 28px;border-top:1px solid var(--line)}
+.sec:first-child{border-top:0}
+.sec .no{position:absolute;left:0;top:0;background:var(--navy);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:0 0 6px 0;letter-spacing:.04em}
+.sec .pct{position:absolute;right:10px;top:8px;font-size:11px;font-weight:800;color:var(--memo-ink);background:var(--memo);padding:1px 8px;border-radius:999px}
+.sec.navy{background:var(--navy);color:#fff}
+.sec.navy .no{background:#fff;color:var(--navy)}
+.sec.soft{background:var(--soft)}
+.sec.blue{background:var(--blue-soft)}
+.slot{background:var(--slot);border:2px dashed var(--slot-line);border-radius:8px;color:var(--ink3);font-size:12.5px;line-height:1.5;padding:12px 14px;margin:12px 0;min-height:60px}
+.slot b{display:block;color:var(--ink2);font-size:12.5px;margin-bottom:2px}
+.sec.navy .slot{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);color:#fff}
+.sec.navy .slot b{color:#fff}
+.sec h2{font-size:22px;line-height:1.3;margin:0 0 10px;font-weight:800;letter-spacing:-.01em}
+.sec h3{font-size:17px;margin:22px 0 8px;font-weight:800;color:var(--navy)}
+.sec.navy h3{color:#fff}
+.sec h4{font-size:15px;margin:16px 0 6px;font-weight:800}
+.eyebrow{font-size:12px;letter-spacing:.08em;font-weight:700;color:var(--blue);margin-bottom:6px;text-transform:uppercase}
+.sec.navy .eyebrow{color:#bcd5f5}
+.cover h2{font-size:30px}
+.cover .spec{font-size:14px;opacity:.9;margin-top:6px}
+.stamp{display:inline-block;border:1.5px solid currentColor;border-radius:999px;padding:3px 12px;font-size:11px;letter-spacing:.06em;font-weight:700;margin-top:12px}
+.bubbles{display:flex;flex-direction:column;gap:8px;margin:12px 0 18px}
+.bubble{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px 14px 14px 3px;padding:8px 14px;font-size:14px;max-width:88%}
+.bubble:nth-child(even){align-self:flex-end;border-radius:14px 14px 3px 14px;background:var(--blue-soft)}
+.state{font-size:14.5px;line-height:1.75;border-left:4px solid var(--blue);padding:8px 14px;background:#fff;margin:10px 0}
+.sec.navy .state{border-color:#fff;background:rgba(255,255,255,.08)}
+.three{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+.chk{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff}
+.chk .t{font-weight:800;color:var(--navy);font-size:15px}
+.chk .t::before{content:"☑ ";color:var(--blue)}
+.chk p{font-size:14px;margin:4px 0 0;color:var(--ink2)}
+.icons{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.ico{border:1px solid var(--line);border-radius:8px;padding:12px 8px;text-align:center;background:#fff}
+.ico .v{font-size:22px;font-weight:900;color:var(--blue);line-height:1.1}
+.ico .l{font-size:12.5px;color:var(--ink2);margin-top:4px;line-height:1.4}
+.chap{margin-top:8px}
+.chap .lead2{font-size:16px;font-weight:700;line-height:1.5;margin:6px 0 10px}
+.q{font-size:15.5px;font-weight:800;margin:14px 0 4px}
+.q::before{content:"Q ";color:var(--blue)}
+.lab{border-left:4px solid var(--navy);background:var(--soft);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14.5px;margin:6px 0 12px}
+.lab::before{content:"세스코 생활과학 연구소";display:block;font-size:11px;letter-spacing:.06em;color:var(--navy);font-weight:800;margin-bottom:3px}
+.point{display:grid;grid-template-columns:64px 1fr;gap:10px;margin:12px 0}
+.point .pn{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.04em;padding-top:3px}
+.point .pb b{display:block;font-size:15px;margin-bottom:3px}
+.point .pb p{font-size:14px;color:var(--ink2);margin:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+.step{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;font-size:13.5px}
+.step b{display:block;color:var(--blue);font-size:12px;letter-spacing:.04em;margin-bottom:3px}
+.enz{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:10px 0}
+.enz div{border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:13px;background:#fff}
+.enz div b{color:var(--navy);margin-right:6px}
+.bar{display:grid;grid-template-columns:120px 1fr 48px;gap:8px;align-items:center;font-size:13.5px;margin:6px 0}
+.bar .b{height:14px;background:var(--line);border-radius:7px;overflow:hidden}
+.bar .b i{display:block;height:100%;background:var(--blue)}
+.big2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.big2 div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;text-align:center}
+.big2 .v{font-size:34px;font-weight:900;color:var(--blue);line-height:1}
+.big2 .l{font-size:13px;color:var(--ink2);margin-top:6px;line-height:1.4}
+.tests{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.tests div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13.5px;background:#fff}
+.tests div::before{content:"✔ ";color:var(--green)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.col{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff}
+.col h4{margin:0 0 8px;font-size:14px}
+.col.ok h4{color:var(--green)}.col.no h4{color:var(--amber)}
+.col ul{margin:0;padding-left:18px;font-size:13.5px}
+.col li{margin:3px 0}
+.fn{font-size:12px;color:var(--ink2);line-height:1.55;margin-top:14px;padding-top:10px;border-top:1px dashed var(--line)}
+.fn p{margin:0 0 3px}
+sup{font-size:.7em;color:var(--blue);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 6px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;font-size:12.5px;color:var(--ink2)}
+td.k{background:var(--soft);font-weight:700;white-space:nowrap;width:32%}
+.lineup{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.lu{border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;font-size:13px}
+.lu .n{font-size:11px;font-weight:900;color:var(--blue)}
+.lu b{display:block;font-size:14px;margin:2px 0 4px}
+.faq details{border-top:1px solid var(--line);padding:10px 0}
+.faq summary{font-weight:800;cursor:pointer;font-size:15px}
+.faq summary::marker{color:var(--blue)}
+.faq p{margin:8px 0 0;font-size:14.5px;color:var(--ink2)}
+.legal{font-size:12.5px;color:var(--ink2);line-height:1.6}
+.legal ol{padding-left:18px;margin:4px 0 10px}
+.cta{background:var(--navy);color:#fff;border-radius:8px;padding:14px 16px;margin-top:12px;font-size:14px}
+.cta b{font-size:16px}
+@media (max-width:720px){.wrap{padding:24px 14px 60px}h1{font-size:22px}.sec{padding:26px 16px}.cover h2{font-size:24px}.icons,.steps{grid-template-columns:repeat(2,1fr)}.tests,.two,.big2,.enz{grid-template-columns:1fr}.lineup{grid-template-columns:1fr}.point{grid-template-columns:1fr}.bar{grid-template-columns:90px 1fr 40px}td.k{width:34%;white-space:normal}table{table-layout:fixed}th,td{word-break:break-word}}
+@media print{.topnav,.tools{display:none}.page{border:0}}
+</style></head>
+<body>
+<div class="wrap">
+<nav class="topnav"><a href="index.html">허브</a><a class="on" href="01_상세페이지.html">01 상세페이지</a><a href="02_리플릿.html">02 리플릿</a><a href="03_카드뉴스.html">03 카드뉴스</a><a href="04_라이프케어매거진.html">04 라이프케어 매거진</a><a href="05_컨설팅포인트.html">05 컨설팅 포인트</a></nav>
+<header class="top"><div class="kicker">원천소스 1개 → 5종 · 통합 베리에이션 샘플 · 01</div><h1>세스코몰 상품 상세페이지 · 세스코 마이랩 세탁세제 프리미엄</h1>
+<div class="meta"><span><b>템플릿</b> 상품 상세페이지 03 마이랩 소비재형 (A. 3연 뼈대형 · POINT 리셋형 · WHY CESCO·FAQ 고정)</span><span><b>원천소스</b> POD(260810) · 기획안(260907) · 기존 상세페이지(260824) · 수정요청표(261012) · 프로모션 가격(261001)</span><span><b>작성</b> 2026-11-07</span></div>
+<p class="lead" style="margin-top:12px">기존 최신 상세페이지(260824 FAQ 추가본)의 문안을 바탕으로, 수정요청표(261012) 36건을 반영하고 각주를 세스코 마이랩 서식(제품명 + 대상 + 수치 + 결과, 시험기관 없음)으로 바꿨습니다. 메시지·수치·상품명은 허브의 공통 메시지 시트와 같습니다.</p>
+<div class="tools"><button id="memoBtn" aria-pressed="false">제작 메모·이미지 자리 숨기기</button></div>
+<div class="legend"><span><i style="background:var(--memo)"></i>노란 메모 = 제작 메모(지면 미노출)</span><span><i style="background:var(--slot);border:1px dashed var(--slot-line)"></i>회색 점선 = 이미지 자리</span><span><i style="background:var(--amber-soft)"></i>주황 = [확인 필요]</span><span><i style="background:#eee"></i>회색 글씨 = 원천소스에 없는 제안</span></div>
+</header>
+
+<div class="page">
+
+<!-- ① 표지 -->
+<section class="sec navy cover"><span class="no">① 표지</span><span class="pct">지면 10%</span>
+<div class="eyebrow">CESCO Mylab · 세스코 과학연구소를 내 손 안으로</div>
+<div class="eyebrow" style="margin-top:14px">PREMIUM LAUNDRY DETERGENT</div>
+<h2>세스코 마이랩<br>세탁세제 프리미엄</h2>
+<div class="spec">2 L · 리필 1.7 L ㅣ 액체형 · 원액(중성) ㅣ 그린 플로럴향</div>
+<div class="spec">오염 유형별 8종 효소 · 알러젠 프리향</div>
+<span class="stamp">CESCO SCIENCE LABORATORY · 생활과학 연구소</span>
+<div class="slot"><b>이미지 · 표지 연출컷</b>실험실 배경, 본품 정면 + 투명 계량캡 분리 배치. 세탁조클리너·이염방지시트 커버와 같은 톤. 인증 마크는 커버에 노출하지 않음</div>
+<p style="font-size:11.5px;opacity:.8;margin:8px 0 0">* 생활과학 연구소 마크는 법적 인증 마크나 업계 자율 마크가 아닌 제품 정보 인식을 위한 기업 자가 마크입니다</p>
+<span class="memo">리필 용량은 세스코몰 상품명·리플릿·가격표 표기(1.7 L)를 따랐습니다. <span class="need">[확인 필요: 고시·POD는 1.75 L, 몰·리플릿은 1.7 L, 하나로 통일]</span></span>
+</section>
+
+<!-- ② WHY CESCO -->
+<section class="sec"><span class="no">② WHY CESCO</span><span class="pct">지면 12%</span>
+<div class="eyebrow">Chapter 01 · 왜 세스코가 만들었을까요</div>
+<h2>세탁세제 프리미엄,<br>왜 필요할까요?</h2>
+<div class="bubbles">
+<div class="bubble">"목이랑 소매 누런 자국은 빨아도 그대로라 애벌빨래부터 해요."</div>
+<div class="bubble">"바싹 말렸는데 입으면 쉰내가 올라와서 다시 빨아요."</div>
+<div class="bubble">"빨았는데도 옷에서 반려동물 털이 계속 나와요."</div>
+<div class="bubble">"아이가 빤 옷 입고 가려워해서 세제부터 바꿔야 하나 고민이에요."</div>
+</div>
+<p><b>매일 피부에 닿는 옷이니까, 보이는 얼룩만 지워서는 충분하지 않습니다.</b></p>
+<p>섬유의 미세한 틈새에는 찌든 오염과 함께 악취 원인 세균, 알레르기 유발 물질이 세탁 후에도 남아 있을 수 있습니다.</p>
+<div class="lab">눈에 보이는 얼룩부터 보이지 않는 균, 알레르기 유발 물질까지 찝찝함 없이 깨끗하게 세탁된 옷을 입을 수 있도록, 오염 유형별로 분해하고, 원인균은 세척하고, 알레르기 유발 물질까지 씻어내는 세탁세제 프리미엄을 개발했습니다.</div>
+<div class="slot"><b>이미지 · 정돈된 세탁물 + 본품 정면컷</b>개켜 쌓은 흰 수건과 아이 옷 앞에 본품. 말풍선은 좌우 교차 + 상황 아이콘(셔츠 목깃 · 건조대 · 반려동물 · 아이), 인물 실사 없음</div>
+<div class="eyebrow" style="margin-top:22px">Chapter 02 · 무엇이 다를까요</div>
+<h3>세스코 세탁세제 프리미엄은 무엇이 다를까요?</h3>
+<p>단순히 때만 빼는 세제가 아닌, 오염은 유형별로 분해하고, 냄새는 원인균부터 세척하고, 피부에 닿는 섬유에 남을 수 있는 알레르기 유발 물질까지 고려해 처방과 향, 성분까지 깐깐하게 검증했습니다.</p>
+<ul style="font-size:14.5px;margin:0;padding-left:20px"><li>얼룩은 성분이 다르니 <b>오염 유형별 8종 효소</b>로 나눠 분해합니다</li><li>쉰내는 향으로 덮지 않고 <b>원인균을 세척</b>하고 땀 냄새 원인 성분은 탈취합니다</li><li>진드기 사체·배설물, 미세먼지, 꽃가루, 반려동물 털 <b>4종을 항목별로 세척 테스트</b>했습니다</li></ul>
+<span class="memo">차별점 리드 3개는 예고만, 증명은 ⑦ ☑ 챕터에서. 컨셉명(POD '마이크로 딥클린', 상품기획서 가칭 '하이제닉 클린')은 노출하지 않았습니다. <span class="need">[확인 필요: 컨셉명 확정·노출 여부]</span></span>
+</section>
+
+<!-- ③ 브랜드 스테이트먼트 -->
+<section class="sec soft"><span class="no">③ 브랜드 스테이트먼트</span><span class="pct">지면 5%</span>
+<div class="eyebrow">세스코가 만든 환경위생 솔루션 · CESCO Mylab</div>
+<div class="state">누구나. 집에서. 스스로.<br>전문가 수준의 위생을 누릴 수 있어야 한다는 세스코의 생각이 세스코 마이랩으로 탄생했습니다.<br>성분 하나까지 엄격한 기준으로 고르고, 누구나 전문가처럼 제품을 사용할 수 있도록 제품을 사용하는 올바른 방법까지 담았습니다.</div>
+<p style="font-size:14px;color:var(--ink2)">세스코 과학연구소의 노하우를 한 통에 통째로 담은 CESCO Mylab</p>
+<div class="slot"><b>이미지 · 마이랩 라인업 전체 컷</b>마이랩 공통 브랜드 이미지(세탁조클리너 상세와 같은 컷 재사용)</div>
+</section>
+
+<!-- ④ 연구소 제안문 -->
+<section class="sec"><span class="no">④ 연구소 제안문</span><span class="pct">지면 6%</span>
+<div class="eyebrow">CESCO SCIENCE LABORATORY · 생활과학 연구소</div>
+<div class="lab">민감한 피부에 직접 닿는 섬유의 세탁 과정까지 고려하여, 눈에 보이는 찌든 오염부터 보이지 않는 악취 원인 세균과 알레르기 유발 물질까지 말끔하게 세척해 주는 온 가족 세탁세제를 제안합니다.</div>
+<ul style="font-size:14.5px;margin:0;padding-left:20px"><li>오염 유형별 8종 효소 세척</li><li>빨래 쉰내 원인균 모락셀라균<sup>1)</sup> 97% 세척</li><li>알레르기 유발 물질 4종<sup>2)</sup> 세척 테스트 완료</li></ul>
+<div class="fn"><p>1) 세스코 마이랩 세탁세제 프리미엄: 모락셀라균 97% 세척(생균수 감소율 테스트 완료). 사용 환경에 따라 결과가 달라질 수 있음.</p><p>2) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료.</p></div>
+<span class="memo">POD 확정 제안문, 어미 수정 없음. 각주는 세스코 마이랩 서식(시험기관·조건 없이 제품명 + 대상 + 수치 + 결과). 수정요청표 18번 반영(악취 원인 세균 1) · 알레르기 유발 물질 2)).</span>
+</section>
+
+<!-- ⑤ 3연 체크박스 -->
+<section class="sec soft"><span class="no">⑤ 3연 체크박스</span><span class="pct">지면 6%</span>
+<div class="eyebrow">세스코 전문 연구원의 맞춤 위생 솔루션</div>
+<div class="three">
+<div class="chk"><div class="t">강력하게 기능하도록</div><p>오염 유형별 8종 효소로 기존 세탁세제 1 L 대비 세척력<sup>3)</sup> 12% 향상</p></div>
+<div class="chk"><div class="t">엄격한 기준으로</div><p>빨래 쉰내 원인균 모락셀라균<sup>1)</sup> 97% 세척, 땀 냄새 원인 성분 아세트산<sup>4)</sup> 99% 탈취</p></div>
+<div class="chk"><div class="t">까다로운 검증을 거쳐</div><p>알레르기 유발 물질 4종<sup>2)</sup> 세척 테스트 완료, 알러젠 프리향 · 더마테스트 엑설런트 · 대한아토피협회 추천</p></div>
+</div>
+<div class="fn"><p>1) 모락셀라균 97% 세척(생균수 감소율 테스트 완료) 2) 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료 3) 세스코 마이랩 세탁세제 1 L 대비 생활 찌든때 세척력 12% 향상(자사 테스트) 4) 아세트산 99% 초과 탈취 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음.</p></div>
+<span class="memo">정본 순서(엄격 → 까다로운 → 강력)와 달리 POD 기재 순서(강력 → 엄격 → 까다로운)를 유지했습니다. 세탁조클리너 실물 3행 표 형식. <span class="need">[확인 필요: 대한아토피협회 표기 — POD '추천품 인증 마크' / 리플릿 '추천 우수 등급']</span></span>
+</section>
+
+<!-- ⑥ 아이콘 6종 -->
+<section class="sec"><span class="no">⑥ 아이콘 6종 요약</span><span class="pct">지면 5%</span>
+<h3 style="margin-top:0">한눈에 보는 세탁세제 프리미엄</h3>
+<div class="icons">
+<div class="ico"><div class="v">8종</div><div class="l">오염 유형별 효소</div></div>
+<div class="ico"><div class="v">12%</div><div class="l">세척력 향상<sup>3)</sup></div></div>
+<div class="ico"><div class="v">97%</div><div class="l">모락셀라균 세척<sup>1)</sup></div></div>
+<div class="ico"><div class="v">99%</div><div class="l">아세트산 탈취<sup>4)</sup></div></div>
+<div class="ico"><div class="v">4종</div><div class="l">알레르기 유발 물질 세척 테스트<sup>2)</sup></div></div>
+<div class="ico"><div class="v">저자극</div><div class="l">더마테스트 엑설런트<br>대한아토피협회 추천</div></div>
+</div>
+<div class="fn"><p>1)~4) 각주는 ⑤와 같음. 사용 환경에 따라 결과가 달라질 수 있음.</p></div>
+</section>
+
+<!-- ⑦ ☑ 챕터 1 -->
+<section class="sec"><span class="no">⑦ ☑ 챕터 1 · 강력하게 기능하도록</span><span class="pct">지면 14%</span>
+<div class="chap">
+<div class="eyebrow">☑ 강력하게 기능하도록</div>
+<p class="lead2">오염 유형별로 나눈 8종 효소가 생활 속 얼룩을 각각 분해해 찌든 오염까지 깔끔하게 세척해 줍니다.</p>
+<div class="slot"><b>이미지 · 세제 투입구에 계량캡으로 붓는 손 컷</b>드럼세탁기 상단 투입구 클로즈업, 손과 투명 캡만</div>
+<div class="q">빨아도 그대로인 목·소매 누런 자국, 얼룩마다 성분이 다르다는 사실, 아시나요?</div>
+<p>피지·땀 얼룩, 밥풀 같은 전분, 튀김 자국 같은 지방은 성분이 다릅니다. 성분이 다른 얼룩을 한 가지 세정 성분으로만 씻으면 일부 오염은 섬유 틈새에 그대로 남아 누렇게 쌓입니다.</p>
+<div class="lab">얼룩 성분별로 분해 효소를 나눠 처방한 세탁세제 프리미엄을 개발했습니다.</div>
+<div class="point"><div class="pn">POINT 01</div><div class="pb"><b>얼룩을 여덟 유형으로 나누고, 유형마다 담당 효소를 배치했습니다</b><p>어떤 원리로 얼룩을 분해할까요?</p></div></div>
+<div class="steps">
+<div class="step"><b>STEP 1</b>얼룩을 여덟 유형으로 나눕니다. 피지·땀, 고기·우유, 전분, 지방, 과일·드레싱 소스, 화장품, 옷감 손상, 컬러 케어.</div>
+<div class="step"><b>STEP 2</b>유형마다 담당 효소를 배치합니다. 단백질은 프로테아제, 전분은 아밀라아제, 지방은 리파아제처럼 오염 성분을 분해하는 효소를 처방했습니다.</div>
+<div class="step"><b>STEP 3</b>분해된 오염이 세탁수로 씻겨 나갑니다. 효소가 잘게 분해한 오염은 계면활성제와 함께 섬유 틈새에서 떨어져 나와 배출됩니다.</div>
+</div>
+<h4>생활 속 8가지 얼룩, 담당 효소가 다릅니다</h4>
+<div class="enz">
+<div><b>피지·땀</b>프로테아제 1제</div><div><b>고기·우유</b>프로테아제 2제</div>
+<div><b>전분</b>아밀라아제</div><div><b>지방</b>리파아제</div>
+<div><b>과일·드레싱 소스</b>펙티나아제</div><div><b>화장품</b>만나나아제</div>
+<div><b>옷감 손상 케어</b>셀룰라아제 1제</div><div><b>컬러 케어</b>셀룰라아제 2제</div>
+</div>
+<div class="point"><div class="pn">POINT 02</div><div class="pb"><b>기존 세탁세제 대비 세척력 향상, 시험으로 검증했습니다</b><p>세스코 마이랩 세탁세제 1 L를 100으로 두었을 때의 상대값입니다.</p></div></div>
+<div class="bar"><span>세탁세제 1 L</span><div class="b"><i style="width:89%"></i></div><span>100</span></div>
+<div class="bar"><span><b>세탁세제 프리미엄</b></span><div class="b"><i style="width:100%"></i></div><span><b>112</b></span></div>
+<p style="font-size:14px;margin-top:6px">세척력 12% 향상 확인<sup>3)</sup></p>
+<div class="slot"><b>이미지 · 얼룩 3종 세척 전/후 천 비교</b>누런 소매 · 밥풀 · 기름 자국 천을 좌우로. 자사 촬영. 성적서 실물 컷은 넣지 않음</div>
+<div class="fn"><p>3) 세스코 마이랩 세탁세제 프리미엄: 세스코 마이랩 세탁세제 1 L 대비 생활 찌든때 세척력 12% 향상(자사 테스트, 1 L = 100). 사용 환경에 따라 결과가 달라질 수 있음.</p></div>
+<span class="memo">수정요청표 35번(피지·땀을 '단백질'로 서술한 문장)은 연구소 확인 전이라 '피지·땀 얼룩'으로만 썼습니다. <span class="need">[확인 필요: 피지·땀 얼룩 성분 서술, 연구소 확인]</span> 셀룰라아제 2제는 컬러 케어까지만 소구.</span>
+</div>
+</section>
+
+<!-- ⑦ ☑ 챕터 2 -->
+<section class="sec soft"><span class="no">⑦ ☑ 챕터 2 · 엄격한 기준으로</span><span class="pct">지면 13%</span>
+<div class="chap">
+<div class="eyebrow">☑ 엄격한 기준으로</div>
+<p class="lead2">빨래 쉰내의 원인균은 세척하고, 땀 냄새 원인 성분은 탈취해 향으로 덮지 않고 원인부터 씻어냅니다.</p>
+<div class="slot"><b>이미지 · 갓 세탁한 수건을 개는 손 컷</b>밝은 창가, 흰 수건 더미. 냄새 맡는 부정 연출은 피함</div>
+<div class="q">바싹 말렸는데도 올라오는 쉰내, 덜 마른 탓이 아니라는 사실, 아시나요?</div>
+<p>빨래 쉰내의 원인은 섬유에 남은 모락셀라균입니다. 세탁 후에도 섬유 틈새에 남아 있으면 마른 뒤에도, 입었을 때 땀에 젖으면 다시 냄새를 만듭니다. 향을 입히는 것만으로는 원인이 사라지지 않습니다.</p>
+<div class="steps" style="grid-template-columns:1fr 1fr">
+<div class="step"><b>세탁 후</b>섬유 틈새에 남은 모락셀라균. 일반 세탁으로는 섬유 깊숙이 남은 원인균이 다 씻기지 않을 수 있습니다.</div>
+<div class="step"><b>마르거나 땀에 젖을 때</b>다시 올라오는 쉰내·땀 냄새. 남은 균이 냄새를 만들어 향으로 덮어도 다시 올라옵니다.</div>
+</div>
+<div class="point"><div class="pn">POINT 01</div><div class="pb"><b>원인균 세척과 탈취, 시험으로 검증했습니다</b></div></div>
+<div class="big2"><div><div class="v">97%</div><div class="l">빨래 쉰내 원인균<br>모락셀라균 세척<sup>1)</sup></div></div><div><div class="v">99%</div><div class="l">땀 냄새 원인 성분<br>아세트산 탈취<sup>4)</sup></div></div></div>
+<div class="point"><div class="pn">POINT 02</div><div class="pb"><b>세탁 후 남는 냄새까지 소취 성분 베타사이클로덱스트린이 관리해 줍니다</b><p>냄새 성분을 붙잡아 주는 소취 성분을 함유했습니다. 악취 분자를 중심부에 결합시켜 가둔 뒤 물과 함께 깨끗하게 헹궈 내보냅니다. 세탁 단계에서 오염과 냄새 원인까지 함께 관리합니다.</p></div></div>
+<div class="slot"><b>이미지 · 냄새 성분을 감싸 붙잡는 컵 구조 도해</b>STEP 카드 형식 재사용</div>
+<p style="font-size:13px;color:var(--ink2)">※ 탈취 테스트 완료, 세탁세제·탈취제 품목 신고 ㅣ 신고번호 CB26-03-0012</p>
+<div class="fn"><p>1) 세스코 마이랩 세탁세제 프리미엄: 모락셀라균 97% 세척(생균수 감소율 테스트 완료). 사용 환경에 따라 결과가 달라질 수 있음.</p><p>4) 세스코 마이랩 세탁세제 프리미엄: 땀 냄새 원인 성분 아세트산 99% 초과 탈취 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음.</p></div>
+<span class="memo">수정요청표 1·2·3·4·5·32·34번 반영(결합시켜 · 깨끗하게 · 남아 있는 · 악취 성분 · 아세트산 · 각주 문구 통일 · 97% 표현). 97%는 리플릿 최종본 표현 "세척(생균수 감소율 테스트 완료)"으로 통일. <span class="need">[확인 필요: 그래프 '제거' 표기를 '세척'으로 통일]</span></span>
+</div>
+</section>
+
+<!-- ⑦ ☑ 챕터 3 -->
+<section class="sec"><span class="no">⑦ ☑ 챕터 3 · 까다로운 검증을 거쳐</span><span class="pct">지면 14%</span>
+<div class="chap">
+<div class="eyebrow">☑ 까다로운 검증을 거쳐</div>
+<p class="lead2">얼룩과 냄새뿐만 아니라 피부 자극을 일으킬 수 있는 알레르기 유발 물질까지 씻어냅니다.</p>
+<div class="slot"><b>이미지 · 세탁이 끝난 아이 옷·베개 커버를 개어 놓은 컷</b>이염방지시트 '눕힌컷'과 같은 조명·배경. 제품은 프레임 가장자리에</div>
+<div class="q">털어내고 빨아도, 섬유 틈새에 알레르기 유발 물질이 남는다는 사실, 아시나요?</div>
+<p>매일 얼굴을 대는 이불과 베개 커버, 매일 피부에 닿는 속옷과 아이 옷. 진드기 사체와 배설물, 미세먼지, 꽃가루, 반려동물 털은 털어내도 섬유 틈새에 눈에 보이지 않게 남아 있고, 장시간 피부에 닿으면 피부 자극의 원인이 될 수 있습니다.</p>
+<div class="point"><div class="pn">POINT 01</div><div class="pb"><b>알레르기 유발 물질 4종, 항목별로 세척 테스트했습니다<sup>2)</sup></b></div></div>
+<div class="tests"><div>진드기 사체·배설물 제거 테스트 완료</div><div>꽃가루 제거 테스트 완료</div><div>반려동물 털 제거 테스트 완료</div><div>미세먼지 세척 테스트 완료</div></div>
+<div class="slot"><b>이미지 · 이불 커버 세탁 생활 컷</b>베개 커버를 씌우는 손, 밝은 침구</div>
+<div class="point"><div class="pn">POINT 02</div><div class="pb"><b>향까지 알레르기 기준으로 검증한 알러젠 프리 그린 플로럴향</b><p>산뜻하고 깨끗한 잔향의 그린 플로럴 계열 향을 적용했습니다. 알레르기 유발 물질 26종<sup>5)</sup>이 불검출된 알러젠 프리향이라 향에 민감한 분과 아이 옷 세탁에도 부담이 적습니다. 인공 색소도 넣지 않았습니다.</p></div></div>
+<div class="point"><div class="pn">POINT 03</div><div class="pb"><b>더마테스트 엑설런트 · 대한아토피협회 추천</b><p>인체 피부 자극 시험 더마테스트 엑설런트 등급을 확보하고, 대한아토피협회 추천을 받았습니다.</p></div></div>
+<div class="slot" style="min-height:48px"><b>이미지 · 인증 마크 2종</b>공식 아트워크로 교체. 더마테스트는 등급명까지만</div>
+<div class="fn"><p>2) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음.</p><p>5) 기후에너지환경부 고시 알레르기 반응 가능 물질 26종(아밀신남알, 벤질알코올, 신나밀알코올, 시트랄, 유제놀, 하이드록시시트로넬알, 이소유제놀, 아밀신나밀알코올, 벤질살리실레이트, 신남알, 쿠마린, 제라니올, 아니실 알코올, 벤질신나메이트, 파네솔, 릴리알, 리날로올, 벤조산벤질, 시트로넬롤, 헥실신남알, 리모넨, 메칠2-옥티노에이트, 알파-이소메칠이오논, 리랄, 아트라놀, 클로로아트라놀) 불검출 테스트 완료.</p></div>
+<span class="memo">수정요청표 6·16·17·28·29·30·36번 반영. '반려동물 털·비듬'의 비듬은 각주 시험에 없어 제외. 질병 원인 단정("알레르기·아토피의 원인")은 "피부 자극의 원인이 될 수 있습니다"로 낮춤(이염방지시트 수정요청표 28번 심의 기준). <span class="need">[확인 필요: '알러젠 프리향'/'알레르겐' 표기 통일(수정요청표 29번) · 비듬 근거(36번)]</span></span>
+</div>
+</section>
+
+<!-- ⑨ 성분 설명서 -->
+<section class="sec soft"><span class="no">⑨ 성분 설명서</span><span class="pct">지면 6%</span>
+<h3 style="margin-top:0">세척력만큼 중요한 성분, 피부에 닿는 섬유에 유해 성분이 남지 않도록 깐깐하게 검증했습니다</h3>
+<div class="two">
+<div class="col ok"><h4>들어 있어요</h4><ul><li>오염 유형별 8종 효소</li><li>소취 성분 베타사이클로덱스트린</li><li>알러젠 프리 그린 플로럴향</li><li>계면활성제: 알코올, C12-14, 에톡실레이트(비이온계) · 로릴 에톡시황산 나트륨(음이온계) · (Z)-9-옥타데칸산(음이온계)</li></ul></div>
+<div class="col no"><h4>들어 있지 않아요 (불검출)</h4><ul><li>알레르기 유발 물질 26종<sup>5)</sup></li><li>형광증백제</li><li>파라벤류 6종<sup>6)</sup></li><li>가습기 살균제 이슈 성분 4종<sup>7)</sup></li><li>인공 색소 (무첨가)</li></ul></div>
+</div>
+<div class="fn"><p>5) 각주는 ⑦ 챕터 3과 같음 6) 파라벤류 방부제 6종(메틸파라벤, 에틸파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤) 불검출 7) 가습기 살균제 이슈 성분 4종(MIT, CMIT, DDAC, BKC) 불검출 테스트 완료.</p></div>
+<span class="memo">수정요청표 8·28번 반영(이슈 성분 띄어쓰기 · 공백 1칸). 불검출 주장은 물질명을 전부 나열(d01 §8 ⑯).</span>
+</section>
+
+<!-- ⑩ 사용법 -->
+<section class="sec"><span class="no">⑩ 사용법</span><span class="pct">지면 8%</span>
+<h3 style="margin-top:0">계량은 정확하게, 사용량은 적게</h3>
+<p>농축 제형이라 물 5 L에 세제 7 mL, 적은 양으로 세탁할 수 있습니다. 투명 계량캡의 눈금에 맞춰 부으면 표준사용량을 지키기 쉽습니다.</p>
+<div class="slot"><b>이미지 · 투명 계량캡 눈금 클로즈업 + 본품 2 L·리필 1.7 L 나란히</b>쓰던 용기에 채워 쓰는 구성</div>
+<h4>효과적인 사용 방법</h4>
+<div class="steps" style="grid-template-columns:repeat(4,1fr)">
+<div class="step"><b>STEP 1 · 표시사항 확인</b>세탁물에 붙은 표시사항과 물세탁 가능 여부를 확인해 주세요.</div>
+<div class="step"><b>STEP 2 · 캡 계량</b>표준사용량(물 5 L에 세제 7 mL)에 맞춰 투명 캡으로 계량해 주세요.</div>
+<div class="step"><b>STEP 3 · 투입구에 붓기</b>세제 투입구에 부어 주세요.</div>
+<div class="step"><b>STEP 4 · 밀폐 보관</b>사용 후 캡을 닫아 밀폐 보관해 주세요.</div>
+</div>
+<p style="font-size:13.5px;color:var(--ink2)">※ 담금 세탁은 30분 이내로 해 주세요. 농축 제형이라 과량으로 오래 접촉하면 얼룩, 변색, 탈색이 생길 수 있습니다.</p>
+<h4>전문 연구원이 알려주는 세탁량 가이드</h4>
+<table><thead><tr><th>세탁할 의류량</th><th>일반세탁기</th><th>드럼세탁기</th><th>손세탁</th></tr></thead><tbody>
+<tr><td>3 kg (적은 양) · 2~3일 세탁량, 1인 가구 기준</td><td>40 ml</td><td>30 ml</td><td rowspan="4">물 5 L에 세제 7 ml</td></tr>
+<tr><td>5 kg (보통량) · 일주일 세탁량, 1인 가구 기준</td><td>70 ml</td><td>40 ml</td></tr>
+<tr><td>7 kg (기본량) · 1회 평균 세탁량, 4인 가구 기준</td><td>100 ml</td><td>70 ml</td></tr>
+<tr><td>10 kg</td><td>130 ml</td><td>100 ml</td></tr>
+</tbody></table>
+<span class="memo">세탁량 가이드는 기획안(260907) O840~R846 수치. 수정요청표 19~21번 반영(적은 양 · 보통량 · 기본량). <span class="need">[확인 필요: 세탁량 가이드 수치가 라벨·패키지와 같은지]</span></span>
+<h4>이렇게 세탁하면 더 좋아요</h4>
+<ul style="font-size:14.5px;margin:0;padding-left:20px"><li>세탁이 끝나면 바로 꺼내 말려 주세요. 빨래를 세탁조에 두는 시간을 줄여 주세요.</li><li>매일 피부에 닿는 섬유부터 챙겨 주세요. 이불과 베개 커버, 속옷과 아이 옷은 알레르기 유발 물질까지 세척 검증한 세제로 세탁하세요.</li><li>모·울·견·실크 등 중성세제 전용 의류에는 사용하지 마세요. 세탁 전 의류 표시사항을 확인해 주세요.</li></ul>
+</section>
+
+<!-- ⑪ 라인업 + 함께 쓰면 좋은 제품 -->
+<section class="sec soft"><span class="no">⑪ 라인업 · 함께 쓰면 좋은 제품</span><span class="pct">지면 7%</span>
+<h3 style="margin-top:0">세탁 습관에 맞춰 고르는 마이랩 세탁세제</h3>
+<p style="font-size:13.5px;color:var(--ink2)">✔ 세스코 생활과학 연구소 개발 ✔ 알러젠 프리향 적용</p>
+<div class="lineup">
+<div class="lu"><div class="n">01</div><b>세탁세제 프리미엄 2 L</b>오염 유형별 8종 효소 · 알러젠 프리향</div>
+<div class="lu"><div class="n">02</div><b>세탁세제 프리미엄 리필 1.7 L</b>본품과 같은 처방, 쓰던 용기에 채워 쓰는 구성</div>
+<div class="lu"><div class="n">03</div><b>세탁세제 1 L</b>소용량 사용 가구용</div>
+</div>
+<span class="memo"><span class="need">[확인 필요: 리필·1 L 라인의 알러젠 프리향·8종 효소 적용 여부(공통 배지 확정)]</span></span>
+<h3>함께 쓰면 좋은 제품</h3>
+<p style="font-size:13.5px;color:var(--ink2)">✔ 세스코 생활과학 연구소 개발 ✔ LAUNDRY CARE 라인</p>
+<div class="lineup" style="grid-template-columns:1fr 1fr">
+<div class="lu"><div class="n">01</div><b>이염방지시트</b>세탁기에 함께 넣기만 하면 이염률 91% 감소 확인<sup>8)</sup><br>염료부터 형광증백제 · 미세먼지까지 흡착<br>비스코스 100% 식물성 소재<br><span class="gray">구매하러 가기 →</span></div>
+<div class="lu"><div class="n">02</div><b>세탁조클리너</b>세탁조 내부 묵은 때부터 악취 유발 세제 찌꺼기까지<br>표준 코스 한 번으로 간편하게 제거<br>1개월 루틴만으로 세탁조 깔끔 관리<br><span class="gray">구매하러 가기 →</span></div>
+</div>
+<div class="fn"><p>8) 세스코 마이랩 이염방지시트: 이염률 91% 감소 확인(이염 성능 테스트 완료). 사용 환경에 따라 결과가 달라질 수 있음.</p></div>
+<p class="gray" style="font-size:13px;margin-top:8px">[제안] 섬유유연제 프리미엄(12월 출시 예정, 리플릿 최종본 기준) 카드는 출시 시점에 추가. 세트 구성(세탁세제 프리미엄 2 L + 리필 1.7 L + 이염방지시트)은 런칭 프로모션(~12/31) 기간에 가격과 함께 노출.</p>
+<span class="memo">수정요청표 13·14·15·24번 반영(이염 방지 효과 · 표준 코스 · 깔끔 관리 · 97% 표현 통일). 이염방지시트 문안은 리플릿 최종본 "이염률 91% 감소 확인"으로 통일.</span>
+</section>
+
+<!-- ⑬ FAQ -->
+<section class="sec faq"><span class="no">⑬ FAQ</span><span class="pct">지면 7%</span>
+<h3 style="margin-top:0">구매 전 자주 묻는 질문</h3>
+<details open><summary>세스코 마이랩 세탁세제 프리미엄은 일반 세탁세제와 무엇이 다른가요?</summary><p>오염 유형별로 나눈 8종 효소가 피지·땀, 전분, 지방 등 생활 얼룩을 각각 분해하는 세탁세제입니다. 기존 세탁세제 1 L 대비 세척력 12% 향상(자사 테스트)에 더해, 빨래 쉰내 원인균 모락셀라균 97% 세척, 땀 냄새 원인 성분 아세트산 99% 탈취, 알레르기 유발 물질 4종 세척 테스트까지 완료했습니다.</p></details>
+<details open><summary>빨래에서 쉰내가 나는 이유는 무엇인가요?</summary><p>바싹 말려도 올라오는 빨래 쉰내의 원인은 섬유에 남은 모락셀라균입니다. 세스코 마이랩 세탁세제 프리미엄은 향으로 냄새를 덮는 대신 원인균을 97% 세척하고, 남는 냄새 성분인 아세트산을 99% 탈취하도록 처방했습니다.</p></details>
+<details open><summary>탈취제를 따로 사야 하나요?</summary><p>이 제품은 세탁세제와 탈취제 품목을 함께 신고한 제품입니다. 탈취 테스트를 완료해, 세탁 단계에서 오염과 냄새 원인까지 함께 관리합니다.</p></details>
+<details open><summary>아이 옷이나 민감한 피부에도 사용할 수 있나요?</summary><p>더마테스트 엑설런트 등급과 대한아토피협회 추천을 받았습니다. 진드기 사체·배설물, 미세먼지, 꽃가루, 반려동물 털 등 알레르기 유발 물질 4종의 세척 테스트를 완료했고, 향도 알레르기 유발 물질 26종이 불검출된 알러젠 프리향입니다.</p></details>
+<details open><summary>어떤 향인가요?</summary><p>산뜻하고 깨끗한 잔향의 그린 플로럴 계열 향입니다. 알레르기 유발 물질 26종이 불검출된 알러젠 프리향으로, 향료의 안전성까지 검증했습니다.</p></details>
+<details open><summary>사용량은 얼마나 넣어야 하나요? 쓰면 안 되는 옷도 있나요?</summary><p>표준사용량은 물 5 L 기준 세제 7 mL입니다. 농축 원액(중성) 제형이라 적은 양으로 세탁할 수 있고, 투명 계량캡 눈금에 맞춰 부으면 됩니다. 세제 투입구를 사용하시거나 세탁물 위에 직접 부어도 됩니다. 담금 세탁을 하실 경우 30분 이내로 해 주세요. 모·울·견·실크 등 중성세제 전용 의류에는 사용하지 말고, 세탁 전 의류 표시사항을 확인해 주세요.</p></details>
+<details open><summary>리필은 어떻게 쓰나요?</summary><p>본품 2 L에 리필 1.7 L 구성으로, 쓰던 용기에 채워 쓰면 됩니다. 사용 후에는 밀폐하여 보관해 주세요.</p></details>
+<span class="memo">GEO 고정 슬롯. 문항은 표시사항·주의사항 범위 안에서만. 수정요청표 10·11·12번 반영. 출시 후 상담 유입 상위 문항으로 교체.</span>
+</section>
+
+<!-- ⑫ 법정 블록 -->
+<section class="sec legal"><span class="no">⑫ 법정 고정 블록</span><span class="pct">지면 10%</span>
+<h3 style="margin-top:0;font-size:16px">제품 정보 · 안전확인대상생활화학제품 표시사항</h3>
+<table>
+<tr><td class="k">신고번호</td><td>CB26-03-0012</td></tr>
+<tr><td class="k">품목</td><td>세탁세제, 탈취제</td></tr>
+<tr><td class="k">제품명</td><td>세스코 마이랩 세탁세제 프리미엄</td></tr>
+<tr><td class="k">용도</td><td>세탁세제-섬유용, 신발용, 섬유 얼룩제거용 / 탈취제-일반용(물체용)</td></tr>
+<tr><td class="k">제형 · 액성</td><td>액체형 · 원액(중성)</td></tr>
+<tr><td class="k">용량</td><td>2 L / 1.75 L <span class="need">[확인 필요: 1.7 L 표기와 통일]</span></td></tr>
+<tr><td class="k">표준사용량</td><td>물 5 L에 세제 사용량 7 mL</td></tr>
+<tr><td class="k">제조연월 · 유통기한</td><td>별도표기 · 제조일로부터 24개월</td></tr>
+<tr><td class="k">제조자, 주소, 연락처</td><td>㈜세스코, 서울특별시 강동구 상일로 10길 46 (상일동), 1588-1119</td></tr>
+<tr><td class="k">사용 물질</td><td>[주요물질] 정제수, 알코올, C12-14, 에톡실레이트 [계면활성제] 알코올, C12-14, 에톡실레이트(비이온계), 로릴 에톡시황산 나트륨(음이온계), (Z)-9-옥타데칸산(음이온계) [기타물질] 수산화나트륨(산도조절제)</td></tr>
+<tr><td class="k">판매가</td><td><span class="need">[확인 필요: 단품 판매가. 프로모션 가격표(261001)에는 2개 이상 구성만 있음]</span></td></tr>
+</table>
+<h4>사용방법</h4>
+<ol><li>세탁 시 표준사용량을 참고하여 사용하세요.</li><li>사용 전 사용상 주의사항을 반드시 읽어 주세요.</li></ol>
+<h4>사용상 주의사항</h4>
+<ol>
+<li>사용 전 주의사항을 반드시 읽고, 표시된 사용방법 및 표준사용량을 지켜 사용하세요.</li>
+<li>세탁 이외 용도로 사용하지 마시고, 사용 후 밀폐하여 보관하세요.</li>
+<li>내용물이 눈에 닿지 않도록 하세요.</li>
+<li>제품의 내용물을 분무기 등에 담아 분사하지 마세요.</li>
+<li>사람 또는 동물에 직접 사용(분사)하지 마세요.</li>
+<li>어린이의 손이 닿지 않는 곳에 두시고, 비누풍선놀이 등 어린이의 장난에 주의하십시오.</li>
+<li>세제액이 바닥에 남아서 미끄러질 위험이 있으니 주변을 깨끗이 닦으세요.</li>
+<li>세탁 전 의류에 부착된 표시사항, 물 세탁 가능여부를 확인 후 세탁하세요. (모, 울, 견, 실크 및 중성세제 전용의류, 금속 염료로 나염한 의류, 손세탁 불가의류 등은 사용하지 마세요.)</li>
+<li>변색, 탈색 등의 우려가 있는 곳에 사용 시 눈에 띄지 않는 부위에 사전 변색 및 탈색 등의 유무를 확인한 후 사용하세요.</li>
+<li>농축이므로 과량 또는 장시간 의류에 접촉 시 얼룩, 변색 및 탈색 등이 생길 수 있으니 주의하시고, 담금 세탁의 경우에는 30분 이내로 하세요.</li>
+<li>연약한 피부를 가진 사람이 장시간 손세탁을 할 경우에는 반드시 세탁용 고무장갑을 사용해 주시고, 맨손으로 세탁할 경우에는 물로 잘 씻어 피부의 거칠어짐을 방지하도록 하세요.</li>
+<li>금속 성분이 많이 함유된 물로 세탁할 경우 의류 손상의 우려가 있으니 사용하지 마세요.</li>
+<li>용기를 던지거나 떨어뜨리는 등 충격을 가하지 마세요.</li>
+<li>직사광선이나 온도가 높은 곳은 피하여 주시고 동절기에는 실온에서 보관해주세요.</li>
+<li>넘어진 채로 두면 액이 흘러나올 수 있으니 방치하지 마세요.</li>
+</ol>
+<h4>응급처치</h4>
+<ol><li>눈이나 피부에 묻으면 깨끗한 물로 씻고 이상이 있을 경우 의사와 상의하세요.</li><li>내용물을 먹거나 삼킨 경우 응급조치를 하고 즉시 의사와 상의하세요.</li><li>피부자극 반응 또는 붉은 반점이 나타나면 의학적 조치를 받으세요.</li></ol>
+<div class="slot" style="min-height:40px"><b>무이자 할부 안내</b>토스페이먼츠 당월 무이자할부 · 공통 확정 문안 이미지 삽입</div>
+</section>
+
+</div><!-- /page -->
+
+<p class="gray" style="font-size:12.5px;margin-top:24px">지면 배분 합계 123%는 섹션별 '출현 시 평균'(마이랩 n=19) 기준값을 그대로 적은 것이라 100%가 아닙니다. 디자인 단계에서 ⑦ 챕터 3개(41%)와 법정 블록(10%)을 기준으로 재배분합니다. 이미지는 확보 자산만 사용하고, 시험성적서 실물 컷은 넣지 않습니다(10/28 결정, 리플릿과 동일 적용).</p>
+</div>
+<script>
+var b=document.getElementById('memoBtn');b.addEventListener('click',function(){document.body.classList.toggle('hide-memo');b.setAttribute('aria-pressed',document.body.classList.contains('hide-memo')?'true':'false');b.textContent=document.body.classList.contains('hide-memo')?'제작 메모·이미지 자리 보이기':'제작 메모·이미지 자리 숨기기';});
+</script>
+</body></html>
