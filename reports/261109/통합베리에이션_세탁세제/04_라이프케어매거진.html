@@ -174,13 +174,13 @@ body.hide-memo .memo,body.hide-memo .memo-doc{display:none}
 }
 </style>
 </head>
-<body>
+<body class="hide-memo">
 <div class="wrap">
 <nav class="topnav"><a href="index.html">허브</a><a href="01_상세페이지.html">01 상세페이지</a><a href="02_리플릿.html">02 리플릿</a><a href="03_카드뉴스.html">03 카드뉴스</a><a class="on" href="04_라이프케어매거진.html">04 라이프케어 매거진</a><a href="05_컨설팅포인트.html">05 컨설팅 포인트</a></nav>
 <header class="top"><div class="kicker">원천소스 1개 → 5종 · 통합 베리에이션 샘플 · 04</div><h1>라이프케어 매거진 · 빨아서 넣어 둔 겨울 이불 편</h1>
 <div class="meta"><span><b>템플릿</b> 라이프케어매거진 가정집 대상 · 3단형(01 Q&amp;A → 02 Self Solution → 03 CESCO Professional Solution)</span><span><b>전달</b> 서비스 컨설턴트가 고객에게 카카오톡·문자로 1:1 전달하는 이미지형 매거진</span><span><b>작성</b> 2026-11-07 · 지면 재조판 2026-11-09</span></div>
 <p class="lead" style="margin-top:12px">생성 전에 콘텐츠 흐름, 액션 아이템, 참고 자료를 먼저 정리하고(아래 0), 그 정리로 매거진 지면을 만들었습니다(아래 1). 지면 디자인은 라이프케어 매거진 Vol.14 16P 시안(261027 v4)의 디자인 시스템(A4 지면·커버 마스트헤드·Self Solution 규격·제품 지면)을 그대로 따릅니다. 메시지·수치·상품명은 허브의 공통 메시지 시트와 같고, 외부 연구 인용은 11/5 카드뉴스 전달본을 승계했습니다.</p>
-<div class="tools"><button id="memoBtn">제작 메모 숨기기</button><button onclick="window.print()">인쇄 / PDF</button></div>
+<div class="tools"><button id="memoBtn">제작 메모 보기</button><button onclick="window.print()">인쇄 / PDF</button></div>
 </header>
 
 <h2 class="doc"><span class="num">0</span>생성 전 정리 · 콘텐츠 흐름 / 액션 아이템 / 참고 자료</h2>
@@ -493,6 +493,6 @@ body.hide-memo .memo,body.hide-memo .memo-doc{display:none}
 
 </div>
 <script>
-var b=document.getElementById('memoBtn');b.addEventListener('click',function(){document.body.classList.toggle('hide-memo');b.textContent=document.body.classList.contains('hide-memo')?'제작 메모 보이기':'제작 메모 숨기기';});
+var b=document.getElementById('memoBtn');b.addEventListener('click',function(){document.body.classList.toggle('hide-memo');b.textContent=document.body.classList.contains('hide-memo')?'제작 메모 보기':'제작 메모 숨김';});
 </script>
 </body></html>

@@ -13,6 +13,7 @@ body{margin:0;background:#d9dbe1;font-family:"Pretendard Variable",Pretendard,-a
 /* topbar */
 .topbar{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;font-size:13px;color:var(--navy);border-bottom:1px solid var(--lt2)}
 .topbar .lg{font-family:Georgia,serif;font-weight:700;font-size:22px;letter-spacing:-.01em}
+.topbar .lg span{font-family:"Pretendard Variable",Pretendard,sans-serif;font-weight:500;font-size:19px;margin-left:2px}
 /* meta bar */
 .meta-bar{padding:20px 40px;background:var(--lt);border-bottom:1px solid var(--lt2);font-size:13px;color:var(--ink2);line-height:1.7}
 .meta-bar b{color:var(--ink);font-weight:600}
@@ -26,31 +27,30 @@ img{max-width:100%;display:block}
 .ph{background:linear-gradient(135deg,#dfe2e8,#c9cdd6);color:#5f6674;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:13px;text-align:center;line-height:1.5;padding:24px}
 .ph b{font-weight:700;color:#3e4554;font-size:14px}
 .ph small{font-size:12px;color:#7a808d;max-width:520px}
-/* hero */
-.hero{display:block;background:linear-gradient(180deg,#f3f4f7,#e9ebf1)}
-.hero-tx{padding:56px 70px 44px}
-.hero .eng{font-size:12px;letter-spacing:.18em;color:#6b7280;font-weight:500;text-transform:uppercase}
-.hero .pre{font-size:19px;font-weight:600;color:var(--navy);margin:22px 0 18px;line-height:1.5}
-.hero h1{margin:0;font-size:36px;font-weight:300;line-height:1.25;color:var(--navy)}
-.hero h1 b{display:block;font-weight:800}
-.hero .hrow{display:flex;gap:40px;align-items:flex-start}
-.hero .hrow h1{flex:0 0 46%}
-.hero .hside{flex:1;padding-top:10px}
-.hero .def{font-size:15px;line-height:1.8;color:var(--ink2);margin:0}
-.hero .specs{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-.hero .specs span{display:inline-block;background:rgba(43,55,87,.08);color:var(--navy);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px}
-.hero-img{height:340px;overflow:hidden}
+/* cover (260824 디자인 시안 규격) */
+.cover{background:linear-gradient(180deg,#f3f4f7 0%,#e7e9ef 55%,#f6f6f8 100%);text-align:center;padding:60px 0 0;overflow:hidden;height:1100px;position:relative}
+.cover .eng{font-size:15px;letter-spacing:.18em;color:#6b7280;font-weight:500}
+.cover h1{margin:26px 0 0;font-size:56px;font-weight:300;line-height:1.2;color:var(--navy)}
+.cover h1 b{display:block;font-weight:800}
+.cover .spec{margin-top:20px;font-size:18px;color:#555c6b}
+.cover .spec i{font-style:normal;margin:0 14px;color:#b3b8c4}
+.cover .stage{position:relative;height:720px;margin-top:30px}
+.cover .photo{position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(180deg,rgba(246,246,248,0),rgba(246,246,248,1))}
+.cover .seal{position:absolute;right:90px;top:40px;width:150px;height:150px}
+.cover .btl{position:absolute;left:50%;bottom:60px;margin-left:-150px}
+.cover .legal-line{position:absolute;left:0;right:0;bottom:26px;font-size:11px;color:#9aa0ab}
 /* brand */
 .brand{background:linear-gradient(180deg,#f7f7f9,#eceef3);text-align:center;padding:90px 70px 70px}
 .brand .band{display:inline-block;background:var(--navy);color:#fff;border-radius:40px;padding:12px 36px;font-size:17px;font-weight:500}
-.brand .logo{font-size:48px;font-weight:200;color:var(--navy);margin:28px 0 40px;letter-spacing:-.01em}
+.brand .logo{font-family:Georgia,serif;font-size:54px;font-weight:700;color:var(--navy);margin:28px 0 40px;letter-spacing:-.01em}
+.brand .logo span{font-family:"Pretendard Variable",Pretendard,sans-serif;font-weight:500;font-size:48px}
 .brand .card{background:#fff;padding:60px 60px 56px;font-size:17px;line-height:1.95;color:var(--ink2);box-shadow:0 10px 30px rgba(43,55,87,.06);text-align:left;border-radius:4px}
 .brand .card .h{font-size:21px;font-weight:700;color:var(--ink);line-height:1.6;margin:0 0 24px}
 .brand .card p{margin:0 0 20px}
 .brand .card p:last-child{margin:0}
 /* why */
-.t3{padding:80px 70px 70px;background:#fff}
-.t3 h2{text-align:center;font-size:32px;font-weight:300;line-height:1.4;color:var(--navy);margin:0 0 40px}
+.t3{padding:110px 70px 90px;background:#fff}
+.t3 h2{text-align:center;font-size:36px;font-weight:300;line-height:1.4;color:var(--navy);margin:0 0 50px}
 .t3 h2 b{font-weight:800}
 .bubbles{display:flex;flex-direction:column;gap:10px;max-width:640px;margin:0 auto 40px}
 .bubble{align-self:flex-start;background:var(--lt);border:1px solid var(--lt2);border-radius:16px 16px 16px 4px;padding:12px 18px;font-size:15px;max-width:88%;color:var(--ink2)}
@@ -58,8 +58,8 @@ img{max-width:100%;display:block}
 .t3 .lead-p{font-size:17px;line-height:1.85;color:var(--ink2);text-align:center;max-width:700px;margin:0 auto 20px}
 .t3 .lead-p b{color:var(--ink);font-weight:700}
 /* summary section */
-.summary{background:var(--navy);padding:60px 70px;color:#fff}
-.summary h2{font-size:26px;font-weight:300;line-height:1.45;margin:0 0 10px;color:#fff}
+.summary{background:var(--navy);padding:84px 70px;color:#fff}
+.summary h2{font-size:30px;font-weight:300;line-height:1.45;margin:0 0 10px;color:#fff}
 .summary h2 b{font-weight:800}
 .summary .sub{font-size:15px;color:rgba(255,255,255,.7);margin:0 0 30px}
 .summary .three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -73,7 +73,7 @@ img{max-width:100%;display:block}
 .icon-row .v{font-size:34px;font-weight:800;color:#fff;margin-bottom:4px}
 .icon-row .l{font-size:13px;color:rgba(255,255,255,.7);line-height:1.4}
 /* research */
-.research{background:#fff;padding:70px 70px 60px}
+.research{background:#fff;padding:90px 70px 80px}
 .research .eng{font-size:11.5px;letter-spacing:.12em;font-weight:600;color:var(--blue);margin-bottom:14px}
 .research .proposal{font-size:17px;line-height:1.9;color:var(--ink2);border-left:4px solid var(--navy);padding:16px 24px;background:var(--lt);margin:0 0 24px}
 .research ul{margin:0;padding:0 0 0 20px;font-size:15.5px;line-height:1.85;color:var(--ink2)}
@@ -82,12 +82,12 @@ img{max-width:100%;display:block}
 .fn p{margin:0 0 4px}
 /* chapter */
 .ch{background:#fff}
-.ch .hd{padding:80px 70px 0}
+.ch .hd{padding:100px 70px 0}
 .ch .tag{display:flex;align-items:center;gap:12px;border-top:1px solid var(--navy);border-bottom:1px solid var(--navy);padding:15px 16px;font-size:17px;font-weight:600;color:var(--navy)}
-.ch h2{font-size:28px;font-weight:300;line-height:1.45;color:var(--navy);margin:50px 0 16px}
+.ch h2{font-size:38px;font-weight:300;line-height:1.4;color:var(--navy);margin:62px 0 20px}
 .ch h2 b{font-weight:800}
-.ch .body{padding:40px 70px 70px}
-.ch h3{font-size:22px;font-weight:700;line-height:1.5;color:var(--ink);margin:0 0 20px}
+.ch .body{padding:50px 70px 84px}
+.ch h3{font-size:24px;font-weight:700;line-height:1.5;color:var(--ink);margin:0 0 20px}
 .ch h3.q{font-weight:400;font-size:19px;color:var(--ink2);margin-top:30px}
 .ch h3.q b{font-weight:700;color:var(--ink)}
 .ch p{font-size:16px;line-height:1.85;color:var(--ink2);margin:0 0 18px}
@@ -127,8 +127,8 @@ img{max-width:100%;display:block}
 .test-list > div{background:var(--lt);border-radius:6px;padding:16px 20px;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:10px}
 .test-list > div::before{content:"✔";color:var(--blue);font-weight:800;font-size:16px;flex-shrink:0}
 /* ingredients */
-.ingr{padding:70px 70px;background:var(--lt)}
-.ingr h2{font-size:24px;font-weight:300;line-height:1.5;color:var(--navy);margin:0 0 30px}
+.ingr{padding:90px 70px;background:var(--lt)}
+.ingr h2{font-size:30px;font-weight:300;line-height:1.5;color:var(--navy);margin:0 0 36px}
 .ingr h2 b{font-weight:800}
 .ingr .cols{display:flex;gap:20px}
 .ingr .col{flex:1;background:#fff;border-radius:8px;padding:28px 24px;box-shadow:0 4px 16px rgba(0,0,0,.04)}
@@ -137,8 +137,8 @@ img{max-width:100%;display:block}
 .ingr .col.no h3{color:#c03030}
 .ingr .col ul{margin:0;padding:0 0 0 18px;font-size:14.5px;line-height:2;color:var(--ink2)}
 /* usage */
-.usage{padding:70px 70px;background:#fff}
-.usage h2{font-size:28px;font-weight:300;color:var(--navy);margin:0 0 10px;line-height:1.4}
+.usage{padding:90px 70px;background:#fff}
+.usage h2{font-size:32px;font-weight:300;color:var(--navy);margin:0 0 12px;line-height:1.4}
 .usage h2 b{font-weight:800}
 .usage .sub{font-size:16px;color:var(--ink2);line-height:1.8;margin:0 0 30px}
 .usage table{width:100%;border-collapse:collapse;font-size:14px;margin:20px 0}
@@ -149,8 +149,8 @@ img{max-width:100%;display:block}
 .usage .tips h3{font-size:18px;font-weight:700;color:var(--navy);margin:0 0 14px}
 .usage .tips li{font-size:15px;line-height:1.85;color:var(--ink2);margin-bottom:6px}
 /* lineup */
-.lineup-sec{padding:70px 70px;background:var(--lt)}
-.lineup-sec h2{font-size:24px;font-weight:300;color:var(--navy);margin:0 0 24px}
+.lineup-sec{padding:90px 70px;background:var(--lt)}
+.lineup-sec h2{font-size:30px;font-weight:300;color:var(--navy);margin:0 0 30px}
 .lineup-sec h2 b{font-weight:800}
 .lineup-sec .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}
 .lineup-sec .grid.g2{grid-template-columns:1fr 1fr}
@@ -159,7 +159,7 @@ img{max-width:100%;display:block}
 .lineup-sec .item b{display:block;font-size:16px;color:var(--ink);margin-bottom:8px}
 .lineup-sec .item p{margin:0;font-size:13.5px;line-height:1.7;color:var(--ink2)}
 /* faq */
-.faqs{background:#fff;padding:70px 70px 50px}
+.faqs{background:#fff;padding:90px 70px 60px}
 .faqs h2{font-size:32px;font-weight:800;line-height:1.35;color:var(--navy);margin:0 0 30px;border-bottom:2px solid var(--navy);padding-bottom:22px}
 .faqs details{border-bottom:1px solid var(--lt2)}
 .faqs summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 4px;font-size:17px;font-weight:700;color:var(--ink)}
@@ -181,15 +181,16 @@ img{max-width:100%;display:block}
 .need{color:var(--amber);font-weight:700;background:var(--amber-soft);border-radius:3px;padding:0 4px}
 .slot{background:var(--slot);border:2px dashed var(--slot-line);border-radius:8px;color:#5f6674;font-size:13px;line-height:1.5;padding:14px 16px;margin:16px 0}
 .slot b{display:block;color:var(--ink2);font-size:13px;margin-bottom:4px;font-weight:700}
-body.hide-memo .memo,body.hide-memo .slot{display:none}
-@media print{.topnav,.meta-bar{display:none}.page{width:100%;box-shadow:none}}
+body.hide-memo .memo,body.hide-memo .slot,body.hide-memo .meta-bar{display:none}
+#memoFloat{position:fixed;right:22px;bottom:22px;z-index:99;font:inherit;font-size:13px;font-weight:600;background:var(--navy);color:#fff;border:0;border-radius:24px;padding:10px 18px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+@media print{.topnav,.meta-bar,#memoFloat{display:none}.page{width:100%;box-shadow:none}}
 </style></head>
-<body>
+<body class="hide-memo">
 <div class="page">
 
 <nav class="topnav"><a href="index.html">허브</a><a class="on" href="01_상세페이지.html">01 상세페이지</a><a href="02_리플릿.html">02 리플릿</a><a href="03_카드뉴스.html">03 카드뉴스</a><a href="04_라이프케어매거진.html">04 라이프케어 매거진</a><a href="05_컨설팅포인트.html">05 컨설팅 포인트</a></nav>
 
-<div class="topbar"><div class="lg">CESCO</div><div>세스코 과학으로 설계한 환경위생 솔루션</div></div>
+<div class="topbar"><div class="lg">CESCO<span>Mylab</span></div><div>세스코 과학으로 설계한 환경위생 솔루션</div></div>
 
 <div class="meta-bar">
 <div class="row">
@@ -201,22 +202,34 @@ body.hide-memo .memo,body.hide-memo .slot{display:none}
 <div class="tools"><button id="memoBtn" aria-pressed="false">제작 메모·이미지 자리 숨기기</button></div>
 </div>
 
-<!-- ① 히어로 -->
-<section class="hero">
-<div class="hero-tx">
-<div class="eng">CESCO Mylab · Premium Laundry Detergent</div>
-<div class="pre">오염 유형별 8종 효소 · 알러젠 프리향</div>
-<div class="hrow">
-<h1>세스코 마이랩<b>세탁세제 프리미엄</b></h1>
-<div class="hside">
-<p class="def">오염은 유형별로 분해하고, 냄새는 원인균부터 세척하고, 피부에 닿는 섬유에 남을 수 있는 알레르기 유발 물질까지 고려해 처방과 향, 성분까지 깐깐하게 검증한 세탁세제입니다.</p>
-<div class="specs"><span>2 L · 리필 1.7 L</span><span>액체형 · 원액(중성)</span><span>그린 플로럴향</span></div>
-</div>
-</div>
-</div>
-<div class="hero-img ph"><b>이미지 · 표지 연출컷</b><small>실험실 배경, 본품 정면 + 투명 계량캡 분리 배치. 세탁조클리너·이염방지시트 커버와 같은 톤</small></div>
-<span class="memo">리필 용량은 세스코몰 상품명·리플릿·가격표 표기(1.7 L)를 따랐습니다. <span class="need">[확인 필요: 고시·POD는 1.75 L, 몰·리플릿은 1.7 L, 하나로 통일]</span></span>
+<!-- ① 커버 (260824 디자인 시안 규격) -->
+<section class="cover">
+  <div class="eng">PREMIUM LAUNDRY DETERGENT</div>
+  <h1>세스코 마이랩<b>세탁세제 프리미엄</b></h1>
+  <div class="spec">2 L · 리필 1.7 L<i>|</i>액체형 · 원액(중성)<i>|</i>그린 플로럴향</div>
+  <div class="stage">
+    <svg class="seal" viewBox="0 0 150 150"><defs><path id="c1" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs><circle cx="75" cy="75" r="70" fill="none" stroke="#2b3757" stroke-width="1.5"/><circle cx="75" cy="75" r="64" fill="none" stroke="#2b3757" stroke-width=".8"/><text font-size="11" fill="#2b3757" font-weight="600" letter-spacing="2"><textPath href="#c1" startOffset="12%">CESCO SCIENCE</textPath></text><text font-size="11" fill="#2b3757" font-weight="600" letter-spacing="2"><textPath href="#c1" startOffset="60%">LABORATORY</textPath></text><text x="75" y="82" text-anchor="middle" font-size="17" font-weight="800" fill="#2b3757">생활과학 연구소</text></svg>
+    <svg class="btl" width="300" height="560" viewBox="0 0 300 560">
+      <ellipse cx="150" cy="548" rx="150" ry="10" fill="#000" opacity=".06"/>
+      <rect x="108" y="0" width="84" height="46" rx="6" fill="#e8eaf0" stroke="#cfd3dc"/>
+      <rect x="96" y="40" width="108" height="26" rx="4" fill="#dfe2ea"/>
+      <path d="M70 110 q0-48 80-48 q80 0 80 48 v400 q0 30-30 30 h-100 q-30 0-30-30z" fill="#f7f8fa" stroke="#d5d9e2"/>
+      <rect x="86" y="215" width="128" height="250" fill="#fff" stroke="#e3e6ec"/>
+      <text x="150" y="260" text-anchor="middle" font-family="Georgia" font-size="20" font-weight="700" fill="#2b3757">CESCO <tspan font-family="Pretendard" font-weight="500">Mylab</tspan></text>
+      <text x="150" y="300" text-anchor="middle" font-size="15" fill="#2b3757">세스코 마이랩</text>
+      <text x="150" y="326" text-anchor="middle" font-size="19" font-weight="800" fill="#2b3757">세탁세제 프리미엄</text>
+      <rect x="86" y="350" width="128" height="1" fill="#c9cfda"/>
+      <text x="150" y="376" text-anchor="middle" font-size="10" fill="#6b7280">오염 유형별 8종 효소 · 알러젠 프리향</text>
+      <text x="150" y="394" text-anchor="middle" font-size="10" fill="#6b7280">모락셀라균 97% 세척 · 알레르기 유발 물질 4종 세척 테스트</text>
+      <rect x="86" y="430" width="128" height="35" fill="#2b3757"/>
+      <text x="150" y="453" text-anchor="middle" font-size="11" fill="#fff" letter-spacing="1">2 L · 그린 플로럴향</text>
+      <path d="M86 160 h128" stroke="#e3e6ec"/>
+    </svg>
+    <div class="photo"></div>
+  </div>
+  <div class="legal-line">* 생활과학연구소 마크는 법적인증마크나 업계자율마크가 아닌 제품정보 인식을 위한 기업자가 마크입니다</div>
 </section>
+<span class="memo" style="margin:12px 40px">커버는 260824 디자인 시안의 보틀 목업·연구소 씬 규격을 그대로 따랐습니다(라벨 2행만 이번 편 클레임으로 교체). 리필 용량은 세스코몰 상품명·리플릿·가격표 표기(1.7 L)를 따랐습니다. <span class="need">[확인 필요: 고시·POD는 1.75 L, 몰·리플릿은 1.7 L, 하나로 통일]</span></span>
 
 <!-- ② WHY CESCO · 왜 필요할까요 -->
 <section class="t3">
@@ -240,7 +253,7 @@ body.hide-memo .memo,body.hide-memo .slot{display:none}
 <!-- ③ 브랜드 스테이트먼트 -->
 <section class="brand">
 <div class="band">세스코가 만든 환경위생 솔루션</div>
-<div class="logo">CESCO Mylab</div>
+<div class="logo">CESCO <span>Mylab</span></div>
 <div class="card">
 <div class="h">누구나. 집에서. 스스로.<br>전문가 수준의 위생을 누릴 수 있어야 한다는 세스코의 생각이<br>세스코 마이랩으로 탄생했습니다.</div>
 <p>성분 하나까지 엄격한 기준으로 고르고, 누구나 전문가처럼 제품을 사용할 수 있도록 제품을 사용하는 올바른 방법까지 담았습니다.</p>
@@ -520,7 +533,12 @@ body.hide-memo .memo,body.hide-memo .slot{display:none}
 
 </div><!-- /page -->
 
+<button id="memoFloat" type="button"></button>
 <script>
-var b=document.getElementById('memoBtn');b.addEventListener('click',function(){document.body.classList.toggle('hide-memo');b.setAttribute('aria-pressed',document.body.classList.contains('hide-memo')?'true':'false');b.textContent=document.body.classList.contains('hide-memo')?'제작 메모·이미지 자리 보이기':'제작 메모·이미지 자리 숨기기';});
+function applyMemo(){var hid=document.body.classList.contains('hide-memo');var t=hid?'제작 메모 보기':'제작 메모 숨김';var b=document.getElementById('memoBtn');var f=document.getElementById('memoFloat');if(b){b.textContent=t;b.setAttribute('aria-pressed',hid?'true':'false');}if(f){f.textContent=t;}}
+function toggleMemo(){document.body.classList.toggle('hide-memo');applyMemo();}
+document.getElementById('memoBtn').addEventListener('click',toggleMemo);
+document.getElementById('memoFloat').addEventListener('click',toggleMemo);
+applyMemo();
 </script>
 </body></html>
