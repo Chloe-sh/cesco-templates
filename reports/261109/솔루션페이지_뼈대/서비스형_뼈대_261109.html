@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>서비스형 솔루션 페이지 뼈대</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+a{color:var(--blue)}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:24px}
+.kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+h2{font-size:20px;margin:48px 0 10px;padding-top:18px;border-top:1px solid var(--line);font-weight:800}
+p{margin:0 0 10px}
+.small{font-size:13px;color:var(--ink2)}
+/* 맨 위 요약 */
+.intro{display:grid;grid-template-columns:120px 1fr;gap:10px 16px;margin:0 0 18px}
+.intro dt{font-size:13px;font-weight:700;color:var(--ink2);padding-top:2px}
+.intro dd{margin:0}
+.rule{font-size:18px;font-weight:800;color:var(--blue)}
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 0}
+.big3 div{border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;padding:12px 14px;background:var(--soft)}
+.big3 i{display:block;font-style:normal;font-size:12px;font-weight:700;color:var(--blue)}
+.big3 b{display:block;font-size:16.5px;font-weight:800;margin:1px 0 3px}
+.big3 span{font-size:13px;color:var(--ink2);line-height:1.5;display:block}
+/* 고정 · 가변 표시 */
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.tag.fix{background:#f1f1f1;color:var(--ink2)}
+.tag.var{background:var(--blue);color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13.5px;color:var(--ink2);margin:0 0 14px}
+/* 뼈대 흐름 */
+.flow{border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.fgroup{display:grid;grid-template-columns:176px 1fr;border-top:1px solid var(--line)}
+.fgroup:first-child{border-top:0}
+.gname{background:var(--soft);padding:16px 18px;font-size:16px;font-weight:800;line-height:1.4}
+.gname small{display:block;margin-top:3px;font-size:12.5px;font-weight:500;color:var(--ink2);line-height:1.5}
+.fsteps{list-style:none;margin:0;padding:6px 18px 6px 0;background:linear-gradient(var(--line),var(--line)) 27px 0/2px 100% no-repeat}
+.fsteps li{position:relative;padding:9px 0 9px 52px}
+.fsteps li::before{content:"";position:absolute;left:21px;top:16px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--ink2)}
+.fsteps li.v::before{border-color:var(--blue);background:var(--blue)}
+.fsteps a{font-size:16px;font-weight:800;color:var(--ink);text-decoration:none;margin-right:8px}
+.fsteps a:hover{color:var(--blue);text-decoration:underline}
+.fsteps span.one{display:block;font-size:13.5px;color:var(--ink2)}
+/* 블록 카드 */
+.card{border:1px solid var(--line);border-radius:8px;margin:14px 0;scroll-margin-top:16px}
+.card.v{border-left:4px solid var(--blue)}
+.card>header{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:12px 18px;background:var(--soft);border-bottom:1px solid var(--line);border-radius:8px 8px 0 0}
+.card.v>header{border-radius:5px 8px 0 0}
+.card h3{font-size:17px;font-weight:800;margin:0}
+.card .where{margin-left:auto;font-size:12.5px;color:var(--ink3);font-weight:600}
+.rows{display:grid;grid-template-columns:118px 1fr;margin:0;padding:6px 18px 10px}
+.rows dt{font-size:13px;font-weight:700;color:var(--ink2);padding:9px 0;border-top:1px solid var(--line)}
+.rows dd{margin:0;padding:8px 0;border-top:1px solid var(--line)}
+.rows dt:first-of-type,.rows dt:first-of-type+dd{border-top:0}
+.rows ul{margin:0;padding-left:18px}
+.rows li{margin:2px 0}
+.ex{margin:0 0 6px;padding:7px 12px;border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 6px 6px 0}
+.ex:last-child{margin-bottom:0}
+.src{display:inline-block;font-size:11.5px;font-weight:700;color:var(--blue);background:#fff;border:1px solid var(--blue);border-radius:999px;padding:0 8px;margin-right:6px;white-space:nowrap}
+/* 예시 링크 */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;line-height:1.25;padding:6px 14px;border:1px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:13.5px;font-weight:700;text-decoration:none}
+.chip .type{font-size:10.5px;font-weight:600;opacity:.75}
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
+@media (max-width:720px){
+  .wrap{padding:28px 16px 60px}h1{font-size:23px}
+  .intro{grid-template-columns:1fr;gap:2px}.intro dd{margin-bottom:10px}
+  .big3{grid-template-columns:1fr}
+  .fgroup{grid-template-columns:1fr}
+  .rows{grid-template-columns:1fr}.rows dt{padding-bottom:0}.rows dd{border-top:0;padding-top:2px}
+  .card .where{margin-left:0;width:100%}
+}
+@media print{.wrap{padding:0;max-width:none}.card,.fgroup{break-inside:avoid}a{color:inherit;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">세스코 콘텐츠 템플릿 · 솔루션 페이지</div>
+  <h1>서비스형 솔루션 페이지 뼈대</h1>
+  <div class="meta">
+    <span><b>기준일</b> 2026-11-09 (월)</span>
+    <span><b>근거</b> 11/3 미팅 결정</span>
+    <span><b>함께 보기</b> <a href="렌탈형_뼈대_261109.html">렌탈형 뼈대</a> · <a href="../index.html">11/11 보고 자료</a></span>
+  </div>
+</header>
+
+<dl class="intro">
+  <dt>해당 상품</dt>
+  <dd>빈대방제 · 매트리스케어 · 통합해충방제 · 비래해충방제 · 전문 클리닝. 전문가가 방문해 관리하는 서비스 상품입니다.</dd>
+  <dt>원칙</dt>
+  <dd><span class="rule">뼈대는 고정, 문장은 상품에 맞게 변형합니다.</span></dd>
+  <dt>큰 흐름</dt>
+  <dd>
+    <div class="big3">
+      <div><i>먼저</i><b>오염원 문제</b><span>원인이 되는 오염원과 그 피해를 충분히 짚습니다.</span></div>
+      <div><i>이어서</i><b>서비스 프로세스</b><span>세스코가 관리하는 순서와 다른 점을 보여 줍니다.</span></div>
+      <div><i>끝으로</i><b>상품 구성</b><span>고객이 고를 플랜과 상품을 안내합니다.</span></div>
+    </div>
+  </dd>
+</dl>
+
+<h2 id="flow">뼈대 흐름</h2>
+<p>위에서 아래로 읽습니다. 블록 이름을 누르면 작성 기준으로 이동합니다.</p>
+<div class="legend">
+  <span><span class="tag fix">고정</span> 모든 서비스형 페이지에 같은 자리, 같은 구성으로 넣습니다.</span>
+  <span><span class="tag var">가변</span> 자리는 같습니다. 상품 특성과 강조할 POD에 따라 구성을 바꿉니다.</span>
+</div>
+
+<div class="flow">
+  <div class="fgroup">
+    <div class="gname">시작</div>
+    <ul class="fsteps">
+      <li><a href="#b-hero">히어로</a><span class="tag fix">고정</span><span class="one">서비스를 한 문장으로 정의합니다.</span></li>
+    </ul>
+  </div>
+  <div class="fgroup">
+    <div class="gname">오염원 문제<small>원인이 되는 오염원과 피해</small></div>
+    <ul class="fsteps">
+      <li><a href="#b-nature">오염원의 특성</a><span class="tag fix">고정</span><span class="one">무엇인지, 어떻게 들어오는지, 어디에 생기는지 답합니다.</span></li>
+      <li class="v"><a href="#b-risk">방치했을 때의 피해</a><span class="tag var">가변</span><span class="one">건강 피해와 사업장 피해를 사실과 수치로 보여 줍니다.</span></li>
+      <li><a href="#b-hard">혼자 관리하기 어려운 이유</a><span class="tag fix">고정</span><span class="one">숫자 카드와 셀프 체크로 진단이 필요한 이유를 보여 줍니다.</span></li>
+    </ul>
+  </div>
+  <div class="fgroup">
+    <div class="gname">서비스 프로세스<small>세스코가 관리하는 방법</small></div>
+    <ul class="fsteps">
+      <li><a href="#b-process">단계별 관리 과정</a><span class="tag fix">고정</span><span class="one">세스코가 관리하는 순서를 단계 카드로 보여 줍니다.</span></li>
+      <li class="v"><a href="#b-point">세스코가 다른 점</a><span class="tag var">가변</span><span class="one">이 서비스의 POD를 POINT로 보여 줍니다.</span></li>
+    </ul>
+  </div>
+  <div class="fgroup">
+    <div class="gname">상품 구성<small>고객이 고르는 것</small></div>
+    <ul class="fsteps">
+      <li class="v"><a href="#b-plan">플랜</a><span class="tag var">가변</span><span class="one">누가 무엇을 받는지 표 하나로 보여 줍니다.</span></li>
+      <li class="v"><a href="#b-mall">세스코몰 단건 상품</a><span class="tag var">가변</span><span class="one">정기 관리 계약 없이 바로 신청할 상품을 안내합니다.</span></li>
+      <li><a href="#b-mark">인증 마크</a><span class="tag fix">고정</span><span class="one">정기 관리 사업장이 받는 마크와 홍보물을 알립니다.</span></li>
+    </ul>
+  </div>
+  <div class="fgroup">
+    <div class="gname">마무리</div>
+    <ul class="fsteps">
+      <li><a href="#b-faq">자주 묻는 질문과 진단 신청</a><span class="tag fix">고정</span><span class="one">남은 궁금증에 답하고 무료진단 신청으로 연결합니다.</span></li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="blocks">블록별 작성 기준</h2>
+<p>예시 문장은 10/27 예시 페이지에서 그대로 가져왔습니다. 문장 앞에 출처 상품명을 적었습니다.</p>
+
+<section class="card" id="b-hero">
+  <header><h3>히어로</h3><span class="tag fix">고정</span><span class="where">시작</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>이 서비스가 무엇인지 첫 화면에서 한 문장으로 알립니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>서비스명을 그대로 쓴 제목</li>
+      <li>"{서비스명}은 ~하는 서비스입니다" 정의 한 문장</li>
+      <li>플랜을 나누는 기준 한 문장</li>
+      <li>무료진단 신청 버튼</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>제목에 수식어를 붙이지 않습니다.</li>
+      <li>정의 문장 안에 관리 단계를 순서대로 넣습니다.</li>
+      <li>두 문장으로 끝냅니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>빈대방제 솔루션은 빈대의 서식 여부를 전문가가 정밀 진단하고, 물리적 방제와 화학적 방제를 교차해 제거한 뒤 재유입까지 모니터링하는 서비스입니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>정기 관리와 1회 서비스 중 맞는 방식으로 진행해 드립니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-nature">
+  <header><h3>오염원의 특성</h3><span class="tag fix">고정</span><span class="where">오염원 문제</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>고객이 관리 대상을 먼저 이해하게 합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>질문 세 개: 무엇인가요 / 어떻게 들어오나요 / 어디서 많이 생기나요</li>
+      <li>유입 경로 그림</li>
+      <li>많이 생기는 장소 이미지 4컷</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>사실만 씁니다. 세스코와 해결책은 꺼내지 않습니다.</li>
+      <li>큰 헤드라인 없이 질문과 답으로 시작합니다.</li>
+      <li>답은 질문마다 한두 문장입니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>사람이 움직이는 모든 수단을 타고 이동해 '흡혈 히치하이커(Hitch Hiker)'라고 불립니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>집먼지 진드기는 따뜻하고 먼지가 쌓인 침구에서 사람의 각질과 비듬을 먹으며 스스로 번식합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-risk">
+  <header><h3>방치했을 때의 피해</h3><span class="tag var">가변</span><span class="where">오염원 문제</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>관리가 왜 필요한지 피해 사실로 알립니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>건강 피해 한두 문장</li>
+      <li>사업장 피해와 근거 수치</li>
+      <li>수치마다 출처 각주</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>경각심은 수치와 출처로만 올립니다.</li>
+      <li>감탄과 공포 표현은 쓰지 않습니다.</li>
+      <li>오염원 정의 문장에 이어 쓰거나 카드로 따로 둡니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>낮에는 어두운 틈새에 숨어 있다가 사람이 잠든 사이 약 10분 동안 자기 몸의 2.5~6배까지 흡혈합니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>이 배설물이 먼지에 섞여 공기 중에 떠다니다 코와 기도, 눈 점막으로 들어오면 알레르기성 비염, 아토피 피부염, 소아천식처럼 기침과 가려움을 일으키는 질환이 생길 수 있습니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-hard">
+  <header><h3>혼자 관리하기 어려운 이유</h3><span class="tag fix">고정</span><span class="where">오염원 문제</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>직접 관리의 한계를 보여 주고 첫 진단 신청으로 잇습니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>"{대상}는 왜 혼자 잡기 어려울까요?" 질문형 제목</li>
+      <li>숫자 카드 3~4개 (생존력, 이동, 번식력 등)</li>
+      <li>셀프 체크 8항목</li>
+      <li>첫 무료진단 신청 버튼</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>카드 하나에 숫자 하나를 씁니다.</li>
+      <li>숫자마다 출처 각주를 답니다.</li>
+      <li>셀프 체크는 흔적 4개와 최근 상황 4개로 나눕니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>흡혈하지 않고도 최대 18개월을 버팁니다. 비어 있는 객실이라도 안심할 수 없습니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>보이지 않는다고 안심하기 어렵습니다. 전문가 진단으로 정확하게 확인해 보세요.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-process">
+  <header><h3>단계별 관리 과정</h3><span class="tag fix">고정</span><span class="where">서비스 프로세스</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>세스코가 어떤 순서로 관리하는지 보여 줍니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>"세스코 {대상} N단계" 소제목</li>
+      <li>단계 카드 N장: 단계명, 한 줄 설명, 장비·서비스 2~3개</li>
+      <li>한 번 처리로 끝나지 않는 이유 한 문장</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>페이지에서 해결책이 처음 나오는 자리입니다.</li>
+      <li>단계 수와 단계명은 히어로 정의 문장과 같게 씁니다.</li>
+      <li>단계 수는 서비스 고유 공정을 그대로 따릅니다.</li>
+      <li>카드 설명은 한 문장입니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>빈대 문제는 침대에서만 일어나지 않기에, 세스코는 빈대 3단계 관리 체계로 진단 · 제거 · 모니터링합니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>진드기 살충 약제를 매트리스 표면에 직접 분사합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-point">
+  <header><h3>세스코가 다른 점</h3><span class="tag var">가변</span><span class="where">서비스 프로세스</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>같은 서비스라도 세스코여야 하는 이유를 보여 줍니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>POINT 4개</li>
+      <li>POINT마다 제목과 설명</li>
+      <li>수치에는 출처 각주</li>
+      <li>유상이거나 조건이 있으면 ※ 단서</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>제목은 "{주체}의 {무엇}" 명사형입니다.</li>
+      <li>설명은 두세 문장입니다.</li>
+      <li>"유일한", "최초" 같은 표현은 근거 각주가 있을 때만 씁니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>객실 한 곳을 1~2분 만에 탐지하며 탐지 성공률은 95~98%입니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>일반 매트리스 청소업체와 달리, 해충방제 전문 기술로 매트리스에 사는 진드기와 빈대를 전문가가 진단하고 전용 약제로 방제합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-plan">
+  <header><h3>플랜</h3><span class="tag var">가변</span><span class="where">상품 구성</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>고객이 자기에게 맞는 상품을 고르게 합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>플랜 표 하나: 누가 무엇을 받는지</li>
+      <li>플랜별 카드와 한 줄 설명</li>
+      <li>서비스 범위와 유의사항 4칸</li>
+      <li>무료진단 신청 버튼</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>간략히 씁니다. 플랜 설명은 한 줄입니다.</li>
+      <li>탭과 반복 카드는 쓰지 않습니다.</li>
+      <li>플랜명은 페이지 안에서 한 글자도 바꾸지 않습니다.</li>
+      <li>비용은 숫자로 쓰지 않고 안내 방법만 한 문장으로 둡니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>피해가 생기기 전에 살피고, 생기면 가장 빠르게 정상화합니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>꾸준히 관리하고 싶다면 정기 관리를, 지금 바로 한 번 관리하고 싶다면 1회 서비스를 이용해 보세요.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-mall">
+  <header><h3>세스코몰 단건 상품</h3><span class="tag var">가변</span><span class="where">상품 구성</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>정기 관리 계약 없이 바로 신청할 수 있는 상품을 안내합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>상품 3칸: 소구 한 줄, 상품명, 언제 쓰는지 한 문장</li>
+      <li>"세스코몰에서 보기" 버튼</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>상품명은 세스코몰 정식 표기를 씁니다.</li>
+      <li>상단 메뉴에는 넣지 않습니다.</li>
+      <li>문장은 "~이용해 보세요" 수준의 권유로 씁니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>정기 계약 전에 서식 여부만 먼저 확인하고 싶을 때 신청합니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>기다리지 않고 지금 바로 매트리스를 관리받고 싶을 때 신청합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-mark">
+  <header><h3>인증 마크</h3><span class="tag fix">고정</span><span class="where">상품 구성</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>세스코가 관리하는 사업장임을 알리는 혜택을 보여 줍니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>세스코 인프라 6칸</li>
+      <li>세스코 멤버스 마크와 홍보물 안내</li>
+      <li>홍보물 변경 단서 문장</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>모든 서비스형 페이지에 같은 내용으로 넣습니다.</li>
+      <li>서비스마다 고치지 않습니다.</li>
+      <li>수치를 바꿀 때는 모든 페이지를 함께 바꿉니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제 · 매트리스케어 공통</span>정기 관리 사업장에는 세스코 멤버스 마크와 위생 관리 홍보물을 제공합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-faq">
+  <header><h3>자주 묻는 질문과 진단 신청</h3><span class="tag fix">고정</span><span class="where">마무리</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>신청 전 망설임을 풀고 무료진단 신청으로 연결합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>질문 5개 안팎</li>
+      <li>하단 신청 영역: 제목, 방문 진단 안내 한 문장, 무료진단 신청 버튼, 전화 1588-1119</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>질문은 고객 말투("~나요?")로 씁니다.</li>
+      <li>답 첫 문장은 결론입니다. 이어서 근거 한 문장을 씁니다.</li>
+      <li>버튼 문구는 "무료진단 신청" 하나로 씁니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">빈대방제</span>Q. 가정집도 신청할 수 있나요? A. 신청할 수 있습니다. 가정집은 빈대 상시 모니터링 플랜과 빈대 제거 및 사업 정상화 플랜으로 진행합니다.</p>
+      <p class="ex"><span class="src">매트리스케어</span>매트리스, 진단부터 정확하게 시작하세요</p>
+    </dd>
+  </dl>
+</section>
+
+<h2 id="variable">가변 블록</h2>
+<p>가변 블록은 네 개입니다. 순서는 그대로 두고 구성만 바꿉니다.</p>
+
+<section class="card v">
+  <header><h3>방치했을 때의 피해</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>고객이 사업장인지 가정인지 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd><ul>
+      <li>사업장 대상이면 건강 피해와 사업장 피해 수치를 함께 씁니다.</li>
+      <li>가정 대상이면 사업장 피해 대신 생활 피해를 씁니다.</li>
+    </ul></dd>
+    <dt>예시</dt><dd><ul>
+      <li>빈대방제는 호텔 고객 반응 수치 4개를 씁니다.</li>
+      <li>매트리스케어는 수치 없이 생활 피해 문장을 씁니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<section class="card v">
+  <header><h3>세스코가 다른 점</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>이 서비스에서 강조할 POD를 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd>POD에 맞는 POINT 4개를 고릅니다.</dd>
+    <dt>예시</dt><dd><ul>
+      <li>빈대방제는 진단 속도와 정확도를 앞에 둡니다. 전문가 정밀 진단, 빈대탐지견 '세코', 24시간 이내 가동입니다.</li>
+      <li>매트리스케어는 성분과 유지 관리를 앞에 둡니다. 정향유 성분 약제, 특수 표면 코팅, 빈대 M-Kit 모니터링입니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<section class="card v">
+  <header><h3>플랜</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>상품을 무엇으로 나누는지 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd><ul>
+      <li>공간에 따라 받는 서비스가 다르면 공간별 표로 씁니다.</li>
+      <li>이용 방식이 나뉘면 이용 방식별 표로 씁니다.</li>
+      <li>장비가 중심인 서비스는 단계별 장비 표로 씁니다.</li>
+    </ul></dd>
+    <dt>예시</dt><dd><ul>
+      <li>빈대방제는 숙박시설 · 일반 생활시설 · 가정집으로 나눕니다.</li>
+      <li>매트리스케어는 정기 관리와 1회 서비스로 나눕니다.</li>
+      <li>비래해충방제는 방어 단계별 장비 표가 맞습니다. 10/27 구조 분석 기준이며 예시 페이지는 아직 없습니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<section class="card v">
+  <header><h3>세스코몰 단건 상품</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>세스코몰에 단건 서비스나 셀프 케어 상품이 있는지 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd>상품이 있으면 넣고 없으면 뺍니다. 주력 단건 상품을 첫 칸에 둡니다.</dd>
+    <dt>예시</dt><dd><ul>
+      <li>빈대방제는 빈대 진단 서비스를 첫 칸에 둡니다.</li>
+      <li>매트리스케어는 매트리스 케어 1회 서비스를 첫 칸에 둡니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<p class="small">고정 블록도 값은 상품에 맞춥니다. 단계별 관리 과정의 단계 수는 빈대방제가 3단계, 매트리스케어가 7단계입니다.</p>
+
+<h2 id="examples">이 뼈대로 만든 예시 페이지</h2>
+<p>두 페이지 모두 10/27 기준입니다.</p>
+<div class="chips">
+  <a class="chip" href="../../261026/솔루션페이지_서비스_빈대방제_261027.html" target="_blank"><span class="type">서비스형 예시</span>빈대방제</a>
+  <a class="chip" href="../../261026/솔루션페이지_서비스_매트리스케어_261027.html" target="_blank"><span class="type">서비스형 예시</span>매트리스케어</a>
+</div>
+
+<div class="foot">
+  렌탈 제품은 <a href="렌탈형_뼈대_261109.html">렌탈형 뼈대</a>를 봅니다. 마이랩은 페이지가 하나라 현재 페이지를 기준으로 둡니다. · <a href="../index.html">11/11 보고 자료로 돌아가기</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>렌탈형 솔루션 페이지 뼈대</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+a{color:var(--blue)}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:24px}
+.kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+h2{font-size:20px;margin:48px 0 10px;padding-top:18px;border-top:1px solid var(--line);font-weight:800}
+h3.sub{font-size:16px;font-weight:800;margin:26px 0 8px}
+p{margin:0 0 10px}
+.small{font-size:13px;color:var(--ink2)}
+/* 맨 위 요약 */
+.intro{display:grid;grid-template-columns:120px 1fr;gap:10px 16px;margin:0 0 18px}
+.intro dt{font-size:13px;font-weight:700;color:var(--ink2);padding-top:2px}
+.intro dd{margin:0}
+.rule{font-size:18px;font-weight:800;color:var(--blue)}
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 0}
+.big3 div{border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:6px;padding:12px 14px;background:var(--soft)}
+.big3 i{display:block;font-style:normal;font-size:12px;font-weight:700;color:var(--blue)}
+.big3 b{display:block;font-size:16.5px;font-weight:800;margin:1px 0 3px}
+.big3 span{font-size:13px;color:var(--ink2);line-height:1.5;display:block}
+/* 고정 · 가변 표시 */
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:4px;white-space:nowrap;vertical-align:1px}
+.tag.fix{background:#f1f1f1;color:var(--ink2)}
+.tag.var{background:var(--blue);color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13.5px;color:var(--ink2);margin:0 0 14px}
+/* 뼈대 흐름 */
+.flow{border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.fgroup{display:grid;grid-template-columns:176px 1fr;border-top:1px solid var(--line)}
+.fgroup:first-child{border-top:0}
+.gname{background:var(--soft);padding:16px 18px;font-size:16px;font-weight:800;line-height:1.4}
+.gname small{display:block;margin-top:3px;font-size:12.5px;font-weight:500;color:var(--ink2);line-height:1.5}
+.fsteps{list-style:none;margin:0;padding:6px 18px 6px 0;background:linear-gradient(var(--line),var(--line)) 27px 0/2px 100% no-repeat}
+.fsteps li{position:relative;padding:9px 0 9px 52px}
+.fsteps li::before{content:"";position:absolute;left:21px;top:16px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--ink2)}
+.fsteps li.v::before{border-color:var(--blue);background:var(--blue)}
+.fsteps a{font-size:16px;font-weight:800;color:var(--ink);text-decoration:none;margin-right:8px}
+.fsteps a:hover{color:var(--blue);text-decoration:underline}
+.fsteps span.one{display:block;font-size:13.5px;color:var(--ink2)}
+/* 블록 카드 */
+.card{border:1px solid var(--line);border-radius:8px;margin:14px 0;scroll-margin-top:16px}
+.card.v{border-left:4px solid var(--blue)}
+.card>header{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:12px 18px;background:var(--soft);border-bottom:1px solid var(--line);border-radius:8px 8px 0 0}
+.card.v>header{border-radius:5px 8px 0 0}
+.card h3{font-size:17px;font-weight:800;margin:0}
+.card .where{margin-left:auto;font-size:12.5px;color:var(--ink3);font-weight:600}
+.rows{display:grid;grid-template-columns:118px 1fr;margin:0;padding:6px 18px 10px}
+.rows dt{font-size:13px;font-weight:700;color:var(--ink2);padding:9px 0;border-top:1px solid var(--line)}
+.rows dd{margin:0;padding:8px 0;border-top:1px solid var(--line)}
+.rows dt:first-of-type,.rows dt:first-of-type+dd{border-top:0}
+.rows ul{margin:0;padding-left:18px}
+.rows li{margin:2px 0}
+.ex{margin:0 0 6px;padding:7px 12px;border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 6px 6px 0}
+.ex:last-child{margin-bottom:0}
+.src{display:inline-block;font-size:11.5px;font-weight:700;color:var(--blue);background:#fff;border:1px solid var(--blue);border-radius:999px;padding:0 8px;margin-right:6px;white-space:nowrap}
+/* 도입부 두 가지 방식 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.two .card{margin:0}
+.two .rows{grid-template-columns:1fr}
+.two .rows dt{padding-bottom:0}
+.two .rows dd{border-top:0;padding-top:2px}
+.same{border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:6px;background:var(--soft);padding:12px 18px;margin:14px 0}
+.same b{display:block;margin-bottom:4px}
+.same ul{margin:0;padding-left:18px}
+table.pair{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 4px;background:#fff}
+table.pair th,table.pair td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+table.pair th{background:#fff;font-size:13px;color:var(--ink2);font-weight:700}
+/* 예시 링크 */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;line-height:1.25;padding:6px 14px;border:1px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:13.5px;font-weight:700;text-decoration:none}
+.chip .type{font-size:10.5px;font-weight:600;opacity:.75}
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
+@media (max-width:720px){
+  .wrap{padding:28px 16px 60px}h1{font-size:23px}
+  .intro{grid-template-columns:1fr;gap:2px}.intro dd{margin-bottom:10px}
+  .big3{grid-template-columns:1fr}
+  .fgroup{grid-template-columns:1fr}
+  .rows{grid-template-columns:1fr}.rows dt{padding-bottom:0}.rows dd{border-top:0;padding-top:2px}
+  .card .where{margin-left:0;width:100%}
+  .two{grid-template-columns:1fr}
+}
+@media print{.wrap{padding:0;max-width:none}.card,.fgroup{break-inside:avoid}a{color:inherit;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">세스코 콘텐츠 템플릿 · 솔루션 페이지</div>
+  <h1>렌탈형 솔루션 페이지 뼈대</h1>
+  <div class="meta">
+    <span><b>기준일</b> 2026-11-09 (월)</span>
+    <span><b>근거</b> 11/3 미팅 결정</span>
+    <span><b>함께 보기</b> <a href="서비스형_뼈대_261109.html">서비스형 뼈대</a> · <a href="../index.html">11/11 보고 자료</a></span>
+  </div>
+</header>
+
+<dl class="intro">
+  <dt>해당 상품</dt>
+  <dd>공기청정기(판테온) · 정수기 · 공기살균기 · 비데 · 위생케어. 설치한 뒤 정기 관리하는 환경가전 렌탈 제품입니다.</dd>
+  <dt>원칙</dt>
+  <dd><span class="rule">뼈대는 고정, 문장은 상품에 맞게 변형합니다.</span></dd>
+  <dt>큰 흐름</dt>
+  <dd>
+    <div class="big3">
+      <div><i>먼저</i><b>Why 세스코</b><span>왜 세스코의 방식인지 먼저 말합니다.</span></div>
+      <div><i>이어서</i><b>특장점과 케어 서비스</b><span>기능과 설치 뒤 관리를 근거로 보여 줍니다.</span></div>
+      <div><i>끝으로</i><b>라인업과 추천</b><span>고객이 고를 모델과 함께 쓸 제품을 안내합니다.</span></div>
+    </div>
+  </dd>
+</dl>
+
+<h2 id="flow">뼈대 흐름</h2>
+<p>위에서 아래로 읽습니다. 블록 이름을 누르면 작성 기준으로 이동합니다. 기본 골자는 이 하나입니다.</p>
+<div class="legend">
+  <span><span class="tag fix">고정</span> 모든 렌탈형 페이지에 같은 자리, 같은 구성으로 넣습니다.</span>
+  <span><span class="tag var">가변</span> 자리는 같습니다. 상품 특성과 강조할 POD에 따라 구성을 바꿉니다.</span>
+</div>
+
+<div class="flow">
+  <div class="fgroup">
+    <div class="gname">시작</div>
+    <ul class="fsteps">
+      <li><a href="#b-hero">히어로</a><span class="tag fix">고정</span><span class="one">이 제품군이 어떤 고민에 답하는지 알립니다.</span></li>
+    </ul>
+  </div>
+  <div class="fgroup">
+    <div class="gname">Why 세스코<small>왜 세스코의 방식인가</small></div>
+    <ul class="fsteps">
+      <li class="v"><a href="#b-intro">도입부</a><span class="tag var">가변</span><span class="one">제품력 또는 관리 필요성으로 엽니다.</span></li>
+      <li><a href="#b-why">관리 선언</a><span class="tag fix">고정</span><span class="one">위해요소가 번지는 경로와 세스코의 관리 방식을 선언합니다.</span></li>
+    </ul>
+  </div>
+  <div class="fgroup">
+    <div class="gname">특장점과 케어 서비스<small>기능과 설치 뒤 관리</small></div>
+    <ul class="fsteps">
+      <li class="v"><a href="#b-point">특장점</a><span class="tag var">가변</span><span class="one">관리 선언을 기능별 근거로 증명합니다.</span></li>
+      <li class="v"><a href="#b-care">케어 서비스</a><span class="tag var">가변</span><span class="one">설치 뒤 누가, 무엇을, 얼마나 자주 관리하는지 보여 줍니다.</span></li>
+    </ul>
+  </div>
+  <div class="fgroup">
+    <div class="gname">라인업과 추천<small>고객이 고르는 것</small></div>
+    <ul class="fsteps">
+      <li class="v"><a href="#b-lineup">라인업 소개</a><span class="tag var">가변</span><span class="one">공간에 맞는 모델을 고르게 합니다.</span></li>
+      <li><a href="#b-mark">인증 마크</a><span class="tag fix">고정</span><span class="one">설치 뒤 고객이 보게 되는 위생 관리 표식을 알립니다.</span></li>
+      <li class="v"><a href="#b-target">핵심 타깃</a><span class="tag var">가변</span><span class="one">이 제품이 필요한 사람과 공간을 확인시킵니다.</span></li>
+      <li><a href="#b-rec">추천 제품</a><span class="tag fix">고정</span><span class="one">같은 공간에서 함께 쓰는 제품을 소개합니다.</span></li>
+    </ul>
+  </div>
+</div>
+<p class="small" style="margin-top:10px">"무료진단 신청" 버튼은 상단 메뉴, 특장점 끝, 화면 오른쪽 아래에 같은 문구로 둡니다.</p>
+
+<h2 id="blocks">블록별 작성 기준</h2>
+<p>예시 문장은 10/27 예시 페이지에서 그대로 가져왔습니다. 문장 앞에 출처 상품명을 적었습니다.</p>
+
+<section class="card" id="b-hero">
+  <header><h3>히어로</h3><span class="tag fix">고정</span><span class="where">시작</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>이 제품군이 어떤 고민에 답하는지 첫 화면에서 알립니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>카테고리명 제목 하나 (정수기, 공기청정기)</li>
+      <li>리드 두세 줄</li>
+      <li>제품이 놓인 공간 이미지</li>
+      <li>무료진단 신청 버튼</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>제목 옆에 솔루션명을 함께 쓰지 않습니다.</li>
+      <li>리드는 문제, 기존 방식의 한계, 세스코 해법 예고 순서로 씁니다.</li>
+      <li>리드에 가짓수를 쓰면 관리 선언, 특장점과 숫자를 맞춥니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>눈에 보이지 않는 유해공기에 대한 모든 고민, 세스코 에어 솔루션으로 답합니다.</p>
+      <p class="ex"><span class="src">정수기</span>안심하고 마실 수 있는 물. 세스코 과학이 세스코워터로 시작합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-intro">
+  <header><h3>도입부</h3><span class="tag var">가변</span><span class="where">Why 세스코</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>고객이 이 제품의 위생에 관심을 갖게 합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>헤드라인 한두 줄</li>
+      <li>근거 2~4개, 각 한두 줄</li>
+      <li>다음 블록으로 넘기는 한 줄</li>
+      <li>근거마다 출처</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>한 화면 안에서 끝냅니다. 본문 단락은 쓰지 않습니다.</li>
+      <li>출처 없는 수치는 싣지 않습니다.</li>
+      <li>여는 방식은 아래 <a href="#variable">가변 블록</a>에서 정합니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>가전제품을 만들지 않습니다.</p>
+      <p class="ex"><span class="src">정수기</span>그래서 정수기는 물이 지나는 모든 곳까지 관리해야 합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-why">
+  <header><h3>관리 선언</h3><span class="tag fix">고정</span><span class="where">Why 세스코</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>세스코가 이 문제를 어떻게 보고 어떻게 관리하는지 선언합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>위해요소 경로 세 줄: 어디서 시작해 어디로 번지는지</li>
+      <li>결론 "세스코는 N가지 {솔루션명}으로 관리합니다"</li>
+      <li>제품이 공간에 놓인 이미지 한 장</li>
+      <li>브랜드 철학 두 줄 (필요할 때만)</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>결론의 숫자는 특장점 블록 수와 같게 씁니다.</li>
+      <li>도입부에서 쓴 선언과 수치는 반복하지 않습니다.</li>
+      <li>브랜드 철학은 두 줄 이내입니다. 단락으로 풀지 않습니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>먼지만 거르는 필터로는 해결하기 어려운 실내 공기질 문제를, 세스코는 5가지 공기질 안심관리 솔루션으로 관리합니다.</p>
+      <p class="ex"><span class="src">정수기</span>세스코가 가장 잘하는 일에 집중합니다. 그래서 살균과 미세플라스틱 제거에 진심을 다해 연구합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-point">
+  <header><h3>특장점</h3><span class="tag var">가변</span><span class="where">특장점과 케어 서비스</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>관리 선언을 기능별 근거로 증명합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>POINT 블록 N개</li>
+      <li>블록마다 기술명, 부제 한 줄, 문제의식, 작동 원리, 수치 칩, "자세히 보기"</li>
+      <li>섹션 끝 각주 모음</li>
+      <li>무료진단 신청 버튼</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>부제는 "~합니다"로 끝나는 약속입니다.</li>
+      <li>작동 원리는 한두 문장입니다.</li>
+      <li>각주 없는 수치는 싣지 않습니다.</li>
+      <li>"국내 최초" 같은 표현에는 기준 각주를 답니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>청정엔진과 살균엔진을 한 대에 담은 2 in 1 공기청정기입니다. 필터를 제균하는 데서 멈추지 않고, 흡입한 공기 자체를 살균합니다.</p>
+      <p class="ex"><span class="src">정수기</span>세스코 살균온 정수기는 냉수, 정수, 온수까지 모두 직수로 출수해 고이지 않는 깨끗한 물을 바로 제공합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-care">
+  <header><h3>케어 서비스</h3><span class="tag var">가변</span><span class="where">특장점과 케어 서비스</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>설치 뒤 누가, 무엇을, 얼마나 자주 관리하는지 보여 줍니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>도입 배너</li>
+      <li>세스코 사이언스 케어 서비스: 담당 전문가, 위생관리 항목과 주기</li>
+      <li>플러스알파케어: 서비스별 문제, 설명, 조건 각주</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>분류 이름은 "세스코 사이언스 케어 서비스"와 "플러스알파케어" 두 개로 씁니다.</li>
+      <li>담당자는 제품별 전문가명으로 부릅니다. 공기관리 전문가, 수질관리 전문가입니다.</li>
+      <li>교체 주기는 항목명 아래 괄호로 씁니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>첨단 교육 시설을 갖춘 세스코 터치센터, 세스코 멤버스 시티에서 환경위생관리 전문 교육을 이수한 공기관리 전문가가 꼼꼼히 관리합니다.</p>
+      <p class="ex"><span class="src">정수기</span>100% 식품첨가물 성분의 살균소독제로 정수기와 주변 주방 공간의 표면까지 철저히 살균 관리 해드립니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-lineup">
+  <header><h3>라인업 소개</h3><span class="tag var">가변</span><span class="where">라인업과 추천</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>고객이 자기 공간에 맞는 모델을 고르게 합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>섹션 헤드라인</li>
+      <li>모델 카드: 수식어 한두 줄, 제품명, "자세히 보기", 제품 사진</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>제품명은 세스코몰 정식 표기를 씁니다.</li>
+      <li>카드에는 이름과 수식어까지만 씁니다. 사양 비교는 넣지 않습니다.</li>
+      <li>인증 뱃지는 출처가 확인되는 사실만 씁니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>안전과 신뢰의 기준이 다른 세스코 살균과학으로 만든 트루살균 공기청정기 판테온 Pantheon</p>
+      <p class="ex"><span class="src">정수기</span>23cm 폭으로 좁은 공간에도 쏙 들어가는 THE슬림 스탠드 정수기</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-mark">
+  <header><h3>인증 마크</h3><span class="tag fix">고정</span><span class="where">라인업과 추천</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>설치 뒤 고객이 보게 되는 위생 관리 표식을 알립니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>마크 이름</li>
+      <li>무엇을, 누구를 위한 표식인지 설명</li>
+      <li>마크를 붙인 사진</li>
+      <li>홍보물 변경 단서 문장</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>실제로 제공하는 마크만 넣습니다.</li>
+      <li>마크가 3종이면 3단, 1종이면 넓은 1단으로 씁니다.</li>
+      <li>설명은 세 줄 이내입니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>세스코 첨단과학으로 24시간 상시 공기질 관리하는 구역임을 표시합니다.</p>
+      <p class="ex"><span class="src">정수기</span>고객과 직원이 안심하고 물을 마실 수 있도록 세스코 워터 계약 고객에게는 홍보용 스티커를 제공합니다.</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card v" id="b-target">
+  <header><h3>핵심 타깃</h3><span class="tag var">가변</span><span class="where">라인업과 추천</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>이 제품이 필요한 사람과 공간을 한 화면으로 확인시킵니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>헤드라인</li>
+      <li>아이콘 카드 4~5개</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>필요 없으면 뺍니다.</li>
+      <li>"이용 중입니다"는 실제 이용 공간일 때만 씁니다.</li>
+      <li>라인업 소개에 쓴 문장과 겹치지 않게 씁니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>이미 수많은 위생민감 고객님들이 세스코 공기질 안심관리 솔루션을 이용 중입니다.</p>
+      <p class="ex"><span class="src">판테온</span>면역력 약한 아이들이 단체 생활하는 어린이집에서</p>
+    </dd>
+  </dl>
+</section>
+
+<section class="card" id="b-rec">
+  <header><h3>추천 제품</h3><span class="tag fix">고정</span><span class="where">라인업과 추천</span></header>
+  <dl class="rows">
+    <dt>목적</dt><dd>같은 공간에서 함께 쓰는 제품을 소개합니다.</dd>
+    <dt>꼭 들어갈 내용</dt><dd><ul>
+      <li>제목 "함께하면 더 좋은 제품"</li>
+      <li>제품명, 한 줄 소구, 해시태그 3개, 이미지</li>
+    </ul></dd>
+    <dt>쓰는 기준</dt><dd><ul>
+      <li>같은 공간에서 함께 쓰는 제품으로 고릅니다.</li>
+      <li>해시태그는 기술명, 편의, 인증 순서로 씁니다.</li>
+    </ul></dd>
+    <dt>실제 예시 문장</dt><dd>
+      <p class="ex"><span class="src">판테온</span>세스코 공기청정기와 함께 더 효과적으로 관리하세요!</p>
+      <p class="ex"><span class="src">정수기</span>세스코 정수기와 함께 더 효과적으로 관리하세요!</p>
+    </dd>
+  </dl>
+</section>
+
+<h2 id="variable">가변 블록</h2>
+<p>가변 블록은 다섯 개입니다. 순서는 그대로 두고 구성만 바꿉니다.</p>
+
+<h3 class="sub">도입부: 여는 방식 두 가지</h3>
+<p>기본 골자는 하나입니다. 도입부는 강조할 POD에 따라 여는 내용만 달라집니다.</p>
+
+<div class="two">
+  <section class="card v">
+    <header><h3>제품력으로 엽니다</h3></header>
+    <dl class="rows">
+      <dt>이럴 때 씁니다</dt><dd>기술 구조나 성능 수치가 POD일 때 씁니다. 제품을 비교하는 고객이 많을 때 맞습니다.</dd>
+      <dt>구성</dt><dd><ul>
+        <li>소제목 "{제품군}가 이렇게까지?"</li>
+        <li>선언 한 번</li>
+        <li>성능 수치 4줄: 대상, 수치, 동사</li>
+        <li>제품 구조 사진</li>
+        <li>특장점 한 줄 요약</li>
+      </ul></dd>
+      <dt>주의</dt><dd>관리 선언에서 같은 선언문과 수치를 반복하지 않습니다.</dd>
+      <dt>실제 예시 문장</dt><dd>
+        <p class="ex"><span class="src">판테온</span>유해물질로부터 오염되는 공기질 솔루션을 만듭니다.</p>
+        <p class="ex"><span class="src">판테온</span>0.1㎛ 이하 극초미세먼지 99.999% 제거</p>
+      </dd>
+    </dl>
+  </section>
+  <section class="card v">
+    <header><h3>관리 필요성으로 엽니다</h3></header>
+    <dl class="rows">
+      <dt>이럴 때 씁니다</dt><dd>고객이 필요성을 덜 느끼는 제품일 때 씁니다. 출처 있는 유해성 근거가 있어야 합니다.</dd>
+      <dt>구성</dt><dd><ul>
+        <li>관리하지 않았을 때의 문제 세 가지</li>
+        <li>문제마다 출처 있는 수치나 연구</li>
+        <li>세스코 선언으로 넘기는 한 줄</li>
+      </ul></dd>
+      <dt>주의</dt><dd>문제를 말하는 자리에는 세스코 제품명과 기술명을 쓰지 않습니다. 성능 수치는 특장점에서 보여 줍니다.</dd>
+      <dt>실제 예시 문장</dt><dd>
+        <p class="ex"><span class="src">판테온</span>실내 공기를 관리하지 않으면, 창문을 닫은 실내에는 눈에 보이지 않는 유해물질이 그대로 남습니다.</p>
+        <p class="ex"><span class="src">판테온</span>그래서 세스코는 가전제품을 만들지 않습니다.</p>
+      </dd>
+    </dl>
+  </section>
+</div>
+
+<div class="same">
+  <b>어느 방식으로 열어도 같은 것</b>
+  <ul>
+    <li>도입부 뒤의 관리 선언은 같습니다.</li>
+    <li>특장점부터 추천 제품까지의 블록과 순서는 같습니다.</li>
+  </ul>
+</div>
+
+<div class="same">
+  <b>근거가 둘 다 있을 때</b>
+  관리 필요성 다음에 제품력을 이어 씁니다. 문제와 답은 같은 키워드로 짝을 맞춥니다. 정수기 예시가 이 형태입니다.
+  <table class="pair">
+    <thead><tr><th>관리 필요성에서 짚는 문제</th><th>제품력에서 주는 답</th></tr></thead>
+    <tbody>
+      <tr><td>물과 함께 마시는 미세플라스틱</td><td>미세플라스틱 불검출</td></tr>
+      <tr><td>유로와 탱크에 고여 머무는 물</td><td>3시간마다 유로 비움</td></tr>
+      <tr><td>매일 손과 컵이 닿는 코크</td><td>1시간마다 UV-C 살균</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="sub">그 밖의 가변 블록</h3>
+
+<section class="card v">
+  <header><h3>특장점</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>한 제품의 기능을 나열하는지, 여러 기기가 순서대로 이어지는지 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd><ul>
+      <li>기능을 나열하면 POINT로 씁니다.</li>
+      <li>여러 기기가 오염 경로 순서대로 이어지면 STEP으로 씁니다.</li>
+      <li>블록 수는 관리 선언의 숫자와 맞춥니다.</li>
+    </ul></dd>
+    <dt>예시</dt><dd><ul>
+      <li>판테온은 POINT 5개입니다.</li>
+      <li>정수기는 POINT 4개입니다.</li>
+      <li>위생케어는 변기, 공기, 손 순서의 STEP 3개입니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<section class="card v">
+  <header><h3>케어 서비스</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>설치 뒤 방문 관리가 있는 제품인지 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd><ul>
+      <li>방문 관리가 있으면 넣고 없으면 뺍니다.</li>
+      <li>위생관리 항목과 플러스알파케어 구성은 제품에 맞춥니다.</li>
+    </ul></dd>
+    <dt>예시</dt><dd><ul>
+      <li>판테온은 위생관리 8단계와 플러스알파케어 3종입니다.</li>
+      <li>정수기는 위생관리 8항목과 플러스알파케어 4종입니다. 교차오염 방지 도구 3종을 더했습니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<section class="card v">
+  <header><h3>라인업 소개</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>여러 기기를 묶은 세트 라인인지, 개별 모델인지 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd><ul>
+      <li>세트 라인이면 라인 이미지와 "이런 사업장" 체크 3개를 씁니다.</li>
+      <li>개별 모델이면 2열 모델 카드를 씁니다.</li>
+    </ul></dd>
+    <dt>예시</dt><dd><ul>
+      <li>판테온은 모델 카드 4장입니다.</li>
+      <li>정수기는 직수형 3장과 탱크형 4장으로 묶음을 나눕니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<section class="card v">
+  <header><h3>핵심 타깃</h3><span class="tag var">가변</span></header>
+  <dl class="rows">
+    <dt>정하는 기준</dt><dd>필요한 사람이나 공간을 따로 짚어야 하는 제품인지 봅니다.</dd>
+    <dt>바꾸는 것</dt><dd><ul>
+      <li>필요 없으면 블록을 뺍니다.</li>
+      <li>넣을 때는 인물형과 공간형 중 하나로 씁니다.</li>
+    </ul></dd>
+    <dt>예시</dt><dd><ul>
+      <li>판테온은 공간형입니다. 가정집, 어린이집, 병원, 산후조리원, 사업장 5곳입니다.</li>
+      <li>정수기는 넣지 않았습니다.</li>
+    </ul></dd>
+  </dl>
+</section>
+
+<h2 id="examples">이 뼈대로 만든 예시 페이지</h2>
+<p>두 페이지 모두 10/27 기준입니다. 판테온 예시는 도입부를 제품력으로 열었습니다. 정수기 예시는 관리 필요성 다음에 제품력을 이어 썼습니다.</p>
+<div class="chips">
+  <a class="chip" href="../../261026/솔루션페이지_환경가전_공기청정기_판테온_1안_이렇게까지도입_261027.html" target="_blank"><span class="type">렌탈형 예시</span>판테온</a>
+  <a class="chip" href="../../261026/솔루션페이지_환경가전_정수기_재구성예시_V2_261027.html" target="_blank"><span class="type">렌탈형 예시</span>정수기</a>
+</div>
+<p class="small">두 예시는 도입부가 상단 메뉴에서 Why CESCO 앞에 따로 나와 있습니다. 이 뼈대에서는 도입부를 Why 세스코의 첫 부분으로 둡니다.</p>
+
+<div class="foot">
+  서비스 상품은 <a href="서비스형_뼈대_261109.html">서비스형 뼈대</a>를 봅니다. 마이랩은 페이지가 하나라 현재 페이지를 기준으로 둡니다. · <a href="../index.html">11/11 보고 자료로 돌아가기</a>
+</div>
+
+</div>
+</body>
+</html>
