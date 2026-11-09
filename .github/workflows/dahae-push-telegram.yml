@@ -1,0 +1,36 @@
+name: 다해 푸시 텔레그램 알림
+on:
+  push:
+    branches: ['**']
+    tags: ['**']
+jobs:
+  notify:
+    if: github.actor == 'yimdahae-hub' || github.event.pusher.name == 'yimdahae-hub'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram message
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          WHEN=$(TZ=Asia/Seoul date '+%m/%d %H:%M')
+          MSG=$(jq -r --arg when "$WHEN" '
+            (.ref | sub("^refs/(heads|tags)/"; "")) as $b
+            | (.commits | length) as $n
+            | if .deleted then
+                "[다해 깃허브 푸시 \($when)]\n\(.repository.name) / \($b) 브랜치 삭제"
+              else
+                "[다해 깃허브 푸시 \($when)]\n\(.repository.name) / \($b) 커밋 \($n)건"
+                + (if .forced then " (강제 푸시)" else "" end) + "\n"
+                + ([.commits[-5:][] | "- " + (.message | split("\n")[0] | .[0:120])] | join("\n"))
+                + (if $n > 5 then "\n외 \($n - 5)건" else "" end)
+                + "\n" + .compare
+              end' "$GITHUB_EVENT_PATH")
+          for i in 1 2; do
+            RES=$(curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+              --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=${MSG}" \
+              --data-urlencode "disable_web_page_preview=true")
+            echo "$RES" | jq -e '.ok' > /dev/null && { echo sent; exit 0; }
+            sleep 3
+          done
+          echo "telegram send failed"; exit 1
