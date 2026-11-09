@@ -3,9 +3,10 @@ on:
   push:
     branches: ['**']
     tags: ['**']
+  workflow_dispatch:
 jobs:
   notify:
-    if: github.actor == 'yimdahae-hub' || github.event.pusher.name == 'yimdahae-hub'
+    if: github.event_name == 'workflow_dispatch' || github.actor == 'yimdahae-hub' || github.event.pusher.name == 'yimdahae-hub'
     runs-on: ubuntu-latest
     steps:
       - name: Send Telegram message
@@ -14,6 +15,9 @@ jobs:
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           WHEN=$(TZ=Asia/Seoul date '+%m/%d %H:%M')
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            MSG="[다해 깃허브 푸시 알림 테스트 $WHEN]"$'\n'"cesco-templates 알림 연결 확인용 메시지입니다."
+          else
           MSG=$(jq -r --arg when "$WHEN" '
             (.ref | sub("^refs/(heads|tags)/"; "")) as $b
             | (.commits | length) as $n
@@ -26,6 +30,7 @@ jobs:
                 + (if $n > 5 then "\n외 \($n - 5)건" else "" end)
                 + "\n" + .compare
               end' "$GITHUB_EVENT_PATH")
+          fi
           for i in 1 2; do
             RES=$(curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
               --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=${MSG}" \
