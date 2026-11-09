@@ -1,0 +1,881 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>위쳌 치킨집 | 최신 소비자 언어 재검수본</title><style>
+:root{--ink:#111111;--ink2:#1A1A1A;--txt:#555555;--muted:#8A8A8A;--line:#EEEEEE;--bg:#F6F7F4;--card:#FFFFFF;--red:#C8102E;--chip:#EDEFE9;--navy:#1A3668;--amber:#C77700;--amber-bg:#FFF6E8;--wc:#0072CE;--wc-bg:#EAF3FC;--wc-line:#CFE0F3}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#E9EBE7;color:var(--txt);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:13px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all}
+p{margin:0}
+.wrap{max-width:1320px;margin:0 auto;padding:20px 20px 60px}
+.desc{background:#fff;border-radius:12px;padding:14px 18px;margin-bottom:18px}
+.desc h1{margin:0;font-size:16px;font-weight:800;color:var(--ink)}
+.desc p{font-size:12.5px;color:var(--muted);margin-top:4px}
+.desc a{color:var(--wc)}
+.stage{display:flex;gap:28px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+.stage > figure{margin:0}
+figcaption{font-size:12.5px;font-weight:800;color:var(--ink);margin:0 0 8px 4px}
+figcaption small{display:block;font-weight:500;color:var(--muted);font-size:11.5px}
+.phone{width:390px;background:var(--bg);border-radius:28px;box-shadow:0 10px 30px rgba(0,0,0,.14),0 0 0 1px rgba(0,0,0,.06);overflow:hidden;position:relative}
+.fold{position:absolute;left:0;right:0;top:844px;border-top:2px dashed #C8102E;pointer-events:none;z-index:5}
+.fold span{position:absolute;right:10px;top:-9px;background:#C8102E;color:#fff;font-size:9.5px;font-weight:800;border-radius:4px;padding:1px 6px}
+.appbar{height:52px;background:#fff;display:flex;align-items:center;padding:0 12px;gap:8px;border-bottom:1px solid var(--line)}
+.appbar .back{width:36px;height:36px;border-radius:50%;border:0;background:#fff;display:flex;align-items:center;justify-content:center}
+.appbar .t{flex:1;font-size:15px;font-weight:800;color:var(--ink);text-align:center;margin-right:36px}
+.head{background:#fff;padding:12px 16px 0}
+.head .nm{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.head h2{margin:0;font-size:19px;font-weight:900;color:var(--ink)}
+.head .cat{font-size:12px;color:#595959}
+.head .rv{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--txt);margin-top:4px}
+.head .rv b{color:var(--ink2);font-weight:700}
+.tabs{display:flex;background:#fff;border-bottom:1px solid var(--line);margin-top:10px}
+.tabs span{flex:1;height:42px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#595959}
+.tabs span.on{border-bottom:3px solid var(--wc);font-weight:900;color:var(--wc)}
+.body{padding:12px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border-radius:14px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.05);position:relative}
+/* AI 요약 */
+.ai{background:#fff;border:1px solid var(--wc-line);border-radius:14px;padding:11px 13px}
+.ai .lb{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:900;color:var(--wc);letter-spacing:.04em}
+.ai .lb small{margin-left:auto;font-weight:600;color:var(--muted);letter-spacing:0;font-size:10px}
+.ai ul{margin:7px 0 0;padding:0;list-style:none}
+.ai li{font-size:12.5px;color:var(--ink2);line-height:1.5;padding:3px 0 3px 14px;position:relative}
+.ai li:before{content:"";position:absolute;left:2px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--wc)}
+/* 위생 정보 카드 (261027 사업장 상세 시안의 공통 카드 + 실측 2열, 위쳌 파란색) */
+.hc{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.hc .top{display:flex;align-items:center;gap:10px}
+.grade{width:46px;height:46px;border-radius:50%;background:var(--wc);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.grade b{font-size:19px;line-height:1}
+.grade span{font-size:8px;font-weight:800;margin-top:2px}
+.hc .top .t{flex:1}
+.hc .top .t b{display:block;font-size:13.5px;font-weight:900;color:var(--ink);line-height:1.3}
+.hc .top .t span{font-size:10.5px;color:var(--muted)}
+.hc .pt{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.hc .pill{display:inline-block;font-size:10px;font-weight:900;color:#595959;background:var(--chip);border-radius:6px;padding:2px 7px}
+.hc .pill+small{float:right;font-size:10px;color:var(--muted)}
+.hc .hl{font-size:13px;font-weight:900;color:var(--ink);margin-top:6px}
+.hc .ds{font-size:11.5px;color:var(--txt);line-height:1.5;margin-top:3px}
+.hc .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.hc .m{border:1px solid var(--wc-line);border-radius:12px;padding:10px 11px}
+.hc .m .k{display:flex;align-items:center;justify-content:space-between;font-size:10.5px;font-weight:700;color:#595959}
+.hc .m .k i{font-style:normal;font-size:9px;font-weight:900;color:#fff;background:var(--wc);border-radius:5px;padding:2px 6px}
+.hc .m .v{font-size:19px;font-weight:900;color:var(--wc);line-height:1;margin-top:5px}
+.hc .m .v small{font-size:10.5px;font-weight:700}
+.hc .m .bar{height:6px;border-radius:3px;background:#E6EDF5;margin-top:6px;position:relative}
+.hc .m .bar i{display:block;height:6px;border-radius:3px;background:var(--wc)}
+.hc .m .b{font-size:9.5px;color:var(--muted);margin-top:4px;line-height:1.3}
+.hc .sum{display:flex;align-items:center;gap:8px;background:var(--wc-bg);border-radius:10px;padding:9px 11px;margin-top:10px;font-size:11.5px;color:var(--ink2);line-height:1.45}
+.hc .sum b{color:var(--ink);font-weight:900}
+/* 사업주 영역 표시 (검토용 표식 · 실제 서비스에는 노출 안 됨) */
+.own-tag{position:absolute;right:10px;top:-8px;z-index:2;font-size:9.5px;font-weight:900;color:#fff;background:var(--amber);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.own-in{outline:1.5px dashed var(--amber);outline-offset:3px;border-radius:14px;position:relative}
+.own-tag.l{right:auto;left:10px}
+.lg{display:flex;gap:12px;flex-wrap:wrap;font-size:10px;color:var(--muted);font-weight:700;padding:0 2px}
+.lg i{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:4px}
+/* 결과 카드 (B안 계기판형) */
+.sh2{display:flex;align-items:baseline;gap:8px;padding:4px 2px 0}
+.sh2 b{font-size:13.5px;font-weight:900;color:var(--ink)}
+.sh2 small{margin-left:auto;font-size:10.5px;color:var(--muted);font-weight:600}
+.res{display:flex;flex-direction:column;gap:8px}
+.r{background:#fff;border:1px solid var(--wc-line);border-radius:12px;padding:10px 12px}
+.r .k{font-size:10.5px;font-weight:700;color:#6B7684}
+.r .vd{display:flex;align-items:flex-start;gap:5px;margin-top:3px;font-size:16px;font-weight:900;color:var(--wc);line-height:1.25}
+.r .vd svg{flex-shrink:0;margin-top:3px;background:var(--wc);color:#fff;border-radius:50%;padding:2px}
+.mt{margin-top:7px}
+.mrow{display:flex;align-items:baseline;gap:3px}
+.mrow b{font-size:17px;font-weight:900;color:var(--ink);line-height:1}
+.mrow small{font-size:10px;font-weight:700;color:var(--muted)}
+.pill2{margin-left:auto;font-size:9.5px;font-weight:800;color:var(--wc);background:var(--wc-bg);border-radius:999px;padding:2px 7px;white-space:nowrap}
+.mb{position:relative;height:7px;border-radius:4px;background:#E6EDF5;margin-top:6px}
+.mb i{display:block;height:7px;border-radius:4px;background:var(--wc)}
+.mb:after{content:"";position:absolute;right:0;top:-3px;width:2px;height:13px;background:#1A1A1A;border-radius:1px}
+.ml{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:4px;font-weight:600}
+.ml span:last-child{color:var(--ink2);font-weight:800}
+.r .why1{font-size:10.5px;color:var(--txt);margin-top:5px;padding-top:5px;border-top:1px dashed var(--wc-line);line-height:1.4}
+.r .why1 b{color:var(--ink2);font-weight:800}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.two .card .lb{font-size:9.5px;font-weight:900;letter-spacing:.1em;color:var(--wc)}
+.two .card .big{font-size:14px;font-weight:900;color:var(--ink);line-height:1.25;margin-top:3px}
+.two .card .big em{font-style:normal;color:var(--wc)}
+.two .card .sm{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+/* 점검 이력표 (E안) */
+.hist .lb{font-size:9.5px;font-weight:900;letter-spacing:.1em;color:var(--wc)}
+.hist table{width:100%;border-collapse:collapse;margin-top:8px;table-layout:fixed}
+.hist th,.hist td{padding:0;text-align:center;font-weight:600}
+.hist th{font-size:9px;color:var(--muted);padding-bottom:6px;font-weight:700}
+.hist th:first-child,.hist td:first-child{text-align:left;width:88px}
+.hist td{height:30px;border-top:1px solid var(--line)}
+.hist td:first-child{font-size:11px;font-weight:800;color:var(--ink)}
+.hist td i{display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--wc);vertical-align:middle;position:relative}
+.hist td i:after{content:"";position:absolute;left:5px;top:3px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.hist td.now{background:var(--wc-bg)}
+.hist th.now{color:var(--wc)}
+.hist .ft{font-size:10px;color:var(--muted);margin-top:8px;line-height:1.45}
+/* 한 줄 목록 */
+.list{padding:4px 14px}
+.list .hd{display:flex;align-items:center;gap:8px;padding:8px 0 4px;flex-wrap:wrap}
+.list .hd b{font-size:12.5px;font-weight:900;color:var(--ink)}
+.list .hd span{font-size:10px;color:var(--muted);font-weight:700;margin-left:auto;text-align:right}
+.list .row{display:grid;grid-template-columns:16px 1fr auto;gap:0 8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.list .row:last-child{border-bottom:0}
+.list .ok{width:16px;height:16px;border-radius:50%;background:var(--wc);display:flex;align-items:center;justify-content:center}
+.list .ok.o{background:#fff;border:1.5px solid #C9D0D8}
+.list .k{font-size:12.5px;font-weight:900;color:var(--ink)}
+.list .k small{display:block;font-weight:600;color:var(--muted);font-size:10.5px;margin-top:1px}
+.list .tag{font-size:9.5px;font-weight:800;color:var(--wc);background:var(--wc-bg);border-radius:6px;padding:2px 6px;white-space:nowrap}
+.list .tag.o{color:var(--muted);background:#F2F4F7}
+.list .num{width:16px;height:16px;border-radius:50%;background:var(--ink);color:#fff;font-size:9.5px;font-weight:900;display:flex;align-items:center;justify-content:center}
+/* 사진 자리 · 팩트 칩 · 바이라인 */
+.ph{border:1.5px dashed #C9D0D8;border-radius:12px;background:#F2F4F7;display:flex;align-items:center;justify-content:center;color:#8A95A3;font-size:10.5px;font-weight:700;text-align:center;line-height:1.4;padding:6px}
+.ph.wide{aspect-ratio:16/9;margin-top:10px}
+.ph.sq{aspect-ratio:1}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.cap2{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+.fact{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:800;color:var(--wc);background:var(--wc-bg);border-radius:999px;padding:3px 9px;margin-top:8px}
+.fact i{width:12px;height:12px;border-radius:50%;background:var(--wc);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.byline{display:flex;align-items:center;gap:8px}
+.byline .av{width:30px;height:30px;border-radius:50%;background:var(--wc-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.byline b{display:block;font-size:12px;font-weight:900;color:var(--ink)}
+.byline span{font-size:10.5px;color:var(--muted)}
+/* 인터뷰·에디터형 (J안·I안) */
+.iv-hero{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.05);position:relative}
+.iv-hero .ph{height:150px}
+.iv-hero .eb{font-size:9.5px;font-weight:900;letter-spacing:.1em;color:var(--wc);margin-top:10px}
+.iv-hero h3{margin:4px 0 0;font-size:18px;font-weight:900;color:var(--ink);line-height:1.3;letter-spacing:-.01em}
+.iv-hero .who{font-size:11px;color:var(--muted);margin-top:6px}
+.intro p{font-size:12.5px;color:var(--ink2);line-height:1.65}
+.intro p+p{margin-top:8px}
+.intro p b{font-weight:900;color:var(--ink)}
+.iv .it{padding:10px 0;border-top:1px solid var(--line)}
+.iv .it:first-child{border-top:0;padding-top:0}
+.iv .it:last-child{padding-bottom:0}
+.iv .q{font-size:12.5px;font-weight:900;color:var(--ink);line-height:1.4}
+.iv .q:before{content:"Q";color:var(--red);font-weight:900;margin-right:7px}
+.iv .a{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-top:6px;padding-left:18px;position:relative}
+.iv .a:before{content:"A";position:absolute;left:0;top:0;color:var(--wc);font-weight:900}
+.iv .a small{display:block;color:var(--muted);font-size:10.5px;margin-top:3px}
+.iv .fact{margin-left:18px;margin-top:6px}
+.pull{background:var(--navy);border-radius:14px;padding:14px 16px;color:#fff}
+.pull p{font-size:15px;font-weight:900;line-height:1.4;letter-spacing:-.01em}
+.pull span{display:block;font-size:10.5px;color:#9FB4DC;margin-top:6px}
+.say{background:#FFF8E8;border:1px solid #F3E2B8}
+.say .lb{font-size:9.5px;font-weight:900;letter-spacing:.1em;color:#9A6B12}
+.say p{font-size:13px;color:var(--ink);line-height:1.6;margin-top:6px;font-weight:600}
+.say .sg{font-size:10.5px;color:var(--muted);margin-top:6px}
+.say .ph{height:96px;margin-top:8px}
+.report{display:flex;align-items:center;gap:10px;border:1px dashed #C9CFD6;border-radius:14px;padding:10px 12px;background:#fff}
+.report .t{flex:1;font-size:12px;color:var(--ink2);font-weight:700}
+.report .t small{display:block;color:var(--muted);font-size:10.5px;font-weight:500}
+.btn{display:inline-block;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:800;text-decoration:none;white-space:nowrap}
+.btn.sec{background:#fff;color:var(--ink);border:1px solid #E3E6E1}
+.fine{font-size:10px;color:var(--muted);line-height:1.5}
+.actions{background:#fff;border-top:1px solid var(--line);padding:10px 16px 14px;display:flex;gap:8px;align-items:center}
+.actions .ico{width:44px;height:44px;border-radius:12px;border:1px solid #E3E6E1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9.5px;color:#595959;gap:2px}
+.actions .cta{flex:1;height:44px;border-radius:12px;background:var(--wc);color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center}
+/* 상세페이지형 (M안 풀블리드) */
+.dp{background:#fff;color:#222}
+.dp .pho{background:linear-gradient(160deg,#E6EAEF 0%,#CBD3DC 100%);position:relative;display:flex;align-items:flex-end;padding:12px 14px;color:#6B7684;font-size:10.5px;font-weight:700;line-height:1.4}
+.dp .pho:before{content:"";position:absolute;inset:10px;border:1px dashed rgba(107,118,132,.45);border-radius:6px;pointer-events:none}
+.dp .hr{position:relative;height:400px}
+.dp .hr .pho{position:absolute;inset:0;height:auto;align-items:flex-start}
+.dp .hr .ov{position:absolute;left:0;right:0;bottom:0;padding:28px 24px 30px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.62) 100%);color:#fff}
+.dp .hr .lab{color:#BFD6F2}
+.dp .hr h1{margin:8px 0 6px;font-size:26px;font-weight:900;line-height:1.25;letter-spacing:-.02em;color:#fff}
+.dp .hr .sub{font-size:13px;color:#E3EAF2;font-weight:600}
+.dp .sec{padding:36px 24px 32px;text-align:center;position:relative}
+.dp .lab{display:block;font-size:10.5px;letter-spacing:.2em;font-weight:800;color:var(--wc)}
+.dp h2{margin:10px 0 14px;font-size:22px;font-weight:900;line-height:1.3;letter-spacing:-.02em;color:#111}
+.dp p{font-size:13.5px;line-height:1.8;color:#444;word-break:keep-all}
+.dp p b{font-weight:800;color:#111}
+.dp .alt{background:#F4F5F2}
+.dp .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #E6E8E4;border-bottom:1px solid #E6E8E4;margin-top:26px}
+.dp .strip div{padding:12px 4px;border-right:1px solid #E6E8E4}
+.dp .strip div:last-child{border-right:0}
+.dp .strip b{display:block;font-size:10px;color:#8A8A8A;font-weight:800;letter-spacing:.06em}
+.dp .strip span{display:block;font-size:11.5px;color:#222;font-weight:700;margin-top:4px;line-height:1.35}
+.dp .pt{position:relative}
+.dp .pt .pho{height:250px}
+.dp .pt .tx{padding:28px 24px 36px;text-align:center}
+.dp .pt .num{font-size:11px;letter-spacing:.2em;font-weight:900;color:var(--wc)}
+.dp .pt h3{margin:8px 0 12px;font-size:21px;font-weight:900;line-height:1.3;letter-spacing:-.02em;color:#111}
+.dp .pt .fx{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:11px;font-weight:800;color:var(--wc);border:1px solid var(--wc-line);border-radius:999px;padding:5px 12px;background:#fff}
+.dp .pt .fx i{width:14px;height:14px;border-radius:50%;background:var(--wc);display:inline-flex;align-items:center;justify-content:center}
+.dp .pt .own-tag{top:10px;right:14px}
+.dp .qt{position:relative;height:340px}
+.dp .qt .pho{position:absolute;inset:0;height:auto;align-items:flex-start}
+.dp .qt .ov{position:absolute;left:0;right:0;bottom:0;padding:30px 24px 32px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.7) 100%);color:#fff;text-align:left}
+.dp .qt .ov .lab{color:#BFD6F2}
+.dp .qt .ov .q{font-size:21px;font-weight:900;line-height:1.35;letter-spacing:-.02em;margin-top:8px}
+.dp .qt .ov .by{font-size:11.5px;color:#D6DEE8;margin-top:10px}
+.dp .qa{padding:8px 24px 32px;text-align:left}
+.dp .qa .it{padding:16px 0;border-bottom:1px solid #ECEEEA}
+.dp .qa .it:last-child{border-bottom:0}
+.dp .qa .q{font-size:14px;font-weight:900;color:#111;line-height:1.45}
+.dp .qa .a{font-size:13.5px;color:#444;line-height:1.75;margin-top:8px}
+.dp .daily{padding:32px 24px 36px;text-align:left}
+.dp .daily .lab,.dp .daily h2{text-align:center}
+.dp .daily .it{display:grid;grid-template-columns:20px 1fr auto;gap:0 10px;align-items:center;padding:12px 0;border-bottom:1px solid #E6E8E4}
+.dp .daily .it:last-child{border-bottom:0}
+.dp .daily .ok{width:20px;height:20px;border-radius:50%;background:var(--wc);display:flex;align-items:center;justify-content:center}
+.dp .daily .ok.o{background:#fff;border:1.5px solid #C9D0D8}
+.dp .daily .k{font-size:13px;font-weight:800;color:#111}
+.dp .daily .k small{display:block;font-size:10.5px;color:#8A8A8A;font-weight:600;margin-top:1px}
+.dp .daily .tag{font-size:9.5px;font-weight:800;color:var(--wc);white-space:nowrap}
+.dp .daily .tag.o{color:#9AA3AE}
+.dp .rep{margin:0 24px 28px;display:flex;align-items:center;gap:12px;border:1px solid #E6E8E4;border-radius:12px;padding:14px;text-align:left}
+.dp .rep .t{flex:1;font-size:12.5px;font-weight:800;color:#111}
+.dp .rep .t small{display:block;font-size:10.5px;color:#8A8A8A;font-weight:500}
+.dp .fine2{padding:0 24px 24px;font-size:10px;color:#9AA3AE;line-height:1.5;text-align:left}
+.dp .sec .own-in{outline-offset:0;padding:16px 10px 8px;margin-top:4px}
+/* 옆 메모 */
+.side{width:300px;font-size:12.5px;color:#3E444A;line-height:1.6}
+.side h3{margin:0 0 8px;font-size:13px;font-weight:800;color:var(--ink)}
+.side ol,.side ul{margin:0;padding-left:16px}
+.side li{margin-bottom:6px}
+.side .flag{display:inline-block;background:var(--amber-bg);color:var(--amber);font-weight:800;border-radius:3px;padding:0 5px;font-size:10.5px;margin-right:3px}
+.side p{margin-bottom:8px}
+.side p b{color:var(--ink)}
+.side .nav{margin-top:14px;padding-top:10px;border-top:1px solid #D9DCD6;font-size:12px}
+.side .nav a{color:var(--wc);text-decoration:none;font-weight:700}
+.side .nav a+a{margin-left:8px}
+@media (max-width:760px){.wrap{padding:12px 0 40px}.desc{border-radius:0}.phone{width:100%;border-radius:0;box-shadow:none}.side{width:auto;padding:16px}}
+
+.top{max-width:1320px;margin:0 auto;padding:20px 20px 0}
+.two-col{display:flex;gap:28px;justify-content:center;align-items:flex-start;flex-wrap:wrap;max-width:1320px;margin:0 auto;padding:0 20px 60px}
+.col{width:390px;flex-shrink:0}
+.col h3{margin:0 0 8px 4px;font-size:12.5px;font-weight:800;color:var(--ink)}
+.col h3 small{display:block;font-weight:500;color:var(--muted);font-size:11.5px}
+/* 사장님 편집 화면 */
+.ed{background:#fff;border-radius:28px;box-shadow:0 10px 30px rgba(0,0,0,.14),0 0 0 1px rgba(0,0,0,.06);overflow:hidden}
+.ed .bar{height:52px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--ink);border-bottom:1px solid var(--line);position:relative}
+.ed .bar .sv{position:absolute;right:12px;top:12px;height:28px;padding:0 12px;border-radius:8px;background:var(--wc);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center}
+.ed .in{padding:14px 16px 18px;display:flex;flex-direction:column;gap:14px}
+.ed .seg{display:flex;gap:6px}
+.ed .seg button{flex:1;font:inherit;font-size:12px;font-weight:800;padding:8px 0;border-radius:10px;border:1px solid #D9DCD6;background:#fff;color:var(--ink);cursor:pointer}
+.ed .seg button.on{background:var(--wc);border-color:var(--wc);color:#fff}
+.ed .fs{border:0;padding:0;margin:0}
+.ed .lb{display:flex;align-items:baseline;gap:6px;font-size:12.5px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.ed .lb small{font-weight:600;color:var(--muted);font-size:10.5px;margin-left:auto}
+.ed .lock{font-size:11px;color:var(--muted);background:#F2F4F7;border-radius:10px;padding:9px 11px;line-height:1.5}
+.ed .lock b{color:var(--ink2)}
+.ed .chk{display:flex;flex-direction:column;gap:5px}
+.ed .chk label{display:grid;grid-template-columns:18px 1fr auto;gap:8px;align-items:center;padding:8px 10px;border:1px solid #E3E6E1;border-radius:10px;font-size:12.5px;font-weight:700;color:var(--ink);cursor:pointer}
+.ed .chk label.on{border-color:var(--wc);background:var(--wc-bg)}
+.ed .chk label.dis{opacity:.45}
+.ed .chk input{margin:0;width:16px;height:16px;accent-color:var(--wc)}
+.ed .chk .ord{font-size:9.5px;font-weight:900;color:#fff;background:var(--wc);border-radius:999px;padding:1px 7px;visibility:hidden}
+.ed .chk label.on .ord{visibility:visible}
+.ed .chk .cs{font-size:9.5px;font-weight:800;color:var(--wc);margin-left:6px}
+.ed .chk .cs.o{color:var(--muted)}
+.ed textarea,.ed input[type=text]{width:100%;font:inherit;font-size:12.5px;line-height:1.5;color:var(--ink2);border:1px solid #D9DCD6;border-radius:10px;padding:9px 10px;resize:vertical;background:#fff}
+.ed textarea:focus,.ed input:focus{outline:2px solid var(--wc);border-color:var(--wc)}
+.ed textarea.changed,.ed input.changed{background:var(--amber-bg);border-color:#F0C27A}
+.ed .cnt{font-size:10px;color:var(--muted);text-align:right;margin-top:2px}
+.ed .pt-ed{border:1px solid #E3E6E1;border-radius:12px;padding:10px;margin-top:8px}
+.ed .pt-ed .t{font-size:11.5px;font-weight:900;color:var(--wc);margin-bottom:5px}
+.ed .pt-ed .t span{color:var(--ink);margin-left:6px}
+.ed .pt-ed .ph{height:52px;margin-top:6px;font-size:10px}
+.ed .btns{display:flex;gap:6px}
+.ed .btns button{flex:1;font:inherit;font-size:11.5px;font-weight:800;padding:8px 0;border-radius:10px;border:1px solid #D9DCD6;background:#fff;color:var(--ink);cursor:pointer}
+.ed .btns button.ex{border-color:var(--amber);color:var(--amber);background:var(--amber-bg)}
+.hc{overflow:hidden;min-width:0;background:#fff;border-radius:0;box-shadow:none;padding:18px 0 18px}
+.head .pho2{height:150px;margin:-12px -16px 0;background:linear-gradient(160deg,#E6EAEF,#CBD3DC);display:flex;align-items:flex-end;padding:10px 14px;color:#6B7684;font-size:10.5px;font-weight:700}
+.head{padding-bottom:12px}
+.wai{border:1.5px solid transparent;border-radius:14px;padding:14px 14px 12px;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#22B8B0,#3D6FD9) border-box}
+.wai-t{display:flex;align-items:center;gap:6px;font-size:14.5px;font-weight:900;color:var(--ink)}
+.wai-t .inf{width:14px;height:14px;border:1.3px solid #A6AFBB;border-radius:50%;font-size:9px;color:#A6AFBB;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+.wai-i{font-size:12.5px;font-weight:800;color:var(--ink);line-height:1.6;margin-top:8px}
+.wai ul{list-style:none;margin:8px 0 0;padding:0}
+.wai li{display:flex;gap:6px;font-size:12px;color:var(--ink2);line-height:1.55;padding:2px 0}
+.wai li .em{flex:none;font-size:12px}
+.wai-h{font-size:12px;font-weight:900;color:#0072CE;margin-top:12px}
+.tabs2{display:flex;background:#fff;border-bottom:1px solid var(--line);margin-top:10px}
+.tabs2 span{flex:1;height:44px;display:flex;align-items:center;justify-content:center;font-size:13.5px;color:#8A8A8A}
+.tabs2 span.on{color:var(--ink);font-weight:900;border-bottom:2.5px solid var(--ink)}
+.qt2{text-align:center;font-size:17px;font-weight:800;color:var(--ink);line-height:1.45;padding:6px 20px 16px;letter-spacing:-.01em}
+.hc .sw{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 calc((100% - 262px)/2) 4px;scrollbar-width:none}
+.hc .sw::-webkit-scrollbar{display:none}
+.hc .swc{flex:none;width:262px;scroll-snap-align:center;background:#E3E8EE;border-radius:20px;padding:12px;cursor:pointer}
+.hc .swin{background:#fff;border-radius:12px;border:1.4px solid #E3E8EE;border-top-color:#2F7CE8;border-left-color:#2F7CE8;padding:14px 14px 12px;height:100%;display:flex;flex-direction:column}
+.hc .swt{display:flex;align-items:flex-start;justify-content:space-between}
+.hc .logo{display:flex;align-items:baseline;gap:4px}
+.hc .logo b{font-family:Georgia,"Times New Roman",serif;font-size:16px;font-weight:700;color:#1E2B49;letter-spacing:-.02em}
+.hc .logo i{font-style:normal;font-size:13px;color:#1E2B49;font-weight:600}
+.hc .stamp{flex:none;margin-top:-4px}
+.hc .hk{font-size:12px;color:#6B7684;margin-top:12px;line-height:1.5}
+.hc .hl{font-size:14px;font-weight:800;color:#1A2E5A;line-height:1.5;margin-top:6px;flex:1}
+.hc .ck{display:flex;gap:6px;align-items:flex-start;margin-top:12px;font-size:10.5px;color:#1A2E5A;line-height:1.45}
+.hc .ck .bx{flex:none;width:13px;height:13px;border:1.4px solid #1A2E5A;border-radius:2px;font-size:9px;line-height:11px;text-align:center;font-weight:900}
+.hc .dt{font-size:10px;color:#6B9AD4;margin-top:3px;padding-left:19px}
+.hc .rp{align-self:center;margin-top:10px;font-size:10px;color:#6B7684;background:#F2F4F7;border-radius:999px;padding:3px 10px}
+.hc .swbar{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
+.hc .swnav{width:26px;height:26px;border-radius:50%;border:1px solid var(--wc-line);background:#fff;color:var(--wc);font-size:16px;font-weight:900;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 0 2px}
+.hc .dots{display:flex;gap:5px;justify-content:center}
+.hc .dots i{width:6px;height:6px;border-radius:50%;background:#D5DCE4;cursor:pointer}
+.hc .dots i.on{width:16px;border-radius:3px;background:var(--wc)}
+.hc .hcsum{text-align:center;font-size:10.5px;color:var(--muted);margin-top:10px}
+.hc .hcsum b{color:var(--wc)}
+.hc .grid{padding:0 16px;margin-top:14px}
+/* 기본 정보(네이버식) */
+.binfo{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.bi{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--ink2);line-height:1.5;padding:3px 0}
+.bi .ic{flex:none;width:16px;text-align:center;font-size:12px}
+.bi b{flex:none;margin-left:auto;font-size:11px;color:var(--wc);font-weight:700;white-space:nowrap}
+.tabs2 span{cursor:pointer}
+/* 체크 스탬프(네모 스티커) · 블루/화이트 멤버스 탭 */
+.sh3{display:flex;align-items:baseline;gap:6px;padding:0 16px;font-size:12.5px;font-weight:900;color:var(--ink)}
+.sh3 small{font-weight:600;color:var(--muted);font-size:10.5px}
+.mtabs{display:flex;gap:6px;padding:8px 16px 12px}
+.mtab{flex:1;font:inherit;font-size:12px;font-weight:800;padding:8px 0;border-radius:999px;border:1.5px solid #E3E6E1;background:#fff;color:var(--muted);cursor:pointer}
+.mtab small{font-weight:700;margin-left:4px;font-size:10px}
+.mtab.on{border-color:var(--mc);background:var(--mc);color:#fff}
+.hc .swc{background:var(--mbg,#E3E8EE)}
+.hc .swin{border-top-color:var(--ml,#2F7CE8);border-left-color:var(--ml,#2F7CE8)}
+.hc .logo b,.hc .logo i{color:var(--mc,#1E2B49)}
+.hc .ck{color:var(--mc,#1A2E5A)}
+.hc .ck .bx{border-color:var(--mc,#1A2E5A)}
+.hc .sw:empty:before{content:"이 탭에 해당하는 항목이 없어요";font-size:11px;color:var(--muted);padding:12px 0}
+/* 도구 측정 블록 */
+.tools-wrap{background:var(--bg);padding:6px 0 18px}
+.tools{margin:0 16px;background:#fff;border:1.5px solid #E6D9B8;border-radius:16px;padding:14px}
+.tl-h{display:flex;gap:10px;align-items:center}
+.gold{flex:none;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#F6E7B0,#C9A227 70%,#A8841A);color:#5A4200;font-size:7.5px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tl-h b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
+.tl-h small{font-size:10.5px;color:var(--muted)}
+.tl{margin-top:12px;padding-top:12px;border-top:1px dashed #E6D9B8}
+.tl-k{display:flex;align-items:baseline;gap:6px;font-size:13px;font-weight:900;color:var(--ink)}
+.tl-k small{font-weight:600;color:var(--muted);font-size:10.5px}
+.tl-k .pass{margin-left:auto;font-size:10px;font-weight:900;color:#5A4200;background:#F6E7B0;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.tl-e{font-size:11.5px;color:var(--txt);line-height:1.55;margin-top:5px}
+.scale{display:flex;gap:3px;margin-top:24px}
+.scale .lv{flex:1;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;opacity:.3;position:relative}
+.scale .lv:nth-child(1){background:#0E8F4A}.scale .lv:nth-child(2){background:#E0A100}.scale .lv:nth-child(3){background:#E2641B}.scale .lv:nth-child(4){background:#C8102E}
+.scale .lv.on{opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #C9A227}
+.scale .lv.on:after{content:"✓ 이 사업장";position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-size:9.5px;font-weight:900;color:#5A4200;white-space:nowrap}
+.lvd{margin-top:8px;font-size:10px;color:var(--muted);line-height:1.45}
+.lvd div{display:flex;gap:6px}
+.lvd b{flex:none;width:28px;color:var(--ink2);font-weight:800}
+.tl-x{font-size:11px;color:var(--ink2);line-height:1.6;margin-top:8px;background:#FBF7EC;border-radius:10px;padding:9px 10px}
+.tl-d{font-size:10px;color:#9A6B12;margin-top:6px;font-weight:700}
+
+/* 도구 측정 블록 디자인 3안 */
+.phone.part{border-radius:16px;padding:10px 0}
+/* A 검사 리포트형 */
+.tv-a{margin:0 16px;background:#FCFBF7;border:1px solid #E3DFD2;border-radius:10px;padding:0 0 10px;font-size:11.5px}
+.tv-a .rh{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:2px solid #1A1A1A}
+.tv-a .rh .no{font-size:9.5px;letter-spacing:.08em;color:#6B6B6B;font-weight:800;text-transform:uppercase}
+.tv-a .rh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
+.tv-a .rh .dt{margin-left:auto;text-align:right;font-size:9.5px;color:#6B6B6B;line-height:1.3}
+.tv-a .rh .dt b{font-size:11px;color:var(--ink)}
+.tv-a .ri{padding:12px 14px 2px;border-bottom:1px solid #E3DFD2}
+.tv-a .ri:last-child{border-bottom:0}
+.tv-a .rt{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.tv-a .rt b{font-size:13px;font-weight:900;color:var(--ink)}
+.tv-a .rt small{font-size:10px;color:#6B6B6B}
+.tv-a .rs{grid-row:1/3;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:900;color:#0B5E31;background:#E8F6EE;border:1px solid #BFE5CF;border-radius:6px;padding:5px 9px}
+.tv-a .rs i{font-style:normal;width:16px;height:16px;border-radius:50%;background:#0E8F4A;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center}
+.tv-a .re{color:var(--txt);line-height:1.55;margin:7px 0 0}
+.tv-a .rb{position:relative;display:flex;gap:2px;margin-top:22px;height:8px}
+.tv-a .rb i{flex:1;border-radius:2px;background:#DAD6C9}
+.tv-a .rb i.on{background:#0E8F4A}
+.tv-a .rb i.on:after{content:"▼ 이 사업장";position:absolute;top:-16px;left:0;width:var(--w);text-align:center;font-size:9.5px;font-weight:900;color:#0B5E31;font-style:normal;white-space:nowrap}
+.tv-a .rl{display:grid;grid-template-columns:auto 1fr;gap:3px 8px;margin-top:8px;font-size:10px;color:#6B6B6B;line-height:1.4}
+.tv-a .rl b{color:var(--ink2);font-weight:800;min-width:24px}
+.tv-a .rl .on{color:#0B5E31}
+.tv-a .rq{margin:9px 0 10px;padding:0 0 0 10px;border-left:2px solid #C9A227;font-size:10.5px;color:var(--ink2);line-height:1.6}
+.tv-a .rf{padding:9px 14px 0;font-size:9.5px;color:#6B6B6B;display:flex;justify-content:space-between}
+/* D 스탬프형(확정) + 같은 방식 B·E·F */
+.tv-b{margin:0 16px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.tv-b .bh{display:flex;align-items:center;gap:8px}
+.tv-b .bh .lg{flex:none;width:34px;height:34px;border-radius:10px;background:var(--wc);color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
+.tv-b .bh b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
+.tv-b .bh small{font-size:10.5px;color:var(--muted)}
+.tv-b .gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tv-b .g{font:inherit;cursor:pointer;position:relative;padding:10px 8px 22px;border:1px solid var(--wc-line);border-radius:14px;text-align:center;background:#FAFCFF;color:inherit}
+.tv-b .g.on{border-color:var(--wc);background:#fff;box-shadow:0 0 0 2px var(--wc-bg)}
+.tv-b .g svg{width:100%;max-width:130px;display:block;margin:0 auto}
+.tv-b .g .gk{font-size:11.5px;font-weight:900;color:var(--ink);margin-top:-2px;line-height:1.3;word-break:keep-all}
+.tv-b .g .gk small{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:1px}
+.tv-b .g .gv{display:inline-block;margin-top:6px;font-size:11px;font-weight:900;color:#0B5E31;background:#E8F6EE;border-radius:999px;padding:2px 9px}
+.tv-b .g .more{position:absolute;left:0;right:0;bottom:6px;font-style:normal;font-size:9.5px;color:var(--muted);font-weight:700}
+.tv-b .g .more:after{content:" ⌄"}
+.tv-b .g.on .more{color:var(--wc)}.tv-b .g.on .more:after{content:" ⌃"}
+.tv-b .bd{margin-top:8px}
+.tv-b .bp{display:none;border-top:1px solid var(--line);padding-top:8px}
+.tv-b .bp.on{display:block}
+.tv-b .be{font-size:11.5px;color:var(--txt);line-height:1.55;margin:0}
+.tv-b .bl{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:8px}
+.tv-b .bl span{font-size:10px;font-weight:800;color:#9A9A9A;padding:3px 8px;border-radius:999px;background:#F4F5F2}
+.tv-b .bl span.on{background:#E8F6EE;color:#0B5E31}
+.tv-b .bl small{flex-basis:100%;font-size:10px;color:var(--muted);line-height:1.4;margin-top:1px}
+.tv-b .bx{font-size:10.5px;color:var(--ink2);line-height:1.6;margin-top:8px;background:var(--wc-bg);border-radius:10px;padding:8px 10px}
+.tv-b .bdt{font-size:10px;color:var(--muted);margin-top:5px;font-weight:700}
+/* D 스탬프형 */
+.tv-d .g{padding-top:14px}
+.tv-d .seal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:58px;height:58px;margin:0 auto 8px;border-radius:50%;border:2px solid #0E8F4A;outline:2px dashed #BFE5CF;outline-offset:3px;color:#0E8F4A;transform:rotate(-8deg)}
+.tv-d .seal i{font-style:normal;font-size:22px;font-weight:900;line-height:1}
+.tv-d .seal small{font-size:7px;font-weight:900;letter-spacing:.08em}
+.tv-d .g.on .seal{background:#E8F6EE}
+/* E 한 줄 리스트형 */
+.tv-e .gg{grid-template-columns:1fr;gap:6px;margin-top:10px}
+.tv-e .g{display:grid;grid-template-columns:34px 1fr auto;grid-template-rows:auto auto;align-items:center;gap:2px 10px;text-align:left;padding:10px 12px 10px 10px;border-radius:12px}
+.tv-e .g .ic{grid-row:1/3;width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid var(--wc-line);display:flex;align-items:center;justify-content:center;font-size:17px}
+.tv-e .g .gk{grid-column:2;grid-row:1;margin:0;font-size:12.5px}
+.tv-e .g .gv{margin:0;grid-column:3;grid-row:1;align-self:center;font-size:10px;padding:2px 7px}
+.tv-e .g .seg{grid-column:2/3;grid-row:2;display:flex;gap:2px;height:5px;margin-top:4px}
+.tv-e .g .seg i{flex:1;border-radius:2px;background:#E4E6E1}.tv-e .g .seg i.on{background:#0E8F4A}
+.tv-e .g:after{content:"⌄";grid-column:3;grid-row:2;justify-self:end;font-size:11px;line-height:1;color:var(--muted)}
+.tv-e .g.on:after{content:"⌃";color:var(--wc)}
+/* F 요약 카드형 */
+.tv-f{padding:0 14px 12px;overflow:hidden}
+.tv-f .top{margin:0 -14px;padding:16px 16px 14px;background:linear-gradient(135deg,#1A3668,#0072CE);color:#fff}
+.tv-f .top small{display:block;font-size:9.5px;font-weight:800;letter-spacing:.06em;opacity:.8}
+.tv-f .top b{display:block;font-size:20px;font-weight:900;margin-top:4px;line-height:1.2}
+.tv-f .top span{display:block;font-size:10.5px;opacity:.85;margin-top:3px}
+.tv-f .gg{grid-template-columns:1fr;gap:0;margin-top:4px}
+.tv-f .g{display:flex;align-items:center;gap:9px;text-align:left;padding:11px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:none;box-shadow:none}
+.tv-f .g.on{box-shadow:none;background:none}
+.tv-f .g .ok{flex:none;width:20px;height:20px;border-radius:50%;background:#0E8F4A;color:#fff;font-style:normal;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.tv-f .g .gk{margin:0;flex:1;font-size:12.5px;text-align:left}
+.tv-f .g .more{position:static;flex:none}
+/* C 점검 기록형 */
+.tv-c{margin:0 16px;background:#fff;border-radius:16px;padding:14px 14px 10px;border:1px solid var(--line)}
+.tv-c .ch{display:flex;align-items:center;gap:9px}
+.tv-c .ch .av{flex:none;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1A3668,#0072CE);color:#fff;font-size:8.5px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1}
+.tv-c .ch b{display:block;font-size:13.5px;font-weight:900;color:var(--ink)}
+.tv-c .ch small{font-size:10.5px;color:var(--muted)}
+.tv-c .ch .st{margin-left:auto;font-size:9.5px;font-weight:900;color:var(--wc);border:1.5px solid var(--wc);border-radius:6px;padding:3px 7px;white-space:nowrap;text-align:center;line-height:1.2}
+.tv-c .tl2{position:relative;margin-top:12px;padding-left:22px}
+.tv-c .tl2:before{content:"";position:absolute;left:6px;top:8px;bottom:14px;border-left:2px dotted #CFE0F3}
+.tv-c .ci{position:relative;padding:2px 0 14px}
+.tv-c .ci:before{content:"✓";position:absolute;left:-22px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--wc);color:#fff;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.tv-c .ck{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:900;color:var(--ink)}
+.tv-c .ck small{font-size:10px;color:var(--muted);font-weight:600}
+.tv-c .ck .ok{margin-left:auto;font-size:10px;font-weight:900;color:#0B5E31;background:#E8F6EE;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.tv-c .ce{font-size:11.5px;color:var(--txt);line-height:1.55;margin:5px 0 0}
+.tv-c .ld{margin-top:8px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tv-c .ld div{display:flex;gap:8px;align-items:center;padding:5px 9px;font-size:10px;color:#9A9A9A;line-height:1.35;border-top:1px solid var(--line)}
+.tv-c .ld div:first-child{border-top:0}
+.tv-c .ld b{flex:none;width:26px;font-weight:800;color:#B0B0B0}
+.tv-c .ld div.on{background:#E8F6EE;color:#0B5E31;font-weight:700}
+.tv-c .ld div.on b{color:#0B5E31}
+.tv-c .ld div.on:after{content:"◀ 이 사업장";margin-left:auto;font-size:9.5px;font-weight:900;white-space:nowrap}
+.tv-c .cm{position:relative;margin-top:9px;background:#F4F5F2;border-radius:12px;padding:8px 10px;font-size:10.5px;color:var(--ink2);line-height:1.6}
+.tv-c .cm:before{content:"";position:absolute;left:14px;top:-6px;border:6px solid transparent;border-bottom-color:#F4F5F2;border-top:0}
+.tv-c .cm b{display:block;font-size:9.5px;color:var(--wc);margin-bottom:2px}
+.tv-c .cd{font-size:10px;color:var(--muted);margin-top:6px;font-weight:700}
+/* 장소 정보 탭 */
+.place{background:#fff;padding:14px 16px 18px}
+.pl-sec{padding:4px 0 14px}
+.pl-t{font-size:13.5px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.pl-t small{display:block;font-size:10.5px;color:var(--muted);font-weight:600;margin-top:2px}
+.pl-row{display:grid;grid-template-columns:58px 1fr;gap:8px;font-size:12px;color:var(--ink2);padding:7px 0;border-top:1px solid var(--line);line-height:1.5}
+.pl-row span:first-child{color:var(--muted);font-weight:700}
+.pl-chips{display:flex;flex-wrap:wrap;gap:5px}
+.pl-chips i{font-style:normal;font-size:11px;font-weight:700;color:var(--ink2);background:#F2F4F7;border-radius:999px;padding:3px 9px}
+.pl-sec.cesco{margin-top:4px;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#22B8B0,#3D6FD9) border-box;border:1.5px solid transparent;border-radius:14px;padding:14px 14px 8px}
+.pc{padding:10px 0;border-top:1px solid var(--line)}
+.pc.first{border-top:0;padding-top:4px}
+.pc-h{display:flex;align-items:center;gap:7px}
+.pc-h .svc{flex:none;margin-left:auto;font-size:9px;font-weight:800;color:var(--mc);border:1px solid var(--mc);border-radius:5px;padding:1px 5px;white-space:nowrap}
+.pc-h .ok{flex:none;width:16px;height:16px;border-radius:50%;background:var(--wc);color:#fff;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.pc-h b{font-size:12.5px;font-weight:900;color:var(--ink);line-height:1.3}
+.pc p{font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:4px;padding-left:23px}
+.pc-f{font-size:9.5px;color:var(--wc);font-weight:800;margin-top:3px;padding-left:23px}
+.pc-f .bx{width:12px;height:12px;border:1.3px solid var(--wc);border-radius:2px;font-size:8px;line-height:10px;text-align:center}
+
+/* 장소정보 A · 아이콘 그리드 */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+.tile{position:relative;background:#F6F8FA;border:1.5px solid #E6EAEF;border-radius:12px;padding:10px 6px 8px;text-align:center;cursor:pointer}
+.tile .ic{font-size:20px;display:block}
+.tile b{display:block;font-size:10.5px;font-weight:800;color:var(--ink);line-height:1.3;margin-top:4px;word-break:keep-all}
+.tile i{position:absolute;right:5px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--mc);color:#fff;font-size:8px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center}
+.tile.on{background:#fff;border-color:var(--mc);box-shadow:0 0 0 2px var(--wc-bg)}
+.sheet{margin-top:10px;background:#fff;border:1.5px solid var(--mc);border-radius:12px;padding:11px 12px;position:relative}
+.sheet:before{content:"";position:absolute;left:14%;top:-7px;width:12px;height:12px;background:#fff;border-left:1.5px solid var(--mc);border-top:1.5px solid var(--mc);transform:rotate(45deg)}
+.sh-h{display:flex;gap:8px;align-items:center}
+.sh-h .ic{font-size:22px}
+.sh-h b{display:block;font-size:12.5px;font-weight:900;color:var(--ink)}
+.sh-h small{font-size:10px;color:var(--mc);font-weight:800}
+.sheet p{font-size:11px;color:var(--txt);line-height:1.55;margin-top:7px}
+.sh-f{font-size:9.5px;color:var(--muted);margin-top:6px}
+/* 장소정보 B · 손님 질문형 */
+.qg{margin-top:8px}
+.qg-t{font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--wc);padding:6px 0 2px}
+.qi{padding:8px 0;border-top:1px solid var(--line)}
+.qi .q{font-size:12px;font-weight:800;color:var(--ink);line-height:1.4}
+.qi .q:before{content:"Q";color:var(--red);font-weight:900;margin-right:6px}
+.qi .a{margin-top:4px;padding-left:16px;position:relative;line-height:1.5}
+.qi .a:before{content:"A";position:absolute;left:0;top:0;color:var(--mc);font-weight:900;font-size:11px}
+.qi .a b{display:block;font-size:12px;font-weight:800;color:var(--ink2)}
+.qi .a small{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.qi .a .chk{display:inline-block;font-size:9.5px;font-weight:800;color:var(--mc);margin-top:3px}
+/* 장소정보 C · 기본정보 통합 */
+.pl-t .badge{display:inline-block;font-size:9.5px;font-weight:800;color:#fff;background:var(--wc);border-radius:999px;padding:2px 8px;margin:0 0 0 8px;vertical-align:middle}
+.pl-chips i.cc{color:var(--mc);background:#fff;border:1.3px solid var(--mc);font-weight:800}
+.pl-chips i.cc.on{background:var(--mc);color:#fff}
+.lgc{font-size:9.5px;color:var(--muted);margin-top:8px}
+.lgc i{font-style:normal;font-size:9.5px;font-weight:800;color:var(--wc);border:1.3px solid var(--wc);border-radius:999px;padding:1px 6px;margin-right:2px}
+.pop{position:relative;margin-top:10px;background:#1A1A1A;color:#fff;border-radius:10px;padding:10px 12px}
+.pop-a{position:absolute;left:24px;top:-6px;width:12px;height:12px;background:#1A1A1A;transform:rotate(45deg)}
+.pop b{display:block;font-size:12px;font-weight:900}
+.pop p{font-size:10.5px;color:#D6DBE2;line-height:1.5;margin-top:4px}
+.pop small{display:block;font-size:9.5px;color:#9FB4DC;margin-top:5px;font-weight:700}
+.pvsel{display:flex;gap:5px;margin:0 0 8px}
+.pvsel button{flex:1;font:inherit;font-size:11px;font-weight:800;padding:6px 0;border-radius:8px;border:1px solid #D9DCD6;background:#fff;color:var(--ink);cursor:pointer}
+.pvsel button.on{background:var(--wc);border-color:var(--wc);color:#fff}
+.tsel{display:flex;gap:6px;margin:0 0 10px}
+.tsel button{flex:1;font:inherit;font-size:12px;font-weight:800;padding:8px 0;border-radius:10px;border:1px solid #D9DCD6;background:#fff;color:var(--ink);cursor:pointer}
+.tsel button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.ed .pt-ed .qq{font-size:10.5px;color:var(--muted);margin:-2px 0 6px}
+.ed .note{font-size:10.5px;color:var(--muted);line-height:1.5}
+/* 손님 화면 쪽 수정 표시 */
+mark.ed{background:var(--amber-bg);color:inherit;box-shadow:0 0 0 2px var(--amber-bg);border-radius:2px}
+.dp .say2{margin:0 24px 28px;background:#FFF8E8;border:1px solid #F3E2B8;border-radius:12px;padding:12px 14px;text-align:left}
+.dp .say2 .lb{font-size:9.5px;letter-spacing:.1em;color:#9A6B12}
+.dp .say2 p{font-size:13px;color:#111;font-weight:600;line-height:1.6;margin-top:4px}
+.dp .say2 small{font-size:10.5px;color:#8A8A8A}
+.dp .pt .pho{height:200px}
+.dp .hr{height:300px}
+.memo{max-width:1240px;margin:0 auto 40px;background:#fff;border-radius:12px;padding:16px 18px;font-size:12.5px;color:#3E444A;line-height:1.6}
+.memo h2{margin:0 0 8px;font-size:15px;font-weight:900;color:var(--ink)}
+.memo .tw{overflow-x:auto;margin-top:8px}
+.memo table{width:100%;min-width:640px;border-collapse:collapse;font-size:12px}
+.memo th,.memo td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left;line-height:1.5}
+.memo th{background:#F6F7F4;font-weight:800;color:var(--ink);white-space:nowrap}
+.memo .flag{display:inline-block;background:var(--amber-bg);color:var(--amber);font-weight:800;border-radius:3px;padding:0 5px;font-size:10.5px;margin-right:3px}
+@media (max-width:760px){.top{padding:12px 0 0}.two-col{padding:0 0 40px;gap:16px}.col{width:100%}.ed{border-radius:0;box-shadow:none}.col h3{padding:0 16px}.memo{border-radius:0}}
+
+.lead{max-width:1320px;margin:0 auto;padding:20px 20px 0}
+.lead .desc h1{font-size:18px}
+.lead .desc p{color:#3E444A;font-size:13px;line-height:1.65}
+.lead .desc p+p{margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips span{font-size:11.5px;font-weight:800;color:var(--wc);background:var(--wc-bg);border-radius:999px;padding:4px 10px}
+.chips span.g{color:#0E8F4A;background:#E8F6EE}
+.chips span.y{color:#9A6B12;background:#FBF7EC}
+.toc{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:12px}
+.toc a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid #C9D0D8}
+.blk{max-width:1320px;margin:0 auto;padding:0 20px 18px}
+.blk h2{margin:0 0 4px;font-size:17px;font-weight:900;color:var(--ink)}
+.blk h2 small{font-size:12px;font-weight:600;color:var(--muted);margin-left:8px}
+.blk .sub{font-size:12.5px;color:var(--muted);margin-bottom:12px;line-height:1.55}
+.panel{background:#fff;border-radius:12px;padding:16px 18px}
+/* 관리 구조 */
+.struct{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:12px}
+@media (max-width:900px){.struct{grid-template-columns:1fr}}
+.st{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.6;color:#3E444A}
+.st .lb{display:inline-block;font-size:10.5px;font-weight:900;border-radius:6px;padding:2px 8px;color:#fff;margin-bottom:6px}
+.st b.t{display:block;font-size:14px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.st ul{margin:0;padding-left:16px}
+.st li{margin:2px 0}
+.st.auto{border-color:#C9D0D8}.st.auto .lb{background:#6B7684}
+.st.cesco{border-color:var(--wc);background:#F7FAFE}.st.cesco .lb{background:var(--wc)}
+.st.owner{border-color:var(--amber);background:#FFFCF6}.st.owner .lb{background:var(--amber)}
+.rule{margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px}
+.rule div{flex:1;min-width:240px;border-radius:10px;padding:10px 12px;line-height:1.55}
+.rule .no{background:#FBECEE;color:#8A1024}.rule .ok{background:#E8F6EE;color:#0B5E31}
+.rule b{display:block;font-size:12px;margin-bottom:2px}
+/* 명칭 후보 */
+.names{width:100%;border-collapse:collapse;font-size:12.5px}
+.names th,.names td{border-top:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;line-height:1.55}
+.names th{font-size:11px;color:var(--muted);border-top:0;white-space:nowrap}
+.names td.n{font-weight:900;color:var(--ink);white-space:nowrap}
+.names tr.rec td{background:var(--wc-bg)}
+.names .pick{display:inline-block;font-size:9.5px;font-weight:900;color:#fff;background:var(--wc);border-radius:999px;padding:1px 7px;margin-right:5px;vertical-align:middle}
+/* 업종 대표 화면 */
+.bizsec{max-width:1320px;margin:0 auto;padding:10px 20px 40px}
+.bizsec h2{margin:0 0 4px;font-size:18px;font-weight:900;color:var(--ink)}
+.bizsec h2 small{font-size:12px;font-weight:600;color:var(--muted);margin-left:8px}
+.bizsec .sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.feat{display:flex;gap:24px;align-items:flex-start;justify-content:center;flex-wrap:wrap;background:#fff;border-radius:16px;padding:20px 20px 24px;margin-bottom:22px}
+.feat figure{margin:0;width:390px;max-width:100%}
+.feat figcaption b{display:block;font-size:13.5px}
+.feat figcaption small{font-size:11px}
+.notes{width:300px;font-size:12.5px;color:#3E444A;line-height:1.6}
+.notes h3{margin:0 0 8px;font-size:13.5px;font-weight:900;color:var(--ink)}
+.notes ol{margin:0;padding-left:0;list-style:none}
+.notes li{display:grid;grid-template-columns:22px 1fr;gap:6px;margin-bottom:8px}
+.notes li i{font-style:normal;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:10.5px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.notes li b{color:var(--ink)}
+.notes li.c i{background:var(--wc)}
+.notes li.o i{background:var(--amber)}
+.notes .lg2{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.notes .lg2 i{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin:0 3px 0 6px}
+@media (max-width:760px){.notes{width:100%}}
+/* 비교 행 */
+.opts{background:#fff;border-radius:12px;padding:14px 18px;margin-bottom:18px}
+.opts h3{margin:0 0 8px;font-size:13.5px;font-weight:900;color:var(--ink)}
+.opts h3 small{font-weight:600;color:var(--muted);font-size:11.5px;margin-left:8px}
+.opts .tw{overflow-x:auto}
+.opts table{width:100%;min-width:720px;border-collapse:collapse;font-size:12px}
+.opts th,.opts td{border-top:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top;line-height:1.5}
+.opts th{font-size:11px;color:var(--muted);font-weight:800;border-top:0;white-space:nowrap}
+.opts td.n{width:26px;font-weight:900;color:var(--ink)}
+.opts tr.sel td{background:var(--wc-bg)}
+.opts td .pick{display:inline-block;font-size:9.5px;font-weight:900;color:#fff;background:var(--wc);border-radius:999px;padding:1px 7px;margin-right:4px}
+.opts td .cs{font-size:10px;font-weight:800;color:var(--wc);white-space:nowrap}
+.opts td .cs.o{color:var(--muted)}
+.opts td.cp{color:var(--txt)}
+.row3{display:flex;gap:20px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+.row3 .ed{width:390px}
+.row3 figure{margin:0;width:390px;max-width:100%;min-width:0}
+.row3 figcaption b{display:block;font-size:13px}
+.row3 figcaption small{font-size:11px}
+.cmp-h{font-size:13.5px;font-weight:900;color:var(--ink);margin:6px 0 10px}
+.cmp-h small{font-weight:600;color:var(--muted);font-size:11.5px;margin-left:8px}
+.memo{max-width:1280px}
+@media (max-width:760px){.lead,.blk{padding:12px 0 0}.panel,.feat,.opts{border-radius:0}.bizsec{padding:10px 0 30px}.row3{gap:14px}.row3 .ed{width:100%}}
+
+/* Three-review delivery: desktop inspection and small screens */
+.review-shell{max-width:1360px;margin:0 auto;padding:22px 20px 48px}
+.review-head{background:#fff;border-radius:15px;padding:18px 20px;margin-bottom:20px;border:1px solid #e5ebef}
+.review-head h1{font-size:20px;color:#172a38;margin:0 0 7px}
+.review-head p{font-size:12.5px;line-height:1.65;color:#667786;margin:0}
+.review-layout{display:grid;grid-template-columns:390px 390px minmax(300px,390px);align-items:start;justify-content:center;gap:22px}
+.review-layout figure{margin:0;min-width:0}
+.review-layout figcaption{font-size:13px;font-weight:900;margin-bottom:9px;color:#1a2d3b}
+.review-layout figcaption small{display:block;font-size:11px;font-weight:500;color:#81909b;margin-top:3px}
+.review-notice{font-size:11px;color:#7e5260;background:#fff8e9;border:1px solid #f1e3c8;border-radius:9px;padding:10px 13px;margin-top:14px;line-height:1.6}
+.review-layout .ed{width:100%}
+@media(max-width:1250px){.review-layout{grid-template-columns:390px 390px}}
+@media(max-width:830px){.review-shell{padding:12px}.review-layout{display:flex;flex-direction:column;align-items:center}.review-layout figure{max-width:390px;width:100%}.review-layout .phone{width:100%}.review-head{border-radius:10px}}
+</style></head><body><div class="review-shell"><div class="review-head"><h1>위쳌 치킨집 | 최신 소비자 언어 재검수본</h1>
+ <p>열한시 치킨 · 치킨집 · 위생정보 / 장소정보 / 사업주 편집 화면. 탭과 체크 항목을 눌러 내용과 배치를 확인할 수 있습니다.</p>
+ <div class="review-notice">이 파일은 소비자 문구 검토용 시안입니다. 상호·수치·점검일·등급·보고서 번호 등은 시안용 예시이며 실제 서비스의 검증 자료가 아닙니다. 세스코 확인 내용과 매장 안내는 실제 점검 기록을 연결한 뒤 최종 확정해야 합니다.</div></div>
+ <div class="review-layout">
+ <figure><figcaption>소비자 화면 · 위생정보<small>체크 스탬프 다음에 현장 측정 정보가 나타납니다</small></figcaption>
+ <div class="phone"><div data-static data-biz="chicken" data-t="C" data-tab="hy" data-mt="white" data-pv="A"></div></div></figure>
+ <figure><figcaption>소비자 화면 · 장소정보<small>상단 기본 정보 반복 없이 추가 확인 정보만 표시합니다</small></figcaption>
+ <div class="phone"><div data-static data-biz="chicken" data-t="C" data-tab="place" data-mt="white" data-pv="A"></div></div></figure>
+ <figure><figcaption>사업주 편집 화면<small>매장 소개와 POINT 문구를 수정하면 소비자 화면에 반영됩니다</small></figcaption>
+ <div class="ed"><div class="bar">위생 페이지 관리<span class="sv">저장</span></div><div class="in" data-ed data-biz="chicken"></div></div></figure>
+ </div></div><script>const D = {"chicken":{"key":"치킨집","owner":"사장님","tabs":["홈","메뉴","리뷰","사진","위생"],"cta":"이 매장 위생 점검 알림 받기","reg":{"name":"열한시 치킨","cat":"옛날통닭·치킨","town":"성수동","years":"17","rating":"4.7","rv":"리뷰 2,041","date":"10.16","report":"2026-1016-0512","n":5},"hero_lab":"{town} · {years}년","hero":"깨끗한 기름으로 튀겨<br>맛을 지키는 치킨집","about_h":"튀김 기름부터 생닭 보관까지<br>기본을 꼼꼼히 관리해요","about":"{town}에서 {years}년째 닭을 튀겨 온 {name}이에요. 튀김 기름과 생닭 보관, 주방 위생을 꾸준히 관리하고 있어요. 기름은 정해 둔 요일에 통째로 교체하고, 생닭은 들어오는 즉시 냉장 보관해요. 세스코는 기름의 산가와 생닭 보관 온도 등을 정기적으로 확인해요.","strip":[["영업 시간","등록 정보"],["대표 메뉴","등록 정보"],["이용 정보","등록 정보"],["주차","등록 정보"]],"pt_h":"사장님이 꼭 지키는<br>세 가지 약속","review":"리뷰에서 가장 많이 나온 말은 \"바삭하다\"예요. (리뷰 데이터 연결 시 자동 요약)","hc":{"pill":"치킨집 공통 위생 포인트","hl":"기름부터 조리도구까지, 주방 위생을 확인했어요","ds":"튀김유 산가와 생닭 보관 온도, 칼·도마의 오염도를 확인했어요. 기름때가 쌓이기 쉬운 주방 환경도 함께 살펴봐요.","sum":"<b>표시된 4개 측정값은 화면 구성용 예시입니다.</b> 실제 측정 결과와 판정 기준은 원천자료 확인 후 공개해야 합니다.","metrics":[{"k":"튀김유 산가","v":"0.8","u":"","pct":27,"base":"기준 3.0 이하 (식품위생법 시행규칙)"},{"k":"생닭 냉장 온도","v":"2","u":"℃","pct":40,"base":"기준 0~5℃ · 24시간 센서"},{"k":"칼·도마 오염도","v":"120","u":"RLU","pct":60,"base":"관리 기준 200 이하 (ATP)"},{"k":"공기 중 부유세균","v":"180","u":"CFU/㎥","pct":22,"base":"기준 800 이하"}]},"items":[{"label":"튀김 기름 교체 주기","title":"기름은 정해 둔 날<br>통째로 갈아요","copy":"튀김 기름은 정해 둔 요일에 통째로 교체해요. 새 기름을 조금씩 보충하는 것으로 대신하지 않아요. 세스코는 산가(기름의 산패 정도를 나타내는 수치)를 측정해 상태를 확인해요.","chip":"세스코 실측 · 튀김유 산가","cesco":1,"q":"기름은 언제 갈아요?","metric":0},{"label":"생닭 보관 온도","title":"생닭은 받자마자<br>냉장 보관해요","copy":"생닭이 들어오면 바로 냉장고에 넣고 0~5℃에서 보관해요. 매일 온도를 확인하고, 세스코 점검 때도 보관 온도를 측정해요.","chip":"세스코 실측 · 생닭 냉장 온도","cesco":1,"q":"닭은 어떻게 보관해요?","metric":1},{"label":"염지·숙성 시간","title":"맛을 일정하게 유지하려고<br>염지 시간을 지켜요","copy":"닭의 맛은 염지 시간과 보관 온도에 따라서도 달라질 수 있어요. 그래서 정해진 시간에 맞춰 염지하고, 조리 전까지 냉장 상태를 유지해요.","chip":"세스코 실측 · 냉장 보관 온도","cesco":1,"q":"염지는 어떻게 해요?","metric":1},{"label":"도마·칼 색 구분","title":"생닭용 칼과 도마는<br>따로 사용해요","copy":"생닭을 손질하는 칼과 도마는 따로 구분해 써요. 다른 재료에 닿지 않도록 용도를 나누고, 세스코는 조리도구 표면의 오염도를 측정해요.","chip":"세스코 실측 · 칼·도마 ATP","cesco":1,"q":"생닭용 칼과 도마는 따로 쓰나요?","metric":2},{"label":"두 번 튀김·조리 온도","title":"온도를 확인하며<br>두 번 튀겨요","copy":"같은 닭이라도 튀기는 온도와 시간에 따라 식감이 달라져요. 저희는 조리 온도를 확인하고 두 번에 나눠 튀겨요. 조금 더 손이 가더라도 바삭한 식감을 유지하기 위한 조리 방식이에요.","chip":"매장 기록","cesco":0,"q":"두 번 튀기는 이유가 있어요?","metric":-1},{"label":"후드·덕트 청소 주기","title":"후드와 배기 덕트는<br>안쪽까지 청소해요","copy":"튀김 과정에서 생긴 기름때는 후드와 배기 덕트 안쪽에도 쌓일 수 있어요. 그래서 겉면뿐 아니라 안쪽까지 정기적으로 청소해요. 주방 공기 상태는 세스코가 별도로 측정해요.","chip":"세스코 실측 · 주방 공기","cesco":1,"q":"후드 청소는 누가, 얼마나 자주 해요?","metric":3},{"label":"포장 방식","title":"포장 후에도 바삭하도록<br>신경 써요","copy":"갓 튀긴 치킨을 바로 밀폐하면 김 때문에 눅눅해질 수 있어요. 김이 빠지도록 포장 상자에 구멍을 내고, 뚜껑도 바로 닫지 않아요.","chip":"매장 기록","cesco":0,"q":"포장하면 눅눅해지지 않나요?","metric":-1},{"label":"닭 호수·원산지 표시","title":"국내산 생닭을 사용하고<br>원산지를 안내해요","copy":"저희는 국내산 생닭을 사용하고 원산지를 메뉴판과 매장에 표시해요. 세스코는 정기 점검 때 거래명세서와 원산지 표시 내용을 확인해요.","chip":"매장 기록","cesco":0,"q":"어떤 닭을 쓰세요?","metric":-1},{"label":"홀 테이블·소스통 관리","title":"테이블뿐 아니라<br>소스통까지 관리해요","copy":"손님이 나간 뒤 테이블을 닦고, 소스통과 양념 그릇도 다음 손님이 사용할 수 있도록 다시 준비해요.","chip":"매장 기록","cesco":0,"q":"소스통과 양념 그릇도 손님마다 확인하나요?","metric":-1},{"label":"배달 용기·위생 장갑","title":"배달 음식도<br>같은 위생 기준으로 준비해요","copy":"배달 주문도 매장 식사와 같은 위생 기준으로 조리해요. 조리 과정에서 위생장갑을 사용하고, 배달 용기는 밀봉해 보내요.","chip":"매장 기록","cesco":0,"q":"배달 주문도 같은 기준으로 조리하나요?","metric":-1}],"default_sel":[0,1,3],"edit":{"about":"성수동에서 17년째 가마솥에 옛날통닭을 튀기는 집이에요. 염지 없이 주문이 들어오면 바로 튀겨 소금에 찍어 먹는 통닭을 내요. 아버지가 정한 방식이라 지금도 그대로 지키고 있어요.","pts":{"0":"가마솥 기름은 월·수·금 새벽마다 통째로 갈아요. 기름이 많이 들어가서 아깝긴 하죠. 그래도 오래된 기름은 통닭 색부터 달라져요. 세스코가 산가를 재러 오는 날에도, 안 오는 날에도 똑같이 해요."},"say":"염지는 안 해요. 대신 기름은 아끼지 않아요."},"hcards":{"src":"초안 · 엑셀 ①시트에 치킨집 행이 없어 같은 형식으로 작성 [확인 필요]","cards":[["FOOD","튀김 기름을 오래 사용하면 산패가 진행돼 치킨의 맛과 품질에 영향을 줄 수 있어요.","세스코는 기름의 산가(산패 정도를 나타내는 수치)를 측정해 관리 기준과 비교해요.","식품안전 솔루션","튀김유 산가"],["FOOD","생닭은 냉장 온도가 높아지면 세균이 증식하기 쉬워요.","생닭의 보관 온도를 측정해 0~5℃ 범위에서 냉장 관리하는지 확인해요.","식품안전 솔루션","생닭 보관 온도"],["FOOD","생닭을 손질한 칼과 도마를 다른 식재료에도 사용하면 오염이 옮겨갈 수 있어요.","생닭용 칼과 도마를 구분해 쓰고, 사용 후 세척·소독하는지 확인해요.","식품안전 솔루션","칼·도마 위생"],["IHM","튀김할 때 나온 기름때는 눈에 잘 띄지 않는 후드와 배기 덕트 안쪽에도 쌓일 수 있어요.","후드와 배기 덕트 안쪽을 정기적으로 전문 클리닝해 쌓인 기름때를 관리해요.","전문클리닝 솔루션","후드·배기 청소"],["AIR","튀김할 때 생기는 연기와 미세입자는 주방 공기에도 영향을 줄 수 있어요.","공기청정기를 24시간 가동하고, 주방 공기 상태를 함께 살펴봐요.","에어 솔루션","주방 공기질"],["IPM","음식물 찌꺼기나 물기가 남아 있으면 해충이 들어오거나 머물기 쉬워요.","세스코 전문 방제 서비스로 월 1회 이상 해충의 흔적과 유입 가능성을 점검해요.","종합방제 솔루션","해충 방제"]]},"aicard":{"intro":"세스코가 이 매장에서 측정하거나 확인한 위생 항목을 정리했어요.","checks":["튀김 기름의 산가를 측정해 관리 기준과 비교했어요.","생닭 보관 온도를 측정해 냉장 관리 상태를 확인했어요.","후드와 배기 덕트의 정기 청소 여부를 확인했어요."],"info":[["👶","아이와 함께 이용할 수 있도록 유아의자를 갖추고 있어요."],["👥","단체석이 있어 모임이나 회식에도 이용할 수 있어요."],["🚻","매장 안에 남녀 구분 화장실이 있어요."]],"review":[],"quote":"","review_ready":false},"svc_en":{"VIRUSCARE":"Viruscare","BODYCARE":"Bodycare","FOOD":"Food","IHM":"Cleaning","IPM":"IPM","AIR":"Air","MYLAB":"MyLab","CHECK":"Check"},"svc_ko":{"VIRUSCARE":"바이러스케어","BODYCARE":"바디케어","FOOD":"식품안전","IHM":"전문클리닝","IPM":"종합방제","AIR":"에어","MYLAB":"마이랩","CHECK":"관리 안내"},"members":[{"key":"blue","name":"블루 멤버스","color":"#0072CE","bg":"#EAF3FC","line":"#2F7CE8","svcs":["IPM","VIRUSCARE","AIR","WATER","RESTROOM","BODYCARE","IHM","MYLAB"]},{"key":"white","name":"화이트 멤버스","color":"#0E8F4A","bg":"#E8F6EE","line":"#2FA86A","svcs":["FOOD"]}],"sticker":"세스코 위생 관리 항목","placeinfo":{"addr":"서울 성동구 성수이로 00길 00, 1층","hours":"11:00 ~ 23:00 · 라스트오더 22:30 · 월요일 휴무","tel":"02-0000-0000","pay":"카드 · 간편결제 · 현금영수증","tags":"#바삭 #포장 #배달","conv":["유아의자","단체석 (최대 12명)","남녀 구분 화장실","포장 · 배달","주차 2대"],"checks":[["CHECK","유아의자가 있어요","유아의자 2개가 있어 아이와 함께 방문할 때 이용할 수 있어요."],["CHECK","단체석이 있어요","최대 12명이 함께 앉을 수 있는 단체석이 있어요. 모임 예약도 가능해요."],["FOOD","김치 원산지 표시를 확인했어요","매장에서 사용하는 김치의 원산지 표시를 확인했어요."],["FOOD","닭 원산지 표시를 확인했어요","사용하는 닭이 국내산으로 표시되어 있는지 확인했어요."],["FOOD","조리 직원 비흡연 여부를 안내해요","매장에서는 조리 직원이 모두 비흡연자라고 안내하고 있어요."],["VIRUSCARE","화장실에 손세정제가 있어요","손님이 이용하는 화장실에 손세정제가 있는지 확인했어요."],["FOOD","알레르기 유발 재료를 표기해요","메뉴에 알레르기 유발 재료를 표시하는지 확인했어요."],["IHM","화장실은 하루 1회 이상 청소해요","매장에서는 화장실을 하루 1회 이상 청소한다고 안내하고 있어요."],["FOOD","마감 후 테이블을 전체 살균해요","매장에서는 영업 종료 후 테이블을 살균·소독한다고 안내하고 있어요."],["FOOD","위생 위반 이력 조회 결과","조회한 자료에서는 위생 관련 위반 이력이 확인되지 않았어요. 다만 조회 범위와 기간은 실제 발행 전에 확인해야 해요."]],"sources":["현장 시설 확인","현장 시설 확인","원산지 표시 확인","원산지 표시 확인","매장 안내","비치 여부 확인","표시 내용 확인","매장 안내","매장 안내","자료 조회"]},"placemeta":[["👶","아이·모임","아이와 함께 방문할 수 있나요?","유아의자"],["👥","아이·모임","여러 명이 함께 앉을 수 있나요?","단체석 12명"],["🥬","먹거리","김치 원산지는 어디인가요?","김치 원산지"],["🍗","먹거리","닭 원산지는 어디서 확인하나요?","닭 원산지"],["🚭","사람·주방","조리 직원의 비흡연 여부도 안내하나요?","조리자 비흡연 안내"],["🧴","화장실","화장실에 손세정제가 비치되어 있나요?","손세정제"],["⚠️","먹거리","알레르기 유발 재료를 표시하나요?","알레르기 표기"],["🚻","화장실","화장실은 얼마나 자주 청소하나요?","하루 1회 청소"],["🧽","사람·주방","테이블은 어떻게 소독하나요?","마감 살균"],["📋","사람·주방","위생 관련 위반 이력은 어떻게 확인하나요?","위반 이력 조회"]],"tools":[{"k":"악취","hl":"주방에서 나는 냄새를 측정했어요","ic":"💨","tool":"악취측정기","easy":"주방에서 발생하는 냄새의 원인 물질을 측정해 관리 기준과 비교해요.","levels":[["청결","측정 항목이 설정된 관리 기준을 충족한 단계"],["주의","기준에 가까워 변화 여부를 살펴볼 단계"],["위험","기준을 벗어나 원인 확인과 개선이 필요한 단계"]],"ex":"주방의 악취 물질을 측정하고 결과를 관리 기준과 비교해요. 해당 사업장의 측정값과 기준은 확인 후 공개해요.","date":"2026.10.16"},{"k":"배수구 오염도","hl":"배수구 안쪽 상태를 살펴봤어요","ic":"🚿","tool":"배관 내시경","easy":"배관 내시경으로 주방 배수구 안쪽을 살펴보고 기름때나 음식물 찌꺼기가 쌓였는지 확인해요.","levels":[["청결","눈에 띄는 찌꺼기나 기름때가 적은 상태"],["주의","내부에 일부 찌꺼기가 관찰되는 상태"],["경고","내부 오염이 뚜렷해 청소가 필요한 상태"],["심각","찌꺼기와 기름때가 많이 쌓여 집중 관리가 필요한 상태"]],"ex":"배수구 내벽에 기름때나 음식물 찌꺼기가 쌓여 있는지 살펴보고, 필요한 청소와 관리 방법을 확인해요.","date":"2026.10.16"}],"place":"가게","default_mt":"white"},"meat":{"key":"고깃집","owner":"사장님","tabs":["홈","메뉴","리뷰","사진","위생"],"cta":"이 가게 방역 알림 받기","reg":{"name":"일도씨 정육식당","cat":"돼지고기 구이·삼겹살","town":"마포","years":"3","rating":"4.6","rv":"리뷰 1,318","date":"10.14","report":"2026-1014-0287","n":5},"hero_lab":"{town} · {years}년","hero":"고기는<br>온도로 관리해요","about_h":"숙성고 온도부터<br>불판과 반찬 관리까지","about":"{town}에서 {years}년째 운영하는 {name}이에요. 고기는 입고일과 숙성고 온도를 확인하며 보관해요. 사용한 불판은 꼼꼼하게 세척하고, 식사 중에도 필요하면 바로 교체해 드려요. 손님상에 나간 반찬은 다시 사용하지 않아요.","strip":[["영업 시간","등록 정보"],["대표 메뉴","등록 정보"],["이용 정보","등록 정보"],["주차","등록 정보"]],"pt_h":"저희 매장이 지키는<br>세 가지 원칙","review":"리뷰에서 가장 많이 나온 말은 \"불판을 자주 바꿔 준다\"예요. (리뷰 데이터 연결 시 자동 요약)","hc":{"pill":"고깃집 공통 위생 항목 (시안)","hl":"고기 보관 온도부터 조리도구 위생까지","ds":"숙성고 온도와 세척한 불판·집게의 표면 오염도, 실내 공기 상태 등을 살펴보는 항목입니다. 실제 결과는 점검 자료 확인 후 공개해야 합니다.","sum":"<b>아래 4개 측정값은 화면 구성용 예시입니다.</b> 실제 점검 결과와 관리 기준은 원천자료 확인 후 공개해야 합니다.","metrics":[{"k":"숙성고 온도","v":"1","u":"℃","pct":10,"base":"식육 냉장 기준 10℃ 이하 · 24시간 센서"},{"k":"세척 불판 오염도","v":"90","u":"RLU","pct":45,"base":"관리 기준 200 이하 (ATP)"},{"k":"집게·가위 오염도","v":"110","u":"RLU","pct":55,"base":"관리 기준 200 이하 (ATP)"},{"k":"공기 중 부유세균","v":"260","u":"CFU/㎥","pct":32,"base":"기준 800 이하"}]},"items":[{"label":"숙성고 온도·숙성 일수","title":"숙성고 온도를<br>정기적으로 확인해요","copy":"숙성고 온도를 매장에서 정한 기준에 맞춰 관리하고, 하루에도 여러 번 확인해요. 고기의 입고일도 기록해 보관 기간을 함께 살펴요.","chip":"매장 관리 안내","cesco":0,"q":"고기 보관 온도는 어떻게 관리하나요?","metric":-1},{"label":"입고 검수","title":"들어오는 고기는<br>상태부터 확인해요","copy":"고기가 들어오면 색과 온도를 확인해요. 매장에서 정한 입고 기준에 맞지 않는 고기는 받지 않아요.","chip":"매장 관리 안내","cesco":0,"q":"들어온 고기는 무엇을 확인하나요?","metric":-1},{"label":"불판 교체 기준","title":"불판은 꼼꼼히 세척하고<br>식사 중에도 바로 교체해요","copy":"사용한 불판은 꼼꼼하게 세척하고, 식사 중 불판이 타거나 오염되면 깨끗한 불판으로 즉시 교체해 드려요.","chip":"매장 관리 안내","cesco":0,"q":"식사 중 불판이 타면 바로 바꿔 주나요?","metric":-1},{"label":"집게·가위 분리","title":"생고기용과 익힌 고기용<br>집게를 구분해요","copy":"생고기용 집게와 익힌 고기용 집게를 따로 사용해요. 처음 방문한 손님에게는 직원이 사용 방법도 안내해 드려요.","chip":"매장 관리 안내","cesco":0,"q":"생고기와 익힌 고기에 같은 집게를 쓰나요?","metric":-1},{"label":"남은 반찬 폐기·소분 냉장","title":"손님상에 나간 반찬은<br>다시 사용하지 않아요","copy":"손님상에 나갔다가 남은 반찬은 다시 사용하지 않아요. 제공 전 반찬은 나누어 냉장 보관하고, 당일 준비한 반찬만 내는 것을 원칙으로 해요.","chip":"매장 관리 안내","cesco":0,"q":"남은 반찬은 어떻게 해요?","metric":-1},{"label":"숯·화덕 관리","title":"숯의 화력이 약해지면<br>상태를 보고 교체해요","copy":"고기를 굽는 중 화력이 약해지면 숯의 상태를 확인하고 교체해 드려요. 불판을 갈 때에도 숯의 상태를 함께 살펴봐요.","chip":"매장 관리 안내","cesco":0,"q":"고기를 굽다가 숯불이 약해지면 어떻게 하나요?","metric":-1},{"label":"테이블 후드·연기","title":"테이블마다 후드를 설치해<br>연기를 배출해요","copy":"고기를 구울 때 발생하는 연기는 각 테이블에 설치된 후드로 배출해요. 연기가 식사 공간에 오래 머물지 않도록 관리하고 있어요.","chip":"매장 관리 안내","cesco":0,"q":"고기를 구울 때 생기는 연기는 어떻게 배출하나요?","metric":-1},{"label":"등급판정서·원산지 게시","title":"고기의 원산지와 등급을<br>직접 확인할 수 있어요","copy":"매장에 고기의 원산지 표시와 축산물 등급판정서를 게시해요. 손님이 고기 정보를 직접 확인할 수 있도록 하고 있어요.","chip":"매장 관리 안내","cesco":0,"q":"오늘 고기는 어디서 온 거예요?","metric":-1},{"label":"직접 담근 재료","title":"된장과 김치는<br>직접 담가 사용해요","copy":"찌개에 사용하는 된장과 김치는 직접 담가 사용해요. 담근 뒤에도 보관 상태를 확인하며 관리하고 있어요.","chip":"매장 관리 안내","cesco":0,"q":"된장이랑 김치는 직접 담그세요?","metric":-1},{"label":"홀 환기·공기청정기","title":"영업 중에도<br>홀 공기를 관리해요","copy":"고기를 굽다 보면 연기와 냄새가 생길 수 있어요. 영업 중에는 공기청정기를 가동하고, 정해진 시간에 환기해요.","chip":"매장 관리 안내","cesco":0,"q":"홀 공기는 어떻게 관리해요?","metric":-1}],"default_sel":[0,2,4],"edit":{"about":"마포 골목 안쪽, 테이블 여섯 개. 정육점 9년 하다 연 지 3년이에요. 상호의 '일도'는 숙성고 온도. 단골들이 붙인 별명이 그대로 간판이 됐어요.","pts":{"0":"제 폰 잠금화면이 숙성고 온도예요. 2년 전에 정전으로 4도까지 올라간 적이 있어서 그날 고기 다 뺐어요. 그 뒤로 센서 달고 알림 오게 했어요. 사흘 넘긴 고기는 안 냅니다.","2":"한 테이블에서 불판을 여러 번 교체할 때도 있어요. 사용한 불판은 따로 세척하고, 식사 중 타거나 오염되면 깨끗한 불판으로 바로 바꿔 드려요."},"say":"고기는 온도를 확인하고, 불판은 필요할 때 바로 바꿔 드려요."},"hcards":{"src":"","cards":[]},"aicard":{"intro":"고기 보관과 조리도구 사용, 반찬 관리 등 매장에서 안내한 운영 내용을 정리했어요.","summary_label":"매장 관리 안내","checks":["고기는 숙성고 온도와 입고일을 확인하며 보관해요.","사용한 불판은 세척하고, 식사 중 타거나 오염되면 즉시 교체해 드려요.","손님상에 나간 반찬은 다시 사용하지 않아요."],"review":[],"review_ready":false,"info":[],"quote":""},"svc_en":{"VIRUSCARE":"Viruscare","BODYCARE":"Bodycare","FOOD":"Food","IHM":"Cleaning","IPM":"IPM","AIR":"Air","MYLAB":"MyLab","CHECK":"Check"},"svc_ko":{"VIRUSCARE":"바이러스케어","BODYCARE":"바디케어","FOOD":"식품안전","IHM":"전문클리닝","IPM":"종합방제","AIR":"에어","MYLAB":"마이랩","CHECK":"관리 안내"},"members":[{"key":"blue","name":"블루 멤버스","color":"#0072CE","bg":"#EAF3FC","line":"#2F7CE8","svcs":["IPM","VIRUSCARE","AIR","WATER","RESTROOM","BODYCARE","IHM","MYLAB"]},{"key":"white","name":"화이트 멤버스","color":"#0E8F4A","bg":"#E8F6EE","line":"#2FA86A","svcs":["FOOD"]}],"sticker":"세스코 위생 관리 항목","placeinfo":{"addr":"","hours":"","tel":"","pay":"","tags":"","conv":[],"checks":[],"sources":[]},"placemeta":[],"tools":[],"place":"가게","default_mt":"blue"},"care":{"key":"산후조리원","owner":"원장님","tabs":["홈","프로그램","리뷰","사진","위생"],"cta":"이 조리원 위생 점검 알림 받기","reg":{"name":"볕드는집 산후조리원","cat":"산후조리원 · 민간형","town":"분당","years":"6","rating":"4.9","rv":"후기 412","date":"10.15","report":"2026-1015-0341","n":6},"hero_lab":"{town} · 민간형","hero":"아기와 산모가 머무는 곳,<br>위생부터 꼼꼼히","about_h":"신생아실 공기부터<br>아기 용품과 산모 식사까지","about":"{town}에 있는 {name}이에요. 산모와 아기가 지내는 공간인 만큼 신생아실 공기, 젖병과 수건, 산모 식사까지 관리하고 있어요. 세스코가 직접 확인하거나 측정한 내용은 이 페이지에서 구분해 볼 수 있어요.","strip":[["이용","등록 정보"],["식사","등록 정보"],["면회","등록 정보"],["프로그램","등록 정보"]],"pt_h":"원장님이 꼭 지키는<br>세 가지 약속","review":"후기에서 가장 많이 나온 말은 \"방이 밝다\"예요. (리뷰 데이터 연결 시 자동 요약)","hc":{"pill":"산후조리원 공통 위생 포인트","hl":"신생아실 공기와 아기 용품의 위생 상태를 확인해요","ds":"신생아실 부유세균과 젖병 내부, 수유실 손잡이, 산모식 조리대의 오염도를 살펴요. 점검한 항목별 수치와 관리 기준을 함께 확인할 수 있어요.","sum":"<b>표시된 4개 측정값은 시안용 예시입니다.</b> 실제 점검 자료 확인 후 결과를 공개해야 합니다.","metrics":[{"k":"신생아실 부유세균","v":"210","u":"CFU/㎥","pct":26,"base":"산후조리원 유지기준 800 이하"},{"k":"젖병 내부 오염도","v":"40","u":"RLU","pct":20,"base":"소독 후 ATP · 관리 기준 200 이하"},{"k":"수유실 손잡이","v":"90","u":"RLU","pct":45,"base":"관리 기준 200 이하 (ATP)"},{"k":"산모식 조리대","v":"110","u":"RLU","pct":55,"base":"관리 기준 200 이하 · 냉장 3℃"}]},"items":[{"label":"신생아실 공기 수치 공개","title":"신생아실 공기 측정 결과를<br>정기적으로 공개해요","copy":"세스코가 신생아실 공기 중 부유세균을 정기적으로 측정해요. 측정 결과는 복도에 게시해 보호자도 확인할 수 있도록 하고 있어요.","chip":"세스코 실측 · 신생아실 부유세균","cesco":1,"q":"신생아실 공기 상태는 어떻게 확인해요?","metric":0},{"label":"젖병·수건 아기별 구분","title":"젖병과 수건은<br>아기마다 따로 관리해요","copy":"젖병과 수건은 아기별로 구분해 다른 아기의 물품과 섞이지 않도록 해요. 사용한 용품은 정해진 절차에 따라 세척하고, 매일 고온 살균해요.","chip":"세스코 실측 · 젖병 내부 ATP","cesco":1,"q":"젖병과 수건은 아기별로 구분하나요?","metric":1},{"label":"산모 방 창·환기","title":"산모 방은 정해진 시간에<br>환기해요","copy":"산모가 오래 머무는 객실인 만큼, 정해진 시간에 창문을 열어 환기해요.","chip":"매장 기록 · 객실 환기","cesco":0,"q":"객실은 어떻게 환기하나요?","metric":-1},{"label":"면회·출입 관리","title":"신생아실 면회는<br>창 너머로 진행해요","copy":"신생아실 면회는 창 너머에서 진행해요. 외부 방문객은 정해진 시간과 인원 기준에 따라 출입을 안내하고 있어요.","chip":"조리원 관리 안내","cesco":0,"q":"신생아실 면회는 어떻게 하나요?","metric":-1},{"label":"수유실 소독 주기","title":"수유실, 정기적으로<br>소독해요","copy":"여러 산모가 사용하는 수유실은 소파와 손잡이처럼 손이 자주 닿는 곳을 정기적으로 소독해요. 소독한 시간과 담당자도 기록해 관리해요.","chip":"세스코 실측 · 수유실 손잡이 ATP","cesco":1,"q":"수유실은 얼마나 자주 소독하나요?","metric":2},{"label":"침구·세탁 동선 분리","title":"침구는 매일 교체하고<br>세탁 동선도 구분해요","copy":"침구는 매일 교체하고 속싸개는 하루 두 번 바꿔요. 사용한 침구와 세탁을 마친 침구가 섞이지 않도록 이동 경로도 구분해요.","chip":"세스코 확인 · 세탁 동선","cesco":1,"q":"침구는 어떻게 세탁하고 관리하나요?","metric":-1},{"label":"산모식 식재료·조리실","title":"산모식은 식재료 보관부터<br>조리대 위생까지 살펴요","copy":"산모식을 만들 때는 식재료의 보관 온도와 조리대의 청결 상태를 확인해요. 미역국은 하루 두 번 새로 끓여 제공해요.","chip":"세스코 실측 · 산모식 조리대 ATP","cesco":1,"q":"산모식은 어떻게 준비하나요?","metric":3},{"label":"좌욕기·비데 소독","title":"좌욕기와 비데는 사용 후<br>소독해요","copy":"좌욕기와 비데는 사용 후 소독해요. 좌욕기는 한 달에 한 번 분해 세척해 내부까지 관리하고 있어요.","chip":"조리원 관리 안내","cesco":0,"q":"좌욕기와 비데는 어떻게 관리하나요?","metric":-1},{"label":"신생아실 야간 운영","title":"밤에도 신생아실에<br>돌봄 인력을 배치해요","copy":"야간에도 신생아실에 돌봄 인력을 배치해 아기들의 상태를 살펴요.","chip":"조리원 관리 안내","cesco":0,"q":"밤에도 신생아실에 직원이 있나요?","metric":-1},{"label":"간호 인력","title":"신생아실에는<br>간호 인력이 상주해요","copy":"신생아실에는 간호 인력이 상주하며 아기들을 돌봐요. 원장도 직접 상태를 살피고, 보호자가 궁금한 점은 담당자에게 문의할 수 있어요.","chip":"조리원 관리 안내","cesco":0,"q":"신생아실은 누가 돌보나요?","metric":-1}],"default_sel":[0,1,2],"edit":{"about":"신생아실 간호사로 12년 일한 경험을 바탕으로 문을 연 조리원이에요. 신생아실 공기와 아기 용품을 꼼꼼히 관리하고, 산모 한 분 한 분이 편안하게 지낼 수 있도록 살피고 있어요.","pts":{"0":"매달 세스코가 확인한 신생아실 공기 수치를 복도에 게시해요. 산모가 직접 확인할 수 있게요. 궁금한 점이 있으면 결과도 함께 설명해 드려요."},"say":"위생 관리는 기본이에요. 산모의 마음까지 살피고 싶어요."},"hcards":{"src":"10/23 개선안 1안 원문","cards":[["VIRUSCARE","여러 사람이 함께 사용하는 공간은 손이 닿는 물건을 통해 오염이 옮겨갈 수 있어요.","공용 공간은 월 1회 이상 전문 살균·소독하고, 손이 자주 닿는 물품도 수시로 관리해요.","바이러스케어 솔루션","전문 살균"],["VIRUSCARE","아기들이 함께 지내는 곳에서는 젖병과 수건이 서로 섞이지 않도록 관리해야 해요.","젖병과 수건을 아기마다 구분해 사용하고, 정해진 절차에 따라 매일 고온 살균해요.","바이러스케어 솔루션","신생아 용품 살균"],["VIRUSCARE","여러 아기가 함께 지내는 신생아실은 공기 중에 떠다니는 세균도 살펴야 해요.","신생아실의 공기 중 부유세균을 측정해 관리 기준과 비교해요. 부유세균은 공기 중에 떠다니는 세균을 말해요.","바이러스케어 솔루션","신생아실 공기 점검"],["BODYCARE","여러 산모가 사용하는 비데는 피부에 닿는 부분을 깨끗하게 관리하는 것이 중요해요.","전 객실에 설치된 비데의 청결 관리 상태를 확인해요.","바디케어 솔루션","비데 위생 관리"],["FOOD","산모에게 제공하는 식사는 식재료를 보관할 때부터 조리하고 배식할 때까지 위생 관리가 필요해요.","산모식에 쓰는 식재료의 보관 상태와 조리·배식 과정을 확인해요.","식품안전 솔루션","산모 식재료 위생"]]},"aicard":{"intro":"세스코가 신생아실 공기와 아기 용품, 공용 공간의 위생 관리 상태를 살펴봤어요.","checks":["공용 공간을 정해진 주기에 따라 살균·소독하는지 확인했어요.","젖병과 수건을 아기별로 구분해 사용하는지 살펴봤어요.","신생아실 공기 중 부유세균을 측정했어요."],"info":[["🍼","모자동실을 운영해 아기와 함께 지낼 수 있어요."],["📹","휴대전화로 신생아실을 볼 수 있는 서비스를 운영해요. 이용 시간과 대상은 조리원에 확인해 주세요."],["🪟","객실마다 외부 창이 있어 창문을 열어 환기할 수 있어요."]],"review":[],"quote":"","review_ready":false},"svc_en":{"VIRUSCARE":"Viruscare","BODYCARE":"Bodycare","FOOD":"Food","IHM":"Cleaning","IPM":"IPM","AIR":"Air","MYLAB":"MyLab","CHECK":"Check"},"svc_ko":{"VIRUSCARE":"바이러스케어","BODYCARE":"바디케어","FOOD":"식품안전","IHM":"전문클리닝","IPM":"종합방제","AIR":"에어","MYLAB":"마이랩","CHECK":"관리 안내"},"members":[{"key":"blue","name":"블루 멤버스","color":"#0072CE","bg":"#EAF3FC","line":"#2F7CE8","svcs":["IPM","VIRUSCARE","AIR","WATER","RESTROOM","BODYCARE","IHM","MYLAB"]},{"key":"white","name":"화이트 멤버스","color":"#0E8F4A","bg":"#E8F6EE","line":"#2FA86A","svcs":["FOOD"]}],"sticker":"세스코 위생 관리 항목","placeinfo":{"addr":"경기 성남시 분당구 00로 00, 3~5층","hours":"상담 10:00 ~ 18:00 · 입소 상담 예약제 · 면회 14:00 ~ 17:00","tel":"031-000-0000","pay":"카드 · 계좌이체 · 현금영수증","tags":"#모자동실 #신생아실CCTV #민간형","conv":["모자동실","신생아실 CCTV 서비스","창 너머 면회실","산모 전용 주차","배우자 동반 입실"],"checks":[["CHECK","모자동실을 이용할 수 있어요","산모가 아기와 같은 방에서 지낼 수 있는 모자동실을 운영해요. 자세한 이용 방식은 조리원에 확인해 주세요."],["CHECK","신생아실 모습을 휴대전화로 볼 수 있어요","보호자가 휴대전화로 신생아실을 볼 수 있는 CCTV 서비스를 운영해요. 이용 시간과 대상은 조리원에 확인해 주세요."],["CHECK","직원 손소독 기록을 관리해요","직원의 손 소독 기록을 관리하는지 확인했어요."],["CHECK","매트리스 관리 방법을 안내해요","조리원 안내에 따르면 산모가 사용한 뒤 매트리스를 스팀 소독하고, 한 달에 한 번 위생 관리 서비스를 받고 있어요."],["CHECK","수건과 침구 세탁에 사용하는 세제를 확인해요","수건과 옷, 담요를 세탁할 때 어떤 세제를 사용하는지 확인했어요."],["CHECK","손이 자주 닿는 곳은 하루 3회 소독해요","조리원은 문손잡이처럼 손이 자주 닿는 곳을 하루 세 차례 소독한다고 안내하고 있어요."],["CHECK","좌욕기는 사용 후 바로 소독해요","조리원은 좌욕기를 사용한 뒤 소독하고, 한 달에 한 번 분해 세척한다고 안내하고 있어요."],["IHM","에어컨은 연 2회 분해 세척해요","에어컨 내부를 연 2회 이상 분해 세척하는지 관리 기록을 확인했어요."],["CHECK","가습기는 정기적으로 세척·소독해요","가습기 내부를 정해진 주기에 따라 세척·소독한다고 안내하고 있어요."]],"sources":["조리원 안내","조리원 안내","기록 관리 확인","조리원 안내","사용 세제 확인","조리원 안내","조리원 안내","관리 기록 확인","조리원 안내"]},"placemeta":[["🍼","산모·아기","아기와 같은 방에서 지낼 수 있나요?","모자동실"],["📹","산모·아기","신생아실 CCTV는 언제 볼 수 있나요?","CCTV 이용 안내"],["🧼","청결","직원의 손 위생은 어떻게 관리하나요?","손소독 기록 확인"],["🛏️","청결","침대 매트리스는 어떻게 관리하나요?","매트리스 스팀"],["🧺","청결","아기 수건에는 어떤 세제를 쓰나요?","세탁 세제 확인"],["🚪","시설 관리","손이 자주 닿는 곳은 얼마나 자주 소독하나요?","접촉면 3회 소독"],["🛁","시설 관리","여러 사람이 쓰는 좌욕기는 어떻게 소독하나요?","좌욕기 즉시 소독"],["❄️","시설 관리","에어컨 내부는 얼마나 자주 청소하나요?","에어컨 분해 세척"],["💨","시설 관리","가습기는 어떻게 세척하고 소독하나요?","가습기 소독"]],"tools":[{"k":"악취","hl":"공용 공간의 냄새를 측정했어요","ic":"💨","tool":"악취측정기","easy":"산모 방과 공용 화장실에서 냄새의 원인 물질을 측정해 관리 기준과 비교해요.","levels":[["청결","설정된 관리 기준을 충족하는 단계"],["주의","관리 기준에 가까워 변화 여부를 살펴야 하는 단계"],["위험","설정된 기준을 벗어나 원인 확인이 필요한 단계"]],"ex":"객실과 공용 화장실의 악취 물질을 측정해 관리 기준과 비교해요. 실제 농도와 결과는 검증된 점검 자료를 연결한 뒤 공개해야 해요.","date":"2026.10.15"},{"k":"배수구 오염도","hl":"배수구 안쪽 상태를 확인했어요","ic":"🚿","tool":"배관 내시경","easy":"배관 내시경으로 좌욕실과 조리실의 배수구 안쪽을 살펴보고 찌꺼기가 쌓였는지 확인해요.","levels":[["청결","눈에 띄는 찌꺼기가 적은 상태"],["주의","일부 찌꺼기가 관찰되어 관리가 필요한 상태"],["경고","내부 오염이 뚜렷해 청소가 필요한 상태"],["심각","찌꺼기가 많이 쌓여 집중 관리가 필요한 상태"]],"ex":"배수구 내부에 찌꺼기가 쌓였는지 확인하고, 필요한 청소와 관리 방법을 점검해요.","date":"2026.10.15"}],"place":"조리원","default_mt":"blue"}};;
+const CHK = '<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>';
+let cur = (location.hash.slice(1) in D) ? location.hash.slice(1) : 'chicken';
+let typ = 'C';
+const state = {};   // per biz: {sel:[...], about, pts:{i:copy}, say, example:false}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function fill(s, reg){return s.replace(/\{(\w+)\}/g,(m,k)=>reg[k]||m);}
+function init(bk){const t=D[bk]; state[bk]={sel:[...t.default_sel], about:fill(t.about,t.reg), pts:{}, say:'', example:false}; t.items.forEach((it,i)=>state[bk].pts[i]=it.copy);}
+Object.keys(D).forEach(init);
+window.addEventListener('hashchange',()=>{const k=location.hash.slice(1); if(k in D){cur=k;render();}});
+function mark(txt, base){ return txt!==base ? '<mark class="ed">'+esc(txt)+'</mark>' : esc(txt); }
+
+function editorHtml(bk, s, withBiz){
+  const t=D[bk], reg=t.reg;
+  let h='';
+  if(withBiz) h+='<div class="fs"><div class="lb">업종<small>등록 정보로 자동 선택</small></div><div class="seg">'+['chicken','care'].map(k=>`<button type="button" data-biz="${k}" class="${k===bk?'on':''}">${D[k].key}</button>`).join('')+'</div></div>';
+  h+=`<div class="fs"><div class="lb">① 소개에서 강조할 내용<small>2~3개 선택 · 선택한 순서대로 표시</small></div><div class="chk">`;
+  t.items.forEach((it,i)=>{const on=s.sel.includes(i); const dis=!on&&s.sel.length>=3;
+    h+=`<label class="${on?'on':''}${dis?' dis':''}"><input type="checkbox" data-i="${i}" ${on?'checked':''} ${dis?'disabled':''}><span>${it.label}<span class="cs ${it.cesco?'':'o'}">${it.cesco?'세스코 점검 항목':'매장 기록'}</span></span><span class="ord">${on?(s.sel.indexOf(i)+1):''}</span></label>`;});
+  h+='</div></div>';
+  h+=`<div class="fs"><div class="lb">② ${t.place} 소개<small>소개 문구 수정 가능 · 최대 160자</small></div><textarea data-f="about" rows="4" class="${s.about!==fill(t.about,reg)?'changed':''}">${esc(s.about)}</textarea><div class="cnt">${s.about.length}/160</div></div>`;
+  h+='<div class="fs"><div class="lb">③ 선택한 항목의 설명<small>매장 운영 방식에 맞게 수정 · 각 140자</small></div>';
+  s.sel.forEach((i,n)=>{const it=t.items[i]; h+=`<div class="pt-ed"><div class="t">POINT 0${n+1}<span>${it.title.replace('<br>',' ')}</span></div><div class="qq">소비자가 궁금해할 질문: “${it.q}”</div><textarea data-pt="${i}" rows="3" class="${s.pts[i]!==it.copy?'changed':''}">${esc(s.pts[i])}</textarea><div class="cnt">${s.pts[i].length}/140</div><div class="ph">사진 추가 (선택) · 없으면 점검 때 촬영한 사진</div></div>`;});
+  h+='</div>';
+  h+=`<div class="fs"><div class="lb">④ ${t.owner} 한마디<small>선택 입력 · 최대 40자</small></div><input type="text" data-f="say" value="${esc(s.say)}" placeholder="비워 두면 이 칸은 손님 화면에 안 나와요" class="${s.say?'changed':''}"><div class="cnt">${s.say.length}/40</div></div>`;
+  h+='<div class="btns"><button type="button" data-act="reset">기본 내용으로 저장</button><button type="button" class="ex" data-act="example">수정한 내용으로 저장</button></div>';
+  h+=`<div class="note">이 시안에서는 수정 내용이 미리보기에 반영됩니다. 위생 등급·점검일·측정값은 세스코에서 관리하며, 사업주가 수정할 수 없습니다.</div>`;
+  return h;
+}
+
+const TXT={title:'세스코 현장 측정·확인', sub:'냄새 원인 물질은 측정하고, 배수구 안쪽은 내시경으로 확인해요', lg:'CESCO<br>측정', more:'자세히', seal:'CESCO', pass:'기준 안', date:'체크일', lvsep:' · '};
+function toolsBlock(t, tv){
+  const T=t.tools;
+  if(tv==='A'){
+    const rows=T.map(x=>`<div class="ri"><div class="rt"><b>${x.k}</b><span class="rs"><i>✓</i>${x.levels[0][0]}</span><small>측정 도구 · ${x.tool}</small></div><p class="re">${x.easy}</p><div class="rb" style="--w:${(100/x.levels.length).toFixed(2)}%">${x.levels.map((l,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div><div class="rl">${x.levels.map((l,i)=>`<b class="${i===0?'on':''}">${l[0]}</b><span class="${i===0?'on':''}">${l[1]}</span>`).join('')}</div><p class="rq">${x.ex}</p></div>`).join('');
+    return `<div class="tv-a"><div class="rh"><div><span class="no">CESCO · 측정 리포트</span><b>세스코가 현장에서 확인했어요</b></div><div class="dt">체크일<br><b>${T[0].date}</b></div></div>${rows}<div class="rf"><span>현장에서 확인한 결과를 항목별로 볼 수 있어요</span><span>${T.length}항목 모두 통과</span></div></div>`;
+  }
+  const detail=(x,i)=>`<div class="bp${i===0?' on':''}" data-tgp="${i}"><p class="be">${x.easy}</p><div class="bl">${x.levels.map((l,j)=>`<span class="${j===0?'on':''}" title="${l[1]}">${j===0?'✓ ':''}${l[0]}</span>`).join('')}<small>${x.levels[0][1]}</small></div><p class="bx">${x.ex}</p><div class="bdt">${TXT.date} ${x.date}</div></div>`;
+  const head=(sub)=>`<div class="bh"><span class="lg">${TXT.lg}</span><div><b>${TXT.title}</b><small>${sub}</small></div></div>`;
+  if(tv==='B'){
+    const COL=['#0E8F4A','#E0A100','#E2641B','#C8102E'];
+    const gauge=(x)=>{const n=x.levels.length; const r=44, cx=60, cy=56; const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(Math.PI*(1-a)), cy-r*Math.sin(Math.PI*(1-a))]; const [x0,y0]=p(a0),[x1,y1]=p(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
+      const segs=x.levels.map((l,i)=>`<path d="${arc(i/n+0.01,(i+1)/n-0.01)}" stroke="${COL[i]}" stroke-width="10" fill="none" stroke-linecap="butt" opacity="${i===0?1:.28}"/>`).join('');
+      const a=0.5/n; const nx=cx+(r-16)*Math.cos(Math.PI*(1-a)), ny=cy-(r-16)*Math.sin(Math.PI*(1-a));
+      return `<svg viewBox="0 0 120 64">${segs}<line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="#1A1A1A"/><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="9" font-weight="900" fill="#0B5E31">✓</text></svg>`;};
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}">${gauge(x)}<div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><span class="gv">${x.levels[0][0]}${TXT.lvsep}${TXT.pass}</span><i class="more">${TXT.more}</i></button>`).join('');
+    return `<div class="tv-b" data-tvbox>${head('점검 결과를 확인해 보세요. 초록 표시는 기준 안이에요')}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+  }
+  if(tv==='D'){
+    const gg=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="seal"><i>✓</i><small>${TXT.seal}</small></span><div class="gk">${x.hl}<small>${x.k}${TXT.lvsep}${x.tool}</small></div><i class="more">${TXT.more}</i></button>`).join('');
+    return `<div class="tv-b tv-d" data-tvbox>${head(TXT.sub)}<div class="gg">${gg}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+  }
+  if(tv==='E'){
+    const rows=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><span class="ic">${x.ic}</span><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><span class="gv">✓ 기준 안</span><span class="seg">${x.levels.map((l,j)=>`<i class="${j===0?'on':''}"></i>`).join('')}</span></button>`).join('');
+    return `<div class="tv-b tv-e" data-tvbox>${head('점검 결과를 확인해 보세요. 초록 표시는 기준 안이에요')}<div class="gg">${rows}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+  }
+  if(tv==='F'){
+    const rows=T.map((x,i)=>`<button type="button" class="g${i===0?' on':''}" data-tg="${i}"><i class="ok">✓</i><div class="gk">${x.hl}<small>${x.k} · ${x.tool}</small></div><i class="more">자세히</i></button>`).join('');
+    return `<div class="tv-b tv-f" data-tvbox><div class="top"><small>CESCO 전문 측정 · ${T[0].date}</small><b>${T.length}항목 모두 기준 안</b><span>측정 장비로 직접 쟀어요</span></div><div class="gg">${rows}</div><div class="bd">${T.map(detail).join('')}</div></div>`;
+  }
+  if(tv==='C'){
+    const items=T.map(x=>`<div class="ci"><div class="ck">${x.k}<small>${x.tool}</small><span class="ok">✓ ${x.levels[0][0]}</span></div><p class="ce">${x.easy}</p><div class="ld">${x.levels.slice().reverse().map((l,i,arr)=>`<div class="${i===arr.length-1?'on':''}"><b>${l[0]}</b><span>${l[1]}</span></div>`).join('')}</div><div class="cm"><b>세스코 전문가 메모</b>${x.ex}</div><div class="cd">체크일 ${x.date}</div></div>`).join('');
+    return `<div class="tv-c"><div class="ch"><span class="av">세스코<br>전문가</span><div><b>세스코가 현장에서 확인했어요</b><small>현장에서 확인한 결과를 항목별로 볼 수 있어요</small></div><span class="st">${T.length}항목<br>모두 통과</span></div><div class="tl2">${items}</div></div>`;
+  }
+  return `<div class="tools"><div class="tl-h"><span class="gold">CESCO<br>전문<br>측정</span><div><b>세스코가 현장에서 확인했어요</b><small>현장에서 확인한 결과를 항목별로 볼 수 있어요</small></div></div>${T.map(x=>`<div class="tl"><div class="tl-k">${x.k}<small>${x.tool}</small><span class="pass">기준 안 · ${x.levels[0][0]}</span></div><p class="tl-e">${x.easy}</p><div class="scale">${x.levels.map((l,i)=>`<div class="lv ${i===0?'on':''}">${l[0]}</div>`).join('')}</div><div class="lvd">${x.levels.map(l=>`<div><b>${l[0]}</b><span>${l[1]}</span></div>`).join('')}</div><p class="tl-x">${x.ex}</p><div class="tl-d">체크일 ${x.date}</div></div>`).join('')}</div>`;
+}
+function previewHtml(bk, typ, s, o){
+  const t=D[bk], reg=t.reg, hc=t.hc; o=o||{}; const tab=o.tab||'hy', mt=o.mt||t.default_mt;
+  const tabs=t.tabs.map(x=>`<span class="${x==='위생'?'on':''}">${x}</span>`).join('');
+  const ai=[ `세스코가 ${reg.date}에 ${reg.n}가지를 직접 재서 모두 기준 안이었어요.`, `${t.owner}이 고른 관리 포인트: ${s.sel.map(i=>t.items[i].label).join(', ')}`, t.review ].map(x=>`<li>${x}</li>`).join('');
+  const ms=hc.metrics.map(m=>`<div class="m"><div class="k">${m.k}<i>적합</i></div><div class="v">${m.v}${m.u?' <small>'+m.u+'</small>':''}</div><div class="bar"><i style="width:${m.pct}%"></i></div><div class="b">${m.base}</div></div>`).join('');
+  const strip=t.strip.filter(x=>x[1] && x[1]!=='등록 정보').map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
+  const pts=s.sel.map((i,n)=>{const it=t.items[i]; return `<div class="pt${n%2?' alt':''}"><div class="pho">사진 자리 · ${it.label}</div><div class="tx"><div class="num">POINT 0${n+1}</div><h3>${it.title}</h3><p>${mark(s.pts[i],it.copy)}</p><div class="fx"><i>${CHK}</i>${it.chip}</div></div></div>`;}).join('');
+  const say = s.say ? `<div class="say2"><div class="lb">${t.owner} 한마디</div><p><mark class="ed">"${esc(s.say)}"</mark></p><small>${reg.name} ${t.owner}</small></div>` : '';
+  const A=t.aicard;
+  const aiHtml=`<div class="wai"><div class="wai-t"><span class="sp">✨</span>위쳌 AI<span class="inf">i</span></div><p class="wai-i">${A.intro}</p><div class="wai-h">${A.summary_label||'최근 점검 핵심'}</div><ul>${A.checks.map(x=>`<li><span class="em">${A.summary_label==='매장 관리 안내'?'•':'✅'}</span>${x}</li>`).join('')}</ul>${A.review_ready && A.review.length ? `<div class="wai-h">리뷰 한눈에</div><ul>${A.review.map(x=>`<li><span class="em">✅</span>${x}</li>`).join('')}</ul>` : ''}</div>`;
+  const mem=t.members.find(m=>m.key===mt)||t.members[0];
+  const cards=t.hcards.cards.filter(c=>mem.svcs.includes(c[0]));
+  const N=cards.length;
+  const mcol=svc=>svc==='FOOD'?t.members[1].color:svc==='CHECK'?'#1A3668':t.members[0].color;
+  const P=t.placeinfo;
+  const srcLabel=(idx)=>P.sources?.[idx] || '확인 내용';
+  const isSelfReport=(idx)=>srcLabel(idx)==='매장 안내';
+  const basicHtml=P.addr?`<div class="binfo"><div class="bi"><span class="ic">📍</span><span>${P.addr}</span><b>복사 · 길찾기</b></div><div class="bi"><span class="ic">🕒</span><span>${P.hours}</span></div><div class="bi"><span class="ic">📞</span><span>${P.tel}</span><b>복사</b></div><div class="bi"><span class="ic">💳</span><span>${P.pay}</span></div><div class="bi"><span class="ic">#</span><span>${P.tags}</span></div><div class="bi"><span class="ic">🛋️</span><span>${P.conv.join(', ')}</span></div></div>`:'';
+  const mtabs=`<div class="mtabs">${t.members.map(m=>`<button type="button" class="mtab ${m.key===mt?'on':''}" data-mt="${m.key}" style="--mc:${m.color}">${m.name}<small>${t.hcards.cards.filter(c=>m.svcs.includes(c[0])).length}</small></button>`).join('')}</div>`;
+  const cardsHtml=cards.map((c,ci)=>`<div class="swc" style="--mc:${mem.color};--mbg:${mem.bg};--ml:${mem.line}"><div class="swin"><div class="swt"><span class="logo"><b>CESCO</b><i>${t.svc_en[c[0]]||c[0]}</i></span><span class="stamp"><svg viewBox="0 0 44 44" width="40" height="40"><circle cx="22" cy="22" r="20" fill="none" stroke="#8FA3BF" stroke-width="1.4"/><circle cx="22" cy="22" r="15" fill="none" stroke="#8FA3BF" stroke-width=".8"/><text x="22" y="20" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CESCO</text><text x="22" y="28" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6F86A6">CHECK</text></svg></span></div><div class="hk">${c[1]}</div><div class="hl">${c[2]}</div><div class="ck"><span class="bx">✓</span><span>[${c[3]}] ${c[4]} 체크 완료</span></div><div class="dt">최근 점검일 : 2026.${reg.date}</div><div class="rp">ⓘ 점검 내용 보기</div></div></div>`).join('');
+  const toolsHtml=t.tools.length ? toolsBlock(t, o.tv||'D') : '';
+  const M=t.placemeta, pv=o.pv||'A';
+  const chkRow=(c,i)=>`<div class="pc${i===0?' first':''}" style="--mc:${mcol(c[0])}"><div class="pc-h"><span class="ok">✓</span><b>${c[1]}</b><span class="svc">${t.svc_ko[c[0]]||c[0]}</span></div><p>${c[2]}</p><div class="pc-f">세스코 체크 완료 · 2026.${reg.date} · 유효 3개월</div></div>`;
+  const groups=[...new Set(M.map(m=>m[1]))];
+  const cescoHead=(sub)=>`<div class="pl-t">방문 전 확인할 장소 정보<small>${sub}</small></div>`;
+  let placeBody='';
+  if(!P.checks.length){placeBody='<div class="pl-sec cesco"><div class="pl-t">장소 확인 정보 준비 중</div><p style="font-size:12px;color:#67788a;line-height:1.7">확인된 장소 정보가 등록되면 항목별 내용과 확인 방법을 안내합니다.</p></div>';}
+  else if(pv==='A'){
+    const tiles=P.checks.map((c,i)=>`<div class="tile${i===0?' on':''}" style="--mc:${mcol(c[0])}"><span class="ic">${M[i][0]}</span><b>${M[i][3]}</b><i>${isSelfReport(i)?'i':'✓'}</i></div>`).join('');
+    const c0=P.checks[0];
+    placeBody=`<div class="pl-sec cesco">${cescoHead('세스코 확인 내용과 매장 안내를 구분해 볼 수 있어요')}<div class="tiles">${tiles}</div>
+<div class="sheet" style="--mc:${mcol(c0[0])}"><div class="sh-h"><span class="ic">${M[0][0]}</span><div><b>${c0[1]}</b><small>${srcLabel(0)} · 확인일 2026.${reg.date}</small></div></div><p>${c0[2]}</p><div class="sh-f">항목별 정보는 확인일 기준으로 안내해요.</div></div></div>`;
+  } else if(pv==='B'){
+    const qa=groups.map(g=>`<div class="qg"><div class="qg-t">${g}</div>${P.checks.map((c,i)=>M[i][1]===g?`<div class="qi" style="--mc:${mcol(c[0])}"><div class="q">${M[i][2]}</div><div class="a"><b>${c[1]}</b><small>${c[2]}</small><span class="chk">✓ 세스코 확인 · 2026.${reg.date}</span></div></div>`:'').join('')}</div>`).join('');
+    placeBody=`<div class="pl-sec cesco">${cescoHead('가기 전에 많이 묻는 것들이에요. 답은 세스코가 가서 확인했어요')}${qa}</div>`;
+  } else if(pv==='C'){
+    const rows=groups.map(g=>`<div class="pl-row"><span>${g}</span><span class="pl-chips">${P.checks.map((c,i)=>M[i][1]===g?`<i class="cc${i===0?' on':''}" style="--mc:${mcol(c[0])}">✓ ${M[i][3]}</i>`:'').join('')}</span></div>`).join('');
+    const c0=P.checks[0];
+    placeBody=`<div class="pl-sec cesco">${cescoHead('세스코가 현장에서 확인한 항목 ${P.checks.length}개 · 최근 확인 2026.${reg.date}')}${rows}
+<div class="lgc"><i>✓ 확인 항목</i>은 세스코가 현장에서 확인한 내용이에요</div>
+<div class="pop" style="--mc:${mcol(c0[0])}"><div class="pop-a"></div><b>${c0[1]}</b><p>${c0[2]}</p><small>${srcLabel(0)} · 확인일 2026.${reg.date}</small></div></div>`;
+  } else {
+    placeBody=`<div class="pl-sec cesco">${cescoHead('가 봐야만 아는 것 '+P.checks.length+'가지를 세스코가 가서 확인했어요')}${P.checks.map((c,i)=>chkRow(c,i)).join('')}</div>`;
+  }
+  const placeHtml=`<div class="place">${placeBody}</div>`;
+  const headHtml=`
+<div class="appbar"><button class="back" aria-label="뒤로 가기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><div class="t">${reg.name}</div></div>
+<div class="head"><div class="pho2">사진 자리 · 대표 사진 (${t.owner} 업로드)</div><div class="nm" style="margin-top:12px"><span class="cat">${reg.cat}</span></div><div class="nm"><h2>${reg.name}</h2></div><div class="rv"><b>리뷰</b><span style="color:#0072CE;font-weight:700">${reg.rv.replace(/\D+/g,'')}개</span><span>· ${reg.town}</span></div></div>
+<div class="body" style="padding-bottom:4px;background:#fff">${aiHtml}${basicHtml}</div>
+<div class="tabs2"><span class="${tab==='hy'?'on':''}" data-tab="hy">위생정보</span><span class="${tab==='place'?'on':''}" data-tab="place">장소정보</span></div>` + (tab==='place' ? placeHtml : (!t.hcards.cards.length ? `<div class="body"><div class="card" style="font-size:12px;color:#67788a;line-height:1.7">세스코 점검 결과는 확인된 점검 자료가 연결되면 표시됩니다.</div></div>` : `
+<div class="hc">
+${A.quote?`<div class="qt2">“${A.quote}”</div>`:''}
+<div class="sh3">${t.sticker}<small>관리 이유와 점검 내용을 볼 수 있어요</small></div>
+${mtabs}
+<div class="sw">${cardsHtml}</div>
+<div class="swbar"><button type="button" class="swnav" data-d="p" aria-label="이전 카드">‹</button><div class="dots">${cards.map((c,ci)=>`<i class="${ci===0?'on':''}"></i>`).join('')}</div><button type="button" class="swnav" data-d="n" aria-label="다음 카드">›</button></div>
+<div class="hcsum">${reg.date} 점검일 기준 위생 관리 정보 · 위생 등급 <b>A</b></div>
+${typ==='A'?'<div class="grid">'+ms+'</div>':''}</div>`));
+  const bodyC=`<div class="dp">
+<div class="hr"><div class="pho">사진 자리 · 대표 세로 컷 (사장님 또는 점검 촬영)</div><div class="ov"><span class="lab">${fill(t.hero_lab,reg)}</span><h1>${t.hero}</h1><div class="sub">${reg.name}${t.hcards.cards.length?' · 세스코 위생 점검 시안':' · 매장 소개 시안'}</div></div></div>
+<div class="sec"><span class="lab">ABOUT</span><h2>${t.about_h}</h2><p>${mark(s.about, fill(t.about,reg))}</p>${strip?`<div class="strip">${strip}</div>`:''}</div>
+<div class="sec alt" style="padding-bottom:10px"><span class="lab">POINT</span><h2>${t.pt_h}</h2></div>
+${pts}
+${say}
+<div style="height:8px"></div>
+<div class="rep"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A3668" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><div class="t">위생 점검 보고서 (시안) No. ${reg.report}<small>세스코 현장 점검 기록</small></div><a class="btn sec" href="#">보고서 보기</a></div>
+<p class="fine2">측정값은 점검일 기준이고, 다음 정기 점검 후 갱신돼요. POINT는 ${t.owner}이 선택한 매장 소개예요. 세스코 측정·확인 정보는 별도 점검 자료를 기준으로 제공돼요.</p>
+</div>`;
+  const repRow=`<div class="report"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A3668" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><div class="t">위생 점검 보고서 (시안) No. ${reg.report}<small>세스코 현장 점검 기록</small></div><a class="btn sec" href="#">보고서 보기</a></div>`;
+  const fine=`<p class="fine">측정값은 점검일 기준이고, 다음 정기 점검 후 갱신돼요. 관리 포인트는 ${t.owner}이 선택한 매장 소개예요. 세스코 측정·확인 정보는 별도 점검 자료를 기준으로 제공돼요.</p>`;
+  const sayCard = s.say ? `<div class="card say"><div class="lb">${t.owner} 한마디</div><p><mark class="ed">"${esc(s.say)}"</mark></p><div class="sg">${reg.name} ${t.owner}</div></div>` : '';
+  // A · 수치형
+  const gauges=hc.metrics.map((m,mi)=>{
+    const sel=s.sel.filter(i=>t.items[i].metric===mi);
+    const why=sel.map(i=>`<div class="why1"><b>이 집은</b> ${mark(s.pts[i],t.items[i].copy)}</div>`).join('');
+    return `<div class="r"><div class="k">${m.k}</div><div class="mt" style="margin-top:3px"><div class="mrow"><b>${m.v}</b>${m.u?'<small>'+m.u+'</small>':''}<span class="pill2">기준의 ${m.pct}%</span></div><div class="mb"><i style="width:${m.pct}%"></i></div><div class="ml"><span>0</span><span>${m.base}</span></div></div>${why}</div>`;}).join('');
+  const rest=s.sel.filter(i=>t.items[i].metric<0);
+  const restList = rest.length ? `<div class="card list"><div class="hd"><b>실측 항목 밖에서 ${t.owner}이 고른 것</b><span>매장 기록</span></div>${rest.map(i=>`<div class="row"><span style="width:8px;height:8px;border-radius:50%;background:#C9D0D8;display:block;margin:0 auto"></span><div class="k">${t.items[i].title.replace('<br>',' ')}<small>${mark(s.pts[i],t.items[i].copy)}</small></div><span class="tag o">매장 기록</span></div>`).join('')}</div>` : '';
+  const bodyA=`<div class="body">
+<div class="card intro"><div class="byline"><div class="av"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0072CE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><b>${reg.name}은요</b><span>${t.owner}이 적은 소개</span></div></div><p style="margin-top:8px">${mark(s.about, fill(t.about,reg))}</p></div>
+<div class="sh2"><b>항목별로 얼마나 여유 있나</b><small>${reg.date} 세스코 실측 · 값과 기준선</small></div>
+<div class="res">${gauges}</div>
+${restList}
+${sayCard}
+${repRow}${fine}</div>`;
+  // B · 인터뷰형 (셀프 인터뷰)
+  const qa=s.sel.map(i=>{const it=t.items[i]; return `<div class="it"><div class="q">${it.q}</div><div class="a">${mark(s.pts[i],it.copy)}</div><div class="fact"><i>${CHK}</i>${it.chip}</div></div>`;}).join('');
+  const pull = s.say ? `<div class="pull"><p><mark class="ed" style="background:transparent;box-shadow:none">"${esc(s.say)}"</mark></p><span>${reg.name} ${t.owner}</span></div>` : '';
+  const bodyB=`<div class="body">
+<div class="iv-hero"><div class="ph">사진 자리 · ${t.owner} · 대표 컷 (${t.owner} 업로드 또는 점검 촬영)</div><div class="eb">${t.owner} 셀프 인터뷰 · ${reg.date} 점검 후</div><h3>${t.about_h}</h3><div class="who">${reg.name} · 질문은 위쳌이, 답은 ${t.owner}이 직접 적었어요</div></div>
+<div class="card intro"><p>${mark(s.about, fill(t.about,reg))}</p></div>
+<div class="card iv">${qa}</div>
+${pull}
+${repRow}${fine}</div>`;
+  const body = typ==='A'?bodyA : typ==='B'?bodyB : bodyC;
+  return headHtml + (tab==='place'?'':(toolsHtml?`<div class="tools-wrap">${toolsHtml}</div>`:'')+body) + `<div class="actions"><div class="ico">전화</div><div class="ico">저장</div><div class="cta">${t.cta}</div></div>`;
+}
+function refreshPreviews(bk){
+  document.querySelectorAll('[data-tools]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML='<div class="tools-wrap">'+toolsBlock(D[bk], el.dataset.tv)+'</div>'; });
+  document.querySelectorAll('[data-static]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML=previewHtml(bk, el.dataset.t, state[bk], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv}); });
+}
+function refresh(bk){
+  document.querySelectorAll('[data-ed]').forEach(el=>{ if(el.dataset.biz===bk) el.innerHTML=editorHtml(bk, state[bk], el.hasAttribute('data-withbiz')); });
+  refreshPreviews(bk);
+}
+const edIn=document.getElementById('ed-in'), pv=document.getElementById('pv');
+function render(){
+  if(edIn){ edIn.dataset.biz=cur; pv.dataset.biz=cur; pv.dataset.t=typ; document.querySelectorAll('.tsel button').forEach(b=>b.classList.toggle('on',b.dataset.t===typ)); }
+  Object.keys(D).forEach(refresh);
+}
+document.addEventListener('click',e=>{
+  const tb=e.target.closest('.tsel button[data-t]'); if(tb){typ=tb.dataset.t; render(); return;}
+  const ed=e.target.closest('[data-ed]'); if(!ed) return; const bk=ed.dataset.biz;
+  const b=e.target.closest('button[data-biz]'); if(b){cur=b.dataset.biz;history.replaceState(null,'','#'+cur);render();return;}
+  const a=e.target.closest('button[data-act]'); if(!a) return;
+  const t=D[bk]; if(a.dataset.act==='reset'){init(bk);} else {const s=state[bk]; s.about=t.edit.about; Object.entries(t.edit.pts).forEach(([i,c])=>{i=+i; if(!s.sel.includes(i)) s.sel=[i,...s.sel].slice(0,3); s.pts[i]=c;}); s.say=t.edit.say;}
+  refresh(bk);
+});
+document.addEventListener('change',e=>{
+  const ed=e.target.closest('[data-ed]'); if(!ed) return; const bk=ed.dataset.biz;
+  const c=e.target; if(c.type!=='checkbox') return; const s=state[bk], i=+c.dataset.i;
+  if(c.checked){ if(!s.sel.includes(i)&&s.sel.length<3) s.sel.push(i);} else s.sel=s.sel.filter(x=>x!==i);
+  refresh(bk);
+});
+document.addEventListener('input',e=>{
+  const ed=e.target.closest('[data-ed]'); if(!ed) return; const bk=ed.dataset.biz;
+  const el=e.target, s=state[bk];
+  if(el.dataset.f==='about') s.about=el.value.slice(0,160);
+  else if(el.dataset.f==='say') s.say=el.value.slice(0,40);
+  else if(el.dataset.pt!==undefined) s.pts[+el.dataset.pt]=el.value.slice(0,140);
+  else return;
+  const t=D[bk]; el.classList.toggle('changed', el.dataset.f==='about'? s.about!==fill(t.about,t.reg) : el.dataset.f==='say'? !!s.say : s.pts[+el.dataset.pt]!==t.items[+el.dataset.pt].copy);
+  el.parentElement.querySelector('.cnt').textContent=el.value.length+'/'+(el.dataset.f==='about'?160:el.dataset.f==='say'?40:140);
+  refreshPreviews(bk);
+});
+document.addEventListener('click',e=>{
+  const tb=e.target.closest('.tabs2 span[data-tab]'); if(tb){const el=tb.closest('[data-static]'); if(el){el.dataset.tab=tb.dataset.tab; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
+  const pb=e.target.closest('.pvsel button[data-pv]'); if(pb){const el=document.querySelector(pb.closest('.pvsel').dataset.for); if(el){el.dataset.pv=pb.dataset.pv; el.dataset.tab='place'; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv}); pb.parentElement.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===pb));} return;}
+  // 장소정보 타일: 선택한 확인 내용을 펼쳐 보여 줍니다.
+  const tile=e.target.closest('.tiles .tile'); if(tile){
+    const root=tile.closest('[data-static]');
+    if(root){
+      const t=D[root.dataset.biz], idx=[...tile.parentElement.children].indexOf(tile);
+      const c=t.placeinfo.checks[idx], meta=t.placemeta[idx];
+      const sh=tile.closest('.pl-sec').querySelector('.sheet');
+      tile.parentElement.querySelectorAll('.tile').forEach(el=>el.classList.toggle('on',el===tile));
+      const mc=c[0]==='FOOD'?t.members[1].color:c[0]==='CHECK'?'#1A3668':t.members[0].color;
+      sh.style.setProperty('--mc',mc);
+      sh.querySelector('.sh-h .ic').textContent=meta[0];
+      sh.querySelector('.sh-h b').textContent=c[1];
+      sh.querySelector('.sh-h small').textContent=(t.placeinfo.sources?.[idx]||'확인 내용')+' · 확인일 2026.'+t.reg.date;
+      sh.querySelector('p').textContent=c[2];
+    }
+    return;
+  }
+  const tg=e.target.closest('[data-tvbox] .g[data-tg]'); if(tg){const box=tg.closest('[data-tvbox]'); const k=tg.dataset.tg; const open=!tg.classList.contains('on'); box.querySelectorAll('.g').forEach(b=>b.classList.toggle('on',open&&b.dataset.tg===k)); box.querySelectorAll('.bp').forEach(b=>b.classList.toggle('on',open&&b.dataset.tgp===k)); return;}
+  const mb=e.target.closest('.mtab[data-mt]'); if(mb){const el=mb.closest('[data-static]'); if(el){el.dataset.mt=mb.dataset.mt; el.innerHTML=previewHtml(el.dataset.biz, el.dataset.t, state[el.dataset.biz], {tab:el.dataset.tab, mt:el.dataset.mt, pv:el.dataset.pv, tv:el.dataset.tv});} return;}
+});
+function swGo(sw,k){const n=sw.children.length; k=(k+n)%n; const c=sw.children[k]; sw.scrollTo({left:c.offsetLeft-(sw.clientWidth-c.offsetWidth)/2-sw.offsetLeft*0,behavior:'smooth'});}
+document.addEventListener('click',e=>{
+  const dot=e.target.closest('.hc .dots i'); if(dot){const sw=dot.closest('.hc').querySelector('.sw'); swGo(sw,[...dot.parentElement.children].indexOf(dot)); return;}
+  const nav=e.target.closest('.hc .swnav'); if(nav){const sw=nav.closest('.hc').querySelector('.sw'); const cur=[...sw.closest('.hc').querySelectorAll('.dots i')].findIndex(d=>d.classList.contains('on')); swGo(sw,cur+(nav.dataset.d==='n'?1:-1)); return;}
+  const card=e.target.closest('.hc .swc'); if(card){const sw=card.parentElement; const i=[...sw.children].indexOf(card); const cur=[...sw.closest('.hc').querySelectorAll('.dots i')].findIndex(d=>d.classList.contains('on')); swGo(sw, i===cur? i+1 : i);}
+});
+document.addEventListener('scroll',e=>{const sw=e.target; if(!sw.classList||!sw.classList.contains('sw')) return; const w=sw.firstElementChild?sw.firstElementChild.offsetWidth+12:1; const k=Math.round(sw.scrollLeft/w); sw.parentElement.querySelectorAll('.dots i').forEach((d,i)=>d.classList.toggle('on',i===k));},true);
+render();
+</script></body></html>

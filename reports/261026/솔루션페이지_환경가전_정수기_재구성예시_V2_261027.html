@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>정수기 솔루션 재구성 예시</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --navy: #0c1a45;
+    --navy-2: #13235c;
+    --blue: #0a6fc2;
+    --blue-soft: #e9eefb;
+    --red: #e3343b;
+    --ink: #1a1a1a;
+    --gray: #6b6f78;
+    --line: #e3e5ea;
+    --ph: #d9dbe0;
+    --bg: #ffffff;
+    --wrap: 1240px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 150px; }
+  body { font-family: Pretendard, -apple-system, "Malgun Gothic", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; word-break: keep-all; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  strong, b { font-weight: 700; }
+
+  /* 구조 라벨 (골격 슬롯 표시) */
+  .slot { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .02em; color: #fff; background: #7b2ff7; padding: 3px 8px; border-radius: 4px; margin-bottom: 14px; }
+  .note { display: block; font-size: 12px; color: #7b2ff7; background: #f4edff; border: 1px dashed #b994fb; border-radius: 6px; padding: 8px 12px; margin-top: 14px; }
+  body.hide-slots .slot, body.hide-slots .note { display: none; }
+  .slot-toggle { position: fixed; left: 16px; bottom: 16px; z-index: 60; background: #7b2ff7; color: #fff; border: 0; border-radius: 999px; padding: 10px 16px; font: 600 13px Pretendard, sans-serif; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+
+  /* 이미지 자리 */
+  .ph { background: repeating-linear-gradient(45deg, #e6e8ec 0 12px, #dfe1e6 12px 24px); color: #80848c; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 14px; border-radius: 14px; }
+
+  /* GNB */
+  .topbar { background: #000; height: 28px; display: flex; justify-content: center; gap: 0; font-size: 13px; }
+  .topbar span { width: 270px; text-align: center; color: #888; line-height: 28px; }
+  .topbar span.on { background: #1890ff; color: #fff; font-weight: 700; }
+  header.gnb { height: 94px; border-bottom: 1px solid var(--line); background: #fff; }
+  header.gnb .wrap { height: 100%; display: flex; align-items: center; gap: 48px; max-width: none; padding: 0 40px; }
+  .logo { font: 800 30px/1 Georgia, serif; color: #1f3e9c; letter-spacing: -1px; }
+  .logo small { display: block; font: 600 12px Pretendard, sans-serif; color: #333; text-align: right; }
+  .gnb nav { display: flex; gap: 36px; font-size: 19px; }
+  .gnb .right { margin-left: auto; display: flex; gap: 36px; font-size: 20px; font-weight: 600; }
+
+  /* S1 히어로 */
+  .hero { position: relative; height: 760px; color: #fff; overflow: hidden; background: linear-gradient(120deg, #2b2e33 0%, #45484d 55%, #1d1f22 100%); }
+  .hero::after { content: "공간 연출 이미지 (오피스 + 판테온 제품컷)"; position: absolute; right: 12%; top: 32%; width: 260px; height: 420px; border: 2px dashed rgba(255,255,255,.35); border-radius: 18px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 14px; color: rgba(255,255,255,.6); padding: 20px; }
+  .hero .wrap { position: relative; z-index: 2; padding-top: 50px; }
+  .crumb { font-size: 15px; color: rgba(255,255,255,.75); display: flex; gap: 10px; }
+  .crumb b { color: #9fc4ff; font-weight: 600; }
+  .eyebrow { margin-top: 90px; font: 800 38px/1 Georgia, serif; color: #6f8de0; }
+  .eyebrow span { font: 500 34px Pretendard, sans-serif; color: #9fb4ea; margin-left: 4px; }
+  .hero h1 { font-size: 92px; font-weight: 800; letter-spacing: -2px; margin: 18px 0 26px; }
+  .hero p.lead { font-size: 26px; font-weight: 500; line-height: 1.5; }
+  .hero .arrow { position: absolute; top: 50%; width: 76px; height: 76px; border-radius: 50%; background: rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 3; }
+  .hero .arrow.l { left: 40px; } .hero .arrow.r { right: 110px; }
+
+  /* 플로팅 */
+  .float-cta { position: fixed; right: 18px; bottom: 120px; width: 104px; height: 104px; border-radius: 50%; background: var(--red); color: #fff; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.3; z-index: 50; box-shadow: 0 6px 18px rgba(227,52,59,.35); }
+  .float-top { position: fixed; right: 18px; bottom: 16px; width: 92px; height: 92px; border-radius: 50%; border: 1px solid #bbb; background: rgba(255,255,255,.85); display: flex; align-items: center; justify-content: center; font-size: 34px; z-index: 50; }
+
+  /* S2 앵커 바 */
+  .anchor { position: sticky; top: 0; z-index: 40; margin-top: -90px; }
+  .anchor .bar { max-width: 1580px; margin: 0 auto; background: var(--navy); border-radius: 0; height: 90px; display: flex; align-items: center; padding: 0 30px 0 50px; color: #fff; transition: max-width .2s; }
+  .anchor.stuck .bar { max-width: none; }
+  .anchor ul { list-style: none; display: flex; gap: 34px; font-size: 20px; }
+  .anchor li a { display: block; padding: 8px 0; color: rgba(255,255,255,.85); border-bottom: 3px solid transparent; }
+  .anchor li a.on { color: #fff; font-weight: 700; border-color: #fff; }
+  .anchor li.new a::after { content: "NEW"; font-size: 10px; font-weight: 800; background: var(--red); color: #fff; border-radius: 3px; padding: 1px 4px; margin-left: 6px; vertical-align: 3px; }
+  .anchor .cta { margin-left: auto; background: #fff; color: var(--navy); width: 268px; height: 60px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; font-size: 19px; font-weight: 500; }
+
+  /* 공통 섹션 */
+  section.sec { padding: 150px 0 120px; }
+  .redbar { width: 82px; height: 3px; background: var(--red); margin-bottom: 46px; }
+  .two-col { display: grid; grid-template-columns: 330px 1fr; gap: 60px; }
+  .h2 { font-size: 46px; font-weight: 800; color: var(--navy); letter-spacing: -1px; line-height: 1.25; }
+  .blue { color: var(--blue); }
+
+  /* S3 */
+  .need .sub { font-size: 22px; color: var(--gray); line-height: 1.6; }
+  .need .head { font-size: 38px; font-weight: 800; color: #111; line-height: 1.35; margin-top: 16px; letter-spacing: -1px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 90px; }
+  .stat { display: flex; gap: 22px; align-items: center; }
+  .stat .num { flex: none; width: 146px; height: 146px; border-radius: 50%; background: var(--blue-soft); display: flex; align-items: center; justify-content: center; font-size: 52px; font-weight: 800; color: var(--navy); letter-spacing: -2px; border: 2px dashed #b9c6ef; }
+  .stat .num small { font-size: 30px; }
+  .stat .q { font-size: 20px; color: #555; line-height: 1.5; }
+  .stat .a { font-size: 30px; font-weight: 800; color: var(--navy); margin-top: 10px; }
+  .source { margin-top: 44px; font-size: 18px; color: var(--gray); }
+  .declare { position: relative; display: flex; align-items: center; gap: 40px; min-height: 620px; padding: 80px 90px; border-radius: 0; color: #fff; background: radial-gradient(ellipse at 78% 0%, rgba(140,180,230,.45), transparent 45%), radial-gradient(ellipse at 75% 100%, rgba(220,40,70,.45), transparent 45%), #0b0c10; }
+  .declare .dtext { flex: 1; }
+  .declare .d1 { font-size: 50px; font-weight: 800; letter-spacing: -1.5px; }
+  .declare .d2 { font-size: 36px; font-weight: 400; line-height: 1.55; margin-top: 10px; letter-spacing: -1px; }
+  .declare .d3 { list-style: none; margin-top: 40px; font-size: 24px; line-height: 1.75; }
+  .declare .dprod { position: relative; flex: none; width: 360px; height: 520px; }
+  .declare .body { position: absolute; left: 40px; top: 0; width: 200px; height: 100%; border-radius: 26px; border: 3px solid #2f6bff; border-bottom-color: #ff3b6b; background: linear-gradient(180deg, rgba(47,107,255,.25) 0 62%, rgba(255,59,107,.3) 62% 100%); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 14px; color: rgba(255,255,255,.7); }
+  .declare .chip { position: absolute; right: 0; padding: 10px 22px; border-radius: 999px; font-size: 20px; font-weight: 800; }
+  .declare .c1 { top: 22%; background: #1e66ff; }
+  .declare .c2 { bottom: 12%; background: #ff3b6b; }
+  .places-h { font-size: 26px; font-weight: 700; color: var(--navy); margin-top: 80px; }
+  .places { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 70px; }
+  .place { background: #f6f7f9; border-radius: 14px; padding: 22px 20px; font-size: 16px; color: #555; line-height: 1.55; }
+  .place b { display: block; margin-top: 12px; font-size: 19px; color: var(--navy); }
+
+  /* S4 Why CESCO */
+  .why { background: linear-gradient(180deg, #050f3a 0%, #13235c 45%, #6d7ea8 100%); color: #fff; padding: 110px 0 0; }
+  .why h2 { font-size: 86px; font-weight: 800; letter-spacing: -2px; }
+  .why .path { font-size: 27px; font-weight: 300; color: rgba(255,255,255,.85); line-height: 1.65; margin-top: 30px; }
+  .why .concl { font-size: 38px; line-height: 1.45; margin-top: 30px; letter-spacing: -1px; }
+  .why .concl b { font-weight: 800; }
+  .why .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 60px; }
+  .why .kpi { border: 1px solid rgba(255,255,255,.3); border-radius: 14px; padding: 24px; background: rgba(255,255,255,.06); }
+  .why .kpi .v { font-size: 40px; font-weight: 800; }
+  .why .kpi .t { font-size: 17px; color: rgba(255,255,255,.85); margin-top: 6px; }
+  .why .scene { height: 460px; margin-top: 70px; border-radius: 0; background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); border: 2px dashed rgba(255,255,255,.25); border-bottom: 0; }
+  .feature { padding: 100px 0 120px; }
+  .feature .t1 { font-size: 36px; font-weight: 400; }
+  .feature .t2 { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin-top: 6px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 48px; }
+  .card { background: linear-gradient(90deg, #0b72c6 0%, #063e6e 100%); color: #fff; border-radius: 22px; padding: 46px 50px; display: flex; gap: 32px; align-items: center; }
+  .card .ic { flex: none; width: 104px; height: 104px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 34px; color: #41a7ff; }
+  .card h3 { font-size: 38px; font-weight: 800; letter-spacing: -1px; }
+  .card p { font-size: 22px; margin-top: 8px; line-height: 1.55; color: rgba(255,255,255,.92); }
+  .foot { font-size: 18px; color: var(--gray); margin-top: 22px; }
+
+  /* S5 특장점 (참고 템플릿 배치) */
+  .feat-head { text-align: center; margin-bottom: 56px; }
+  .feat-head .tag { display: inline-block; font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: 1px; margin-bottom: 12px; }
+  .feat-head h2 { font-size: 40px; font-weight: 800; color: var(--navy); letter-spacing: -.8px; }
+  .feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 56px 0; border-top: 1px solid var(--line); }
+  .feat-head + .feat-row { border-top: 0; padding-top: 0; }
+  .feat-row.rev .feat-visual { order: 2; }
+  .feat-visual { background: #f5f7f9; border-radius: 16px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; text-align: center; color: #8a8f98; font-size: 14px; border: 1px dashed #cfd4da; padding: 20px; }
+  .feat-num { font-size: 14px; font-weight: 800; color: var(--red); letter-spacing: 1px; margin-bottom: 10px; }
+  .feat-row h3 { font-size: 30px; font-weight: 800; color: #111; line-height: 1.4; letter-spacing: -.5px; margin-bottom: 22px; }
+  .feat-row h3 span { display: block; font-size: 20px; font-weight: 600; color: var(--navy-2); margin-top: 4px; }
+  .feat-problem { font-size: 17px; color: var(--gray); margin-bottom: 14px; }
+  .feat-how { font-size: 17px; color: #3b3f46; margin-bottom: 22px; }
+  .feat-data { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .feat-data span { background: #eef4fa; color: var(--navy); font-size: 14px; font-weight: 700; padding: 8px 14px; border-radius: 4px; }
+  .feat sup { font-size: .62em; color: var(--red); font-weight: 700; margin-left: 1px; }
+  .feat-links { display: flex; gap: 20px; }
+  .link-more { font-size: 14px; font-weight: 600; color: #111; border-bottom: 1px solid #111; padding-bottom: 2px; }
+  .link-more::after { content: " ›"; }
+  .feat-fn { margin-top: 30px; font-size: 13px; color: var(--gray); line-height: 1.75; }
+  .feat-cta { text-align: center; margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--line); }
+  .feat-cta p { font-size: 18px; font-weight: 600; color: #111; margin-bottom: 20px; }
+  .btn-red { display: inline-flex; align-items: center; height: 52px; padding: 0 30px; font-size: 16px; font-weight: 700; border-radius: 4px; background: var(--red); color: #fff; }
+
+  /* (이전 S5 스타일 — 미사용) */
+  .pills { display: flex; flex-wrap: wrap; gap: 14px; justify-content: flex-end; }
+  .pills a { border: 2px solid #333; border-radius: 999px; padding: 12px 24px; font-size: 19px; font-weight: 500; }
+  .pills a.on { background: #444; color: #fff; border-color: #444; }
+  .subtabs { position: sticky; top: 90px; z-index: 30; background: #fff; box-shadow: 0 10px 18px -12px rgba(0,0,0,.25); display: none; }
+  .subtabs.show { display: block; }
+  .subtabs .wrap { display: flex; gap: 40px; height: 76px; align-items: center; font-size: 19px; color: #555; padding-left: 300px; }
+  .subtabs a.on { color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 4px; }
+  .point { padding: 110px 0 40px; }
+  .point .lbl { text-align: center; font-size: 24px; font-weight: 600; color: var(--navy); letter-spacing: -.5px; }
+  .point .no { text-align: center; font-size: 66px; font-weight: 800; color: var(--navy); line-height: 1; }
+  .point .hl { text-align: center; font-size: 38px; font-weight: 800; color: #111; margin-top: 44px; letter-spacing: -1px; }
+  .point .nm { text-align: center; font-size: 52px; font-weight: 800; color: var(--blue); letter-spacing: -1.5px; margin-top: 6px; }
+  .point .ds { text-align: center; font-size: 30px; color: #666; line-height: 1.6; margin-top: 50px; letter-spacing: -.5px; }
+  .point .img { height: 480px; margin-top: 70px; }
+  .checks { list-style: none; margin-top: 70px; }
+  .checks li { position: relative; padding-left: 66px; margin-bottom: 64px; }
+  .checks li::before { content: "✔"; position: absolute; left: 4px; top: -2px; font-size: 34px; color: var(--blue); }
+  .checks h4 { font-size: 36px; font-weight: 800; color: var(--navy); letter-spacing: -.8px; }
+  .checks p { font-size: 22px; color: #777; margin-top: 4px; }
+  .fn { font-size: 19px; color: #777; line-height: 1.8; }
+  .btn-row { display: flex; gap: 12px; margin-top: 30px; }
+  .btn-o { border: 1px solid #999; border-radius: 999px; padding: 12px 26px; font-size: 17px; }
+  .divider { border: 0; border-top: 1px solid var(--line); margin-top: 60px; }
+
+  /* S6 라인업 (양식 B 풀라인업 카드형) */
+  .lineupB { padding-top: 110px; }
+  .lu-h { text-align: center; font-size: 38px; font-weight: 800; color: #1b2240; letter-spacing: -1px; }
+  .lu-h span { color: var(--blue); }
+  .lu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 64px; margin-top: 80px; }
+  .lu-card { position: relative; height: 250px; border: 1px solid #9a9da5; border-radius: 22px; overflow: hidden; background: #fff; }
+  .lu-text { position: relative; z-index: 2; padding: 50px 0 0 46px; max-width: 64%; }
+  .lu-mod { font-size: 20px; color: var(--blue); letter-spacing: -.5px; }
+  .lu-name { font-size: 34px; font-weight: 800; color: #111; line-height: 1.45; margin-top: 8px; letter-spacing: -1px; }
+  .lu-name span { font-weight: 400; }
+  .lu-more { display: inline-block; margin-top: 18px; font-size: 19px; color: #111; border-bottom: 2px solid #111; }
+  .lu-img { position: absolute; right: 0; top: 0; bottom: 0; width: 48%; background: #f3f3f4; clip-path: polygon(34% 0, 100% 0, 100% 100%, 0 100%); display: flex; align-items: center; justify-content: flex-end; padding-right: 40px; }
+  .lu-img.dark { background: linear-gradient(135deg, #3b4148, #15181c); }
+  .lu-ph { width: 190px; height: 170px; border: 2px dashed #c3c6cc; border-radius: 12px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 13px; color: #8a8f98; }
+  .lu-badge { position: absolute; right: 0; bottom: 0; z-index: 3; background: #1f1f5c; color: #fff; font-size: 18px; font-weight: 700; padding: 8px 46px 8px 64px; clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%); letter-spacing: -.5px; }
+
+  /* S6 라인업 (양식 A, 미사용) */
+  .lineup .intro { font-size: 32px; font-weight: 700; color: var(--navy); letter-spacing: -.8px; }
+  .line { margin-top: 30px; margin-bottom: 110px; }
+  .line .img { position: relative; height: 560px; border-radius: 0; display: block; padding: 90px 80px; background: linear-gradient(120deg, #4a4d52, #2c2e32); color: #fff; }
+  .line .img.light { background: linear-gradient(120deg, #b8babe, #9a9ca1); }
+  .line .en { font-size: 26px; font-weight: 500; }
+  .line .ko { font-size: 64px; font-weight: 800; letter-spacing: -2px; margin: 4px 0 26px; }
+  .line ul.comp { list-style: none; font-size: 24px; line-height: 1.75; }
+  .line .img .phlabel { position: absolute; right: 40px; bottom: 30px; font-size: 13px; color: rgba(255,255,255,.65); border: 1px dashed rgba(255,255,255,.4); border-radius: 8px; padding: 8px 12px; }
+  .line .checks { margin-top: 56px; }
+  .line .checks li { margin-bottom: 52px; }
+  .line .checks h4 { font-size: 32px; font-weight: 400; color: #222; line-height: 1.5; }
+  .line .checks h4 b { font-weight: 800; color: var(--navy); }
+  .line .checks p { font-size: 20px; }
+
+  /* S7 인증 마크 */
+  .marks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .mark .lb { font-size: 34px; font-weight: 800; color: var(--navy); letter-spacing: -.8px; line-height: 1.35; }
+  .mark .lb span { display: block; color: var(--blue); }
+  .mark p { font-size: 21px; color: #777; margin-top: 18px; line-height: 1.75; }
+  .mark .img { height: 340px; margin-top: 46px; border: 1px solid var(--line); }
+  .notice { margin-top: 40px; font-size: 18px; color: #777; line-height: 1.8; }
+
+  /* S7+ 핵심 타깃 */
+  .target { background: #f5f5f6; padding: 90px 0 100px; margin-top: 40px; }
+  .t-h { text-align: center; font-size: 44px; font-weight: 400; color: #1b2240; line-height: 1.4; letter-spacing: -1px; }
+  .t-h b { font-weight: 800; }
+  .t-grid { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 80px; }
+  .t-item { text-align: center; padding: 0 16px; border-left: 1px solid #c9cad0; }
+  .t-item:first-child { border-left: 0; }
+  .t-item svg { width: 150px; height: 150px; fill: none; stroke: #5b4fe0; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .t-item p { margin-top: 50px; font-size: 22px; color: #444; line-height: 1.6; }
+  .t-item p b { color: #1b2240; font-weight: 800; }
+
+  /* S8 추천 제품 */
+  .rec .pager { display: flex; align-items: center; gap: 36px; margin-top: 110px; font-size: 22px; }
+  .rec .pager button { background: none; border: 0; font-size: 34px; cursor: pointer; color: #333; }
+  .rec .pager i { width: 1px; height: 36px; background: #ccc; }
+  .rec .lead { font-size: 34px; font-weight: 700; color: var(--navy); letter-spacing: -.8px; }
+  .slide { display: none; }
+  .slide.on { display: block; }
+  .slide .pn { font-size: 38px; font-weight: 800; color: var(--blue); margin-top: 14px; letter-spacing: -1px; }
+  .slide .pd { font-size: 21px; color: #777; margin-top: 10px; }
+  .slide .tags { font-size: 20px; color: var(--blue); margin-top: 6px; }
+  .slide .img { height: 530px; margin-top: 50px; }
+
+  footer { background: #222; color: #aaa; padding: 50px 0; font-size: 14px; margin-top: 60px; }
+
+  @media (max-width: 900px) {
+    html { scroll-padding-top: 70px; }
+    .topbar, .gnb nav { display: none; }
+    header.gnb .wrap { padding: 0 16px; }
+    .wrap { padding: 0 16px; }
+    .hero { height: auto; padding-bottom: 140px; }
+    .hero::after { display: none; }
+    .hero h1 { font-size: 52px; }
+    .hero p.lead { font-size: 18px; }
+    .eyebrow { margin-top: 40px; }
+    .hero .arrow { display: none; }
+    .anchor { margin-top: 0; }
+    .anchor .bar { height: 60px; padding: 0 16px; overflow-x: auto; }
+    .anchor ul { gap: 22px; font-size: 15px; white-space: nowrap; }
+    .anchor .cta { display: none; }
+    .two-col, .stats, .cards, .marks { grid-template-columns: 1fr; gap: 30px; }
+    .t-h { font-size: 24px; }
+    .t-grid { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+    .t-item { border-left: 0; } .t-item svg { width: 90px; height: 90px; } .t-item p { margin-top: 16px; font-size: 15px; }
+    .declare { flex-direction: column; padding: 40px 20px; }
+    .declare .d1 { font-size: 30px; } .declare .d2 { font-size: 20px; } .declare .d3 { font-size: 16px; }
+    .declare .dprod { width: 100%; height: 320px; } .declare .body { left: 10%; width: 45%; } .declare .chip { font-size: 15px; }
+    .why .kpis { grid-template-columns: 1fr 1fr; }
+    .why h2 { font-size: 52px; } .why .concl { font-size: 24px; } .why .path { font-size: 18px; }
+    .h2 { font-size: 34px; }
+    .need .head, .point .hl, .feature .t2 { font-size: 26px; }
+    .point .nm { font-size: 34px; } .point .ds { font-size: 18px; }
+    .checks h4, .line .checks h4 { font-size: 22px; } .checks p { font-size: 16px; }
+    .card { padding: 28px; } .card h3 { font-size: 24px; } .card p { font-size: 16px; } .card .ic { width: 64px; height: 64px; }
+    .subtabs .wrap { padding-left: 16px; overflow-x: auto; white-space: nowrap; gap: 22px; font-size: 15px; }
+    .subtabs { top: 60px; }
+    .lu-h { font-size: 24px; } .lu-grid { grid-template-columns: 1fr; margin-top: 40px; }
+    .lu-card { height: auto; min-height: 200px; } .lu-text { padding: 28px 0 70px 24px; max-width: 62%; }
+    .lu-mod { font-size: 14px; } .lu-name { font-size: 21px; } .lu-more { font-size: 14px; }
+    .lu-img { width: 50%; padding-right: 12px; } .lu-ph { width: 100px; height: 110px; font-size: 11px; }
+    .lu-badge { font-size: 12px; padding: 6px 14px 6px 34px; }
+    .feat-row { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
+    .feat-row.rev .feat-visual { order: 0; }
+    .feat-row h3 { font-size: 23px; } .feat-head h2 { font-size: 28px; }
+    .line .img { padding: 40px 24px; height: auto; } .line .ko { font-size: 36px; } .line ul.comp { font-size: 17px; }
+    .float-cta { width: 72px; height: 72px; font-size: 13px; bottom: 92px; } .float-top { width: 64px; height: 64px; }
+  }
+  /* S5+ 케어 서비스 (기존 케어 서비스 형식) */
+  .cs-intro { position: relative; text-align: center; color: #fff; padding: 120px 0 130px; background: linear-gradient(rgba(10,18,58,.9), rgba(10,18,58,.94)), repeating-linear-gradient(45deg, #1d2a5c 0 14px, #18234f 14px 28px); overflow: hidden; }
+  .cs-intro .k1 { font-size: 44px; font-weight: 400; letter-spacing: -1px; }
+  .cs-intro .k2 { position: relative; display: inline-block; font-size: 68px; font-weight: 800; letter-spacing: -2px; margin-top: 4px; }
+  .cs-intro .k2::after { content: "care service"; position: absolute; left: -150px; top: 44px; white-space: nowrap; font: italic 400 92px "Brush Script MT", "Segoe Script", cursive; color: rgba(255,255,255,.13); }
+  .cs-intro p { font-size: 26px; line-height: 1.7; margin-top: 46px; color: rgba(255,255,255,.92); }
+  .cs-intro a { color: #5fb2ff; font-weight: 800; text-decoration: underline; text-underline-offset: 6px; }
+  .cs-intro .k3 { font-size: 36px; font-weight: 800; line-height: 1.5; margin-top: 80px; }
+  .cs-block { padding: 110px 0 30px; }
+  .cs-hl { font-size: 36px; font-weight: 800; letter-spacing: -1px; line-height: 1.35; background: linear-gradient(90deg, #7cc3ea 0%, #0a6fc2 55%, #0c3f8a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .cs-sub { display: flex; align-items: baseline; gap: 18px; margin-top: 44px; }
+  .cs-sub b { font-size: 52px; font-weight: 800; color: var(--blue); line-height: 1; }
+  .cs-sub span { font-size: 34px; font-weight: 700; color: #1b2240; letter-spacing: -.8px; }
+  .cs-desc { font-size: 20px; color: #777; margin-top: 16px; line-height: 1.6; }
+  .cs-note { font-size: 15px; color: #999; margin-top: 12px; }
+  .cs-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+  .cs-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+  .cs-card .ph { height: 290px; }
+  .cs-card h4 { text-align: center; font-size: 30px; font-weight: 800; color: #1b2240; margin-top: 30px; letter-spacing: -.6px; }
+  .cs-card p { text-align: center; font-size: 19px; color: #777; line-height: 1.7; margin-top: 8px; }
+  .cs-tile { position: relative; }
+  .cs-tile .ph { height: 290px; }
+  .cs-tile .badge { position: absolute; right: 0; top: 0; z-index: 2; background: linear-gradient(135deg, #1e8fe0, #0a3f8a); color: #fff; font-size: 24px; font-weight: 800; padding: 14px 16px; border-radius: 0 14px 0 0; }
+  .cs-tile h4 { text-align: center; font-size: 28px; font-weight: 800; color: #1b2240; margin-top: 30px; }
+  .cs-tile span { display: block; text-align: center; font-size: 18px; color: #777; margin-top: 8px; line-height: 1.6; }
+  .cs-tall { position: relative; }
+  .cs-tall .ph { height: 520px; }
+  .pill { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%); white-space: nowrap; background: rgba(255,255,255,.94); border: 3px solid #7cc3ea; border-radius: 999px; padding: 8px 24px 8px 8px; font-size: 22px; font-weight: 800; color: #1b2240; }
+  .pill i, .cs-row h5 i { display: inline-flex; width: 36px; height: 36px; border-radius: 50%; background: var(--blue); color: #fff; font-style: normal; font-size: 20px; font-weight: 800; align-items: center; justify-content: center; margin-right: 8px; vertical-align: middle; }
+  .cs-svc { margin-top: 120px; }
+  .cs-svc .prob { text-align: center; font-size: 30px; font-weight: 800; color: var(--blue); border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); padding: 18px 0; letter-spacing: -.6px; }
+  .cs-svc .why { text-align: center; font-size: 20px; color: var(--blue); line-height: 1.75; margin-top: 26px; }
+  .cs-row { display: grid; grid-template-columns: 420px 1fr; gap: 44px; margin-top: 80px; align-items: start; }
+  .cs-row .ph { height: 330px; }
+  .cs-row h5 { font-size: 30px; font-weight: 800; color: #1b2240; letter-spacing: -.6px; }
+  .cs-row p { font-size: 20px; color: #777; line-height: 1.75; margin-top: 10px; }
+  .cs-row p b { color: #555; }
+  .cs-row .fn { font-size: 15px; color: #999; line-height: 1.8; margin-top: 22px; }
+  .cs-x { position: relative; margin-top: 70px; background: linear-gradient(90deg, #f3f3f4 55%, #e6e7e9); padding: 50px 100px; min-height: 170px; }
+  .cs-x p { font-size: 28px; font-weight: 800; color: #1b2240; letter-spacing: -.6px; }
+  .cs-x a { display: inline-block; margin-top: 10px; font-size: 18px; color: #777; border-bottom: 1px solid #777; }
+  .cs-x .xph { position: absolute; right: 40px; top: 0; bottom: 0; width: 320px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #999; border-left: 1px dashed #ccc; }
+  @media (max-width: 900px) {
+    .cs-intro .k1 { font-size: 24px; } .cs-intro .k2 { font-size: 40px; } .cs-intro .k2::after { display: none; }
+    .cs-intro p { font-size: 16px; } .cs-intro .k3 { font-size: 20px; margin-top: 40px; }
+    .cs-hl { font-size: 22px; } .cs-sub b { font-size: 34px; } .cs-sub span { font-size: 22px; } .cs-desc { font-size: 15px; }
+    .cs-3, .cs-4 { grid-template-columns: 1fr 1fr; gap: 14px; } .cs-card h4, .cs-tile h4 { font-size: 18px; } .cs-card p, .cs-tile span { font-size: 13px; }
+    .cs-card .ph, .cs-tile .ph { height: 150px; } .cs-tall .ph { height: 260px; } .pill { font-size: 13px; }
+    .cs-svc .prob { font-size: 18px; } .cs-svc .why { font-size: 14px; }
+    .cs-row { grid-template-columns: 1fr; } .cs-row h5 { font-size: 20px; } .cs-row p { font-size: 15px; }
+    .cs-x { padding: 24px; } .cs-x p { font-size: 17px; } .cs-x .xph { display: none; }
+  }
+  /* S3 블록 ① 관리 필요성 */
+  .rs { padding: 120px 0 110px; background: #f4f5f7; }
+  .rs-h { text-align: center; font-size: 42px; font-weight: 800; color: #1b2240; letter-spacing: -1.2px; line-height: 1.4; }
+  .rs-h span { color: var(--red); }
+  .rs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 64px; }
+  .rs-card { background: #fff; border-radius: 20px; padding: 26px 26px 32px; border-top: 4px solid var(--red); }
+  .rs-img { height: 180px; }
+  .rs-k { margin-top: 24px; font-size: 14px; font-weight: 800; color: var(--red); letter-spacing: 1px; }
+  .rs-t { margin-top: 6px; font-size: 24px; font-weight: 800; color: #1b2240; line-height: 1.4; letter-spacing: -.5px; }
+  .rs-d { margin-top: 10px; font-size: 16px; color: #666; line-height: 1.65; }
+  .rs-data { margin-top: 16px; border: 1px dashed #c9ccd3; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #8a8f98; }
+  .rs-bridge { text-align: center; margin-top: 56px; font-size: 24px; font-weight: 800; color: #1b2240; }
+  .anchor ul { gap: 24px; font-size: 18px; }
+  @media (max-width: 900px) { .rs-h { font-size: 24px; } .rs-grid { grid-template-columns: 1fr; } .rs-bridge { font-size: 17px; } .anchor ul { font-size: 15px; } }</style>
+</head>
+<body>
+<style>
+  .why .philo-line { font-size: 34px; font-weight: 800; line-height: 1.45; margin-top: 26px; letter-spacing: -1px; }
+  .why .philo-line span { color: #7fc4ff; }
+  @media (max-width: 900px) { .why .philo-line { font-size: 22px; } }
+  /* S5+ 위생관리 서비스 */
+  .care { background: #f6f8fa; }
+  .care-lead { margin-top: 16px; font-size: 18px; color: #555; }
+  .care-part { margin-top: 70px; padding-top: 60px; border-top: 1px solid var(--line); }
+  .feat-head + .care-part { border-top: 0; margin-top: 30px; padding-top: 0; }
+  .care-label { font-size: 14px; font-weight: 800; color: var(--red); letter-spacing: 1px; }
+  .care-h { font-size: 32px; font-weight: 800; color: #111; letter-spacing: -.6px; margin-top: 8px; }
+  .care-h span { display: block; font-size: 20px; font-weight: 600; color: var(--navy-2); margin-top: 4px; }
+  .care-p { font-size: 17px; color: #555; margin-top: 14px; }
+  .care-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+  .care-img { height: 220px; }
+  .c3-t { margin-top: 18px; font-size: 21px; font-weight: 800; color: var(--blue); }
+  .c3-d { margin-top: 4px; font-size: 16px; color: #777; }
+  .care-sub { margin-top: 50px; font-size: 19px; font-weight: 800; color: #1b2240; }
+  .care-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+  .care-grid div { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .care-grid b { display: block; font-size: 16px; color: #1b2240; }
+  .care-grid span { font-size: 14px; color: var(--gray); }
+  .care-grid .st { border-color: #9fc8ee; }
+  .care-grid .st b::after { content: "살균"; margin-left: 6px; font-size: 11px; font-weight: 700; color: #fff; background: var(--blue); border-radius: 999px; padding: 2px 7px; vertical-align: 2px; }
+  .care-legend { margin-top: 10px; font-size: 13px; color: var(--gray); }
+  .care-legend i { display: inline-block; width: 12px; height: 12px; border: 1px solid #9fc8ee; border-radius: 3px; vertical-align: -1px; }
+  .care .feat-data { margin-top: 14px; }
+  .care-map { height: 380px; margin: 36px 0 56px; }
+  .care-map + .feat-row { border-top: 0; padding-top: 0; }
+  @media (max-width: 900px) { .care-3, .care-grid { grid-template-columns: 1fr 1fr; } .care-h { font-size: 24px; } }
+  /* S3 위생 고민 문답형 */  .qa { padding: 120px 0 110px; background: linear-gradient(180deg, #f3f8fd 0%, #ffffff 100%); }
+  .qa-h { text-align: center; font-size: 44px; font-weight: 800; color: #1b2240; letter-spacing: -1.2px; line-height: 1.35; }
+  .qa-h span { color: var(--blue); }
+  .qa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 64px; }
+  .qa-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 26px 26px 34px; text-align: center; }
+  .qa-img { height: 200px; }
+  .qa-q { margin-top: 26px; font-size: 22px; font-weight: 800; color: #1b2240; line-height: 1.45; letter-spacing: -.5px; }
+  .qa-a { margin-top: 18px; font-size: 30px; font-weight: 800; color: var(--blue); letter-spacing: -.8px; }
+  .qa-a sup { font-size: .5em; color: var(--red); vertical-align: top; }
+  .qa-d { margin-top: 8px; font-size: 16px; color: #777; }
+  .qa-sol { text-align: center; margin-top: 54px; font-size: 22px; color: #333; }
+  .qa-sol b { color: #1b2240; }
+  .qa-fn { text-align: center; margin-top: 14px; font-size: 13px; color: var(--gray); }
+  @media (max-width: 900px) { .qa-h { font-size: 26px; } .qa-grid { grid-template-columns: 1fr; } .qa-a { font-size: 24px; } .qa-sol { font-size: 16px; } }
+  /* 정수기 전용 추가 스타일 */  .hero::after { content: "공간 연출 이미지 (살균온 정수기 화이트 · 그린)"; border-color: rgba(12,26,69,.25); color: rgba(12,26,69,.5); }
+  .philo { position: relative; padding: 110px 0 120px; background: linear-gradient(90deg, #f3f8fd 0%, #eaf3fb 60%, #dcebf7 100%); overflow: hidden; }
+  .philo .wrap { position: relative; z-index: 2; }
+  .philo .ph1 { font-size: 64px; font-weight: 800; color: #0c1a45; letter-spacing: -2px; line-height: 1.3; }
+  .philo .ph2 { font-size: 64px; font-weight: 800; color: var(--blue); letter-spacing: -2px; line-height: 1.3; }
+  .philo .pbody { margin-top: 60px; max-width: 760px; font-size: 24px; color: #777; line-height: 1.75; }
+  .philo .pbody p + p { margin-top: 34px; }
+  .philo .pbody b { color: #1b2240; font-weight: 800; }
+  .philo .glass { position: absolute; right: 6%; top: 18%; width: 300px; height: 520px; z-index: 1; border-radius: 18px; }
+  .lu-group + .lu-group { margin-top: 110px; }
+  .lu-sub { text-align: center; font-size: 19px; color: #666; margin-top: 18px; line-height: 1.6; }
+  .lu-guide { margin-top: 30px; font-size: 15px; color: var(--gray); }
+  .steps5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 24px; }
+  .steps5 div { background: #eef4fa; border-radius: 8px; padding: 12px 8px; text-align: center; font-size: 13px; color: #3b3f46; line-height: 1.45; }
+  .steps5 b { display: block; color: var(--blue); font-size: 15px; margin-bottom: 4px; }
+  .verify { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; font-size: 14px; color: #555; }
+  .verify span { border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; }
+  /* 플러스알파케어 상세 */
+  .pa { margin-top: 70px; border-top: 1px solid var(--line); padding-top: 50px; }
+  .pa summary { cursor: pointer; list-style: none; font-size: 28px; color: #1b2240; letter-spacing: -.8px; }
+  .pa summary::-webkit-details-marker { display: none; }
+  .pa summary b { font-weight: 800; }
+  .pa summary::after { content: " ⌄"; color: var(--gray); }
+  .pa[open] summary::after { content: " ⌃"; }
+  .pa-no { font-size: 40px; font-weight: 800; color: var(--blue); margin-right: 10px; }
+  .pa-lead { margin-top: 16px; font-size: 19px; color: #666; line-height: 1.6; }
+  .pa-map { height: 420px; margin-top: 36px; }
+  .pa-item { margin-top: 80px; }
+  .pa-problem { text-align: center; font-size: 28px; font-weight: 800; color: var(--blue); border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); padding: 16px 0; letter-spacing: -.6px; }
+  .pa-why { text-align: center; font-size: 18px; color: var(--blue); margin-top: 22px; line-height: 1.7; }
+  .pa-row { display: grid; grid-template-columns: 400px 1fr; gap: 40px; margin-top: 50px; align-items: start; }
+  .pa-img { height: 320px; }
+  .pa-title { font-size: 24px; font-weight: 800; color: #1b2240; }
+  .pa-title i { display: inline-flex; width: 32px; height: 32px; border-radius: 50%; background: var(--blue); color: #fff; font-style: normal; font-size: 16px; align-items: center; justify-content: center; margin-right: 6px; }
+  .pa-desc { font-size: 18px; color: #777; line-height: 1.75; margin-top: 10px; }
+  .pa-desc b { color: #555; }
+  .pa-fn { font-size: 14px; color: #888; line-height: 1.8; margin-top: 18px; }
+  .pa-xsell { margin-top: 40px; background: linear-gradient(90deg, #f4f4f5 60%, #e7e8ea); padding: 40px 80px; }
+  .pa-xsell p { font-size: 22px; font-weight: 800; color: #1b2240; }
+  .pa-xsell a { display: inline-block; margin-top: 8px; font-size: 16px; color: #777; border-bottom: 1px solid #777; }
+  /* 인증 마크 와이드 1단 */
+  .mark-wide .mw-h { font-size: 30px; font-weight: 800; color: #1b2240; line-height: 1.4; letter-spacing: -.8px; }
+  .mark-wide .mw-p { font-size: 18px; color: #777; line-height: 1.75; margin-top: 12px; }
+  .mark-wide .mw-img { position: relative; height: 560px; margin-top: 46px; }
+  .mark-wide .mw-callout { position: absolute; right: 16%; top: 16%; width: 300px; background: #fff; border: 3px solid #8fd3ef; border-radius: 18px 18px 18px 60px; padding: 26px; text-align: left; color: #1b2240; font-size: 15px; font-weight: 700; line-height: 1.5; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+  .mark-wide .mw-callout em { display: block; font-style: normal; color: #2aa3e6; font-size: 28px; font-weight: 800; margin-top: 6px; }
+  .mark-wide .mw-callout strong { font-size: 28px; font-weight: 800; }
+  @media (max-width: 900px) {
+    .pa summary { font-size: 18px; } .pa-problem { font-size: 18px; } .pa-why { font-size: 14px; }
+    .pa-row { grid-template-columns: 1fr; } .pa-xsell { padding: 24px; } .pa-xsell p { font-size: 16px; }
+    .mark-wide .mw-callout { position: static; width: auto; margin: 12px; }
+  }
+  @media (max-width: 900px) {
+    .philo .ph1, .philo .ph2 { font-size: 30px; }
+    .philo .pbody { font-size: 16px; margin-top: 30px; }
+    .philo .glass { display: none; }
+    .steps5 { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+
+<button class="slot-toggle" id="slotToggle">구조 라벨 숨기기</button>
+
+<!-- GNB -->
+<div class="topbar"><span class="on">세스코 홈페이지</span><span>세스코 몰</span><span>위생세스코 위젯</span><span>My 세스코</span></div>
+<header class="gnb"><div class="wrap">
+  <div class="logo">CESCO<small>세스코</small></div>
+  <nav><span>세스코솔루션 ＋</span><span>세스코멤버스</span><span>장소별 추천</span><span>커뮤니티</span></nav>
+  <div class="right"><span>KR ⌄</span><span>☰</span></div>
+</div></header>
+
+<!-- S1 히어로 -->
+<section class="hero" style="background:linear-gradient(120deg,#e9eaec 0%,#d9dadd 60%,#7d7f83 100%);color:#0c1a45">
+  <div class="wrap">
+    <span class="slot">S1 히어로</span>
+    <div class="crumb" style="color:#777">HOME <span>·</span> 세스코솔루션 <span>·</span> <b style="color:#0c1a45">환경위생가전 ⌄</b> <span>·</span> <b style="color:#0c1a45">정수기 ⌄</b></div>
+    <div class="eyebrow">CESCO<span style="color:#2aa3e6">Water</span></div>
+    <h1>정수기</h1>
+    <p class="lead">안심하고 마실 수 있는 물.<br>세스코 과학이 세스코워터로 시작합니다.</p>
+  </div>
+  <a class="arrow l">‹</a><a class="arrow r">›</a>
+</section>
+
+<!-- S2 앵커 -->
+<div class="anchor" id="anchor">
+  <div class="bar">
+    <ul>
+      <li class="new"><a href="#need">정수기가 이렇게까지?</a></li>
+      <li><a href="#why">Why CESCO</a></li>
+      <li><a href="#point">특장점</a></li>
+      <li><a href="#care">케어 서비스</a></li>
+      <li><a href="#lineup">라인업 소개</a></li>
+      <li><a href="#mark">인증 마크</a></li>
+      <li><a href="#rec">추천 제품</a></li>
+    </ul>
+    <a class="cta" href="#">무료진단 신청 <span>→</span></a>
+  </div>
+</div>
+
+<a class="float-cta" href="#">무료진단<br>신청</a>
+<a class="float-top" href="#">↑</a>
+
+<!-- S3 정수기가 이렇게까지? : 블록 ① 관리 필요성 -->
+<section class="rs" id="need">
+  <div class="wrap">
+    <span class="slot">S3 정수기가 이렇게까지? — 블록 ① 관리 필요성 (경각심)</span>
+    <h2 class="rs-h">매일 마시는 물, 정수기를 관리하지 않으면<br><span>물이 지나는 길</span>부터 오염됩니다.</h2>
+    <div class="rs-grid">
+      <div class="rs-card">
+        <div class="ph rs-img">물 속 미세플라스틱 일러스트</div>
+        <p class="rs-k">MICROPLASTIC</p>
+        <p class="rs-t">걸러지지 않으면<br>물과 함께 마시는 미세플라스틱</p>
+        <p class="rs-d">물 속 유해물질은 중금속과 세균만이 아닙니다.<br>걸러내지 못한 미세플라스틱은 그대로 컵에 담깁니다.</p>
+        <p class="rs-data">{출처 있는 수치 · 연구: 먹는 물 속 미세플라스틱}</p>
+      </div>
+      <div class="rs-card">
+        <div class="ph rs-img">유로 · 탱크 단면</div>
+        <p class="rs-k">STAGNANT WATER</p>
+        <p class="rs-t">유로와 탱크에<br>고여 머무는 물</p>
+        <p class="rs-d">쓰지 않는 동안 고여 있던 물은<br>시간이 지날수록 관리가 어려워집니다.</p>
+        <p class="rs-data">{출처 있는 수치 · 연구: 고인 물 · 유로 세균 번식}</p>
+      </div>
+      <div class="rs-card">
+        <div class="ph rs-img">코크 클로즈업</div>
+        <p class="rs-k">FAUCET</p>
+        <p class="rs-t">매일 손과 컵이 닿는<br>코크</p>
+        <p class="rs-d">물이 나오는 코크는 매일 쓰면서도<br>직접 닦기 어려운 곳입니다.</p>
+        <p class="rs-data">{출처 있는 수치 · 연구: 정수기 코크 오염도}</p>
+      </div>
+    </div>
+    <p class="rs-bridge">그래서 정수기는 물이 지나는 모든 곳까지 관리해야 합니다.</p>
+    <span class="note">블록 ①은 관리하지 않았을 때의 문제만 말하고 세스코 제품·기술명을 쓰지 않습니다. 문제 3개는 바로 아래 블록 ②의 답(미세플라스틱 불검출 · 3시간마다 유로 비움 · 1시간마다 UV-C 코크 살균)과 같은 키워드로 짝을 맞췄습니다. 점선 칸은 출처 있는 조사·연구로 채울 자리입니다(없으면 칸을 뺍니다). 문구는 예시 카피입니다.</span>
+  </div>
+</section>
+<!-- S3 정수기가 이렇게까지? (유형 D 위생 고민 문답형) -->
+<section class="qa" id="need-power">
+  <div class="wrap">
+    <span class="slot">S3 정수기가 이렇게까지? — 블록 ② 제품력 (유형 D 위생 고민 문답형)</span>
+    <h2 class="qa-h">세스코 정수기는 <span>이렇게까지 관리합니다</span></h2>
+    <div class="qa-grid">
+      <div class="qa-card">
+        <div class="ph qa-img">필터 · 물방울 클로즈업</div>
+        <p class="qa-q">미세플라스틱</p>
+        <p class="qa-a">미세플라스틱 불검출<sup>1)</sup></p>
+        <p class="qa-d">이물분석센터 · KOTITI 시험연구원이 검증한 전용 필터</p>
+      </div>
+      <div class="qa-card">
+        <div class="ph qa-img">유로 비움 클로즈업</div>
+        <p class="qa-q">고인 물</p>
+        <p class="qa-a">3시간마다 유로 비움</p>
+        <p class="qa-d">고인 물을 스스로 비우고, 3일마다 전해수로 유로 살균</p>
+      </div>
+      <div class="qa-card">
+        <div class="ph qa-img">UV-C 코크 클로즈업</div>
+        <p class="qa-q">코크</p>
+        <p class="qa-a">1시간마다 UV-C 살균</p>
+        <p class="qa-d">물을 받은 직후에도 바로 UV-C 코크 케어</p>
+      </div>
+    </div>
+    <p class="qa-sol">세스코 살균온 정수기는 <b>코크부터 유로까지, 물이 지나는 모든 곳</b>을 살균합니다.</p>
+    <p class="qa-fn">1) 세스코 이물분석센터 · KOTITI 시험연구원 {대상 필터 · 시험 방법 · 결과 각주}</p>
+    <span class="note">블록 ②는 문제를 다시 설명하지 않도록, 카드 질문을 블록 ①과 짝을 이루는 키워드(미세플라스틱 · 고인 물 · 코크)로 줄이고 답만 크게 보여줍니다. 카드 3개의 답은 S5 POINT 02(필터) · 01(5중안심 케어)로 이어집니다.</span>
+  </div>
+</section>
+<!-- S4 Why CESCO -->
+<section class="why" id="why">
+  <div class="wrap">
+    <span class="slot">S4 Why CESCO</span>
+    <h2>Why CESCO</h2>
+    <p class="philo-line">세스코가 가장 잘하는 일에 집중합니다.<br><span>그래서 살균과 미세플라스틱 제거에 진심을 다해 연구합니다.</span></p>
+    <p class="path">물이 지나는 길을 따라 쌓이는 위해요소를 연구합니다.<br>원수 속 중금속 · 세균 · 미세플라스틱부터, 코크와 유로에 남는 세균,<br>고여 머무는 물까지.</p>
+    <p class="concl"><b>필터만으로는 해결하기 어려운 정수기 속 수질 문제를,<br>세스코는 4가지 수질 안심관리 솔루션</b>으로 관리합니다.</p>
+    <span class="note">기존 S3에 있던 브랜드 철학을 Why CESCO 첫머리 2줄로 옮겼습니다(본문 단락은 뺐습니다). 이어서 위해요소 경로 → 해법 선언 순서입니다. "4가지"는 특장점 POINT 수와 맞춥니다.</span>
+    <div class="ph scene">공간 연출 렌더 이미지 (주방 · 사무실에 살균온 정수기 배치)</div>
+  </div>
+</section>
+
+<!-- S5 특장점 -->
+<section class="sec feat" id="point">
+  <div class="wrap">
+    <span class="slot">S5 특장점 (POINT형 · 좌우 교차 배치)</span>
+    <div class="feat-head">
+      <span class="tag">TECHNOLOGY</span>
+      <h2>특장점</h2>
+    </div>
+
+    <div class="feat-row" id="p1">
+      <div class="feat-visual">5중안심 케어 다이어그램<br>(코크 → 유로 순환 5단계)</div>
+      <div>
+        <p class="feat-num">POINT 01</p>
+        <h3>5중안심 케어<span>코크부터 유로까지 물이 지나는 모든 곳을 살균합니다</span></h3>
+        <p class="feat-problem">물이 나오는 코크와 물이 지나는 유로는<br>매일 쓰면서도 직접 닦기 어려운 곳입니다.</p>
+        <p class="feat-how">출수 직후부터 12개월 주기까지, 시간 단위로 나눈 다섯 단계 살균이 정수기의 모든 부분을 케어합니다.</p>
+        <div class="steps5">
+          <div><b>출수 후 바로</b>UV-C 코크 케어</div>
+          <div><b>1시간마다</b>UV-C 코크 살균</div>
+          <div><b>3시간마다</b>유로 비움</div>
+          <div><b>3일마다</b>전해수 유로 살균</div>
+          <div><b>12개월마다</b>코크 교체</div>
+        </div>
+        <div class="feat-data"><span>국내최초 5중안심 케어<sup>*</sup></span></div>
+        <div class="feat-links"><a href="#" class="link-more">자세히 보기</a></div>
+      </div>
+    </div>
+
+    <div class="feat-row rev" id="p2">
+      <div class="feat-visual">5단계 복합 나노 필터 이미지<br>(필터 2종 + 물 흐름)</div>
+      <div>
+        <p class="feat-num">POINT 02</p>
+        <h3>5단계 복합 나노 필터 시스템<span>미세플라스틱부터 유기물까지 걸러냅니다</span></h3>
+        <p class="feat-problem">물 속 유해물질은 중금속과 세균만이 아닙니다.<br>그래서 미세플라스틱까지 걸러내는 전용 필터를 더했습니다.</p>
+        <p class="feat-how">5㎛ 이상 오염물질 → 잔류 염소 → 불순물 → 박테리아 → 잔류 염소·유기화합물질 순으로 걸러내고, 미네랄은 살립니다.</p>
+        <div class="verify"><span>세스코 이물분석센터(KOLAS 인정) 검증</span><span>KOTITI 시험연구원 검증</span></div>
+        <div class="feat-data"><span>미세플라스틱 불검출<sup>1)</sup></span><span>5단계 여과</span></div>
+        <div class="feat-links"><a href="#" class="link-more">자세히 보기</a><a href="#" class="link-more">시험성적서 보기</a></div>
+      </div>
+    </div>
+
+    <div class="feat-row" id="p3">
+      <div class="feat-visual">ALL 직수 시스템 구조도<br>(냉수 · 온수 · 정수 유로)</div>
+      <div>
+        <p class="feat-num">POINT 03</p>
+        <h3>세스코 ALL 직수 시스템<span>냉수, 온수, 정수 모두 고이지 않고 바로 나옵니다</span></h3>
+        <p class="feat-problem">물탱크에 고여 있는 물은<br>시간이 지날수록 관리가 어렵습니다.</p>
+        <p class="feat-how">세스코 살균온 정수기는 냉수, 정수, 온수까지 모두 직수로 출수해 고이지 않는 깨끗한 물을 바로 제공합니다.</p>
+        <div class="feat-data"><span>냉수 · 온수 · 정수 직수</span></div>
+        <div class="feat-links"><a href="#" class="link-more">자세히 보기</a></div>
+      </div>
+    </div>
+
+    <div class="feat-row rev" id="p4">
+      <div class="feat-visual">얼음 출빙 · 핑거 얼음 클로즈업</div>
+      <div>
+        <p class="feat-num">POINT 04</p>
+        <h3>얼음까지 5중안심 케어<span>살균된 물로 단단하고 투명한 얼음을 만듭니다</span></h3>
+        <p class="feat-problem">깨끗한 얼음도 결국 깨끗한 물로 만들어집니다.</p>
+        <p class="feat-how">2시간마다 코크 살균 · 얼음 출빙 케어 · 얼음 저장고 케어, 24시간마다 유로 비움, 12개월마다 코크 교체로 얼음까지 케어합니다. 미세한 파동을 이용한 무브제빙 시스템으로 기포 없이 투명하고 단단한 얼음을 만듭니다.</p>
+        <div class="feat-data"><span>하루 최대 약 480알</span><span>무브제빙 시스템</span></div>
+        <div class="feat-links"><a href="#" class="link-more">자세히 보기</a></div>
+      </div>
+    </div>
+
+    <div class="feat-fn">
+      <p>1) 세스코 이물분석센터 · KOTITI 시험연구원 {대상 필터 · 시험 방법 · 검출한계 · 결과 각주}</p>
+      <p>* {국내최초 기준 각주} · POINT 01~03은 살균온 정수기 기준, POINT 04는 살균온 얼음 정수기 기준</p>
+    </div>
+    <span class="note">기존 "신제품 특장점" 01~05 중 플러스알파케어는 Why CESCO 카드로 옮기고, 기기 기능 4개를 POINT로 두었습니다. 기존 KOLAS 이물분석센터 소개 블록은 POINT 02의 검증 표시와 시험성적서 링크로 줄였습니다. 5중안심 다섯 단계는 수치 칩 대신 5칸 단계표로 보여줍니다.</span>
+
+    <div class="feat-cta">
+      <p>우리 공간에 맞는 정수기와 설치 위치, 서비스 컨설턴트가 진단해 드립니다.</p>
+      <a href="#" class="btn-red">무료진단 신청</a>
+    </div>
+  </div>
+</section>
+
+<!-- S5+ 케어 서비스 -->
+<section id="care">
+  <div class="cs-intro">
+    <div class="wrap">
+      <span class="slot">S5+ 케어 서비스 — 도입</span>
+      <p class="k1">세스코만의 완벽하고 차별화된</p>
+      <p class="k2">케어 서비스</p>
+      <p>세스코는 제품 관리는 기본, 제품이 놓인 공간의 위생까지 케어하며<br>전문적이고 차별화된 서비스를 제공합니다.</p>
+      <p>환경위생 전문가의 체계적인 관리와 세스코 과학 노하우로 설계된<br><a href="#cs-sci">세스코 사이언스 케어 서비스</a></p>
+      <p>다양한 공간에서 발생할 수 있는 환경위생 문제를 생각하고 관리하는<br><a href="#cs-plus">플러스알파케어 서비스</a>까지.</p>
+      <p class="k3">세스코는 제품 하나로<br>NO.1 종합환경위생 솔루션을 만날 수 있는<br>유일한 경험을 제공합니다.</p>
+    </div>
+  </div>
+
+  <!-- 분류 1: 세스코 사이언스 케어 서비스 -->
+  <div class="cs-block" id="cs-sci">
+    <div class="wrap">
+      <span class="slot">S5+ 분류 1 — 세스코 사이언스 케어 서비스</span>
+      <div class="redbar"></div>
+      <div class="two-col">
+        <h2 class="h2">세스코<br>사이언스 케어<br>서비스</h2>
+        <div>
+          <p class="cs-hl">세스코만의 완벽하고 차별화된 제품위생관리 솔루션 세스코 사이언스케어 서비스</p>
+
+          <div class="cs-sub"><b>01</b><span>환경위생 전문가의 체계적인 관리</span></div>
+          <p class="cs-desc">첨단 교육 시설을 갖춘 세스코 터치센터, 세스코 멤버스 시티에서 물, 수질관리, 정수기 전문 교육을 이수한 수질관리 전문가가 꼼꼼히 관리합니다.</p>
+          <div class="cs-3">
+            <div class="cs-card"><div class="ph">전문가 유니폼 컷</div><h4>케어 서비스</h4><p>세스코 전용 필터 교체,<br>코크 교체 및 소모품 관리를 통해<br>언제나 고객님의 제품을 꼼꼼히 케어해드립니다.</p></div>
+            <div class="cs-card"><div class="ph">제품 점검 컷</div><h4>제품 컨설팅</h4><p>고객님의 더 나은 라이프스타일을<br>위한 방안을 함께 고민하며, 제품의<br>사용 방법과 여러 서비스 등을 촘촘히 컨설팅합니다.</p></div>
+            <div class="cs-card"><div class="ph">태블릿 상담 컷</div><h4>고객관리</h4><p>사용 중이신 제품 외에도 고객님의<br>라이프스타일과 밀접한 제품,<br>서비스에 관련된 정보까지 전문적으로 전달드립니다.</p></div>
+          </div>
+
+          <div class="cs-sub" style="margin-top:100px"><b>02</b><span>정수기 위생관리 서비스</span></div>
+          <p class="cs-desc">세스코 살균 과학 노하우로 설계한 체계적인 제품 케어</p>
+          <div class="cs-3">
+            <div class="cs-tile"><div class="ph">복합 나노 필터 교체 컷</div><h4>복합 나노 필터 교체</h4><span>(4개월/12개월)</span></div>
+            <div class="cs-tile"><span class="badge">살균</span><div class="ph">코크 점검 컷</div><h4>코크 점검/살균</h4></div>
+            <div class="cs-tile"><div class="ph">코크 교체 컷</div><h4>코크 교체</h4><span>(12개월)</span></div>
+            <div class="cs-tile"><span class="badge">살균</span><div class="ph">프리필터 컷</div><h4>프리필터 점검/살균</h4></div>
+            <div class="cs-tile"><div class="ph">트레이 세척 컷</div><h4>트레이 세척</h4></div>
+            <div class="cs-tile"><div class="ph">외관 세척 컷</div><h4>외관 세척</h4></div>
+            <div class="cs-tile"><span class="badge">살균</span><div class="ph">외관 살균 컷</div><h4>외관 살균</h4></div>
+            <div class="cs-tile"><span class="badge">살균</span><div class="ph">유로살균 컷</div><h4>내부 유로살균 진행</h4></div>
+          </div>
+
+          <div class="cs-sub" style="margin-top:100px"><b>03</b><span>교차오염을 방지하는 과학적인 관리 도구</span></div>
+          <div class="cs-3">
+            <div class="cs-card"><div class="ph">전해수 살균 컷</div><h4>전해수 살균 서비스</h4><p>깨끗한 물을 제공하기 위해<br>물이 지나가는 길까지 살균하여<br>재오염을 방지합니다.</p></div>
+            <div class="cs-card"><div class="ph">서비스 팩 컷</div><h4>전용 서비스 팩</h4><p>한 명의 고객만을 위한 케어에 집중하며<br>교차 오염 발생까지 차단합니다.</p></div>
+            <div class="cs-card"><div class="ph">서비스 가방 컷</div><h4>UV-C 살균 서비스 가방</h4><p>서비스 도구까지<br>위생적으로 보관합니다.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 분류 2: 플러스알파케어 -->
+  <div class="cs-block" id="cs-plus">
+    <div class="wrap">
+      <span class="slot">S5+ 분류 2 — 플러스알파케어</span>
+      <div class="redbar"></div>
+      <div class="two-col">
+        <h2 class="h2">플러스알파<br>케어</h2>
+        <div>
+          <p class="cs-hl">세스코 과학연구소의 50여 년 노하우가 집약된 공간 위생관리 서비스</p>
+          <div class="cs-sub"><b>01</b><span>플러스알파케어</span></div>
+          <p class="cs-desc">세스코만이 제공할 수 있는 종합 환경위생 솔루션을 담은 플러스알파케어로 정수기 제품뿐만 아닌 정수기 주변의 주방 공간까지 관리해드립니다.</p>
+          <p class="cs-note">※ 서비스 상세 내용은 설치 고객님께 별도 안내 예정입니다. ※ 플러스알파케어 서비스는 정수기 모델별로 내용이 상이합니다.</p>
+          <div class="cs-4">
+            <div class="cs-tall"><div class="ph">홈 해충방제 컷</div><span class="pill"><i>1</i>홈 해충방제 1회</span></div>
+            <div class="cs-tall"><div class="ph">해충 모니터링 컷</div><span class="pill"><i>2</i>해충 모니터링</span></div>
+            <div class="cs-tall"><div class="ph">배수구 관리 컷</div><span class="pill"><i>3</i>배수구 위생관리</span></div>
+            <div class="cs-tall"><div class="ph">표면살균 컷</div><span class="pill"><i>4</i>표면살균 서비스</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-svc">
+        <p class="prob">습하고 온도가 높아 해충의 서식지가 되기 쉬운 정수기 주변 위생까지 관리!</p>
+        <p class="why">바퀴벌레가 실내로 유입된다면, 30℃ 정도의 따뜻하고 습한 장소를 가장 먼저 찾고, 서식처를 만들기 시작합니다.<br>정수기와 각종 가전 주변과 내부는 해충에게 최적의 서식 환경이 되고, 가장 위생이 취약한 장소가 될 수 있습니다.</p>
+        <div class="cs-row">
+          <div class="ph">해충 모니터링 트랩 설치 컷</div>
+          <div><h5><i>1</i><i>2</i>해충 모니터링 &amp; 홈 해충방제 1회 서비스</h5><p>세스코의 기술력이 담긴 해충 모니터링 트랩으로 정기적으로 해충 유입 여부를<br>점검해드리며, 해충 발생 시 <b>1회 무료 방제 서비스</b>까지 진행합니다.<br>(36개월 내 1회 서비스)<br>신속하고 정확하게 해충 서식 여부를 판단하기 위해 트랩 내에 해충 전용 유인제를<br>부착하여 고객님 댁의 꼼꼼한 모니터링을 진행합니다.</p><p class="fn">* 서비스 대상 해충은 기본 해충방제 상품과 상이할 수 있습니다.<br>* 해당 서비스는 해충 징후 포착 후 1회성 출동 진단 서비스로, 해충 퇴치 상품이 아닙니다.<br>* 서비스 상세 내용은 설치 고객님께 별도 안내 예정입니다.<br>* 플러스알파케어 서비스는 정수기 모델별로 내용이 상이합니다.</p></div>
+        </div>
+        <div class="cs-x"><p>항상 찜찜했던 해충의 서식여부를 더 정확하게 알고 싶다면?</p><a href="#">무료진단 신청 페이지 바로가기</a><span class="xph">전문가 점검 이미지</span></div>
+      </div>
+
+      <div class="cs-svc">
+        <p class="prob">음식물, 물때로 인해 발생하는 배수구 악취와 벌레알까지 관리!</p>
+        <p class="why">싱크대 배수구 내부는 각종 음식물과 물때가 누적되어 악취와 찌든때를 유발하고,<br>나방파리, 얼룩무늬등초파리 등의 벌레 알집까지 발생시키는 필수 위생관리 장소입니다.</p>
+        <div class="cs-row">
+          <div class="ph">배수구 클리너 사용 컷</div>
+          <div><h5><i>3</i>배수구 위생관리 서비스</h5><p>풍성한 거품으로 배수구 속 깊숙이 쌓인 찌꺼기부터<br>악취 유발 물질과 벌레 알까지 세정하는 배수구 클리너로<br><b>배수구 위생관리 서비스</b>를 정기적으로 진행합니다.</p></div>
+        </div>
+        <div class="cs-x"><p>조밀한 거품 세정으로 2주에 한번 배수구 청소 루틴 지키고싶다면?</p><a href="#">배수구클리너 보러가기</a><span class="xph">배수구클리너 이미지</span></div>
+      </div>
+
+      <div class="cs-svc">
+        <p class="prob">잦은 조리로 세균이 번식하기 쉬운 주방 공간의 표면살균 관리!</p>
+        <p class="why">주방공간은 잦은 물 사용과 눈에 보이지 않는 음식 잔여물로 식중독, 장염 등을 유발하는<br>대장균, 황색포도상구균과 같은 세균이 쉽게 번식합니다.</p>
+        <div class="cs-row">
+          <div class="ph">정수기 표면살균 분사 컷</div>
+          <div><h5><i>4</i>표면살균 서비스</h5><p>100% 식품첨가물 성분의 살균소독제로<br>정수기와 주변 주방 공간의 <b>표면까지 철저히 살균 관리</b>해드립니다.</p></div>
+        </div>
+        <div class="cs-x"><p>주방 외의 생활공간까지 살균소독하고 싶으시다면?</p><a href="#">살균소독제 보러가기</a><span class="xph">살균소독제 사용 이미지</span></div>
+      </div>
+      <span class="note">기존 케어 서비스 형식을 그대로 옮겼습니다: 다크 도입 배너 → [세스코 사이언스 케어 서비스] 01 전문가 관리 · 02 정수기 위생관리 서비스(사진 타일 + 살균 뱃지) · 03 교차오염 방지 도구 → [플러스알파케어] 서비스 4카드 → 서비스별 문제 헤드라인 · 이유 · 이미지+설명 · 크로스셀 배너.</span>
+    </div>
+  </div>
+</section>
+
+<!-- S6 라인업 소개 (양식 B 풀라인업 카드형 · 그룹 2개) -->
+<section class="sec lineupB" id="lineup">
+  <div class="wrap">
+    <span class="slot">S6 라인업 소개 (양식 B · 카드 그룹 2개)</span>
+    <p class="lu-sub" style="margin:0 0 70px">세스코 과학연구소에서 안전하게 연구하여<br><b style="color:#1b2240;font-size:24px">깨끗하고 신선한 물맛의 세스코워터 정수기</b></p>
+
+    <div class="lu-group">
+      <h2 class="lu-h">물이 흐르는 모든 곳까지 깨끗하게 <span>직수형 정수기 풀라인업</span></h2>
+      <div class="lu-grid">
+        <div class="lu-card">
+          <div class="lu-text">
+            <p class="lu-mod">코크부터 유로까지 국내최초 5중안심 케어</p>
+            <p class="lu-name">살균온 정수기<br>5중안심 (냉온정)</p>
+            <a href="#" class="lu-more">자세히 보기</a>
+          </div>
+          <div class="lu-img"><span class="lu-ph">제품컷 (화이트 · 그린)</span></div>
+        </div>
+        <div class="lu-card">
+          <div class="lu-text">
+            <p class="lu-mod">물과 얼음이 지나는 모든 곳의 5중안심 케어</p>
+            <p class="lu-name">살균온 얼음 정수기</p>
+            <a href="#" class="lu-more">자세히 보기</a>
+          </div>
+          <div class="lu-img"><span class="lu-ph">제품컷</span></div>
+        </div>
+        <div class="lu-card">
+          <div class="lu-text">
+            <p class="lu-mod">저수조 없는 직수, 전기료 Zero 무전원 정수기</p>
+            <p class="lu-name">스마트핏 미니 정수기</p>
+            <a href="#" class="lu-more">자세히 보기</a>
+          </div>
+          <div class="lu-img"><span class="lu-ph">제품컷</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lu-group">
+      <h2 class="lu-h">공간과 쓰임에 맞춰 고르는 <span>탱크형 정수기 풀라인업</span></h2>
+      <p class="lu-sub">카페, 식당, 사무실, 가정집 어디에서든 제품 크기, 설치 방식, 필터와 기능까지 세심하게 고려했습니다.</p>
+      <div class="lu-grid">
+        <div class="lu-card">
+          <div class="lu-text">
+            <p class="lu-mod">23cm 폭으로 좁은 공간에도 쏙 들어가는</p>
+            <p class="lu-name">THE슬림 스탠드 정수기</p>
+            <a href="#" class="lu-more">자세히 보기</a>
+          </div>
+          <div class="lu-img"><span class="lu-ph">제품컷</span></div>
+        </div>
+        <div class="lu-card">
+          <div class="lu-text">
+            <p class="lu-mod">23cm 초슬림 데스크탑 타입</p>
+            <p class="lu-name">THE슬림 정수기</p>
+            <a href="#" class="lu-more">자세히 보기</a>
+          </div>
+          <div class="lu-img"><span class="lu-ph">제품컷</span></div>
+        </div>
+        <div class="lu-card">
+          <div class="lu-text">
+            <p class="lu-mod">물 사용량이 많은 사업장을 위해 출수량을 두 배로</p>
+            <p class="lu-name">THE슬림 스탠드 정수기 더블</p>
+            <a href="#" class="lu-more">자세히 보기</a>
+          </div>
+          <div class="lu-img"><span class="lu-ph">제품컷</span></div>
+        </div>
+        <div class="lu-card">
+          <div class="lu-text">
+            <p class="lu-mod">총 21L 풍부한 출수량, 절전 가능한 Eco 센서</p>
+            <p class="lu-name">THE맥스 스탠드 정수기</p>
+            <a href="#" class="lu-more">자세히 보기</a>
+          </div>
+          <div class="lu-img"><span class="lu-ph">제품컷</span></div>
+        </div>
+      </div>
+      <p class="lu-guide">※ 세스코 정수기 설치 시 추가 부담금 가이드 ›</p>
+    </div>
+    <span class="note">기존 "라인업 소개"(살균ON 2종 · 탱크형 4종)와 "상품 소개"(7종 카드 캐러셀, 01/02)를 양식 B 카드로 합쳤습니다. 상품 소개 머리문구("세스코 과학연구소에서 안전하게 연구하여 / 깨끗하고 신선한 물맛의 세스코워터 정수기")는 섹션 맨 위 소개문으로 옮겼습니다. 카드의 '자세히 보기'는 기존 '제품 보러가기'(세스코몰)와 같은 링크입니다. 라인이 둘이라 헤드라인 + 카드 그룹을 두 번 반복했습니다. 그룹 헤드라인과 카드 수식어 일부는 기존 문장을 줄인 예시 카피입니다. 정수기는 인증 뱃지 정보가 없어 뱃지 없이 둡니다.</span>
+  </div>
+</section>
+
+<!-- S7 인증 마크 -->
+<section class="sec" id="mark" style="padding-top:60px">
+  <div class="wrap">
+    <span class="slot">S7 인증 마크</span>
+    <div class="redbar"></div>
+    <div class="two-col">
+      <h2 class="h2">인증 마크</h2>
+      <div class="mark-wide">
+        <p class="mw-h">사업장이라면,<br>고객에게 상쾌한 공간으로 인식되는 세스코워터 마크 홍보 프로그램을 받아보세요!</p>
+        <p class="mw-p">고객이 안심하고 매장을 이용할 수 있도록 세스코 워터 마크 홍보 프로그램<br>고객과 직원이 안심하고 물을 마실 수 있도록 세스코 워터 계약 고객에게는 홍보용 스티커를 제공합니다.<br>정수기 주변에 부착해 활용해 보세요.</p>
+        <div class="ph mw-img">주방 정수기 + 스티커 부착 연출컷
+          <div class="mw-callout">CESCO Water<br>세스코 살균과학을 더해<br>더욱 위생적인<em>안심 식수케어</em><strong>세스코 정수기</strong></div>
+        </div>
+        <span class="note">마크가 1종이라 인증 마크 양식 B(와이드 1단)로 배치했습니다: 헤드라인 2줄 → 설명 3줄 → 부착 연출컷 + 스티커 확대 콜아웃.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 추천 제품 -->
+<section class="sec rec" id="rec" style="padding-top:60px">
+  <div class="wrap">
+    <span class="slot">S8 추천 제품</span>
+    <div class="redbar"></div>
+    <div class="two-col">
+      <div>
+        <h2 class="h2">함께하면<br>더 좋은 제품</h2>
+        <div class="pager"><span><b id="cur">01</b> / 01</span><button id="prev">‹</button><i></i><button id="next">›</button></div>
+      </div>
+      <div>
+        <p class="lead">세스코 정수기와 함께 더 효과적으로 관리하세요!</p>
+        <div class="slide on">
+          <p class="pn">세스코 UV 파워 공기살균기</p>
+          <p class="pd">공기살균과 청정은 물론 라돈 관리까지 한번에!</p>
+          <p class="tags">#바이러스예방 #UV-C살균</p>
+          <div class="ph img">공기살균기 연출 이미지</div>
+        </div>
+        <span class="note">기존 페이지 문구는 "세스코 공기청정기와 함께…"인데 추천 제품은 공기살균기라, 정수기 페이지에 맞게 "세스코 정수기와 함께"로 바꿨습니다. 공기살균기 소개문의 "라돈 관리" 표현은 기존 문구 그대로이며 제품 사양 확인이 필요합니다. 기존 이미지 속 제품이 공기청정기(3UP 계열) 형태로 보여, 제품명·이미지 짝도 확인이 필요합니다.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">재구성 예시 페이지 · 이미지는 자리 표시, 각주 { }는 성적서 원본으로 채울 자리</div></footer>
+
+<script>
+  const tgl = document.getElementById('slotToggle');
+  tgl.onclick = () => {
+    document.body.classList.toggle('hide-slots');
+    tgl.textContent = document.body.classList.contains('hide-slots') ? '구조 라벨 보기' : '구조 라벨 숨기기';
+  };
+  const anchor = document.getElementById('anchor');
+  const links = [...anchor.querySelectorAll('a[href^="#"]')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  function onScroll() {
+    const y = window.scrollY + 170;
+    anchor.classList.toggle('stuck', anchor.getBoundingClientRect().top <= 0);
+    let idx = -1;
+    secs.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
+    links.forEach((a, i) => a.classList.toggle('on', i === idx));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  const slides = [...document.querySelectorAll('.slide')];
+  let cur = 0;
+  function show(n) {
+    cur = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('on', i === cur));
+    document.getElementById('cur').textContent = String(cur + 1).padStart(2, '0');
+  }
+  document.getElementById('prev').onclick = () => show(cur - 1);
+  document.getElementById('next').onclick = () => show(cur + 1);
+</script>
+</body>
+</html>
