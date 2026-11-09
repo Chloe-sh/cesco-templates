@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세스코 · 이번 주 할 일 · 11/9(월) 기준</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#1b1e23; --sub:#646b78; --line:#e4e7ec; --soft:#f2f4f7;
+    --me:#1f5eff; --me-bg:#e8eeff;
+    --dh:#7a3fd6; --dh-bg:#f1e9ff;
+    --sy:#0f8a5f; --sy-bg:#e3f5ec;
+    --js:#0b7f9e; --js-bg:#e1f3f8;
+    --cs:#c0391b; --cs-bg:#fdebe6;
+    --team:#4b5563; --team-bg:#eceef2;
+    --done:#2e7d32; --done-bg:#e6f4e8;
+    --warn:#b26a00; --warn-bg:#fff3dc;
+    --wait:#6b7280; --wait-bg:#eef0f3;
+    --today:#fff8e8; --today-line:#f1c86f;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:15px;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
+  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 56px}
+  a{color:var(--me);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* header */
+  .top h1{font-size:22px;line-height:1.25;margin:0 0 6px;letter-spacing:-.3px}
+  .top h1 small{display:block;font-size:14px;font-weight:500;color:var(--sub);margin-top:4px}
+  .top .src{font-size:12.5px;color:var(--sub);line-height:1.6}
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 8px}
+  .glance div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px}
+  .glance b{display:block;font-size:26px;line-height:1.05;margin-bottom:2px}
+  .glance span{font-size:12px;color:var(--sub);line-height:1.35;display:block}
+  .glance .a b{color:var(--cs)} .glance .b b{color:var(--warn)} .glance .c b{color:var(--wait)}
+  .legend{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;font-size:12px;color:var(--sub);align-items:center}
+
+  /* chips */
+  .chip{display:inline-block;font-size:11.5px;font-weight:700;line-height:1;padding:5px 8px;border-radius:999px;white-space:nowrap;vertical-align:middle}
+  .chip.me{background:var(--me-bg);color:var(--me)}
+  .chip.dh{background:var(--dh-bg);color:var(--dh)}
+  .chip.sy{background:var(--sy-bg);color:var(--sy)}
+  .chip.js{background:var(--js-bg);color:var(--js)}
+  .chip.cs{background:var(--cs-bg);color:var(--cs)}
+  .chip.team{background:var(--team-bg);color:var(--team)}
+  .chip.na{background:var(--soft);color:var(--sub);border:1px dashed #c9ced6}
+  .st{display:inline-block;font-size:11.5px;font-weight:700;line-height:1;padding:5px 8px;border-radius:6px;white-space:nowrap;vertical-align:middle}
+  .st.done{background:var(--done-bg);color:var(--done)}
+  .st.warn{background:var(--warn-bg);color:var(--warn)}
+  .st.wait{background:var(--wait-bg);color:var(--wait)}
+  .st.cs{background:var(--cs-bg);color:var(--cs)}
+  .st.hot{background:var(--cs);color:#fff}
+
+  /* sections */
+  h2{font-size:18px;margin:34px 0 4px;display:flex;align-items:center;gap:9px;letter-spacing:-.2px}
+  h2 .n{display:inline-flex;width:26px;height:26px;border-radius:8px;background:var(--ink);color:#fff;font-size:12.5px;align-items:center;justify-content:center;flex:none}
+  .lead{margin:0 0 12px;color:var(--sub);font-size:13.5px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card + .card{margin-top:10px}
+  .head{padding:12px 14px;border-bottom:1px solid var(--line);background:#fafbfc;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700;font-size:14.5px}
+  .head .sp{flex:1}
+  .head small{font-weight:500;color:var(--sub);font-size:12.5px}
+  ul{margin:0;padding:0;list-style:none}
+  ul.items li{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:9px;align-items:flex-start;font-size:14.5px}
+  ul.items li:last-child{border-bottom:0}
+  ul.items li .chip{flex:none;margin-top:1px}
+  ul.items li.done{color:var(--sub)}
+  ul.items li.done .txt::before{content:"✔ ";color:var(--done)}
+  ul.items li .txt{flex:1}
+  ul.items li .txt small{display:block;color:var(--sub);font-size:12.5px;margin-top:2px}
+  ul.items li.fixed .txt{font-weight:700;color:var(--cs)}
+  ul.items li.fixed .txt::before{content:"● "}
+
+  /* week */
+  .week{display:grid;grid-template-columns:1fr;gap:10px}
+  .day{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .day.today{background:var(--today);border-color:var(--today-line)}
+  .day.today .head{background:transparent;border-color:var(--today-line)}
+  .day.next{opacity:.88}
+
+  /* owner task cards */
+  .task{padding:12px 14px;border-bottom:1px solid var(--line)}
+  .task:last-child{border-bottom:0}
+  .task .t{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .task .t b{font-size:15px;line-height:1.35;flex:1 1 180px}
+  .task .t .due{font-size:12.5px;font-weight:700;color:var(--sub);white-space:nowrap}
+  .task .t .due.hot{color:var(--cs)}
+  .task .pri{display:inline-flex;width:20px;height:20px;border-radius:5px;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;background:var(--cs);flex:none;margin-top:1px}
+  .task .pri.b{background:var(--warn)} .task .pri.c{background:var(--wait)}
+  .task ul.b{padding-left:0}
+  .task ul.b li{font-size:14px;padding:3px 0 3px 14px;position:relative;color:#2a2e35}
+  .task ul.b li::before{content:"";position:absolute;left:2px;top:12px;width:5px;height:5px;border-radius:50%;background:#a4aab5}
+  .task ul.b li.q::before{background:var(--cs)}
+  .task .src{font-size:12px;color:var(--sub);margin-top:6px}
+  .prilegend{display:flex;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--sub);margin:0 0 10px}
+  .prilegend span i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:3px}
+
+  /* report */
+  .kpi4{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px 14px}
+  .kpi4 div{background:#fafbfc;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12.5px;color:var(--sub)}
+  .kpi4 div b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:1px}
+  .fmt li{padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}
+  .fmt li:last-child{border-bottom:0}
+  .fmt li .r{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+  .fmt li .r b{font-size:14.5px}
+  .fmt li .r .st{flex:none}
+  .fmt li .d{color:var(--sub);font-size:13px;margin-top:3px}
+  .links{padding:12px 14px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line)}
+  .links a{font-size:13px;background:var(--me-bg);padding:7px 11px;border-radius:8px}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:10px;overflow:hidden}
+  details summary{cursor:pointer;padding:13px 14px;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"펼치기";color:var(--sub);font-weight:500;font-size:12.5px;flex:none}
+  details[open] summary::after{content:"접기"}
+  details[open] summary{border-bottom:1px solid var(--line)}
+  details .body{padding:4px 14px 14px;font-size:14px}
+  details .body h4{margin:14px 0 6px;font-size:14px}
+  details .body h4:first-child{margin-top:10px}
+  details .body ul li{padding:3px 0 3px 14px;position:relative}
+  details .body ul li::before{content:"";position:absolute;left:2px;top:12px;width:5px;height:5px;border-radius:50%;background:#a4aab5}
+  details .body ul ul{margin-top:2px}
+  details .body ul ul li{font-size:13.5px;color:#3a3f48;padding-left:14px}
+  details .body ul ul li::before{width:4px;height:4px;background:#c9ced6}
+  details .body p.note{color:var(--sub);font-size:13px;margin:10px 0 0}
+  .foot{color:var(--sub);font-size:12.5px;margin-top:28px;line-height:1.7}
+
+  @media (min-width:720px){
+    .wrap{padding:32px 24px 72px}
+    .top h1{font-size:26px}
+    .top h1 small{display:inline;margin-left:10px;font-size:15px}
+    .week{grid-template-columns:repeat(3,1fr)}
+    .week .day:nth-child(4),.week .day:nth-child(5){grid-column:span 1}
+    .kpi4{grid-template-columns:repeat(4,1fr)}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+    .two .card + .card{margin-top:0}
+  }
+  @media print{body{background:#fff}.day,.card,details{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 헤더 -->
+<div class="top">
+  <h1>세스코 · 이번 주 할 일 <small>11/9(월) ~ 11/13(금) · 11/9(월) 기준</small></h1>
+  <div class="src">
+    기준 자료 ① 다해 차장이 세스코와 주고받은 메일 (11/2~11/6) ·
+    ② 보고 최종본 <a href="https://chloe-sh.github.io/cesco-templates/reports/261109/" target="_blank">reports/261109</a> (11/7 판) ·
+    ③ Slack #208-세스코 「오늘 할 일」 포스트(11/6 10:19), 구글챗, Asana
+  </div>
+  <div class="glance">
+    <div class="a"><b>6</b><span>금요일(11/13)까지 끝낼 것</span></div>
+    <div class="b"><b>7</b><span>이번 미팅(11/11) 전까지</span></div>
+    <div class="c"><b>6</b><span>세스코 답을 기다리는 것</span></div>
+  </div>
+  <div class="legend">담당
+    <span class="chip me">실장</span><span class="chip dh">다해</span><span class="chip sy">소연</span><span class="chip js">진선</span><span class="chip cs">세스코</span><span class="chip team">팀</span>
+  </div>
+</div>
+
+<!-- 1. 이번 주 마감 -->
+<h2><span class="n">1</span>이번 주 마감</h2>
+<p class="lead">미팅이 11/11(수)라 새 요청 3건은 미팅 전에 다 나가야 함. Asana 마감은 11/10(화) 2건, 11/11(수) 1건.</p>
+<div class="week">
+
+  <div class="day today">
+    <div class="head">11/9 (월) <small>오늘</small></div>
+    <ul class="items">
+      <li class="fixed"><span class="chip dh">다해</span><div class="txt">세스코 캐릭터 디자인 가이드 PDF 받아 두기<small>복혜미 책임 11/3 메일 대용량 첨부 (30MB) · 오늘까지만 받을 수 있음</small></div></li>
+      <li><span class="chip dh">다해</span><div class="txt">주방후드 클리닝 상세페이지 AI 초안 마무리<small>권재연 책임께 “차주 초” 보내기로 함</small></div></li>
+      <li><span class="chip sy">소연</span><div class="txt">에어컨 클리닝 리플릿 3종 다듬기<small>1차 초안은 11/6 Asana에 올림</small></div></li>
+      <li><span class="chip js">진선</span><div class="txt">카케어 선물세트 상단 요약 다듬기<small>시안은 11/6 Asana에 올림</small></div></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="head">11/10 (화) <small>미팅 전날</small></div>
+    <ul class="items">
+      <li class="fixed"><span class="chip dh">다해</span><div class="txt">주방후드 클리닝 상세페이지 Asana 마감<small>권재연 책임께 발송</small></div></li>
+      <li class="fixed"><span class="chip sy">소연</span><div class="txt">에어컨 클리닝 리플릿 3종 Asana 마감<small>발송은 다해</small></div></li>
+      <li><span class="chip me">실장</span><div class="txt">11/11 보고 자료 마지막으로 손보기</div></li>
+      <li><span class="chip me">실장</span><div class="txt">솔루션 페이지 · 장소별 추천 · 위쳌 마무리<small>11/6 마감분 · 아직 완료 표시 없음</small></div></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="head">11/11 (수) <small>정기 미팅</small></div>
+    <ul class="items">
+      <li class="fixed"><span class="chip team">팀</span><div class="txt">세스코 주간 미팅 (줌)</div></li>
+      <li class="fixed"><span class="chip js">진선</span><div class="txt">카케어 선물세트 상단 요약 Asana 마감<small>다해가 김정민 부문장께 발송 · 늦어도 이날까지라고 약속함</small></div></li>
+      <li><span class="chip dh">다해</span><div class="txt">11/11 미팅 리포트 메일</div></li>
+    </ul>
+  </div>
+
+  <div class="day next">
+    <div class="head">11/12 (목) ~ 11/13 (금)</div>
+    <ul class="items">
+      <li><span class="chip dh">다해</span><div class="txt">미팅 뒤 할 일 Slack에 정리</div></li>
+      <li><span class="chip team">팀</span><div class="txt">미팅 피드백 반영<small>주방후드 · 에어컨 리플릿 · 선물세트 · 11월 카드뉴스</small></div></li>
+      <li><span class="chip dh">다해</span><div class="txt">인스타 화자형 카드뉴스 다듬기<small>소연 11/6 샘플 기준</small></div></li>
+      <li><span class="chip me">실장</span><div class="txt">통합 베리에이션 확인 필요 13건 정리</div></li>
+    </ul>
+  </div>
+
+  <div class="day next">
+    <div class="head">11월 말까지</div>
+    <ul class="items">
+      <li><span class="chip me">실장</span><div class="txt">2027 운영 제안서</div></li>
+      <li><span class="chip me">실장</span><div class="txt">프로젝트 완료 보고<small>통합 베리에이션 샘플이 대표 사례</small></div></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- 2. 담당자별 -->
+<h2><span class="n">2</span>담당자별 할 일</h2>
+<p class="lead">새 요청 3건은 11/6 Slack 포스트대로 다해 · 소연 · 진선이 하나씩 맡음. 실장은 미팅 전 마무리와 11월 말 보고 준비.</p>
+<div class="prilegend">
+  <span><i style="background:var(--cs)"></i>A 미팅 전 (11/10)</span>
+  <span><i style="background:var(--warn)"></i>B 이번 주 안</span>
+  <span><i style="background:var(--wait)"></i>C 11월 말 보고용</span>
+</div>
+
+<div class="card">
+  <div class="head"><span class="chip me">실장</span> 8건 <span class="sp"></span><small>A 4 · B 2 · C 2</small></div>
+
+  <div class="task">
+    <div class="t"><span class="pri">A</span><b>11/11 보고 자료 마지막으로 손보기</b><span class="due hot">11/10 화</span><span class="st warn">거의 끝</span></div>
+    <ul class="b">
+      <li>11/6에 올렸고, 11/7에 통합 베리에이션 1차를 더함</li>
+      <li>비데 카드뉴스 상태 바꾸기 (지금은 “11/6 전달 예정”으로 나옴. 실제로 11/6 18:25에 나감)</li>
+      <li>새 요청 3건 진행 상태 바꾸기</li>
+      <li>대기 ⑤ Git 권한 고치기 (지금은 “깃허브 아이디 요청”으로 나옴. 2명은 이미 들어옴)</li>
+    </ul>
+    <div class="src">보고 최종본 reports/261109 · 다해 메일 11/6</div>
+  </div>
+
+  <div class="task">
+    <div class="t"><span class="pri">A</span><b>솔루션 페이지 마무리</b><span class="due hot">11/10 화</span><span class="st warn">진행</span></div>
+    <ul class="b">
+      <li>서비스형 · 렌탈형 골자 나누기</li>
+      <li>1안 · 2안 대신 기본형 하나에 바뀌는 부분만 두기</li>
+      <li class="q">11/6 마감분인데 완료 표시가 아직 없음</li>
+    </ul>
+    <div class="src">11/3 메일 진행 예정 1 · Slack 할 일 1</div>
+  </div>
+
+  <div class="task">
+    <div class="t"><span class="pri">A</span><b>장소별 추천 페이지 아래에 추천 상품 넣기</b><span class="due hot">11/10 화</span><span class="st warn">진행</span></div>
+    <ul class="b">
+      <li>가정집 · 외식업장 1차 구조는 그대로 둠</li>
+      <li>페이지 맨 아래에 추천 상품 영역 추가</li>
+      <li class="q">세스코 검토 의견은 아직 안 옴 (아래 대기 ①)</li>
+    </ul>
+    <div class="src">11/3 메일 진행 예정 5 · Slack 할 일 1</div>
+  </div>
+
+  <div class="task">
+    <div class="t"><span class="pri">A</span><b>위쳌 치킨집 · 산후조리원 리라이팅 마무리</b><span class="due hot">11/10 화</span><span class="st warn">진행</span></div>
+    <ul class="b">
+      <li>보고용 문구를 실제 서비스에 쓸 세스코 말투로</li>
+      <li>사업주가 고를 항목 정리</li>
+      <li>두 업종이 끝나면 다른 업종으로 넘어감</li>
+    </ul>
+    <div class="src">11/3 메일 진행 예정 6 · Slack 할 일 1</div>
+  </div>
+
+  <div class="task">
+    <div class="t"><span class="pri b">B</span><b>세스코 쪽 카드뉴스 스킬 사용 지원</b><span class="due">이번 주</span><span class="st cs">세스코 사용 중</span></div>
+    <ul class="b">
+      <li>김정민 부문장이 세스코 Claude에서 써 보기 시작함 (11/6)</li>
+      <li>요청 문구: “깃허브에서 스킬 가져와서 세스코 카드뉴스 만들어줘”</li>
+      <li>기본형 1개 + 추천형 1개가 나옴</li>
+      <li>형태가 다르게 나오면 바로 고치기로 함</li>
+    </ul>
+    <div class="src">구글챗 11/6</div>
+  </div>
+
+  <div class="task">
+    <div class="t"><span class="pri b">B</span><b>세스코 내부 AI(Bedrock) 지원</b><span class="due">이번 주</span><span class="st warn">진행</span></div>
+    <ul class="b">
+      <li>11/5 김정민 부문장 메일에 실장이 그날 회신함</li>
+      <li>요청 파일은 깃허브와 첨부로 보냄</li>
+      <li>Git 초대 3명 중 2명은 들어옴</li>
+      <li class="q">1명은 아직 초대 수락 전 (임준규 책임으로 보임)</li>
+      <li class="q">IT 부서가 지금 깃허브를 그대로 쓸지, 회사 깃허브를 따로 만들지는 세스코 보안 검토 뒤 정함</li>
+    </ul>
+    <div class="src">김정민 메일 11/5 · 실장 회신 11/5 · 구글챗 11/4</div>
+  </div>
+
+  <div class="task">
+    <div class="t"><span class="pri c">C</span><b>통합 베리에이션 샘플 (마이랩 세탁세제)</b><span class="due">11월 말</span><span class="st done">1차 완료</span></div>
+    <ul class="b">
+      <li>원천소스 하나로 5종 1차가 나옴 (11/7)</li>
+      <li>5종: 상세페이지 / 리플릿 / 카드뉴스 / 라이프케어 매거진 / 컨설팅 포인트</li>
+      <li>확인 필요 13건은 파일 안에 주황으로 표시해 둠</li>
+      <li>확인 필요 예: 리필 용량, 단품 가격, 인용 출처</li>
+      <li class="q">세스코에 물어볼 것만 따로 뽑기</li>
+    </ul>
+    <div class="src">보고 최종본 reports/261109 · 커밋 11/7</div>
+  </div>
+
+  <div class="task">
+    <div class="t"><span class="pri c">C</span><b>2027년 운영 제안서</b><span class="due">11월 말</span><span class="st warn">진행</span></div>
+    <ul class="b">
+      <li>구성: ① 브랜드 언어 · 리라이팅 ② LLM 제작 시스템 ③ 2027 운영</li>
+      <li>완료 보고와 같이 냄</li>
+      <li class="q">캘린더 부분은 세스코 연간 일정을 받아야 쓸 수 있음 (아래 대기 ③)</li>
+      <li class="q">다해 차장과 나눌 부분 정하기</li>
+    </ul>
+    <div class="src">11/3 메일 진행 예정 7 · Slack 할 일 3</div>
+  </div>
+</div>
+
+<div class="two" style="margin-top:10px">
+  <div class="card">
+    <div class="head"><span class="chip dh">다해</span> 차장</div>
+    <ul class="items">
+      <li><span class="st hot">오늘</span><div class="txt">세스코 캐릭터 디자인 가이드 PDF 받아 두기<small>11/3 복혜미 책임 메일 · 대용량 첨부라 11/9까지만 받을 수 있음</small></div></li>
+      <li><span class="st hot">11/10</span><div class="txt">주방후드 클리닝 세스코몰 상세페이지 (가정집)<small>권재연 책임 요청 · AI 초안 먼저 보내고 방향 확인</small></div></li>
+      <li><span class="st hot">11/10</span><div class="txt">에어컨 클리닝 리플릿 3종, 권재연 책임께 발송<small>소연 초안 받아서</small></div></li>
+      <li><span class="st warn">11/11</span><div class="txt">카케어 선물세트 상단 요약, 김정민 부문장께 발송<small>진선 시안 받아서</small></div></li>
+      <li><span class="st warn">11/11</span><div class="txt">11/11 미팅 리포트 메일</div></li>
+      <li><span class="st wait">이번 주</span><div class="txt">인스타 화자형 카드뉴스 다듬기<small>캐릭터 성향을 더 살리고 실제 카드뉴스처럼</small></div></li>
+      <li class="done"><span class="st done">완료</span><div class="txt">11월 카드뉴스 4편 세스코 발송<small>판테온·에어컨클리닝 11/3 · 에어커튼 11/4 · 세탁세제 11/5 · 비데 11/6</small></div></li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="card">
+      <div class="head"><span class="chip sy">소연</span> 과장</div>
+      <ul class="items">
+        <li><span class="st hot">11/10</span><div class="txt">에어컨(냉난방기) 클리닝 로켓별 리플릿 3종<small>소규모 · 공동주택 · 가정집 · 1차 초안 11/6 Asana에 올림</small></div></li>
+        <li><span class="st wait">참고</span><div class="txt">지금 사업부가 쓰는 AI 리플릿은 톤이 안 맞아서 다시 만드는 것<small>기존 리플릿 · 카드뉴스 메시지 참고 (권재연 11/5 메일)</small></div></li>
+        <li class="done"><span class="st done">완료</span><div class="txt">11월 카드뉴스 에어커튼 · 비데<small>11/4 · 11/6 다해 발송</small></div></li>
+        <li class="done"><span class="st done">완료</span><div class="txt">화자형 카드뉴스 샘플 V2<small>주방후드 · 매트리스케어 · 11/6</small></div></li>
+      </ul>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="head"><span class="chip js">진선</span> 과장</div>
+      <ul class="items">
+        <li><span class="st warn">11/11</span><div class="txt">카케어 선물세트(5종·3종) 상세페이지 상단 요약<small>제품별 상세 위에 들어가는 짧은 요약 · 시안 11/6 Asana에 올림 · 다해 검토 중</small></div></li>
+        <li class="done"><span class="st done">완료</span><div class="txt">11월 카드뉴스 판테온·에어컨클리닝 · 세탁세제<small>11/3 · 11/5 다해 발송</small></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 3. 세스코 대기 -->
+<h2><span class="n">3</span>세스코에서 받아야 하는 것</h2>
+<p class="lead">11/3 미팅 리포트 「확인·전달 요청」 중 남은 3건과 지난주에 보낸 것 피드백. 미팅 때 한 번에 물어보면 좋음.</p>
+<div class="card">
+  <ul class="items">
+    <li><span class="chip cs">세스코</span><div class="txt">① 장소별 추천 페이지 1차 기획안 내부 검토 의견<small>가정집 · 외식업장 · 11/3 요청</small></div></li>
+    <li><span class="chip cs">세스코</span><div class="txt">② 위쳌 샘플 + 사업주 선택 항목 구조 확인<small>치킨집 · 산후조리원 · 확인되면 다음 업종으로 넘어감</small></div></li>
+    <li><span class="chip cs">세스코</span><div class="txt">③ 2027 신제품 · 시즈널 일정<small>운영 제안서 캘린더 부분에 필요</small></div></li>
+    <li><span class="chip cs">세스코</span><div class="txt">④ 11월 카드뉴스 4편 피드백<small>장재혁 책임 · 판테온·에어컨클리닝은 B2C / B2B 중 고를 안도 같이</small></div></li>
+    <li><span class="chip cs">세스코</span><div class="txt">⑤ 카케어 메인 키카피 의견<small>김정민 부문장 · 클로드 / GPT 버전 중 어느 쪽으로 갈지</small></div></li>
+    <li><span class="chip cs">세스코</span><div class="txt">⑥ Git 초대 수락 1명 남음<small>11/5 초대 · 3명 중 2명은 들어옴</small></div></li>
+    <li><span class="st wait">이월</span><div class="txt">10월부터 답 없는 것: 우수사례 실제 적용본 / 결합상품 리플릿 회신 / 표기법 가이드 최종 컨펌 / 리플릿 확인 항목<small>보고 최종본 03 “세스코에서 받을 것”과 같음</small></div></li>
+    <li class="done"><span class="st done">받음</span><div class="txt">Bedrock 미팅 결과 · 필요 파일 목록<small>11/5 김정민 부문장 메일 · 실장 11/5 회신</small></div></li>
+    <li class="done"><span class="st done">받음</span><div class="txt">인스타 캐릭터(박사·요원) 자료<small>11/3 복혜미 책임 메일</small></div></li>
+  </ul>
+</div>
+
+<!-- 4. 참고 -->
+<h2><span class="n">4</span>참고</h2>
+<p class="lead">급하지 않은 것. 필요할 때 펼쳐 보기.</p>
+
+<details>
+  <summary>보고 최종본 · reports/261109 (11/11 미팅용, 11/7 판)</summary>
+  <div class="body" style="padding:0">
+    <p style="margin:10px 14px 0;font-size:13px;color:var(--sub)">11/6 #208-세스코에 올린 11/11(수) 보고 자료. 11/7에 통합 베리에이션 1차가 더해진 판이 지금 공개본.</p>
+    <div class="kpi4">
+      <div><b>카드뉴스 3편 · 키카피 2회</b>이번 주 전달 (보고 기준일 11/6)</div>
+      <div><b>유형 추천 · 고객 메시지 105건</b>이번 주 반영</div>
+      <div><b>신규 요청 3건</b>11/10~11/11 전달</div>
+      <div><b>회신 대기 5 · 이월 2</b>세스코 확인 (03)</div>
+    </div>
+    <ul class="fmt" style="border-top:1px solid var(--line)">
+      <li><div class="r"><b>11월 카드뉴스 4편</b><span class="st warn">피드백 대기</span></div><div class="d">판테온·에어컨클리닝 · 에어커튼 · 세탁세제 · 비데 (비데는 11/6 18:25 발송)</div></li>
+      <li><div class="r"><b>카드뉴스 유형 추천</b><span class="st done">완료</span></div><div class="d">기본형 1안 + 추천 유형 1안 · 샘플 코로나19 × 판테온 · 세스코 Claude에서 바로 씀</div></li>
+      <li><div class="r"><b>CRM 메시지</b><span class="st done">완료</span></div><div class="d">문자 템플릿 하네스 연결 · 출력 테스트 끝 · 고객 메시지 초안 105건</div></li>
+      <li><div class="r"><b>카케어 메인 키카피</b><span class="st warn">피드백 대기</span></div><div class="d">11/3 1차 · 11/4 하네스 결과 · 카케어 코어 클로드 / GPT 버전</div></li>
+      <li><div class="r"><b>인스타 박사·요원 화자형</b><span class="st warn">진행</span></div><div class="d">매트리스케어 · 주방후드 샘플 · 다음 보고에 공유</div></li>
+      <li><div class="r"><b>솔루션 페이지</b><span class="st warn">진행</span></div><div class="d">서비스형 / 렌탈형 기본 골자로 다시 정리 중</div></li>
+      <li><div class="r"><b>장소별 추천 페이지</b><span class="st cs">세스코 검토 대기</span></div><div class="d">가정집 · 외식업장 · 아래 추천 상품 영역 넣는 중</div></li>
+      <li><div class="r"><b>위쳌 사업장 상세</b><span class="st warn">진행</span></div><div class="d">치킨집 · 산후조리원 실서비스 문구로 다시 쓰는 중</div></li>
+      <li><div class="r"><b>통합 베리에이션 · 세탁세제</b><span class="st done">1차 생성</span></div><div class="d">원천소스 1개로 5종 · 확인 필요 13건 주황 표시</div></li>
+      <li><div class="r"><b>신규 요청 3건</b><span class="st warn">진행</span></div><div class="d">에어컨 리플릿 3종 · 주방후드 상세 (11/10) · 카케어 선물세트 상단 요약 (11/11)</div></li>
+    </ul>
+    <div class="links">
+      <a href="https://chloe-sh.github.io/cesco-templates/reports/261109/" target="_blank">11/11 보고 자료</a>
+      <a href="https://chloe-sh.github.io/cesco-templates/reports/261102/index.html" target="_blank">지난 보고 자료 (11/3)</a>
+      <a href="https://chloe-sh.github.io/cesco-templates/reports/261106/%EC%B9%B4%EB%93%9C%EB%89%B4%EC%8A%A4_%EC%BD%94%EB%A1%9C%EB%82%9819_%ED%8C%90%ED%85%8C%EC%98%A8_%EC%8B%9C%EC%95%88_261106.html" target="_blank">카드뉴스 샘플 · 코로나19 × 판테온</a>
+      <a href="https://chloe-sh.github.io/cesco-templates/#d103/cardnews" target="_blank">카드뉴스 유형 갤러리</a>
+      <a href="https://chloe-sh.github.io/cesco-templates/reports/261102/%EC%B9%B4%EC%BC%80%EC%96%B4_%EC%BD%94%EC%96%B4_261104.html" target="_blank">카케어 코어</a>
+      <a href="https://chloe-sh.github.io/cesco-templates/" target="_blank">마스터 템플릿</a>
+      <a href="https://chloe-sh.github.io/cesco-templates/links/" target="_blank">작업물 링크 모음</a>
+      <a href="https://chloe-sh.github.io/cesco-templates/weekly/261104.html" target="_blank">지난주 할 일 (11/4)</a>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>지난주(11/2~11/7)에 끝난 것</summary>
+  <div class="body">
+    <ul>
+      <li>11/3 미팅 리포트 발송 (다해, 11/3)</li>
+      <li>11월 카드뉴스 판테온·에어컨클리닝 발송 (다해, 11/3)</li>
+      <li>11월 카드뉴스 에어커튼 발송 (다해, 11/4)</li>
+      <li>11월 카드뉴스 세탁세제 발송 (다해, 11/5)</li>
+      <li>11월 카드뉴스 비데 발송 (다해, 11/6)</li>
+      <li>카케어 메인 키카피 1차와 하네스 결과 (다해, 11/3 · 11/4)</li>
+      <li>카케어 선물세트 · 에어컨 리플릿 · 주방후드 요청 회신 (다해, 11/4 · 11/5)</li>
+      <li>Bedrock 확인 사항 회신과 Git 초대 (실장, 11/5)</li>
+      <li>작업물 링크 주소 변경 안내 메일 (실장, 11/5)</li>
+      <li>CRM 메시지 템플릿 하네스 연결 · 출력 테스트 (실장, 11/6)</li>
+      <li>카드뉴스 스킬 깃허브 반영 (실장, 11/6)</li>
+      <li>인스타 화자형 카드뉴스 샘플 V1 · V2 (소연, 11/4 · 11/6)</li>
+      <li>11/11 보고 자료 (실장, 11/6)</li>
+      <li>통합 베리에이션 1차 (실장, 11/7)</li>
+    </ul>
+  </div>
+</details>
+
+<details>
+  <summary>11/3 미팅에서 정해진 것 (다해 메일 요약)</summary>
+  <div class="body">
+    <h4>템플릿</h4>
+    <ul>
+      <li>솔루션 페이지: 상품 유형별로 기본 골자를 둠
+        <ul>
+          <li>서비스형 골자: 문제·오염원 / 관리 필요성 / 서비스 프로세스 / 상품 구성</li>
+          <li>렌탈형은 흐름을 따로 둠</li>
+          <li>1안·2안으로 나누지 않고, 강조할 POD에 따라 바뀌는 부분만 둠</li>
+        </ul>
+      </li>
+      <li>카드뉴스: 유형을 여러 개 두고, LLM이 원천소스를 보고 먼저 추천함</li>
+      <li>인스타그램: 박사 = 연구·과학 화자, 요원 = 현장 관리 팁 화자</li>
+      <li>인스타그램: 캐릭터는 말하는 사람일 뿐, 중심은 위생 정보</li>
+      <li>로켓 리플릿: 산업체는 자세히, 소규모는 한눈에, 가정집은 생활 밀착</li>
+      <li>장소별 추천 페이지: 아래에 추천 상품 영역 추가</li>
+      <li>통합 베리에이션: 마이랩 세탁세제 하나로 5종. 11월 말 보고 대표 사례</li>
+    </ul>
+    <h4>위쳌</h4>
+    <ul>
+      <li>치킨집 · 산후조리원부터 완성</li>
+      <li>보고용 문구를 실서비스용 세스코 말투로 다시 씀</li>
+      <li>업종별 기본 항목을 두고 사장님이 골라서 고침</li>
+      <li>필수 항목은 세스코가 정함</li>
+    </ul>
+    <h4>2027 콘텐츠 운영</h4>
+    <ul>
+      <li>사람은 원천소스 발굴 · 주제 기획 · 검수</li>
+      <li>LLM은 베리에이션</li>
+      <li>발신 2개월 전에 원천소스와 초안 준비</li>
+      <li>운영 제안서는 완료 보고와 같이 냄</li>
+    </ul>
+    <h4>AI 내재화</h4>
+    <ul>
+      <li>세스코 내부에 Bedrock 기반 Claude 환경을 만듦</li>
+      <li>보안 · 외부 접속 제한이 일정의 가장 큰 변수</li>
+      <li>내부 직원 교육과 목적별 프롬프트가 필요함</li>
+    </ul>
+  </div>
+</details>
+
+<p class="foot">
+  매주 월요일 07:00에 새로 바뀌어요. 이 판은 11/9(월) 오전까지 들어온 메일 · Slack · 구글챗 · Asana 기준.<br>
+  11/7(토) ~ 11/9(월) 오전에는 세스코 관련 새 메일 · 메시지가 없었음.
+</p>
+
+</div>
+</body>
+</html>
