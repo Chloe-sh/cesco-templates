@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>04 라이프케어 매거진 · 빨아서 넣어 둔 겨울 이불 편 · 세스코 마이랩 세탁세제 프리미엄</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
-:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--amber:#b35c00;--amber-soft:#fff4e5;--green:#1b7f3b;--green-soft:#e8f5ec;--navy:#0A3568;--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200}
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 라이프케어 매거진 · 빨아서 넣어 둔 겨울 이불 편 · 세스코 마이랩 세탁세제 프리미엄</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nunito:wght@800;900&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --ink:#242b36;--ink2:#4b5563;--ink3:#8a94a3;--line:#e3e3e3;--soft:#f5f7fa;
+  --blue:#3a7bd5;--blue-ink:#2a63bd;--blue-page:#4a86d9;--blue-soft:#e6f1fb;
+  --navy:#1e2a44;--tint:#f1f4f8;--rule:#dde3ea;--paper:#ffffff;
+  --amber:#b35c00;--amber-soft:#fff4e5;
+  --memo:#d9640a;--memo-bg:#fff3e6;
+  --bg:#dfe3e8;
+}
 *{box-sizing:border-box}
 html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-x:hidden}
-.wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+.wrap{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
 .topnav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
 .topnav a{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font-size:12.5px;color:var(--ink2);text-decoration:none;font-weight:600}
 .topnav a.on{background:var(--navy);border-color:var(--navy);color:#fff}
 header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:24px}
-.kicker{font-size:13px;color:var(--blue);font-weight:700;margin-bottom:6px}
+.kicker{font-size:13px;color:var(--blue-ink);font-weight:700;margin-bottom:6px}
 h1{font-size:26px;line-height:1.3;margin:0 0 8px;font-weight:800}
 .meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
 .meta b{color:var(--ink);font-weight:600}
@@ -17,8 +31,8 @@ p{margin:0 0 10px}
 .lead{font-size:15.5px;color:var(--ink2)}
 .need{color:var(--amber);font-weight:700;background:var(--amber-soft);border-radius:3px;padding:0 4px}
 .gray{color:var(--ink3)}
-h2{font-size:20px;margin:40px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px}
-h2 .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+h2.doc{font-size:20px;margin:40px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px}
+h2.doc .num{color:var(--blue-ink);font-size:15px;font-weight:800;min-width:2ch}
 h3{font-size:16px;margin:22px 0 8px;font-weight:800;color:var(--navy)}
 table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px}
 th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
@@ -28,81 +42,148 @@ td.k{background:var(--soft);font-weight:700;white-space:nowrap;width:22%}
 .box b.h{display:block;margin-bottom:6px;color:var(--navy)}
 .box p{margin:0 0 6px;font-size:14px}
 .box ul{margin:0;padding-left:20px;font-size:14px}
-.memo{display:block;background:var(--memo);color:var(--memo-ink);border-radius:4px;padding:6px 10px;font-size:12.5px;line-height:1.55;margin:8px 0}
-body.hide-memo .memo,body.hide-memo .slot{display:none}
 .tools{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
 .tools button{font:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 12px;border-radius:16px;cursor:pointer}
-/* 매거진 지면 */
-.mag{max-width:680px;margin:20px auto 0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.pg{position:relative;padding:34px 30px;border-top:1px solid var(--line)}
-.pg:first-child{border-top:0}
-.pg .tag{position:absolute;left:0;top:0;background:var(--navy);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:0 0 6px 0;letter-spacing:.04em}
-.pg.cover{background:linear-gradient(160deg,#0A3568,#1d5aa0);color:#fff}
-.pg.cover .tag{background:#fff;color:var(--navy)}
-.pg.soft{background:var(--soft)}
-.pg.navy{background:var(--navy);color:#fff}
-.pg.navy .tag{background:#fff;color:var(--navy)}
-.slot{background:var(--slot);border:2px dashed var(--slot-line);border-radius:8px;color:var(--ink3);font-size:12.5px;line-height:1.5;padding:12px 14px;margin:12px 0;min-height:56px}
-.slot b{display:block;color:var(--ink2);margin-bottom:2px}
-.pg.cover .slot,.pg.navy .slot{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);color:#fff}
-.pg.cover .slot b,.pg.navy .slot b{color:#fff}
-.logo{font-size:12px;letter-spacing:.1em;font-weight:800;opacity:.9}
-.logo small{display:block;font-weight:500;letter-spacing:.02em;opacity:.8;margin-top:2px}
-.cover h2{border:0;padding:0;margin:18px 0 8px;font-size:28px;line-height:1.3;color:#fff;display:block}
-.cover .toc{display:flex;flex-direction:column;gap:6px;margin-top:22px;font-size:14px}
-.cover .toc span b{display:inline-block;width:28px;opacity:.8}
-.sec-no{font-size:12px;letter-spacing:.1em;font-weight:800;color:var(--blue)}
-.pg.navy .sec-no{color:#bcd5f5}
-.sec-t{font-size:22px;font-weight:800;line-height:1.3;margin:4px 0 14px}
-.qa .q{font-weight:800;font-size:16px;margin:18px 0 4px;color:var(--navy)}
-.qa .q::before{content:"Q. ";color:var(--blue)}
-.qa .a1{font-weight:700;font-size:15.5px;margin-bottom:4px}
-.qa p{font-size:14.5px;color:var(--ink2)}
-.qa .src{font-size:12px;color:var(--ink3);margin-top:-4px}
-.cta{margin-top:22px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:8px;text-align:center}
-.cta p{margin:0 0 4px;font-size:14.5px}
-.cta .btn{display:inline-block;margin-top:8px;background:var(--navy);color:#fff;font-weight:800;padding:8px 18px;border-radius:999px;font-size:14px}
-.tip{display:grid;grid-template-columns:64px 1fr;gap:10px;margin:12px 0}
-.tip .n{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.04em;padding-top:3px}
-.tip b{display:block;font-size:15px;margin-bottom:2px}
-.tip p{font-size:14.5px;color:var(--ink2);margin:0}
-.pivot{font-size:16px;line-height:1.8;text-align:center;padding:10px 0}
-.pivot em{font-style:normal;font-weight:800}
-.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0;color:var(--ink)}
-.card .st{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.06em}
-.card .h2{font-size:17px;font-weight:800;line-height:1.4;margin:4px 0 6px}
-.card .pn{display:inline-block;background:var(--blue-soft);color:var(--navy);font-weight:800;padding:3px 10px;border-radius:4px;font-size:14px;margin:4px 0 8px}
-.card p{font-size:14.5px;color:var(--ink2)}
-.badges{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
-.badge{background:var(--soft);border-radius:8px;padding:10px 12px;text-align:center}
-.badge .v{font-size:24px;font-weight:900;color:var(--blue);line-height:1}
-.badge .l{font-size:12.5px;color:var(--ink2);margin-top:4px;line-height:1.4}
-.cp{margin:10px 0 0}
-.cp b{display:block;font-size:12px;letter-spacing:.06em;color:var(--navy);margin-bottom:4px}
-.cp ul{margin:0;padding-left:0;list-style:none;font-size:14px}
-.cp li{padding:3px 0;border-top:1px solid var(--line)}
-.cp li:first-child{border-top:0}
-.cp li::before{content:"✔ ";color:var(--green)}
-.link{display:inline-block;margin-top:10px;font-weight:800;color:var(--blue);font-size:14px}
-.fn{font-size:12px;color:var(--ink2);line-height:1.55;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)}
-sup{font-size:.7em;color:var(--blue);font-weight:700}
-.state{font-size:14.5px;line-height:1.8;text-align:center}
-.tags{font-size:13px;color:var(--blue);line-height:1.8}
+.tags{font-size:13px;color:var(--blue-ink);line-height:1.8}
 .share{font-size:13px;color:var(--ink2)}
 .share .warn{display:block;margin-top:8px;padding:8px 12px;background:var(--amber-soft);border-radius:6px;color:var(--amber);font-weight:700}
-@media (max-width:720px){.wrap{padding:24px 14px 60px}h1{font-size:22px}.pg{padding:26px 16px}.cover h2{font-size:23px}.sec-t{font-size:19px}.badges{grid-template-columns:1fr}.tip{grid-template-columns:1fr;gap:2px}td.k{width:28%;white-space:normal}table{table-layout:fixed}th,td{word-break:break-word}}
-@media print{.topnav,.tools{display:none}}
-</style></head>
+sup{font-size:.7em;color:var(--blue-ink);font-weight:700}
+
+/* ===== 매거진 지면 (라이프케어 매거진 Vol.14 16P 시안 디자인 시스템) ===== */
+.book{background:var(--bg);border-radius:12px;margin:20px auto 0;padding:1.5rem 1rem 2.5rem}
+.book,.book .page{font-family:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+.spread{display:grid;grid-template-columns:1fr 1fr;margin:0 auto 1.6rem;max-width:1440px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.spread.single{grid-template-columns:1fr;max-width:720px}
+.page{container-type:inline-size;aspect-ratio:210/297;background:var(--paper);color:var(--ink);position:relative;overflow:hidden;font-size:1.6cqw;line-height:1.72}
+.spread .page+.page{border-left:1px solid var(--rule)}
+.pno{position:absolute;bottom:2.8cqw;font-size:1.35cqw;color:var(--ink3)}
+.pno.l{left:4.5cqw}.pno.r{right:4.5cqw}
+.hdr{position:absolute;top:2.6cqw;right:5cqw;font-size:1.2cqw;color:var(--ink3);letter-spacing:.01em}
+.pad{padding:7cqw 7cqw 9cqw}
+.book h1,.book h2,.book h3,.book h4,.book p{margin:0}
+.en{font-family:"Nunito","Noto Sans KR",sans-serif}
+.emb{font-weight:700;color:var(--ink)}
+.em{color:var(--blue-ink);font-weight:700;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:.08em}
+.ref{font-size:1.05cqw;color:var(--ink3);line-height:1.5;margin-top:1.2cqw;word-break:break-all}
+.ph{position:relative;background:repeating-linear-gradient(135deg,#e3e8ef 0 1.2cqw,#ebeff4 1.2cqw 2.4cqw);color:var(--ink3);display:flex;align-items:flex-end;padding:1.6cqw;font-size:1.25cqw;line-height:1.45;word-break:keep-all}
+.ph::before{content:"";position:absolute;inset:0;border:1px dashed #b7c0cc;pointer-events:none}
+.memo{display:inline-block;background:var(--memo-bg);color:var(--memo);border:1px solid var(--memo);border-radius:.5cqw;font-size:1.05cqw;font-weight:700;padding:.05cqw .8cqw;vertical-align:middle;line-height:1.6}
+.wrap>.memo-doc,.memo-doc{display:block;background:var(--memo-bg);color:var(--memo);border:1px solid var(--memo);border-radius:4px;padding:6px 10px;font-size:12.5px;line-height:1.55;margin:8px auto;max-width:1100px}
+body.hide-memo .memo,body.hide-memo .memo-doc{display:none}
+
+/* 섹션 오프너 */
+.secno{font-family:"Nunito","Noto Sans KR",sans-serif;font-size:3cqw;font-weight:900;color:var(--navy);letter-spacing:-.02em}
+.sect{font-size:3.1cqw;font-weight:700;line-height:1.45;margin-top:2cqw;letter-spacing:-.02em;word-break:keep-all}
+.sect u{text-decoration:none;background:linear-gradient(transparent 82%,var(--blue) 82%)}
+.allabout{font-family:"Nunito","Noto Sans KR",sans-serif;font-size:2cqw;font-weight:800;color:var(--blue);letter-spacing:.06em}
+
+/* Q&A */
+.qa-q{font-size:2.1cqw;font-weight:900;color:var(--navy);line-height:1.5;word-break:keep-all;margin-top:3.4cqw}
+.qa-q::before{content:"Q. ";color:var(--blue)}
+.qa-q:first-of-type{margin-top:2.6cqw}
+.qa-a1{font-size:1.75cqw;font-weight:700;color:var(--ink);line-height:1.6;margin-top:1cqw;word-break:keep-all}
+.qa-p{font-size:1.5cqw;color:var(--ink2);line-height:1.75;margin-top:.8cqw;word-break:keep-all}
+.qa-src{font-size:1.05cqw;color:var(--ink3);margin-top:.6cqw}
+
+/* Q&A 마감 CTA */
+.diagcta{margin-top:3cqw;background:var(--tint);border-radius:1.6cqw;padding:3cqw 3.4cqw;text-align:center}
+.diagcta p{font-size:1.7cqw;line-height:1.65;color:var(--ink);word-break:keep-all}
+.diagcta .btn{display:inline-block;margin-top:1.6cqw;background:var(--navy);color:#fff;font-weight:900;padding:1.1cqw 3.4cqw;border-radius:5cqw;font-size:1.6cqw}
+
+/* Self Solution (ss 박스·tip 규격) */
+.ss{background:var(--tint);border-radius:1.6cqw;padding:3cqw 3.4cqw;margin-top:2.6cqw}
+.ss-t{display:flex;align-items:center;gap:1.4cqw;font-size:1.9cqw;font-weight:700;color:var(--navy)}
+.ss-t span{background:var(--navy);color:#fff;font-size:1.15cqw;font-weight:700;padding:.35cqw 1.4cqw;border-radius:2cqw;letter-spacing:.02em}
+.tip{margin-top:2.2cqw;display:grid;grid-template-columns:9cqw 1fr;gap:1.8cqw;align-items:start}
+.tip .ph{aspect-ratio:1;border-radius:.9cqw;margin:0}
+.tip h4{font-size:1.85cqw;font-weight:700;color:var(--ink);word-break:keep-all;line-height:1.5}
+.tip h4 b{color:var(--navy);font-weight:900;margin-right:.5em;font-family:"Nunito","Noto Sans KR",sans-serif}
+.tip h4 i{font-style:normal;color:var(--blue-ink)}
+.tip p{font-size:1.35cqw;color:var(--ink2);line-height:1.65;margin-top:.5cqw;word-break:keep-all}
+
+/* 전환 블록 (블루 지면) */
+.bluepg{background:var(--blue-page);color:#fff}
+.bluepg .pivot{font-size:2.2cqw;line-height:1.95;word-break:keep-all}
+.bluepg .pivot b{font-weight:900}
+.bluepg .pivot .however{display:block;margin-top:3cqw}
+.bluepg .sothat{font-family:"Nunito","Noto Sans KR",sans-serif;font-size:4.2cqw;font-weight:900;letter-spacing:-.02em;margin:3.4cqw 0 1cqw}
+.bluepg .script{position:absolute;right:-2cqw;bottom:9cqw;font-family:"Caveat",cursive;font-size:9cqw;color:rgba(255,255,255,.22);transform:rotate(-8deg);white-space:nowrap}
+.bluepg .curve{position:absolute;right:0;bottom:0;width:30cqw;height:14cqw;background:#fff;border-radius:14cqw 0 0 0}
+.bluepg .memo{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.6)}
+
+/* Professional Solution 제품 지면 */
+.step{font-size:1.9cqw;font-weight:700;color:var(--ink);word-break:keep-all}
+.step b{font-family:"Nunito","Noto Sans KR",sans-serif;font-weight:900;color:var(--navy);margin-right:1em;font-size:2.1cqw}
+.steph{font-size:2.5cqw;font-weight:900;color:var(--navy);letter-spacing:-.03em;line-height:1.4;margin-top:1.2cqw;word-break:keep-all}
+.pname{font-size:3.2cqw;font-weight:900;color:var(--navy);letter-spacing:-.03em;line-height:1.2;margin-top:2cqw}
+.pname small{display:block;font-family:"Nunito","Noto Sans KR",sans-serif;font-size:1.3cqw;color:var(--ink3);font-weight:800;letter-spacing:.05em;margin-bottom:.6cqw}
+.pdesc{font-size:1.6cqw;line-height:1.7;word-break:keep-all;margin-top:1.4cqw;color:var(--ink2)}
+.bignum{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw;margin-top:2cqw}
+.bignum div{background:var(--tint);border-radius:1cqw;padding:1.8cqw;text-align:center}
+.bignum .v{font-family:"Nunito","Noto Sans KR",sans-serif;font-size:4.4cqw;font-weight:900;color:var(--blue);line-height:1}
+.bignum .l{font-size:1.2cqw;color:var(--ink2);margin-top:.7cqw;line-height:1.45;word-break:keep-all}
+.ckh{font-size:1.3cqw;font-weight:900;color:var(--navy);letter-spacing:.06em;margin-top:2.2cqw}
+.ck{list-style:none;margin:.6cqw 0 0;padding:0;font-size:1.35cqw;color:var(--ink2);line-height:1.62}
+.ck li{padding:.5cqw 0;border-top:1px solid var(--rule)}
+.ck li:first-child{border-top:0}
+.ck li::before{content:"✔ ";color:var(--blue)}
+.golink{display:inline-block;margin-top:1.6cqw;font-weight:900;color:var(--blue-ink);font-size:1.5cqw;border-bottom:.2cqw solid var(--blue-ink);padding-bottom:.2cqw}
+.fn{font-size:.95cqw;color:#a0a8b4;line-height:1.5;margin-top:1.8cqw;word-break:keep-all}
+.mallcta{display:grid;grid-template-columns:1fr 10cqw;gap:2cqw;align-items:center;margin-top:2.4cqw;background:var(--navy);color:#fff;border-radius:1.2cqw;padding:2.2cqw 2.6cqw}
+.mallcta p{font-size:1.6cqw;line-height:1.55;word-break:keep-all}
+.mallcta small{display:block;color:#c9d3e2;font-size:1.2cqw;margin-top:.5cqw}
+.mallcta .qr{width:10cqw;aspect-ratio:1;border-radius:.8cqw;background:#fff;color:var(--ink3);display:flex;align-items:center;justify-content:center;font-size:1.05cqw;text-align:center;line-height:1.3}
+
+/* 마이랩 클로징 지면 */
+.closepg{background:var(--navy);color:#fff}
+.closepg .pad{display:flex;flex-direction:column;justify-content:center;height:100%;text-align:center}
+.closepg .mot{font-family:"Nunito","Noto Sans KR",sans-serif;font-size:4cqw;font-weight:900;letter-spacing:-.01em;line-height:1.3}
+.closepg .body{font-size:1.75cqw;line-height:1.95;margin-top:2.6cqw;color:#dfe6f2;word-break:keep-all}
+.closepg .brand{font-size:2.2cqw;font-weight:900;margin-top:2.8cqw;line-height:1.55;word-break:keep-all}
+.closepg .mall{display:inline-block;margin:2.6cqw auto 0;background:#fff;color:var(--navy);font-weight:900;font-size:1.5cqw;padding:1cqw 3cqw;border-radius:5cqw}
+.closepg .logo{font-family:"Nunito",sans-serif;font-size:3cqw;font-weight:900;letter-spacing:.14em;margin-top:4cqw}
+.closepg .logo small{display:block;font-family:"Noto Sans KR",sans-serif;font-size:1.1cqw;font-weight:700;letter-spacing:.34em;margin-top:.4cqw;color:#c9d3e2}
+
+/* 커버 */
+.cover-bg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cover{font-family:"Nunito","Noto Sans KR",sans-serif}
+.masthead{position:absolute;right:6.5cqw;top:5.5cqw;text-align:right;color:#fff;font-weight:900;line-height:.92;letter-spacing:-.035em;text-shadow:0 .3cqw 1.6cqw rgba(0,0,0,.25)}
+.mh-l1{font-size:17cqw}
+.mh-l2,.mh-l3{font-size:15.5cqw}
+.mh-badge{position:absolute;right:3.1cqw;top:5.6cqw;width:8.6cqw;height:8.6cqw;border:.55cqw solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2cqw;letter-spacing:0;line-height:1;background:rgba(255,255,255,.08);color:#fff}
+.mh-by{font-size:2cqw;font-weight:800;letter-spacing:.02em;margin-top:2.2cqw;line-height:1}
+.cover-bl{position:absolute;left:6.5cqw;bottom:7cqw;right:38cqw;color:#fff;font-family:"Noto Sans KR",sans-serif;text-shadow:0 .2cqw 1.2cqw rgba(0,0,0,.4)}
+.cover-bl .vol{font-family:"Nunito","Noto Sans KR",sans-serif;font-size:5cqw;font-weight:900;letter-spacing:-.02em;line-height:1.1}
+.cover-bl .guide{font-size:2.1cqw;font-weight:800;letter-spacing:.04em;margin:1.2cqw 0 .8cqw}
+.h-cover{font-size:3cqw;font-weight:500;line-height:1.55;letter-spacing:-.02em;color:#fff;word-break:keep-all}
+.cover-br{position:absolute;right:6.5cqw;bottom:7cqw;text-align:right;color:#fff;font-family:"Noto Sans KR",sans-serif;font-size:1.45cqw;line-height:1.55;text-shadow:0 .2cqw 1.2cqw rgba(0,0,0,.4)}
+.cover-br .line{width:5cqw;height:.35cqw;background:#fff;margin:0 0 1.2cqw auto}
+.cover-br b{display:block;font-size:1.75cqw;font-weight:900;line-height:1.35}
+.cover-br p{color:#f1f4f8;margin:.4cqw 0 1.8cqw;font-size:1.3cqw}
+.cover-br .brand{font-size:2.3cqw;font-weight:900;margin-top:2.6cqw;letter-spacing:-.02em}
+
+@media (max-width:900px){
+  .spread{grid-template-columns:1fr;max-width:720px}
+  .spread .page+.page{border-left:0;border-top:1px solid var(--rule)}
+}
+@media (max-width:720px){.wrap{padding:24px 14px 60px}h1{font-size:22px}td.k{width:28%;white-space:normal}table{table-layout:fixed}th,td{word-break:break-word}.book{padding:1rem .6rem 1.6rem}}
+@media print{
+  body{background:#fff}.topnav,.tools{display:none}.book{background:#fff;padding:0;border-radius:0}
+  .spread{box-shadow:none;display:block;margin:0}
+  .page{width:210mm;height:297mm;aspect-ratio:auto;page-break-after:always;font-size:3.36mm}
+}
+</style>
+</head>
 <body>
 <div class="wrap">
 <nav class="topnav"><a href="index.html">허브</a><a href="01_상세페이지.html">01 상세페이지</a><a href="02_리플릿.html">02 리플릿</a><a href="03_카드뉴스.html">03 카드뉴스</a><a class="on" href="04_라이프케어매거진.html">04 라이프케어 매거진</a><a href="05_컨설팅포인트.html">05 컨설팅 포인트</a></nav>
 <header class="top"><div class="kicker">원천소스 1개 → 5종 · 통합 베리에이션 샘플 · 04</div><h1>라이프케어 매거진 · 빨아서 넣어 둔 겨울 이불 편</h1>
-<div class="meta"><span><b>템플릿</b> 라이프케어매거진 가정집 대상 · 3단형(01 Q&amp;A → 02 Self Solution → 03 CESCO Professional Solution)</span><span><b>전달</b> 서비스 컨설턴트가 고객에게 카카오톡·문자로 1:1 전달하는 이미지형 매거진</span><span><b>작성</b> 2026-11-07</span></div>
-<p class="lead" style="margin-top:12px">생성 전에 콘텐츠 흐름, 액션 아이템, 참고 자료를 먼저 정리하고(아래 0), 그 정리로 매거진 지면을 만들었습니다(아래 1). 메시지·수치·상품명은 허브의 공통 메시지 시트와 같고, 외부 연구 인용은 11/5 카드뉴스 전달본을 승계했습니다.</p>
-<div class="tools"><button id="memoBtn">제작 메모·이미지 자리 숨기기</button></div>
+<div class="meta"><span><b>템플릿</b> 라이프케어매거진 가정집 대상 · 3단형(01 Q&amp;A → 02 Self Solution → 03 CESCO Professional Solution)</span><span><b>전달</b> 서비스 컨설턴트가 고객에게 카카오톡·문자로 1:1 전달하는 이미지형 매거진</span><span><b>작성</b> 2026-11-07 · 지면 재조판 2026-11-09</span></div>
+<p class="lead" style="margin-top:12px">생성 전에 콘텐츠 흐름, 액션 아이템, 참고 자료를 먼저 정리하고(아래 0), 그 정리로 매거진 지면을 만들었습니다(아래 1). 지면 디자인은 라이프케어 매거진 Vol.14 16P 시안(261027 v4)의 디자인 시스템(A4 지면·커버 마스트헤드·Self Solution 규격·제품 지면)을 그대로 따릅니다. 메시지·수치·상품명은 허브의 공통 메시지 시트와 같고, 외부 연구 인용은 11/5 카드뉴스 전달본을 승계했습니다.</p>
+<div class="tools"><button id="memoBtn">제작 메모 숨기기</button><button onclick="window.print()">인쇄 / PDF</button></div>
 </header>
 
-<h2><span class="num">0</span>생성 전 정리 · 콘텐츠 흐름 / 액션 아이템 / 참고 자료</h2>
+<h2 class="doc"><span class="num">0</span>생성 전 정리 · 콘텐츠 흐름 / 액션 아이템 / 참고 자료</h2>
 <div class="box"><b class="h">콘텐츠 흐름 (3문장)</b>
 <p>올해 초에 세탁해서 넣어 둔 겨울 이불을 꺼내는 고객에게, 세탁 후에도 진드기 사체·배설물 속 알레르기 유발 물질 일부가 섬유에 남는다는 사실을 Q&amp;A 세 개로 설명합니다.</p>
 <p>그다음 고객이 직접 할 수 있는 세탁 방법 네 가지(세탁 표시 확인, 권장량과 충분한 헹굼, 속까지 건조, 세제 고르는 기준)를 Self Solution으로 주고, "셀프 세탁은 기본 수칙이지만 남은 알레르기 유발 물질은 저절로 사라지지 않는다"는 전환 블록으로 넘어갑니다.</p>
@@ -117,101 +198,301 @@ sup{font-size:.7em;color:var(--blue);font-weight:700}
 <tr><td class="k">외부 연구</td><td>de Boer R. 외, Clin Exp Allergy, 1995</td><td>진드기를 없앤 카펫 시료 18개월 보관 후에도 알레르겐 농도 뚜렷이 감소하지 않음</td></tr>
 <tr><td class="k">외부 연구</td><td>Maestrelli P. 외, Clin Exp Allergy, 2001</td><td>소량의 진드기 알레르겐도 민감한 사람에게 증상 유발·악화</td></tr>
 <tr><td class="k">가이드라인</td><td>대한소아알레르기호흡기학회(KAPARD), 집먼지진드기 알레르기 환경관리 가이드라인</td><td>진드기 알레르겐은 물에 녹음, 충분한 헹굼으로 감소</td></tr>
-<tr><td class="k">코퍼스 참조</td><td>라이프케어 매거진 vol 01(집먼지 진드기 편) · vol 11(영유아 3대 위해요소)</td><td>Q&amp;A 문형, TIP 마감 "~해 주세요", 전환 블록 "연구합니다", Professional Solution 카드 6요소, 마이랩 클로징</td></tr>
+<tr><td class="k">코퍼스·디자인 참조</td><td>라이프케어 매거진 vol 01(집먼지 진드기 편) · vol 11(영유아 3대 위해요소) · Vol.14 카케어 16P 시안(261027 v4)</td><td>Q&amp;A 문형, TIP 마감 "~해 주세요", 전환 블록 "연구합니다", Professional Solution 카드 6요소, 마이랩 클로징, 지면 디자인 시스템</td></tr>
 </tbody></table>
-<p class="small gray" style="font-size:13px;margin:0">[제안] Q&amp;A 마감 CTA는 코퍼스 고정 문구(환경위생진단 신청하기)를 그대로 두었습니다. 제품 주제라 세스코몰 링크로 바꾸는 쪽이 맞다면 담당 결정이 필요합니다. <span class="need">[확인 필요: 외부 연구 인용 4건 원문 수치 재확인(11/5 전달본 승계)]</span></p></div>
+<p class="gray" style="font-size:13px;margin:0">[제안] Q&amp;A 마감 CTA는 코퍼스 고정 문구(환경위생진단 신청하기)를 그대로 두었습니다. 제품 주제라 세스코몰 링크로 바꾸는 쪽이 맞다면 담당 결정이 필요합니다. <span class="need">[확인 필요: 외부 연구 인용 4건 원문 수치 재확인(11/5 전달본 승계)]</span></p></div>
 
-<h2><span class="num">1</span>매거진 지면</h2>
-<div class="mag">
+<h2 class="doc"><span class="num">1</span>매거진 지면</h2>
 
-<section class="pg cover"><span class="tag">커버 = 목차</span>
-<div class="logo">CESCO LIFECARE MAGAZINE<small>by CESCO SCIENCE · vol <span class="need" style="color:#fff;background:rgba(255,255,255,.2)">[확인 필요: 호수]</span></small></div>
-<h2>빨아서 넣어 둔 겨울 이불에<br>진드기 알레르기 유발 물질이 남아 있다?<br>겨울 이불 꺼내기 전 세탁 관리 방법</h2>
-<div class="toc"><span><b>01</b>Q&amp;A · 세탁 후에도 남는 진드기 알레르기 유발 물질, 세스코에게 묻고 답하다</span><span><b>02</b>Self Solution · 세스코가 알려드리는 겨울 이불 세탁 관리 방법</span><span><b>03</b>CESCO Professional Solution · 세탁세제 프리미엄 · 이염방지시트</span></div>
-<div class="slot"><b>이미지 · 커버 공간 연출컷</b>장롱에서 꺼낸 두꺼운 겨울 이불이 놓인 밝은 침실. 제품 없음. 하단에 "세스코 라이프케어 매거진" 푸터</div>
-<span class="memo">제목 공식: 충격 질문·수치로 열고 "~하는 방법" 명사구로 닫는다(실물 14건 중 13건). 커버에 목차 01/02/03을 함께 올린다.</span>
+<div class="book" id="book">
+
+<!-- p.1 COVER -->
+<section class="spread single">
+  <div class="page cover">
+    <svg class="cover-bg" viewBox="0 0 210 297" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fa3ba"/><stop offset=".45" stop-color="#7b90a8"/><stop offset=".75" stop-color="#66788e"/><stop offset="1" stop-color="#4e5d70"/></linearGradient>
+        <linearGradient id="winlight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f0e6"/><stop offset="1" stop-color="#d9dde2"/></linearGradient>
+        <linearGradient id="duvet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbfaf6"/><stop offset="1" stop-color="#dcd9d0"/></linearGradient>
+        <linearGradient id="duvetsh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8e5dc"/><stop offset="1" stop-color="#c9c6bc"/></linearGradient>
+        <linearGradient id="bottomsh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20242c" stop-opacity="0"/><stop offset="1" stop-color="#20242c" stop-opacity=".62"/></linearGradient>
+        <radialGradient id="sunbeam" cx=".72" cy=".3" r=".65"><stop offset="0" stop-color="#fff6e2" stop-opacity=".8"/><stop offset=".5" stop-color="#ffefcf" stop-opacity=".25"/><stop offset="1" stop-color="#ffefcf" stop-opacity="0"/></radialGradient>
+        <filter id="softc" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1"/></filter>
+      </defs>
+      <rect width="210" height="297" fill="url(#wall)"/>
+      <!-- window with winter light -->
+      <g>
+        <rect x="128" y="38" width="62" height="86" rx="2" fill="#3f4c5c"/>
+        <rect x="131" y="41" width="56" height="80" rx="1" fill="url(#winlight)"/>
+        <path d="M131 101 L159 84 L187 98 L187 121 L131 121 Z" fill="#e9edf2" opacity=".9"/>
+        <circle cx="146" cy="56" r="7" fill="#fff" opacity=".85"/>
+        <line x1="159" y1="41" x2="159" y2="121" stroke="#3f4c5c" stroke-width="2.4"/>
+        <line x1="131" y1="81" x2="187" y2="81" stroke="#3f4c5c" stroke-width="2.4"/>
+      </g>
+      <rect width="210" height="297" fill="url(#sunbeam)"/>
+      <!-- wardrobe hint, left -->
+      <g opacity=".85" filter="url(#softc)">
+        <rect x="14" y="30" width="44" height="118" rx="1.5" fill="#55636f"/>
+        <line x1="36" y1="30" x2="36" y2="148" stroke="#46525d" stroke-width="1.6"/>
+        <circle cx="32" cy="92" r="1.4" fill="#aeb9c2"/><circle cx="40" cy="92" r="1.4" fill="#aeb9c2"/>
+        <!-- folded duvet stack on shelf -->
+        <rect x="18" y="38" width="34" height="9" rx="4" fill="#e8e4da"/>
+        <rect x="19" y="49" width="32" height="8" rx="4" fill="#d8d4c9"/>
+      </g>
+      <!-- bed with thick winter duvet -->
+      <g>
+        <path d="M-6 213 Q 30 196 72 196 L 192 199 Q 214 201 216 216 L 216 300 L -6 300 Z" fill="#9aa5ad"/>
+        <path d="M-8 231 Q 24 198 66 194 Q 120 190 168 199 Q 204 206 214 226 Q 219 246 212 300 L -8 300 Z" fill="url(#duvet)"/>
+        <path d="M30 206 Q 70 196 120 198" fill="none" stroke="url(#duvetsh)" stroke-width="2.6" opacity=".9" filter="url(#softc)"/>
+        <path d="M18 232 Q 72 216 150 220" fill="none" stroke="#d3cfc5" stroke-width="3" opacity=".8" filter="url(#softc)"/>
+        <path d="M44 262 Q 110 246 186 252" fill="none" stroke="#d3cfc5" stroke-width="3.4" opacity=".7" filter="url(#softc)"/>
+        <!-- duvet fold-over edge -->
+        <path d="M-8 231 Q 40 214 100 212 Q 160 211 214 226 L 214 240 Q 160 224 100 226 Q 44 228 -8 246 Z" fill="#f4f2ec" opacity=".9"/>
+        <!-- pillows -->
+        <path d="M58 193 Q 60 182 74 181 L 104 180 Q 116 181 117 190 Q 117 199 105 200 L 72 201 Q 60 201 58 193 Z" fill="#f7f5ef"/>
+        <path d="M112 192 Q 113 183 125 182 L 150 182 Q 161 183 162 191 Q 161 199 150 200 L 124 200 Q 114 199 112 192 Z" fill="#eceadf"/>
+      </g>
+      <rect width="210" height="297" fill="url(#bottomsh)"/>
+    </svg>
+
+    <div class="masthead">
+      <div class="mh-l1">CESCO</div><div class="mh-badge">CESCO</div>
+      <div class="mh-l2">Lifecare</div>
+      <div class="mh-l3">Magazine</div>
+      <div class="mh-by">by CESCO SCIENCE</div>
+    </div>
+
+    <div class="cover-bl">
+      <div class="vol">vol &nbsp;<span class="memo" style="font-size:1.6cqw">호수 확인</span></div>
+      <div class="guide">〈 LAUNDRY GUIDE 〉 <span class="memo">라벨 확인</span></div>
+      <h1 class="h-cover">빨아서 넣어 둔 겨울 이불에<br>진드기 알레르기 유발 물질이 남아 있다?<br>겨울 이불 꺼내기 전 세탁 관리 방법</h1>
+    </div>
+
+    <aside class="cover-br">
+      <div class="line"></div>
+      <b>01 Q&amp;A</b>
+      <p>세탁 후에도 남는 진드기 알레르기<br>유발 물질, 세스코에게 묻고 답하다</p>
+      <b>02 Self Solution</b>
+      <p>세스코가 알려드리는<br>겨울 이불 세탁 관리 방법</p>
+      <b>03 CESCO<br>Professional Solution</b>
+      <p>세탁세제 프리미엄 · 이염방지시트</p>
+      <div class="brand">세스코 라이프케어 매거진</div>
+    </aside>
+  </div>
+</section>
+<p class="memo-doc">커버 제목 공식: 충격 질문·수치로 열고 "~하는 방법" 명사구로 닫는다(실물 14건 중 13건). 커버에 목차 01/02/03을 함께 올린다. 커버 이미지는 장롱에서 꺼낸 겨울 이불이 놓인 침실 연출컷(제품 없음) 자리 — 위 일러스트는 레이아웃 가이드.</p>
+
+<!-- p.2-3 : 01 Q&A -->
+<section class="spread">
+  <div class="page">
+    <div class="pad" style="padding-top:6cqw">
+      <p class="secno en">01 Q&amp;A</p>
+      <p class="allabout" style="margin-top:3cqw">All about</p>
+      <h2 class="sect" style="margin-top:.6cqw">세탁 후에도 남는 진드기 알레르기 유발 물질,<br><u>세스코에게 묻고 답하다</u></h2>
+      <div class="ph" style="aspect-ratio:16/6;margin-top:2.4cqw;border-radius:.9cqw">[컷] 장롱에서 겨울 이불을 꺼내는 손 · 밝은 침실</div>
+      <p class="qa-q">올해 초에 빨아서 넣어 둔 겨울 이불, 꺼내서 바로 덮어도 괜찮은가요?</p>
+      <p class="qa-a1">세탁을 했더라도 진드기 알레르기 유발 물질이 모두 제거되는 것은 아닙니다.</p>
+      <p class="qa-p">침구와 옷을 가정용 세탁기로 세탁한 연구에서 진드기 알레르겐은 <span class="em">평균 84% 감소</span>했습니다. 대부분 씻겨 나갔지만 일부는 여전히 섬유에 남아 있었습니다. 봄에 세탁해 넣어 둔 이불이라도 남은 알레르기 유발 물질은 보관하는 동안 저절로 사라지지 않습니다.</p>
+      <p class="qa-src">출처: Arlian L.G. 외, J Allergy Clin Immunol, 2003 <span class="memo">외부 연구 수치 재확인(11/5 전달본 승계)</span></p>
+      <p class="qa-q">진드기는 뜨거운 물에 빨면 죽는다고 들었는데, 그러면 끝 아닌가요?</p>
+      <p class="qa-a1">진드기를 없애는 것과 알레르기 유발 물질을 제거하는 것은 다른 문제입니다.</p>
+      <p class="qa-p">진드기의 사체와 배설물에 알레르기 반응을 일으키는 성분인 알레르겐이 들어 있기 때문입니다. 고온 세탁으로 진드기를 사멸시켜도 이 성분은 일부가 섬유에 붙어 장시간 남아 있습니다. <b class="emb">진드기를 없앤 카펫 시료를 18개월 보관한 연구에서도 알레르겐 농도는 뚜렷하게 줄지 않았습니다.</b></p>
+      <p class="qa-src">출처: de Boer R. 외, Clin Exp Allergy, 1995</p>
+    </div>
+    <span class="pno l">02</span>
+  </div>
+  <div class="page">
+    <span class="hdr">CESCO Lifecare Magazine</span>
+    <div class="pad" style="padding-top:6cqw">
+      <p class="qa-q" style="margin-top:0">조금 남은 정도라면 괜찮지 않나요?</p>
+      <p class="qa-a1">소량의 진드기 알레르겐이라도 민감한 사람에게는 알레르기 증상을 일으키거나 악화시킬 수 있습니다.</p>
+      <p class="qa-p">특히 이불은 잠자는 동안 얼굴과 목, 손발에 닿습니다. 눈에 보이지 않는 알레르겐까지 관리해 주는 것이 좋습니다. 진드기 알레르겐은 <span class="em">물에 녹는 성질</span>이 있어서, 60℃ 이상의 고온 세탁이 어려운 이불이라도 충분한 헹굼으로 줄일 수 있습니다. 다만 일반 세탁만으로 섬유 틈새에 남은 사체와 배설물까지 다 씻어내기는 어렵습니다.</p>
+      <p class="qa-src">출처: Maestrelli P. 외, Clin Exp Allergy, 2001 / 대한소아알레르기호흡기학회(KAPARD), 집먼지진드기 알레르기 환경관리 가이드라인</p>
+      <div class="ph" style="aspect-ratio:16/7;margin-top:3cqw;border-radius:.9cqw">[컷] 겨울 이불을 덮고 잠든 아이 · 얼굴에 닿는 침구 연출</div>
+      <div class="diagcta">
+        <p>우리집 침구 속 진드기가 걱정되시나요?<br>세스코가 눈에 보이지 않는 진드기 알레르기 유발 물질<br>관리 방법을 알려드립니다.</p>
+        <span class="btn">환경위생진단 신청하기</span>
+      </div>
+    </div>
+    <span class="pno r">03</span>
+  </div>
+</section>
+<p class="memo-doc">Q 3개(최빈값). 마지막 Q의 답이 '셀프로는 한계'로 수렴. Q&amp;A 마감 CTA 3행은 3단형 실물 9건 중 9건 고정(진단 신청만, 구매 CTA는 03 이후로).</p>
+
+<!-- p.4-5 : 02 Self Solution / 전환 블록 -->
+<section class="spread">
+  <div class="page">
+    <div class="pad" style="padding-top:6cqw">
+      <p class="secno en">02 Self Solution</p>
+      <h2 class="sect">세스코가 알려드리는<br><u>겨울 이불 세탁 관리 방법</u></h2>
+      <div class="ss" style="margin-top:2.4cqw">
+        <div class="ss-t"><span>Self Solution</span>꺼낸 이불, 덮기 전에 이렇게 관리해 주세요</div>
+        <div class="tip"><div class="ph">[아이콘] 세탁 표시 라벨</div><div><h4><b>TIP 1.</b><i>세탁 표시</i>부터 확인하기</h4><p>이불 커버와 충전재의 세탁 표시를 통해 물세탁, 고온 세탁, 건조기 사용이 가능한지 확인해 주세요. 소재에 맞지 않는 방법은 충전재를 상하게 합니다.</p></div></div>
+        <div class="tip"><div class="ph">[아이콘] 계량캡과 헹굼</div><div><h4><b>TIP 2.</b>세제는 권장량에 맞게, <i>헹굼은 충분히</i> 하기</h4><p>세제를 과다하게 넣으면 세제 찌꺼기가 남을 수 있습니다. 이불 무게에 맞는 권장량만 넣고, 세탁기의 이불 코스로 충분히 헹궈 주세요. 진드기 알레르겐은 물에 녹기 때문에 헹굼이 곧 관리입니다.</p></div></div>
+        <div class="tip"><div class="ph">[아이콘] 건조대</div><div><h4><b>TIP 3.</b>속까지 <i>완전히 건조</i>하기</h4><p>충전재 속에 축축한 곳이 없을 때까지 말려 주세요. 덜 마른 이불은 냄새와 세균의 원인이 됩니다.</p></div></div>
+        <div class="tip"><div class="ph">[아이콘] 세제 라벨 확인</div><div><h4><b>TIP 4.</b>예민한 피부라면 <i>세제부터 고르기</i></h4><p>진드기 사체·배설물 세척 테스트와 피부 자극 테스트를 받은 세제를 골라 주세요. 이불은 잠자는 동안 피부에 오래 닿습니다.</p></div></div>
+      </div>
+    </div>
+    <span class="pno l">04</span>
+  </div>
+  <div class="page bluepg">
+    <div class="pad" style="padding-top:11cqw">
+      <div class="pivot">
+        겨울 이불을 안심하고 덮기 위해<br><b>Self Solution은 가장 기본적인 위생 수칙입니다.</b>
+        <span class="however">그러나, 세탁을 마쳐도 섬유 틈새에 남아<br>저절로 사라지지 않는<br><b>진드기 사체와 배설물 속 알레르기 유발 물질.</b></span>
+      </div>
+      <p class="sothat en">그래서 세스코는,</p>
+      <div class="pivot">
+        눈에 보이는 얼룩만 지우는 세제가 아닌,<br>
+        진드기 사체와 배설물까지 씻어내는지 항목별로 시험하고<br>
+        피부에 닿는 섬유에 남는 성분까지 검사하는 세탁세제를<br>
+        <b>연구합니다.</b>
+      </div>
+    </div>
+    <div class="script">by cesco science</div>
+    <div class="curve"></div>
+    <span class="pno r" style="color:#dce7f7">05</span>
+  </div>
+</section>
+<p class="memo-doc">TIP은 "~해 주세요"로 마감(실물 규칙). TIP 1~3은 11/5 전달본 셀프팁 그대로, TIP 4는 전달본의 마지막 문장을 TIP으로 올린 것 — 마지막 TIP이 03으로 연결. 전환 블록 3박자 고정: ① 한계 인정 ② 그러나(명사구로 끊음) ③ 그래서 세스코는, A가 아니라 B를 연구합니다. 주어는 세스코, 제품명·가격 없음(10건 중 10건 「연구합니다」).</p>
+
+<!-- p.6-7 : 03 Professional Solution -->
+<section class="spread">
+  <div class="page">
+    <div class="pad" style="padding-top:5.4cqw;padding-bottom:4cqw">
+      <p class="secno en" style="font-size:2.4cqw">03 CESCO Professional Solution</p>
+      <h2 class="steph">매일 피부에 닿는 이불과 옷은<br>알레르기 유발 물질까지 시험한 세제로 관리해야 합니다</h2>
+      <p class="step" style="margin-top:3cqw"><b>STEP. 1</b>세탁해도 남는 진드기 사체·배설물은, 씻어내는지 테스트한 세제로 관리</p>
+      <p class="pname"><small>CESCO MYLAB LAUNDRY DETERGENT PREMIUM</small>세스코 마이랩 세탁세제 프리미엄</p>
+      <p class="pdesc">세탁 후에도 섬유 틈새에 남을 수 있는 진드기 사체·배설물, 꽃가루, 반려동물 털, 미세먼지를 항목별로 세척 테스트했습니다. 피부에 오래 닿는 이불과 아이 옷을 생각해 향과 성분까지 알레르기 기준으로 검증했습니다.</p>
+      <div class="bignum">
+        <div><div class="v">4종</div><div class="l">알레르기 유발 물질 세척 테스트 완료<sup>1)</sup></div></div>
+        <div><div class="v">26종</div><div class="l">알레르기 반응 가능 물질 불검출 알러젠 프리향<sup>2)</sup></div></div>
+      </div>
+      <p class="ckh en">CHECK POINT.</p>
+      <ul class="ck">
+        <li>진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 · 미세먼지 세척 테스트 완료<sup>1)</sup></li>
+        <li>오염 유형별 8종 효소로 생활 얼룩·찌든 때 세척</li>
+        <li>인체 피부 자극 시험 더마테스트 엑설런트 등급 · 대한아토피협회 추천</li>
+        <li>인공 색소 무첨가, 형광증백제 · 파라벤류 6종 · 가습기 살균제 이슈 성분 4종 불검출<sup>2)</sup></li>
+        <li>농축 액체형 · 원액(중성), 물 5 L에 세제 7 mL · 본품 2 L · 리필 1.7 L</li>
+      </ul>
+      <span class="golink">세탁세제 프리미엄 상세보기 →</span>
+      <div class="ph" style="aspect-ratio:16/6;margin-top:2cqw;border-radius:.9cqw">[컷] 본품 2 L + 리필 1.7 L 제품컷 · 밝은 세탁실, 개킨 이불 커버 옆</div>
+      <p class="fn">1) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음.<br>2) 기후에너지환경부 고시 알레르기 반응 가능 물질 26종, 파라벤류 방부제 6종(메틸파라벤, 에틸파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤), 가습기 살균제 이슈 성분 4종(MIT, CMIT, DDAC, BKC), 형광증백제 불검출 테스트 완료.</p>
+    </div>
+    <span class="pno l">06</span>
+  </div>
+  <div class="page">
+    <span class="hdr">CESCO Lifecare Magazine</span>
+    <div class="pad" style="padding-top:5.4cqw;padding-bottom:4cqw">
+      <p class="step"><b>STEP. 2</b>이불 커버와 옷을 함께 세탁할 때는, 빠져나온 염료·미세먼지를 시트가 흡착</p>
+      <p class="pname"><small>CESCO MYLAB COLOR CATCHER SHEET</small>세스코 마이랩 이염방지시트</p>
+      <p class="pdesc">세탁 중 빠져나온 염료와 오염물을 흡착해 이염을 줄이고, 분리 세탁의 번거로움을 덜어 줍니다. 세탁기에 시트 한 장을 함께 넣기만 하면 됩니다.</p>
+      <div class="bignum">
+        <div><div class="v">91%</div><div class="l">이염률 감소 확인<sup>3)</sup></div></div>
+        <div><div class="v">100%</div><div class="l">비스코스 식물성 원단 · 40매(25 × 20 cm)</div></div>
+      </div>
+      <p class="ckh en">CHECK POINT.</p>
+      <ul class="ck">
+        <li>이염률 91% 감소 확인<sup>3)</sup>, 미세먼지 흡착 성능 테스트 완료</li>
+        <li>합성 플라스틱 없는 비스코스 100% 원단, 생분해 테스트 완료<sup>4)</sup></li>
+        <li>파라벤류 6종 · 가습기 살균제 이슈 성분 4종 · 형광증백제 불검출</li>
+      </ul>
+      <span class="golink">이염방지시트 상세보기 →</span>
+      <div class="ph" style="aspect-ratio:16/6;margin-top:2cqw;border-radius:.9cqw">[컷] 세탁기에 이염방지시트를 넣는 손 · 이불 커버와 옷 혼합 세탁</div>
+      <p class="fn">3) 세스코 마이랩 이염방지시트: 이염률 91% 감소 확인(이염 성능 테스트 완료). 사용 환경에 따라 결과가 달라질 수 있음.<br>4) 생분해도 테스트 완료(ISO 14855-1:2012).</p>
+      <div class="mallcta">
+        <p>겨울 이불을 꺼내는 지금이 세탁 관리를 시작할 때.<br>세스코 마이랩으로 침구 위생을 완성하세요.<small>세스코몰 www.cescomall.co.kr · 고객센터 1588-1119</small></p>
+        <div class="qr">QR<br><span class="memo" style="font-size:1cqw">목적지 확인</span></div>
+      </div>
+    </div>
+    <span class="pno r">07</span>
+  </div>
+</section>
+<p class="memo-doc">Professional Solution 카드 6요소 고정(헤더 2행 → 정식명 → 연결 서술 → 수치 배지 → CHECK POINT → 상세보기 + 각주). 연결 상품은 3개 상한, 이번 편은 2개(세탁세제 프리미엄 · 이염방지시트). 세스코 마이랩 각주 서식(제품명 + 대상 + 수치 + 결과, 시험기관 없음). [제안] 런칭 프로모션(~12/31, 세탁세제 프리미엄 2 L + 리필 1.7 L + 이염방지시트 46,800원 → 23,800원)은 매거진 본문이 아니라 부속물(프로모션 리플릿 또는 세스코몰 링크)로 붙입니다 — 실물 매거진은 본문에 가격을 싣지 않습니다.</p>
+
+<!-- p.8 : 마이랩 클로징 -->
+<section class="spread single">
+  <div class="page closepg">
+    <div class="pad">
+      <p class="mot en">누구나. 집에서. 스스로.</p>
+      <p class="body">전문가 수준의 위생을 누릴 수 있도록<br>성분 하나까지 엄격한 기준으로 고르고<br>누구나 전문가처럼 제품을 사용할 수 있도록<br>제품을 사용하는 올바른 방법까지 담았습니다.</p>
+      <p class="brand">세스코 과학연구소의 50여 년 노하우를 통째로 담은<br>생활위생용품 브랜드, 세스코 마이랩</p>
+      <span class="mall">더 많은 세스코 마이랩 제품을 세스코몰에서 · 세스코몰 바로가기</span>
+      <div class="logo">CESCO<small>세스코 마이랩</small></div>
+    </div>
+    <span class="pno r" style="color:#8fa0bd">08</span>
+  </div>
+</section>
+<p class="memo-doc">세스코 마이랩 제품을 2개 이상 실을 때 붙이는 브랜드 클로징(실물 3건). 실물 규칙(14건 중 14건)대로 마지막 장은 첫 장과 같은 커버를 반복합니다(아래).</p>
+
+<!-- p.9 : 커버 반복 (실물 규칙) -->
+<section class="spread single">
+  <div class="page cover">
+    <svg class="cover-bg" viewBox="0 0 210 297" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="210" height="297" fill="url(#wall)"/>
+      <g>
+        <rect x="128" y="38" width="62" height="86" rx="2" fill="#3f4c5c"/>
+        <rect x="131" y="41" width="56" height="80" rx="1" fill="url(#winlight)"/>
+        <path d="M131 101 L159 84 L187 98 L187 121 L131 121 Z" fill="#e9edf2" opacity=".9"/>
+        <circle cx="146" cy="56" r="7" fill="#fff" opacity=".85"/>
+        <line x1="159" y1="41" x2="159" y2="121" stroke="#3f4c5c" stroke-width="2.4"/>
+        <line x1="131" y1="81" x2="187" y2="81" stroke="#3f4c5c" stroke-width="2.4"/>
+      </g>
+      <rect width="210" height="297" fill="url(#sunbeam)"/>
+      <g opacity=".85" filter="url(#softc)">
+        <rect x="14" y="30" width="44" height="118" rx="1.5" fill="#55636f"/>
+        <line x1="36" y1="30" x2="36" y2="148" stroke="#46525d" stroke-width="1.6"/>
+        <circle cx="32" cy="92" r="1.4" fill="#aeb9c2"/><circle cx="40" cy="92" r="1.4" fill="#aeb9c2"/>
+        <rect x="18" y="38" width="34" height="9" rx="4" fill="#e8e4da"/>
+        <rect x="19" y="49" width="32" height="8" rx="4" fill="#d8d4c9"/>
+      </g>
+      <g>
+        <path d="M-6 213 Q 30 196 72 196 L 192 199 Q 214 201 216 216 L 216 300 L -6 300 Z" fill="#9aa5ad"/>
+        <path d="M-8 231 Q 24 198 66 194 Q 120 190 168 199 Q 204 206 214 226 Q 219 246 212 300 L -8 300 Z" fill="url(#duvet)"/>
+        <path d="M-8 231 Q 40 214 100 212 Q 160 211 214 226 L 214 240 Q 160 224 100 226 Q 44 228 -8 246 Z" fill="#f4f2ec" opacity=".9"/>
+        <path d="M58 193 Q 60 182 74 181 L 104 180 Q 116 181 117 190 Q 117 199 105 200 L 72 201 Q 60 201 58 193 Z" fill="#f7f5ef"/>
+        <path d="M112 192 Q 113 183 125 182 L 150 182 Q 161 183 162 191 Q 161 199 150 200 L 124 200 Q 114 199 112 192 Z" fill="#eceadf"/>
+      </g>
+      <rect width="210" height="297" fill="url(#bottomsh)"/>
+    </svg>
+    <div class="masthead">
+      <div class="mh-l1">CESCO</div><div class="mh-badge">CESCO</div>
+      <div class="mh-l2">Lifecare</div>
+      <div class="mh-l3">Magazine</div>
+      <div class="mh-by">by CESCO SCIENCE</div>
+    </div>
+    <div class="cover-bl">
+      <div class="vol">vol &nbsp;<span class="memo" style="font-size:1.6cqw">호수 확인</span></div>
+      <div class="guide">〈 LAUNDRY GUIDE 〉</div>
+      <h1 class="h-cover">빨아서 넣어 둔 겨울 이불에<br>진드기 알레르기 유발 물질이 남아 있다?<br>겨울 이불 꺼내기 전 세탁 관리 방법</h1>
+    </div>
+    <aside class="cover-br">
+      <div class="line"></div>
+      <b>01 Q&amp;A</b>
+      <p>세탁 후에도 남는 진드기 알레르기<br>유발 물질, 세스코에게 묻고 답하다</p>
+      <b>02 Self Solution</b>
+      <p>세스코가 알려드리는<br>겨울 이불 세탁 관리 방법</p>
+      <b>03 CESCO<br>Professional Solution</b>
+      <p>세탁세제 프리미엄 · 이염방지시트</p>
+      <div class="brand">세스코 라이프케어 매거진</div>
+    </aside>
+  </div>
 </section>
 
-<section class="pg qa"><span class="tag">01 Q&amp;A</span>
-<div class="sec-no">01 Q&amp;A</div>
-<div class="sec-t">All about 세탁 후에도 남는 진드기 알레르기 유발 물질,<br>세스코에게 묻고 답하다</div>
-<div class="q">올해 초에 빨아서 넣어 둔 겨울 이불, 꺼내서 바로 덮어도 괜찮은가요?</div>
-<p class="a1">세탁을 했더라도 진드기 알레르기 유발 물질이 모두 제거되는 것은 아닙니다.</p>
-<p>침구와 옷을 가정용 세탁기로 세탁한 연구에서 진드기 알레르겐은 평균 84% 감소했습니다. 대부분 씻겨 나갔지만 일부는 여전히 섬유에 남아 있었습니다. 봄에 세탁해 넣어 둔 이불이라도 남은 알레르기 유발 물질은 보관하는 동안 저절로 사라지지 않습니다.</p>
-<p class="src">출처: Arlian L.G. 외, J Allergy Clin Immunol, 2003</p>
-<div class="q">진드기는 뜨거운 물에 빨면 죽는다고 들었는데, 그러면 끝 아닌가요?</div>
-<p class="a1">진드기를 없애는 것과 알레르기 유발 물질을 제거하는 것은 다른 문제입니다.</p>
-<p>진드기의 사체와 배설물에 알레르기 반응을 일으키는 성분인 알레르겐이 들어 있기 때문입니다. 고온 세탁으로 진드기를 사멸시켜도 이 성분은 일부가 섬유에 붙어 장시간 남아 있습니다. 진드기를 없앤 카펫 시료를 18개월 보관한 연구에서도 알레르겐 농도는 뚜렷하게 줄지 않았습니다.</p>
-<p class="src">출처: de Boer R. 외, Clin Exp Allergy, 1995</p>
-<div class="q">조금 남은 정도라면 괜찮지 않나요?</div>
-<p class="a1">소량의 진드기 알레르겐이라도 민감한 사람에게는 알레르기 증상을 일으키거나 악화시킬 수 있습니다.</p>
-<p>특히 이불은 잠자는 동안 얼굴과 목, 손발에 닿습니다. 눈에 보이지 않는 알레르겐까지 관리해 주는 것이 좋습니다. 진드기 알레르겐은 물에 녹는 성질이 있어서, 60℃ 이상의 고온 세탁이 어려운 이불이라도 충분한 헹굼으로 줄일 수 있습니다. 다만 일반 세탁만으로 섬유 틈새에 남은 사체와 배설물까지 다 씻어내기는 어렵습니다.</p>
-<p class="src">출처: Maestrelli P. 외, Clin Exp Allergy, 2001 / 대한소아알레르기호흡기학회(KAPARD), 집먼지진드기 알레르기 환경관리 가이드라인</p>
-<div class="cta"><p>우리집 침구 속 진드기가 걱정되시나요?</p><p>세스코가 눈에 보이지 않는 진드기 알레르기 유발 물질 관리 방법을 알려드립니다.</p><span class="btn">환경위생진단 신청하기</span></div>
-<span class="memo">Q 3개(최빈값). 마지막 Q의 답이 '셀프로는 한계'로 수렴. Q&amp;A 마감 CTA 3행은 3단형 실물 9건 중 9건 고정(진단 신청만, 구매 CTA는 03 이후로).</span>
-</section>
+</div><!-- /book -->
 
-<section class="pg soft"><span class="tag">02 Self Solution</span>
-<div class="sec-no">02 SELF SOLUTION</div>
-<div class="sec-t">세스코가 알려드리는<br>겨울 이불 세탁 관리 방법</div>
-<div class="tip"><div class="n">TIP. 1</div><div><b>세탁 표시부터 확인하기</b><p>이불 커버와 충전재의 세탁 표시를 통해 물세탁, 고온 세탁, 건조기 사용이 가능한지 확인해 주세요. 소재에 맞지 않는 방법은 충전재를 상하게 합니다.</p></div></div>
-<div class="tip"><div class="n">TIP. 2</div><div><b>세제는 권장량에 맞게, 헹굼은 충분히 하기</b><p>세제를 과다하게 넣으면 세제 찌꺼기가 남을 수 있습니다. 이불 무게에 맞는 권장량만 넣고, 세탁기의 이불 코스로 충분히 헹궈 주세요. 진드기 알레르겐은 물에 녹기 때문에 헹굼이 곧 관리입니다.</p></div></div>
-<div class="tip"><div class="n">TIP. 3</div><div><b>속까지 완전히 건조하기</b><p>충전재 속에 축축한 곳이 없을 때까지 말려 주세요. 덜 마른 이불은 냄새와 세균의 원인이 됩니다.</p></div></div>
-<div class="tip"><div class="n">TIP. 4</div><div><b>예민한 피부라면 세제부터 고르기</b><p>진드기 사체·배설물 세척 테스트와 피부 자극 테스트를 받은 세제를 골라 주세요. 이불은 잠자는 동안 피부에 오래 닿습니다.</p></div></div>
-<div class="slot"><b>이미지 · TIP 아이콘 4개</b>세탁 표시 라벨 / 계량캡과 헹굼 / 건조대 / 세제 라벨 확인. TIP과 1:1</div>
-<span class="memo">TIP은 "~해 주세요"로 마감(실물 규칙). TIP 1~3은 11/5 전달본 셀프팁 그대로, TIP 4는 전달본의 마지막 문장("예민한 피부라면 … 세제가 좋습니다")을 TIP으로 올린 것. 마지막 TIP이 03으로 연결.</span>
-</section>
-
-<section class="pg navy"><span class="tag">전환 블록</span>
-<div class="pivot">겨울 이불을 안심하고 덮기 위해<br><em>Self Solution은 가장 기본적인 위생 수칙입니다.</em><br><br>그러나, 세탁을 마쳐도 섬유 틈새에 남아 저절로 사라지지 않는<br>진드기 사체와 배설물 속 알레르기 유발 물질.<br><br>그래서 세스코는,<br>눈에 보이는 얼룩만 지우는 세제가 아닌,<br>진드기 사체와 배설물까지 씻어내는지 항목별로 시험하고<br>피부에 닿는 섬유에 남는 성분까지 검사하는 세탁세제를<br><em>연구합니다.</em></div>
-<span class="memo" style="background:rgba(255,255,255,.15);color:#fff">3박자 고정: ① 한계 인정 ② 그러나(명사구로 끊음) ③ 그래서 세스코는, A가 아니라 B를 연구합니다. 주어는 세스코, 제품명·가격 없음(10건 중 10건 「연구합니다」).</span>
-</section>
-
-<section class="pg"><span class="tag">03 Professional Solution</span>
-<div class="sec-no">03 CESCO PROFESSIONAL SOLUTION</div>
-<div class="sec-t">매일 피부에 닿는 이불과 옷은<br>알레르기 유발 물질까지 시험한 세제로 관리해야 합니다</div>
-
-<div class="card"><div class="st">STEP. 1</div>
-<div class="h2">세탁해도 남는 진드기 사체·배설물은,<br>씻어내는지 테스트한 세제로 관리</div>
-<div class="pn">세스코 마이랩 세탁세제 프리미엄</div>
-<p>세탁 후에도 섬유 틈새에 남을 수 있는 진드기 사체·배설물, 꽃가루, 반려동물 털, 미세먼지를 항목별로 세척 테스트했습니다. 피부에 오래 닿는 이불과 아이 옷을 생각해 향과 성분까지 알레르기 기준으로 검증했습니다.</p>
-<div class="badges"><div class="badge"><div class="v">4종</div><div class="l">알레르기 유발 물질 세척 테스트 완료<sup>1)</sup></div></div><div class="badge"><div class="v">26종</div><div class="l">알레르기 반응 가능 물질 불검출 알러젠 프리향<sup>2)</sup></div></div></div>
-<div class="cp"><b>CHECK POINT.</b><ul><li>진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 · 미세먼지 세척 테스트 완료<sup>1)</sup></li><li>오염 유형별 8종 효소로 생활 얼룩·찌든 때 세척</li><li>인체 피부 자극 시험 더마테스트 엑설런트 등급 · 대한아토피협회 추천</li><li>인공 색소 무첨가, 형광증백제 · 파라벤류 6종 · 가습기 살균제 이슈 성분 4종 불검출<sup>2)</sup></li><li>농축 액체형 · 원액(중성), 물 5 L에 세제 7 mL · 본품 2 L · 리필 1.7 L</li></ul></div>
-<span class="link">세탁세제 프리미엄 상세보기 →</span>
-<div class="fn"><p>1) 세스코 마이랩 세탁세제 프리미엄: 진드기 사체·배설물, 꽃가루, 반려동물 털 제거 테스트 완료, 미세먼지 세척 테스트 완료. 사용 환경에 따라 결과가 달라질 수 있음.</p><p>2) 기후에너지환경부 고시 알레르기 반응 가능 물질 26종, 파라벤류 방부제 6종(메틸파라벤, 에틸파라벤, 프로필파라벤, 부틸파라벤, 이소프로필파라벤, 이소부틸파라벤), 가습기 살균제 이슈 성분 4종(MIT, CMIT, DDAC, BKC), 형광증백제 불검출 테스트 완료.</p></div>
-<div class="slot"><b>이미지 · 본품 2 L + 리필 1.7 L 제품컷</b>밝은 세탁실, 개킨 이불 커버 옆</div>
-</div>
-
-<div class="card"><div class="st">STEP. 2</div>
-<div class="h2">이불 커버와 옷을 함께 세탁할 때는,<br>빠져나온 염료·미세먼지를 시트가 흡착</div>
-<div class="pn">세스코 마이랩 이염방지시트</div>
-<p>세탁 중 빠져나온 염료와 오염물을 흡착해 이염을 줄이고, 분리 세탁의 번거로움을 덜어 줍니다. 세탁기에 시트 한 장을 함께 넣기만 하면 됩니다.</p>
-<div class="badges"><div class="badge"><div class="v">91%</div><div class="l">이염률 감소 확인<sup>3)</sup></div></div><div class="badge"><div class="v">100%</div><div class="l">비스코스 식물성 원단 · 40매(25 × 20 cm)</div></div></div>
-<div class="cp"><b>CHECK POINT.</b><ul><li>이염률 91% 감소 확인<sup>3)</sup>, 미세먼지 흡착 성능 테스트 완료</li><li>합성 플라스틱 없는 비스코스 100% 원단, 생분해 테스트 완료<sup>4)</sup></li><li>파라벤류 6종 · 가습기 살균제 이슈 성분 4종 · 형광증백제 불검출</li></ul></div>
-<span class="link">이염방지시트 상세보기 →</span>
-<div class="fn"><p>3) 세스코 마이랩 이염방지시트: 이염률 91% 감소 확인(이염 성능 테스트 완료). 사용 환경에 따라 결과가 달라질 수 있음.</p><p>4) 생분해도 테스트 완료(ISO 14855-1:2012).</p></div>
-</div>
-<p class="gray" style="font-size:13px">[제안] 런칭 프로모션(~12/31, 세탁세제 프리미엄 2 L + 리필 1.7 L + 이염방지시트 46,800원 → 23,800원)은 매거진 본문이 아니라 부속물(프로모션 리플릿 또는 세스코몰 링크)로 붙입니다. 실물 매거진은 본문에 가격을 싣지 않습니다.</p>
-<span class="memo">Professional Solution 카드 6요소 고정(헤더 2행 → 정식명 → 연결 서술 → 수치 배지 → CHECK POINT → 상세보기 + 각주). 연결 상품은 3개 상한, 이번 편은 2개(세탁세제 프리미엄 · 이염방지시트). 세스코 마이랩 각주 서식(제품명 + 대상 + 수치 + 결과, 시험기관 없음).</span>
-</section>
-
-<section class="pg soft"><span class="tag">마이랩 클로징</span>
-<div class="state">누구나. 집에서. 스스로.<br>전문가 수준의 위생을 누릴 수 있도록<br>성분 하나까지 엄격한 기준으로 고르고<br>누구나 전문가처럼 제품을 사용할 수 있도록<br>제품을 사용하는 올바른 방법까지 담았습니다.<br><br><b>세스코 과학연구소의 50여 년 노하우를 통째로 담은<br>생활위생용품 브랜드 세스코 마이랩</b><br><br><span class="link">더 많은 세스코 마이랩 제품을 세스코몰에서 만나보세요 · 세스코몰 바로가기</span></div>
-<span class="memo">세스코 마이랩 제품을 2개 이상 실을 때 붙이는 브랜드 클로징(실물 3건). 마지막 장은 첫 장과 같은 커버 반복(14건 중 14건).</span>
-</section>
-
-<section class="pg"><span class="tag">포털 등록 · 공유</span>
+<h2 class="doc"><span class="num">2</span>포털 등록 · 공유</h2>
 <h3 style="margin-top:0">해시태그</h3>
 <p class="tags">#라이프케어매거진 #lifecaremagazine #겨울이불 #이불세탁 #집먼지진드기 #진드기알레르기 #알레르기유발물질 #아토피 #영유아 #가정집 #마이랩 #세스코마이랩 #세탁세제프리미엄 #이염방지시트</p>
 <h3>부속물</h3>
 <p class="gray" style="font-size:13.5px">[제안] 11월 카드뉴스 세탁세제 편(겨울 이불) · 라이프케어 매거진 vol 01 커버(집먼지 진드기 편, 같은 위해요소 지난 호) · 세탁관리 솔루션 리플릿(261103 배포본). Professional Solution에서 연결한 상품군을 따라 고릅니다.</p>
 <h3>콘텐츠 공유하기</h3>
 <p class="share">카카오톡으로 공유하기 / 문자 메시지로 공유하기 / 세스코 '공식 카카오톡 채널' 안내 함께 공유하기<span class="warn">※ 광고성 메시지는 마케팅 수신동의를 하지 않은 고객에게는 발송해서는 안됩니다. 꼭 고객이 요청한 경우에만 공유해 주세요.</span></p>
-</section>
 
-</div><!-- /mag -->
 </div>
 <script>
-var b=document.getElementById('memoBtn');b.addEventListener('click',function(){document.body.classList.toggle('hide-memo');b.textContent=document.body.classList.contains('hide-memo')?'제작 메모·이미지 자리 보이기':'제작 메모·이미지 자리 숨기기';});
+var b=document.getElementById('memoBtn');b.addEventListener('click',function(){document.body.classList.toggle('hide-memo');b.textContent=document.body.classList.contains('hide-memo')?'제작 메모 보이기':'제작 메모 숨기기';});
 </script>
 </body></html>
