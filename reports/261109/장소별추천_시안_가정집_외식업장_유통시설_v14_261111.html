@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>어느 곳에 세스코가 필요한가요? · 장소별 추천 페이지 시안 · v14 공간 맵 중심 재설계 · 서비스/시설/제품 3층 위계 · 연구소 5분야</title>
+<style>
+:root{--navy:#1b2a5e;--blue:#2d5be3;--blue-2:#4d6fe8;--ink:#222;--ink-2:#555;--ink-3:#8a8f9c;--line:#e3e6ee;--wash:#eef1f6;--tag-bg:#2d5be3;--red:#e2322e;--memo:#fff3cd;--memo-ink:#8a5a00;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);background:#fff;line-height:1.6;letter-spacing:-.01em;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+.memo{display:inline-block;background:var(--memo);color:var(--memo-ink);font-size:11px;font-weight:600;padding:1px 6px;border-radius:3px;vertical-align:middle;letter-spacing:0;}
+.slot{position:relative;background:var(--wash);border:1.5px dashed #b9c2d6;border-radius:6px;overflow:hidden;}
+.slot .lbl{position:absolute;left:12px;bottom:10px;font-size:11.5px;color:var(--ink-3);line-height:1.45;max-width:85%;}
+.slot .lbl b{display:block;color:var(--ink-2);font-size:11px;margin-bottom:2px;}
+
+/* ===== 작업 노트 바 ===== */
+.note{background:#fff8e6;border-bottom:1px solid #f1dfa6;font-size:12.5px;color:var(--memo-ink);padding:10px 0;}
+.note .wrap{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.note b{font-weight:800;}
+
+/* ===== 인덱스 ===== */
+.index{padding:96px 0 80px;}
+.index h1{font-size:40px;font-weight:800;color:var(--navy);letter-spacing:-.03em;line-height:1.2;}
+.index > .wrap > p{font-size:16px;color:var(--ink-2);margin-top:14px;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 24px;margin-top:64px;}
+.place{display:block;text-decoration:none;color:inherit;}
+.place .slot{aspect-ratio:255/140;}
+.place .t{display:flex;align-items:baseline;gap:10px;margin-top:16px;font-size:17px;font-weight:700;color:var(--navy);}
+.place .t span{font-size:14px;font-weight:600;color:var(--blue);}
+.place p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:6px;}
+.place:hover .t{color:var(--blue);}
+
+/* ===== 장소 상세 ===== */
+.detail{border-top:1px solid var(--line);padding:88px 0 0;}
+.head{display:grid;grid-template-columns:1fr 260px;gap:40px;align-items:start;}
+.head h2{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-.03em;display:flex;align-items:center;gap:14px;}
+.head h2 .chev{width:34px;height:34px;border:2px solid var(--navy);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;}
+.head h2 .chev::after{content:"";width:9px;height:9px;border-right:2px solid var(--navy);border-bottom:2px solid var(--navy);transform:translateY(-2px) rotate(45deg);}
+.head p{font-size:16px;color:var(--ink-2);line-height:1.75;margin-top:18px;max-width:600px;}
+.similar{padding-top:18px;}
+.similar .tag{display:inline-block;background:var(--tag-bg);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:3px;}
+.similar p{font-size:13px;color:var(--ink-2);margin-top:8px;}
+.hero{margin-top:40px;}
+.hero .slot{aspect-ratio:1080/480;border-radius:0;}
+
+/* 섹션 공통: 좌 타이틀 / 우 콘텐츠 */
+.sec{display:grid;grid-template-columns:250px 1fr;gap:40px;padding:88px 0 0;}
+.sec .st::before{content:"";display:block;width:40px;height:2px;background:var(--red);margin-bottom:22px;}
+.sec .st h3{font-size:22px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:-.02em;word-break:keep-all;}
+.sec .st small{display:block;font-size:13px;color:var(--ink-3);margin-top:12px;line-height:1.5;}
+
+/* BLOCK 03 위생 문제 3 */
+.issues{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.issues .slot{aspect-ratio:185/112;background:#eaeef5;border:0;}
+.issues h4{font-size:16px;font-weight:700;color:var(--navy);margin-top:20px;}
+.issues p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:8px;}
+
+/* BLOCK 04 관리 영역 */
+.areas{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+.areas .slot{aspect-ratio:4/3;}
+.areas ol{list-style:none;}
+.areas li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);}
+.areas li:first-child{padding-top:4px;}
+.areas li:last-child{border-bottom:0;}
+.areas .no{font-size:22px;font-weight:300;color:var(--blue);line-height:1.1;}
+.areas b{display:block;font-size:16px;font-weight:700;color:var(--navy);}
+.areas p{font-size:13px;color:var(--ink-2);margin-top:4px;}
+
+/* BLOCK 05 솔루션 */
+.sols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.sols > div{border:1px solid var(--line);border-radius:8px;padding:28px 24px 24px;display:flex;flex-direction:column;min-height:200px;}
+.sols .k{font-size:12px;font-weight:700;color:var(--blue);}
+.sols b{display:block;font-size:17px;font-weight:700;color:var(--navy);margin-top:8px;line-height:1.4;}
+.sols p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:10px;flex:1;}
+.sols a{font-size:13px;font-weight:700;color:var(--navy);text-decoration:none;margin-top:18px;}
+.sols a::after{content:" →";}
+
+/* BLOCK 05-1 추천 상품 */
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.products > div{border:1px solid var(--line);border-radius:8px;padding:22px 20px 20px;background:#fff;}
+.products .thumb{aspect-ratio:4/3;background:var(--wash);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;margin-bottom:16px;}
+.products .k{font-size:12px;font-weight:700;color:var(--blue);}
+.products b{display:block;font-size:16px;font-weight:700;color:var(--navy);margin-top:6px;line-height:1.4;}
+.products p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:8px;}
+.products a{display:inline-block;font-size:13px;font-weight:700;color:var(--navy);text-decoration:none;margin-top:14px;}
+.products a::after{content:" →";}
+
+/* CTA */
+.cta{margin:88px 0 0;padding:64px 0;background:var(--wash);text-align:center;}
+.cta h3{font-size:26px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:-.02em;}
+.cta a{display:inline-flex;align-items:center;gap:12px;margin-top:28px;background:#fff;color:var(--navy);font-size:15px;font-weight:700;padding:16px 28px;border-radius:4px;text-decoration:none;box-shadow:0 2px 10px rgba(27,42,94,.08);}
+.cta a::after{content:"↘";font-size:16px;}
+.foot{text-align:center;font-size:12px;color:var(--ink-3);padding:40px 0 60px;}
+
+/* BLOCK 03-1 방치 시 위해성 */
+.risk{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.risk > div{background:var(--wash);border-radius:8px;padding:24px 22px;}
+.risk .f{font-size:12px;font-weight:700;color:var(--ink-3);}
+.risk .f::before{content:"문제 ";}
+.risk b{display:block;font-size:15px;font-weight:700;color:var(--navy);margin-top:6px;line-height:1.45;}
+.risk b::before{content:"→ ";color:var(--red);}
+.risk p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:8px;}
+/* BLOCK 04-1 세스코 연구소 */
+.lab{display:block;max-width:760px;}
+.lab .slot{aspect-ratio:4/3;}
+.lab p{font-size:14px;color:var(--ink-2);line-height:1.75;}
+.lab .kpi{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+.lab .kpi div{border:1px solid var(--line);border-radius:6px;padding:14px 16px;}
+.lab .kpi b{display:block;font-size:14px;color:var(--navy);line-height:1.4;}
+.lab .kpi span{font-size:12px;color:var(--ink-3);display:block;margin-top:4px;line-height:1.5;}
+/* FAQ */
+.faq details{border-bottom:1px solid var(--line);}
+.faq details:first-child{border-top:1px solid var(--line);}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:32px 1fr 24px;gap:12px;align-items:center;padding:20px 4px;font-size:16px;font-weight:700;color:var(--navy);}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary .q{color:var(--blue);font-weight:800;}
+.faq summary .pm{justify-self:end;width:22px;height:22px;border:1.5px solid var(--navy);border-radius:50%;position:relative;}
+.faq summary .pm::before,.faq summary .pm::after{content:"";position:absolute;background:var(--navy);top:50%;left:50%;transform:translate(-50%,-50%);}
+.faq summary .pm::before{width:10px;height:1.5px;} .faq summary .pm::after{width:1.5px;height:10px;}
+.faq details[open] summary .pm::after{display:none;}
+.faq .a{padding:0 4px 22px 44px;font-size:14px;color:var(--ink-2);line-height:1.75;}
+
+/* ===== 실제 페이지 모드 ===== */
+
+.slot .ico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#eef2f8 0%,#e3e9f3 100%);color:#4e6aa8;}
+.slot .ico svg{width:30%;max-width:120px;height:auto;opacity:.9;}
+.hero .slot .ico svg{width:14%;}
+.slot:has(.ico){border:0;}
+
+.slot .lbl{z-index:2;background:rgba(255,255,255,.85);padding:6px 8px;border-radius:4px;}
+body:not(.show-memo) .memo,body:not(.show-memo) .note,body:not(.show-memo) .slot .lbl{display:none;}
+.gnb{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);}
+.gnb .wrap{display:flex;align-items:center;gap:36px;height:72px;}
+.gnb .logo{font-size:26px;font-weight:900;color:var(--blue);letter-spacing:-.02em;font-family:"Arial Black",Arial,sans-serif;text-decoration:none;}
+.gnb nav{display:flex;gap:28px;font-size:15px;font-weight:600;color:var(--navy);}
+.gnb nav a{text-decoration:none;color:inherit;} .gnb nav a.on{color:var(--blue);border-bottom:2px solid var(--blue);padding-bottom:4px;}
+.gnb .right{margin-left:auto;display:flex;gap:10px;align-items:center;}
+.gnb .right a{font-size:13px;font-weight:700;color:#fff;background:var(--blue);padding:9px 16px;border-radius:4px;text-decoration:none;}
+.gnb .right button{font-size:12px;color:var(--ink-3);background:#fff;border:1px solid var(--line);border-radius:4px;padding:8px 10px;cursor:pointer;}
+.index{background:linear-gradient(180deg,#f5f7fb 0%,#fff 38%);}
+.hero .slot{border-radius:12px;}
+.sitefoot{background:#1f2430;color:#aab0bf;margin-top:0;padding:48px 0 40px;font-size:12.5px;line-height:1.8;}
+.sitefoot .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;}
+.sitefoot .logo{font-size:22px;font-weight:900;color:#fff;font-family:"Arial Black",Arial,sans-serif;margin-bottom:10px;}
+.sitefoot .tel{font-size:22px;font-weight:800;color:#fff;} .sitefoot .tel small{display:block;font-size:12px;font-weight:400;color:#aab0bf;}
+@media (max-width:860px){.gnb nav{display:none;}.sitefoot .wrap{grid-template-columns:1fr;}}
+
+@media (max-width:860px){
+  .risk,.lab,.lab .kpi{grid-template-columns:1fr;}
+  .grid{grid-template-columns:1fr 1fr;gap:32px 16px;}
+  .head,.sec,.areas{grid-template-columns:1fr;gap:20px;}
+  .issues,.sols,.products{grid-template-columns:1fr;}
+  .index h1{font-size:30px;} .head h2{font-size:30px;}
+  .sec{padding-top:64px;}
+}
+
+/* 추가: 고민(1인칭) · 공간 탭 · 인증마크 · 배너 */
+.worry{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.worry > div{border:1px solid var(--line);border-radius:8px;padding:24px 22px;}
+.worry .lb{font-size:12px;font-weight:700;color:var(--blue);}
+.worry q{display:block;font-size:15px;font-weight:700;color:var(--navy);margin-top:8px;line-height:1.5;quotes:"“" "”";}
+.worry p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:8px;}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.tabs span{font-size:13px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);border-radius:20px;padding:4px 14px;}
+.tabs span:first-child{background:var(--navy);color:#fff;}
+.mark{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.mark > div{background:var(--wash);border-radius:8px;padding:24px 22px;}
+.mark b{display:block;font-size:16px;color:var(--navy);}
+.mark p{font-size:13px;color:var(--ink-2);line-height:1.65;margin-top:8px;}
+.banner{margin-top:16px;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px;padding:12px 16px;font-size:13px;color:var(--ink-2);}
+.banner b{color:var(--navy);}
+@media (max-width:860px){.worry,.mark{grid-template-columns:1fr;}}
+
+/* 추가 제안 블록(초록 점선 = 미확정 제안) */
+.proposal{margin-top:40px;border:1.5px dashed #2e9e5b;background:#f1faf4;border-radius:10px;padding:26px 26px 30px;}
+.proposal .ptag{display:inline-block;background:#2e9e5b;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.02em;}
+.proposal h4{font-size:18px;font-weight:800;color:var(--navy);margin-top:10px;line-height:1.4;letter-spacing:-.02em;}
+.proposal .why{font-size:12.5px;color:#2f6b45;margin-top:6px;line-height:1.55;}
+.pmap{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;}
+.pmap > div{background:#fff;border:1px solid #cfe7d8;border-radius:8px;padding:16px 16px 18px;}
+.pmap .sp{display:block;font-size:15px;font-weight:800;color:var(--navy);}
+.pmap .pt{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:8px;}
+.pmap .pt::before{content:"위생 포인트";display:block;font-size:11px;font-weight:700;color:var(--red);margin-bottom:2px;}
+.pmap .mg{font-size:12.5px;color:var(--ink);line-height:1.55;margin-top:10px;}
+.pmap .mg::before{content:"세스코 관리";display:block;font-size:11px;font-weight:700;color:var(--blue);margin-bottom:2px;}
+.proposal .foot{font-size:12px;color:var(--ink-3);margin-top:14px;line-height:1.5;}
+@media (max-width:900px){.pmap{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.pmap{grid-template-columns:1fr;}}
+
+/* ===== v14: 공간 맵 ===== */
+.map{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:start;}
+.map svg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:#fff;}
+.room{cursor:pointer;}
+.room rect{fill:#f3f5f9;stroke:#c7cfdc;stroke-width:1.5;transition:fill .15s;}
+.room:hover rect{fill:#e6ecf7;}
+.room.on rect{fill:#dfe7fb;stroke:var(--blue);stroke-width:2;}
+.room text{font-size:13px;font-weight:700;fill:var(--navy);pointer-events:none;}
+.room .pin{fill:var(--red);}
+.room .n{font-size:10px;fill:#fff;font-weight:800;}
+.mp{border:1px solid var(--line);border-radius:10px;padding:26px 26px 24px;min-height:240px;display:flex;flex-direction:column;justify-content:center;}
+.mp .rm{display:none;}
+.mp .rm.on{display:block;}
+.mp .rn{font-size:12px;font-weight:700;color:var(--blue);}
+.mp h4{font-size:24px;font-weight:800;color:var(--navy);margin-top:4px;line-height:1.35;letter-spacing:-.02em;}
+.mp .pt{font-size:13.5px;color:var(--ink-2);line-height:1.65;margin-top:10px;}
+.mp .pt::before{content:"위생 포인트";display:block;font-size:11px;font-weight:700;color:var(--red);margin-bottom:2px;}
+.mp .vw{font-size:15.5px;font-weight:700;color:var(--navy);line-height:1.5;margin-top:16px;letter-spacing:-.01em;}
+.mp .mg{margin-top:14px;}
+.mp .mg::before{content:"세스코 관리";display:block;font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px;}
+.mp ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.mp li{font-size:13px;color:var(--ink);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
+.tier{flex:0 0 auto;display:inline-block;font-size:10.5px;font-weight:800;padding:1px 7px;border-radius:3px;letter-spacing:.02em;margin-top:2px;}
+.tier.s{background:var(--navy);color:#fff;}
+.tier.f{background:#e8eef9;color:var(--navy);border:1px solid #c7d3ea;}
+.tier.p{background:#fff;color:var(--blue);border:1px solid var(--blue);}
+.mp .lg{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3);}
+.mp .lg span{display:flex;gap:5px;align-items:center;}
+.rooms{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;}
+.rooms button{font:inherit;font-size:12.5px;font-weight:700;color:var(--navy);background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:4px 12px;cursor:pointer;}
+.rooms button.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+/* ===== v14: 핵심 솔루션 ===== */
+.sols .ti{display:inline-block;margin-bottom:8px;}
+.sols .inc{font-size:12px;color:var(--ink-3);line-height:1.55;margin-top:8px;}
+.sols .inc b{display:inline;font-size:12px;color:var(--ink-2);font-weight:700;margin:0;}
+/* ===== v14: 추천 상품 슬라이더(화면 고정, 카드만 이동) ===== */
+.carwrap{position:relative;padding:0 52px;}
+.carousel{overflow:hidden;padding:4px 0 10px;}
+.track{display:flex;gap:16px;transition:transform .4s ease;will-change:transform;}
+.track > div{flex:0 0 calc((100% - 32px)/3);border:1px solid var(--line);border-radius:8px;padding:18px 16px 16px;background:#fff;display:flex;flex-direction:column;box-sizing:border-box;}
+.track .thumb{aspect-ratio:4/3;background:var(--wash);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;margin-bottom:12px;}
+.track .k{font-size:11px;font-weight:700;color:var(--blue);}
+.track b{display:block;font-size:14.5px;font-weight:700;color:var(--navy);margin-top:6px;line-height:1.4;}
+.track p{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:6px;flex:1;}
+.track a{display:inline-block;font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:none;margin-top:12px;}
+.track a::after{content:" →";}
+.carnav button{position:absolute;top:42%;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--navy);background:#fff;color:var(--navy);font-size:20px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(27,42,94,.12);}
+.carnav button[data-dir="prev"]{left:0;} .carnav button[data-dir="next"]{right:0;}
+.carnav button:disabled{opacity:.3;cursor:default;box-shadow:none;}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:6px;}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);display:block;}
+.dots i.on{background:var(--navy);width:20px;border-radius:4px;}
+@media (max-width:900px){.track > div{flex-basis:calc((100% - 16px)/2);}}
+@media (max-width:560px){.carwrap{padding:0 44px;} .track > div{flex-basis:100%;}}
+.fac{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;}
+.fac > div{background:var(--wash);border-radius:8px;padding:16px 18px;}
+.fac .k{font-size:11px;font-weight:700;color:var(--navy);}
+.fac b{display:block;font-size:14.5px;font-weight:700;color:var(--navy);margin-top:4px;}
+.fac p{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:6px;}
+.fac a{font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:none;display:inline-block;margin-top:8px;}
+.fac a::after{content:" →";}
+.tiernote{font-size:12.5px;color:var(--ink-3);line-height:1.6;margin-top:16px;}
+.benef{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.benef > div{background:var(--wash);border-radius:8px;padding:20px 18px;}
+.benef .k{font-size:11px;font-weight:700;color:var(--blue);}
+.benef b{display:block;font-size:15.5px;color:var(--navy);line-height:1.4;margin-top:6px;}
+.benef p{font-size:12.5px;color:var(--ink-2);line-height:1.6;margin-top:8px;}
+@media (max-width:900px){.benef{grid-template-columns:1fr 1fr;}}
+/* ===== v14: 연구소 5분야 ===== */
+.lab5{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+.lab5 > div{border:1px solid var(--line);border-radius:8px;padding:18px 18px 16px;}
+.lab5 .k{font-size:11px;font-weight:700;color:var(--blue);}
+.lab5 b{display:block;font-size:15px;color:var(--navy);line-height:1.4;margin-top:4px;}
+.lab5 span{font-size:12.5px;color:var(--ink-2);display:block;margin-top:8px;line-height:1.6;}
+@media (max-width:900px){.map{grid-template-columns:1fr;} .lab5{grid-template-columns:1fr 1fr;} .fac{grid-template-columns:1fr;}}
+@media (max-width:560px){.lab5{grid-template-columns:1fr;} .carousel > div{flex-basis:78%;}}
+</style>
+</head>
+<body>
+<header class="gnb"><div class="wrap">
+  <a class="logo" href="#top">CESCO</a>
+  <nav><a href="#top">솔루션</a><a href="#top" class="on">장소별 추천</a><a href="#top">제품</a><a href="#top">세스코 과학</a><a href="#top">멤버스</a><a href="#top">고객센터</a></nav>
+  <div class="right"><button type="button" onclick="document.body.classList.toggle('show-memo')">작업 메모 보기/숨기기</button><a href="#top">상담 신청</a></div>
+</div></header>
+
+
+<div class="note"><div class="wrap"><b>시안 노트</b><span>점선 박스 = 이미지 자리(안쪽 텍스트는 연출 제안)</span><span>초록 점선 = 추가 제안(미확정 · 채택 시에만 반영)</span><span><span class="memo">[확인]</span> = 담당 확인 항목</span><span>구성: 위생 고민(고객 화법) → 그대로 두면(위해성) → 공간 전체 관리 → 핵심 솔루션 → 추천 상품 → 세스코 연구소/인증마크 → FAQ → CTA. 위해성 블록은 수치 없이 작은 팩트 → 전문가 해석으로만 쓴다(cesco-templates d62·d63 채널 규칙: 겁주는 표현·수치 금지) <span class="memo">[위해성 블록 표현 수위 담당 검토]</span></span><span><b>v14 반영 방식</b> ① 공간 관리를 도면(맵) 중심으로 재설계: 구 "공간 전체" 블록과 초록 점선 제안을 하나로 합치고, 공간마다 위생 포인트 한 줄과 「세스코는 무엇을 확인하고 어디까지 보는지」 한 줄만 둠(세스코가 공간을 세분화해 본다는 점만 드러냄, 서비스·제품 나열 없음). ② 중복 제거: 맵 = 어디에 무엇이(위치·관리 층), 핵심 솔루션 = 서비스가 하는 일과 포함 범위, 추천 상품 = 카탈로그. 같은 문장을 두 번 쓰지 않음. ③ 가정집은 "멤버스란?" 블록을 "멤버스 혜택" 블록으로 교체(비용·플러스알파케어·셀프 케어·세스코몰 4칸)하고 FAQ 뒤·CTA 앞으로 이동. ④ 연구소 블록을 해충 / 바이러스 / 식품 / 환경위생 / 시험·분석·이물분석 5분야로 재정리(세 장소 공통). ⑤ 추천 위계: <b>서비스</b>(세스코가 방문해 관리: 통합 해충방제·바이러스케어·식품안전·매트리스 케어·긴급진단) → <b>시설 보완</b>(서비스와 함께 설치·시공: 배수구트랩·방충망·방충필름) → <b>제품</b>(렌탈·구매: 환경가전, 세스코 마이랩/마스터). 포충등·모니터링 트랩·약제는 서비스에 포함되는 장비라 제품 카드 금지. 제품은 8~10종 캐러셀.</span><span><b>자동 추천 매칭 로직(제안)</b> 공간(도면) × 고민 → 서비스 TOP3(허브 실물) → 그 서비스에 딸린 시설 보완 → 공간별 제품(세스코몰 카탈로그 정식 표기, 가정집은 마이랩 가정용·환경가전, 사업장은 마스터·환경가전). 제외 규칙: 서비스 포함 장비, 모델 코드, 가격 병기, 가정집에 마스터 라인. <span class="memo">[코퍼스 재검토: d62·d63의 TOP3 3축을 서비스/시설/제품 3층으로 개정 · 세스코몰 카테고리↔공간 매핑표 신설 · 13곳 허브 TOP3 실물 수집 · 연구소 조직 정본]</span></span></div></div>
+
+<!-- ============ 인덱스 ============ -->
+<section class="index" id="top">
+  <div class="wrap">
+    <h1>어느 곳에 세스코가 필요한가요?</h1>
+    <p>장소별 최적의 솔루션을 제안합니다.</p>
+    <div class="grid">
+      <a class="place" href="#home"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span><div class="lbl"><b>이미지</b>거실 와이드 컷, 창가 소파</div></div><div class="t"><span>01</span>가정집</div><p>가족이 가장 오래 머무는 공간, 해충부터 공기·침구까지 함께 살펴보세요.</p></a>
+      <a class="place" href="#dining"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v8a2 2 0 0 0 4 0V3"/><path d="M8 11v10"/><path d="M17 3c-2 2-2 6-2 8h2v10"/></svg></span><div class="lbl"><b>이미지</b>레스토랑 홀, 바 카운터</div></div><div class="t"><span>02</span>외식업장</div><p>식재료와 사람이 끊임없이 오가는 공간, 조리 환경과 홀 위생을 함께 관리하세요.</p></a>
+      <a class="place" href="#retail"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.2 11h11.3L21 7H6.2"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg></span><div class="lbl"><b>이미지</b>식료품 매장 진열대</div></div><div class="t"><span>03</span>유통시설</div><p>많은 고객이 오가고 식품을 취급하는 매장, 입고 동선부터 푸드코트까지 확인하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6"/><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M7 11.5v4.5c0 1.5 2.5 3 5 3s5-1.5 5-3v-4.5"/></svg></span><div class="lbl"><b>이미지</b>유치원 교실</div></div><div class="t"><span>04</span>교육시설</div><p>아이들이 함께 지내는 공간, 감염병과 식중독 걱정을 세스코 과학으로 관리하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><path d="M14 9h6v12h-6"/><path d="M7 7h1M10 7h1M7 11h1M10 11h1M7 15h1M10 15h1M17 13h1M17 17h1"/><path d="M8 21v-3h2v3"/></svg></span><div class="lbl"><b>이미지</b>빌딩 로비</div></div><div class="t"><span>05</span>빌딩시설</div><p>입주사와 방문객이 오가는 빌딩, 해충 클레임과 바이러스 전파를 함께 관리하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10v4M21 10v4"/><rect x="5" y="8" width="3" height="8"/><rect x="16" y="8" width="3" height="8"/><path d="M8 12h8"/></svg></span><div class="lbl"><b>이미지</b>피트니스 센터</div></div><div class="t"><span>06</span>서비스시설</div><p>땀과 사람이 머무는 공간, 바이러스·유해세균과 냄새까지 쾌적하게 관리하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v10H4z"/><path d="M4 14c0 3 3 5 8 5s8-2 8-5"/><path d="M12 19v2M9 21h6"/></svg></span><div class="lbl"><b>이미지</b>공연장 객석</div></div><div class="t"><span>07</span>문화시설</div><p>많은 사람이 찾는 문화공간, 바이러스·유해세균을 관리하고 공간의 품격까지 더하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><rect x="5" y="5" width="14" height="14" rx="2"/></svg></span><div class="lbl"><b>이미지</b>치과 진료실</div></div><div class="t"><span>08</span>의료시설</div><p>환자와 직원이 함께 머무는 공간, 공간별 해충과 전문 살균소독으로 차별화하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18"/><path d="M4 18v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"/><path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M8 10v-1h8v1"/></svg></span><div class="lbl"><b>이미지</b>리조트 객실</div></div><div class="t"><span>09</span>특급호텔/리조트</div><p>특별한 힐링이 방해받지 않도록, 위생 매뉴얼과 클레임 관리로 호텔의 신뢰를 지키세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14"/><path d="M3 20h18"/><path d="M7 9h3v3H7zM14 9h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3z"/></svg></span><div class="lbl"><b>이미지</b>모텔 객실·복도</div></div><div class="t"><span>10</span>모텔/일반호텔</div><p>객실 냄새와 고정 소독비용 고민, 플랫폼 인증 마크 지원과 함께 해결하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l5 3V10l5 3V10l5 3v8"/><path d="M3 21h18"/><path d="M6 6a2 2 0 0 1 4 0c0 1.5-2 2-2 2s-2-.5-2-2z"/></svg></span><div class="lbl"><b>이미지</b>식품공장 라인</div></div><div class="t"><span>11</span>식품제조</div><p>김치·밀키트 등 식품제조시설, 시설 내 해충방제와 이물 클레임을 함께 관리하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l5 3V9l5 3V9l5 3v9"/><path d="M3 21h18"/><path d="M15 3v6M18 3v6"/></svg></span><div class="lbl"><b>이미지</b>제조공장 생산라인</div></div><div class="t"><span>12</span>제조공장</div><p>유리·제지·철판 등 제조공장, 이물 불량률과 쥐로 인한 설비 피해를 관리하세요.</p></a>
+      <a class="place" href="#top"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l9-5 9 5v12"/><path d="M3 21h18"/><rect x="7" y="14" width="4" height="4"/><rect x="13" y="14" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/></svg></span><div class="lbl"><b>이미지</b>물류창고 검품장</div></div><div class="t"><span>13</span>창고시설</div><p>물류 창고·배송물류센터, 24시간 해충방제와 탑차 살균 소독으로 물류 품질을 지키세요.</p></a>
+    </div>
+    <p class="banner" style="margin-top:40px">장소 13곳 명칭·유사 장소·고민 3·TOP3는 cesco.co.kr /solution/place/* 13개 페이지 실물 기준(2026-07 수집). 각 장소 슬로건 2줄은 허브 고정 문자열이라 수집 후 그대로 넣습니다. <span class="memo">[외식업장 외 12곳 슬로건 수집]</span></p>
+  </div>
+</section>
+
+<!-- ============ 01 가정집 ============ -->
+<section class="detail" id="home">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>가정집 <span class="chev"></span></h2>
+        <p>집은 해충, 실내 공기, 침구와 생활기기까지 관리할 위생 요소가 많은 공간입니다. 세스코는 해충이 보이면 들어온 길과 머무는 자리부터 찾고, 공기·침구·생활기기는 공간별로 점검합니다. <span class="memo">[가정집 도입 문구 · 허브 고정 슬로건과 최종 대조]</span></p>
+      </div>
+      <div class="similar"><span class="tag">유사한 장소</span><p>아파트 · 빌라 · 오피스텔 · 단독주택</p></div>
+    </div>
+    <div class="hero"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span><div class="lbl"><b>히어로 이미지</b>밝은 거실 전체가 보이는 와이드 컷. 소파·창가·주방 일부. 제품은 배경에 작게.</div></div></div>
+    <p class="banner"><b>공통 프로모션</b> 세스코 제휴카드로 이용료 정기 결제 시 월 최대 25,000원 할인 · <b>가정집 비용 안내</b> 긴급진단 서비스부터 렌탈 월 9,900원~까지 <span class="memo">[가정집 비용 배너 원문 확인]</span></p>
+    <div class="sec">
+      <div class="st"><h3>가정집에서<br>이런 고민,<br>하고 계신가요?</h3><small>고객이 직접 말하는 위생 고민 3</small></div>
+      <div class="worry">
+        <div><span class="lb">해충 · 유입</span><q>집에서 바퀴를 한 마리 봤는데, 어디서 들어왔는지 모르겠어요.</q><p>현관·배관·싱크대 아래처럼 해충이 들어오고 머무는 자리부터 확인해 보세요.</p></div>
+        <div><span class="lb">해충 · 재발</span><q>약을 뿌리면 그때뿐이고 며칠 지나면 또 보여요. 아이가 있어서 독한 약도 쓰기 꺼려지고요.</q><p>스프레이는 눈에 띈 해충만 없앱니다. 해충이 머무는 자리에 약제를 처치하고, 아이·반려동물이 다니는 곳은 피해서 관리하세요.</p></div>
+        <div><span class="lb">공기 · 침구</span><q>창문을 닫고 지내는 계절엔 집 안 공기가 답답하고, 매트리스나 소파는 빨 수도 없어요.</q><p>환기가 어려운 날의 실내 공기와 세탁할 수 없는 매트리스·소파는 청소와 다른 방법으로 관리하세요.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="st"><h3>그대로 두면<br>어떻게 될까요?</h3><small>위생 관리를 미뤘을 때 생기는 일 · 수치 없이 작은 팩트 → 전문가 해석 <span class="memo">[표현 수위 검토]</span></small></div>
+      <div class="risk">
+        <div><span class="f">01</span><b>바퀴는 어둡고 습한 틈에서 지냅니다</b><p>싱크대 아래·냉장고 뒤·배관 틈처럼 손이 닿지 않는 자리에 모여 있다가 밤에 나옵니다. 한 마리가 보였다면 머무는 자리가 이미 있다는 뜻입니다. 눈에 띈 해충만 없애면 같은 자리에서 다시 나오기 쉽습니다.</p></div>
+        <div><span class="f">02</span><b>시판 약을 반복해서 쓰면 효과가 떨어질 수 있습니다</b><p>같은 성분을 오래 쓰면 약제에 견디는 해충이 생깁니다. 세스코는 해충만 겨냥해 설계한 약제를 주기적으로 바꿔 쓰고, 처치 자리와 양은 집 안 동선에 맞춰 정합니다.</p></div>
+        <div><span class="f">03</span><b>매트리스·소파와 실내 공기는 청소로 관리하기 어렵습니다</b><p>매트리스·소파에는 진드기와 생활 오염이 쌓이고, 창문을 닫아둔 집 안에는 냄새와 공기 중 오염원이 남습니다. 둘 다 일반 청소와 다른 관리가 필요합니다.</p></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코는 공간을<br>나눠서 봅니다.</h3><small>공간을 누르면 그 공간의 위생 포인트와 세스코가 무엇을 확인하는지가 보입니다 · 무엇으로 관리하는지는 아래 핵심 솔루션·추천 상품에서</small></div>
+      <div class="map"><div><svg viewBox="0 0 620 420" role="img" aria-label="공간 도면"><g class="room" data-room="entry"><rect x="20" y="20" width="150" height="110" rx="8"/><text x="34" y="116">현관·창틀</text><circle class="pin" cx="38" cy="36" r="9"/><text class="n" x="38" y="39.5" text-anchor="middle">1</text></g><g class="room" data-room="living"><rect x="180" y="20" width="250" height="200" rx="8"/><text x="194" y="206">거실</text><circle class="pin" cx="198" cy="36" r="9"/><text class="n" x="198" y="39.5" text-anchor="middle">2</text></g><g class="room" data-room="kitchen"><rect x="440" y="20" width="160" height="200" rx="8"/><text x="454" y="206">주방</text><circle class="pin" cx="458" cy="36" r="9"/><text class="n" x="458" y="39.5" text-anchor="middle">3</text></g><g class="room" data-room="kids"><rect x="20" y="140" width="150" height="130" rx="8"/><text x="34" y="256">아이방·침실</text><circle class="pin" cx="38" cy="156" r="9"/><text class="n" x="38" y="159.5" text-anchor="middle">4</text></g><g class="room" data-room="bath"><rect x="180" y="230" width="120" height="140" rx="8"/><text x="194" y="356">화장실</text><circle class="pin" cx="198" cy="246" r="9"/><text class="n" x="198" y="249.5" text-anchor="middle">5</text></g><g class="room" data-room="laundry"><rect x="310" y="230" width="290" height="140" rx="8"/><text x="324" y="356">베란다·세탁실</text><circle class="pin" cx="328" cy="246" r="9"/><text class="n" x="328" y="249.5" text-anchor="middle">6</text></g></svg><div class="rooms"><button type="button" data-room="entry">1 현관·창틀</button><button type="button" data-room="living">2 거실</button><button type="button" data-room="kitchen">3 주방</button><button type="button" data-room="kids">4 아이방·침실</button><button type="button" data-room="bath">5 화장실</button><button type="button" data-room="laundry">6 베란다·세탁실</button></div></div><div class="mp"><div class="rm" data-room="entry"><span class="rn">1 / 6</span><h4>현관·창틀</h4><p class="pt">밖에서 해충이 들어오는 첫 번째 길. 문틈·창틀·방충망 틈.</p><p class="vw">세스코는 문틈·창틀·방충망의 틈을 확인하고, 해충이 들어온 길을 먼저 찾습니다.</p></div><div class="rm" data-room="living"><span class="rn">2 / 6</span><h4>거실</h4><p class="pt">가족이 가장 오래 머무는 공기와 소파·카펫의 생활 오염.</p><p class="vw">세스코는 공기 중 세균·바이러스와 소파·카펫 같은 생활 접점까지 봅니다.</p></div><div class="rm" data-room="kitchen"><span class="rn">3 / 6</span><h4>주방</h4><p class="pt">싱크대 아래·냉장고 뒤·배수구, 어둡고 습한 틈과 음식물 냄새.</p><p class="vw">세스코는 싱크대 아래·냉장고 뒤·배수구의 서식 자리를 확인하고, 그 자리에 처치합니다.</p></div><div class="rm" data-room="kids"><span class="rn">4 / 6</span><h4>아이방·침실</h4><p class="pt">매트리스 속 진드기와 환절기 실내 공기.</p><p class="vw">세스코는 매트리스 속 진드기와 오염을 진단하고, 침구 세탁 위생까지 봅니다.</p></div><div class="rm" data-room="bath"><span class="rn">5 / 6</span><h4>화장실</h4><p class="pt">배관 틈으로 들어오는 해충과 매일 쓰는 비데.</p><p class="vw">세스코는 배관 틈의 유입 여부를 확인하고, 비데 노즐과 도기 위생까지 봅니다.</p></div><div class="rm" data-room="laundry"><span class="rn">6 / 6</span><h4>베란다·세탁실</h4><p class="pt">실외와 이어진 틈, 빨래 쉰내와 세탁조 오염.</p><p class="vw">세스코는 외부 틈새 여부를 확인하고, 세탁세제와 세탁조 안의 위생까지 봅니다.</p></div></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>이 공간에 필요한<br>세스코 핵심 솔루션</h3><small>서비스 층 · cesco.co.kr 가정집 페이지 TOP3 기준 · 전환은 "자세히 보기"만 <span class="memo">[허브 TOP3 실물 대조]</span></small></div>
+      <div class="sols"><div><span class="k">솔루션 01</span><b>통합 해충방제</b><p>컨설턴트가 집 안을 진단해 해충이 들어오는 길과 머무는 자리를 찾고, 해충만 겨냥해 설계한 약제로 처치한 뒤 정기 방문과 통합상황실 모니터링으로 재발을 관리합니다.</p><p class="inc"><b>포함</b> 진단 · 처치 · 정기 방문 · 모니터링. 급하면 긴급진단 서비스로 먼저 확인</p><a href="#">자세히 보기</a></div><div><span class="k">솔루션 02</span><b>바이러스케어</b><p>전문가가 손이 닿는 표면을 정기 살균하고, 공기 중 바이러스와 세균은 24시간 살균합니다. 가족이 함께 머무는 공간의 접점을 관리합니다.</p><p class="inc"><b>포함</b> 전문 살균 · 24시간 공기 관리 · 기물 표면 살균</p><a href="#">자세히 보기</a></div><div><span class="k">솔루션 03</span><b>매트리스 케어 서비스</b><p>집에서 세탁하기 어려운 매트리스를 진단하고 약제 분무, 집진, 표면 코팅까지 전문 장비로 관리합니다.</p><p class="inc"><b>포함</b> 진단 · 약제 분무 · 집진 · 특수표면코팅 기본 제공</p><a href="#">자세히 보기</a></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>가정집에서 많이 찾는<br>추천 상품</h3><small>제품 층 · 환경가전(렌탈)과 세스코 마이랩 · 옆으로 넘겨 보기 · 아래는 서비스와 함께 설치하는 시설 보완</small></div>
+      <div><div class="carwrap"><div class="carousel"><div class="track"><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>UV파워 공기살균기 센스미</b><p>거실·아이방 공기를 24시간 살균합니다. 렌탈 월 요금은 세스코몰에서 확인.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>트루살균 공기청정기 판테온</b><p>살균과 공기청정을 함께 하는 거실용 환경가전입니다. 20·25평형.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>더슬림 정수기</b><p>주방에서 매일 마시는 물을 정기 케어십으로 관리합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>살균방수 비데</b><p>화장실에서 매일 쓰는 위생기기를 노즐 살균과 필터 케어로 관리합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩</span><b>세스코 마이랩 세탁세제 프리미엄</b><p>침구·아이 옷의 알레르기 유발 물질과 냄새 원인균을 세탁으로 줄입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩</span><b>세스코 마이랩 배수구클리너</b><p>해충이 들어오기 쉬운 주방 배수구를 집에서 직접 관리합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩</span><b>세스코 마이랩 곡물발효 살균소독제</b><p>식품첨가물 성분으로 식탁·조리대 표면을 살균합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩</span><b>세스코 마이랩 모기 기피제</b><p>외출과 산책 전 몸에 뿌리는 기피제입니다. 반려견용 별도.</p><a href="#">자세히 보기</a></div></div></div><div class="carnav"><button type="button" data-dir="prev" aria-label="이전">‹</button><button type="button" data-dir="next" aria-label="다음">›</button></div><div class="dots"></div></div><div class="fac"><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>실내 배수구트랩 서비스</b><p>주방·욕실 배수구로 올라오는 해충과 악취를 막습니다.</p><a href="#">자세히 보기</a></div><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>청정 방충망 시공 서비스</b><p>해충, 미세먼지, 꽃가루까지 차단하는 방충망으로 교체합니다.</p><a href="#">자세히 보기</a></div><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>방충필름 시공 서비스</b><p>창틀·문틈에 해충이 접근하지 못하게 사전에 차단합니다.</p><a href="#">자세히 보기</a></div></div><p class="tiernote">약제, 모니터링 장비, 트랩은 통합 해충방제 서비스에 포함되는 것이라 상품으로 따로 두지 않습니다. 상품명은 세스코몰 정식 표기이고, 가격과 평형 옵션은 세스코몰 상세에서 확인합니다. <span class="memo">[노출 상품·순서 운영 확정]</span></p></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코 과학 연구소가<br>함께합니다.</h3><small>분야별 연구소 5곳 · cesco.co.kr 솔루션 페이지에서 확인된 내용만 <span class="memo">[연구소 조직명·수치 정본 확인 · 731/713종, 특허 140/600여 건 원문 불일치]</span></small></div>
+      <div class="lab"><p>세스코 과학연구소는 분야별 연구소와 시험·분석 기관을 두고, 해충과 세균을 직접 키우고 시험해 현장에서 쓰는 관리 기준을 만듭니다. 그 기준을 1,000시간 교육을 이수한 정직원 컨설턴트가 공간에 적용합니다.</p>
+      <div class="lab5"><div><span class="k">01 해충</span><b>해충방제 연구소</b><span>국내 서식 해충 731종을 직접 사육·연구해 2,193가지 방제 방법과 자체 개발 BIO 약제 300가지를 만들고, 3개월마다 약제를 바꿔 써 내성을 막습니다. 통합상황실이 현장 데이터를 실시간으로 봅니다.</span></div><div><span class="k">02 바이러스</span><b>바이러스 연구소</b><span>고려대 의대 바이러스병 연구소와 공동연구합니다. 연구원 200명이 공간에 맞는 살균 방법을 처방하고, BSL-3 시설에서 살아 있는 고위험 바이러스로 공기살균 효능을 시험해 KTL·KCL에서 검증합니다.</span></div><div><span class="k">03 식품</span><b>식품안전 연구소</b><span>1976년부터 120만 개 주방의 오염 데이터로 3,021가지 관리 기준을 만들었습니다. 식품의약품안전처 지정 HACCP 교육훈련기관(제10호)이며, 식품안전 컨설턴트는 300여 시간 교육을 이수합니다.</span></div><div><span class="k">04 환경위생</span><b>생활과학 연구소 · 향기 연구소</b><span>침구·주방·욕실처럼 손이 자주 닿는 생활 공간을 연구해 3,127가지 생활위생 솔루션과 세스코 마이랩 제품을 설계하고, 102개 업종의 공간·고객 특성을 분석해 향을 처방합니다. <span class="memo">[환경위생 분야 조직명 확인]</span></span></div><div><span class="k">05 시험·분석</span><b>시험분석 연구소 · 이물분석센터</b><span>식품 등 시험·검사기관(제100호), KOLAS 국제공인시험기관으로 중금속·보존료·미생물 등 180여 가지를 검사합니다. 이물분석센터는 국내 유일 이물분석 전문기관으로 30여 가지 기법으로 이물의 종류와 혼입 시점을 밝히며, 일반 분석은 3~5일이 걸립니다.</span></div></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>자주 묻는 질문</h3><small>가정집 상담 전 궁금한 점</small></div>
+      <div class="faq">
+        <details><summary><span class="q">Q</span>어떤 관리부터 시작해야 하나요?<span class="pm"></span></summary><div class="a">세스코 컨설턴트가 방문해 현관·주방·침실 등 집 안을 점검한 뒤, 지금 필요한 관리 영역부터 제안해 드립니다. 해충이 급하면 긴급진단 서비스로 먼저 확인할 수 있습니다.</div></details>
+        <details><summary><span class="q">Q</span>해충이 한 마리만 보였는데도 관리가 필요한가요?<span class="pm"></span></summary><div class="a">바퀴처럼 틈에서 지내는 해충은 한 마리만 보여도 머무는 자리가 있을 수 있습니다. 반복해서 보이거나 어디서 들어왔는지 궁금하면 현관·배관·주방을 점검해 보세요. 점검 결과 관리가 필요 없으면 그렇게 안내해 드립니다.</div></details>
+        <details><summary><span class="q">Q</span>아이나 반려동물이 있어도 괜찮나요?<span class="pm"></span></summary><div class="a">세스코 약제는 환경부 안전성·유효성 심사를 통과한 안전확인대상생활화학제품이며, 해충만 겨냥한 성분과 양으로 설계합니다. 방문 시 컨설턴트가 아이·반려동물 동선에 맞춰 처치 자리와 방법을 안내합니다. <span class="memo">[공식 FAQ 답변과 대조 · 심사 연도 표기 여부 확인]</span></div></details>
+        <details><summary><span class="q">Q</span>비용은 어떻게 확인하나요?<span class="pm"></span></summary><div class="a">제품·서비스 종류와 집 크기, 이용 조건에 따라 달라집니다. 기본 정보는 각 솔루션 상세 페이지에서 확인하고, 점검 후 필요한 구성과 비용을 안내받으세요.</div></details>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코 멤버스<br>혜택</h3><small>세스코 위생관리 서비스를 정기적으로 이용하는 가정집 고객 · 인증마크 대신 혜택 블록 · FAQ 뒤, CTA 앞 <span class="memo">[혜택 항목·조건·범위 운영 확인]</span></small></div>
+      <div><div class="benef"><div><span class="k">01 비용</span><b>제휴카드 정기 결제 시<br>월 최대 25,000원 할인</b><p>이용료를 세스코 제휴카드로 정기 결제하면 매달 할인받습니다. <span class="memo">[카드사·조건 확인]</span></p></div><div><span class="k">02 플러스알파케어</span><b>정기 방문 때 함께 받는<br>추가 케어</b><p>환경가전 케어십 방문 때 도기 오염 케어, 배수구 위생관리, 표면 살균 같은 플러스알파케어를 함께 받습니다. <span class="memo">[제품별 제공 범위 확인]</span></p></div><div><span class="k">03 셀프 케어</span><b>멤버스 전용<br>셀프용 바이오파워™ 제공</b><p>바이러스케어 멤버스에게 식품첨가물 성분의 살균제 원액을 제공해 방문 사이에도 직접 표면을 살균할 수 있습니다. <span class="memo">[제공 조건 확인]</span></p></div><div><span class="k">04 세스코몰</span><b>마이랩 구매 적립과<br>앱 전용 쿠폰</b><p>세스코몰에서 구매 금액을 적립하고 앱 전용 할인 쿠폰을 받습니다. 위생 전문가 진단 서비스 무료 이용권이 포함될 수 있습니다. <span class="memo">[적립률·쿠폰·이용권 조건 확인]</span></p></div></div><p class="tiernote">혜택 지급 조건 및 품목은 당사 사정에 따라 예고없이 중단 또는 변경될 수 있습니다.</p></div>
+    </div>
+  </div>
+  <div class="cta"><div class="wrap"><h3>내 공간에 필요한 위생 관리,<br>세스코와 확인해 보세요.</h3><a href="#">가정집 솔루션 자세히 보기</a></div></div>
+</section>
+
+
+<!-- ============ 02 외식업장 ============ -->
+<section class="detail" id="dining">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>외식업장 <span class="chev"></span></h2>
+        <p>식재료와 사람이 끊임없이 오가는 외식업장은 해충, 조리 환경, 홀 공기와 공용 공간 위생을 함께 관리해야 합니다. 철저한 위생 관리로 고객들이 안심하고 먹을 수 있어요. <span class="memo">[허브 고정 슬로건 · 구형 표현이라 대조 전 수정 금지]</span></p>
+      </div>
+      <div class="similar"><span class="tag">유사한 장소</span><p>식당 · 카페 · 배달음식전문점</p></div>
+    </div>
+    <div class="hero"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16"/><path d="M5 10v9h14v-9"/><path d="M8 4a4 4 0 0 1 8 0v6H8z"/><path d="M9 14h2M13 14h2"/></svg></span><div class="lbl"><b>히어로 이미지</b>홀과 오픈 주방이 함께 보이는 와이드 컷. 영업 전 정돈된 상태.</div></div></div>
+    <p class="banner"><b>공통 프로모션</b> 세스코 제휴카드로 이용료 정기 결제 시 월 최대 25,000원 할인 <span class="memo">[허브 공통 배너 문구·카드사 조건 확인]</span></p>
+    <div class="sec">
+      <div class="st"><h3>외식업장에서<br>이런 고민,<br>하고 계신가요?</h3><small>고객이 직접 말하는 위생 고민 3</small></div>
+      <div class="worry">
+        <div><span class="lb">해충·유입</span><q>주방 안쪽은 매일 닦아도 배수구나 기기 뒤까지는 손이 잘 안 가요.</q><p>청소가 닿지 않는 곳과 해충이 들어오는 길을 같이 점검하세요.</p></div>
+        <div><span class="lb">식품·조리 위생</span><q>식재료와 조리도구가 계속 바뀌는데 놓치는 위생 포인트가 있을까 걱정돼요.</q><p>손·도구·식재료가 반복해서 만나는 조리 과정은 단계별로 관리 기준을 두세요.</p></div>
+        <div><span class="lb">홀·공용공간</span><q>주방은 신경 쓰는데 홀이나 화장실, 공기까지는 한 번에 관리하기가 어렵네요.</q><p>홀·화장실·공기까지 한 번에 관리할 방법을 정해 두세요.</p></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>그대로 두면<br>어떻게 될까요?</h3><small>위생 관리를 미뤘을 때 생기는 일 · 수치 없이 작은 팩트 → 전문가 해석 <span class="memo">[표현 수위 검토]</span></small></div>
+      <div class="risk">
+        <div><span class="f">01</span><b>청소가 닿지 않는 곳에 해충이 머뭅니다</b><p>배수구·기기 하부·식자재 보관 공간처럼 눈에 띄지 않는 곳이 해충이 들어오고 머무는 자리입니다.</p></div>
+        <div><span class="f">02</span><b>조리 과정에서 오염은 손과 도구를 거쳐 옮겨 갑니다</b><p>식재료가 바뀔 때마다 손과 도구를 거치므로, 단계마다 관리 상태를 확인해야 놓치는 지점이 줄어듭니다.</p></div>
+        <div><span class="f">03</span><b>홀과 화장실도 고객이 경험하는 매장 위생의 일부입니다</b><p>냄새·공기·화장실 상태는 손님이 가장 먼저 느끼는 위생입니다. 주방과 같은 기준으로 관리해야 매장 전체의 위생 수준이 고르게 유지됩니다.</p></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코는 공간을<br>나눠서 봅니다.</h3><small>공간을 누르면 그 공간의 위생 포인트와 세스코가 무엇을 확인하는지가 보입니다 · 무엇으로 관리하는지는 아래 핵심 솔루션·추천 상품에서</small></div>
+      <div class="map"><div><svg viewBox="0 0 620 420" role="img" aria-label="공간 도면"><g class="room" data-room="door"><rect x="20" y="20" width="140" height="150" rx="8"/><text x="34" y="156">출입구</text><circle class="pin" cx="38" cy="36" r="9"/><text class="n" x="38" y="39.5" text-anchor="middle">1</text></g><g class="room" data-room="hall"><rect x="170" y="20" width="270" height="200" rx="8"/><text x="184" y="206">홀</text><circle class="pin" cx="188" cy="36" r="9"/><text class="n" x="188" y="39.5" text-anchor="middle">2</text></g><g class="room" data-room="kitchen"><rect x="450" y="20" width="150" height="200" rx="8"/><text x="464" y="206">주방</text><circle class="pin" cx="468" cy="36" r="9"/><text class="n" x="468" y="39.5" text-anchor="middle">3</text></g><g class="room" data-room="store"><rect x="450" y="230" width="150" height="140" rx="8"/><text x="464" y="356">식자재 창고</text><circle class="pin" cx="468" cy="246" r="9"/><text class="n" x="468" y="249.5" text-anchor="middle">4</text></g><g class="room" data-room="bath"><rect x="20" y="180" width="140" height="190" rx="8"/><text x="34" y="356">화장실</text><circle class="pin" cx="38" cy="196" r="9"/><text class="n" x="38" y="199.5" text-anchor="middle">5</text></g><g class="room" data-room="back"><rect x="170" y="230" width="270" height="140" rx="8"/><text x="184" y="356">후문·배관</text><circle class="pin" cx="188" cy="246" r="9"/><text class="n" x="188" y="249.5" text-anchor="middle">6</text></g></svg><div class="rooms"><button type="button" data-room="door">1 출입구</button><button type="button" data-room="hall">2 홀</button><button type="button" data-room="kitchen">3 주방</button><button type="button" data-room="store">4 식자재 창고</button><button type="button" data-room="bath">5 화장실</button><button type="button" data-room="back">6 후문·배관</button></div></div><div class="mp"><div class="rm" data-room="door"><span class="rn">1 / 6</span><h4>출입구</h4><p class="pt">문이 열릴 때마다 들어오는 비래해충과 바깥 공기.</p><p class="vw">세스코는 문이 열릴 때 들어오는 비래해충과 바깥 공기를 입구에서 막는 방법을 봅니다.</p></div><div class="rm" data-room="hall"><span class="rn">2 / 6</span><h4>홀</h4><p class="pt">손님이 느끼는 공기·냄새와 손이 닿는 표면.</p><p class="vw">세스코는 홀 공기와 냄새, 테이블·손잡이처럼 손이 닿는 표면까지 봅니다.</p></div><div class="rm" data-room="kitchen"><span class="rn">3 / 6</span><h4>주방</h4><p class="pt">배수구·기기 하부와 손·도구·식재료가 만나는 조리 접점.</p><p class="vw">세스코는 배수구·기기 하부의 서식 자리를 확인하고, 손·도구·식재료의 조리 위생까지 봅니다.</p></div><div class="rm" data-room="store"><span class="rn">4 / 6</span><h4>식자재 창고</h4><p class="pt">저곡해충과 쥐가 자리 잡기 쉬운 보관 공간.</p><p class="vw">세스코는 저곡해충·쥐의 흔적을 확인하고, 보관 온도와 적재 상태까지 봅니다.</p></div><div class="rm" data-room="bath"><span class="rn">5 / 6</span><h4>화장실</h4><p class="pt">변기·세면대·손 위생. 손님이 매장 위생을 가장 먼저 느끼는 곳.</p><p class="vw">세스코는 변기·세면대 표면과 손 위생을 주방과 같은 기준으로 봅니다.</p></div><div class="rm" data-room="back"><span class="rn">6 / 6</span><h4>후문·배관</h4><p class="pt">후문 틈과 외부로 이어진 배관.</p><p class="vw">세스코는 후문 틈과 외부로 이어진 배관의 유입 여부를 확인합니다.</p></div></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>이 공간에 필요한<br>세스코 핵심 솔루션</h3><small>서비스 층 · cesco.co.kr 외식업장 페이지 TOP3 기준 · 전환은 "자세히 보기"만</small></div>
+      <div class="sols"><div><span class="k">솔루션 01</span><b>통합 해충방제</b><p>주방 안쪽부터 출입구까지 구획과 집기 단위로 진단해 처치하고, 포충등·모니터링 트랩을 설치한 뒤 통합상황실이 실시간으로 봅니다.</p><p class="inc"><b>포함</b> 진단 · 처치 · 장비 설치 · 정기 관리 · 블루 세스코 멤버스 마크</p><a href="#">자세히 보기</a></div><div><span class="k">솔루션 02</span><b>식품안전</b><p>식품안전 컨설턴트가 조리 환경, 식재료 취급, 손과 도구의 위생을 진단하고 교육합니다. 온라인 통합 리포트를 제공합니다.</p><p class="inc"><b>포함</b> 위생진단 · 교육 · 컨설팅 · 화이트 세스코 멤버스 마크</p><a href="#">자세히 보기</a></div><div><span class="k">솔루션 03</span><b>바이러스케어</b><p>전문가 표면 살균과 24시간 공기 살균으로 손님이 머무는 홀과 화장실을 관리합니다.</p><p class="inc"><b>포함</b> 전문 살균 · 24시간 공기 관리 · 기물 표면 살균</p><a href="#">자세히 보기</a></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>외식업장에서 많이 찾는<br>추천 상품</h3><small>제품 층 · 환경가전과 세스코 마이랩 마스터 · 옆으로 넘겨 보기 · 아래는 서비스와 함께 설치하는 시설 보완</small></div>
+      <div><div class="carwrap"><div class="carousel"><div class="track"><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>블루쉴드 에어커튼 실내용</b><p>출입구에서 바깥 공기와 비래해충을 막고 냉난방 손실을 줄입니다. 900·1000.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>UV파워 공기살균기</b><p>홀의 공기 중 바이러스와 세균을 24시간 살균합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 서비스</span><b>블루제닉 손소독기 프로</b><p>입구와 홀에 두는 비접촉 손소독기입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 서비스</span><b>블루제닉 손세정기 프로</b><p>화장실 세면대의 비접촉 손세정기입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 서비스</span><b>블루제닉 변기세정기 프로 MAX</b><p>화장실 변기를 자동으로 세정해 냄새 원인을 줄입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 서비스</span><b>에어제닉 Max 방향탈취기</b><p>홀과 화장실의 냄새를 잡고 향을 관리합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩 마스터</span><b>세스코 마이랩 마스터 주방세제</b><p>업장 환경에 맞춘 세정 설계의 주방세제입니다. 4L x 3개.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩 마스터</span><b>세스코 마이랩 마스터 기름때세정제 파우더</b><p>튀김기·오븐의 찌든 기름때에 쓰는 사업장용 세정제입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩 마스터</span><b>세스코 마이랩 마스터 식기세척기 세제</b><p>식기 회전율을 높이는 식기세척기 전용 세제입니다.</p><a href="#">자세히 보기</a></div></div></div><div class="carnav"><button type="button" data-dir="prev" aria-label="이전">‹</button><button type="button" data-dir="next" aria-label="다음">›</button></div><div class="dots"></div></div><div class="fac"><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>실내 배수구트랩 서비스</b><p>주방 배수구로 올라오는 해충과 악취를 막습니다.</p><a href="#">자세히 보기</a></div><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>청정 방충망 시공 서비스</b><p>후문·창문에 해충, 미세먼지, 꽃가루까지 차단하는 방충망을 시공합니다.</p><a href="#">자세히 보기</a></div><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>방충필름 시공 서비스</b><p>출입구 유리와 틈에 해충이 접근하지 못하게 차단합니다.</p><a href="#">자세히 보기</a></div></div><p class="tiernote">포충등, 모니터링 트랩, 약제는 통합 해충방제 서비스에 포함되는 장비라 상품으로 따로 두지 않습니다. 사업장용 마이랩은 「세스코 마이랩 마스터」 라인만 씁니다. 가격·모델 옵션은 세스코몰 상세에서 확인합니다. <span class="memo">[노출 상품·순서 운영 확정]</span></p></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코 인증마크란?</h3><small>13개 장소 공통 블록 <span class="memo">[허브 원문 문구와 대조]</span></small></div>
+      <div class="mark">
+        <div><b>블루 세스코 멤버스 마크</b><p>해충이 없는 곳. 세스코의 위생관리 서비스를 정기적으로 이용하는 사업장에 드리는 마크입니다. 매장 입구와 네이버 지도 정보에 노출할 수 있습니다.</p></div>
+        <div><b>화이트 세스코 멤버스 마크</b><p>믿고 먹을 수 있는 곳. 식품안전 관리를 받는 사업장에 드리는 마크입니다. 외식업장은 멤버스 가입만으로 포털·배달앱 위생인증가게에 노출됩니다.</p></div>
+      </div>
+      <p class="banner" style="margin-top:20px">홍보물 지급 조건 및 품목은 당사 사정에 따라 예고없이 중단 또는 변경될 수 있습니다.</p>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코 과학 연구소가<br>함께합니다.</h3><small>분야별 연구소 5곳 · cesco.co.kr 솔루션 페이지에서 확인된 내용만 <span class="memo">[연구소 조직명·수치 정본 확인 · 731/713종, 특허 140/600여 건 원문 불일치]</span></small></div>
+      <div class="lab"><p>세스코 과학연구소는 분야별 연구소와 시험·분석 기관을 두고, 해충과 세균을 직접 키우고 시험해 현장에서 쓰는 관리 기준을 만듭니다. 그 기준을 1,000시간 교육을 이수한 정직원 컨설턴트가 공간에 적용합니다.</p>
+      <div class="lab5"><div><span class="k">01 해충</span><b>해충방제 연구소</b><span>국내 서식 해충 731종을 직접 사육·연구해 2,193가지 방제 방법과 자체 개발 BIO 약제 300가지를 만들고, 3개월마다 약제를 바꿔 써 내성을 막습니다. 통합상황실이 현장 데이터를 실시간으로 봅니다.</span></div><div><span class="k">02 바이러스</span><b>바이러스 연구소</b><span>고려대 의대 바이러스병 연구소와 공동연구합니다. 연구원 200명이 공간에 맞는 살균 방법을 처방하고, BSL-3 시설에서 살아 있는 고위험 바이러스로 공기살균 효능을 시험해 KTL·KCL에서 검증합니다.</span></div><div><span class="k">03 식품</span><b>식품안전 연구소</b><span>1976년부터 120만 개 주방의 오염 데이터로 3,021가지 관리 기준을 만들었습니다. 식품의약품안전처 지정 HACCP 교육훈련기관(제10호)이며, 식품안전 컨설턴트는 300여 시간 교육을 이수합니다.</span></div><div><span class="k">04 환경위생</span><b>생활과학 연구소 · 향기 연구소</b><span>침구·주방·욕실처럼 손이 자주 닿는 생활 공간을 연구해 3,127가지 생활위생 솔루션과 세스코 마이랩 제품을 설계하고, 102개 업종의 공간·고객 특성을 분석해 향을 처방합니다. <span class="memo">[환경위생 분야 조직명 확인]</span></span></div><div><span class="k">05 시험·분석</span><b>시험분석 연구소 · 이물분석센터</b><span>식품 등 시험·검사기관(제100호), KOLAS 국제공인시험기관으로 중금속·보존료·미생물 등 180여 가지를 검사합니다. 이물분석센터는 국내 유일 이물분석 전문기관으로 30여 가지 기법으로 이물의 종류와 혼입 시점을 밝히며, 일반 분석은 3~5일이 걸립니다.</span></div></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>자주 묻는 질문</h3><small>외식업장 상담 전 궁금한 점</small></div>
+      <div class="faq">
+        <details><summary><span class="q">Q</span>주방과 홀을 함께 관리할 수 있나요?<span class="pm"></span></summary><div class="a">네. 주방의 해충·조리 위생과 홀·공용공간의 공기·생활위생은 솔루션이 다르므로, 필요한 영역을 골라 함께 이용할 수 있습니다.</div></details>
+        <details><summary><span class="q">Q</span>영업에 방해되지 않게 관리할 수 있나요?<span class="pm"></span></summary><div class="a">방문·시공 시간과 작업 방식은 서비스마다 다릅니다. 상담 때 영업시간과 매장 운영 조건을 알려주시면 가능한 방식과 일정을 안내해 드립니다. <span class="memo">[서비스별 방문·시공 조건 확인]</span></div></details>
+        <details><summary><span class="q">Q</span>세스코 멤버스 마크는 어떻게 받나요?<span class="pm"></span></summary><div class="a">세스코 위생관리 서비스를 정기적으로 이용하는 사업장에 드립니다. 마크 종류와 포털·배달앱 노출 범위는 이용 중인 서비스에 따라 다르므로 상담 때 안내해 드립니다. <span class="memo">[멤버스 마크 제공 조건·채널 연계 범위 확인]</span></div></details>
+        <details><summary><span class="q">Q</span>식품안전 관리는 어떤 부분을 확인하나요?<span class="pm"></span></summary><div class="a">조리 환경, 식재료 취급, 손과 도구 위생처럼 매일 반복되는 관리 지점을 진단합니다. 세부 진단 항목은 식품안전 솔루션 페이지에서 확인하세요.</div></details>
+      </div>
+    </div>
+  </div>
+  <div class="cta"><div class="wrap"><h3>내 매장에 필요한 위생 관리,<br>세스코와 확인해 보세요.</h3><a href="#">외식업장 솔루션 자세히 보기</a></div></div>
+</section>
+
+<!-- ============ 03 유통시설 ============ -->
+<section class="detail" id="retail">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>유통시설 <span class="chev"></span></h2>
+        <p>많은 고객이 오가고 다양한 식품을 취급하는 유통시설은 해충, 매장 공기, 식품 취급 환경과 공용 공간 관리가 함께 필요한 곳입니다. <span class="memo">[허브 슬로건 2줄 수집 후 교체 · 새로 짓지 않음]</span></p>
+      </div>
+      <div class="similar"><span class="tag">유사한 장소</span><p>백화점 · 마트 · 편의점</p></div>
+    </div>
+    <div class="hero"><div class="slot"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 9h16M4 14h16"/><path d="M7 6.5h2M11 6.5h2M15 6.5h2M7 11.5h2M11 11.5h2M15 11.5h2M7 16.5h2M11 16.5h2M15 16.5h2"/></svg></span><div class="lbl"><b>히어로 이미지</b>매장 진열대와 출입구가 보이는 와이드 컷. 기존 포충등 컷은 제품 중심이라 공간 컷으로 교체 권장.</div></div></div>
+    <p class="banner"><b>공통 프로모션</b> 세스코 제휴카드로 이용료 정기 결제 시 월 최대 25,000원 할인 <span class="memo">[허브 공통 배너 문구·카드사 조건 확인]</span></p>
+    <div class="sec">
+      <div class="st"><h3>유통시설에서<br>이런 고민,<br>하고 계신가요?</h3><small>고객이 직접 말하는 위생 고민 3</small></div>
+      <div class="worry">
+        <div><span class="lb">해충 출현</span><q>하역장으로 들어온 박스에서 벌레가 나온 적이 있어요. 매장까지 번질까 걱정돼요.</q><p>입고 동선은 해충이 매장으로 들어오는 가장 흔한 길이에요.</p></div>
+        <div><span class="lb">매장 내 바이러스</span><q>하루에 수백 명이 카트와 계산대를 거쳐 가요.</q><p>많은 손이 닿는 접점은 일반 청소만으로는 관리가 어려워요.</p></div>
+        <div><span class="lb">식품 신선도·이물</span><q>푸드코트와 판매 식품에서 이물 클레임이 한 건이라도 나올까 걱정돼요.</q><p>이물은 원인을 밝혀야 재발을 막을 수 있어요.</p></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>그대로 두면<br>어떻게 될까요?</h3><small>위생 관리를 미뤘을 때 생기는 일 · 수치 없이 작은 팩트 → 전문가 해석 <span class="memo">[표현 수위 검토]</span></small></div>
+      <div class="risk">
+        <div><span class="f">01</span><b>해충은 입고 동선을 따라 매장 안으로 들어옵니다</b><p>하역장에서 창고, 진열대로 물류가 이동하는 경로를 점검해야 해충이 들어오는 지점을 놓치지 않습니다.</p></div>
+        <div><span class="f">02</span><b>이물 클레임은 혼입 시점을 찾아야 끝납니다</b><p>진열·판매 중 이물이 나왔다면 어느 단계에서 섞였는지 확인해야 같은 문제가 반복되지 않습니다.</p></div>
+        <div><span class="f">03</span><b>많은 손이 닿는 곳은 일반 청소로 부족합니다</b><p>카트·계산대·화장실·푸드코트는 하루 종일 여러 사람이 거치는 곳이라 매장 운영 시간에 맞춘 살균 기준이 필요합니다.</p></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코는 공간을<br>나눠서 봅니다.</h3><small>공간을 누르면 그 공간의 위생 포인트와 세스코가 무엇을 확인하는지가 보입니다 · 무엇으로 관리하는지는 아래 핵심 솔루션·추천 상품에서</small></div>
+      <div class="map"><div><svg viewBox="0 0 620 420" role="img" aria-label="공간 도면"><g class="room" data-room="dock"><rect x="20" y="20" width="150" height="170" rx="8"/><text x="34" y="176">하역장</text><circle class="pin" cx="38" cy="36" r="9"/><text class="n" x="38" y="39.5" text-anchor="middle">1</text></g><g class="room" data-room="ware"><rect x="20" y="200" width="150" height="170" rx="8"/><text x="34" y="356">창고</text><circle class="pin" cx="38" cy="216" r="9"/><text class="n" x="38" y="219.5" text-anchor="middle">2</text></g><g class="room" data-room="floor"><rect x="180" y="20" width="270" height="200" rx="8"/><text x="194" y="206">매장·진열대</text><circle class="pin" cx="198" cy="36" r="9"/><text class="n" x="198" y="39.5" text-anchor="middle">3</text></g><g class="room" data-room="pos"><rect x="460" y="20" width="140" height="200" rx="8"/><text x="474" y="206">계산대</text><circle class="pin" cx="478" cy="36" r="9"/><text class="n" x="478" y="39.5" text-anchor="middle">4</text></g><g class="room" data-room="food"><rect x="180" y="230" width="270" height="140" rx="8"/><text x="194" y="356">푸드코트</text><circle class="pin" cx="198" cy="246" r="9"/><text class="n" x="198" y="249.5" text-anchor="middle">5</text></g><g class="room" data-room="bath"><rect x="460" y="230" width="140" height="140" rx="8"/><text x="474" y="356">화장실</text><circle class="pin" cx="478" cy="246" r="9"/><text class="n" x="478" y="249.5" text-anchor="middle">6</text></g></svg><div class="rooms"><button type="button" data-room="dock">1 하역장</button><button type="button" data-room="ware">2 창고</button><button type="button" data-room="floor">3 매장·진열대</button><button type="button" data-room="pos">4 계산대</button><button type="button" data-room="food">5 푸드코트</button><button type="button" data-room="bath">6 화장실</button></div></div><div class="mp"><div class="rm" data-room="dock"><span class="rn">1 / 6</span><h4>하역장</h4><p class="pt">입고 박스를 따라 들어오는 해충.</p><p class="vw">세스코는 입고 박스와 팔레트를 따라 들어오는 해충을 하역장에서부터 확인합니다.</p></div><div class="rm" data-room="ware"><span class="rn">2 / 6</span><h4>창고</h4><p class="pt">저곡해충과 쥐가 자리 잡기 쉬운 보관 공간.</p><p class="vw">세스코는 저곡해충·쥐의 흔적을 구획 단위로 확인하고, 보관 상태까지 봅니다.</p></div><div class="rm" data-room="floor"><span class="rn">3 / 6</span><h4>매장·진열대</h4><p class="pt">고객이 오가는 공기와 진열 식품의 이물.</p><p class="vw">세스코는 매장 공기와 진열 식품을 함께 보고, 이물은 원인까지 분석합니다.</p></div><div class="rm" data-room="pos"><span class="rn">4 / 6</span><h4>계산대</h4><p class="pt">하루 종일 여러 손이 닿는 카트 손잡이와 계산대.</p><p class="vw">세스코는 카트 손잡이·계산대처럼 손이 모이는 표면을 살균 접점으로 봅니다.</p></div><div class="rm" data-room="food"><span class="rn">5 / 6</span><h4>푸드코트</h4><p class="pt">조리 접점·배수구·공용 식탁.</p><p class="vw">세스코는 조리 접점과 배수구를 확인하고, 공용 식탁 위생까지 봅니다.</p></div><div class="rm" data-room="bath"><span class="rn">6 / 6</span><h4>화장실</h4><p class="pt">고객이 매장 위생을 평가하는 접점.</p><p class="vw">세스코는 변기·세면대 표면과 손 위생을 매장 위생의 일부로 봅니다.</p></div></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>이 공간에 필요한<br>세스코 핵심 솔루션</h3><small>서비스 층 · cesco.co.kr 유통시설 페이지 TOP3 기준 · 전환은 "자세히 보기"만</small></div>
+      <div class="sols"><div><span class="k">솔루션 01</span><b>통합 해충방제</b><p>하역장·창고·진열대를 구획 단위로 진단해 처치하고, 포충등과 모니터링 트랩으로 유입을 관리합니다. 통합상황실이 실시간으로 봅니다.</p><p class="inc"><b>포함</b> 진단 · 처치 · 장비 설치 · 정기 관리 · 블루 세스코 멤버스 마크</p><a href="#">자세히 보기</a></div><div><span class="k">솔루션 02</span><b>바이러스케어</b><p>카트·계산대·화장실 표면을 전문가가 정기 살균하고, 매장 공기를 24시간 살균합니다.</p><p class="inc"><b>포함</b> 전문 살균 · 24시간 공기 관리 · 기물 표면 살균</p><a href="#">자세히 보기</a></div><div><span class="k">솔루션 03</span><b>식품안전</b><p>진열·판매 식품과 푸드코트의 취급 환경을 3,021가지 기준으로 진단합니다. 이물이 나오면 이물분석센터가 종류와 혼입 시점을 밝힙니다.</p><p class="inc"><b>포함</b> 위생진단 · 교육 · 이물분석 서비스 · 화이트 세스코 멤버스 마크</p><a href="#">자세히 보기</a></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>유통시설에서 많이 찾는<br>추천 상품</h3><small>제품 층 · 환경가전과 세스코 마이랩 마스터 · 옆으로 넘겨 보기 · 아래는 서비스와 함께 설치하는 시설 보완</small></div>
+      <div><div class="carwrap"><div class="carousel"><div class="track"><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>블루쉴드 에어커튼 실외용</b><p>하역장·출입구에서 비래해충과 바깥 공기를 막습니다. 900·1000.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>블루쉴드 에어커튼 실내용</b><p>매장 출입구용 에어커튼입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>UV파워 공기살균기</b><p>매장 공기 중 바이러스와 세균을 24시간 살균합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>에어퍼퓸200</b><p>넓은 매장의 향과 냄새를 관리하는 방향기입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 서비스</span><b>블루제닉 손소독기 프로</b><p>출입구·계산대에 두는 비접촉 손소독기입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 서비스</span><b>블루제닉 변기세정기 프로 MAX</b><p>화장실 변기를 자동으로 세정합니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">환경가전 · 렌탈</span><b>핸드 드라이어</b><p>화장실 손 건조기입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩 마스터</span><b>세스코 마이랩 마스터 주방세제</b><p>푸드코트 주방용 사업장 세제입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩 마스터</span><b>세스코 마이랩 마스터 배수관세정제</b><p>배수관에 붓기만 하면 되는 사업장용 세정제입니다.</p><a href="#">자세히 보기</a></div><div><div class="thumb">제품 이미지</div><span class="k">세스코 마이랩 마스터</span><b>세스코 마이랩 마스터 락스</b><p>창고·바닥의 세균과 곰팡이 살균에 특화된 사업장용 락스입니다.</p><a href="#">자세히 보기</a></div></div></div><div class="carnav"><button type="button" data-dir="prev" aria-label="이전">‹</button><button type="button" data-dir="next" aria-label="다음">›</button></div><div class="dots"></div></div><div class="fac"><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>방충필름 시공 서비스</b><p>하역장 셔터와 출입구 틈에 해충이 접근하지 못하게 차단합니다.</p><a href="#">자세히 보기</a></div><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>청정 방충망 시공 서비스</b><p>창고·후방 창문에 해충, 미세먼지, 꽃가루까지 차단하는 방충망을 시공합니다.</p><a href="#">자세히 보기</a></div><div><span class="k">시설 보완 · 서비스와 함께 설치</span><b>실내 배수구트랩 서비스</b><p>푸드코트 배수구로 올라오는 해충과 악취를 막습니다.</p><a href="#">자세히 보기</a></div></div><p class="tiernote">포충등, 모니터링 트랩, 약제는 통합 해충방제 서비스에 포함되는 장비라 상품으로 따로 두지 않습니다. 사업장용 마이랩은 「세스코 마이랩 마스터」 라인만 씁니다. 가격·모델 옵션은 세스코몰 상세에서 확인합니다. <span class="memo">[노출 상품·순서 운영 확정]</span></p></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코 인증마크란?</h3><small>13개 장소 공통 블록 <span class="memo">[허브 원문 문구와 대조]</span></small></div>
+      <div class="mark">
+        <div><b>블루 세스코 멤버스 마크</b><p>해충이 없는 곳. 세스코의 위생관리 서비스를 정기적으로 이용하는 사업장에 드리는 마크입니다. 매장 입구와 네이버 지도 정보에 노출할 수 있습니다.</p></div>
+        <div><b>화이트 세스코 멤버스 마크</b><p>믿고 먹을 수 있는 곳. 식품안전 관리를 받는 사업장에 드리는 마크입니다. 외식업장은 멤버스 가입만으로 포털·배달앱 위생인증가게에 노출됩니다.</p></div>
+      </div>
+      <p class="banner" style="margin-top:20px">홍보물 지급 조건 및 품목은 당사 사정에 따라 예고없이 중단 또는 변경될 수 있습니다.</p>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>세스코 과학 연구소가<br>함께합니다.</h3><small>분야별 연구소 5곳 · cesco.co.kr 솔루션 페이지에서 확인된 내용만 <span class="memo">[연구소 조직명·수치 정본 확인 · 731/713종, 특허 140/600여 건 원문 불일치]</span></small></div>
+      <div class="lab"><p>세스코 과학연구소는 분야별 연구소와 시험·분석 기관을 두고, 해충과 세균을 직접 키우고 시험해 현장에서 쓰는 관리 기준을 만듭니다. 그 기준을 1,000시간 교육을 이수한 정직원 컨설턴트가 공간에 적용합니다.</p>
+      <div class="lab5"><div><span class="k">01 해충</span><b>해충방제 연구소</b><span>국내 서식 해충 731종을 직접 사육·연구해 2,193가지 방제 방법과 자체 개발 BIO 약제 300가지를 만들고, 3개월마다 약제를 바꿔 써 내성을 막습니다. 통합상황실이 현장 데이터를 실시간으로 봅니다.</span></div><div><span class="k">02 바이러스</span><b>바이러스 연구소</b><span>고려대 의대 바이러스병 연구소와 공동연구합니다. 연구원 200명이 공간에 맞는 살균 방법을 처방하고, BSL-3 시설에서 살아 있는 고위험 바이러스로 공기살균 효능을 시험해 KTL·KCL에서 검증합니다.</span></div><div><span class="k">03 식품</span><b>식품안전 연구소</b><span>1976년부터 120만 개 주방의 오염 데이터로 3,021가지 관리 기준을 만들었습니다. 식품의약품안전처 지정 HACCP 교육훈련기관(제10호)이며, 식품안전 컨설턴트는 300여 시간 교육을 이수합니다.</span></div><div><span class="k">04 환경위생</span><b>생활과학 연구소 · 향기 연구소</b><span>침구·주방·욕실처럼 손이 자주 닿는 생활 공간을 연구해 3,127가지 생활위생 솔루션과 세스코 마이랩 제품을 설계하고, 102개 업종의 공간·고객 특성을 분석해 향을 처방합니다. <span class="memo">[환경위생 분야 조직명 확인]</span></span></div><div><span class="k">05 시험·분석</span><b>시험분석 연구소 · 이물분석센터</b><span>식품 등 시험·검사기관(제100호), KOLAS 국제공인시험기관으로 중금속·보존료·미생물 등 180여 가지를 검사합니다. 이물분석센터는 국내 유일 이물분석 전문기관으로 30여 가지 기법으로 이물의 종류와 혼입 시점을 밝히며, 일반 분석은 3~5일이 걸립니다.</span></div></div></div>
+    </div>
+    <div class="sec">
+      <div class="st"><h3>자주 묻는 질문</h3><small>유통시설 상담 전 궁금한 점</small></div>
+      <div class="faq">
+        <details><summary><span class="q">Q</span>매장 규모가 크거나 여러 점포여도 관리할 수 있나요?<span class="pm"></span></summary><div class="a">네. 점포 수와 운영 조건에 맞춰 상담해 드립니다. 다점포 계약과 통합 리포트 제공 범위는 상담 때 안내해 드립니다. <span class="memo">[다점포 계약·통합 관리 범위 확인]</span></div></details>
+        <details><summary><span class="q">Q</span>창고·매장·푸드코트를 함께 살펴볼 수 있나요?<span class="pm"></span></summary><div class="a">네. 입고 동선·창고·매장·푸드코트는 위생 문제가 서로 다르므로, 운영 중인 구역에 맞는 솔루션을 묶어 제안해 드립니다.</div></details>
+        <details><summary><span class="q">Q</span>관리 결과나 기록을 확인할 수 있나요?<span class="pm"></span></summary><div class="a">서비스마다 점검·관리 기록의 형태가 다릅니다. 제공되는 리포트와 확인 방법은 이용하려는 솔루션별로 안내해 드립니다. <span class="memo">[리포트 제공 범위 확인]</span></div></details>
+        <details><summary><span class="q">Q</span>세스코 멤버스 마크는 어떤 경우에 사용할 수 있나요?<span class="pm"></span></summary><div class="a">세스코 위생관리 서비스를 정기적으로 이용하는 사업장에 드립니다. 적용 가능한 마크와 노출 채널은 이용 중인 서비스에 따라 다르므로 상담 때 안내해 드립니다. <span class="memo">[멤버스 마크 제공 조건 확인]</span></div></details>
+      </div>
+    </div>
+  </div>
+  <div class="cta"><div class="wrap"><h3>내 매장에 필요한 위생 관리,<br>세스코와 확인해 보세요.</h3><a href="#">유통시설 솔루션 자세히 보기</a></div></div>
+</section>
+
+<footer class="sitefoot"><div class="wrap">
+  <div><div class="logo">CESCO</div>(주)세스코 &nbsp;|&nbsp; 서울시 강동구 상일로10길 46(상일동) 세스코 터치센터 (우)05288<br>대표이사 <span class="memo">[확인]</span> &nbsp;|&nbsp; 사업자등록번호 <span class="memo">[확인]</span><br>© CESCO Co.,Ltd All rights reserved.</div>
+  <div class="tel">1588-1119<small>고객센터 월~금 08:30~18:00 · 토 09:00~13:00</small></div>
+</div></footer>
+
+<script>
+(function(){
+  document.querySelectorAll('.map').forEach(function(map){
+    var rooms=map.querySelectorAll('.room'), btns=map.querySelectorAll('.rooms button'), panels=map.querySelectorAll('.mp .rm');
+    function show(id){
+      rooms.forEach(function(r){r.classList.toggle('on',r.dataset.room===id);});
+      btns.forEach(function(b){b.classList.toggle('on',b.dataset.room===id);});
+      panels.forEach(function(p){p.classList.toggle('on',p.dataset.room===id);});
+    }
+    rooms.forEach(function(r){r.addEventListener('click',function(){show(r.dataset.room);});r.addEventListener('mouseenter',function(){show(r.dataset.room);});});
+    btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.room);});});
+    show(rooms[0].dataset.room);
+  });
+  document.querySelectorAll('.carwrap').forEach(function(w){
+    var track=w.querySelector('.track'), cards=track.children, dots=w.querySelector('.dots'), prev=w.querySelector('[data-dir=prev]'), next=w.querySelector('[data-dir=next]'), page=0;
+    function per(){ return window.innerWidth<=560?1:(window.innerWidth<=900?2:3); }
+    function pages(){ return Math.max(1, Math.ceil(cards.length/per())); }
+    function render(){
+      var n=pages(); if(page>n-1) page=n-1;
+      var gap=16, cw=cards[0].getBoundingClientRect().width;
+      track.style.transform='translateX(-'+(page*per()*(cw+gap))+'px)';
+      prev.disabled=page===0; next.disabled=page===n-1;
+      dots.innerHTML=''; for(var i=0;i<n;i++){ var d=document.createElement('i'); if(i===page) d.className='on'; d.addEventListener('click',(function(i){return function(){page=i;render();};})(i)); dots.appendChild(d); }
+    }
+    prev.addEventListener('click',function(){ if(page>0){page--;render();} });
+    next.addEventListener('click',function(){ if(page<pages()-1){page++;render();} });
+    window.addEventListener('resize',render); render();
+  });
+})();
+</script>
+</body>
+</html>
