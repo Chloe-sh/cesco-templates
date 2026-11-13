@@ -872,7 +872,7 @@ ${say}
   const sayCard = s.say ? `<div class="card say"><div class="lb">${t.owner} 한마디</div><p><mark class="ed">"${esc(s.say)}"</mark></p><div class="sg">${reg.name} ${t.owner}</div></div>` : '';
   // A · 수치형
   const gauges=hc.metrics.map((m,mi)=>{
-    const sel=s.sel.filter(i=>t.items[i].metric===mi);
+    let sel=s.sel.filter(i=>t.items[i].metric===mi); if(!sel.length){ const d0=t.items.findIndex(it=>it.metric===mi); if(d0>=0) sel=[d0]; }
     const why=sel.map(i=>`<div class="why1"><b>이 ${t.key}은</b> ${mark(s.pts[i],t.items[i].copy)}</div>`).join('');
     return `<div class="r"><div class="k">${m.k}</div><div class="mt" style="margin-top:3px"><div class="mrow"><b>${m.v}</b>${m.u?'<small>'+m.u+'</small>':''}</div><div class="mb"><i style="width:${m.pct}%"></i></div><div class="ml"><span>0</span><span>${m.base}</span></div></div>${why}</div>`;}).join('');
   const rest=s.sel.filter(i=>t.items[i].metric<0);
