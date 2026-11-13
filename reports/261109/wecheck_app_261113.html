@@ -717,7 +717,6 @@ body.xapp{background:#DDE1E6;overflow:hidden}
     <div class="xlab">화면 유형</div>
     <div class="xseg" id="xtyp"></div>
     <div class="xqr" id="xqr"><img alt="휴대폰으로 열기 QR" id="xqrimg"><div><b>휴대폰으로 보기</b>QR을 찍으면 지금 고른 화면이 휴대폰 전체 화면으로 열립니다.</div></div>
-    <p class="xnote">상호·주소·수치는 예시이고, 사진은 자리만 잡아 둔 상태입니다. 전화·저장·알림 버튼은 체험판에서 동작하지 않습니다. 문구와 구성은 대시보드의 11/10 반영본과 같습니다. <a id="xref" target="_blank" rel="noopener">시안 설명 보기</a></p>
   </aside>
   <div class="xdevice">
     <div class="xstatus"><span>9:41</span><svg width="64" height="14" viewBox="0 0 64 14" fill="#111" aria-hidden="true"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/><path d="M24 5.2a8.5 8.5 0 0 1 12 0l-1.5 1.6a6.3 6.3 0 0 0-9 0zM26.8 8.2a4.5 4.5 0 0 1 6.4 0L30 11.6z"/><rect x="41.5" y="1" width="19" height="11" rx="3" fill="none" stroke="#111" opacity=".45"/><rect x="43.2" y="2.7" width="15.6" height="7.6" rx="1.6"/><rect x="61.5" y="4.5" width="1.6" height="4" rx=".8" opacity=".5"/></svg></div>
@@ -1011,7 +1010,7 @@ window.addEventListener('message',e=>{ if(e.data&&e.data.type==='wc-ops'){ try{ 
     document.querySelectorAll('[data-xbiz]').forEach(function(b){ b.classList.toggle('on', b.dataset.xbiz===biz); });
     document.querySelectorAll('[data-xt]').forEach(function(b){ b.classList.toggle('on', b.dataset.xt===ty); });
     document.title='위쳌 앱 체험판 · '+D[biz].key+' '+D[biz].reg.name;
-    document.getElementById('xref').href=refOf();
+    
     var u=new URL(location.href); u.search=ty==='C'?'':'?t='+ty; u.hash=biz;
     try{ history.replaceState(null,'',u); }catch(e){}
     if(location.protocol==='https:'){ var im=document.getElementById('xqrimg'); im.onerror=function(){ document.getElementById('xqr').classList.remove('on'); }; im.src='https://api.qrserver.com/v1/create-qr-code/?size=184x184&margin=0&data='+encodeURIComponent(u.href); document.getElementById('xqr').classList.add('on'); }
