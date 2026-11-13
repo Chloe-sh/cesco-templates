@@ -695,7 +695,7 @@ body.xapp{background:#DDE1E6;overflow:hidden}
   .xpanel.open{transform:none}
   .xpanel .xd{margin-bottom:14px}
   .xqr,.xqr.on{display:none}
-  .xfab{display:flex;align-items:center;gap:4px;position:fixed;right:10px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:90;font:inherit;font-size:11.5px;font-weight:800;color:#fff;background:rgba(17,17,17,.72);border:0;border-radius:999px;padding:8px 12px}
+  .xfab{display:flex;align-items:center;gap:4px;position:fixed;right:10px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:90;font:inherit;font-size:13px;font-weight:800;color:#fff;background:rgba(17,17,17,.86);border:0;border-radius:999px;padding:10px 15px;box-shadow:0 4px 14px rgba(0,0,0,.22)}
   .xdim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:95}
   .xdim.on{display:block}
   .xclose{display:block;position:absolute;right:14px;top:14px;width:32px;height:32px;border:0;border-radius:50%;background:#F1F3F5;font-size:16px;color:#333}
@@ -1057,6 +1057,8 @@ window.addEventListener('message',e=>{ if(e.data&&e.data.type==='wc-ops'){ try{ 
   window.addEventListener('resize',fitMore);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitMore);
   paint(); fitMore(); setTimeout(fitMore,400);
+  /* 휴대폰에서 주소에 업종 표시 없이 처음 열면 업종·유형 고르는 창을 먼저 보여 줌 */
+  if(mob()&&!h) setTimeout(function(){ sheet(true); },350);
 })();
 </script>
 </body></html>
