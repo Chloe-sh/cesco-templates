@@ -700,6 +700,11 @@ body.xapp{background:#DDE1E6;overflow:hidden}
   .xdim.on{display:block}
   .xclose{display:block;position:absolute;right:14px;top:14px;width:32px;height:32px;border:0;border-radius:50%;background:#F1F3F5;font-size:16px;color:#333}
 }
+
+/* 자세히 보기: 화살표 모양 정리, 접힌 글이 없으면 버튼을 숨김 */
+#xscreen .tv-b .bxm{display:inline-flex;align-items:center;gap:6px}
+#xscreen .tv-b .bxm:after{content:"";width:5px;height:5px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+#xscreen .tv-b .bxw.open .bxm:after{content:"";transform:translateY(2px) rotate(-135deg)}
 </style></head>
 <body class="xapp">
 <div class="xstage">
@@ -1044,7 +1049,12 @@ window.addEventListener('message',e=>{ if(e.data&&e.data.type==='wc-ops'){ try{ 
   window.addEventListener('pointerup',function(){ if(!dg) return; dg=null; sc.classList.remove('drag'); if(moved) setTimeout(function(){ moved=false; },0); });
   sc.addEventListener('click',function(e){ if(moved){ e.stopPropagation(); e.preventDefault(); moved=false; } },true);
   sc.addEventListener('dragstart',function(e){ e.preventDefault(); });
-  paint();
+  /* 자세히 보기: 두 줄 안에 다 보이는 글이면 버튼을 숨김 (눌러도 달라지는 게 없어서) */
+  function fitMore(){ scr.querySelectorAll('.tv-b .bxw').forEach(function(w){ var p=w.querySelector('.bx'), b=w.querySelector('.bxm'); if(!p||!b||w.classList.contains('open')) return; if(!p.offsetParent&&!p.clientHeight) return; b.style.display=p.scrollHeight>p.clientHeight+1?'':'none'; }); }
+  scr.addEventListener('click',function(){ setTimeout(fitMore,0); });
+  window.addEventListener('resize',fitMore);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitMore);
+  paint(); fitMore(); setTimeout(fitMore,400);
 })();
 </script>
 </body></html>
