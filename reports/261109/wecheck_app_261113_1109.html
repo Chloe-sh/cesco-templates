@@ -873,13 +873,13 @@ ${say}
   // A · 수치형
   const gauges=hc.metrics.map((m,mi)=>{
     const sel=s.sel.filter(i=>t.items[i].metric===mi);
-    const why=sel.map(i=>`<div class="why1"><b>이 집은</b> ${mark(s.pts[i],t.items[i].copy)}</div>`).join('');
+    const why=sel.map(i=>`<div class="why1"><b>이 ${t.key}은</b> ${mark(s.pts[i],t.items[i].copy)}</div>`).join('');
     return `<div class="r"><div class="k">${m.k}</div><div class="mt" style="margin-top:3px"><div class="mrow"><b>${m.v}</b>${m.u?'<small>'+m.u+'</small>':''}<span class="pill2">기준의 ${m.pct}%</span></div><div class="mb"><i style="width:${m.pct}%"></i></div><div class="ml"><span>0</span><span>${m.base}</span></div></div>${why}</div>`;}).join('');
   const rest=s.sel.filter(i=>t.items[i].metric<0);
   const restList = rest.length ? `<div class="card list"><div class="hd"><b>${t.owner}이 꼼꼼히 신경 쓰시는 부분</b><span>매장 기록</span></div>${rest.map(i=>`<div class="row"><span style="width:8px;height:8px;border-radius:50%;background:#C9D0D8;display:block;margin:0 auto"></span><div class="k">${t.items[i].title.replace('<br>',' ')}<small>${mark(s.pts[i],t.items[i].copy)}</small></div><span class="tag o">매장 기록</span></div>`).join('')}</div>` : '';
   const bodyA=`<div class="body">
-<div class="card intro"><div class="byline"><div class="av"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0072CE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><b>${reg.name}은요</b><span>${t.owner}이 적은 소개</span></div></div><p style="margin-top:8px">${mark(s.about, fill(t.about,reg))}</p></div>
-<div class="sh2"><b>항목별로 얼마나 여유 있나</b><small>${reg.date} 세스코 실측 · 값과 기준선</small></div>
+<div class="card intro"><div class="byline"><div class="av"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0072CE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><b>${reg.name}</b></div></div><p style="margin-top:8px">${mark(s.about, fill(t.about,reg)).replace(/^[^.<]*에 있는 [^.<]*이에요\.\s*/,'').replace(/\s*세스코가 직접 확인하거나 측정한 내용은 이 페이지에서 구분해 볼 수 있어요\.\s*$/,'')}</p></div>
+<div class="sh2"><b>얼마나 깨끗할까요?</b><small>${reg.date} 세스코 실측 · 값과 기준선</small></div>
 <div class="res">${gauges}</div>
 ${restList}
 ${sayCard}
