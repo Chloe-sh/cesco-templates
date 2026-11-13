@@ -992,8 +992,8 @@ window.addEventListener('message',e=>{ if(e.data&&e.data.type==='wc-ops'){ try{ 
   function refOf(){ return REFB+encodeURIComponent('위쳌_'+D[biz].key+(VER==='1109'?'_반영본_261109':'_윤문본_261110')+'.html'); }
   /* 치킨집 장소정보: 타일 라벨(placemeta 10개)과 체크 내용(checks 8개)의 순서가 2칸 어긋나 있어, 체크 내용에 맞는 라벨 8개만 씀 */
   (function(){ var t=D.chicken; if(!t||!t.placeinfo) return; var M=t.placemeta, C=t.placeinfo.checks; if(M&&C&&M.length===C.length+2&&M[0][3]==='유아의자'&&/김치/.test(C[0][1])) t.placemeta=M.slice(2); })();
-  /* 악취 예시 문구: 11/13 쉬운 설명안 (냄새 이름으로 풀고 측정값은 뒤로) */
-  BIZ.forEach(function(b){ var x=D[b].tools&&D[b].tools[0]; if(x&&x.k==='악취') x.ex="화장실 냄새는 주로 세 가지 원인 물질에서 비롯돼요. 지린내를 내는 암모니아, 달걀 썩는 냄새를 내는 황화수소, 양파 썩는 냄새를 내는 메틸메르캅탄이에요.\u003cbr>이곳은 방향탈취기로 냄새까지 쾌적하게 관리해요.\u003cbr>\u003cbr>측정값: 암모니아 0.5 ppm 이하 · 황화수소 0.005 ppm 이하 · 메틸메르캅탄 0.001 ppm 이하"; });
+  /* 악취 예시 문구: 11/13 쉬운 설명안 (냄새 이름으로 풀고, 측정값은 사업장 이름을 단 목록으로) */
+  BIZ.forEach(function(b){ var t=D[b], x=t.tools&&t.tools[0]; if(x&&x.k==='악취') x.ex="화장실 냄새는 주로 세 가지 원인 물질에서 비롯돼요. 지린내를 내는 암모니아, 달걀 썩는 냄새를 내는 황화수소, 양파 썩는 냄새를 내는 메틸메르캅탄이에요.\u003cbr>이 "+t.key+"은 방향탈취기로 냄새까지 쾌적하게 관리해요.\u003cbr>\u003cbr>\u003cb>"+t.reg.name+" 측정값\u003c/b>\u003cbr>• 암모니아 0.5 ppm 이하\u003cbr>• 황화수소 0.005 ppm 이하\u003cbr>• 메틸메르캅탄 0.001 ppm 이하"; });
   var q=new URLSearchParams(location.search), h=location.hash.slice(1);
   var biz=BIZ.indexOf(h)>=0?h:'chicken';
   var ty=TYPES.some(function(x){return x[0]===q.get('t');})?q.get('t'):'C';
