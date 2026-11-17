@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive"><title>판테온 × 에어컨 클리닝 1P 리플릿 시안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* 세스코 리플릿 — 실물 디자인형 공용 CSS (2026-10-28 회의 결정 반영)
+   규격: A4 세로 1장 앞·뒷면(2P). 화면에서는 앞·뒷면을 나란히 비교, 인쇄(@page A4)에서는 면당 1장.
+   지면 안 글자·여백은 모두 cqw(지면 폭 기준 %) 단위 — 화면 폭이 달라도, 인쇄로 넘어가도 비율이 같다. 1cqw = 2.1mm.
+   층 구분: 지면 카피(기본) · 이미지 자리(.slot, 회색 점선) · 메모 층(.memo/.pct/.dnote — '메모 숨기기'로 사라짐) · [확인 필요](.need, 주황)
+   규약 정본: ../references/leaflet-real-design-spec.md */
+:root{--stage:#d9dee6;--paper:#fff;--ink:#1c2430;--ink-2:#4b5563;--ink-3:#7c8592;--navy:#0f3c7a;--blue:#1e6fd9;--wash:#e9f1fb;--wash-2:#f4f7fb;--line:#d5dde8;
+--slot:#eef2f7;--slot-line:#a9b7c9;--memo:#fff4d6;--memo-ink:#7a5200;--hero:#1b2a3f;--tag:#ff7a2f;--need:#fff0e6;--need-ink:#b4530a;--ok:#1f7a45;--bad:#c2410c;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--stage:#1a1f27;}}
+:root[data-theme="dark"]{--stage:#1a1f27;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--stage)}
+body{color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all;padding:20px 16px 56px}
+.wrap{max-width:1240px;margin:0 auto}
+/* ── 상단 바(지면 밖) ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.bar h1{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.bar .sub{font-size:11.5px;color:var(--ink-3)}
+.bar .chips{display:flex;gap:5px;flex-wrap:wrap}
+.bar .chip{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-2);background:#fff}
+.bar .chip.type{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.bar .btns{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.bar button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:5px 11px;border-radius:16px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+/* ── 디자이너 노트(지면 밖) ── */
+.dnote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--tag);border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.55;color:var(--ink-2);margin-bottom:16px}
+.dnote h2{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.dnote h2 span{display:inline-block;background:var(--tag);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.dnote table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.dnote th{background:var(--wash-2);color:var(--ink);text-align:left;white-space:nowrap;width:96px;padding:5px 8px;border:1px solid var(--line);vertical-align:top}
+.dnote td{padding:5px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dnote td b{color:var(--navy)}
+/* ── 대지: 앞·뒷면 나란히 ── */
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media (max-width:1080px){.spread{grid-template-columns:1fr}}
+@media (max-width:640px){.spread{overflow-x:auto;padding-bottom:8px}.page{min-width:560px}}
+body[data-view="front"] .page.back,body[data-view="back"] .page.front{display:none}
+body[data-view="front"] .spread,body[data-view="back"] .spread{grid-template-columns:minmax(0,620px);justify-content:center}
+.page{position:relative;background:var(--paper);width:100%;aspect-ratio:210/297;container-type:inline-size;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 3px rgba(0,0,0,.08),0 18px 40px -12px rgba(15,60,122,.25)}
+.page .side{position:absolute;top:0;left:0;z-index:3;background:var(--navy);color:#fff;font-size:1.35cqw;font-weight:700;padding:.4cqw 1.6cqw;border-radius:0 0 .8cqw 0;letter-spacing:.05em}
+.page .fill{position:absolute;top:0;right:0;z-index:3;font-size:1.3cqw;font-weight:700;padding:.4cqw 1.4cqw;border-radius:0 0 0 .8cqw;background:var(--ok);color:#fff}
+.page .fill.bad{background:var(--bad)}
+.pad{padding:0 5.2cqw;display:flex;flex-direction:column;flex:1 0 auto}
+.pad>*+*{margin-top:1.4cqw}
+.page p{font-size:1.72cqw;line-height:1.6}
+/* 메모 층 */
+.memo{background:var(--memo);color:var(--memo-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:500;font-size:.92em}
+.pct{position:absolute;right:.6cqw;top:-.9cqw;z-index:2;font-size:1.15cqw;font-weight:800;color:var(--memo-ink);background:var(--memo);padding:.1cqw .9cqw;border-radius:999px;pointer-events:none}
+.blk{position:relative}
+body.hide-memo .memo,body.hide-memo .pct,body.hide-memo .dnote,body.hide-memo .fill{display:none}
+body.hide-memo .slot{color:transparent}
+.need{background:var(--need);color:var(--need-ink);border:1px dashed var(--need-ink);padding:0 .5cqw;border-radius:.3cqw;font-weight:700;font-size:.92em}
+/* 이미지 자리 */
+.slot{background:var(--slot);border:.22cqw dashed var(--slot-line);border-radius:.9cqw;color:var(--ink-3);font-size:1.3cqw;line-height:1.45;padding:1.1cqw 1.3cqw;display:flex;flex-direction:column;justify-content:flex-end;min-height:var(--h,8cqw)}
+.slot b{display:block;font-weight:800;color:var(--ink-2);font-size:1.25cqw;margin-bottom:.2cqw}
+.slot.grow{flex:1 1 auto}
+.hero .slot,.band .slot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45);color:#fff}
+.hero .slot b,.band .slot b{color:#fff}
+/* ── 앞면 블록 ── */
+.lock{display:flex;justify-content:space-between;align-items:baseline;padding:3.6cqw 5.2cqw 0;font-size:1.5cqw;font-weight:700;color:var(--ink-2)}
+.lock .brand{font-size:2.2cqw;font-weight:900;color:var(--navy);letter-spacing:.02em}
+.lock .brand small{font-size:1.4cqw;font-weight:600;color:var(--ink-2);margin-left:.8cqw;letter-spacing:0}
+.lock .badge{background:var(--blue);color:#fff;font-size:1.3cqw;padding:.25cqw 1.1cqw;border-radius:.4cqw;margin-right:.8cqw}
+.hero{position:relative;background:linear-gradient(100deg,var(--hero) 0%,#2a4566 55%,#5a7aa3 100%);color:#fff;padding:3.2cqw 5.2cqw 3cqw;display:grid;grid-template-columns:1.2fr .8fr;gap:3cqw;margin-top:2.2cqw}
+.bubbles{display:flex;flex-direction:column;gap:.7cqw;margin-bottom:2cqw}
+.bubble{align-self:flex-start;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:2cqw 2cqw 2cqw .4cqw;padding:.7cqw 1.6cqw;font-size:1.55cqw;line-height:1.45}
+.hero h1{font-size:4.3cqw;line-height:1.22;font-weight:900;letter-spacing:-.025em}
+.hero .sub{margin-top:1.4cqw;font-size:1.8cqw;font-weight:600;opacity:.95}
+.hero .sub2{margin-top:.5cqw;font-size:1.5cqw;opacity:.85}
+.hero .slot{min-height:100%}
+.why h2{font-size:2.5cqw;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:1cqw;letter-spacing:-.02em}
+.why h2 .q{background:var(--navy);color:#fff;font-size:1.6cqw;width:3cqw;height:3cqw;display:inline-flex;align-items:center;justify-content:center;border-radius:.4cqw;flex:none}
+.why .ans{margin-top:1cqw;font-size:1.65cqw;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;margin-top:1.6cqw}
+.card{border:1px solid var(--line);border-top:.4cqw solid var(--navy);border-radius:0 0 .9cqw .9cqw;padding:1.2cqw 1.4cqw 1.3cqw;display:flex;flex-direction:column}
+.card .ico{width:5.2cqw;height:5.2cqw;border-radius:50%;background:var(--slot);border:.2cqw dashed var(--slot-line);color:var(--ink-3);font-size:1.05cqw;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:.9cqw;line-height:1.2}
+.card b{font-size:1.65cqw;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.card p{font-size:1.4cqw;line-height:1.55;color:var(--ink-2);margin-top:.5cqw}
+.stat{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:1.4cqw;align-items:stretch}
+.stat>div{background:var(--wash-2);border-radius:.9cqw;padding:1.3cqw 1.5cqw}
+.stat .v{font-size:4.2cqw;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.03em}
+.stat .v small{font-size:1.8cqw;font-weight:800;margin-left:.2cqw}
+.stat .l{font-size:1.3cqw;line-height:1.45;color:var(--ink-2);margin-top:.7cqw}
+.stat .cap{font-size:1.55cqw;font-weight:800;color:var(--navy);margin-bottom:.6cqw}
+.stat ul{list-style:none;font-size:1.45cqw;font-weight:700;color:var(--navy)}
+.stat ul li::before{content:"☑ ";color:var(--blue)}
+.band{position:relative;background:var(--navy);color:#fff;padding:2.6cqw 5.2cqw;margin:1.6cqw -5.2cqw 0;display:grid;grid-template-columns:1fr 17cqw;gap:2.4cqw;align-items:center}
+.band .pre{font-size:1.6cqw;line-height:1.6;opacity:.92}
+.band .name{font-size:3.1cqw;font-weight:900;margin-top:.8cqw;letter-spacing:-.02em;line-height:1.25}
+.band .spec{margin-top:1cqw;font-size:1.3cqw;opacity:.85;padding-top:.8cqw;border-top:1px solid rgba(255,255,255,.3)}
+.band .slot{min-height:12cqw}
+.bridge{font-size:1.65cqw;color:var(--ink);background:var(--wash);border-left:.5cqw solid var(--blue);padding:1.1cqw 1.6cqw;border-radius:0 .8cqw .8cqw 0}
+/* ── 뒷면 블록 ── */
+.p2head{padding-top:3.2cqw}
+.p2head .k{font-size:1.6cqw;color:var(--ink-2);font-weight:600}
+.p2head h2{font-size:2.9cqw;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.02em;margin-top:.3cqw}
+.adv{display:grid;grid-template-columns:1fr 15cqw;gap:2.4cqw}
+.alist{display:flex;flex-direction:column;gap:.9cqw}
+.a{display:grid;grid-template-columns:4.6cqw 1fr;gap:1.4cqw;align-items:start}
+.a .no{width:4.6cqw;height:4.6cqw;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5cqw;font-weight:900}
+.a h3{font-size:1.78cqw;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.01em}
+.a p{font-size:1.4cqw;line-height:1.5;margin-top:.35cqw;color:var(--ink)}
+.col{display:flex;flex-direction:column;gap:1.2cqw}
+.col .slot{flex:1 1 auto}
+sup{font-size:.65em;color:var(--blue);font-weight:700;line-height:0}
+table.t{width:100%;border-collapse:collapse;font-size:1.4cqw}
+table.t th{background:var(--wash);color:var(--navy);font-weight:700;padding:.65cqw .8cqw;border:1px solid var(--line);text-align:center}
+table.t td{padding:.6cqw .8cqw;border:1px solid var(--line);text-align:center;vertical-align:middle}
+table.t td.l{text-align:left}
+table.t td.pr{font-weight:900;color:var(--blue);font-size:1.6cqw}
+table.t td s{color:var(--ink-3);font-weight:400;font-size:1.25cqw;margin-right:.4cqw}
+table.t.spec td:nth-child(odd){background:var(--wash-2);font-weight:700;color:var(--navy);width:16%;white-space:nowrap}
+table.t.spec td:nth-child(even){text-align:left}
+.proof{background:var(--wash-2);border-radius:.9cqw;padding:1.1cqw 1.4cqw}
+.proof .cert{font-size:1.55cqw;font-weight:900;color:var(--navy);border-left:.45cqw solid var(--navy);padding-left:1cqw;margin-bottom:.8cqw}
+.fine{font-size:1.1cqw;line-height:1.48;color:var(--ink-2)}
+.fine p{font-size:1.1cqw;line-height:1.48}
+.fine p+p{margin-top:.15cqw}
+.fnote{margin-top:auto;padding-top:1.2cqw;border-top:1px solid var(--line)}
+.cross{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.cross>div{border:1px solid var(--line);border-radius:.9cqw;padding:1cqw 1.3cqw}
+.cross h4{font-size:1.65cqw;font-weight:900;color:var(--navy)}
+.cross p{font-size:1.4cqw;color:var(--ink-2);margin-top:.4cqw}
+.cross .lbl{display:inline-block;background:var(--navy);color:#fff;font-size:1.15cqw;font-weight:700;padding:.2cqw 1cqw;border-radius:.3cqw;margin-bottom:.5cqw}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw;margin-top:1cqw}
+.mini .slot{min-height:5cqw;font-size:1.1cqw;padding:.7cqw}
+.cta{display:grid;grid-template-columns:1fr 8cqw;gap:2cqw;align-items:center;background:var(--navy);color:#fff;border-radius:1cqw;padding:1.2cqw 2cqw}
+.cta h5{font-size:2cqw;font-weight:900}
+.cta h5 small{font-size:1.4cqw;font-weight:500;opacity:.9;margin-left:.8cqw}
+.cta p{font-size:1.35cqw;opacity:.9;margin-top:.4cqw}
+.cta .qr{width:8cqw;height:8cqw;background:#fff;border-radius:.6cqw;color:var(--ink-3);font-size:1.1cqw;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+/* 관리 단계형(STEP) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.step{border:1px solid var(--line);border-radius:.9cqw;overflow:hidden;display:flex;flex-direction:column}
+.step .slot{border-radius:0;border-width:0 0 .22cqw;min-height:9cqw}
+.step .tx{padding:1cqw 1.2cqw 1.2cqw}
+.step .sn{font-size:1.2cqw;font-weight:900;color:var(--blue);letter-spacing:.04em}
+.step h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.3;margin-top:.1cqw}
+.step p{font-size:1.35cqw;line-height:1.5;color:var(--ink-2);margin-top:.4cqw}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.pt{background:var(--wash-2);border-radius:.9cqw;padding:1.2cqw 1.4cqw}
+.pt .pn{font-size:1.2cqw;font-weight:900;color:var(--blue)}
+.pt h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;margin-top:.2cqw}
+.pt p{font-size:1.35cqw;line-height:1.5;color:var(--ink);margin-top:.4cqw}
+/* 가격표형 */
+.lineup{display:flex;flex-direction:column;gap:.7cqw}
+.li{display:grid;grid-template-columns:6.5cqw 1fr;gap:1.2cqw;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.7cqw}
+.li .slot{min-height:5.6cqw;font-size:1.05cqw;padding:.6cqw}
+.li .no{display:inline-block;width:2.6cqw;height:2.6cqw;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3cqw;font-weight:900;text-align:center;line-height:2.6cqw;margin-right:.6cqw;vertical-align:middle}
+.li h3{font-size:1.7cqw;font-weight:900;color:var(--navy);line-height:1.35;display:inline}
+.li p{font-size:1.25cqw;line-height:1.45;color:var(--ink-2);margin-top:.25cqw}
+/* Q&A형 */
+.qa{display:flex;flex-direction:column;gap:.7cqw}
+.qa>div{display:grid;grid-template-columns:4.2cqw 1fr;gap:1.2cqw}
+.qa .qn{width:4.2cqw;height:4.2cqw;border-radius:.6cqw;background:var(--navy);color:#fff;font-size:1.5cqw;font-weight:900;display:flex;align-items:center;justify-content:center}
+.qa h3{font-size:1.75cqw;font-weight:900;color:var(--navy);line-height:1.35}
+.qa p{font-size:1.36cqw;line-height:1.5;margin-top:.3cqw;color:var(--ink)}
+table.t.cmp th.rec{background:var(--navy);color:#fff}
+table.t.cmp td{text-align:left;font-size:1.22cqw;vertical-align:top;padding:.5cqw .7cqw}
+table.t.cmp td:first-child{background:var(--wash-2);font-weight:700;color:var(--navy);width:13%;white-space:nowrap;text-align:center}
+table.t.cmp td ul{list-style:none}
+table.t.cmp td li::before{content:"· "}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+/* 푸터 */
+.pf{margin-top:auto;padding:1.1cqw 5.2cqw 1.5cqw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-size:1.25cqw;color:var(--ink-2)}
+.pf .logo{font-weight:900;font-size:2.4cqw;color:var(--navy);line-height:1}
+.pf .logo small{display:block;font-size:1.15cqw;font-weight:600;letter-spacing:.14em;margin-top:.3cqw;color:var(--ink-2)}
+.pf .tel{font-size:1.9cqw;font-weight:900;color:var(--navy)}
+.pf .tel small{display:block;font-size:1.15cqw;font-weight:500;color:var(--ink-2)}
+.pf.full{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.pf .addr{font-size:1.15cqw;line-height:1.55}
+.pf .card{border:1px dashed var(--slot-line);width:19cqw;height:7cqw;font-size:1.2cqw;color:var(--ink-3);display:flex;align-items:center;justify-content:center;text-align:center;border-radius:.5cqw}
+/* 인쇄 */
+@page{size:A4 portrait;margin:0}
+@media print{
+ body{background:#fff;padding:0}
+ .bar,.dnote,.page .side,.page .fill,.pct{display:none!important}
+ .spread{display:block}
+ .page{width:210mm;height:297mm;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
+ .page:last-child{break-after:auto;page-break-after:auto}
+ .memo{background:transparent;color:inherit}
+}
+
+
+/* ── 이 시안 전용 추가(3종 비교) ── */
+.bar .vers{display:flex;gap:5px;flex-wrap:wrap}
+body[data-ver="1"] .ver:not([data-ver="1"]),body[data-ver="2"] .ver:not([data-ver="2"]),body[data-ver="3"] .ver:not([data-ver="3"]){display:none}
+.ver{margin-bottom:46px}
+.ver>.vh{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:17px;font-weight:900;color:var(--ink)}
+.ver>.vh .idx{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px}
+.ver>.vh small{font-size:12px;font-weight:600;color:var(--ink-3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ver>.vh{color:#e7ecf3}}
+:root[data-theme="dark"] .ver>.vh{color:#e7ecf3}
+.diff{background:#fff;border:1px solid var(--line);border-left:5px solid var(--navy);border-radius:8px;padding:10px 16px;font-size:12.5px;color:var(--ink-2);margin-bottom:18px}
+.diff summary{cursor:pointer;font-weight:900;color:var(--ink);font-size:13px}
+.diff ol{margin:8px 0 2px 18px;line-height:1.6}
+.diff b{color:var(--navy)}
+body.hide-memo .diff{display:none}
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2cqw}
+.who>div{border:1px solid var(--line);border-radius:.9cqw;padding:1cqw 1.2cqw;display:flex;align-items:center;gap:1cqw}
+.who .ico{width:4.2cqw;height:4.2cqw;flex:none;border-radius:50%;background:var(--slot);border:.2cqw dashed var(--slot-line);color:var(--ink-3);font-size:.95cqw;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+.who b{font-size:1.5cqw;color:var(--navy);line-height:1.35}
+.wlabel{font-size:1.75cqw;font-weight:900;color:var(--navy)}
+.steps.compact .slot{min-height:6.4cqw}
+.steps.compact .tx{padding:.8cqw 1.1cqw 1cqw}
+.steps.compact p{font-size:1.3cqw}
+table.t.price td{font-size:1.4cqw}
+.seq6{display:grid;grid-template-columns:repeat(6,1fr);gap:.8cqw;margin:.6cqw 0 .8cqw;flex:1 1 auto}
+.seq6 span{border:.18cqw dashed var(--slot-line);border-radius:.6cqw;background:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:.6cqw;font-size:1.1cqw;line-height:1.3;color:var(--ink-2);font-weight:700;min-height:6cqw}
+.seq6 i{font-style:normal;color:var(--blue);font-weight:900;font-size:1cqw}
+body.hide-memo .seq6 span{color:transparent}
+.spread.one{grid-template-columns:minmax(0,640px);justify-content:center}
+@media (max-width:640px){.bar .btns{margin-left:0}}
+@media print{.ver>.vh,.diff{display:none!important}.ver{margin:0}}
+
+
+/* ── 1P 통합 가이드(V4) 구조용 추가 ── */
+.hero{margin-top:2.2cqw;min-height:28cqw;flex:none;padding-top:2.6cqw;padding-bottom:2.4cqw;grid-template-columns:1.4fr .6fr}
+.hero h1{font-size:4.1cqw}
+.hero>div:first-child{display:flex;flex-direction:column}
+.hero .pn{margin-top:auto;padding-top:1.3cqw;border-top:1px solid rgba(255,255,255,.45);font-size:3.1cqw;font-weight:900;letter-spacing:-.02em;line-height:1.25}
+.hero .sub{margin-top:1.4cqw;margin-bottom:1.6cqw;font-size:2.35cqw;font-weight:700;line-height:1.45;opacity:1}
+.hero .sub2{margin-top:.5cqw;font-size:1.6cqw}
+.pad{padding-top:1.8cqw}
+.who.four{grid-template-columns:1fr 1fr;gap:.9cqw 1.4cqw}
+.who.four>div{padding:.85cqw 1.2cqw}
+.who .ck{flex:none;width:2.6cqw;height:2.6cqw;border-radius:.5cqw;background:var(--navy);color:#fff;font-size:1.5cqw;font-weight:900;display:flex;align-items:center;justify-content:center}
+.who.four b{font-weight:700;color:var(--ink);font-size:1.55cqw}
+.card .kw{font-size:1.25cqw;font-weight:900;color:var(--blue);letter-spacing:.04em;margin-bottom:.3cqw}
+.card .cf{margin-top:auto;padding-top:.9cqw}
+.card .cf span{display:block;border-top:1px solid var(--line);padding-top:.7cqw;font-size:1.2cqw;line-height:1.5;color:var(--ink-2)}
+.card .cf em{font-style:normal;font-weight:800;color:var(--navy)}
+.card{padding-bottom:1.1cqw}
+.ph{display:flex;align-items:center;gap:1.2cqw;flex-wrap:wrap}
+.ph .tagp{background:var(--blue);color:#fff;font-size:1.3cqw;font-weight:700;padding:.25cqw 1.2cqw;border-radius:999px}
+.ph .per{font-size:1.4cqw;color:var(--ink-2);font-weight:600}
+table.t.kv th{width:17%;white-space:nowrap}
+table.t.kv td{text-align:left}
+.pnote{font-size:1.25cqw!important;color:var(--ink-2)}
+.trust{background:var(--navy);color:#fff;border-radius:.9cqw;padding:.9cqw 1.8cqw;font-size:1.6cqw;font-weight:800;text-align:center;letter-spacing:-.01em}
+.trust small{display:block;font-size:1.25cqw;font-weight:500;opacity:.85;margin-bottom:.2cqw}
+.slot.grow{min-height:4.5cqw}
+table.t.kv td,table.t.kv th{padding:.5cqw .8cqw}
+.hero .need{font-size:1.2cqw;font-weight:700}
+.pf .tel .need{font-size:1.3cqw}
+</style></head>
+<body data-view="both" data-ver="all"><div class="wrap">
+<header class="bar"><h1>판테온 × 에어컨 클리닝 결합 상품 리플릿 · 실물 디자인형</h1><span class="sub">가정집 전용 · 가을·겨울 시즌 · 1P · 2026-11-17</span>
+<div class="chips"><span class="chip type">환경가전 + 서비스 · 1P A안</span><span class="chip">A4 세로 단면 1P</span><span class="chip">판형·푸터 규격 확인 필요</span></div>
+<div class="btns"><button id="memo-toggle" aria-pressed="false">메모 숨기기</button><button id="print">인쇄 미리보기</button></div></header>
+<section class="ver" data-ver="1"><section class="dnote"><h2><span>디자이너 노트</span>판테온 × 에어컨 클리닝 · 1P 통합 가이드 V5 · 결합 상품</h2><table><tr><th>헤드</th><td>POD 커뮤니케이션 메시지(미루고 있던 에어컨 청소까지 함께)를 의문형으로 풀었습니다. 서브는 결합 혜택을 서술형으로 말하고 상품명으로 이어집니다.</td></tr><tr><th>카드 구성</th><td>카드 1 판테온(트루살균·구리헤파필터), 카드 2 에어컨 클리닝(6단계 살균 세척), 카드 3 결합(한 번에 계약). 판테온 수치는 POD에 없어(상세페이지 참고) 넣지 않았습니다.</td></tr><tr><th>제외</th><td>경쟁사 렌탈가 비교, ‘10만 원 상당’ 환산, 위해요소 수치 3건(대외 사용 가능 여부·원본 확인 예정)은 지면에서 뺐습니다.</td></tr><tr><th>지면</th><td>가격표와 고지문이 커서 여백 흡수 이미지 자리는 작게 잡았습니다. POD의 위약금 고지문은 원문 그대로 실었습니다.</td></tr><tr><th>확인 필요</th><td>결합 상품 명칭(가안) · 판테온 시험 수치·각주(상세페이지) · 위해요소 수치 3건 사용 가능 여부 · 상담 전화 · 배포 시점과 제공 기간(10~2월) · 1P 푸터 규격</td></tr></table></section><main class="spread one"><article class="page front"><span class="side">판테온 × 에어컨 클리닝 · 1P</span><span class="fill">측정 중</span>
+<div class="lock"><span><span class="brand">CESCO<small>세스코</small></span></span><span>공기청정기 렌탈 ㅣ 에어컨 클리닝 결합</span></div>
+<div class="hero"><div><h1>여름 내내 쓴 에어컨,<br>청소는 아직 미루고 계신가요?</h1><div class="sub">공기청정기를 렌탈하면<br>에어컨 전문 클리닝을 연 1회 받습니다</div><div class="pn">판테온 × 에어컨 클리닝 결합 상품 <span class="need" style="font-size:1.15cqw;vertical-align:middle;white-space:nowrap">[명칭 가안]</span></div><div class="sub2">가정집 전용 ㅣ 월 27,900원부터 ㅣ 에어컨 클리닝 연 1회(10~2월)</div></div>
+<div class="slot"><b>이미지 · 대표 이미지</b>거실에 놓인 판테온 공기청정기와 벽걸이 에어컨이 함께 보이는 연출컷 / 밝고 깨끗한 톤</div></div>
+<div class="pad"><div class="wlabel">이런 분들께 추천합니다</div><div class="who four"><div><span class="ck">✓</span><b>공기청정기 렌탈을 알아보고 있는 가정</b></div><div><span class="ck">✓</span><b>에어컨을 켜면 퀴퀴한 냄새가 나는 집</b></div><div><span class="ck">✓</span><b>영유아·고령자, 호흡기가 예민한 가족이 있는 집</b></div><div><span class="ck">✓</span><b>공기청정기와 에어컨 청소를 따로 계약하기 번거로운 분</b></div></div>
+<div class="cards"><div class="card"><div class="ico">아이콘<br>공기청정기</div><div class="kw">공기청정</div><b>부유 곰팡이·세균·바이러스까지 제거하는 트루살균<sup>1)</sup></b><p>잡아낸 곰팡이가 필터 안에서 증식하는 것도 억제합니다.</p><div class="cf"><span><em>적용 기술</em> · 트루살균, 구리헤파필터</span></div></div><div class="card"><div class="ico">아이콘<br>에어컨</div><div class="kw">클리닝</div><b>냉각핀·배수판·송풍팬까지 살균 세척</b><p>고압 세척 전문 살균 장비로 세균막을 제거합니다.</p><div class="cf"><span><em>관리 단계</em> · 세스코라이프케어 6단계 살균 세척</span></div></div><div class="card"><div class="ico">아이콘<br>계약서</div><div class="kw">결합</div><b>공기청정기 렌탈과 에어컨 클리닝을 한 번에 계약</b><p>판테온은 결합가로, 에어컨 클리닝은 월 구독료로 이용합니다.</p><div class="cf"><span><em>클리닝 대상</em> · 벽걸이형, 스탠드형, 1/2WAY 시스템</span></div></div></div>
+<div class="slot grow" style="--h:4.5cqw"><b>이미지 (여백 흡수 자리)</b>에어컨 클리닝 작업 컷 2~3컷(부품 분해, 내부 살균 세척, 작동 확인). 글이 짧으면 이 자리가 남는 지면을 흡수</div>
+<div class="ph"><div class="wlabel">결합 상품 가격</div><span class="tagp">월 27,900원부터</span><span class="per">트루에어 판테온 20 + 벽걸이형 기준</span></div>
+<div class="grid2"><table class="t price"><tr><th>판테온 월 렌탈료</th><th>표준가</th><th>결합가</th></tr>
+<tr><td class="l">트루살균 판테온 25</td><td><s>44,900원</s></td><td class="pr">35,900원</td></tr>
+<tr><td class="l">트루살균 판테온 20</td><td><s>41,900원</s></td><td class="pr">32,900원</td></tr>
+<tr><td class="l">트루에어 판테온 25</td><td><s>32,900원</s></td><td class="pr">23,900원</td></tr>
+<tr><td class="l">트루에어 판테온 20</td><td><s>29,900원</s></td><td class="pr">20,900원</td></tr></table>
+<table class="t price"><tr><th>에어컨 클리닝</th><th>일시불</th><th>월 구독료</th></tr>
+<tr><td class="l">벽걸이형</td><td>110,000원</td><td class="pr">7,000원</td></tr>
+<tr><td class="l">시스템(1way·2way)</td><td>150,000원</td><td class="pr">9,000원</td></tr>
+<tr><td class="l">스탠드형</td><td>170,000원</td><td class="pr">11,000원</td></tr>
+<tr><td class="l" colspan="3" style="font-size:1.2cqw;color:var(--ink-2)">월 구독료는 36·60·72개월 동일</td></tr></table></div>
+<p class="pnote">* 판테온 렌탈료는 72개월 의무약정, 4개월 방문주기 기준 결합가입니다. 선택하는 공기청정기 및 에어컨 종류에 따라 상이합니다.</p>
+<p class="pnote">* 본 상품은 가정집 전용 계약 상품입니다(사업장 제외). 에어컨 클리닝 서비스는 스탠드형, 1/2WAY 시스템, 벽걸이형만 가능합니다(창문형, 4WAY 시스템 에어컨 제외).</p>
+<p class="pnote">* 에어컨 클리닝은 연 1회(10~2월) 제공되며, 지역·예약 상황에 따라 방문일이 조정될 수 있습니다.</p>
+<p class="pnote">* 의무사용기간 내에 해약 시 소비자분쟁해결기준에 따라 위약금이 발생하며, 렌탈등록비를 할인 받은 경우 의무사용기간 내에 해약 시 위약금으로 청구합니다.</p>
+
+<div class="fine fnote"><p>1) 상기 내용은 ‘세스코 트루살균 공기청정기 판테온’ 기준입니다. 사용 환경에 따라 결과가 달라질 수 있음.</p></div>
+</div><footer class="pf full"><div class="logo">CESCO<small>세스코</small></div><div class="tel">상담 문의 <span class="need">[확인 필요: 전화·채널]</span><small>판테온 × 에어컨 클리닝 결합 상품 상담</small></div><div class="card">명함 부착 영역</div></footer></article></main></section>
+</div><script>
+(function(){
+ var body=document.body;
+ document.querySelectorAll('.bar button[data-view-x]').forEach(function(b){b.addEventListener('click',function(){
+  body.dataset.view=b.dataset.view;document.querySelectorAll('.bar button[data-view-x]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});measure();});});
+ document.querySelectorAll('.bar button[data-ver]').forEach(function(b){b.addEventListener('click',function(){
+  body.dataset.ver=b.dataset.ver;document.querySelectorAll('.bar button[data-ver]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});measure();});});
+ var mt=document.getElementById('memo-toggle');mt.addEventListener('click',function(){body.classList.toggle('hide-memo');mt.setAttribute('aria-pressed',body.classList.contains('hide-memo')?'true':'false');});
+ document.getElementById('print').addEventListener('click',function(){window.print();});
+ function measure(){document.querySelectorAll('.page').forEach(function(p){
+  var badge=p.querySelector('.fill');if(!badge||!p.clientHeight)return;
+  var over=p.scrollHeight-p.clientHeight;var mm=Math.round(over*297/p.clientHeight);
+  var grow=0;p.querySelectorAll('.slot.grow').forEach(function(s){grow+=s.getBoundingClientRect().height;});
+  var pct=Math.round(grow/p.clientHeight*100);
+  if(over>2){badge.textContent='지면 초과 약 '+mm+'mm · 본문을 줄이세요';badge.classList.add('bad');}
+  else{badge.textContent='지면 OK · 이미지 자리가 여백 '+pct+'% 흡수';badge.classList.remove('bad');}
+ });}
+ window.addEventListener('resize',measure);window.addEventListener('load',measure);
+ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(measure);}measure();
+})();
+</script></body></html>
