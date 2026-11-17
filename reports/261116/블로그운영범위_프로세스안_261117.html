@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>블로그 운영 범위 및 프로세스(안)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #fbfcfb;
+    --surface: #f1f6f3;
+    --ink: #1c2a25;
+    --heading: #12382c;
+    --muted: #5d6b65;
+    --line: #d6dfda;
+    --accent: #0f7b5f;
+    --accent-soft: #cfe6dc;
+    --on-accent: #ffffff;
+    --on-accent-soft: #0b5a45;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #121a17;
+      --surface: #1a2521;
+      --ink: #dde6e1;
+      --heading: #eef5f1;
+      --muted: #98a8a0;
+      --line: #2e3c36;
+      --accent: #45b894;
+      --accent-soft: #24473b;
+      --on-accent: #0c1f18;
+      --on-accent-soft: #bfe6d6;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #121a17;
+    --surface: #1a2521;
+    --ink: #dde6e1;
+    --heading: #eef5f1;
+    --muted: #98a8a0;
+    --line: #2e3c36;
+    --accent: #45b894;
+    --accent-soft: #24473b;
+    --on-accent: #0c1f18;
+    --on-accent-soft: #bfe6d6;
+  }
+
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    font-size: 15.5px;
+    line-height: 1.75;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 72px 28px 88px;
+  }
+
+  /* 문서 머리 */
+  .doc-head { border-bottom: 2px solid var(--heading); padding-bottom: 28px; }
+  .doc-meta {
+    display: flex; justify-content: space-between; gap: 16px;
+    color: var(--muted); font-size: 14px; font-weight: 500;
+    margin: 0 0 40px;
+  }
+  h1 {
+    margin: 0;
+    color: var(--heading);
+    font-size: clamp(30px, 5.4vw, 46px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  }
+  .lead {
+    margin: 22px 0 0;
+    max-width: 44em;
+    font-size: 16.5px;
+  }
+  .lead + .lead { margin-top: 8px; color: var(--muted); font-size: 15px; }
+
+  /* 섹션 */
+  section { margin-top: 64px; }
+  h2 {
+    display: flex; align-items: baseline; gap: 12px;
+    margin: 0 0 6px;
+    color: var(--heading);
+    font-size: 23px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.4;
+  }
+  h2 .num { color: var(--accent); font-weight: 600; }
+  .sec-note { margin: 0 0 24px; color: var(--muted); max-width: 44em; }
+  h3 { margin: 0; color: var(--heading); font-size: 17.5px; font-weight: 700; line-height: 1.45; }
+
+  /* 운영 유형 */
+  .type {
+    display: grid;
+    grid-template-columns: 232px 1fr 196px;
+    gap: 28px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+  }
+  .type:last-of-type { border-bottom: 1px solid var(--line); }
+  .meter { display: flex; gap: 4px; margin-bottom: 14px; }
+  .meter i { width: 26px; height: 6px; border-radius: 3px; background: var(--accent-soft); }
+  .meter i.on { background: var(--accent); }
+  .type p { margin: 8px 0 0; color: var(--muted); font-size: 14.5px; line-height: 1.7; }
+  .col-label { margin: 0 0 8px; color: var(--muted); font-size: 13px; font-weight: 600; }
+  .type ul { margin: 0; padding: 0; list-style: none; }
+  .type li { position: relative; padding-left: 14px; margin-bottom: 4px; line-height: 1.65; }
+  .type li::before {
+    content: ""; position: absolute; left: 0; top: 0.72em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+  }
+  .role {
+    background: var(--surface);
+    border-radius: 6px;
+    padding: 14px 16px;
+    align-self: start;
+    font-size: 14.5px; line-height: 1.7;
+  }
+  .role .col-label { margin-bottom: 4px; }
+
+  /* 표 공통 */
+  .scroll { position: relative; overflow-x: auto; margin-top: 32px; }
+  table { width: 100%; border-collapse: collapse; }
+  caption {
+    caption-side: top; text-align: left;
+    color: var(--heading); font-weight: 700; font-size: 16px;
+    padding-bottom: 10px;
+  }
+  th, td { padding: 11px 12px; text-align: left; vertical-align: middle; }
+  thead th {
+    color: var(--muted); font-size: 13.5px; font-weight: 600;
+    border-bottom: 1.5px solid var(--heading);
+  }
+  tbody th { font-weight: 500; }
+  tbody tr > * { border-bottom: 1px solid var(--line); }
+
+  .compare { min-width: 520px; }
+  .compare th:not(:first-child), .compare td { text-align: center; width: 19%; }
+  .dot {
+    display: inline-block; width: 11px; height: 11px; border-radius: 50%;
+    background: var(--accent); vertical-align: middle;
+  }
+  .none { color: var(--muted); }
+  .sr {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  /* 프로세스 + 유형별 수행 구간 */
+  .process { min-width: 480px; }
+  .process thead th.t { text-align: center; width: 58px; padding-left: 4px; padding-right: 4px; }
+  .process tbody th {
+    vertical-align: top; padding: 20px 20px 20px 0; font-weight: 400;
+  }
+  .step { display: grid; grid-template-columns: 34px 1fr; gap: 8px; }
+  .step .n { color: var(--accent); font-weight: 700; font-size: 17px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+  .step strong { display: block; color: var(--heading); font-size: 16.5px; font-weight: 700; line-height: 1.5; }
+  .step span.d { display: block; margin-top: 4px; color: var(--ink); line-height: 1.7; }
+  .process td.cov { position: relative; padding: 0; border-bottom: 0; }
+  .process tbody tr:last-child td.cov { border-bottom: 1px solid var(--line); }
+  .bar {
+    position: absolute; top: 0; bottom: 0; left: 11px; right: 11px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent); color: var(--on-accent);
+    font-size: 12px; font-weight: 600; line-height: 1.2; text-align: center;
+  }
+  .bar.part { background: var(--accent-soft); color: var(--on-accent-soft); }
+  .bar.start { top: 12px; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+  .bar.end { bottom: 12px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 6px 22px;
+    margin: 14px 0 0; padding: 0; list-style: none;
+    color: var(--muted); font-size: 13.5px;
+  }
+  .legend li { display: flex; align-items: center; gap: 8px; }
+  .legend i { width: 14px; height: 14px; border-radius: 3px; background: var(--accent); flex: none; }
+  .legend i.part { background: var(--accent-soft); }
+
+  /* 적용 방향 */
+  .apply { display: grid; grid-template-columns: 1fr 268px; gap: 36px; align-items: start; }
+  .apply ol { margin: 0; padding: 0; list-style: none; }
+  .apply li { padding: 16px 0; border-top: 1px solid var(--line); }
+  .apply li:last-child { border-bottom: 1px solid var(--line); }
+  .apply li p { margin: 4px 0 0; }
+  .flow {
+    background: var(--surface); border-radius: 8px; padding: 20px;
+    font-size: 14px; line-height: 1.6;
+  }
+  .flow .src {
+    background: var(--accent); color: var(--on-accent);
+    border-radius: 6px; padding: 12px 14px; font-weight: 600;
+  }
+  .flow .src small { display: block; font-weight: 400; font-size: 12.5px; opacity: 0.92; margin-top: 2px; }
+  .flow .stem { width: 2px; height: 18px; background: var(--accent); margin: 0 auto; }
+  .flow .out { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .flow .out span {
+    border: 1.5px solid var(--accent); border-radius: 6px;
+    padding: 9px 4px; text-align: center; font-weight: 600; color: var(--heading);
+    background: var(--paper);
+  }
+  .flow p { margin: 12px 0 0; color: var(--muted); font-size: 13px; }
+
+  /* 협의 사항 */
+  .agenda tbody th { width: 30%; color: var(--heading); font-weight: 600; vertical-align: top; }
+  .agenda td { vertical-align: top; }
+
+  .closing {
+    margin-top: 56px; padding-top: 20px; border-top: 2px solid var(--heading);
+    color: var(--muted); font-size: 14px;
+  }
+
+  @media (max-width: 760px) {
+    .page { padding: 44px 20px 64px; }
+    .doc-meta { margin-bottom: 28px; }
+    section { margin-top: 52px; }
+    .type { grid-template-columns: 1fr; gap: 16px; }
+    .apply { grid-template-columns: 1fr; gap: 24px; }
+    .compare, .process { min-width: 0; }
+    .compare th, .compare td { padding-left: 6px; padding-right: 6px; }
+    .compare thead th { font-size: 12.5px; }
+    .process thead th.t { width: 42px; font-size: 12px; padding-left: 2px; padding-right: 2px; }
+    .bar { left: 6px; right: 6px; font-size: 11px; }
+    .process tbody th { padding-right: 10px; }
+    .step { grid-template-columns: 26px 1fr; gap: 6px; }
+    .step .n { font-size: 15px; }
+  }
+
+  @media print {
+    :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+      color-scheme: light;
+      --paper: #ffffff; --surface: #f1f6f3; --ink: #1c2a25; --heading: #12382c;
+      --muted: #5d6b65; --line: #d6dfda; --accent: #0f7b5f; --accent-soft: #cfe6dc;
+      --on-accent: #ffffff; --on-accent-soft: #0b5a45;
+    }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { font-size: 10.5pt; }
+    .page { max-width: none; padding: 0; }
+    section { margin-top: 36px; }
+    .type, .apply li, tr, .flow { break-inside: avoid; }
+    h2, caption { break-after: avoid; }
+    .scroll { overflow: visible; }
+    @page { size: A4; margin: 18mm 16mm; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="doc-head">
+    <p class="doc-meta"><span>세스코 블로그 운영 제안</span><span>2026. 11.</span></p>
+    <h1>블로그 운영 범위 및 프로세스(안)</h1>
+    <p class="lead">고객사의 운영 여건과 제작 목적에 맞춰 원고 편집, 콘텐츠 기획·제작, 블로그 통합 운영 중 필요한 범위를 선택하실 수 있습니다.</p>
+    <p class="lead">세 유형 모두 기존에 수행해 온 업무를 기준으로 정리했습니다.</p>
+  </header>
+
+  <section aria-labelledby="s1">
+    <h2 id="s1" style="margin-bottom:24px"><span class="num">1</span>블로그 운영 범위</h2>
+
+    <article class="type">
+      <div>
+        <div class="meter" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        <h3>① 원고 편집·최적화형</h3>
+        <p>고객사가 작성한 초안을 브랜드 톤앤매너와 블로그 특성에 맞게 다듬습니다.</p>
+      </div>
+      <div>
+        <p class="col-label">주요 업무</p>
+        <ul>
+          <li>원고 리라이팅·윤문</li>
+          <li>제목·소제목, 본문 구성 보완</li>
+          <li>핵심 메시지 정리, 가독성 개선</li>
+          <li>브랜드 톤앤매너 검수</li>
+          <li>피드백 반영 후 최종 원고 전달</li>
+        </ul>
+      </div>
+      <div class="role">
+        <p class="col-label">고객사 역할</p>
+        콘텐츠 주제, 원천자료, 초안 제공
+      </div>
+    </article>
+
+    <article class="type">
+      <div>
+        <div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div>
+        <h3>② 콘텐츠 기획·제작형</h3>
+        <p>고객사가 제공한 자료를 바탕으로 콘텐츠를 기획하고 원고를 작성합니다.</p>
+      </div>
+      <div>
+        <p class="col-label">주요 업무</p>
+        <ul>
+          <li>원천자료 분석, 핵심 메시지 정리</li>
+          <li>콘텐츠 주제와 기획 방향 설정</li>
+          <li>독자 관심사와 검색 의도를 반영한 구성</li>
+          <li>제목·소제목, 본문 원고 작성</li>
+          <li>브랜드 톤앤매너, 정보 정확성 검수</li>
+          <li>피드백 반영 후 최종 원고 전달</li>
+        </ul>
+      </div>
+      <div class="role">
+        <p class="col-label">고객사 역할</p>
+        제품·서비스 정보, 관련 자료, 주요 이슈 제공
+      </div>
+    </article>
+
+    <article class="type">
+      <div>
+        <div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <h3>③ 통합 운영·관리형</h3>
+        <p>주제 발굴부터 월간 계획, 원고 제작, 발행, 이력 관리까지 블로그 운영 전반을 맡습니다.</p>
+      </div>
+      <div>
+        <p class="col-label">주요 업무</p>
+        <ul>
+          <li>월별 운영 방향과 발행 계획 수립</li>
+          <li>브랜드·제품·서비스 관련 원천소스, 시즌 이슈 발굴</li>
+          <li>월간 콘텐츠 캘린더 작성</li>
+          <li>콘텐츠 기획, 원고 제작</li>
+          <li>브랜드 톤앤매너, 정보 정확성 검수</li>
+          <li>고객사 승인 후 콘텐츠 게시</li>
+          <li>발행 일정, 콘텐츠 이력 관리</li>
+          <li>운영 현황 공유, 개선 방향 제안</li>
+        </ul>
+      </div>
+      <div class="role">
+        <p class="col-label">고객사 역할</p>
+        주요 사업 일정·내부 자료 공유, 전문 정보 확인, 최종 승인
+      </div>
+    </article>
+
+    <div class="scroll">
+      <table class="compare">
+        <caption>유형별 수행 업무 비교</caption>
+        <thead>
+          <tr>
+            <th scope="col">업무</th>
+            <th scope="col">① 편집·최적화</th>
+            <th scope="col">② 기획·제작</th>
+            <th scope="col">③ 통합 운영</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">주제·원천소스 발굴</th>
+            <td><span class="none">–</span></td>
+            <td><span class="none">–</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+          </tr>
+          <tr>
+            <th scope="row">월간 계획·콘텐츠 캘린더</th>
+            <td><span class="none">–</span></td>
+            <td><span class="none">–</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+          </tr>
+          <tr>
+            <th scope="row">콘텐츠 기획·구성</th>
+            <td><span class="none">–</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+          </tr>
+          <tr>
+            <th scope="row">원고 작성</th>
+            <td><span class="none">–</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+          </tr>
+          <tr>
+            <th scope="row">윤문·톤앤매너 검수</th>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+          </tr>
+          <tr>
+            <th scope="row">게시·이력 관리</th>
+            <td><span class="none">–</span></td>
+            <td><span class="none">–</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+          </tr>
+          <tr>
+            <th scope="row">운영 현황 공유·개선 제안</th>
+            <td><span class="none">–</span></td>
+            <td><span class="none">–</span></td>
+            <td><span class="dot"></span><span class="sr">수행</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="s2">
+    <h2 id="s2"><span class="num">2</span>블로그 콘텐츠 운영 프로세스</h2>
+    <p class="sec-note">통합 운영·관리형을 기준으로 한 전체 단계입니다. 오른쪽 막대는 유형별 수행 구간입니다.</p>
+
+    <div class="scroll" style="margin-top:0">
+      <table class="process">
+        <thead>
+          <tr>
+            <th scope="col">단계</th>
+            <th scope="col" class="t">① 편집</th>
+            <th scope="col" class="t">② 제작</th>
+            <th scope="col" class="t">③ 통합</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><div class="step"><span class="n">01</span><div>
+              <strong>원천소스 확보 및 주제 발굴</strong>
+              <span class="d">제품·서비스 정보, 연구자료, 사업 이슈, 시즌 이슈에서 콘텐츠 소재를 찾습니다.</span>
+            </div></div></th>
+            <td class="cov"><span class="sr">해당 없음</span></td>
+            <td class="cov"><span class="sr">해당 없음</span></td>
+            <td class="cov"><div class="bar start"><span class="sr">수행</span></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="step"><span class="n">02</span><div>
+              <strong>콘텐츠 기획 및 운영 계획 수립</strong>
+              <span class="d">콘텐츠별 타깃과 핵심 메시지를 정하고, 월간 콘텐츠 캘린더와 발행 일정을 수립합니다.</span>
+            </div></div></th>
+            <td class="cov"><span class="sr">해당 없음</span></td>
+            <td class="cov"><div class="bar part start">기획</div></td>
+            <td class="cov"><div class="bar"><span class="sr">수행</span></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="step"><span class="n">03</span><div>
+              <strong>콘텐츠 제작</strong>
+              <span class="d">확정된 기획안에 따라 원고를 작성합니다. 제목과 본문은 독자가 읽기 쉽게 구성합니다.</span>
+            </div></div></th>
+            <td class="cov"><div class="bar part start">편집</div></td>
+            <td class="cov"><div class="bar"><span class="sr">수행</span></div></td>
+            <td class="cov"><div class="bar"><span class="sr">수행</span></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="step"><span class="n">04</span><div>
+              <strong>콘텐츠 검수 및 수정</strong>
+              <span class="d">브랜드 톤앤매너, 정보 정확성, 메시지 일관성을 점검한 뒤 고객사 피드백을 반영합니다.</span>
+            </div></div></th>
+            <td class="cov"><div class="bar end"><span class="sr">수행</span></div></td>
+            <td class="cov"><div class="bar end"><span class="sr">수행</span></div></td>
+            <td class="cov"><div class="bar"><span class="sr">수행</span></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="step"><span class="n">05</span><div>
+              <strong>콘텐츠 발행</strong>
+              <span class="d">고객사 최종 승인을 받아 정해진 일정에 게시합니다.</span>
+            </div></div></th>
+            <td class="cov"><span class="sr">해당 없음</span></td>
+            <td class="cov"><span class="sr">해당 없음</span></td>
+            <td class="cov"><div class="bar"><span class="sr">수행</span></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="step"><span class="n">06</span><div>
+              <strong>운영 관리 및 개선</strong>
+              <span class="d">발행 현황과 콘텐츠 이력을 관리합니다. 운영 성과는 협의한 범위 안에서 점검해 다음 기획에 반영합니다.</span>
+            </div></div></th>
+            <td class="cov"><span class="sr">해당 없음</span></td>
+            <td class="cov"><span class="sr">해당 없음</span></td>
+            <td class="cov"><div class="bar end"><span class="sr">수행</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="legend">
+      <li><i></i>전체 수행</li>
+      <li><i class="part"></i>일부 수행 (①은 초안 편집, ②는 월간 계획을 뺀 콘텐츠 기획)</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s3">
+    <h2 id="s3"><span class="num">3</span>세스코 블로그 운영 적용 방향</h2>
+    <p class="sec-note">현재 진행 중인 원천소스 발굴, LLM 기반 콘텐츠 제작 시스템과 블로그 운영을 연계하는 방식을 제안드립니다.</p>
+
+    <div class="apply">
+      <ol>
+        <li>
+          <h3>원천소스 기반 주제 발굴</h3>
+          <p>제품·서비스 정보, 연구자료, 시즌 이슈에서 블로그 주제를 발굴합니다.</p>
+        </li>
+        <li>
+          <h3>기존 제작 체계 활용</h3>
+          <p>현재 운영 중인 콘텐츠 제작 체계를 활용해 블로그 원고를 제작합니다.</p>
+        </li>
+        <li>
+          <h3>채널별 재구성</h3>
+          <p>원천소스 하나를 블로그, 카드뉴스, 매거진에 맞게 재구성합니다. 콘텐츠 활용도가 높아지고 채널 간 브랜드 메시지도 일관되게 유지됩니다.</p>
+        </li>
+      </ol>
+
+      <div class="flow" role="img" aria-label="원천소스 하나를 블로그, 카드뉴스, 매거진으로 재구성하는 흐름">
+        <div class="src">원천소스<small>제품·서비스 정보, 연구자료, 시즌 이슈</small></div>
+        <div class="stem"></div>
+        <div class="out"><span>블로그</span><span>카드뉴스</span><span>매거진</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s4">
+    <h2 id="s4"><span class="num">4</span>협의 필요 사항</h2>
+    <p class="sec-note">업무 범위는 아래 항목을 협의해 확정합니다.</p>
+
+    <div class="scroll" style="margin-top:0">
+      <table class="agenda">
+        <thead>
+          <tr><th scope="col">항목</th><th scope="col">확인할 내용</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">월 발행 건수</th><td>월 발행 편수, 운영 유형</td></tr>
+          <tr><th scope="row">원천자료 조사 범위</th><td>고객사 제공 자료만 활용할지, 외부 자료 조사까지 포함할지</td></tr>
+          <tr><th scope="row">이미지 제작</th><td>본문 이미지·썸네일 제작 포함 여부</td></tr>
+          <tr><th scope="row">게시 대행</th><td>블로그 게시와 발행 일정 관리를 어느 쪽이 맡을지</td></tr>
+          <tr><th scope="row">성과 관리</th><td>성과 점검 포함 여부, 보고서 작성과 공유 주기</td></tr>
+          <tr><th scope="row">수정 횟수</th><td>원고당 수정 횟수</td></tr>
+          <tr><th scope="row">제작 일정</th><td>자료 수령 후 원고 전달까지 걸리는 기간</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="closing">본 문서는 협의용 안입니다. 실제 수행 단계와 업무 범위는 선택하신 운영 유형에 따라 달라집니다.</p>
+
+</main>
+</body>
+</html>
