@@ -125,9 +125,25 @@ table.list td.nm{white-space:normal}
 .w-type{width:88px}.w-line{width:80px}.w-prod{width:170px}.w-topic{width:140px}.w-req{width:110px}.w-maker{width:120px}.w-dr{width:76px}.w-d{width:76px}.w-st{width:124px}.w-how{width:100px}
 table.list td.el{max-width:none}
 .tm{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.calnav .jump{margin-left:auto;border:1px solid var(--blue);background:var(--blue-soft);color:var(--blue);border-radius:5px;padding:4px 10px;font-size:13px;font-weight:600}
+.calnav .jump+select{margin-left:0}
+.plantag{display:inline-block;font-size:11px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:3px;padding:0 5px;margin-left:6px;vertical-align:2px}
+.cal .hol{font-size:11px;color:#C8324B;margin-left:4px}
+.cal .day.off{background:#fdf6f7}
+.cal .ev.pl{border-left:3px solid var(--tc);background:var(--tb);border-radius:0 4px 4px 0}
+.cal .ev.pl i{color:var(--tc);font-weight:700}
+.themes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 14px}
+.themes .th{border:1px solid var(--line);border-top:4px solid var(--tc);border-radius:6px;padding:10px 12px 11px;background:#fff;min-width:0}
+.themes .th b{display:flex;align-items:center;gap:6px;font-size:14px}
+.themes .th b::before{content:"";flex:none;width:10px;height:10px;border-radius:2px;background:var(--tc)}
+.themes .th b small{margin-left:auto;font-weight:400;color:var(--ink3);font-size:12px;white-space:nowrap}
+.themes .th div{font-size:12.5px;color:var(--ink2);margin-top:4px}
+.themes .th .ct{color:var(--tc);font-weight:600}
+.thb{display:inline-block;font-size:12px;line-height:18px;padding:0 6px;border-radius:4px;background:var(--tb);color:var(--tc);font-weight:600}
+@media (max-width:760px){.themes{grid-template-columns:1fr}}
 @media (max-width:1000px){.hd>*{padding-left:16px;padding-right:16px}main{padding:16px 16px 60px}#q{width:240px}.w-t{width:108px}.w-p{width:150px}.w-w{width:168px}.w-s{width:112px}.w-m{width:120px}.w-dy{width:92px}.w-pn{width:200px}.two{grid-template-columns:190px 1fr;gap:18px}.b.ty{min-width:0}.tl li{grid-template-columns:84px 104px 56px 1fr}}
 </style></head><body>
-<header class="hd"><div class="hd-top"><div><h1>세스코 콘텐츠 캘린더 · 허브 (시범판)</h1><div class="sub">2025-10 ~ 2026-11 제작 건 129개 · 2026-11-17 기준</div></div>
+<header class="hd"><div class="hd-top"><div><h1>세스코 콘텐츠 캘린더 · 허브 (시범판)</h1><div class="sub">2025-10 ~ 2026-11 제작 건 129개 · 2027-01 ~ 03 발행 계획 41건(가안) · 2026-11-17 기준</div></div>
 <input id="q" type="search" placeholder="검색: 건 이름 · 상품 · 주제 · 사람" aria-label="검색"></div>
 <div class="filters" id="filters"></div>
 <nav class="tabs" id="tabs"></nav></header>
@@ -140,6 +156,16 @@ var C=D.cases;var byK={};C.forEach(function(c){byK[c.k]=c});
 var TY={CN:'카드뉴스',LF:'리플릿',DP:'상세페이지',SP:'솔루션 · 홈페이지',LB:'라벨',MS:'문자 · 푸시',BL:'블로그',MP:'마케팅포털',ET:'기타'};
 var LN={ML:'마이랩',MM:'마이랩 마스터',CC:'카케어',IPM:'해충방제',AIR:'공기질',SC:'향기',CL:'클리닝',HY:'위생기기',CRM:'고객혜택',WC:'위쳌',ETC:'제휴 · 기타'};
 var LORD=Object.keys(LN);
+// 2027 plan (draft)
+var PTY={CN:'카드뉴스',IG:'인스타그램',BL:'블로그',LF:'리플릿',DP:'상세페이지',MG:'매거진',MS:'문자 · 푸시'};
+var PTH={"seol1":{"n":"설","sub":"설 선물","c":"#C8324B","b":"#FCE8EC","p":["마이랩 베스트 선물세트","카케어 선물세트"],"how":"받는 사람의 생활에 맞춰 고르는 기준을 알려 줍니다. 주방은 마이랩, 차는 카케어로 나눕니다."},"noro":{"n":"겨울철 식중독","sub":"","c":"#B35C00","b":"#FFF1DC","p":["살균소독제 70","블루제닉 손세정기"],"how":"식중독이 겨울에도 생긴다는 점을 짚고, 조리대 소독과 손 씻기로 잇습니다. 가정은 살균소독제, 사업장은 손세정기로 나눕니다."},"vent":{"n":"난방철 환기 부족","sub":"","c":"#0072CE","b":"#E6F1FB","p":["판테온 공기청정기"],"how":"창문을 닫고 지내는 겨울에 실내 공기가 나빠진다는 점을 짚고, 공기 관리로 잇습니다."},"seol2":{"n":"설","sub":"설 귀성길 장거리 운전","c":"#C8324B","b":"#FCE8EC","p":["카케어 5종"],"how":"오래 타는 차 안의 공기와 냄새를 짚고, 살균 · 에어 · 습기 케어로 잇습니다."},"school":{"n":"신학기 준비","sub":"","c":"#6B46C1","b":"#EFE9FB","p":["판테온 공기청정기","공기살균기 센스미"],"how":"여럿이 모여 공부하는 공간의 공기를 짚습니다. 가정은 공부방, 사업장은 학원 · 교실로 나눕니다."},"move":{"n":"봄 이사철","sub":"","c":"#0E7C7B","b":"#E0F4F3","p":["전문클리닝","매트리스 케어"],"how":"이사 전후에 챙길 위생 점검 순서를 알려 주고, 직접 하기 어려운 부분을 서비스로 잇습니다."},"dust":{"n":"미세먼지 · 황사","sub":"","c":"#8A6A12","b":"#F8F0D4","p":["판테온 공기청정기","에어커튼"],"how":"바깥 먼지가 실내로 들어오는 경로를 짚습니다. 가정은 공기청정기, 사업장은 출입구 에어커튼으로 나눕니다."},"bedding":{"n":"겨울 이불 정리","sub":"","c":"#B83280","b":"#FBE7F2","p":["세탁세제 프리미엄","매트리스 케어"],"how":"이불을 넣기 전 세탁과 매트리스 진드기 관리로 잇습니다. 올해 10~11월에 쓴 소재를 봄에 다시 씁니다."},"pest":{"n":"봄철 해충 활동 시작","sub":"","c":"#1B7F3B","b":"#E8F5EC","p":["스마트 통합해충방제(S-IPM)"],"how":"올해 만든 시즌별 해충 시리즈를 3~4월 편으로 잇습니다."}};
+var PM={"2027-01":{"src":"2026년 12월","th":["seol1","noro","vent"]},"2027-02":{"src":"2026년 12월","th":["seol2","school","move"]},"2027-03":{"src":"2027년 1월 (발행 2개월 전)","th":["dust","bedding","pest"]}};
+var PI=[["2027-01-05","noro","CN","겨울에도 생기는 식중독",["살균소독제 70"],"가정"],["2027-01-06","vent","CN","난방철 닫힌 집 안 공기",["판테온 공기청정기"],"가정"],["2027-01-07","noro","IG","겨울철 식중독, 조리대 소독",["살균소독제 70"],"가정"],["2027-01-11","seol1","LF","설 선물세트 리플릿",["마이랩 베스트 선물세트"],"가정 · 사업장"],["2027-01-11","seol1","DP","설 선물세트 상세페이지",["마이랩 베스트 선물세트","카케어 선물세트"],"가정"],["2027-01-12","noro","BL","겨울철 식중독과 주방 교차오염",["살균소독제 70"],"가정"],["2027-01-13","vent","BL","겨울철 환기와 실내 공기",["판테온 공기청정기"],"가정"],["2027-01-14","noro","CN","사업장 손 씻기와 식중독",["블루제닉 손세정기"],"사업장"],["2027-01-15","vent","MG","라이프케어 매거진 1월호 · 겨울 실내 공기",["판테온 공기청정기"],"가정"],["2027-01-18","seol1","CN","설 선물 고르는 기준",["마이랩 베스트 선물세트","카케어 선물세트"],"가정"],["2027-01-19","seol1","MS","설 선물세트 안내 문자",["마이랩 베스트 선물세트"],"가정"],["2027-01-20","vent","IG","겨울 환기 요령",["판테온 공기청정기"],"가정"],["2027-01-25","seol1","CN","차를 타는 분께 드리는 설 선물",["카케어 선물세트"],"가정"],["2027-01-27","noro","IG","장난감 · 문손잡이 소독",["살균소독제 70"],"가정"],["2027-02-01","seol2","CN","귀성길 차 안 공기와 냄새",["카케어 5종"],"가정"],["2027-02-02","seol2","IG","출발 전 차 안 점검",["카케어 5종"],"가정"],["2027-02-03","seol2","BL","장거리 운전 전 차 실내 관리",["카케어 5종"],"가정"],["2027-02-15","move","BL","이사 전후 위생 점검 순서",["전문클리닝"],"가정"],["2027-02-16","school","CN","공부방 공기와 집중",["판테온 공기청정기"],"가정"],["2027-02-17","school","BL","신학기 전 공부방 공기 점검",["판테온 공기청정기"],"가정"],["2027-02-18","school","CN","학원 · 교실 공기 관리",["공기살균기 센스미"],"사업장"],["2027-02-19","school","MG","라이프케어 매거진 2월호 · 신학기 준비",["판테온 공기청정기"],"가정"],["2027-02-22","move","CN","이사 갈 집에서 먼저 볼 곳",["전문클리닝"],"가정"],["2027-02-23","school","IG","신학기 공부방 공기",["판테온 공기청정기"],"가정"],["2027-02-24","school","LF","학원 · 교실용 리플릿",["공기살균기 센스미"],"사업장"],["2027-02-25","move","LF","이사철 클리닝 리플릿",["전문클리닝","매트리스 케어"],"가정"],["2027-02-26","move","IG","이사 후 매트리스 관리",["매트리스 케어"],"가정"],["2027-03-02","dust","CN","바깥 먼지가 들어오는 길",["판테온 공기청정기"],"가정"],["2027-03-04","dust","IG","미세먼지 많은 날 실내 관리",["판테온 공기청정기"],"가정"],["2027-03-09","dust","CN","출입구로 들어오는 먼지",["에어커튼"],"사업장"],["2027-03-10","dust","BL","미세먼지 · 황사철 실내 공기",["판테온 공기청정기"],"가정"],["2027-03-11","bedding","CN","겨울 이불, 넣기 전 세탁",["세탁세제 프리미엄"],"가정"],["2027-03-15","pest","CN","시즌별 해충 3~4월 편",["스마트 통합해충방제(S-IPM)"],"사업장"],["2027-03-16","dust","LF","사업장 출입구 리플릿",["에어커튼"],"사업장"],["2027-03-17","bedding","BL","겨울 이불 세탁과 보관",["세탁세제 프리미엄"],"가정"],["2027-03-18","bedding","IG","겨울 이불 정리",["세탁세제 프리미엄"],"가정"],["2027-03-19","bedding","MG","라이프케어 매거진 3월호 · 봄맞이 침구 정리",["세탁세제 프리미엄","매트리스 케어"],"가정"],["2027-03-22","pest","BL","시즌별 해충 3~4월 편",["스마트 통합해충방제(S-IPM)"],"사업장"],["2027-03-23","bedding","CN","봄맞이 매트리스 진드기",["매트리스 케어"],"가정"],["2027-03-25","pest","IG","봄에 다시 보이는 해충",["스마트 통합해충방제(S-IPM)"],"사업장"],["2027-03-30","pest","LF","봄철 해충 리플릿",["스마트 통합해충방제(S-IPM)"],"사업장"]];
+var HOL={"2027-01-01":"새해 첫날","2027-02-06":"설 연휴","2027-02-07":"설날","2027-02-08":"설 연휴","2027-02-09":"대체공휴일","2027-03-01":"3·1절"};
+var DOW=['일','월','화','수','목','금','토'];
+function pAct(p){return (PTY[p[2]]||p[2])+(p[2]==='MS'?' 발송':' 발행')}
+function tStyle(t){return ' style="--tc:'+t.c+';--tb:'+t.b+'"'}
+function planOf(ym){var f=S.f;if(f.line||f.st||f.maker||f.req)return [];var q=S.q.trim().toLowerCase();var ws=q?q.split(/\s+/):[];var r=[];PI.forEach(function(p,i){if(p[0].slice(0,7)!==ym)return;if(f.type&&p[2]!==f.type)return;var t=PTH[p[1]];var hay=[p[3],p[4].join(' '),t.n,t.sub,PTY[p[2]],p[5]].join(' ').toLowerCase();for(var j=0;j<ws.length;j++)if(hay.indexOf(ws[j])<0)return;r.push({i:i,p:p})});return r}
 var STG={req:'요청 자료',src:'받은 소재',wip:'작업본',sent:'송부본',fb:'피드백',fin:'최종본',ref:'참고'};
 var STG_ORD=['fin','sent','fb','wip','src','req','ref'];
 var $=function(s,r){return (r||document).querySelector(s)};
@@ -187,21 +213,25 @@ function ymAdd(k,n){var y=+k.slice(0,4),m=+k.slice(5,7)+n;while(m>12){m-=12;y++}
 function stK(st){return st==='완료'?'완료':st==='진행 중'?'진행':'대기'}
 function viewCal(L){var all=C.map(ymOf).filter(Boolean).sort();
   if(!all.length)return '<div class="empty">날짜가 있는 건이 없습니다.</div>';
-  var a=all[0],b=all[all.length-1];var by={};L.forEach(function(c){var k=ymOf(c);if(k)(by[k]=by[k]||[]).push(c)});
-  if(!S.ym||S.ym<a||S.ym>b){var ks=Object.keys(by).sort();S.ym=ks.length?ks[ks.length-1]:b}
+  var a=all[0],b=all[all.length-1],lastCase=b;var pk=Object.keys(PM).sort();if(pk.length&&pk[pk.length-1]>b)b=pk[pk.length-1];var by={};L.forEach(function(c){var k=ymOf(c);if(k)(by[k]=by[k]||[]).push(c)});
+  if(!S.ym||S.ym<a||S.ym>b){var ks=Object.keys(by).sort();S.ym=ks.length?ks[ks.length-1]:lastCase}
   var yms=[];for(var k=a;k<=b;k=ymAdd(k,1))yms.push(k);
   var list=by[S.ym]||[];var y=+S.ym.slice(0,4),mo=+S.ym.slice(5,7);
   var first=new Date(y,mo-1,1).getDay(),days=new Date(y,mo,0).getDate();
   var byD={};list.forEach(function(c){var d=+dKey(c).slice(8,10);(byD[d]=byD[d]||[]).push(c)});
-  var h='<div class="calnav"><button type="button" class="nv" data-ym="'+ymAdd(S.ym,-1)+'"'+(S.ym<=a?' disabled':'')+' aria-label="이전 달">‹</button><h2>'+ymLabel(S.ym)+'<small>'+list.length+'건</small></h2><button type="button" class="nv" data-ym="'+ymAdd(S.ym,1)+'"'+(S.ym>=b?' disabled':'')+' aria-label="다음 달">›</button>';
-  h+='<select id="ymsel" aria-label="달 선택">'+yms.slice().reverse().map(function(k){return '<option value="'+k+'"'+(k===S.ym?' selected':'')+'>'+ymLabel(k)+' ('+(by[k]||[]).length+'건)</option>'}).join('')+'</select></div>';
+  var pm=PM[S.ym],pl=pm?planOf(S.ym):[],plD={};pl.forEach(function(x){var d=+x.p[0].slice(8,10);(plD[d]=plD[d]||[]).push(x)});
+  var h='<div class="calnav"><button type="button" class="nv" data-ym="'+ymAdd(S.ym,-1)+'"'+(S.ym<=a?' disabled':'')+' aria-label="이전 달">‹</button><h2>'+ymLabel(S.ym)+'<small>'+(pm?'계획 '+pl.length+'건':list.length+'건')+'</small>'+(pm?'<span class="plantag">가안</span>':'')+'</h2><button type="button" class="nv" data-ym="'+ymAdd(S.ym,1)+'"'+(S.ym>=b?' disabled':'')+' aria-label="다음 달">›</button>';
+  h+=pk.length?(pm?'<button type="button" class="jump" data-ym="'+lastCase+'">‹ 지난 제작 건 보기</button>':'<button type="button" class="jump" data-ym="'+pk[0]+'">2027년 1~3월 계획 보기 ›</button>'):'';
+  h+='<select id="ymsel" aria-label="달 선택">'+yms.slice().reverse().map(function(k){return '<option value="'+k+'"'+(k===S.ym?' selected':'')+'>'+ymLabel(k)+' ('+(PM[k]?'계획 '+PI.filter(function(p){return p[0].slice(0,7)===k}).length:(by[k]||[]).length)+'건)</option>'}).join('')+'</select></div>';
+  if(pm)h+='<div class="themes">'+pm.th.map(function(id){var t=PTH[id];var its=pl.filter(function(x){return x.p[1]===id});var ct={};its.forEach(function(x){ct[x.p[2]]=(ct[x.p[2]]||0)+1});return '<div class="th"'+tStyle(t)+'><b>'+esc(t.n)+'<small>'+its.length+'건</small></b>'+(t.sub?'<div>'+esc(t.sub)+'</div>':'')+'<div>상품 · '+esc(t.p.join(' · '))+'</div><div>'+esc(t.how)+'</div><div class="ct">'+Object.keys(PTY).filter(function(k){return ct[k]}).map(function(k){return esc(PTY[k])+' '+ct[k]}).join(' · ')+'</div></div>'}).join('')+'</div>';
   h+='<div class="calwrap"><div class="cal">'+['일','월','화','수','목','금','토'].map(function(w){return '<div class="dow">'+w+'</div>'}).join('');
   var i;for(i=0;i<first;i++)h+='<div class="day out"></div>';
   for(var d=1;d<=days;d++){var ds=S.ym+'-'+(d<10?'0':'')+d;var it=(byD[d]||[]).slice().sort(function(p,q){return p.name.localeCompare(q.name,'ko')});
-    h+='<div class="day'+(ds===D.gen?' today':'')+'"><span class="dn">'+d+'</span>'+it.map(function(c){var t=TY[c.type]||c.type;return '<button type="button" class="ev st-'+stK(c.st)+'" data-k="'+c.k+'" title="'+esc(t+' · '+c.name+' · '+c.st)+'"><i>'+esc(t)+'</i><span>'+esc(c.name)+'</span></button>'}).join('')+'</div>'}
+    var hol=HOL[ds];
+    h+='<div class="day'+(ds===D.gen?' today':'')+(hol?' off':'')+'"><span class="dn">'+d+(hol?'<span class="hol">'+esc(hol)+'</span>':'')+'</span>'+(plD[d]||[]).map(function(x){var p=x.p,t=PTH[p[1]];return '<button type="button" class="ev pl"'+tStyle(t)+' data-pl="'+x.i+'" title="'+esc(t.n+' · '+pAct(p)+' · '+p[3]+' · '+p[4].join(', '))+'"><i>'+esc(pAct(p))+'</i><span>'+esc(p[3])+'</span></button>'}).join('')+it.map(function(c){var t=TY[c.type]||c.type;return '<button type="button" class="ev st-'+stK(c.st)+'" data-k="'+c.k+'" title="'+esc(t+' · '+c.name+' · '+c.st)+'"><i>'+esc(t)+'</i><span>'+esc(c.name)+'</span></button>'}).join('')+'</div>'}
   for(i=(first+days)%7;i>0&&i<7;i++)h+='<div class="day out"></div>';
   h+='</div></div>';
-  h+='<p class="note callg"><span class="k st-완료"></span>완료<span class="k st-진행"></span>진행 중<span class="k st-대기"></span>세스코 확인 대기 · 날짜는 첫 송부일(없으면 요청일)입니다.</p>';
+  h+=pm?'<p class="note callg">색은 그달의 대주제입니다. 시즈널 콘텐츠만 넣은 가안이며, 제목은 가제입니다. 신제품 콘텐츠는 세스코 출시 일정을 받아 채웁니다. 원천소스 확정 시점은 '+esc(pm.src)+'입니다.</p>':'<p class="note callg"><span class="k st-완료"></span>완료<span class="k st-진행"></span>진행 중<span class="k st-대기"></span>세스코 확인 대기 · 날짜는 첫 송부일(없으면 요청일)입니다.</p>';
   return h}
 // topic
 function viewTopic(L){var tl=count(L,function(c){return c.topics});
@@ -252,6 +282,13 @@ function openCase(k){var c=byK[k];if(!c)return;var h='';
   h+='<div class="sec files"><h3>파일 ('+c.files.length+')</h3>'+(c.files.length?STG_ORD.filter(function(s){return g[s]}).map(function(s){return '<div class="stg">'+esc(STG[s])+' · '+g[s].length+'</div>'+g[s].slice().sort(function(a,b){return (b.d||'').localeCompare(a.d||'')}).map(function(f){return '<div class="f"><span class="fn">'+esc(f.n)+(f.cur?'<span class="cur">최신본</span>':'')+'</span><span class="dim">'+esc(f.d)+'</span><span class="dim">'+esc(f.by)+'</span></div>'}).join('')}).join(''):'<p class="note">연결된 파일 없음</p>')+'</div>';
   $('#dw-body').innerHTML=h;$('#dw-k').textContent=c.k+' · 건 상세';
   var dw=$('#drawer');dw.classList.add('open');dw.setAttribute('aria-hidden','false');dw.scrollTop=0;setHash(k)}
+function openPlan(i){var p=PI[i];if(!p)return;var t=PTH[p[1]],pm=PM[p[0].slice(0,7)];var dt=new Date(+p[0].slice(0,4),+p[0].slice(5,7)-1,+p[0].slice(8,10));var h='';
+  h+='<div class="meta"><span class="b ty">'+esc(PTY[p[2]]||p[2])+'</span><span class="thb"'+tStyle(t)+'>대주제 · '+esc(t.n)+'</span><span class="b st-대기">계획 · 가안</span></div><h2>'+esc(p[3])+'</h2><p class="brief">'+esc(pAct(p))+' 예정 · 제목은 가제입니다.</p>';
+  h+='<div class="sec"><h3>언제</h3><dl class="kv"><dt>'+(p[2]==='MS'?'발송일':'발행일')+'</dt><dd>'+esc(p[0])+' ('+DOW[dt.getDay()]+')</dd><dt>원천소스</dt><dd>'+esc(pm.src)+' 확정</dd></dl></div>';
+  h+='<div class="sec"><h3>대주제 · 상품 · 녹이는 방식</h3><dl class="kv"><dt>대주제</dt><dd>'+esc(t.n)+(t.sub?' · '+esc(t.sub):'')+'</dd><dt>대상</dt><dd>'+esc(p[5])+'</dd><dt>방식</dt><dd>'+esc(t.how)+'</dd></dl><div style="margin-top:10px">'+p[4].map(function(x){return '<button type="button" class="chip" data-product="'+esc(x)+'" title="이 상품으로 만든 지난 건 보기">상품 · '+esc(x)+'</button>'}).join('')+'</div><p class="note">상품을 누르면 이 상품으로 만든 지난 건을 볼 수 있습니다.</p></div>';
+  var same=PI.filter(function(x){return x[1]===p[1]});
+  h+='<div class="sec"><h3>같은 대주제로 나가는 콘텐츠 ('+same.length+')</h3><ul class="tl">'+same.map(function(x){return '<li><span class="dim">'+esc(x[0])+'</span><span class="who">'+esc(pAct(x))+'</span><span class="act">'+esc(x[5])+'</span><span class="nt">'+esc(x[3])+'<span class="fl">· '+esc(x[4].join(', '))+'</span></span></li>'}).join('')+'</ul></div>';
+  $('#dw-body').innerHTML=h;$('#dw-k').textContent='2027 계획 · 가안';var dw=$('#drawer');dw.classList.add('open');dw.setAttribute('aria-hidden','false');dw.scrollTop=0}
 function closeCase(){var dw=$('#drawer');dw.classList.remove('open');dw.setAttribute('aria-hidden','true');setHash('')}
 // render
 function render(){S.q=$('#q').value;var L=filtered();renderTabs(L);$('#cnt').textContent=L.length+' / '+C.length+'건';
@@ -260,12 +297,13 @@ function render(){S.q=$('#q').value;var L=filtered();renderTabs(L);$('#cnt').tex
 function go(tab,sel){if(tab==='topic')S.topic=sel;if(tab==='product')S.product=sel;S.tab=tab;closeCase();render();window.scrollTo(0,0)}
 function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(function(){e.classList.remove('on')},1400)}
 function copy(t){var done=function(){toast('경로를 복사했습니다')};if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(done,fallback);else fallback();function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){prompt('경로',t)}a.remove()}}
-document.addEventListener('click',function(e){var el=e.target.closest('[data-copy],[data-topic],[data-product],[data-k],[data-t],[data-sort],[data-ym]');if(!el)return;
+document.addEventListener('click',function(e){var el=e.target.closest('[data-copy],[data-topic],[data-product],[data-k],[data-t],[data-sort],[data-ym],[data-pl]');if(!el)return;
   if(el.hasAttribute('data-copy')){e.preventDefault();copy(el.getAttribute('data-copy'));return}
   if(el.hasAttribute('data-t')){go(el.getAttribute('data-t'));return}
   if(el.hasAttribute('data-topic')){e.preventDefault();go('topic',el.getAttribute('data-topic'));return}
   if(el.hasAttribute('data-product')){e.preventDefault();go('product',el.getAttribute('data-product'));return}
   if(el.hasAttribute('data-sort')){var k=el.getAttribute('data-sort');if(S.sort===k)S.dir=-S.dir;else{S.sort=k;S.dir=1}render();return}
+  if(el.hasAttribute('data-pl')){e.preventDefault();openPlan(+el.getAttribute('data-pl'));return}
   if(el.hasAttribute('data-ym')){S.ym=el.getAttribute('data-ym');render();return}
   if(el.hasAttribute('data-k')){e.preventDefault();openCase(el.getAttribute('data-k'))}});
 document.addEventListener('change',function(e){if(e.target&&e.target.id==='ymsel'){S.ym=e.target.value;render()}});
@@ -275,5 +313,6 @@ var tm;$('#q').addEventListener('input',function(){clearTimeout(tm);tm=setTimeou
 buildFilters();
 var h0=parseHash();if(h0.tab&&/^(cal|topic|product|list)$/.test(h0.tab))S.tab=h0.tab;if(h0.ym&&/^\d{4}-\d{2}$/.test(h0.ym))S.ym=h0.ym;if(h0.sel){if(S.tab==='topic')S.topic=h0.sel;if(S.tab==='product')S.product=h0.sel}
 render();if(h0.case&&byK[h0.case])openCase(h0.case);
+window.addEventListener('hashchange',function(){var h=parseHash();if(h.tab&&/^(cal|topic|product|list)$/.test(h.tab))S.tab=h.tab;if(h.ym&&/^\d{4}-\d{2}$/.test(h.ym))S.ym=h.ym;closeCase();render()});
 })();
 </script></body></html>
