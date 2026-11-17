@@ -77,24 +77,25 @@ details.fold h2{display:none}
 <style>
 .roles{display:grid;grid-template-columns:repeat(3,1fr);margin:16px 0 20px}
 .roles .tri{grid-column:1/4;grid-row:1;display:block;width:100%;height:auto;font-family:inherit}
-.roles .tri .ln{stroke:var(--ink3);stroke-width:2;fill:none}
-.roles .tri .hd{fill:var(--ink3)}
-.roles .tri .lb{font-size:12px;font-weight:600;fill:var(--ink2)}
-.roles .tri .nm{font-size:15.5px;font-weight:800;text-anchor:middle}
+.roles .tri .ln{stroke:#ADB5BD;stroke-width:1.5;fill:none}
+.roles .tri .hd{fill:#ADB5BD}
+.roles .tri .lb{font-size:12px;font-weight:500;fill:#495057}
+.roles .tri .nm{font-size:16px;font-weight:800;text-anchor:middle;fill:#111}
 .roles .tri .sm{font-size:11.5px;font-weight:600;text-anchor:middle}
-.roles .tri .c1{fill:#fff;stroke:var(--ink);stroke-width:2}
-.roles .tri .c2{fill:var(--blue-soft);stroke:var(--blue);stroke-width:2}
-.roles .tri .c3{fill:var(--blue);stroke:var(--blue);stroke-width:2}
-.roles .sh{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;line-height:1.3;border-radius:50%;border:2px solid var(--blue);background:#fff;color:var(--blue);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.roles .tri .pl{font-size:12px;font-weight:600;text-anchor:middle;fill:#1864AB}
+.roles .tri .nY{fill:#FFF3BF}.roles .tri .nG{fill:#D8F8DD}.roles .tri .nB{fill:#D6EDFF}.roles .tri .pp{fill:#fff}
+.roles .sh{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;line-height:1.3;border-radius:16px;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .roles .sh small{font-size:10px;font-weight:600;margin-top:1px}
-.roles .s1{border-color:var(--ink);color:var(--ink)}
-.roles .s2{background:var(--blue-soft)}
-.roles .s3{background:var(--blue);color:#fff}
+.roles .s1{background:#FFF3BF}
+.roles .s2{background:#D8F8DD}
+.roles .s3{background:#D6EDFF}
 .roles .tx{grid-row:2;margin:14px 6px 0;background:var(--soft);border-radius:8px;padding:12px 14px;font-size:14px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .roles .t1{grid-column:1}.roles .t2{grid-column:3}.roles .t3{grid-column:2}
-.roles .tx b{display:block;font-size:13px;color:var(--blue);margin-bottom:4px}
+.roles .tx b{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);margin-bottom:4px}
+.roles .tx b::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--dc);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.roles .t1{--dc:#FFD43B}.roles .t2{--dc:#69DB7C}.roles .t3{--dc:#74C0FC}
 .roles .tx ul{margin:0;padding-left:18px}
-.q1 .dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.q1 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .hubdesc{font-size:13px;color:var(--ink2)}
 .hubdesc b{color:var(--ink);margin-right:4px}
 .hubframe{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:12px 0 8px}
@@ -143,26 +144,27 @@ details.fold h2{display:none}
 <p class="small">내년에는 만드는 일에서 돌리는 일로 넘어갑니다. 환경가전·마이랩 신제품이 많아 담당자가 모든 콘텐츠를 따로 만들기 어렵기 때문입니다.</p>
 <h3>역할 분담 내역</h3>
 <div class="roles">
-  <svg class="tri" viewBox="0 0 912 344" role="img" aria-label="세스코 담당자, 시하 중앙 허브, LLM이 삼각형으로 서로 주고받는 역할 분담 도형">
-    <defs><marker id="rah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path class="hd" d="M0,0 L10,5 L0,10 z"/></marker></defs>
-    <line class="ln" x1="196.9" y1="238.4" x2="400.5" y2="91" marker-end="url(#rah)"/><line class="ln" x1="411.1" y1="105.6" x2="207.5" y2="253" marker-end="url(#rah)"/>
-    <line class="ln" x1="511.5" y1="91" x2="715.1" y2="238.4" marker-end="url(#rah)"/><line class="ln" x1="704.5" y1="253" x2="500.9" y2="105.6" marker-end="url(#rah)"/>
-    <line class="ln" x1="214" y1="273" x2="698" y2="273" marker-end="url(#rah)"/><line class="ln" x1="698" y1="291" x2="214" y2="291" marker-end="url(#rah)"/>
-    <text class="lb" x="286" y="158" text-anchor="end">원천소스 · POD</text>
-    <text class="lb" x="324" y="197">검수한 초안 → 최종 발행 승인</text>
-    <text class="lb" x="626" y="158">원천소스 · 템플릿</text>
-    <text class="lb" x="588" y="197" text-anchor="end">채널별 초안</text>
-    <text class="lb" x="456" y="264" text-anchor="middle">원천소스 입력</text>
-    <text class="lb" x="456" y="309" text-anchor="middle">채널별 초안</text>
-    <circle class="c3" cx="456" cy="62" r="54"/><text class="nm" x="456" y="62" fill="#fff">시하</text><text class="sm" x="456" y="80" fill="#fff">중앙 허브</text>
-    <circle class="c1" cx="152" cy="282" r="54"/><text class="nm" x="152" y="277" fill="#111">세스코</text><text class="nm" x="152" y="297" fill="#111">담당자</text>
-    <circle class="c2" cx="760" cy="282" r="54"/><text class="nm" x="760" y="287.5" fill="#0072CE">LLM</text>
+  <svg class="tri" viewBox="0 0 912 316" role="img" aria-label="세스코 담당자, 시하 중앙 허브, LLM이 삼각형으로 서로 주고받는 역할 분담 도형. 시하는 콘텐츠 월별 관리, 소재 제안, 일정 및 파일 관리를 맡습니다.">
+    <defs><marker id="rah" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path class="hd" d="M0,0 L8,4 L0,8 z"/></marker></defs>
+    <line class="ln" x1="150" y1="230" x2="296" y2="122" marker-end="url(#rah)"/><line class="ln" x1="318" y1="122" x2="172" y2="230" marker-end="url(#rah)"/>
+    <line class="ln" x1="616" y1="122" x2="762" y2="230" marker-end="url(#rah)"/><line class="ln" x1="740" y1="230" x2="594" y2="122" marker-end="url(#rah)"/>
+    <line class="ln" x1="246" y1="263" x2="666" y2="263" marker-end="url(#rah)"/><line class="ln" x1="666" y1="281" x2="246" y2="281" marker-end="url(#rah)"/>
+    <text class="lb" x="210" y="172" text-anchor="end">원천소스 · POD</text>
+    <text class="lb" x="262" y="193">검수한 초안 → 최종 발행 승인</text>
+    <text class="lb" x="702" y="172">원천소스 · 템플릿</text>
+    <text class="lb" x="650" y="193" text-anchor="end">채널별 초안</text>
+    <text class="lb" x="456" y="254" text-anchor="middle">원천소스 입력</text>
+    <text class="lb" x="456" y="299" text-anchor="middle">채널별 초안</text>
+    <rect class="nB" x="266" y="8" width="380" height="102" rx="18"/><text class="nm" x="456" y="38">시하</text><text class="sm" x="456" y="55" fill="#1864AB">중앙 허브</text>
+    <rect class="pp" x="290" y="68" width="112" height="26" rx="13"/><text class="pl" x="346" y="85.5">콘텐츠 월별 관리</text><rect class="pp" x="412" y="68" width="76" height="26" rx="13"/><text class="pl" x="450" y="85.5">소재 제안</text><rect class="pp" x="498" y="68" width="124" height="26" rx="13"/><text class="pl" x="560" y="85.5">일정 및 파일 관리</text>
+    <rect class="nY" x="68" y="238" width="168" height="68" rx="18"/><text class="nm" x="152" y="277.5">세스코 담당자</text>
+    <rect class="nG" x="676" y="238" width="168" height="68" rx="18"/><text class="nm" x="760" y="277.5">LLM</text>
   </svg>
   <div class="sh s1">세스코<br>담당자</div>
   <div class="sh s3">시하<small>중앙 허브</small></div>
   <div class="sh s2">LLM</div>
   <div class="tx t1"><b>기획 · LLM 활용 · 승인</b><ul><li>좋은 원천소스와 핵심 POD를 정합니다.</li><li>콘텐츠 주제를 기획합니다.</li><li>원천소스를 넣어 LLM으로 초안을 직접 만듭니다.</li><li>최종 발행을 승인합니다.</li></ul></div>
-  <div class="tx t3"><b>관리 · 검수 · 고도화 · 교육</b><ul><li>원천소스·일정·품질을 한곳에서 관리합니다.</li><li>LLM 초안을 검수하고 다듬습니다.</li><li>템플릿·스킬을 새로 만들고 고도화합니다.</li><li>내부 담당자를 교육합니다.</li></ul></div>
+  <div class="tx t3"><b>관리 · 검수 · 고도화 · 교육</b><ul><li>콘텐츠를 월별로 관리하고 소재를 제안합니다.</li><li>일정과 파일을 한곳에서 관리합니다.</li><li>LLM 초안을 검수하고 다듬습니다.</li><li>템플릿·스킬을 새로 만들고 고도화합니다.</li><li>내부 담당자를 교육합니다.</li></ul></div>
   <div class="tx t2"><b>초안 제작</b><ul><li>원천소스로 채널별 초안과 베리에이션을 만듭니다.</li><li>세스코 담당자와 시하가 같은 템플릿·스킬로 함께 씁니다.</li></ul></div>
 </div>
 <h3>운영 항목</h3>
@@ -198,17 +200,17 @@ details.fold h2{display:none}
 </tbody></table>
 <p class="small">같은 방식으로 2027년 1~3월을 먼저 잡아 본 가안입니다. 달마다 대주제 3개를 잡고, 대주제별로 어떤 콘텐츠를 언제 발행할지 41건을 날짜까지 넣었습니다. 설 연휴는 2월 6일~9일입니다.</p>
 <table class="q1"><thead><tr><th style="width:7%">달</th><th style="width:17%">대주제</th><th style="width:20%">상품</th><th>녹이는 방식</th><th style="width:19%">발행 계획</th></tr></thead><tbody>
-<tr><td class="c" rowspan="3"><b>1월</b></td><td><b><span class="dot" style="background:#C8324B"></span>설 선물</b></td><td>마이랩 베스트 선물세트 · 카케어 선물세트</td><td>받는 사람의 생활에 맞춰 고르는 기준을 알려 줍니다. 주방은 마이랩, 차는 카케어로 나눕니다.</td><td>카드뉴스 2 · 리플릿 1 · 상세페이지 1 · 문자 1</td></tr>
-<tr><td><b><span class="dot" style="background:#B35C00"></span>겨울철 식중독</b></td><td>살균소독제 70 · 블루제닉 손세정기</td><td>식중독이 겨울에도 생긴다는 점을 짚고, 조리대 소독과 손 씻기로 잇습니다. 가정은 살균소독제, 사업장은 손세정기로 나눕니다.</td><td>카드뉴스 2 · 인스타그램 2 · 블로그 1</td></tr>
-<tr><td><b><span class="dot" style="background:#0072CE"></span>난방철 환기 부족</b></td><td>판테온 공기청정기</td><td>창문을 닫고 지내는 겨울에 실내 공기가 나빠진다는 점을 짚고, 공기 관리로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1 · 매거진 1</td></tr>
-<tr><td class="c" rowspan="3"><b>2월</b></td><td><b><span class="dot" style="background:#C8324B"></span>설 귀성길 장거리 운전</b></td><td>카케어 5종</td><td>오래 타는 차 안의 공기와 냄새를 짚고, 살균 · 에어 · 습기 케어로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1</td></tr>
-<tr><td><b><span class="dot" style="background:#6B46C1"></span>신학기 준비</b></td><td>판테온 공기청정기 · 공기살균기 센스미</td><td>여럿이 모여 공부하는 공간의 공기를 짚습니다. 가정은 공부방, 사업장은 학원 · 교실로 나눕니다.</td><td>카드뉴스 2 · 인스타그램 1 · 블로그 1 · 리플릿 1 · 매거진 1</td></tr>
-<tr><td><b><span class="dot" style="background:#0E7C7B"></span>봄 이사철</b></td><td>전문클리닝 · 매트리스 케어</td><td>이사 전후에 챙길 위생 점검 순서를 알려 주고, 직접 하기 어려운 부분을 서비스로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1 · 리플릿 1</td></tr>
-<tr><td class="c" rowspan="3"><b>3월</b></td><td><b><span class="dot" style="background:#8A6A12"></span>미세먼지 · 황사</b></td><td>판테온 공기청정기 · 에어커튼</td><td>바깥 먼지가 실내로 들어오는 경로를 짚습니다. 가정은 공기청정기, 사업장은 출입구 에어커튼으로 나눕니다.</td><td>카드뉴스 2 · 인스타그램 1 · 블로그 1 · 리플릿 1</td></tr>
-<tr><td><b><span class="dot" style="background:#B83280"></span>겨울 이불 정리</b></td><td>세탁세제 프리미엄 · 매트리스 케어</td><td>이불을 넣기 전 세탁과 매트리스 진드기 관리로 잇습니다. 올해 10~11월에 쓴 소재를 봄에 다시 씁니다.</td><td>카드뉴스 2 · 인스타그램 1 · 블로그 1 · 매거진 1</td></tr>
-<tr><td><b><span class="dot" style="background:#1B7F3B"></span>봄철 해충 활동 시작</b></td><td>스마트 통합해충방제(S-IPM)</td><td>올해 만든 시즌별 해충 시리즈를 3~4월 편으로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1 · 리플릿 1</td></tr>
+<tr><td class="c" rowspan="3"><b>1월</b></td><td><b><span class="dot" style="background:#FFD43B"></span>설 선물</b></td><td>마이랩 베스트 선물세트 · 카케어 선물세트</td><td>받는 사람의 생활에 맞춰 고르는 기준을 알려 줍니다. 주방은 마이랩, 차는 카케어로 나눕니다.</td><td>카드뉴스 2 · 리플릿 1 · 상세페이지 1 · 문자 1</td></tr>
+<tr><td><b><span class="dot" style="background:#69DB7C"></span>겨울철 식중독</b></td><td>살균소독제 70 · 블루제닉 손세정기</td><td>식중독이 겨울에도 생긴다는 점을 짚고, 조리대 소독과 손 씻기로 잇습니다. 가정은 살균소독제, 사업장은 손세정기로 나눕니다.</td><td>카드뉴스 2 · 인스타그램 2 · 블로그 1</td></tr>
+<tr><td><b><span class="dot" style="background:#74C0FC"></span>난방철 환기 부족</b></td><td>판테온 공기청정기</td><td>창문을 닫고 지내는 겨울에 실내 공기가 나빠진다는 점을 짚고, 공기 관리로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1 · 매거진 1</td></tr>
+<tr><td class="c" rowspan="3"><b>2월</b></td><td><b><span class="dot" style="background:#FFD43B"></span>설 귀성길 장거리 운전</b></td><td>카케어 5종</td><td>오래 타는 차 안의 공기와 냄새를 짚고, 살균 · 에어 · 습기 케어로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1</td></tr>
+<tr><td><b><span class="dot" style="background:#69DB7C"></span>신학기 준비</b></td><td>판테온 공기청정기 · 공기살균기 센스미</td><td>여럿이 모여 공부하는 공간의 공기를 짚습니다. 가정은 공부방, 사업장은 학원 · 교실로 나눕니다.</td><td>카드뉴스 2 · 인스타그램 1 · 블로그 1 · 리플릿 1 · 매거진 1</td></tr>
+<tr><td><b><span class="dot" style="background:#74C0FC"></span>봄 이사철</b></td><td>전문클리닝 · 매트리스 케어</td><td>이사 전후에 챙길 위생 점검 순서를 알려 주고, 직접 하기 어려운 부분을 서비스로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1 · 리플릿 1</td></tr>
+<tr><td class="c" rowspan="3"><b>3월</b></td><td><b><span class="dot" style="background:#FFD43B"></span>미세먼지 · 황사</b></td><td>판테온 공기청정기 · 에어커튼</td><td>바깥 먼지가 실내로 들어오는 경로를 짚습니다. 가정은 공기청정기, 사업장은 출입구 에어커튼으로 나눕니다.</td><td>카드뉴스 2 · 인스타그램 1 · 블로그 1 · 리플릿 1</td></tr>
+<tr><td><b><span class="dot" style="background:#74C0FC"></span>겨울 이불 정리</b></td><td>세탁세제 프리미엄 · 매트리스 케어</td><td>이불을 넣기 전 세탁과 매트리스 진드기 관리로 잇습니다. 올해 10~11월에 쓴 소재를 봄에 다시 씁니다.</td><td>카드뉴스 2 · 인스타그램 1 · 블로그 1 · 매거진 1</td></tr>
+<tr><td><b><span class="dot" style="background:#69DB7C"></span>봄철 해충 활동 시작</b></td><td>스마트 통합해충방제(S-IPM)</td><td>올해 만든 시즌별 해충 시리즈를 3~4월 편으로 잇습니다.</td><td>카드뉴스 1 · 인스타그램 1 · 블로그 1 · 리플릿 1</td></tr>
 </tbody></table>
-<p class="small"><a href="콘텐츠캘린더_허브_시범판_261117.html?v=2#tab=cal&amp;ym=2027-01" target="hub" onclick="document.getElementById('hub').scrollIntoView({behavior:'smooth',block:'start'})">달력에서 날짜별 발행 계획 보기</a> · 색은 대주제입니다. 시즈널 콘텐츠만 넣었고, 신제품 콘텐츠는 세스코 출시 일정을 받아 채웁니다.</p>
+<p class="small"><a href="콘텐츠캘린더_허브_시범판_261117.html?v=3#tab=cal&amp;ym=2027-01" target="hub" onclick="document.getElementById('hub').scrollIntoView({behavior:'smooth',block:'start'})">달력에서 날짜별 발행 계획 보기</a> · 색은 대주제입니다. 시즈널 콘텐츠만 넣었고, 신제품 콘텐츠는 세스코 출시 일정을 받아 채웁니다.</p>
 <p class="small">1~2월분은 12월에 원천소스를 준비하고, 3월분부터 발신 2개월 전 확정을 적용합니다.</p>
 <h3>콘텐츠 캘린더 · 허브 미리 보기</h3>
 <p class="small">중앙 허브가 원천소스와 일정을 한곳에서 관리하는 모습을 먼저 만들어 본 시범판입니다. 2025년 10월부터 올해 11월까지 함께 만든 129건과 2027년 1~3월 발행 계획(가안) 41건을 넣었습니다.</p>
@@ -219,8 +221,8 @@ details.fold h2{display:none}
 <li><b>상품에서 찾기</b> 상품 하나에 어떤 주제와 강조 포인트를 썼는지 봅니다.</li>
 <li><b>건 상세</b> 건을 누르면 누가 요청하고 누가 만들었는지, 언제 어떤 방식으로 진행했는지, 어떤 파일이 오갔는지 나옵니다.</li>
 </ul>
-<div class="hubframe"><iframe id="hub" name="hub" src="콘텐츠캘린더_허브_시범판_261117.html?v=2" title="세스코 콘텐츠 캘린더 · 허브 시범판" loading="lazy"></iframe></div>
-<p class="small"><a href="콘텐츠캘린더_허브_시범판_261117.html?v=2" target="_blank">새 창에서 크게 보기</a> · 시범판에서는 파일 이름까지 볼 수 있습니다.</p>
+<div class="hubframe"><iframe id="hub" name="hub" src="콘텐츠캘린더_허브_시범판_261117.html?v=3" title="세스코 콘텐츠 캘린더 · 허브 시범판" loading="lazy"></iframe></div>
+<p class="small"><a href="콘텐츠캘린더_허브_시범판_261117.html?v=3" target="_blank">새 창에서 크게 보기</a> · 시범판에서는 파일 이름까지 볼 수 있습니다.</p>
 <h3>운영 리듬</h3>
 <table><thead><tr><th style="width:22%">주기</th><th>내용</th></tr></thead><tbody>
 <tr><td><b>매주</b></td><td><ul><li>정기 미팅(줌) 1회</li><li>미팅 리포트와 다음 주 할 일 공유</li></ul></td></tr>
