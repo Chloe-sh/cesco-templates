@@ -2,276 +2,137 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>블로그 운영 범위 및 프로세스(안)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-  :root {
-    color-scheme: light;
-    --paper: #fbfcfb;
-    --surface: #f1f6f3;
-    --ink: #1c2a25;
-    --heading: #12382c;
-    --muted: #5d6b65;
-    --line: #d6dfda;
-    --accent: #0f7b5f;
-    --accent-soft: #cfe6dc;
-    --on-accent: #ffffff;
-    --on-accent-soft: #0b5a45;
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      color-scheme: dark;
-      --paper: #121a17;
-      --surface: #1a2521;
-      --ink: #dde6e1;
-      --heading: #eef5f1;
-      --muted: #98a8a0;
-      --line: #2e3c36;
-      --accent: #45b894;
-      --accent-soft: #24473b;
-      --on-accent: #0c1f18;
-      --on-accent-soft: #bfe6d6;
-    }
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --paper: #121a17;
-    --surface: #1a2521;
-    --ink: #dde6e1;
-    --heading: #eef5f1;
-    --muted: #98a8a0;
-    --line: #2e3c36;
-    --accent: #45b894;
-    --accent-soft: #24473b;
-    --on-accent: #0c1f18;
-    --on-accent-soft: #bfe6d6;
-  }
+/* 11/18 보고 대시보드(reports/261116/index.html)와 같은 토큰 */
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--blue-mid:#bcd9f2;
+  --paper:#fff;--surface:var(--soft);--heading:var(--ink);--muted:var(--ink2);--accent:var(--blue);--accent-soft:var(--blue-mid);--on-accent:#fff;--on-accent-soft:#00539a}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
 
-  *, *::before, *::after { box-sizing: inherit; }
-  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
-    font-size: 15.5px;
-    line-height: 1.75;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-    -webkit-font-smoothing: antialiased;
-  }
-  .page {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 72px 28px 88px;
-  }
+/* 머리 (대시보드 header.top) */
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px}
+.kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
+.meta b{color:var(--ink);font-weight:600}
+.meta a{color:var(--blue)}
+.lead{font-size:16px;color:var(--ink2);margin:0 0 10px}
+.box{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px;background:var(--soft);padding:14px 18px;margin:14px 0;font-size:14px;color:var(--ink2)}
+.box b{color:var(--ink)}
 
-  /* 문서 머리 */
-  .doc-head { border-bottom: 2px solid var(--heading); padding-bottom: 28px; }
-  .doc-meta {
-    display: flex; justify-content: space-between; gap: 16px;
-    color: var(--muted); font-size: 14px; font-weight: 500;
-    margin: 0 0 40px;
-  }
-  h1 {
-    margin: 0;
-    color: var(--heading);
-    font-size: clamp(30px, 5.4vw, 46px);
-    font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.025em;
-  }
-  .lead {
-    margin: 22px 0 0;
-    max-width: 44em;
-    font-size: 16.5px;
-  }
-  .lead + .lead { margin-top: 8px; color: var(--muted); font-size: 15px; }
+/* 섹션 제목 (대시보드 h2) */
+section{margin:0}
+h2{font-size:20px;margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px;line-height:1.4}
+h2 .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
+.sec-note{margin:0 0 16px;font-size:13px;color:var(--ink2)}
+h3{margin:0;font-size:16px;font-weight:700;line-height:1.45}
+p{margin:0 0 10px}
 
-  /* 섹션 */
-  section { margin-top: 64px; }
-  h2 {
-    display: flex; align-items: baseline; gap: 12px;
-    margin: 0 0 6px;
-    color: var(--heading);
-    font-size: 23px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.4;
-  }
-  h2 .num { color: var(--accent); font-weight: 600; }
-  .sec-note { margin: 0 0 24px; color: var(--muted); max-width: 44em; }
-  h3 { margin: 0; color: var(--heading); font-size: 17.5px; font-weight: 700; line-height: 1.45; }
+/* 운영 유형 */
+.type{display:grid;grid-template-columns:220px 1fr 200px;gap:24px;padding:20px 0;border-top:1px solid var(--line)}
+.type:last-of-type{border-bottom:1px solid var(--line)}
+.meter{display:flex;gap:4px;margin-bottom:10px}
+.meter i{width:24px;height:5px;border-radius:3px;background:var(--blue-soft)}
+.meter i.on{background:var(--blue)}
+.type p{margin:6px 0 0;color:var(--ink2);font-size:13.5px;line-height:1.6}
+.col-label{margin:0 0 6px;color:var(--ink3);font-size:12.5px;font-weight:700}
+.type ul{margin:0;padding-left:18px;font-size:14px}
+.type li{margin:2px 0}
+.role{background:var(--soft);border-radius:6px;padding:12px 14px;align-self:start;font-size:13.5px;line-height:1.6;color:var(--ink2)}
+.role .col-label{margin-bottom:4px}
 
-  /* 운영 유형 */
-  .type {
-    display: grid;
-    grid-template-columns: 232px 1fr 196px;
-    gap: 28px;
-    padding: 26px 0;
-    border-top: 1px solid var(--line);
-  }
-  .type:last-of-type { border-bottom: 1px solid var(--line); }
-  .meter { display: flex; gap: 4px; margin-bottom: 14px; }
-  .meter i { width: 26px; height: 6px; border-radius: 3px; background: var(--accent-soft); }
-  .meter i.on { background: var(--accent); }
-  .type p { margin: 8px 0 0; color: var(--muted); font-size: 14.5px; line-height: 1.7; }
-  .col-label { margin: 0 0 8px; color: var(--muted); font-size: 13px; font-weight: 600; }
-  .type ul { margin: 0; padding: 0; list-style: none; }
-  .type li { position: relative; padding-left: 14px; margin-bottom: 4px; line-height: 1.65; }
-  .type li::before {
-    content: ""; position: absolute; left: 0; top: 0.72em;
-    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
-  }
-  .role {
-    background: var(--surface);
-    border-radius: 6px;
-    padding: 14px 16px;
-    align-self: start;
-    font-size: 14.5px; line-height: 1.7;
-  }
-  .role .col-label { margin-bottom: 4px; }
+/* 표 (대시보드 table) */
+.scroll{position:relative;overflow-x:auto;margin-top:24px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px}
+caption{caption-side:top;text-align:left;font-weight:700;font-size:16px;padding-bottom:8px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+thead th{background:var(--soft);font-weight:700;font-size:13px;color:var(--ink2);white-space:nowrap}
+tbody th{font-weight:500}
 
-  /* 표 공통 */
-  .scroll { position: relative; overflow-x: auto; margin-top: 32px; }
-  table { width: 100%; border-collapse: collapse; }
-  caption {
-    caption-side: top; text-align: left;
-    color: var(--heading); font-weight: 700; font-size: 16px;
-    padding-bottom: 10px;
-  }
-  th, td { padding: 11px 12px; text-align: left; vertical-align: middle; }
-  thead th {
-    color: var(--muted); font-size: 13.5px; font-weight: 600;
-    border-bottom: 1.5px solid var(--heading);
-  }
-  tbody th { font-weight: 500; }
-  tbody tr > * { border-bottom: 1px solid var(--line); }
+.compare{min-width:520px}
+.compare th:not(:first-child),.compare td{text-align:center;width:19%;vertical-align:middle}
+.compare tbody th{vertical-align:middle}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--blue);vertical-align:middle}
+.none{color:var(--ink3)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-  .compare { min-width: 520px; }
-  .compare th:not(:first-child), .compare td { text-align: center; width: 19%; }
-  .dot {
-    display: inline-block; width: 11px; height: 11px; border-radius: 50%;
-    background: var(--accent); vertical-align: middle;
-  }
-  .none { color: var(--muted); }
-  .sr {
-    position: absolute; width: 1px; height: 1px; overflow: hidden;
-    clip: rect(0 0 0 0); white-space: nowrap;
-  }
+/* 프로세스 + 유형별 수행 구간 */
+.process{min-width:480px}
+.process thead th.t{text-align:center;width:58px;padding-left:4px;padding-right:4px}
+.process tbody th{vertical-align:top;padding:14px 16px 14px 10px;font-weight:400}
+.step{display:grid;grid-template-columns:30px 1fr;gap:8px}
+.step .n{color:var(--blue);font-weight:800;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+.step strong{display:block;font-size:15px;font-weight:700;line-height:1.5}
+.step span.d{display:block;margin-top:2px;color:var(--ink2);font-size:13.5px;line-height:1.6}
+.process td.cov{position:relative;padding:0;border-bottom:0}
+.process tbody tr:last-child td.cov{border-bottom:1px solid var(--line)}
+.bar{position:absolute;top:0;bottom:0;left:11px;right:11px;display:flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;font-size:12px;font-weight:700;line-height:1.2;text-align:center}
+.bar.part{background:var(--blue-mid);color:#00539a}
+.bar.start{top:10px;border-top-left-radius:6px;border-top-right-radius:6px}
+.bar.end{bottom:10px;border-bottom-left-radius:6px;border-bottom-right-radius:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin:4px 0 0;padding:0;list-style:none;color:var(--ink2);font-size:13px}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend i{width:14px;height:14px;border-radius:3px;background:var(--blue);flex:none}
+.legend i.part{background:var(--blue-mid)}
 
-  /* 프로세스 + 유형별 수행 구간 */
-  .process { min-width: 480px; }
-  .process thead th.t { text-align: center; width: 58px; padding-left: 4px; padding-right: 4px; }
-  .process tbody th {
-    vertical-align: top; padding: 20px 20px 20px 0; font-weight: 400;
-  }
-  .step { display: grid; grid-template-columns: 34px 1fr; gap: 8px; }
-  .step .n { color: var(--accent); font-weight: 700; font-size: 17px; line-height: 1.5; font-variant-numeric: tabular-nums; }
-  .step strong { display: block; color: var(--heading); font-size: 16.5px; font-weight: 700; line-height: 1.5; }
-  .step span.d { display: block; margin-top: 4px; color: var(--ink); line-height: 1.7; }
-  .process td.cov { position: relative; padding: 0; border-bottom: 0; }
-  .process tbody tr:last-child td.cov { border-bottom: 1px solid var(--line); }
-  .bar {
-    position: absolute; top: 0; bottom: 0; left: 11px; right: 11px;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--accent); color: var(--on-accent);
-    font-size: 12px; font-weight: 600; line-height: 1.2; text-align: center;
-  }
-  .bar.part { background: var(--accent-soft); color: var(--on-accent-soft); }
-  .bar.start { top: 12px; border-top-left-radius: 8px; border-top-right-radius: 8px; }
-  .bar.end { bottom: 12px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
-  .legend {
-    display: flex; flex-wrap: wrap; gap: 6px 22px;
-    margin: 14px 0 0; padding: 0; list-style: none;
-    color: var(--muted); font-size: 13.5px;
-  }
-  .legend li { display: flex; align-items: center; gap: 8px; }
-  .legend i { width: 14px; height: 14px; border-radius: 3px; background: var(--accent); flex: none; }
-  .legend i.part { background: var(--accent-soft); }
+/* 적용 방향 */
+.apply{display:grid;grid-template-columns:1fr 268px;gap:32px;align-items:start}
+.apply ol{margin:0;padding:0;list-style:none}
+.apply li{padding:14px 0;border-top:1px solid var(--line)}
+.apply li:last-child{border-bottom:1px solid var(--line)}
+.apply li p{margin:4px 0 0;color:var(--ink2);font-size:14px}
+.flow{border:1px solid var(--line);border-left:4px solid var(--blue);background:var(--soft);border-radius:6px;padding:18px;font-size:14px;line-height:1.6}
+.flow .src{background:var(--blue);color:#fff;border-radius:6px;padding:10px 14px;font-weight:700}
+.flow .src small{display:block;font-weight:400;font-size:12.5px;opacity:.92;margin-top:2px}
+.flow .stem{width:2px;height:16px;background:var(--blue);margin:0 auto}
+.flow .out{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.flow .out span{border:1px solid var(--blue);border-radius:999px;padding:6px 4px;text-align:center;font-weight:600;font-size:13px;color:var(--blue);background:var(--blue-soft)}
 
-  /* 적용 방향 */
-  .apply { display: grid; grid-template-columns: 1fr 268px; gap: 36px; align-items: start; }
-  .apply ol { margin: 0; padding: 0; list-style: none; }
-  .apply li { padding: 16px 0; border-top: 1px solid var(--line); }
-  .apply li:last-child { border-bottom: 1px solid var(--line); }
-  .apply li p { margin: 4px 0 0; }
-  .flow {
-    background: var(--surface); border-radius: 8px; padding: 20px;
-    font-size: 14px; line-height: 1.6;
-  }
-  .flow .src {
-    background: var(--accent); color: var(--on-accent);
-    border-radius: 6px; padding: 12px 14px; font-weight: 600;
-  }
-  .flow .src small { display: block; font-weight: 400; font-size: 12.5px; opacity: 0.92; margin-top: 2px; }
-  .flow .stem { width: 2px; height: 18px; background: var(--accent); margin: 0 auto; }
-  .flow .out { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .flow .out span {
-    border: 1.5px solid var(--accent); border-radius: 6px;
-    padding: 9px 4px; text-align: center; font-weight: 600; color: var(--heading);
-    background: var(--paper);
-  }
-  .flow p { margin: 12px 0 0; color: var(--muted); font-size: 13px; }
+/* 협의 사항 */
+.agenda tbody th{width:30%;font-weight:700}
 
-  /* 협의 사항 */
-  .agenda tbody th { width: 30%; color: var(--heading); font-weight: 600; vertical-align: top; }
-  .agenda td { vertical-align: top; }
+.closing{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
 
-  .closing {
-    margin-top: 56px; padding-top: 20px; border-top: 2px solid var(--heading);
-    color: var(--muted); font-size: 14px;
-  }
-
-  @media (max-width: 760px) {
-    .page { padding: 44px 20px 64px; }
-    .doc-meta { margin-bottom: 28px; }
-    section { margin-top: 52px; }
-    .type { grid-template-columns: 1fr; gap: 16px; }
-    .apply { grid-template-columns: 1fr; gap: 24px; }
-    .compare, .process { min-width: 0; }
-    .compare th, .compare td { padding-left: 6px; padding-right: 6px; }
-    .compare thead th { font-size: 12.5px; }
-    .process thead th.t { width: 42px; font-size: 12px; padding-left: 2px; padding-right: 2px; }
-    .bar { left: 6px; right: 6px; font-size: 11px; }
-    .process tbody th { padding-right: 10px; }
-    .step { grid-template-columns: 26px 1fr; gap: 6px; }
-    .step .n { font-size: 15px; }
-  }
-
-  @media print {
-    :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
-      color-scheme: light;
-      --paper: #ffffff; --surface: #f1f6f3; --ink: #1c2a25; --heading: #12382c;
-      --muted: #5d6b65; --line: #d6dfda; --accent: #0f7b5f; --accent-soft: #cfe6dc;
-      --on-accent: #ffffff; --on-accent-soft: #0b5a45;
-    }
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body { font-size: 10.5pt; }
-    .page { max-width: none; padding: 0; }
-    section { margin-top: 36px; }
-    .type, .apply li, tr, .flow { break-inside: avoid; }
-    h2, caption { break-after: avoid; }
-    .scroll { overflow: visible; }
-    @page { size: A4; margin: 18mm 16mm; }
-  }
+@media (max-width:720px){
+  .wrap{padding:28px 16px 60px}h1{font-size:23px}table{font-size:13px}th,td{padding:7px 6px}
+  .type{grid-template-columns:1fr;gap:12px}
+  .apply{grid-template-columns:1fr;gap:20px}
+  .compare,.process{min-width:0}
+  .compare thead th{font-size:12px}
+  .process thead th.t{width:42px;font-size:12px;padding-left:2px;padding-right:2px}
+  .bar{left:6px;right:6px;font-size:11px}
+  .step{grid-template-columns:24px 1fr;gap:6px}
+}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{padding:0;max-width:none}h2,caption{break-after:avoid}
+  .type,.apply li,tr,.flow{break-inside:avoid}.scroll{overflow:visible}a{color:inherit;text-decoration:none}
+  @page{size:A4;margin:18mm 16mm}
+}
 </style>
 </head>
 <body>
-<main class="page">
+<main class="wrap">
 
-  <header class="doc-head">
-    <p class="doc-meta"><span>세스코 블로그 운영 제안</span><span>2026. 11.</span></p>
-    <h1>블로그 운영 범위 및 프로세스(안)</h1>
-    <p class="lead">고객사의 운영 여건과 제작 목적에 맞춰 원고 편집, 콘텐츠 기획·제작, 블로그 통합 운영 중 필요한 범위를 선택하실 수 있습니다.</p>
-    <p class="lead">세 유형 모두 기존에 수행해 온 업무를 기준으로 정리했습니다.</p>
-  </header>
+<header class="top">
+  <div class="kicker">세스코 블로그 운영 제안 · 시하</div>
+  <h1>블로그 운영 범위 및 프로세스(안)</h1>
+  <div class="meta">
+    <span><b>기준일</b> 2026-11-17 (화)</span>
+    <span><b>요청</b> 11/11 정기 미팅</span>
+    <span><b>보고 자료</b> <a href="./">11/18(수) 보고 자료</a></span>
+  </div>
+</header>
+
+<p class="lead">고객사의 운영 여건과 제작 목적에 맞춰 원고 편집, 콘텐츠 기획·제작, 블로그 통합 운영 중 필요한 범위를 선택하실 수 있습니다.</p>
+<div class="box">세 유형 모두 기존에 수행해 온 업무를 기준으로 정리했습니다. <b>01 운영 범위</b>, <b>02 운영 프로세스</b>, <b>03 세스코 적용 방향</b>, <b>04 협의 필요 사항</b>입니다.</div>
 
   <section aria-labelledby="s1">
-    <h2 id="s1" style="margin-bottom:24px"><span class="num">1</span>블로그 운영 범위</h2>
+    <h2 id="s1"><span class="num">01</span>블로그 운영 범위</h2>
 
     <article class="type">
       <div>
@@ -403,7 +264,7 @@
   </section>
 
   <section aria-labelledby="s2">
-    <h2 id="s2"><span class="num">2</span>블로그 콘텐츠 운영 프로세스</h2>
+    <h2 id="s2"><span class="num">02</span>블로그 콘텐츠 운영 프로세스</h2>
     <p class="sec-note">통합 운영·관리형을 기준으로 한 전체 단계입니다. 오른쪽 막대는 유형별 수행 구간입니다.</p>
 
     <div class="scroll" style="margin-top:0">
@@ -481,7 +342,7 @@
   </section>
 
   <section aria-labelledby="s3">
-    <h2 id="s3"><span class="num">3</span>세스코 블로그 운영 적용 방향</h2>
+    <h2 id="s3"><span class="num">03</span>세스코 블로그 운영 적용 방향</h2>
     <p class="sec-note">현재 진행 중인 원천소스 발굴, LLM 기반 콘텐츠 제작 시스템과 블로그 운영을 연계하는 방식을 제안드립니다.</p>
 
     <div class="apply">
@@ -509,7 +370,7 @@
   </section>
 
   <section aria-labelledby="s4">
-    <h2 id="s4"><span class="num">4</span>협의 필요 사항</h2>
+    <h2 id="s4"><span class="num">04</span>협의 필요 사항</h2>
     <p class="sec-note">업무 범위는 아래 항목을 협의해 확정합니다.</p>
 
     <div class="scroll" style="margin-top:0">
