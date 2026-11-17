@@ -73,7 +73,7 @@ details.fold[open]>summary .hint .c{display:none}details.fold:not([open])>summar
 details.fold h2{display:none}
 @media print{details.fold{display:block}details.fold>summary .hint{display:none}details.fold:not([open])>*:not(summary){display:block}}
 </style>
-<style>.opt th,.opt td{font-size:13.5px}.tbd{color:var(--amber);font-weight:700}details.cost{margin:4px 0 16px}details.cost>summary{display:inline-block;cursor:pointer;list-style:none;font-size:12.5px;color:var(--ink3);text-decoration:underline dotted;text-underline-offset:3px}details.cost>summary::-webkit-details-marker{display:none}details.cost[open]>summary{margin-bottom:6px}@media print{details.cost:not([open]){display:none}}.draft{display:inline-block;background:var(--amber-soft);color:var(--amber);font-size:12px;font-weight:700;padding:2px 9px;border-radius:4px;margin-left:8px;vertical-align:middle}</style>
+<style>.opt th,.opt td{font-size:13.5px}.tbd{color:var(--amber);font-weight:700}.ops td.cat{background:var(--soft);border-right:1px solid var(--line);vertical-align:top}details.cost{margin:4px 0 16px}details.cost>summary{display:inline-block;cursor:pointer;list-style:none;font-size:12.5px;color:var(--ink3);text-decoration:underline dotted;text-underline-offset:3px}details.cost>summary::-webkit-details-marker{display:none}details.cost[open]>summary{margin-bottom:6px}@media print{details.cost:not([open]){display:none}}.draft{display:inline-block;background:var(--amber-soft);color:var(--amber);font-size:12px;font-weight:700;padding:2px 9px;border-radius:4px;margin-left:8px;vertical-align:middle}</style>
 </head>
 <body>
 <div class="wrap">
@@ -114,16 +114,16 @@ details.fold h2{display:none}
 <tr><td><b>시하 (중앙 허브)</b></td><td><ul><li>원천소스·일정·품질을 한곳에서 관리합니다.</li><li>LLM 초안을 검수하고 다듬습니다.</li><li>템플릿·스킬을 새로 만들고 고도화합니다.</li><li>내부 담당자를 교육합니다.</li></ul></td></tr>
 </tbody></table>
 <h3>운영 항목</h3>
-<table><thead><tr><th style="width:22%">항목</th><th>내용</th></tr></thead><tbody>
-<tr><td><b>원천소스 발굴·관리</b></td><td><ul><li>신제품, 시즌 이슈, 소비자 질문에서 원천소스를 찾습니다.</li><li>POD 원천소스 양식으로 정리해 한곳에 모읍니다.</li><li>하나의 원천소스를 여러 채널이 함께 씁니다.</li></ul></td></tr>
+<table class="ops"><thead><tr><th style="width:17%">구분</th><th style="width:20%">항목</th><th>내용</th></tr></thead><tbody>
+<tr><td class="cat" rowspan="4"><b>원천소스 · 일정 관리</b><br><span class="small">중앙 허브</span></td><td><b>원천소스 발굴·관리</b></td><td><ul><li>신제품, 시즌 이슈, 소비자 질문에서 원천소스를 찾습니다.</li><li>POD 원천소스 양식으로 정리해 한곳에 모읍니다.</li><li>하나의 원천소스를 여러 채널이 함께 씁니다.</li></ul></td></tr>
+<tr><td><b>소비자 질문 수집</b></td><td><ul><li>커뮤니티 등에서 소비자의 실제 질문과 관심사를 모읍니다.</li><li>브랜드명과 연관 키워드 중심으로 계속 수집합니다.</li><li>주간·월간 트렌드를 대시보드로 보여드립니다.</li><li>모은 질문은 바로 원천소스로 씁니다.</li></ul></td></tr>
 <tr><td><b>콘텐츠 캘린더</b></td><td><ul><li>연간 기본 캘린더를 1월에 만듭니다.</li><li>트렌드, 신제품 일정, 세스코 내부 상황에 맞춰 매달 고칩니다.</li><li>그달의 원천소스와 주요 방향을 쇼핑몰·SNS·마케팅 포털 등 관련 부서에 미리 공유합니다.</li></ul></td></tr>
 <tr><td><b>2개월 전 준비</b></td><td><ul><li>신제품·주요 시즌 콘텐츠는 발신 약 2개월 전에 원천소스를 확정합니다.</li><li>같은 시기에 템플릿별 초안을 준비합니다.</li></ul></td></tr>
-<tr><td><b>LLM 베리에이션</b></td><td><ul><li>확정된 원천소스로 채널별 초안을 한 번에 만듭니다.</li><li>카드뉴스는 기본형과 추천 유형 2안으로 냅니다.</li></ul></td></tr>
-<tr><td><b>LLM 템플릿 신규 개발 · 고도화</b></td><td><ul><li>신제품, 새 채널, 새 포맷이 생기면 템플릿을 새로 만듭니다. 올해는 장소별 추천 페이지, 솔루션 페이지 뼈대 3종, 인스타그램 캐릭터형, 고객 메시지를 이렇게 추가했습니다.</li><li>기존 템플릿(포맷 17)은 세스코 피드백과 검수에서 자주 고친 부분을 반영해 고칩니다.</li><li>분기마다 많이 쓰는 유형과 안 쓰는 유형을 정리해 템플릿을 정비합니다.</li><li>바뀐 내용은 월간 리포트의 업데이트 내역으로 공유합니다.</li></ul></td></tr>
+<tr><td class="cat" rowspan="3"><b>콘텐츠 제작 · 품질</b></td><td><b>LLM 베리에이션</b></td><td><ul><li>확정된 원천소스로 채널별 초안을 한 번에 만듭니다.</li><li>카드뉴스는 기본형과 추천 유형 2안으로 냅니다.</li></ul></td></tr>
 <tr><td><b>품질 검수</b></td><td><ul><li>모든 초안은 검수 하네스와 사람 검수를 함께 거칩니다.</li><li>사실·수치·표기는 세스코 확인 후 발행합니다.</li></ul></td></tr>
 <tr><td><b>채널 확산</b></td><td><ul><li>상세페이지 · 카드뉴스 · 인스타그램 · 블로그 · 마케팅 포털로 넓힙니다.</li><li>인스타그램은 위생 정보 콘텐츠에 집중합니다.</li><li>박사·요원 캐릭터를 화자로 씁니다.</li></ul></td></tr>
-<tr><td><b>소비자 질문 수집</b></td><td><ul><li>커뮤니티 등에서 소비자의 실제 질문과 관심사를 모읍니다.</li><li>브랜드명과 연관 키워드 중심으로 계속 수집합니다.</li><li>주간·월간 트렌드를 대시보드로 보여드립니다.</li><li>모은 질문은 바로 원천소스로 씁니다.</li></ul></td></tr>
-<tr><td><b>교육</b></td><td><ul><li>내부 담당자 대상 사용 교육을 정기적으로 합니다.</li><li>새로 합류한 담당자에게는 세팅부터 첫 초안까지 따로 교육합니다.</li><li>템플릿이나 스킬이 바뀌면 바뀐 사용법을 교육합니다.</li><li>교육 자료는 문서로 남겨 다음 담당자도 같은 내용을 볼 수 있게 합니다.</li></ul></td></tr>
+<tr><td class="cat" rowspan="1"><b>LLM 템플릿</b></td><td><b>LLM 템플릿 신규 개발 · 고도화</b></td><td><ul><li>신제품, 새 채널, 새 포맷이 생기면 템플릿을 새로 만듭니다. 올해는 장소별 추천 페이지, 솔루션 페이지 뼈대 3종, 인스타그램 캐릭터형, 고객 메시지를 이렇게 추가했습니다.</li><li>기존 템플릿(포맷 17)은 세스코 피드백과 검수에서 자주 고친 부분을 반영해 고칩니다.</li><li>분기마다 많이 쓰는 유형과 안 쓰는 유형을 정리해 템플릿을 정비합니다.</li><li>바뀐 내용은 월간 리포트의 업데이트 내역으로 공유합니다.</li></ul></td></tr>
+<tr><td class="cat" rowspan="3"><b>교육 · 내재화</b></td><td><b>교육</b></td><td><ul><li>내부 담당자 대상 사용 교육을 정기적으로 합니다.</li><li>새로 합류한 담당자에게는 세팅부터 첫 초안까지 따로 교육합니다.</li><li>템플릿이나 스킬이 바뀌면 바뀐 사용법을 교육합니다.</li><li>교육 자료는 문서로 남겨 다음 담당자도 같은 내용을 볼 수 있게 합니다.</li></ul></td></tr>
 <tr><td><b>내부 사용 지원</b></td><td><ul><li>세팅값을 정기적으로 점검합니다.</li><li>메인 카피처럼 일반 템플릿으로 잘 안 나오는 일은 목적별 프롬프트를 드립니다.</li><li>신규 인원도 같은 수준의 결과를 낼 수 있게 돕습니다.</li></ul></td></tr>
 <tr><td><b>Bedrock 내재화 지원</b></td><td><ul><li>세스코 내부 Claude(Bedrock) 환경에 템플릿·하네스·스킬을 연결합니다.</li><li>필요한 파일 정리, Git 권한, 개발자 분과의 직접 소통을 지원합니다.</li><li>보안 기준이 정해지면 연결 방식을 맞춥니다.</li></ul></td></tr>
 </tbody></table>
