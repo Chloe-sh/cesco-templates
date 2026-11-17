@@ -76,20 +76,21 @@ details.fold h2{display:none}
 <style>.opt th,.opt td{font-size:13.5px}.tbd{color:var(--amber);font-weight:700}.ops td.cat{background:var(--soft);border-right:1px solid var(--line);vertical-align:top}details.cost{margin:4px 0 16px}details.cost>summary{display:inline-block;cursor:pointer;list-style:none;font-size:12.5px;color:var(--ink3);text-decoration:underline dotted;text-underline-offset:3px}details.cost>summary::-webkit-details-marker{display:none}details.cost[open]>summary{margin-bottom:6px}@media print{details.cost:not([open]){display:none}}.draft{display:inline-block;background:var(--amber-soft);color:var(--amber);font-size:12px;font-weight:700;padding:2px 9px;border-radius:4px;margin-left:8px;vertical-align:middle}</style>
 <style>
 .roles{display:grid;grid-template-columns:repeat(3,1fr);margin:16px 0 20px}
-.roles .sh{grid-row:1;justify-self:center;width:108px;height:108px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:15.5px;line-height:1.3;border:2px solid var(--blue);background:#fff;color:var(--blue);-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.roles .sh small{font-size:11.5px;font-weight:600;margin-top:1px}
-.roles .s1{grid-column:1;border-color:var(--ink);color:var(--ink)}
-.roles .s2{grid-column:3;background:var(--blue-soft)}
-.roles .s3{grid-column:2;background:var(--blue);color:#fff}
-.roles .ar{grid-row:1;align-self:center;position:relative;height:0;border-top:2px solid var(--ink3);margin:0 calc(25% + 68px) 0 calc(25% + 62px)}
-.roles .a1{grid-column:1/3}.roles .a2{grid-column:2/4}
-.roles .ar::after{content:"";position:absolute;right:-9px;top:-7px;border:6px solid transparent;border-left:9px solid var(--ink3);border-right:0}
-.roles .ar span{position:absolute;left:-20px;right:-20px;bottom:7px;text-align:center;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap}
-.roles .fw{transform:translateY(-12px)}
-.roles .bw{transform:translateY(12px);margin:0 calc(25% + 62px) 0 calc(25% + 68px)}
-.roles .bw::after{right:auto;left:-9px;border-left:0;border-right:9px solid var(--ink3)}
-.roles .bw span{bottom:auto;top:7px}
-.roles .tx{grid-row:2;margin:28px 6px 0;background:var(--soft);border-radius:8px;padding:12px 14px;font-size:14px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.roles .tri{grid-column:1/4;grid-row:1;display:block;width:100%;height:auto;font-family:inherit}
+.roles .tri .ln{stroke:var(--ink3);stroke-width:2;fill:none}
+.roles .tri .hd{fill:var(--ink3)}
+.roles .tri .lb{font-size:12px;font-weight:600;fill:var(--ink2)}
+.roles .tri .nm{font-size:15.5px;font-weight:800;text-anchor:middle}
+.roles .tri .sm{font-size:11.5px;font-weight:600;text-anchor:middle}
+.roles .tri .c1{fill:#fff;stroke:var(--ink);stroke-width:2}
+.roles .tri .c2{fill:var(--blue-soft);stroke:var(--blue);stroke-width:2}
+.roles .tri .c3{fill:var(--blue);stroke:var(--blue);stroke-width:2}
+.roles .sh{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;line-height:1.3;border-radius:50%;border:2px solid var(--blue);background:#fff;color:var(--blue);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.roles .sh small{font-size:10px;font-weight:600;margin-top:1px}
+.roles .s1{border-color:var(--ink);color:var(--ink)}
+.roles .s2{background:var(--blue-soft)}
+.roles .s3{background:var(--blue);color:#fff}
+.roles .tx{grid-row:2;margin:14px 6px 0;background:var(--soft);border-radius:8px;padding:12px 14px;font-size:14px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .roles .t1{grid-column:1}.roles .t2{grid-column:3}.roles .t3{grid-column:2}
 .roles .tx b{display:block;font-size:13px;color:var(--blue);margin-bottom:4px}
 .roles .tx ul{margin:0;padding-left:18px}
@@ -99,11 +100,10 @@ details.fold h2{display:none}
 .hubframe iframe{display:block;width:100%;height:900px;border:0}
 @media (max-width:720px){
 .roles{grid-template-columns:76px 1fr;row-gap:10px}
-.roles .sh{width:68px;height:68px;font-size:12.5px;grid-column:1;justify-self:start;align-self:start}
-.roles .sh small{font-size:10px}
+.roles .tri{display:none}
+.roles .sh{display:flex;width:68px;height:68px;font-size:12.5px;grid-column:1;justify-self:start;align-self:start}
 .roles .s1,.roles .t1{grid-row:1}.roles .s3,.roles .t3{grid-row:2}.roles .s2,.roles .t2{grid-row:3}
 .roles .tx{grid-column:2;margin:0}
-.roles .ar{display:none}
 .hubframe iframe{height:620px}
 }
 @media print{.roles{break-inside:avoid}.hubframe iframe{height:560px}}
@@ -142,16 +142,27 @@ details.fold h2{display:none}
 <p class="small">내년에는 만드는 일에서 돌리는 일로 넘어갑니다. 환경가전·마이랩 신제품이 많아 담당자가 모든 콘텐츠를 따로 만들기 어렵기 때문입니다.</p>
 <h3>역할 분담 내역</h3>
 <div class="roles">
+  <svg class="tri" viewBox="0 0 912 344" role="img" aria-label="세스코 담당자, 시하 중앙 허브, LLM이 삼각형으로 서로 주고받는 역할 분담 도형">
+    <defs><marker id="rah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path class="hd" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+    <line class="ln" x1="196.9" y1="238.4" x2="400.5" y2="91" marker-end="url(#rah)"/><line class="ln" x1="411.1" y1="105.6" x2="207.5" y2="253" marker-end="url(#rah)"/>
+    <line class="ln" x1="511.5" y1="91" x2="715.1" y2="238.4" marker-end="url(#rah)"/><line class="ln" x1="704.5" y1="253" x2="500.9" y2="105.6" marker-end="url(#rah)"/>
+    <line class="ln" x1="214" y1="273" x2="698" y2="273" marker-end="url(#rah)"/><line class="ln" x1="698" y1="291" x2="214" y2="291" marker-end="url(#rah)"/>
+    <text class="lb" x="286" y="158" text-anchor="end">원천소스 · POD</text>
+    <text class="lb" x="324" y="197">검수한 초안 → 최종 발행 승인</text>
+    <text class="lb" x="626" y="158">원천소스 · 템플릿</text>
+    <text class="lb" x="588" y="197" text-anchor="end">채널별 초안</text>
+    <text class="lb" x="456" y="264" text-anchor="middle">원천소스 입력</text>
+    <text class="lb" x="456" y="309" text-anchor="middle">채널별 초안</text>
+    <circle class="c3" cx="456" cy="62" r="54"/><text class="nm" x="456" y="62" fill="#fff">시하</text><text class="sm" x="456" y="80" fill="#fff">중앙 허브</text>
+    <circle class="c1" cx="152" cy="282" r="54"/><text class="nm" x="152" y="277" fill="#111">세스코</text><text class="nm" x="152" y="297" fill="#111">담당자</text>
+    <circle class="c2" cx="760" cy="282" r="54"/><text class="nm" x="760" y="287.5" fill="#0072CE">LLM</text>
+  </svg>
   <div class="sh s1">세스코<br>담당자</div>
-  <div class="ar a1 fw"><span>원천소스 · POD</span></div>
-  <div class="ar a1 bw"><span>검수한 초안 → 최종 발행 승인</span></div>
   <div class="sh s3">시하<small>중앙 허브</small></div>
-  <div class="ar a2 fw"><span>원천소스 · 템플릿</span></div>
-  <div class="ar a2 bw"><span>채널별 초안</span></div>
   <div class="sh s2">LLM</div>
-  <div class="tx t1"><b>기획 · 승인</b><ul><li>좋은 원천소스와 핵심 POD를 정합니다.</li><li>콘텐츠 주제를 기획합니다.</li><li>최종 발행을 승인합니다.</li></ul></div>
+  <div class="tx t1"><b>기획 · LLM 활용 · 승인</b><ul><li>좋은 원천소스와 핵심 POD를 정합니다.</li><li>콘텐츠 주제를 기획합니다.</li><li>원천소스를 넣어 LLM으로 초안을 직접 만듭니다.</li><li>최종 발행을 승인합니다.</li></ul></div>
   <div class="tx t3"><b>관리 · 검수 · 고도화 · 교육</b><ul><li>원천소스·일정·품질을 한곳에서 관리합니다.</li><li>LLM 초안을 검수하고 다듬습니다.</li><li>템플릿·스킬을 새로 만들고 고도화합니다.</li><li>내부 담당자를 교육합니다.</li></ul></div>
-  <div class="tx t2"><b>초안 제작</b><ul><li>원천소스로 채널별 초안과 베리에이션을 만듭니다.</li></ul></div>
+  <div class="tx t2"><b>초안 제작</b><ul><li>원천소스로 채널별 초안과 베리에이션을 만듭니다.</li><li>세스코 담당자와 시하가 같은 템플릿·스킬로 함께 씁니다.</li></ul></div>
 </div>
 <h3>운영 항목</h3>
 <table class="ops"><thead><tr><th style="width:17%">구분</th><th style="width:20%">항목</th><th>내용</th></tr></thead><tbody>
