@@ -80,17 +80,11 @@ tbody th{font-weight:500}
 .legend i.part{background:var(--blue-mid)}
 
 /* 적용 방향 */
-.apply{display:grid;grid-template-columns:1fr 268px;gap:32px;align-items:start}
+.apply{display:block}
 .apply ol{margin:0;padding:0;list-style:none}
 .apply li{padding:14px 0;border-top:1px solid var(--line)}
 .apply li:last-child{border-bottom:1px solid var(--line)}
 .apply li p{margin:4px 0 0;color:var(--ink2);font-size:14px}
-.flow{border:1px solid var(--line);border-left:4px solid var(--blue);background:var(--soft);border-radius:6px;padding:18px;font-size:14px;line-height:1.6}
-.flow .src{background:var(--blue);color:#fff;border-radius:6px;padding:10px 14px;font-weight:700}
-.flow .src small{display:block;font-weight:400;font-size:12.5px;opacity:.92;margin-top:2px}
-.flow .stem{width:2px;height:16px;background:var(--blue);margin:0 auto}
-.flow .out{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.flow .out span{border:1px solid var(--blue);border-radius:999px;padding:6px 4px;text-align:center;font-weight:600;font-size:13px;color:var(--blue);background:var(--blue-soft)}
 
 /* 협의 사항 */
 .agenda tbody th{width:30%;font-weight:700}
@@ -100,7 +94,6 @@ tbody th{font-weight:500}
 @media (max-width:720px){
   .wrap{padding:28px 16px 60px}h1{font-size:23px}table{font-size:13px}th,td{padding:7px 6px}
   .type{grid-template-columns:1fr;gap:12px}
-  .apply{grid-template-columns:1fr;gap:20px}
   .compare,.process{min-width:0}
   .compare thead th{font-size:12px}
   .process thead th.t{width:42px;font-size:12px;padding-left:2px;padding-right:2px}
@@ -110,7 +103,7 @@ tbody th{font-weight:500}
 @media print{
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .wrap{padding:0;max-width:none}h2,caption{break-after:avoid}
-  .type,.apply li,tr,.flow{break-inside:avoid}.scroll{overflow:visible}a{color:inherit;text-decoration:none}
+  .type,.apply li,tr{break-inside:avoid}.scroll{overflow:visible}a{color:inherit;text-decoration:none}
   @page{size:A4;margin:18mm 16mm}
 }
 </style>
@@ -360,12 +353,6 @@ tbody th{font-weight:500}
           <p>원천소스 하나를 블로그, 카드뉴스, 매거진에 맞게 재구성합니다. 콘텐츠 활용도가 높아지고 채널 간 브랜드 메시지도 일관되게 유지됩니다.</p>
         </li>
       </ol>
-
-      <div class="flow" role="img" aria-label="원천소스 하나를 블로그, 카드뉴스, 매거진으로 재구성하는 흐름">
-        <div class="src">원천소스<small>제품·서비스 정보, 연구자료, 시즌 이슈</small></div>
-        <div class="stem"></div>
-        <div class="out"><span>블로그</span><span>카드뉴스</span><span>매거진</span></div>
-      </div>
     </div>
   </section>
 
