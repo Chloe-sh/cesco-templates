@@ -7,87 +7,96 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 /* 11/18 보고 대시보드(reports/261116/index.html)와 같은 토큰 */
-:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--blue-mid:#bcd9f2;--amber:#b35c00;--amber-soft:#fff4e5}
+:root{--ink:#111;--ink2:#444;--ink3:#777;--line:#e3e3e3;--soft:#f5f7fa;--blue:#0072CE;--blue-soft:#e6f1fb;--amber:#b35c00;--amber-soft:#fff4e5}
 *{box-sizing:border-box}
 html,body{margin:0;background:#fff;color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--blue)}
 .wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
-header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:28px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:20px}
 .kicker{font-size:13px;letter-spacing:.02em;color:var(--blue);font-weight:700;margin-bottom:6px}
 h1{font-size:28px;line-height:1.3;margin:0 0 10px;font-weight:800}
 .meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--ink2);font-size:14px}
 .meta b{color:var(--ink);font-weight:600}
-.meta a{color:var(--blue)}
-.lead{font-size:16px;color:var(--ink2);margin:0 0 10px}
-.box{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px;background:var(--soft);padding:14px 18px;margin:14px 0;font-size:14px;color:var(--ink2)}
-.box b{color:var(--ink)}
-.box.amber{border-left-color:var(--amber);background:var(--amber-soft)}
-.strip{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 4px;font-size:14px;color:var(--ink2)}
-.strip b{color:var(--ink)}
 .chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;line-height:1.25;padding:5px 11px;border:1px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
 .chip .type{font-size:10px;font-weight:600;color:var(--blue);opacity:.75;letter-spacing:.02em}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
 h2{font-size:20px;margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--line);font-weight:800;display:flex;align-items:baseline;gap:10px;line-height:1.4}
 h2 .num{color:var(--blue);font-size:15px;font-weight:800;min-width:2ch}
-h3{font-size:16px;margin:28px 0 4px;font-weight:700;line-height:1.45}
-h3 + .sub{margin:0 0 10px;font-size:14px;color:var(--ink2)}
+h2.appx{font-size:17px;color:var(--ink2);font-weight:700}
+h3{font-size:16px;margin:28px 0 8px;font-weight:700;line-height:1.45}
 p{margin:0 0 10px}
+ul,ol{margin:0 0 10px;padding-left:22px}
+li{margin:3px 0}
 .small{font-size:13px;color:var(--ink2)}
-.src{font-size:12.5px;color:var(--ink3);margin-top:4px}
 .need{color:var(--amber);font-weight:700;white-space:nowrap}
+code{font-family:inherit;font-size:13px;background:var(--soft);border-radius:4px;padding:1px 5px;color:var(--ink)}
+
+/* 표 */
+.scroll{overflow-x:auto;margin:10px 0 16px}
+.scroll table{margin:0}
 table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px}
 th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 th{background:var(--soft);font-weight:700;font-size:13px;color:var(--ink2);white-space:nowrap}
-td.c,th.c{text-align:center;white-space:nowrap}
-td.k{font-weight:700;white-space:nowrap}
-td.big{font-weight:800;color:var(--blue);white-space:nowrap}
-.scroll{overflow-x:auto}
+td.c,th.c{text-align:center}
+td.k{font-weight:700}
+td.nw{white-space:nowrap}
+table.src td.k{width:170px}
+table.src td:nth-child(2){width:33%}
+table.files td.k{width:170px}
+table.files td{line-height:1.8}
+table.plan th:not(:first-child),table.plan td:not(:first-child){width:36%}
+table.plan tr.gap td{padding:0;height:6px;background:var(--soft);border-bottom:1px solid var(--line)}
+table.plan tr.cost td{white-space:nowrap;vertical-align:middle;background:var(--blue-soft);font-size:19px;font-weight:800;color:var(--ink);padding:12px 10px}
+table.plan tr.cost td:first-child{font-size:15px}
+table.appx td.k{color:var(--ink2);white-space:nowrap}
 
-/* 카드 */
-.cards{display:grid;gap:10px;margin:10px 0 16px}
-.cards.c3{grid-template-columns:repeat(3,1fr)}
-.cards.c2{grid-template-columns:repeat(2,1fr)}
-.card{border:1px solid var(--line);border-radius:6px;background:#fff;padding:14px 16px}
-.card .lbl{font-size:12px;font-weight:700;color:var(--blue);margin-bottom:2px}
-.card .ttl{font-size:16px;font-weight:800;margin-bottom:6px}
-.card ul{margin:0;padding-left:18px;font-size:14px}
-.card li{margin:2px 0}
-.card p{margin:0;font-size:14px;color:var(--ink2)}
-.card.hub{border-color:var(--blue);background:var(--blue-soft)}
+/* 한 화면 요약 */
+.sum{display:grid;grid-template-columns:1fr 1.2fr 1fr 1fr;gap:10px;margin:0 0 8px}
+.card{border:1px solid var(--line);border-radius:6px;background:#fff;padding:14px 14px}
+.card .lbl{font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:6px}
+.card p{margin:0;font-size:15.5px;line-height:1.6}
+.card p + p{margin-top:6px;color:var(--ink2);font-size:14px}
+.card b{font-weight:800}
+.card .nw{white-space:nowrap}
 
-/* 단계 */
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:10px 0 16px;padding:0;list-style:none}
-.steps li{background:var(--soft);border-radius:6px;padding:10px 12px;font-size:13.5px;color:var(--ink2)}
-.steps li b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
-.steps li .n{display:block;color:var(--blue);font-weight:800;font-size:13px}
+/* 진행 목록 (마이랩) */
+.prog{list-style:none;margin:12px 0 10px;padding:0 0 0 16px;border-left:2px solid var(--line)}
+.prog li{display:grid;grid-template-columns:170px 1fr;gap:14px;margin:0;padding:8px 0}
+.prog li + li{border-top:1px solid var(--line)}
+.prog .when{color:var(--blue);font-weight:700;font-size:14px}
 
-/* 원천소스 → 5종 */
-.fan{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:center;margin:10px 0 16px}
-.fan .one{background:var(--blue);color:#fff;border-radius:6px;padding:16px 18px}
-.fan .one b{display:block;font-size:17px}
-.fan .one span{font-size:13.5px;opacity:.92}
-.fan .five{display:flex;flex-wrap:wrap;gap:6px}
-.fan .five span{border:1px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:13.5px;padding:6px 14px}
+/* 2개월 전 준비 띠 */
+.band{display:grid;grid-template-columns:repeat(3,1fr);margin:10px 0 14px;border-top:3px solid var(--blue)}
+.band > div{padding:10px 14px 4px 0}
+.band .when{color:var(--blue);font-weight:700;font-size:14px}
 
-/* 일정 */
-.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:10px 0 16px;border-top:3px solid var(--blue)}
-.tl > div{padding:12px 14px 4px 0}
-.tl .when{font-size:12.5px;color:var(--blue);font-weight:700}
-.tl .what{font-size:16px;font-weight:800;margin:2px 0 4px}
-.tl ul{margin:0;padding-left:18px;font-size:14px;color:var(--ink2)}
+/* 주기 */
+.cyc{list-style:none;margin:10px 0 10px;padding:0}
+.cyc li{display:grid;grid-template-columns:64px 1fr;gap:14px;margin:0;padding:7px 0;border-bottom:1px solid var(--line)}
+.cyc li:first-child{border-top:1px solid var(--line)}
+.cyc .when{color:var(--blue);font-weight:700;font-size:14px}
 
-/* 비용 */
-.cost{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 6px}
-.cost .card .amt{font-size:22px;font-weight:800}
-.cost .card .yr{font-size:13.5px;color:var(--ink2)}
+/* 최신판 예시 */
+.ex{margin:6px 0 10px;font-size:14px;color:var(--ink2)}
+.ex div{background:var(--soft);padding:6px 12px;border-radius:4px;margin:4px 0}
 
 .foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px}
+
 @media (max-width:720px){
   .wrap{padding:28px 16px 60px}h1{font-size:23px}table{font-size:13px}th,td{padding:7px 6px}
-  .cards.c3,.cards.c2,.cost,.tl{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .fan{grid-template-columns:1fr}
+  .sum{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.card .nw{white-space:normal}
+  .card{padding:12px 12px}.card p{font-size:14.5px}
+  table.src{min-width:640px}table.files{min-width:560px}table.plan{min-width:480px}table.req{min-width:420px}table.appx{min-width:520px}
+  table.plan tr.cost td{font-size:17px}
+  .band{grid-template-columns:1fr}
+  .band > div{padding:8px 0;border-bottom:1px solid var(--line)}
+  .prog li{grid-template-columns:1fr;gap:2px}
 }
-@media print{.wrap{padding:0;max-width:none}h2,h3{break-after:avoid}table,.box,.card,.steps,.tl{break-inside:avoid}a{color:inherit;text-decoration:none}}
+@media print{
+  .wrap{padding:0;max-width:none}h2,h3{break-after:avoid}
+  table,tr,.scroll,.sum,.card,.prog,.band,.cyc,.ex,ul,ol{break-inside:avoid}
+  .scroll{overflow:visible}a{color:inherit;text-decoration:none}
+}
 </style>
 </head>
 <body>
@@ -103,214 +112,190 @@ td.big{font-weight:800;color:var(--blue);white-space:nowrap}
   </div>
 </header>
 
-<p class="lead">11/3 · 11/11 미팅에서 요청하신 다섯 가지에 운영 범위 2안과 비용, 일정을 더했습니다. <b>01 제안 요약</b>, <b>02 올해 만든 기반</b>, <b>03 2027 운영</b>, <b>04 범위와 비용</b>, <b>05 일정과 요청 사항</b>입니다.</p>
-
-<div class="box amber"><b>초안입니다.</b> 주황색으로 표시한 금액 · 산출량 · 블로그 편수는 협의 후 확정합니다. 11월 말 완료 보고에서 함께 보고드립니다.</div>
-
 <div class="chips">
   <a class="chip" href="세스코_2027_운영제안서_초안_261117.pptx" download><span class="type">PPT · 15장</span>2027 운영 제안서 내려받기</a>
   <a class="chip" href="블로그운영범위_프로세스안_261117.html"><span class="type">11/17 · 협의용 안</span>블로그 운영 범위 · 프로세스</a>
 </div>
 
-<!-- 01 -->
-<h2 id="s1"><span class="num">01</span>제안 요약</h2>
+<div class="sum">
+  <div class="card"><div class="lbl">시하가 맡는 일</div><p>콘텐츠 소재(제품 자료 · 시즌 주제) 찾기, 월간 캘린더, 채널별 원고 초안과 검수.</p><p>세스코 담당자는 주제 확정, 사실 확인, 발행 승인.</p></div>
+  <div class="card"><div class="lbl">비용</div><p><span class="nw">A안 월 <b>2,000만~2,400만 원</b> ·</span> <span class="nw">B안 월 <b>2,600만~3,000만 원</b>.</span></p><p>부가세 별도, 금액은 협의 전 <span class="need">[대표님 협의 필요]</span></p></div>
+  <div class="card"><div class="lbl">일정</div><p>11월 말 보고 → 12월 범위 · 비용 확정 → 1월 시작.</p></div>
+  <div class="card"><div class="lbl">세스코가 정할 것</div><p>운영 범위 A안 또는 B안.</p><p>블로그를 맡길 범위.</p></div>
+</div>
 
-<h3>요청하신 다섯 가지에 하나씩 답을 붙였습니다</h3>
-<p class="sub">올해 만든 템플릿과 작성 규칙이 있어 1월부터 바로 운영할 수 있습니다.</p>
-<table>
-  <thead><tr><th>요청하신 내용</th><th>제안</th><th class="c">본문</th></tr></thead>
+<!-- 01 -->
+<h2 id="s1"><span class="num">01</span>소재는 어디에서 찾는가</h2>
+<p>소재는 콘텐츠의 바탕이 되는 제품 자료 · 근거 · 주제입니다. 올해는 세스코가 매월 정해서 보내 주셨고, 시하는 받은 소재로 원고를 만들었습니다.</p>
+
+<h3>소재 출처</h3>
+<div class="scroll">
+<table class="src">
+  <thead><tr><th>출처</th><th>실제 예</th><th>확인 주기</th><th>누가 찾고 누가 확정하나</th></tr></thead>
   <tbody>
-    <tr><td class="k">LLM으로 제작 시간 단축</td><td>원천소스 한 번 정리로 채널별 초안 생성</td><td class="c"><a href="#s2">02</a></td></tr>
-    <tr><td class="k">원천소스 · 일정 · 품질 중앙 허브</td><td>원천소스, 캘린더, 검수를 시하가 관리</td><td class="c"><a href="#hub">03</a></td></tr>
-    <tr><td class="k">월간 캘린더 2개월 전 준비</td><td>매월 다음 달과 2개월 뒤 캘린더 확정</td><td class="c"><a href="#cal">03</a></td></tr>
-    <tr><td class="k">블로그 운영 범위와 프로세스</td><td>주제 선정부터 발행까지 순서와 담당 정리</td><td class="c"><a href="#blog">03</a></td></tr>
-    <tr><td class="k">내부 Claude(Bedrock) 내재화</td><td>내부 환경 연결, 담당자 교육, 프롬프트 지원</td><td class="c"><a href="#bedrock">03</a></td></tr>
+    <tr><td class="k">신제품 · 리뉴얼 제품 자료</td><td>슬림온 정수기(9/21), 블루제닉 변기세정기(10/1), 에어퍼퓸 750(11/10 접수, 2027년 1월 말 출시)</td><td class="nw">출시 일정마다</td><td>세스코 제품 담당자가 핵심 차별점(POD) 양식에 작성해 메일 전달 → 시하가 항목 정리</td></tr>
+    <tr><td class="k">월별 소재표</td><td>7월 살균소독제 70 · 여름철 식중독<br>8월 라돈 · 공기 중 곰팡이 · 가을 모기</td><td class="nw">매월</td><td>세스코 전달 → 시하 제작<br>항목: 주제 · 핵심 메시지 · 근거 데이터 · 타깃 · 주요 키워드 · 톤 · 금지 표현</td></tr>
+    <tr><td class="k">마케팅 전략 기준 문서</td><td>슬림온 · 에어컨 전문 클리닝 · 블루제닉(11/3), 카케어(11/4)</td><td class="nw">제품별 작성</td><td>시하가 세스코 제품 자료로 작성, 세스코 피드백 대기<br>핵심 메시지 · 쓸 수 있는 표현 · FAQ의 기준</td></tr>
+    <tr><td class="k">연구 · 시험 자료</td><td>이물분석센터 미세플라스틱 KOLAS 인정, 생활과학연구소 시험 수치, 외부 연구(세탁 후 진드기 알레르겐 84% 감소)</td><td class="nw">원고마다</td><td>시하가 세스코 제품 자료 · 세스코 뉴스에서 인용, 수치는 세스코 확인</td></tr>
+    <tr><td class="k">시즌 이슈</td><td>7월 여름철 식중독, 8월 가을 모기, 11월 겨울 이불</td><td class="nw">매월</td><td>지금은 세스코가 월별 소재표로 지정</td></tr>
+    <tr><td class="k">세스코 요청 건</td><td>에어퍼퓸 750 2P 리플릿(11/10 접수), 카케어 선물세트 상세페이지(11/12 전달), 퍼퓸웨딩 솔루션 페이지(11/13 요청 · 11/16 전달)</td><td class="nw">수시</td><td>세스코 담당자가 메일로 요청 → 시하 제작</td></tr>
+    <tr><td class="k">우수사례</td><td>에어컨 클리닝 · 외항선 스마트 통합방제 · 건설현장(6/29), 신축아파트 방제(7/9)</td><td class="nw">받을 때마다</td><td>세스코 담당자가 초안 · 구성안 전달 → 시하 정리</td></tr>
+    <tr><td class="k">소비자 질문</td><td>커뮤니티 글, 세스코 브랜드 · 연관 키워드</td><td class="nw">준비 중</td><td>시하가 수집 시스템 개발 중, 시연 전</td></tr>
   </tbody>
 </table>
-<p class="small">12월 확정, 1월 계약에 맞춘 범위 2안과 비용은 <a href="#s4">04 범위와 비용</a>에 있습니다.</p>
-
-<h3>담당자는 기획과 승인에 시간을 씁니다</h3>
-<p class="sub">초안은 LLM이 만들고, 원천소스 · 일정 · 품질 관리는 시하가 맡습니다. 담당자가 바뀌거나 새로 합류해도 같은 템플릿과 작성 규칙으로 만듭니다.</p>
-<div class="cards c3">
-  <div class="card"><div class="lbl">기획 · 승인</div><div class="ttl">세스코 담당자</div><ul><li>원천소스와 핵심 POD를 정합니다.</li><li>콘텐츠 주제를 기획합니다.</li><li>사실 · 수치 · 표기를 확인하고 발행을 승인합니다.</li></ul></div>
-  <div class="card"><div class="lbl">초안</div><div class="ttl">LLM</div><ul><li>채널별 초안과 베리에이션을 만듭니다.</li><li>내부 Claude(Bedrock)도 같은 작성 규칙을 쓰도록 연결합니다.</li></ul></div>
-  <div class="card hub"><div class="lbl">중앙 허브</div><div class="ttl">시하</div><ul><li>원천소스 · 일정 · 품질을 한곳에서 관리합니다.</li><li>LLM 초안을 검수하고 다듬습니다.</li><li>메인 카피처럼 직접 써야 하는 건은 시하가 씁니다.</li><li>템플릿과 작성 규칙을 계속 보완합니다.</li></ul></div>
 </div>
+
+<h3>2027년에 바뀌는 점</h3>
+<p>지금은 담당자마다 주제를 따로 정하고 자료도 따로 요청합니다. 2개월 전에 움직여야 하는데 실제로는 몇 주 전으로 밀립니다(11/3 미팅).</p>
+<p>2027년에는 시하가 소재를 먼저 찾아 월간 캘린더에 올리고, 세스코가 확정합니다. 확정한 소재는 핵심 차별점 양식으로 한곳에 모읍니다.</p>
+
+<h3>소재 한 건이 콘텐츠가 되기까지: 마이랩 세탁세제</h3>
+<ul class="prog">
+  <li><span class="when">11/3 결정</span><span>주간 미팅에서 예시 제품으로 정했습니다. 판매 중인 제품이라 자료가 충분했습니다.</span></li>
+  <li><span class="when">받은 자료 7종</span><span>핵심 차별점 양식 · 기획안 · 기존 상세페이지 · 수정요청표(36건) · 리플릿 배포본 · 프로모션 가격 · 11월 카드뉴스</span></li>
+  <li><span class="when">공통 메시지 1장</span><span>핵심 메시지 1줄, 강조점 3개, 근거 수치 8개, 타깃 3개, 상품 정보 · 가격, 연계 상품. 사실과 수치를 여기서 먼저 고정했습니다.</span></li>
+  <li><span class="when">11/7 완성 · 5종</span><span>상세페이지, 리플릿, 카드뉴스(기본형 9장 + 체크리스트형 7장), 라이프케어 매거진, 컨설팅 포인트. 메시지 · 수치 · 상품명은 같고 채널에 따라 자리와 분량만 다릅니다. 세스코 확인이 필요한 13곳을 표시했습니다.</span></li>
+  <li><span class="when">11/11 시연 · 세스코 의견</span><span>반복되는 설명 삭제. 리플릿은 제품 1P와 프로모션 2P로 분리. 프로모션은 월별 기준. 카드뉴스에 캐릭터 추가 검토.</span></li>
+  <li><span class="when">11/18 보고</span><span>리플릿 1P · 2P를 보고 자료에 넣었습니다.</span></li>
+</ul>
+<p><a href="../261109/통합베리에이션_세탁세제/index.html">5종 전체 보기</a></p>
 
 <!-- 02 -->
-<h2 id="s2"><span class="num">02</span>올해 만든 기반</h2>
-
-<h3>문서 422곳을 고치고 작성 규칙 19개를 만들었습니다</h3>
-<p class="sub">올해 세스코와 함께 만든 기준입니다. 새로 구축하는 단계 없이 이 기준 그대로 2027년 초안을 만들고 검수합니다.</p>
-<table>
-  <thead><tr><th>규모</th><th>기반</th><th>2027 운영에서 쓰는 곳</th></tr></thead>
+<h2 id="s2"><span class="num">02</span>파일은 어떻게 관리하는가</h2>
+<div class="scroll">
+<table class="files">
+  <thead><tr><th>항목</th><th>지금 하는 방식</th></tr></thead>
   <tbody>
-    <tr><td class="big">29종 · 422곳</td><td><b>공통 브랜드 언어 원칙</b><br><span class="small">어휘 교정 · 문서 반영, v2026.10.13 (가이드라인 v28)</span></td><td>모든 채널 초안과 검수의 기준</td></tr>
-    <tr><td class="big">포맷 17 · 문서 62</td><td><b>마스터 템플릿</b></td><td>원천소스를 넣으면 규격대로 초안 생성</td></tr>
-    <tr><td class="big">19개</td><td><b>세스코 전용 작성 규칙</b><br><span class="small">Claude 스킬</span></td><td>내부 Claude(Bedrock)에서도 같은 규칙으로 작성</td></tr>
-    <tr><td class="big">205건</td><td><b>실제 발행물 분석</b></td><td>새 초안을 실제 발행물과 대조</td></tr>
-    <tr><td class="big">4건</td><td><b>마케팅 전략 기준 문서</b></td><td>제작물의 핵심 메시지와 근거</td></tr>
+    <tr><td class="k">시안 · 보고 자료</td><td>웹 열람 주소 1곳(세스코 직원 공유용)<br>보고일마다 날짜 폴더 1개. 2026-10-13부터 2026-11-16까지 12개 (예: 261109, 261116)</td></tr>
+    <tr><td class="k">주고받은 파일</td><td>시하 드라이브의 세스코 폴더에 주제별 보관<br>폴더 예: 리플릿·POP, 카드뉴스, 상세페이지·솔루션페이지, 라이프케어 매거진, 위쳌, 운영보고·WBS, 회의·보고</td></tr>
+    <tr><td class="k">파일 이름</td><td>주고받은 파일: <code>날짜 6자리_받음 또는 보냄_상대방_원래 제목_버전</code><br>예: <code>261116_받음_(보낸 분)_에어퍼퓸 750_리플릿_JS4.pptx</code><br>시안: <code>주제_버전_날짜</code><br>예: <code>장소별추천_시안_가정집_외식업장_유통시설_v14_261111.html</code></td></tr>
+    <tr><td class="k">버전 · 변경 이력</td><td>새 판을 올리면 이전 판은 삭제하거나 새 주소 안내 페이지로 교체. 보고 자료의 링크도 같이 교체 (장소별 추천 v13 → v14)<br>변경마다 이력 1건, 형식은 "보고일: 바꾼 내용"<br>마스터 템플릿 상단에 최종 업데이트 날짜와 규칙 버전(v2026.10.13) 표시</td></tr>
+    <tr><td class="k">최신판 찾는 곳</td><td>주간 보고 자료 맨 위 "00 제작물 최신판 총정리" 표<br>열: 포맷 / 최신판 / 비고 / 상태<br>메일로 보낸 파일도 같은 표에 표시</td></tr>
+    <tr><td class="k">접근 권한</td><td>열람: 세스코 직원 공유용 주소<br>시안 수정: 시하<br>작성 규칙 파일: 세스코 담당자 3명이 쓰기 권한 초대 수락<br>Claude를 쓰지 않는 담당자: 바로 열리는 파일로 전달 (11/16 퍼퓸웨딩 솔루션 페이지)</td></tr>
+    <tr><td class="k">내부 Claude(Bedrock)와 같은 규칙</td><td>채널별 작성 규칙과 점검 규칙은 원본을 한 곳에 두고 거기서만 수정<br>각 PC는 원본을 내려받아 갱신. PC에서 따로 고친 내용은 다음 갱신 때 원본으로 덮어씀</td></tr>
+    <tr><td class="k">담당자가 바뀔 때</td><td>새 담당자도 같은 열람 주소와 최신판 표 사용<br>이전 변경 내용은 이력에서 확인</td></tr>
   </tbody>
 </table>
-<p class="small">이 밖에 시안 66건, 주간 보고 11회</p>
-<p class="src">Source: 세스코 콘텐츠 공통 브랜드 언어 원칙 v2026.10.13 · 마스터 템플릿 · 작업물 링크 모음 (숫자는 11/6 기준)</p>
-
-<h3>콘텐츠 한 건마다 다섯 단계를 같은 순서로 거칩니다</h3>
-<p class="sub">문장 논리, 근거, 자연스러운 한국어, AI 특유의 어색한 표현 순으로 점검하고, 세스코 확인이 필요한 곳은 표시해서 드립니다.</p>
-<ol class="steps">
-  <li><span class="n">01</span><b>원천소스</b>담당자가 POD와 제품 자료를 넣습니다.</li>
-  <li><span class="n">02</span><b>템플릿 · 작성 규칙</b>채널별 작성 규격과 브랜드 언어 원칙을 적용합니다.</li>
-  <li><span class="n">03</span><b>LLM 초안</b>채널별 초안과 베리에이션을 만듭니다.</li>
-  <li><span class="n">04</span><b>점검 · 검수</b>자동 점검 뒤 시하가 읽고 다듬습니다.</li>
-  <li><span class="n">05</span><b>세스코 확인</b>확인이 필요한 항목을 표시해 드립니다.</li>
-</ol>
-<table>
-  <thead><tr><th>최근 추가한 것</th><th>내용</th></tr></thead>
-  <tbody>
-    <tr><td class="k">카드뉴스 유형 추천</td><td>기본형 1안과 추천 유형 1안 (유형 10개)</td></tr>
-    <tr><td class="k">고객 메시지</td><td>초안 105건, <a href="고객메시지_가이드라인확인_261116.html">가이드라인 확인 페이지</a></td></tr>
-    <tr><td class="k">마케팅 전략 제안</td><td>POD와 내부 자료로 1차 방향 제안</td></tr>
-  </tbody>
-</table>
-
-<h3>마이랩 세탁세제 원천소스 1건이 콘텐츠 5종이 됩니다</h3>
-<p class="sub">상세페이지부터 컨설팅 포인트까지 11월 말 보고에서 보여드립니다. 2027년에는 이 방식으로 매달 운영합니다.</p>
-<div class="fan">
-  <div class="one"><b>원천소스 1건 · 마이랩 세탁세제</b><span>제품 정보와 핵심 POD를 한 번 정리하면, 채널마다 자료를 따로 정리해 전달하지 않아도 됩니다.</span></div>
-  <div class="five"><span>01 상세페이지</span><span>02 리플릿</span><span>03 카드뉴스</span><span>04 라이프케어 매거진</span><span>05 컨설팅 포인트</span></div>
 </div>
-<p class="small">신제품 한 건에 담당자가 준비하는 자료는 원천소스 한 건입니다. <a href="../261109/통합베리에이션_세탁세제/index.html">5종 전체 보기</a></p>
+
+<h3>2027년에 더하는 것</h3>
+<ul>
+  <li>확정한 소재를 한곳에 모음</li>
+  <li>같은 작성 규칙 파일을 내부 Claude에 연결 · 변경분 반영 · 내부 환경 조건에 맞춘 조정</li>
+  <li>새 담당자 설정 점검과 교육</li>
+</ul>
+<p>내부 환경에서는 시하가 밖에서 규칙을 직접 고치기 어려울 수 있습니다. 실무 의견을 모아 규칙에 반영하는 방식과 담당자 교체 절차 문서는 <span class="need">[확인 필요]</span></p>
+
+<h3>세스코 담당자가 최신판을 찾는 순서</h3>
+<ol>
+  <li>매주 받는 보고 자료 링크를 엽니다.</li>
+  <li>맨 위 "00 제작물 최신판 총정리" 표에서 포맷 이름을 찾습니다.</li>
+  <li>최신판 칸의 링크와 날짜, 상태 칸을 봅니다. 이번 주에 바뀐 행만 날짜가 새로 적혀 있습니다.</li>
+</ol>
+<div class="ex">
+  <div>장소별 추천 v14 · 11/12 공유 · 세스코 검토 대기</div>
+  <div>카케어 선물세트 상세페이지 · 11/12 메일 전달(PPT) · 피드백 대기</div>
+</div>
 
 <!-- 03 -->
-<h2 id="s3"><span class="num">03</span>2027 운영</h2>
+<h2 id="s3"><span class="num">03</span>한 달이 어떻게 돌아가는가</h2>
 
-<h3 id="hub">원천소스, 일정, 품질을 시하가 한곳에서 관리합니다</h3>
-<p class="sub">요청과 확인을 주고받는 창구를 하나로 둡니다. 중앙 허브로 맡는 일을 여섯 가지로 나눠 적었습니다.</p>
-<div class="cards c3">
-  <div class="card"><div class="ttl">원천소스 발굴 · 관리</div><p>신제품, 시즌 이슈에서 찾아 POD 양식으로 한곳에 모읍니다.</p></div>
-  <div class="card"><div class="ttl">캘린더 · 2개월 전 준비</div><p>연간 캘린더를 1월에 만들고, 발신 약 2개월 전에 준비합니다.</p></div>
-  <div class="card"><div class="ttl">LLM 베리에이션</div><p>확정된 원천소스로 채널별 초안을 한 번에 만듭니다.</p></div>
-  <div class="card"><div class="ttl">품질 검수 · 직접 작성</div><p>자동 점검과 사람 검수를 거치고, 메인 카피는 시하가 직접 씁니다.</p></div>
-  <div class="card"><div class="ttl">채널 확산</div><p>인스타그램, 블로그, 마케팅 포털로 넓힙니다.</p></div>
-  <div class="card"><div class="ttl">소비자 질문 수집</div><p>실제 질문과 관심사를 모아 주간 · 월간 트렌드로 보여드립니다.</p></div>
+<h3>2개월 전 준비 (B안): 3월 발신 예</h3>
+<div class="band">
+  <div><div class="when">1월</div>소재 확정, 템플릿별 초안 준비</div>
+  <div><div class="when">2월</div>시하 검수, 세스코의 사실 · 수치 · 표기 확인</div>
+  <div><div class="when">3월</div>발신</div>
 </div>
+<p>11/3 미팅에서 요청하신 방식입니다. 매월 다음 달과 2개월 뒤 캘린더를 확정해서 세스코 확인이 필요한 시점을 미리 알립니다.</p>
 
-<h3 id="cal">3월에 내보낼 콘텐츠라면 1월에 원천소스를 확정합니다</h3>
-<p class="sub">11/3에 요청하신 2개월 전 준비입니다. 매월 리포트에서 다음 달과 2개월 뒤 캘린더를 확정해 확인 요청 시점을 미리 알려드립니다.</p>
-<div class="tl">
-  <div><div class="when">2개월 전 · 예: 1월</div><div class="what">원천소스 확정</div><ul><li>원천소스를 확정하고 템플릿별 초안을 준비합니다.</li></ul></div>
-  <div><div class="when">1개월 전 · 예: 2월</div><div class="what">검수 · 세스코 확인</div><ul><li>사실 · 수치 · 표기 확인을 받습니다. <span class="need">[확인 필요]</span></li></ul></div>
-  <div><div class="when">발신 월 · 예: 3월</div><div class="what">발신</div><ul><li>채널별 일정에 맞춰 내보냅니다.</li></ul></div>
-</div>
-<table>
-  <thead><tr><th>주기</th><th>내용</th></tr></thead>
-  <tbody>
-    <tr><td class="k">매주</td><td>정기 미팅 1회, 미팅 리포트와 다음 주 할 일 공유</td></tr>
-    <tr><td class="k">매월</td><td>월간 리포트(발행 실적, 채널별 산출량, 소비자 질문 트렌드), 다음 달과 2개월 뒤 캘린더 확정</td></tr>
-    <tr><td class="k">분기</td><td>많이 쓰는 유형과 안 쓰는 유형 정리, 템플릿 정비</td></tr>
-  </tbody>
-</table>
+<h3>주기</h3>
+<ul class="cyc">
+  <li><span class="when">매주</span><span>정기 미팅 1회. 미팅 리포트와 "이번주_할일" 문서 발송 (지금도 하는 방식)</span></li>
+  <li><span class="when">매월</span><span>월간 리포트(발행 실적 · 채널별 산출량 · 소비자 질문 트렌드), 캘린더 확정</span></li>
+  <li><span class="when">분기</span><span>많이 쓰는 유형과 안 쓰는 유형 정리, 템플릿 정비</span></li>
+  <li><span class="when">1월</span><span>연간 캘린더 작성 (B안)</span></li>
+</ul>
 
-<h3 id="blog">블로그는 주제 제안부터 원고 검수까지 시하가 맡습니다</h3>
-<p class="sub">11/11 미팅에서 요청하신 범위와 프로세스입니다. 이미지 · 업로드 · 성과 확인은 현재 운영 방식을 확인한 뒤 정합니다.</p>
-<ol class="steps">
-  <li><span class="n">01</span><b>주제 선정</b></li>
-  <li><span class="n">02</span><b>원천소스</b></li>
-  <li><span class="n">03</span><b>초안</b></li>
-  <li><span class="n">04</span><b>점검 · 검수</b></li>
-  <li><span class="n">05</span><b>확인 · 발행</b></li>
-</ol>
-<table>
-  <thead><tr><th>항목</th><th>담당</th><th>내용</th></tr></thead>
-  <tbody>
-    <tr><td class="k">주제 선정 · 월간 계획</td><td>시하 제안 · 세스코 확정</td><td>월간 캘린더와 소비자 질문에서 주제 제안</td></tr>
-    <tr><td class="k">원고 작성 · 검수</td><td>시하</td><td>발행 글 50건 분석 기반 작성 규칙, 월 4건 <span class="need">[확인 필요]</span></td></tr>
-    <tr><td class="k">사실 · 수치 · 표기 확인</td><td>세스코</td><td>확인이 필요한 곳을 표시해 전달</td></tr>
-    <tr><td class="k">이미지 · 업로드 · 성과 확인</td><td><span class="need">[협의 필요]</span></td><td>현재 운영 방식 확인 후 결정</td></tr>
-  </tbody>
-</table>
-<p class="small">블로그 편수와 포함 범위는 <a href="#s4">04 운영 범위</a>에서 함께 정합니다. 운영 유형별 범위와 6단계 프로세스는 <a href="블로그운영범위_프로세스안_261117.html">블로그 운영 범위 · 프로세스(안)</a>에 따로 정리했습니다.</p>
+<h3>원고 검수</h3>
+<p>초안은 Claude로 만듭니다. 자동 점검을 거친 뒤 시하가 읽고 다듬습니다. 메인 카피처럼 직접 써야 하는 건은 시하가 씁니다.</p>
 
-<h3 id="bedrock">작성 규칙 19개를 내부 Claude(Bedrock)에 연결합니다</h3>
-<p class="sub">세스코 담당자 세 분이 이미 작성 규칙 저장소에 참여했습니다. 연결한 뒤에는 내부 환경 조건에 맞게 조정합니다. 내부 초안이 늘어도 같은 기준을 따르도록 기준 관리와 검수는 시하가 맡습니다.</p>
-<div class="cards c2">
-  <div class="card"><div class="ttl">내부 환경 연결</div><p>세스코 담당자 세 분이 작성 규칙 저장소에 참여했습니다. 변경 사항도 반영합니다.</p></div>
-  <div class="card"><div class="ttl">내부 환경 품질 조정</div><p>11/13 테스트 결과에 맞춰 작성 규칙과 프롬프트를 조정합니다. <span class="need">[확인 필요]</span></p></div>
-  <div class="card"><div class="ttl">담당자 교육 · 설정 점검</div><p>새로 합류한 담당자도 바로 쓰도록 교육하고 설정을 점검합니다.</p></div>
-  <div class="card"><div class="ttl">목적별 프롬프트 · 전달 형식</div><p>목적별 프롬프트를 드리고, Claude를 안 쓰는 담당자에게는 PDF로 드립니다.</p></div>
-</div>
-<p class="small">내부 환경 연결(1회성 이관)은 선택 항목으로 <a href="#cost">비용</a>에 별도 표시했습니다.</p>
+<h3>블로그</h3>
+<p>11/11 미팅에서 요청하신 범위입니다. 주제 제안부터 원고 검수까지 시하가 맡고, 주제 확정과 사실 · 수치 · 표기 확인은 세스코가 합니다. 이미지 · 업로드 · 성과 확인은 현재 운영 방식을 확인한 뒤 정합니다. 운영 유형별 범위와 6단계 프로세스는 <a href="블로그운영범위_프로세스안_261117.html">블로그 운영 범위 · 프로세스(안)</a>에 있습니다.</p>
+
+<h3>내부 Claude(Bedrock) 지원</h3>
+<p>11/13 회의 뒤 세스코가 내부 환경에서 콘텐츠 제작을 테스트한 결과를 보내 주셨습니다. 내부 환경은 보안상 외부 검색과 일부 모델을 쓸 수 없습니다. 시하는 실무에 쓸 수 있는 정도와 보완점을 정리해 회신합니다.</p>
 
 <!-- 04 -->
 <h2 id="s4"><span class="num">04</span>범위와 비용</h2>
-
-<h3>운영 범위는 2안이고, 다섯 항목에서 차이가 납니다</h3>
-<p class="sub">A안은 올해 범위를 LLM 운영으로 옮기고, B안은 채널 확산과 소비자 질문 수집을 더합니다.</p>
-<div class="scroll"><table>
+<p>A안은 올해 범위가 기준입니다. B안은 인스타그램과 소비자 질문 수집을 더합니다.</p>
+<div class="scroll">
+<table class="plan">
   <thead><tr><th>구분</th><th>A안 · 기본 운영</th><th>B안 · 확장 운영</th></tr></thead>
   <tbody>
-    <tr><td class="k">중앙 허브</td><td>원천소스 관리 · 월간 캘린더 · 검수</td><td>A안 + 연간 캘린더 · 2개월 전 준비 · 관련 부서 공유</td></tr>
-    <tr><td class="k">블로그</td><td>포함 여부 <span class="need">[확인 필요]</span></td><td>월 4건 <span class="need">[확인 필요]</span></td></tr>
+    <tr><td class="k">소재 · 일정 · 검수</td><td>소재 관리 · 월간 캘린더 · 검수</td><td>A안 + 연간 캘린더 · 2개월 전 준비 · 관련 부서 공유</td></tr>
+    <tr><td class="k">블로그</td><td>포함 여부 협의</td><td>월 4건</td></tr>
     <tr><td class="k">소비자 질문 수집</td><td>없음</td><td>주간 · 월간 트렌드 대시보드</td></tr>
     <tr><td class="k">내부 사용 지원</td><td>분기 교육 · 설정 점검</td><td>월간 교육 · 설정 점검 · 목적별 프롬프트</td></tr>
     <tr><td class="k">보고</td><td>주간 미팅 · 월간 리포트</td><td>주간 미팅 · 월간 리포트 · 분기 정비 보고</td></tr>
-  </tbody>
-</table></div>
-
-<h3>월 산출량 초안은 원천소스 기준 A안 4건, B안 6건입니다</h3>
-<p class="sub">초안 수치이며 1월 연간 캘린더 확정 후 다시 맞춥니다. <span class="need">[확인 필요]</span></p>
-<table>
-  <thead><tr><th>월 산출량</th><th class="c">A안 · 기본 운영</th><th class="c">B안 · 확장 운영</th></tr></thead>
-  <tbody>
-    <tr><td class="k">원천소스</td><td class="c"><b>4건</b></td><td class="c"><b>6건</b></td></tr>
+    <tr class="gap" aria-hidden="true"><td colspan="3"></td></tr>
+    <tr><td class="k">월 산출량: 소재</td><td class="c">4건</td><td class="c">6건</td></tr>
     <tr><td class="k">카드뉴스</td><td class="c">4편</td><td class="c">6편</td></tr>
     <tr><td class="k">상세페이지</td><td class="c">2건</td><td class="c">3건</td></tr>
     <tr><td class="k">리플릿</td><td class="c">2건</td><td class="c">3건</td></tr>
     <tr><td class="k">매거진</td><td class="c">1편</td><td class="c">1편</td></tr>
     <tr><td class="k">인스타그램</td><td class="c">–</td><td class="c">4건</td></tr>
     <tr><td class="k">수시 요청 대응</td><td class="c">포함</td><td class="c">포함</td></tr>
+    <tr class="cost"><td>월 비용</td><td class="c">2,000만~2,400만 원</td><td class="c">2,600만~3,000만 원</td></tr>
+    <tr><td class="k">연 환산</td><td class="c">약 2.4억~2.9억 원</td><td class="c">약 3.1억~3.6억 원</td></tr>
   </tbody>
 </table>
-<p class="small">블로그는 위 운영 범위 표에 따로 적었습니다.</p>
-
-<h3 id="cost">비용은 월 단위 범위로 적었고, 확정 전입니다</h3>
-<p class="sub">부가세 별도입니다. 월 산출량을 넘는 제작과 내부 환경 이관은 선택 항목으로 따로 둡니다.</p>
-<div class="cost">
-  <div class="card"><div class="lbl">A안 · 기본 운영</div><div class="amt">월 2,000만~2,400만 원</div><div class="yr">연 약 2.4억~2.9억 원 <span class="need">[대표님 협의 필요]</span></div></div>
-  <div class="card hub"><div class="lbl">B안 · 확장 운영</div><div class="amt">월 2,600만~3,000만 원</div><div class="yr">연 약 3.1억~3.6억 원 <span class="need">[대표님 협의 필요]</span></div></div>
 </div>
-<table>
+
+<div class="scroll">
+<table class="opt">
   <thead><tr><th>선택 항목</th><th>내용</th><th>비용</th></tr></thead>
   <tbody>
-    <tr><td class="k">Bedrock 이관</td><td>내부 환경 연결 · 파일 정리 · 개발 담당자 소통 (1회성)</td><td>별도 견적 <span class="need">[대표님 협의 필요]</span></td></tr>
-    <tr><td class="k">추가 제작</td><td>월 산출량을 넘는 제작물</td><td>건별 단가 <span class="need">[대표님 협의 필요]</span></td></tr>
+    <tr><td class="k nw">Bedrock 이관</td><td>내부 환경 연결 · 파일 정리 · 개발 담당자 소통 (1회)</td><td class="nw">별도 견적</td></tr>
+    <tr><td class="k nw">추가 제작</td><td>월 산출량을 넘는 제작물</td><td class="nw">건별 단가</td></tr>
   </tbody>
 </table>
-<p class="small">투입 인력 <span class="need">[내부 확정 필요]</span> · 부가세 별도</p>
+</div>
+<p class="small">부가세 별도. 월 산출량과 블로그 편수는 1월 연간 캘린더 확정 후 다시 맞춥니다 <span class="need">[확인 필요]</span> · 금액과 선택 항목 비용 <span class="need">[대표님 협의 필요]</span> · 투입 인력 <span class="need">[내부 확정 필요]</span></p>
 
 <!-- 05 -->
-<h2 id="s5"><span class="num">05</span>일정과 요청 사항</h2>
-
-<h3>11월 말에 보고하고 12월에 확정, 1월에 시작합니다</h3>
-<div class="tl">
-  <div><div class="when">보고 · 11월 말</div><div class="what">완료 보고 + 2027 계획</div><ul><li>2026 완료 보고와 2027 운영 계획을 함께 보고합니다.</li><li>마이랩 세탁세제 통합 예시를 같이 보여드립니다.</li></ul></div>
-  <div><div class="when">확정 · 12월</div><div class="what">범위와 비용 확정</div><ul><li>운영 범위(A안/B안)와 비용을 확정합니다.</li><li>블로그 운영 범위를 함께 정합니다.</li><li>1월 캘린더와 원천소스를 미리 준비합니다.</li></ul></div>
-  <div><div class="when">시작 · 1월</div><div class="what">운영 시작</div><ul><li>계약 후 운영을 시작합니다.</li><li>연간 기본 캘린더를 확정합니다.</li></ul></div>
-</div>
-
-<h3>운영을 위해 세스코에 다섯 가지를 요청드립니다</h3>
-<table>
+<h2 id="s5"><span class="num">05</span>세스코에 요청드리는 것</h2>
+<div class="scroll">
+<table class="req">
   <thead><tr><th class="c">#</th><th>요청 사항</th><th>필요한 이유</th></tr></thead>
   <tbody>
-    <tr><td class="c">01</td><td class="k">2027 신제품 출시 · 시즈널 일정</td><td>연간 캘린더와 2개월 전 준비에 필요합니다. (11/3 미팅 리포트 요청 항목)</td></tr>
-    <tr><td class="c">02</td><td class="k">원천소스 담당자</td><td>자료를 한 창구로 받기 위해 필요합니다.</td></tr>
-    <tr><td class="c">03</td><td class="k">검수 라인</td><td>확인과 승인 담당이 정해져야 발행 일정을 맞출 수 있습니다.</td></tr>
-    <tr><td class="c">04</td><td class="k">블로그 현재 운영 방식</td><td>이미지, 업로드, 성과 확인 범위를 정하는 데 필요합니다.</td></tr>
-    <tr><td class="c">05</td><td class="k">Bedrock 보안 기준</td><td>내부 환경 연결 방식을 정하는 데 필요합니다.</td></tr>
+    <tr><td class="c">01</td><td class="k">2027 신제품 출시 · 시즈널 일정</td><td>연간 캘린더와 2개월 전 준비의 기준 (11/3 요청)</td></tr>
+    <tr><td class="c">02</td><td class="k">소재 담당자 지정</td><td>자료를 받는 창구 일원화</td></tr>
+    <tr><td class="c">03</td><td class="k">검수 라인</td><td>확인 · 승인 담당이 정해져야 발행 일정 확정 가능</td></tr>
+    <tr><td class="c">04</td><td class="k">블로그 현재 운영 방식</td><td>이미지 · 업로드 · 성과 확인 범위 결정</td></tr>
+    <tr><td class="c">05</td><td class="k">Bedrock 보안 기준</td><td>내부 환경 연결 방식 결정</td></tr>
   </tbody>
 </table>
+</div>
 
-<p class="foot">본 문서는 협의용 초안입니다. 주황색 표시 항목은 협의 후 확정하며, 운영 범위와 비용은 12월에 확정합니다.</p>
+<!-- 부록 -->
+<h2 id="appx" class="appx">부록: 올해 만든 것</h2>
+<div class="scroll">
+<table class="appx">
+  <thead><tr><th>규모</th><th>만든 것</th><th>2027년에 쓰는 곳</th></tr></thead>
+  <tbody>
+    <tr><td class="k">29종 · 422곳</td><td>공통 브랜드 언어 원칙 적용 (어휘 교정 · 문서 반영, v2026.10.13)</td><td>모든 채널 초안과 검수의 기준</td></tr>
+    <tr><td class="k">포맷 17 · 문서 62</td><td>마스터 템플릿</td><td>소재를 넣으면 채널 규격대로 초안 생성</td></tr>
+    <tr><td class="k">19개</td><td>세스코 전용 작성 규칙</td><td>내부 Claude(Bedrock)에서도 같은 규칙으로 작성</td></tr>
+    <tr><td class="k">205건</td><td>실제 발행물 분석 (공식 블로그 50건 포함)</td><td>새 초안을 기존 발행물 문장과 대조</td></tr>
+    <tr><td class="k">4건</td><td>마케팅 전략 기준 문서</td><td>제작물의 핵심 메시지와 근거</td></tr>
+    <tr><td class="k">66건</td><td>시안</td><td>마스터 템플릿 시안 갤러리에서 열람</td></tr>
+    <tr><td class="k">105건</td><td>고객 메시지 초안</td><td><a href="고객메시지_가이드라인확인_261116.html">가이드라인 확인 페이지</a></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="small">숫자는 11/6 기준입니다. 이 밖에 주간 보고 11회.</p>
+
+<p class="foot">협의용 초안 · 2026-11-17 · 시하</p>
 
 </main>
 </body>
