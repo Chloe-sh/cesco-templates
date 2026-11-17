@@ -74,6 +74,39 @@ details.fold h2{display:none}
 @media print{details.fold{display:block}details.fold>summary .hint{display:none}details.fold:not([open])>*:not(summary){display:block}}
 </style>
 <style>.opt th,.opt td{font-size:13.5px}.tbd{color:var(--amber);font-weight:700}.ops td.cat{background:var(--soft);border-right:1px solid var(--line);vertical-align:top}details.cost{margin:4px 0 16px}details.cost>summary{display:inline-block;cursor:pointer;list-style:none;font-size:12.5px;color:var(--ink3);text-decoration:underline dotted;text-underline-offset:3px}details.cost>summary::-webkit-details-marker{display:none}details.cost[open]>summary{margin-bottom:6px}@media print{details.cost:not([open]){display:none}}.draft{display:inline-block;background:var(--amber-soft);color:var(--amber);font-size:12px;font-weight:700;padding:2px 9px;border-radius:4px;margin-left:8px;vertical-align:middle}</style>
+<style>
+.roles{display:grid;grid-template-columns:repeat(3,1fr);margin:16px 0 20px}
+.roles .sh{grid-row:1;justify-self:center;width:108px;height:108px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:15.5px;line-height:1.3;border:2px solid var(--blue);background:#fff;color:var(--blue);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.roles .sh small{font-size:11.5px;font-weight:600;margin-top:1px}
+.roles .s1{grid-column:1;border-color:var(--ink);color:var(--ink)}
+.roles .s2{grid-column:2;background:var(--blue-soft)}
+.roles .s3{grid-column:3;background:var(--blue);color:#fff}
+.roles .ar{grid-row:1;align-self:center;position:relative;height:0;border-top:2px solid var(--ink3);margin:0 calc(25% + 68px) 0 calc(25% + 62px)}
+.roles .a1{grid-column:1/3}.roles .a2{grid-column:2/4}
+.roles .ar::after{content:"";position:absolute;right:-9px;top:-7px;border:6px solid transparent;border-left:9px solid var(--ink3);border-right:0}
+.roles .ar span{position:absolute;left:-20px;right:-20px;bottom:7px;text-align:center;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.roles .bk{grid-row:2;grid-column:1/4;position:relative;height:24px;margin:16px 16.666% 0;border:2px solid var(--ink3);border-top:0;border-radius:0 0 10px 10px}
+.roles .bk::before{content:"";position:absolute;left:-7px;top:-15px;border:6px solid transparent;border-bottom:9px solid var(--ink3);border-top:0}
+.roles .bk span{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);background:#fff;padding:0 10px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.roles .tx{grid-row:3;margin:24px 6px 0;background:var(--soft);border-radius:8px;padding:12px 14px;font-size:14px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.roles .t1{grid-column:1}.roles .t2{grid-column:2}.roles .t3{grid-column:3}
+.roles .tx b{display:block;font-size:13px;color:var(--blue);margin-bottom:4px}
+.roles .tx ul{margin:0;padding-left:18px}
+.hubdesc{font-size:13px;color:var(--ink2)}
+.hubdesc b{color:var(--ink);margin-right:4px}
+.hubframe{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:12px 0 8px}
+.hubframe iframe{display:block;width:100%;height:760px;border:0}
+@media (max-width:720px){
+.roles{grid-template-columns:76px 1fr;row-gap:10px}
+.roles .sh{width:68px;height:68px;font-size:12.5px;grid-column:1;justify-self:start;align-self:start}
+.roles .sh small{font-size:10px}
+.roles .s1,.roles .t1{grid-row:1}.roles .s2,.roles .t2{grid-row:2}.roles .s3,.roles .t3{grid-row:3}
+.roles .tx{grid-column:2;margin:0}
+.roles .ar,.roles .bk{display:none}
+.hubframe iframe{height:620px}
+}
+@media print{.roles{break-inside:avoid}.hubframe iframe{height:560px}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -103,16 +136,21 @@ details.fold h2{display:none}
 <tr><td><b>최근 추가분</b></td><td class="c">—</td><td><ul><li>카드뉴스 유형 추천: 원천소스를 넣으면 기본형 1안과 추천 유형 1안이 함께 나옵니다(유형 10개).</li><li>고객 메시지: 상황별 초안 105건을 같은 규칙으로 만들었습니다.</li><li>마케팅 전략 하네스: POD와 내부 자료로 1차 전략 방향을 제안합니다.</li></ul></td></tr>
 <tr><td><b>보고·공유</b></td><td class="c">보고 11회</td><td><ul><li>매주 보고 자료를 웹 대시보드로 드렸습니다.</li><li>지난 작업물은 <a href="https://chloe-sh.github.io/cesco-templates/links/" target="_blank">작업물 링크 모음</a>에서 볼 수 있습니다.</li></ul></td></tr>
 </tbody></table>
-<div class="box"><b class="h">11월 말 보고에서 보여드릴 것</b><ul><li>마이랩 세탁세제 원천소스 하나로 상세페이지 · 리플릿 · 카드뉴스 · 라이프케어 매거진 · 컨설팅 포인트를 만든 예시입니다.</li><li>원천소스 하나가 여러 채널 콘텐츠가 되는 과정을 그대로 보여드립니다.</li></ul></div>
 
 <h2 id="s3"><span class="num">03</span>2027 콘텐츠 운영</h2>
 <p class="small">내년에는 만드는 일에서 돌리는 일로 넘어갑니다. 환경가전·마이랩 신제품이 많아 담당자가 모든 콘텐츠를 따로 만들기 어렵기 때문입니다.</p>
-<h3>역할 나누기</h3>
-<table><thead><tr><th style="width:22%">누가</th><th>하는 일</th></tr></thead><tbody>
-<tr><td><b>세스코 담당자</b></td><td><ul><li>좋은 원천소스와 핵심 POD를 정합니다.</li><li>콘텐츠 주제를 기획합니다.</li><li>최종 발행을 승인합니다.</li></ul></td></tr>
-<tr><td><b>LLM</b></td><td><ul><li>원천소스로 채널별 초안과 베리에이션을 만듭니다.</li></ul></td></tr>
-<tr><td><b>시하 (중앙 허브)</b></td><td><ul><li>원천소스·일정·품질을 한곳에서 관리합니다.</li><li>LLM 초안을 검수하고 다듬습니다.</li><li>템플릿·스킬을 새로 만들고 고도화합니다.</li><li>내부 담당자를 교육합니다.</li></ul></td></tr>
-</tbody></table>
+<h3>역할 분담 내역</h3>
+<div class="roles">
+  <div class="sh s1">세스코<br>담당자</div>
+  <div class="ar a1"><span>원천소스 · POD</span></div>
+  <div class="sh s2">LLM</div>
+  <div class="ar a2"><span>채널별 초안</span></div>
+  <div class="sh s3">시하<small>중앙 허브</small></div>
+  <div class="bk"><span>검수한 초안 → 최종 발행 승인</span></div>
+  <div class="tx t1"><b>기획 · 승인</b><ul><li>좋은 원천소스와 핵심 POD를 정합니다.</li><li>콘텐츠 주제를 기획합니다.</li><li>최종 발행을 승인합니다.</li></ul></div>
+  <div class="tx t2"><b>초안 제작</b><ul><li>원천소스로 채널별 초안과 베리에이션을 만듭니다.</li></ul></div>
+  <div class="tx t3"><b>관리 · 검수 · 고도화 · 교육</b><ul><li>원천소스·일정·품질을 한곳에서 관리합니다.</li><li>LLM 초안을 검수하고 다듬습니다.</li><li>템플릿·스킬을 새로 만들고 고도화합니다.</li><li>내부 담당자를 교육합니다.</li></ul></div>
+</div>
 <h3>운영 항목</h3>
 <table class="ops"><thead><tr><th style="width:17%">구분</th><th style="width:20%">항목</th><th>내용</th></tr></thead><tbody>
 <tr><td class="cat" rowspan="4"><b>원천소스 · 일정 관리</b><br><span class="small">중앙 허브</span></td><td><b>원천소스 발굴·관리</b></td><td><ul><li>신제품, 시즌 이슈, 소비자 질문에서 원천소스를 찾습니다.</li><li>POD 원천소스 양식으로 정리해 한곳에 모읍니다.</li><li>하나의 원천소스를 여러 채널이 함께 씁니다.</li></ul></td></tr>
@@ -127,6 +165,16 @@ details.fold h2{display:none}
 <tr><td><b>내부 사용 지원</b></td><td><ul><li>세팅값을 정기적으로 점검합니다.</li><li>메인 카피처럼 일반 템플릿으로 잘 안 나오는 일은 목적별 프롬프트를 드립니다.</li><li>신규 인원도 같은 수준의 결과를 낼 수 있게 돕습니다.</li></ul></td></tr>
 <tr><td><b>Bedrock 내재화 지원</b></td><td><ul><li>세스코 내부 Claude(Bedrock) 환경에 템플릿·하네스·스킬을 연결합니다.</li><li>필요한 파일 정리, Git 권한, 개발자 분과의 직접 소통을 지원합니다.</li><li>보안 기준이 정해지면 연결 방식을 맞춥니다.</li></ul></td></tr>
 </tbody></table>
+<h3>콘텐츠 캘린더 · 허브 미리 보기</h3>
+<p class="small">중앙 허브가 원천소스와 일정을 한곳에서 관리하는 모습을 먼저 만들어 본 시범판입니다. 2025년 10월부터 올해 11월까지 함께 만든 129건을 넣었습니다.</p>
+<ul class="hubdesc">
+<li><b>캘린더</b> 달마다 어떤 콘텐츠를 만들었는지 봅니다.</li>
+<li><b>주제에서 찾기</b> 주제 하나를 어떤 상품에 썼는지 봅니다.</li>
+<li><b>상품에서 찾기</b> 상품 하나에 어떤 주제와 강조 포인트를 썼는지 봅니다.</li>
+<li><b>건 상세</b> 건을 누르면 누가 요청하고 누가 만들었는지, 언제 어떤 방식으로 진행했는지, 어떤 파일이 오갔는지 나옵니다.</li>
+</ul>
+<div class="hubframe"><iframe src="콘텐츠캘린더_허브_시범판_261117.html" title="세스코 콘텐츠 캘린더 · 허브 시범판" loading="lazy"></iframe></div>
+<p class="small"><a href="콘텐츠캘린더_허브_시범판_261117.html" target="_blank">새 창에서 크게 보기</a> · 시범판에서는 파일 이름까지 볼 수 있습니다.</p>
 <h3>운영 리듬</h3>
 <table><thead><tr><th style="width:22%">주기</th><th>내용</th></tr></thead><tbody>
 <tr><td><b>매주</b></td><td><ul><li>정기 미팅(줌) 1회</li><li>미팅 리포트와 다음 주 할 일 공유</li></ul></td></tr>
@@ -139,17 +187,17 @@ details.fold h2{display:none}
 <table class="opt"><thead><tr><th style="width:18%">구분</th><th>A안 · 기본 운영</th><th>B안 · 확장 운영</th></tr></thead><tbody>
 <tr><td><b>성격</b></td><td>올해 범위를 LLM 운영으로 옮깁니다.</td><td>A안에 채널 확산과 소비자 질문 수집을 더합니다.</td></tr>
 <tr><td><b>중앙 허브</b></td><td>원천소스 관리 · 월간 캘린더 · 검수</td><td>A안 + 연간 캘린더 · 2개월 전 준비 · 관련 부서 공유</td></tr>
-<tr><td><b>월 산출량</b> <span class="tbd">[확인 필요]</span></td><td><ul><li>원천소스 4건</li><li>카드뉴스 4편</li><li>상세페이지 2건</li><li>리플릿 2건</li><li>매거진 1편</li><li>수시 요청 대응</li></ul></td><td><ul><li>원천소스 6건</li><li>카드뉴스 6편</li><li>상세페이지 3건</li><li>리플릿 3건</li><li>매거진 1편</li><li>인스타그램 4건</li><li>블로그 4건</li><li>수시 요청 대응</li></ul></td></tr>
+<tr><td><b>월 산출량</b></td><td><ul><li>원천소스 4건</li><li>카드뉴스 4편</li><li>상세페이지 2건</li><li>리플릿 2건</li><li>매거진 1편</li><li>수시 요청 대응</li></ul></td><td><ul><li>원천소스 6건</li><li>카드뉴스 6편</li><li>상세페이지 3건</li><li>리플릿 3건</li><li>매거진 1편</li><li>인스타그램 4건</li><li>블로그 4건</li><li>수시 요청 대응</li></ul></td></tr>
 <tr><td><b>소비자 질문 수집</b></td><td>—</td><td>주간·월간 트렌드 대시보드</td></tr>
-<tr><td><b>LLM 템플릿 개발 · 고도화</b> <span class="tbd">[확인 필요]</span></td><td>기존 템플릿 고도화 · 분기 정비</td><td>A안 + 신규 템플릿 개발</td></tr>
+<tr><td><b>LLM 템플릿 개발 · 고도화</b></td><td>기존 템플릿 고도화 · 분기 정비</td><td>A안 + 신규 템플릿 개발</td></tr>
 <tr><td><b>교육 · 내부 사용 지원</b></td><td>분기 교육 · 세팅 점검</td><td>월간 교육 · 세팅 점검 · 목적별 프롬프트</td></tr>
 <tr><td><b>보고</b></td><td>주간 미팅 · 월간 리포트</td><td>주간 미팅 · 월간 리포트 · 분기 정비 보고</td></tr>
 
 
 </tbody></table>
 <table class="opt"><thead><tr><th style="width:18%">선택 항목</th><th>내용</th><th style="width:26%">비용</th></tr></thead><tbody>
-<tr><td><b>Bedrock 이관</b></td><td>내부 환경 연결 · 파일 정리 · 개발자 소통 (1회성)</td><td>별도 견적 <span class="tbd">[대표님 협의 필요]</span></td></tr>
-<tr><td><b>추가 제작</b></td><td>월 산출량을 넘는 제작물</td><td>건별 단가 <span class="tbd">[대표님 협의 필요]</span></td></tr>
+<tr><td><b>Bedrock 이관</b></td><td>내부 환경 연결 · 파일 정리 · 개발자 소통 (1회성)</td><td>별도 견적</td></tr>
+<tr><td><b>추가 제작</b></td><td>월 산출량을 넘는 제작물</td><td>건별 단가</td></tr>
 </tbody></table>
 <p class="small">산출량은 1월 연간 캘린더 확정 후 다시 맞춥니다.</p>
 <details class="cost"><summary>비용 보기</summary>
@@ -158,7 +206,7 @@ details.fold h2{display:none}
 <tr><td><b>월 비용</b></td><td>월 29,800,000원</td><td>월 34,200,000원</td></tr>
 <tr><td><b>연 비용 (12개월)</b></td><td>357,600,000원</td><td>410,400,000원</td></tr>
 </tbody></table>
-<p class="small">2026년 단가표 기준 산정값이며 확정 전입니다 <span class="tbd">[대표님 협의 필요]</span> · 부가세 별도 · 일반관리비 5%를 더하면 월 31,290,000원 / 35,910,000원</p>
+<p class="small">2026년 단가표 기준 산정값이며 확정 전입니다 · 부가세 별도 · 일반관리비 5%를 더하면 월 31,290,000원 / 35,910,000원</p>
 </details>
 
 <h2 id="s5"><span class="num">05</span>일정</h2>
