@@ -197,6 +197,7 @@ body.gd-open .gd{transform:none} body.gd-open .gd-back{opacity:1;pointer-events:
 .sb{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:0 6px;line-height:1.6;white-space:nowrap;font-style:normal}
 .sb.done{background:var(--ok);color:var(--surface)}
 .sb.test{color:var(--promo);box-shadow:inset 0 0 0 1px var(--promo)}
+.sb.hold{background:var(--chk-bg);color:var(--chk)}
 .row .t .sb{margin-right:5px;font-size:10.5px;padding:0 5px}
 .dtabs{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 8px}
 .dtabs button{border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:12px;border-radius:14px;padding:2px 10px;cursor:pointer}
@@ -482,7 +483,7 @@ function check(m){
 const DATA = JSON.parse(document.getElementById('data').textContent);
 DATA.forEach(m => { m.st = 'test'; });
 const DONE = JSON.parse(document.getElementById('done').textContent);
-DONE.forEach(m => { m.st = 'done'; m.hay = (m.title + ' ' + m.asis + ' ' + m.grp + ' ' + m.proc + ' ' + m.when + ' ' + m.vers.map(v => v.t).join(' ')).toLowerCase(); });
+DONE.forEach(m => { m.st = 'done'; m.hold = m.grp === '계약서'; m.hay = (m.title + ' ' + m.asis + ' ' + m.grp + ' ' + m.proc + ' ' + m.when + ' ' + m.vers.map(v => v.t).join(' ')).toLowerCase(); });
 const DGRP = [...new Set(DONE.map(m => m.grp))];
 const ALL = DONE.concat(DATA);
 const CATS = {"1":"1. 상담·신규 고객","2":"2. 계약·가입","3":"3. 설치·첫 이용","4":"4. 방문 일정","5":"5. 정기 서비스","6":"6. 위생 점검·특이사항","7":"7. 제품 유지관리","8":"8. 결제·요금","9":"9. 계약 갱신·변경","10":"10. 고객 불편·VOC","11":"11. 온라인몰·구매","12":"12. 고객 관계·브랜드 CRM","13":"13. B2B 사업장 특화","14":"14. 발송 계기별"};
@@ -593,8 +594,8 @@ function renderList(){
   let html = '', cur = null;
   ms.forEach(m => {
     const hk = m.st === 'done' ? 'D:' + m.grp : m.cat;
-    if (hk !== cur) { cur = hk; html += '<h4>' + (m.st === 'done' ? '완료 · ' + esc(m.grp) : esc(CATS[m.cat] || m.catName)) + '</h4>'; }
-    if (m.st === 'done') { html += '<button type="button" class="row" role="listitem" data-id="' + m.id + '"' + (m.id === state.sel ? ' aria-current="true"' : '') + '><span class="n">' + m.num + '</span><span class="t"><span class="sb done">완료</span>' + esc(m.title) + '</span><span></span></button>'; return; }
+    if (hk !== cur) { cur = hk; html += '<h4>' + (m.st === 'done' ? (m.hold ? '확인 중 · ' : '완료 · ') + esc(m.grp) : esc(CATS[m.cat] || m.catName)) + '</h4>'; }
+    if (m.st === 'done') { html += '<button type="button" class="row" role="listitem" data-id="' + m.id + '"' + (m.id === state.sel ? ' aria-current="true"' : '') + '><span class="n">' + m.num + '</span><span class="t">' + (m.hold ? '<span class="sb hold">확인 중</span>' : '<span class="sb done">완료</span>') + esc(m.title) + '</span><span></span></button>'; return; }
     const st = m.nchk ? '<span class="st chk" title="확인 필요 ' + m.nchk + '">! ' + m.nchk + '</span>' : '<span class="st ok" title="해당 기준 모두 충족">✓</span>';
     html += '<button type="button" class="row" role="listitem" data-id="' + m.id + '"' + (m.id === state.sel ? ' aria-current="true"' : '') + '><span class="n">' + m.num + '</span><span class="t"><span class="sb test">테스트</span><i class="' + m.type + '">' + TYPE[m.type].replace('개인화 ', '') + '</i>' + esc(m.title) + '</span>' + st + '</button>';
   });
@@ -634,7 +635,7 @@ function renderDone(m){
   const li = (k, t) => t ? '<li><b>' + k + '</b><span>' + esc(t) + '</span></li>' : '';
   $('#detail').innerHTML =
     '<div class="d-h"><span class="num">' + m.num + '</span><h2 style="font-size:20px">' + esc(m.title) + '</h2></div>' +
-    '<div class="d-meta"><span class="sb done">완료</span>' + m.chips.map(c => '<span class="chip">' + esc(c) + '</span>').join('') + '<span>정기 발송 문자 · ' + esc(m.grp) + '</span></div>' +
+    '<div class="d-meta">' + (m.hold ? '<span class="sb hold">상세 내용 확인 중 · 사용 보류</span>' : '<span class="sb done">완료</span>') + m.chips.map(c => '<span class="chip">' + esc(c) + '</span>').join('') + '<span>정기 발송 문자 · ' + esc(m.grp) + '</span></div>' +
     '<div class="d-grid"><div class="d-col"><h3><span>문안 · ' + esc(VL(v.k)) + '</span><button type="button" class="copy" id="copyBtn">문구 복사</button></h3>' +
     '<div class="dtabs" role="group" aria-label="문안 버전">' + grp('TO BE', /TO BE/) + grp('강화안', /강화/) + grp('AS IS', /AS IS/) + '</div>' +
     '<p class="vnote">' + kind + '</p><div class="plain">' + dtext(v.t) + '</div></div>' +
