@@ -203,6 +203,9 @@ body.gd-open .gd{transform:none} body.gd-open .gd-back{opacity:1;pointer-events:
 .sg.blk{display:block;border-left:3px solid var(--chk);border-radius:0 6px 6px 0;padding:6px 10px}
 .sg.blk b{display:block;margin:0 0 2px}
 .memo.chkm{border-color:var(--chk);background:var(--chk-bg)}
+.holdtog{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;padding:9px 14px;cursor:pointer;text-align:left}
+.holdtog span:last-child{font-weight:500;font-size:12px}
+.holdtog[aria-expanded="true"]{color:var(--fg)}
 .row .t .sb{margin-right:5px;font-size:10.5px;padding:0 5px}
 .dtabs{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 8px}
 .dtabs button{border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:12px;border-radius:14px;padding:2px 10px;cursor:pointer}
@@ -223,7 +226,7 @@ body.gd-open .gd{transform:none} body.gd-open .gd-back{opacity:1;pointer-events:
 <header class="hero">
   <p class="eyebrow">CESCO · 고객 메시지 · 가이드라인 적용 확인 · 2026-11-16 · 11/18 정기 발송 문자 완료본 추가</p>
   <h1>고객 메시지 초안 · 가이드라인 적용 확인</h1>
-  <p class="src"><span class="sb done">완료</span> <b>정기 발송 문자 <span id="nDone"></span>건</b> 8/6 완료본 · AS IS와 TO BE 문안, 정서적 메시지 강화안 &nbsp;·&nbsp; <span class="sb test">테스트</span> <b>발송 상황 기준 <span id="nTest"></span>건</b> 11/16 신규 테스트 · 개별 값 없이 쓴 기본 문안 · 가이드라인 대조</p>
+  <p class="src"><span class="sb done">완료</span> <b>정기 발송 문자 <span id="nDone"></span>건</b> 8/6 완료본 · AS IS와 TO BE 문안, 정서적 메시지 강화안 &nbsp;·&nbsp; <span class="sb test">신규 제안</span> <b>발송 상황 기준 <span id="nTest"></span>건</b> 11/16 작성 · 개별 값 없이 쓴 기본 문안 · 가이드라인 대조</p>
   <p class="src">기준 문서 <b>세스코 브랜드 언어 가이드라인 통합본(10/14 전달본)</b> PART 06 채널별 가이드라인 · p.45~47 정보성 · p.48~49 홍보성 · p.50~51 개인화 CRM</p>
   <p class="src"><span class="opt-k">✍ 수기 · 선택</span> 컨설턴트가 현장에서 직접 쓰는 줄 · <span class="in">발송 전 입력</span> 캠페인마다 담당자가 넣는 값(홍보성만)</p>
   <div class="stats" id="stats"></div>
@@ -237,9 +240,9 @@ body.gd-open .gd{transform:none} body.gd-open .gd-back{opacity:1;pointer-events:
 
 
 <section id="viewer">
-  <div class="sec-h"><h2>02 메시지별 대조</h2><p>가이드라인 대조(✓ · !)는 테스트 건에만 적용했습니다. 완료 건은 TO BE와 AS IS 문안을 바꿔 볼 수 있습니다.</p></div>
+  <div class="sec-h"><h2>02 메시지별 대조</h2><p>가이드라인 대조(✓ · !)는 신규 제안 건에만 적용했습니다. 완료 건은 TO BE와 AS IS 문안을 바꿔 볼 수 있습니다.</p></div>
   <nav class="bar2" aria-label="필터">
-    <span class="tabs" id="stf" role="group" aria-label="완료 · 테스트 구분"></span>
+    <span class="tabs" id="stf" role="group" aria-label="완료 · 신규 제안 구분"></span>
     <select id="cat" class="prime" aria-label="발송 상황"></select>
     <select id="type" aria-label="메시지 성격"><option value="">성격 전체</option><option value="info">정보성</option><option value="promo">홍보성</option><option value="crm">개인화 CRM</option></select>
     <button type="button" class="tog" id="onlyChk" aria-pressed="false">확인 필요만</button>
@@ -488,7 +491,7 @@ const DATA = JSON.parse(document.getElementById('data').textContent);
 DATA.forEach(m => { m.st = 'test'; });
 const DONE = JSON.parse(document.getElementById('done').textContent);
 DONE.forEach(m => { m.st = 'done'; m.hold = m.grp === '계약서'; m.hay = (m.title + ' ' + m.asis + ' ' + m.grp + ' ' + m.proc + ' ' + m.when + ' ' + m.vers.map(v => v.t).join(' ')).toLowerCase(); });
-const DGRP = [...new Set(DONE.map(m => m.grp))];
+const DGRP = [...new Set(DONE.filter(m => !m.hold).map(m => m.grp))];
 const ALL = DONE.concat(DATA);
 const CATS = {"1":"1. 상담·신규 고객","2":"2. 계약·가입","3":"3. 설치·첫 이용","4":"4. 방문 일정","5":"5. 정기 서비스","6":"6. 위생 점검·특이사항","7":"7. 제품 유지관리","8":"8. 결제·요금","9":"9. 계약 갱신·변경","10":"10. 고객 불편·VOC","11":"11. 온라인몰·구매","12":"12. 고객 관계·브랜드 CRM","13":"13. B2B 사업장 특화","14":"14. 발송 계기별"};
 const TYPE = {info:'정보성', promo:'홍보성', crm:'개인화 CRM'};
@@ -531,7 +534,7 @@ const baseOnly = t => t.split('\n').filter(l => !/^\s*✍/.test(l)).join('\n').r
   const by = t => DATA.filter(m => m.type === t).length;
   $('#stats').innerHTML =
     '<div class="stat"><b>' + DONE.length + '</b><span><span class="sb done">완료</span> 정기 발송 문자 · 8/6</span></div>' +
-    '<div class="stat"><b>' + total + '</b><span><span class="sb test">테스트</span> 발송 상황 ' + Object.keys(CATS).length + '개 · 11/16</span></div>' +
+    '<div class="stat"><b>' + total + '</b><span><span class="sb test">신규 제안</span> 발송 상황 ' + Object.keys(CATS).length + '개 · 11/16</span></div>' +
     '<div class="stat ok"><b>' + DATA.filter(m => m.R.V0 && m.R.V0.s === 'ok').length + ' / ' + total + '</b><span>개별 값 없이 성립하는 기본 문안</span></div>' +
     '<div class="stat"><b>' + nRules + '</b><span>대조한 가이드라인 기준</span></div>' +
     '<div class="stat ok"><b>' + ok + ' / ' + app + '</b><span>해당 기준 중 충족</span></div>' +
@@ -561,7 +564,7 @@ function linesHTML(type, text, focusRoles){
     const mix = ['info','crm','promo'].map(t => { const n = ms.filter(m => m.type === t).length; return n ? '<span class="badge ' + t + '">' + TYPE[t] + ' ' + n + '</span>' : ''; }).join('');
     const nchk = ms.filter(m => m.nchk).length;
     const ttl = ms.map(m => m.title).slice(0, 4).join(' · ') + (ms.length > 4 ? ' 외 ' + (ms.length - 4) + '건' : '');
-    return '<button type="button" class="scard" data-cat="' + k + '" aria-pressed="false"><span class="sn">' + esc(CATS[k].replace(/^\d+\.\s*/, '')) + '<small>' + ms.length + '건</small></span><span class="mix"><span class="sb test">테스트</span>' + mix + '</span><span class="ttl">' + esc(ttl) + '</span><span class="ss">' + (nchk ? '<span class="st chk">! ' + nchk + '</span> 확인 필요 메시지' : '<span class="st ok">✓</span> 모두 충족') + '</span></button>';
+    return '<button type="button" class="scard" data-cat="' + k + '" aria-pressed="false"><span class="sn">' + esc(CATS[k].replace(/^\d+\.\s*/, '')) + '<small>' + ms.length + '건</small></span><span class="mix"><span class="sb test">신규 제안</span>' + mix + '</span><span class="ttl">' + esc(ttl) + '</span><span class="ss">' + (nchk ? '<span class="st chk">! ' + nchk + '</span> 확인 필요 메시지' : '<span class="st ok">✓</span> 모두 충족') + '</span></button>';
   }).join('');
 })();
 (function(){
@@ -577,11 +580,11 @@ function linesHTML(type, text, focusRoles){
 })();
 
 /* viewer state */
-const state = {st:'', t:'', cat:'', only:false, q:'', rule:null, sel:null, focus:null, ver:'base', dver:''};
+const state = {st:'', t:'', cat:'', only:false, q:'', rule:null, sel:null, focus:null, ver:'base', dver:'', holdOpen:false};
 const typeSel = $('#type');
 const catSel = $('#cat');
-catSel.innerHTML = '<option value="">구분 전체</option><optgroup label="테스트 · 발송 상황">' + Object.keys(CATS).map(k => '<option value="' + k + '">' + esc(CATS[k]) + '</option>').join('') + '</optgroup><optgroup label="완료 · 정기 발송 문자">' + DGRP.map(g => '<option value="D:' + esc(g) + '">' + esc(g) + '</option>').join('') + '</optgroup>';
-$('#stf').innerHTML = [['', '전체 ' + ALL.length], ['done', '완료 ' + DONE.length], ['test', '테스트 ' + DATA.length]].map(x => '<button type="button" data-st="' + x[0] + '" aria-pressed="' + (x[0] === '') + '">' + x[1] + '</button>').join('');
+catSel.innerHTML = '<option value="">구분 전체</option><optgroup label="신규 제안 · 발송 상황">' + Object.keys(CATS).map(k => '<option value="' + k + '">' + esc(CATS[k]) + '</option>').join('') + '</optgroup><optgroup label="완료 · 정기 발송 문자">' + DGRP.map(g => '<option value="D:' + esc(g) + '">' + esc(g) + '</option>').join('') + '</optgroup>';
+$('#stf').innerHTML = [['', '전체 ' + ALL.filter(m => !m.hold).length], ['done', '완료 ' + DONE.filter(m => !m.hold).length], ['test', '신규 제안 ' + DATA.length]].map(x => '<button type="button" data-st="' + x[0] + '" aria-pressed="' + (x[0] === '') + '">' + x[1] + '</button>').join('');
 const isD = c => /^D:/.test(c);
 
 function ruleInfo(k){ for (const t in RULES) { const r = RULES[t].find(x => x.k === k); if (r) return Object.assign({t:t}, r); } }
@@ -592,19 +595,25 @@ function filtered(){
     (!q || (m.title + ' ' + m.catName + ' ' + m.text + ' ' + (m.v1 || '')).toLowerCase().includes(q)));
 }
 function renderList(){
-  const ms = filtered();
+  const all = filtered();
+  const ms = all.filter(m => !m.hold), held = all.filter(m => m.hold);
+  if (!ms.length && held.length) state.holdOpen = true;
   $('#count').textContent = ms.length + '건';
-  if (!ms.length) { $('#list').innerHTML = '<p class="empty">조건에 맞는 메시지가 없습니다.</p>'; return ms; }
+  if (!all.length) { $('#list').innerHTML = '<p class="empty">조건에 맞는 메시지가 없습니다.</p>'; return all; }
   let html = '', cur = null;
   ms.forEach(m => {
     const hk = m.st === 'done' ? 'D:' + m.grp : m.cat;
     if (hk !== cur) { cur = hk; html += '<h4>' + (m.st === 'done' ? (m.hold ? '확인 중 · ' : '완료 · ') + esc(m.grp) : esc(CATS[m.cat] || m.catName)) + '</h4>'; }
     if (m.st === 'done') { html += '<button type="button" class="row" role="listitem" data-id="' + m.id + '"' + (m.id === state.sel ? ' aria-current="true"' : '') + '><span class="n">' + m.num + '</span><span class="t">' + (m.hold ? '<span class="sb hold">확인 중</span>' : '<span class="sb done">완료</span>') + esc(m.title) + '</span><span></span></button>'; return; }
     const st = m.nchk ? '<span class="st chk" title="확인 필요 ' + m.nchk + '">! ' + m.nchk + '</span>' : '<span class="st ok" title="해당 기준 모두 충족">✓</span>';
-    html += '<button type="button" class="row" role="listitem" data-id="' + m.id + '"' + (m.id === state.sel ? ' aria-current="true"' : '') + '><span class="n">' + m.num + '</span><span class="t"><span class="sb test">테스트</span><i class="' + m.type + '">' + TYPE[m.type].replace('개인화 ', '') + '</i>' + esc(m.title) + '</span>' + st + '</button>';
+    html += '<button type="button" class="row" role="listitem" data-id="' + m.id + '"' + (m.id === state.sel ? ' aria-current="true"' : '') + '><span class="n">' + m.num + '</span><span class="t"><span class="sb test">신규 제안</span><i class="' + m.type + '">' + TYPE[m.type].replace('개인화 ', '') + '</i>' + esc(m.title) + '</span>' + st + '</button>';
   });
+  if (held.length) {
+    html += '<button type="button" class="holdtog" id="holdTog" aria-expanded="' + state.holdOpen + '"><span>확인 중 · 사용 보류 ' + held.length + '건</span><span>' + (state.holdOpen ? '접기' : '보기') + '</span></button>';
+    if (state.holdOpen) held.forEach(m => { html += '<button type="button" class="row" role="listitem" data-id="' + m.id + '"' + (m.id === state.sel ? ' aria-current="true"' : '') + '><span class="n">' + m.num + '</span><span class="t"><span class="sb hold">확인 중</span>' + esc(m.title) + '</span><span></span></button>'; });
+  }
   $('#list').innerHTML = html;
-  return ms;
+  return state.holdOpen ? ms.concat(held) : ms;
 }
 function renderDetail(){
   const m = ALL.find(x => x.id === state.sel);
@@ -619,7 +628,7 @@ function renderDetail(){
   const prevNote = m.relKind ? '<p class="prev">메시지 성격: ' + esc(m.relKind) + ' (서비스 직후 문자가 아니라 ② ③ ⑦은 해당 없음)</p>' : '';
   $('#detail').innerHTML =
     '<div class="d-h"><span class="num">' + m.num + '</span><h2 style="font-size:20px">' + esc(m.title) + '</h2></div>' +
-    '<div class="d-meta"><span class="sb test">테스트</span><span class="badge ' + m.type + '">' + TYPE[m.type] + '</span>' + chips + '<span>' + esc(CATS[m.cat] || m.catName) + '</span></div>' +
+    '<div class="d-meta"><span class="sb test">신규 제안</span><span class="badge ' + m.type + '">' + TYPE[m.type] + '</span>' + chips + '<span>' + esc(CATS[m.cat] || m.catName) + '</span></div>' +
     '<div class="d-grid"><div class="d-col"><h3><span class="ver" role="group" aria-label="문안 버전"><button type="button" data-ver="base" aria-pressed="' + (state.ver === 'base') + '">기본 문안</button><button type="button" data-ver="v1" aria-pressed="' + (state.ver === 'v1') + '">11/6 변수형</button></span><button type="button" class="copy" id="copyBtn">' + (state.ver === 'base' ? '기본 문안 복사' : '변수형 복사') + '</button></h3>' +
     (state.ver === 'base' ? (m.note ? '<p class="vnote">확인 필요: ' + esc(m.note) + '</p>' : '') : '<p class="vnote">11/6 초안(#{ } 변수 포함) 참고용입니다. 오른쪽 대조 결과는 기본 문안 기준입니다.</p>') +
     linesHTML(m.type, state.ver === 'base' ? m.text : (m.v1 || m.text), state.ver === 'base' ? focusRoles : null) +
@@ -682,7 +691,7 @@ catSel.onchange = () => { state.cat = catSel.value; if (isD(state.cat)) { if (st
 $('#onlyChk').onclick = e => { state.only = !state.only; if (state.only) toTest(); render(true); };
 $('#q').oninput = e => { state.q = e.target.value; render(true); };
 $('#rulefX').onclick = () => { state.rule = null; state.focus = null; render(true); };
-$('#list').onclick = e => { const b = e.target.closest('.row'); if (!b) return; state.sel = b.dataset.id; history.replaceState(null, '', '#' + state.sel); renderList(); renderDetail();
+$('#list').onclick = e => { if (e.target.closest('#holdTog')) { state.holdOpen = !state.holdOpen; render(true); return; } const b = e.target.closest('.row'); if (!b) return; state.sel = b.dataset.id; history.replaceState(null, '', '#' + state.sel); renderList(); renderDetail();
   if (window.matchMedia('(max-width:900px)').matches) $('#detail').scrollIntoView({behavior:'smooth', block:'start'}); };
 $('#sum').onclick = e => { const b = e.target.closest('button.go'); if (!b) return; const r = ruleInfo(b.dataset.rule);
   state.rule = r.k; state.focus = r.k; state.t = r.t; typeSel.value = r.t; state.st = ''; state.cat = ''; catSel.value = ''; state.q = ''; $('#q').value = ''; state.ver = 'base';
@@ -711,7 +720,7 @@ $('#gdX').onclick = closeGuide; $('#gdBack').onclick = closeGuide;
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('gd-open')) closeGuide(); });
 document.querySelector('.gd-tabs').addEventListener('click', e => { const b = e.target.closest('[data-gt]'); if (b) { gdType = b.dataset.gt; gdRender(); return; } const j = e.target.closest('[data-jp]'); if (j) gdJump(+j.dataset.jp); });
 document.addEventListener('click', e => { const b = e.target.closest('.pg'); if (!b) return; e.preventDefault(); e.stopPropagation(); openGuide(null, +b.dataset.pg); }, true);
-const h0 = location.hash.slice(1); if (h0 === 'done' || h0 === 'test') state.st = h0; state.sel = ALL.find(m => m.id === h0) ? h0 : ALL[0].id;
+const h0 = location.hash.slice(1); if (h0 === 'done' || h0 === 'test') state.st = h0; state.sel = ALL.find(m => m.id === h0) ? h0 : (ALL.find(m => !m.hold) || ALL[0]).id; if ((ALL.find(m => m.id === state.sel) || {}).hold) state.holdOpen = true;
 render(true);
 </script>
 </body>
