@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>세스코 1P 리플릿 통합 템플릿 · A안 · V19 · 261124</title>
+<style>
+:root{
+  /* 세스코 CI 기준: 블루 #0078C7 · 레드 #E7141F(로고 전용) · 그레이 #5A5A5D */
+  --navy:#0b3a66; --navy2:#16386f; --blue:#0078c7; --blue-l:#e8f3fb; --blue-m:#c5e0f3; --sky:#8fd0f7;
+  --ink:#1b1f27; --sub:#5a6272; --line:#d5dbe5; --bg:#f3f5f8; --chk:#e8740c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#e6e9ee;color:var(--ink);font-family:'Pretendard','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic',sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased}
+sup{font-size:.62em;line-height:0;vertical-align:super}
+u{text-decoration:none;font-weight:700;color:var(--navy)}
+
+/* ── 상단 바 ── */
+.bar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+.bar .grp{display:flex;gap:4px;align-items:center;padding-right:10px;margin-right:4px;border-right:1px solid var(--line)}
+.bar .grp:last-child{border-right:0}
+.bar b{color:var(--navy);margin-right:4px}
+.bar button{font:inherit;padding:5px 10px;border:1px solid var(--line);background:#fff;border-radius:4px;cursor:pointer;color:var(--ink)}
+.bar button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.bar button:disabled{opacity:.35;cursor:default}
+.badge{display:inline-block;padding:4px 9px;border-radius:4px;font-weight:700;font-size:12px}
+.badge.ok{background:#e4f5ea;color:#16794a}
+.badge.over{background:#fde8e8;color:#c0262d}
+
+/* ── 작업 영역 ── */
+.stage{display:flex;gap:22px;align-items:flex-start;justify-content:center;padding:22px}
+.pages{display:flex;gap:22px;align-items:flex-start}
+.pagewrap{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.pagewrap .cap{font-size:12px;color:var(--sub)}
+.pagewrap .cap b{color:var(--navy)}
+.side .sheet{transform:scale(.72);transform-origin:top left;margin-right:calc(-210mm * .28);margin-bottom:calc(-297mm * .28)}
+
+/* ── 지면 ── */
+.sheet{width:210mm;height:297mm;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.14);padding:8mm 9mm 7mm;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.sheet > *{flex:none}
+.sheet{row-gap:var(--xg,0mm)}
+.chk{color:var(--chk);font-weight:700}
+.hide-chk .chk{color:inherit;font-weight:inherit}
+
+.logo-row{display:flex;align-items:center;justify-content:flex-start;padding-bottom:1.6mm;border-bottom:.3mm solid var(--navy)}
+.logo{display:block;height:9mm;width:auto}
+
+.hero{display:grid;grid-template-columns:1fr 70mm;gap:5mm;padding:3mm 0 2mm}
+.hero h1{font-size:20pt;line-height:1.24;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero .lead{margin-top:1.6mm;font-size:10pt;line-height:1.5;color:var(--ink)}
+.hero .pname{margin-top:2.4mm;font-size:13pt;font-weight:800;line-height:1.3;color:var(--ink)}
+.hero .psub{margin-top:1.4mm;font-size:8.3pt;color:var(--sub);line-height:1.45;padding-top:1.6mm;border-top:.2mm solid var(--line)}
+.ph{background:repeating-linear-gradient(135deg,#f1f4f9 0 6px,#e9eef6 6px 12px);border:.25mm dashed #9fb0c9;border-radius:2mm;color:#55657f;font-size:7.6pt;line-height:1.5;padding:3mm;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.ph b{display:block;color:var(--navy);margin-bottom:1mm}
+.hero-img{min-height:44mm}
+
+.sec{margin-top:2.1mm}
+.sec h2{font-size:10.5pt;font-weight:800;color:var(--navy);margin-bottom:1.5mm;display:flex;align-items:baseline;gap:2mm}
+.sec h2 small{font-size:7.6pt;color:var(--sub);font-weight:500}
+
+.tgt{display:grid;grid-template-columns:27mm 1fr;border:.25mm solid var(--blue-m);border-radius:1.6mm;overflow:hidden}
+.tgt .tl{background:var(--navy);color:#fff;font-weight:800;font-size:8.6pt;line-height:1.35;padding:1.6mm 3mm;display:flex;align-items:center}
+.tgt ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
+.tgt li{font-size:8pt;line-height:1.4;padding:1.25mm 2mm 1.25mm 5.6mm;position:relative;display:flex;align-items:center;background:var(--blue-l)}
+.tgt li+li{border-left:.25mm solid #fff}
+.tgt.two ul{grid-template-columns:repeat(2,1fr)}
+.tgt.two li:nth-child(3),.tgt.two li:nth-child(4){border-top:.25mm solid #fff}
+.tgt.two li:nth-child(3){border-left:0}
+.blk + .tgt{margin-top:2.4mm}
+.tgt li:before{content:'✓';position:absolute;left:2mm;color:var(--blue);font-weight:800}
+
+.frows{display:flex;flex-direction:column;gap:1mm}
+.frow{display:grid;grid-template-columns:15mm 56mm 1fr;align-items:center;border:.25mm solid var(--line);border-left:1.2mm solid var(--blue);border-radius:1.4mm;padding:1.1mm 3mm 1.1mm 2.4mm;gap:3mm}
+.ftag{font-size:7.6pt;font-weight:800;color:#fff;background:var(--navy);border-radius:1mm;padding:1mm 0;text-align:center}
+.ft{font-size:9.6pt;font-weight:800;line-height:1.32;color:var(--ink)}
+.fd{font-size:7.9pt;line-height:1.45;color:var(--ink)}
+.fm{font-size:6.7pt;color:var(--sub);margin-top:.6mm}
+/* 특장점 가로 배열(기본 · 3개 이하) */
+.fcols{display:grid;gap:2.6mm}
+.fcol{border:.25mm solid var(--line);border-top:1.2mm solid var(--blue);border-radius:1.4mm;padding:2.2mm 3mm 2.4mm;display:flex;flex-direction:column;gap:1.3mm}
+.fcol .ftag{align-self:flex-start;padding:.8mm 2.4mm}
+.fcol .ft{font-size:10pt}
+.fcol .fd{font-size:7.9pt}
+.fcol .fm{margin-top:auto;padding-top:1.2mm;border-top:.2mm solid var(--line)}
+
+.price{margin-top:2.6mm;border:.5mm solid var(--navy);border-radius:2mm;overflow:hidden}
+.price h2{margin:0;background:var(--navy);color:#fff;font-size:11pt;padding:1.5mm 3.2mm;display:flex;align-items:baseline;gap:2.4mm}
+.price .psub2{font-size:7.8pt;color:#fff;opacity:.85;font-weight:500}
+table.pt{width:100%;border-collapse:collapse;font-size:8.8pt}
+table.pt th{background:var(--blue-l);color:var(--navy);font-weight:700;padding:1.2mm 2.4mm;text-align:center;font-size:7.8pt;border-bottom:.25mm solid var(--blue-m)}
+table.pt td{border-bottom:.25mm solid var(--line);padding:1.5mm 2.4mm;text-align:center}
+table.pt tr:last-child td{border-bottom:0}
+table.pt td:first-child{text-align:left;font-weight:700}
+table.pt td.s{color:var(--sub)}
+table.pt td.o{color:var(--sub);text-decoration:line-through}
+table.pt td.ff{color:var(--blue);font-weight:900;font-size:12pt;letter-spacing:-.01em;background:#f4f9fd}
+.pnotes{font-size:6.5pt;color:var(--sub);line-height:1.45;padding:0 3.2mm}
+.pnotes:first-of-type{border-top:.25mm solid var(--line);padding-top:1mm}
+.pnotes:last-child{padding-bottom:1.2mm}
+
+/* 제원 */
+.specs{display:grid;gap:4mm;align-items:stretch}
+.specs.list{grid-template-columns:1fr 36mm}
+.specs.tbl{grid-template-columns:1fr 46mm}
+.specs .stitle{font-size:8.6pt;font-weight:800;color:var(--navy);margin-bottom:1.2mm}
+.specs dl{display:grid;grid-auto-flow:row dense;grid-template-columns:17mm 1fr 17mm 1fr;font-size:7.3pt;line-height:1.4;border-top:.25mm solid var(--navy)}
+.specs dt,.specs dd{padding:.6mm 1.6mm;border-bottom:.2mm solid var(--line)}
+.specs dt{font-weight:700;color:var(--navy);background:var(--bg)}
+.specs dd.w{grid-column:span 3}
+.specs dt:has(+ dd.w){grid-column:1}
+.chip{display:inline-flex;align-items:center;gap:1mm;margin-right:2.6mm}
+.chip i{display:inline-block;width:3.2mm;height:3.2mm;border-radius:50%;border:.2mm solid #9aa4b4}
+table.st{width:100%;border-collapse:collapse;font-size:8pt;border-top:.25mm solid var(--navy)}
+table.st th{background:var(--bg);color:var(--navy);padding:1.6mm;border-bottom:.2mm solid var(--line)}
+table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--line)}
+
+/* 제원 간략형: 특장점이 많아 지면이 부족할 때 텍스트만 */
+.specs-c{font-size:7.4pt;line-height:1.55;color:var(--ink);border-top:.25mm solid var(--navy);border-bottom:.2mm solid var(--line);padding:1.1mm 0}
+.specs-c b.t{color:var(--navy);font-weight:800;margin-right:2mm}
+.specs-c b{color:var(--navy);font-weight:700}
+.specs-c i{font-style:normal;color:#aab3c2;margin:0 1.4mm}
+
+/* 가변 블록 */
+.brow{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.blk{margin-top:2.1mm}
+.brow .blk{margin-top:0}
+.blk h3{font-size:9.6pt;font-weight:800;color:var(--navy);margin-bottom:1.6mm}
+.blk h3 small{font-size:7.4pt;color:var(--sub);font-weight:500;margin-left:1.4mm}
+/* proof */
+.proof{display:grid;gap:1.6mm}
+.proof .c{background:var(--blue-l);border-radius:1.6mm;padding:2mm 2mm;text-align:center}
+.proof .n{font-size:16pt;font-weight:900;color:var(--blue);line-height:1.1;letter-spacing:-.02em}
+.proof .l{font-size:7.6pt;line-height:1.38;margin-top:1mm;color:var(--ink)}
+/* how */
+.how{display:grid;gap:2.6mm;position:relative}
+.how .c{border:.25mm solid var(--blue-m);border-radius:1.6mm;padding:1.8mm 2.4mm;position:relative;background:#fff}
+.how.flow .c:not(:last-child):after{content:'';position:absolute;right:-2.3mm;top:50%;width:2mm;height:2mm;border-top:.5mm solid var(--blue);border-right:.5mm solid var(--blue);transform:translate(0,-50%) rotate(45deg);background:transparent}
+.how .no{display:inline-block;font-size:7pt;font-weight:800;color:#fff;background:var(--blue);border-radius:.8mm;padding:.2mm 1.4mm;margin-bottom:1mm}
+.how .t{font-size:8.8pt;font-weight:800;color:var(--navy);line-height:1.3}
+.how .d{font-size:7.6pt;line-height:1.42;margin-top:.8mm}
+/* cause */
+.cause{border-top:.3mm solid var(--navy)}
+.cause .r{display:grid;grid-template-columns:34mm 1fr 52mm;border-bottom:.2mm solid var(--line)}
+.cause .r > div{padding:1.35mm 2.2mm;font-size:8pt;line-height:1.42;display:flex;align-items:center}
+.cause .r.h > div{font-size:7.2pt;font-weight:700;color:var(--sub);padding:1.1mm 2.2mm;background:var(--bg)}
+.cause .q{font-weight:800;color:var(--ink)}
+.cause .a{background:var(--blue-l);color:var(--navy);font-weight:800}
+/* pair · 함께 쓰면 좋은 제품 */
+.pair{display:grid;gap:2.6mm}
+.pair .c{display:grid;grid-template-columns:17mm 1fr;gap:2.4mm;border:.25mm solid var(--blue-m);border-radius:1.6mm;padding:1.8mm 2.2mm;background:#fff;align-items:center}
+.pair .ph{min-height:15mm;padding:1mm;font-size:6.2pt}
+.pair .u{font-size:7.4pt;color:var(--sub);line-height:1.4}
+.pair .t{font-size:8.8pt;font-weight:800;color:var(--navy);line-height:1.3;margin-top:.3mm}
+.pair .d{font-size:7.2pt;line-height:1.42;margin-top:.6mm}
+/* pick · 선택 가이드 */
+.pick{border-top:.3mm solid var(--navy)}
+.pick .r{display:grid;grid-template-columns:1fr 46mm;border-bottom:.2mm solid var(--line)}
+.pick .r > div{padding:1.3mm 2.2mm;font-size:8pt;line-height:1.42;display:flex;align-items:center}
+.pick .a{background:var(--blue-l);color:var(--navy);font-weight:800}
+/* list · 체크 목록 */
+.clist{list-style:none;display:grid;gap:1mm 4mm}
+.clist li{font-size:8pt;line-height:1.42;padding:1.2mm 2mm 1.2mm 6mm;position:relative;background:var(--blue-l);border-radius:1.2mm}
+.clist li:before{content:'✓';position:absolute;left:2.2mm;color:var(--blue);font-weight:800}
+.clist li b{color:var(--navy)}
+/* point */
+.point{display:grid;grid-template-columns:auto 1fr;gap:3mm;align-items:center;background:var(--navy);color:#fff;border-radius:2mm;padding:3mm 4mm}
+.point .n{font-size:20pt;font-weight:900;line-height:1;color:#fff}
+.point .n small{display:block;font-size:7.4pt;font-weight:500;opacity:.8;margin-top:1mm}
+.point .d{font-size:8.2pt;line-height:1.48}
+
+.trust{margin-top:1.8mm;font-size:8pt;font-weight:700;color:var(--navy);text-align:center;border-top:.2mm solid var(--line);border-bottom:.2mm solid var(--line);padding:1mm 0;line-height:1.45}
+.fn{margin-top:1.6mm;font-size:6.2pt;color:var(--sub);line-height:1.5}
+.fn p+p{margin-top:.4mm}
+
+/* CTA — 제품 한 줄 카피 + 고객센터 · 접점 정보 (V19) */
+.cta{margin-top:auto;background:var(--navy);color:#fff;border-radius:2.4mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center;padding:3.2mm 5mm}
+.cta.hasqr{grid-template-columns:1fr auto 17mm}
+.cta .cmain{font-size:14.5pt;font-weight:800;line-height:1.3;white-space:nowrap;letter-spacing:-.01em}
+.cta .cmain em{font-style:normal;color:var(--sky)}
+.cta .contact{border-left:.25mm solid rgba(255,255,255,.28);padding-left:4mm}
+.cta .clabel{font-size:7.6pt;opacity:.85}
+.cta .ctel{font-size:17pt;font-weight:900;letter-spacing:.01em;line-height:1.15}
+.cta .curl{font-size:7.6pt;opacity:.85;margin-top:.3mm}
+.cta .qr{background:#fff;color:var(--navy);border-radius:1.2mm;width:17mm;height:17mm;display:flex;align-items:center;justify-content:center;text-align:center;font-size:6.6pt;font-weight:700;line-height:1.3}
+
+/* ── 디자이너 노트 ── */
+.notes{width:330px;flex:none;background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 16px;font-size:12.5px;line-height:1.6;position:sticky;top:64px;max-height:calc(100vh - 90px);overflow:auto}
+.notes h4{font-size:13px;color:var(--navy);margin:12px 0 6px}
+.notes h4:first-child{margin-top:0}
+.notes .vr{border:1px solid var(--line);border-radius:4px;padding:7px 9px;margin-bottom:6px}
+.notes .vr.cur{border-color:var(--blue);background:var(--blue-l)}
+.notes .vr b{color:var(--navy)}
+.notes table{border-collapse:collapse;width:100%}
+.notes th{width:70px;text-align:left;vertical-align:top;color:var(--sub);font-weight:700;padding:5px 6px 5px 0;border-top:1px solid var(--line)}
+.notes td{padding:5px 0;border-top:1px solid var(--line)}
+body.no-notes .notes{display:none}
+
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff}
+  .bar,.notes,.pagewrap .cap{display:none!important}
+  .stage{padding:0;display:block}
+  .pages{display:block}
+  .side .sheet{transform:none;margin:0}
+  .sheet{box-shadow:none;page-break-after:always}
+}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="stage">
+  <div class="pages" id="pages"></div>
+  <aside class="notes" id="notes"></aside>
+</div>
+
+<script>
+/* =====================================================================
+   DATA — 제품·서비스를 추가할 때는 이 배열에 객체 하나만 추가합니다.
+   작성 규칙: 세스코_1P리플릿_통합템플릿_작성규칙_V19_261124.md
+   가변 슬롯(특장점 아래 · 가격 위): 기준 4가지(새 정보 · 구매 판단 · 근거 · 지면의 몫)를 통과한 블록만 0~2개. 없으면 비웁니다.
+   가격표는 지면 아래쪽에 강조 상자로 둡니다. 영업 현장에서 가격을 바로 짚을 수 있어야 합니다.
+   제원표는 환경가전에만 넣고(필수), 가격표 바로 아래에 둡니다. 특장점이 많아 지면이 부족하면 텍스트만 쓰는 간략형으로 바뀝니다(specs.compact:true 또는 지면 초과 시 자동).
+   CTA는 제품 한 줄 카피 + 고객센터 · 필요한 접점 정보만 둡니다. 명함 부착 영역은 없습니다.
+   특장점: 3개 이하 → 가로 배열(기본) · 4개 이상 → 가로로 긴 박스 세로 나열 (자동)
+   블록 종류(kind): proof 수치 · how 원리 · cause 고민→해법 · point 단독 강조 · pair 함께 쓰면 좋은 제품 · pick 선택 가이드 · list 체크 목록
+   블록 위치(pos): 'top' 헤드 바로 아래(추천 대상 위) · 'mid' 추천 대상 아래(특장점 위) · 생략 시 가변 슬롯(특장점 아래 · 가격 위)
+   ===================================================================== */
+const DATA = [
+
+/* ───────────── 1. 환경가전 · 트루살균 공기청정기 판테온 25평 (V12 문안 기준) ───────────── */
+{
+ id:'pantheon25', label:'환경가전 · 트루살균 공기청정기 판테온 25평', type:'appliance',
+ variants:[
+  {name:'살균엔진', why:'제품의 가장 큰 차별점인 ‘청정엔진 + 살균엔진 2 in 1’과 세스코 정기 관리를 앞에 둡니다.'},
+  {name:'자동 선제 살균', why:'‘바이러스 선제공격 시스템™’과 6가지 센서. 사람이 모이는 매장·어린이집·대기실을 겨냥합니다.',
+   hero:{h1:'사람이 모이면,<br><em>살균엔진이 먼저 움직입니다</em>', lead:'켜 두기만 하면 공기 상태를 읽고 알아서 대응합니다'},
+   cta:{main:'붐비는 시간에도 <em>살균된 공기</em>를 누려 보세요'}}
+ ],
+ targets:{title:'이런 공간에<br>추천합니다', items:[
+  '환절기마다 가족의 호흡기 건강이 신경 쓰이는 넓은 거실',
+  '아이들이 하루 종일 함께 생활하는 어린이집·학원',
+  '환자와 직원이 오래 머무는 병원 대기실',
+  '손님이 드나들고 조리 냄새가 남는 매장']},
+ hero:{
+  h1:'청정만으로는 부족해서,<br><em>살균엔진을 따로 만들었습니다</em>',
+  lead:'청정엔진과 살균엔진, 두 엔진으로 공기를 관리해야 합니다',
+  name:'세스코 트루살균 공기청정기<br>판테온 25평',
+  sub:'공기청정 + 공기살균',
+  img:'<b>이미지 · 제품 대표 컷(지면 유일 이미지 영역)</b>판테온 25평 코튼 화이트·포레스트 그린 2대, 넓은 거실 또는 대기 공간 설치 컷. 상단 토출부와 하단 에어리바운드 토출구가 보이는 각도. 스톡 이미지 금지'
+ },
+ features:{title:'핵심 특장점', items:[
+  {tag:'살균', t:'공기 중 인플루엔자 바이러스<br>99.99% 살균<sup>1)</sup>', d:'흡입한 공기를 UV-C LED로 직접 살균합니다.', m:'<u>적용 기술</u> · UV살균터널 pro™ | <u>시험 근거</u> · 부유 바이러스·세균 99.9% 감소<sup>2)</sup>'},
+  {tag:'자동', t:'CO₂ 농도가 높아지면<br>살균엔진이 스스로 가동', d:'사람이 모여 공기가 탁해지는 순간 살균을 먼저 시작합니다.', m:'<u>적용 기술</u> · 바이러스 선제공격 시스템™'},
+  {tag:'청정', t:'0.01 ㎛ 극초미세먼지<br>99.999% 제거<sup>3)</sup>', d:'H13 구리 헤파필터를 포함한 4단계 하이엔드 필터로 걸러냅니다.', m:'<u>시험 근거</u> · 부유 미세플라스틱 99.9% 이상 제거<sup>4)</sup>(KOTITI 인증)'},
+  {tag:'바닥', t:'가라앉은 바닥 먼지까지<br>띄워서 96.7% 제거<sup>5)</sup>', d:'하단에서 바람을 내보내고 360° 방향에서 다시 흡입합니다.', m:'<u>적용 기술</u> · 에어리바운드™'},
+  {tag:'감지', t:'공기 상태를 감지하는<br>6가지 초정밀 센서', d:'실내 공기질을 실시간으로 확인하고 환기 시점을 알려 줍니다.', m:'<u>센서</u> · 극초미세먼지·냄새(VOCs)·CO₂·온도·습도·라돈(옵션)'}
+ ]},
+ price:{title:'렌탈·구매 가격', sub:'모델명 EADS731 · EADS741 | 두 색상 동일가', cols:['구분','정상가','판매가'], cls:['','o','ff'],
+  rows:[['렌탈 (월 렌탈료)','월 50,900원','월 37,900원'],['일시불 구매','1,527,000원','1,093,000원']],
+  notes:['렌탈 시 세스코 사이언스 케어 정기 방문: 기능성 필터·카본커버필터 4개월, 프리필터·하이엔드 헤파필터 12개월 교체, 분리세척 딥클리닝 12개월 | 의무사용기간 [확인 필요] | 렌탈등록비 [확인 필요]',
+         '라돈 센서 선택 시 월 렌탈료 추가 · 최초 설치 시 유해가스 필터 기본 제공 · 플러스알파케어는 가정집 한정 [확인 필요: 발행 시점 가격]']},
+ specs:{title:'• 트루살균 공기청정기 판테온 25평', items:[
+  {k:'색상', colors:[['코튼 화이트','#f6f4ee'],['포레스트 그린','#2f4b3a']]},
+  {k:'크기(mm)', v:'403(W) x 403(D) x 1,148(H)'},
+  {k:'무게', v:'19.8 kg'},
+  {k:'사용 면적', v:'83.2 ㎡(25.2평형) [확인 필요: 평형 병기]'},
+  {k:'소비 전력', v:'[확인 필요]'},
+  {k:'살균 방식', v:'UV-C LED (UV살균터널 pro™)'},
+  {k:'필터', v:'프리필터 / 기능성 필터(유해가스, 오일미스트, 알레르겐, 펫 중 택 1) / 탈취+헤파필터(H13, 구리 소재) / 카본커버필터'},
+  {k:'사용 전원', v:'[확인 필요]'}],
+  mark:'<b>인증 마크 자리</b>에너지소비효율 1등급 · CA · PA [확인 필요: 마크 종류·사용 승인]',
+  cut:'<b>이미지 · 제품 누끼</b>정면 누끼 1컷, 배경 없음'},
+ trust:'APEC 2025 KOREA 공식 협력사 선정 제품 [확인 필요: 표기 사용 승인]',
+ fn:['1) 세스코 과학연구소와 고려대의대 바이러스병 연구소 공동연구. BSL-3 시설 4500 L 특수 챔버에 신종 인플루엔자(H1N1) 바이러스를 부유시킨 뒤 판테온을 30분간 가동한 전·후 제거 효능을 3회 비교 평가(트루살균 공기청정기 판테온 25평형 시험 완료). 2) 한국산업기술시험원(KTL), 약 23℃·50%, 30 ㎥ 챔버. 부유바이러스(Phi-X174) 30분 가동 99.9% 감소(25평형), 부유세균(S.epidermidis) 60분 가동 99.9% 감소. 3) KOTITI시험연구원, 0.01 ㎛ 이하 극초미세먼지 감소율, (29.5±0.5) ㎥ 챔버 1시간 가동. 4) KOTITI시험연구원 부유 미세플라스틱 저감 인증(판테온 25평), (29.5±0.5) ㎥ 챔버, 풍량 3단, Polystyrene(0.3 ㎛). 5) 세스코 자사 실험(CFD), 에어리바운드 20분 가동 시 약 96.7% 바닥 먼지 제거.',
+     '※ 위 결과는 제한된 실험 조건에서 측정한 결과이며, 실제 사용 환경(공간 크기, 공기 유입량, 설치 위치 등)에 따라 달라질 수 있습니다.'],
+ cta:{kind:'offer',
+  main:'온 가족이 머무는 곳을 <em>살균된 공기</em>로 채워 보세요',
+  label:'렌탈 문의', tel:'1588-1119', url:'www.cesco.co.kr', qr:'QR<br>제품 더 보기'},
+ notes:[
+  ['자료 출처','V12 통합 템플릿(261123)의 판테온 25평 문안을 그대로 옮김: 헤드카피 · 리드 · 추천 공간 · 특장점 5개 · 가격 · 제원 · 신뢰 문구 · 각주 · CTA'],
+  ['특장점 배치','특장점 5개(살균 · 자동 · 청정 · 바닥 · 감지)의 효익이 서로 다르고 저마다 시험·기술 근거가 있어 세로 나열을 유지했습니다'],
+  ['중복 정리(V19)','한 줄 스펙에서 사용 면적 · UV-C LED · 색상을 뺐습니다(제원표에 있음). 살균 특장점 설명의 ‘별도의 살균엔진이’(헤드와 같은 말), 바닥 특장점의 ‘띄워’ 반복, 감지 특장점 제목의 센서 이름(근거 줄과 중복), 가격표의 모델명 두 줄, 가격 조건줄의 ‘렌탈 한정’과 ‘라돈 옵션’ 반복을 정리했습니다. 2안 리드는 자동 특장점 제목과 같은 문장이라 바꿨습니다'],
+  
+  ['구성 순서','특장점 → 가격표(강조 상자) → 제원표 → 각주 → CTA. 환경가전이라 제원표(필수)가 가격표 바로 아래에 들어갑니다. 특장점 5개로 지면이 차서 가변 슬롯의 선택 블록은 넣지 않았습니다(V19)'],
+  ['제원 간략형','지금은 나열형 제원표가 지면에 들어갑니다(여유 약 1mm). 문구가 늘어 지면이 넘치면 제원이 텍스트 간략형으로 자동 전환됩니다. 상단 ‘제원 간략형 미리보기’로 확인할 수 있고, 처음부터 간략형으로 쓰려면 specs에 compact:true를 적습니다'],
+  ['제원 확인 필요','소비 전력 · 사용 전원 · 평형 병기 값 · 필터 명칭(제원 ‘탈취+헤파필터’ vs 가격 조건줄 ‘하이엔드 헤파필터’) · 모델명 EADS731·EADS741과 색상 대응 · 인증 마크 종류와 사용 승인'],
+  ['그 밖의 확인 필요','의무사용기간 · 렌탈등록비 · 발행 시점 가격 · APEC 표기 사용 승인 · QR 연결 URL']
+ ]
+},
+
+/* ───────────── 2. 마이랩 · 세탁세제 프리미엄 ───────────── */
+{
+ id:'laundry-premium', label:'마이랩 · 세탁세제 프리미엄', type:'mylab',
+ variants:[
+  {name:'얼룩과 냄새를 함께', why:'얼룩(8종 효소)과 냄새(원인균 세척 · 원인 성분 탈취)를 ‘섬유 속 오염’으로 묶은 종합안입니다.'},
+  {name:'8종 효소 세척력', why:'냄새보다 눈에 보이는 얼룩이 고민인 가정. 땀·음식·기름처럼 성분이 다른 생활 얼룩을 효소가 나눠 맡는다는 점을 앞세웁니다.',
+   hero:{h1:'성분이 다른 생활 얼룩,<br><em>8종 효소가 나눠 지웁니다</em>', lead:'단백질 · 전분 · 지방, 성분에 따라 나눠 맡습니다 [확인 필요]'},
+   cta:{main:'8종 효소로 <em>묵은 얼룩</em>까지 지워 보세요'}}
+ ],
+ targets:{title:'이런 빨래가<br>고민이라면', items:[
+  '목 · 소매에 누런 때가 낀 셔츠','땀에 젖는 운동복 · 작업복','말려도 냄새가 다시 나는 수건','실내에서 말리는 장마철 · 겨울 빨래']},
+ hero:{
+  h1:'빨아도 남는 얼룩과 냄새,<br><em>섬유 속 오염부터 세척합니다</em>',
+  lead:'얼룩은 효소로 분해하고, 냄새는 원인균부터 씻어 냅니다',
+  name:'세스코 마이랩<br>세탁세제 프리미엄',
+  sub:'2L | 섬유 · 신발 세탁, 얼룩 제거 | 일반 · 드럼 겸용 [확인 필요]',
+  img:'<b>이미지 · 제품 대표 컷(지면 유일 이미지 영역)</b>2L 본품 정면, 흰 수건과 운동복을 개어 둔 세탁실 선반 연출, 창가 자연광 측광. 스톡 이미지 금지'
+ },
+ features:{title:'핵심 특장점', items:[
+  {tag:'얼룩', t:'오염 유형별로 작용하는<br>8종 맞춤 효소', d:'얼룩마다 맞는 효소가 따로 움직여 찌든 때까지 분해합니다', m:'<u>처방</u> · 마이크로 딥클린'},
+  {tag:'원인균', t:'쉰내 원인균<br>모락셀라균 97% 세척', d:'피지와 땀을 먹고 늘어나는 균이 줄어, 냄새가 되살아나는 일이 적어집니다', m:'<u>시험 근거</u> · 세척 시험<sup>1)</sup>'},
+  {tag:'탈취', t:'땀 냄새 원인 성분<br>99% 탈취', d:'옷에 밴 아세트산을 세탁 과정에서 없앱니다', m:'<u>시험 근거</u> · 탈취 시험<sup>2)</sup>'}
+ ]},
+ price:{title:'판매 가격', sub:'세스코몰 기준 · 2026.11.23 확인', cols:['구분','용량','정상가','판매가'], cls:['','s','o','ff'],
+  rows:[['단품','2L','18,700원','15,700원'],['세트 [확인 필요]','2L x [확인 필요]','[확인 필요]','[확인 필요]']],
+  notes:['온라인 회원가이며, 쿠폰 적용가는 결제 단계에서 달라질 수 있습니다. 정기배송 주기: 2주 · 1개월 · 2개월 · 4개월']},
+ blocks:[
+  {kind:'pair', title:'함께 쓰면 좋은 마이랩 제품', sub:'세탁 전부터 마무리까지', items:[
+    {u:'색이 섞일까 걱정되는 빨래에', t:'이염방지시트 40매', d:'이염률 91% 감소 확인<sup>3)</sup>', img:'<b>제품 컷</b>'},
+    {u:'세탁기 속까지 관리할 때', t:'세탁조클리너', img:'<b>제품 컷</b>'},
+    {u:'헹굼 단계에 넣는', t:'섬유유연제 프리미엄', d:'12월 출시 예정 [확인 필요]', img:'<b>제품 컷</b>'}]}
+ ],
+ trust:'',
+ fn:['1) 모락셀라균 97% 세척 2) 땀 냄새 원인 성분(아세트산) 99% 탈취 — 시험기관 · 시험 조건 [확인 필요: 세스코몰 상세페이지 각주 대조] 3) 이염방지시트 40매, 이염률 91% 감소 확인 [확인 필요: 시험 조건]',
+     '※ 제한된 실험 조건에서 측정한 결과로, 실제 세탁 환경에 따라 달라질 수 있습니다.'],
+ cta:{kind:'shop',
+  main:'마른 뒤에도 <em>개운한 빨래</em>를 경험해 보세요',
+  label:'구매 문의', tel:'1588-1119', url:'www.cescomall.co.kr', qr:'QR<br>세스코몰'},
+ notes:[
+  ['자료 출처','세스코몰 상품 페이지 G2000001763(가격·고시정보, 2026.11.23 확인), 세스코몰 상세페이지 판독 내용(모락셀라균 97%, 아세트산 99%, 8종 효소, 2026.10.16 확인)'],
+  ['핵심 메시지','V18에서 ‘쉰내 원인균’ 한 가지에서 <b>‘얼룩과 냄새, 섬유 속 오염부터’</b>로 바꿨습니다. 쉰내는 세 특장점 가운데 하나라, 헤드 · 추천 빨래 · CTA가 얼룩(효소)과 냄새(원인균 · 탈취)를 함께 말하도록 맞췄습니다. 특장점 순서도 얼룩 → 원인균 → 탈취로 바꿨습니다'],
+  ['구성','빨래 고민 4개(헤드 바로 아래) · 특장점 3개(가로 배열 · 얼룩 · 원인균 · 탈취) → 가변 슬롯 1개: pair(함께 쓰면 좋은 제품) → 가격표. 제원표 없음(마이랩). 사용량 · 사용법 · 상품 정보 · 불검출 성분 블록은 넣지 않음'],
+  ['가변 슬롯','기준 4가지(작성 규칙 7-3)로 걸렀습니다. <b>cause</b>(고민 · 원인 · 해법)는 특장점 3개의 수치를 되풀이해 탈락. <b>how</b>(효소별 담당 오염)는 얼룩 특장점의 부연이고 근거가 확인되지 않아 탈락. <b>pair</b>(함께 쓰면 좋은 제품)는 특장점에 없는 새 정보이고 가격표의 세트 구성과 이어져 통과'],
+  ['중복 정리(V19)','리드에서 ‘8종 맞춤 효소’와 ‘97%’를 뺐습니다(특장점 제목과 중복). 특장점은 제목과 설명이 같은 말을 되풀이하지 않게 줄였고, 근거 줄에서 제목의 낱말(8종 맞춤 효소, 모락셀라균, 아세트산)을 뺐습니다. 설명의 ‘운동복 · 셔츠’는 빨래 고민 띠와 겹쳐 뺐습니다. CTA는 헤드와 같은 문장(섬유 속 오염부터 세척)이라 고객이 얻는 결과로 바꿨습니다. 가격 머리줄과 조건줄의 ‘세스코몰 기준’ 반복도 정리했습니다'],
+  ['추천 대상','생활용품은 누구나 계속 쓰는 제품이라 사람을 유형으로 나누지 않고, 빨래할 때 누구나 겪는 고민으로 썼습니다. 띠 제목도 ‘이런 빨래가 고민이라면’으로 바꿨습니다(V19)'],
+  ['뺀 것','특장점 ‘세스코 과학연구소 처방’은 제품만의 효익이 아니라 개발 주체 소개라 제외(V16, 작성 규칙 1-1). 저자극 축(더마테스트 · 아토피협회 추천품 · 알레르기 유발물질 26종 불검출)은 이번 지면에서 제외. 세척력 12% 향상은 비교 대상이 자사 기존 제품이라 제외'],
+  ['확인 필요','시험기관·조건, 8종 효소별 담당 오염, 겸용 여부, 세트 구성·가격, 이염방지시트 91%의 시험 조건, 세탁조클리너 · 섬유유연제 프리미엄의 정식 상품명과 출시 일정']
+ ]
+},
+
+/* ───────────── 3. 서비스 · 빈대방제 ───────────── */
+{
+ id:'bedbug', label:'서비스 · 빈대방제', type:'service',
+ variants:[
+  {name:'알까지 제거', why:'이미 물렸거나 흔적을 본 가정·시설. 숨은 빈대와 알까지 찾아 교차 방제한다는 제거력을 중심에 둡니다.'},
+  {name:'숙박시설 확산 차단', why:'객실이 벽·배관으로 이어진 호텔·모텔·펜션. 하루 만에 번지는 확산 속도를 근거로 탐지견 · 정기 모니터링을 권합니다.',
+   hero:{h1:'객실 하나에서 시작된 빈대,<br><em>번지기 전에 찾아냅니다</em>', lead:'탐지견 ‘세코’와 정기 모니터링으로 초기에 대응합니다'},
+   cta:{main:'손님이 묵는 방, <em>정기 점검</em>으로 지켜 보세요'}}
+ ],
+ targets:{title:'이럴 때<br>추천합니다', items:[
+  '해외여행 · 출장에서 돌아온 뒤','자고 일어나 물린 자국이 생겼을 때','매트리스 솔기에 검은 점이 보일 때','투숙객이 드나드는 숙박시설']},
+ hero:{
+  h1:'매트리스 틈에 숨은 빈대,<br><em>알까지 찾아 제거합니다</em>',
+  lead:'눈에 띄는 한두 마리가 아니라 서식 범위 전체를 봅니다',
+  name:'세스코<br>빈대방제 솔루션',
+  sub:'가정 · 숙박시설 · 다중이용시설',
+  img:'<b>이미지 · 서비스 대표 컷(지면 유일 이미지 영역)</b>객실 침대 매트리스 솔기를 세스코 전문가가 랜턴으로 점검하고, 옆에서 탐지견 ‘세코’가 냄새를 맡는 장면. 스톡 이미지 금지'
+ },
+ features:{title:'핵심 특장점', items:[
+  {tag:'진단', t:'눈으로 찾기 어려운 틈새까지<br>정밀 진단', d:'침대 주변과 가구, 벽 틈에 남은 분변과 탈피 흔적을 꼼꼼히 점검합니다'},
+  {tag:'제거', t:'물리적·화학적 방제를<br>번갈아 쓰는 3단계 집중 제거', d:'집진 장비와 고온 스팀, 검증된 약제를 교차 적용하고, 알이 깨어나는 9~10일 뒤 다시 확인합니다 [확인 필요: 서비스 매뉴얼 대조]', m:'<u>약제</u> · 기후에너지환경부 안전성·효과 검토 약제<sup>1)</sup>'},
+  {tag:'탐지', t:'가구를 옮기지 않고 찾는<br>빈대 탐지견 ‘세코’', d:'후각으로 알·성충·분변까지 1~2분 만에 찾아내고, 담당자가 한 번 더 살핍니다', m:'<u>탐지 성공률</u> · 95% 이상<sup>2)</sup>'},
+  {tag:'대응', t:'문제가 생기면<br>24시간 이내 출동 가능', d:'제거가 끝난 뒤에는 정기 모니터링으로 이어서 관리합니다'}
+ ]},
+ price:{title:'관리 방식 · 비용', sub:'객실 수 · 면적 · 현장 진단 결과에 따라 견적', cols:['관리 방식','이럴 때','비용'], cls:['','s','ff'],
+  rows:[['빈대 진단','빈대가 의심될 때','[확인 필요: 무료 여부]'],
+        ['빈대 제거','이미 발생했을 때','[확인 필요]원~'],
+        ['빈대 소독(1회)','유입 가능성을 줄이고 싶을 때','[확인 필요]원~'],
+        ['정기 모니터링','다시 들어오는지 꾸준히 살필 때','월 [확인 필요]원~']],
+  notes:['표의 비용은 시작가입니다. 빈대 탐지견 진단은 별도 유상 [확인 필요: 단가 기준]']},
+ blocks:[
+  {kind:'proof', pos:'top', title:'빈대, 한 번 들어오면 이렇게 번집니다', items:[
+    {n:'30m', l:'하루 최대 이동 거리'},
+    {n:'15~20개', l:'숙박시설에서 하루에 번지는 객실 수'},
+    {n:'18개월', l:'흡혈 없이 버티는 기간'},
+    {n:'약 16배', l:'빈대 모니터링 지수 증가<sup>3)</sup>'}]}
+ ],
+ trust:'',
+ fn:['1) 기후에너지환경부 안전성·효과 검토 약제 [확인 필요: 승인 표기]  2) 세스코 탐지견 운영 기준 [확인 필요: 근거]  3) 2010→2023년, 세스코 서비스 데이터 기준 지수(실제 발생 건수와 다름)',
+     '※ 수치는 세스코 빈대방제 솔루션 페이지 기준이며, 현장 조건에 따라 달라질 수 있습니다.'],
+ cta:{kind:'book',
+  main:'빈대인지 아닌지, <em>진단부터</em> 받아 보세요',
+  label:'무료 진단 신청 [확인 필요]', tel:'1588-1119', url:'www.cesco.co.kr', qr:'QR<br>진단 신청'},
+ notes:[
+  ['자료 출처','세스코 홈페이지 빈대방제 솔루션 페이지(2026.11.23 확인), 12월 원천소스 빈대방제 USP, 숙박시설 빈대 컨설팅 포인트'],
+  ['구성','확산 수치(proof)를 헤드 바로 아래로 올려 심각성을 먼저 보이고, 그 아래 추천 상황 4개 → 특장점 4개(진단 · 제거 · 탐지 · 대응, 세로 나열) → 가격표. 제원표 없음(서비스). 서비스 진행 단계 · 관리 대상 · 방문 전 준비 블록은 넣지 않음'],
+  ['가변 슬롯','위로 올린 proof 1개만 쓰고, 가격 위 가변 슬롯은 비웠습니다. V18의 <b>how</b>(3단계 집중 제거)는 제거 특장점의 설명(집진 장비 · 고온 스팀 · 약제 교차)을 그대로 되풀이해 기준(작성 규칙 7-3)에서 탈락했습니다. 그 블록에만 있던 ‘9~10일 뒤 다시 확인’은 제거 특장점 설명으로 옮겼습니다'],
+  ['중복 정리(V19)','리드가 특장점 세 개의 제목(정밀 진단 · 탐지견 · 물리적·화학적 방제)을 이어 붙인 문장이라 바꿨습니다. 한 줄 스펙의 ‘진단 · 제거 · 소독 · 정기 모니터링’은 가격표 행과 같아 뺐습니다. 특장점 근거 줄의 ‘빈대 진단’, ‘빈대 제거 · 정기 모니터링’(가격표와 중복), ‘별도 유상’(가격 조건줄과 중복)을 뺐고, ‘매트리스’가 헤드 · 추천 상황 · 특장점에 세 번 나와 특장점에서 바꿨습니다. 소독 증명서 · 리포트 발급은 CTA가 한 줄 카피로 바뀌며 지면에서 빠졌습니다'],
+  ['표기','작성 규칙 11-1(방제 서비스 금지 표현) 적용. ‘국내 유일’ · ‘완전 박멸’ 같은 최상급·단정 표현 제외'],
+  ['확인 필요','약제 승인 표기 문구, 탐지견 95% 근거, 3단계 구성과 재확인 시점(9~10일), 24시간 이내 출동, 관리 방식별 비용, 무료 진단 표기 승인']
+ ]
+}
+];
+
+/* =====================================================================
+   렌더러 — 디자인 코드. 데이터만 바꿀 때는 아래를 수정하지 않습니다.
+   ===================================================================== */
+/* 세스코 CI 로고 — 홈페이지 CI/BI 페이지 이미지(186×109px, 2026.11.23 확인). 인쇄 전 CI 원본(AI/EPS)으로 교체 */
+const LOGO = 'data:image/png;base64,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';
+const COMMON_NOTES = [
+  ['지면 하단','가격표를 강조 상자로 두고(영업 현장용), 환경가전은 그 아래 제원표, 맨 아래 CTA는 제품 한 줄 카피 + 고객센터 · 필요한 접점 정보만 둡니다. 명함 부착 영역은 없습니다(V19)'],
+  ['가변 슬롯 · 제원표','특장점 아래 · 가격 위 자리는 제품마다 고르는 가변 슬롯입니다. 기준 4가지를 통과한 블록만 0~2개 넣고, 없으면 비웁니다. 제원표는 환경가전에만 넣고(필수) 가격표 바로 아래에 둡니다(작성 규칙 V19 7장)'],
+  ['로고','홈페이지 CI 이미지(186×109px)를 임시로 넣음. 인쇄 전 CI 원본(AI/EPS)으로 교체 [확인 필요: CI 원본 파일]'],
+  ['색','세스코 CI 블루(#0078C7) 중심 · 딥 블루 보조. 노란색은 쓰지 않고, 레드는 로고에만']
+];
+const MM = 96/25.4;
+const S = {pid:DATA[0].id, vi:0, side:false, spec3:false, specC:false};
+const chk = s => String(s).replace(/\[확인 필요[^\]]*\]/g, m=>`<span class="chk">${m}</span>`);
+const merge = (p,vi) => { const v=p.variants[vi]||{}; return {hero:{...p.hero,...(v.hero||{})}, cta:{...p.cta,...(v.cta||{})}}; };
+
+function specHTML(sp, preview3, compact){
+  let items = sp.items;
+  /* 간략형: 항목명 · 값을 한 문단으로. 인증 마크 자리와 누끼 이미지는 두지 않습니다 */
+  if(compact){
+    const tv = i => i.colors ? i.colors.map(c=>c[0]).join(' · ') : i.v;
+    return `<div class="specs-c" data-compact><b class="t">${sp.title.replace(/^•\s*/,'')} 제원</b>${items.map(i=>`<b>${i.k}</b> ${tv(i)}`).join('<i>|</i>')}</div>`;
+  }
+  if(preview3) items = items.filter(i=>!i.colors).slice(0,3);
+  const val = i => i.colors ? i.colors.map(c=>`<span class="chip"><i style="background:${c[1]}"></i>${c[0]}</span>`).join('') : i.v;
+  if(items.length<=3){
+    return `<div class="specs tbl"><div><p class="stitle">${sp.title}</p>
+      <table class="st"><tr>${items.map(i=>`<th>${i.k}</th>`).join('')}</tr><tr>${items.map(i=>`<td>${val(i)}</td>`).join('')}</tr></table></div>
+      <div class="ph">${sp.cut||'<b>이미지 · 제품 누끼</b>'}</div></div>`;
+  }
+  return `<div class="specs list"><div><p class="stitle">${sp.title}</p>
+    <dl>${items.map(i=>{const w=i.colors||String(i.v).replace(/<[^>]+>/g,'').length>30;return `<dt>${i.k}</dt><dd${w?' class="w"':''}>${val(i)}</dd>`;}).join('')}</dl></div>
+    <div class="ph">${sp.mark||'<b>인증 마크 자리</b>'}</div></div>`;
+}
+
+function blockHTML(b){
+  const h3 = `<h3>${b.title}${b.sub?`<small>${b.sub}</small>`:''}</h3>`;
+  const n = (b.items||[]).length;
+  if(b.kind==='proof') return `<div class="blk">${h3}<div class="proof" style="grid-template-columns:repeat(${n},1fr)">${b.items.map(i=>`<div class="c"><div class="n">${i.n}</div><div class="l">${i.l}</div></div>`).join('')}</div></div>`;
+  if(b.kind==='how') return `<div class="blk">${h3}<div class="how ${b.flow?'flow':''}" style="grid-template-columns:repeat(${n},1fr)">${b.items.map((i,k)=>`<div class="c">${b.flow?`<span class="no">${k+1}</span>`:''}<div class="t">${i.t}</div><div class="d">${i.d}</div></div>`).join('')}</div></div>`;
+  if(b.kind==='cause'){ const c=b.cols||['이런 고민','원인','세스코 해법'];
+    return `<div class="blk">${h3}<div class="cause"><div class="r h"><div>${c[0]}</div><div>${c[1]}</div><div>${c[2]}</div></div>${b.items.map(i=>`<div class="r"><div class="q">${i.q}</div><div>${i.c}</div><div class="a">${i.a}</div></div>`).join('')}</div></div>`; }
+  if(b.kind==='pair') return `<div class="blk">${h3}<div class="pair" style="grid-template-columns:repeat(${n},1fr)">${b.items.map(i=>`<div class="c"><div class="ph">${i.img||'<b>제품 컷</b>'}</div><div><div class="u">${i.u||''}</div><div class="t">${i.t}</div>${i.d?`<div class="d">${i.d}</div>`:''}</div></div>`).join('')}</div></div>`;
+  if(b.kind==='pick') return `<div class="blk">${h3}<div class="pick">${b.items.map(i=>`<div class="r"><div>${i.q}</div><div class="a">${i.a}</div></div>`).join('')}</div></div>`;
+  if(b.kind==='list') return `<div class="blk">${h3}<ul class="clist" style="grid-template-columns:repeat(${b.cols||2},1fr)">${b.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+  if(b.kind==='point') return `<div class="blk">${h3}<div class="point"><div class="n">${b.n}<small>${b.l||''}</small></div><div class="d">${b.d}</div></div></div>`;
+  return '';
+}
+function blocksHTML(bl){
+  let out='', i=0;
+  while(i<bl.length){
+    if(bl[i].half && bl[i+1] && bl[i+1].half){ out+=`<div class="brow blk">${blockHTML(bl[i])}${blockHTML(bl[i+1])}</div>`; i+=2; }
+    else { out+=blockHTML(bl[i]); i++; }
+  }
+  return out;
+}
+
+function ctaHTML(c){
+  /* 제품 한 줄 카피 + 고객센터 · 필요한 접점 정보. 훅 · 근거 목록 · 명함 영역은 두지 않습니다 */
+  const contact = `<div class="contact"><div class="clabel">${c.label}</div><div class="ctel">${c.tel}</div><div class="curl">${c.url}</div></div>`;
+  const qr = c.qr ? `<div class="qr">${c.qr}</div>` : '';
+  return `<section class="cta ${c.kind}${c.qr?' hasqr':''}"><p class="cmain">${c.main}</p>${contact}${qr}</section>`;
+}
+
+function sheetHTML(p, vi){
+  const {hero, cta} = merge(p, vi);
+  const f = p.features;
+  let h = `<div class="sheet" data-pid="${p.id}" data-vi="${vi}">
+  <div class="logo-row"><img class="logo" src="${LOGO}" alt="세스코 CESCO"></div>
+  <section class="hero"><div><h1>${hero.h1}</h1><p class="lead">${hero.lead}</p><div class="pname">${hero.name}</div><div class="psub">${hero.sub}</div></div>
+    <div class="ph hero-img">${hero.img}</div></section>`;
+  const bl = p.blocks||[], at = k => bl.filter(b=>(b.pos||'bottom')===k);
+  h += blocksHTML(at('top'));
+  if(p.targets) h += `<section class="tgt${p.targets.items.some(x=>x.replace(/<[^>]+>/g,'').length>22)?' two':''}"><div class="tl">${p.targets.title}</div><ul>${p.targets.items.map(x=>`<li>${x}</li>`).join('')}</ul></section>`;
+  h += blocksHTML(at('mid'));
+  const fn = f.items.length;
+  if(fn<=3) h += `<section class="sec"><h2>${f.title}</h2><div class="fcols" style="grid-template-columns:repeat(${fn},1fr)">${f.items.map(x=>`<div class="fcol"><span class="ftag">${x.tag}</span><div class="ft">${x.t}</div><div class="fd">${x.d}</div>${x.m?`<div class="fm">${x.m}</div>`:''}</div>`).join('')}</div></section>`;
+  else h += `<section class="sec"><h2>${f.title}</h2><div class="frows">${f.items.map(x=>`<div class="frow"><span class="ftag">${x.tag}</span><div class="ft">${x.t}</div><div class="fd">${x.d}${x.m?`<div class="fm">${x.m}</div>`:''}</div></div>`).join('')}</div></section>`;
+  /* 가변 슬롯(특장점 아래 · 가격 위): 제품마다 고른 블록 */
+  h += blocksHTML(at('bottom'));
+  /* 가격표: 지면 아래쪽 강조 상자 */
+  const pr = p.price;
+  h += `<section class="price"><h2>${pr.title}<small class="psub2">${pr.sub||''}</small></h2>
+    <table class="pt"><tr>${pr.cols.map(x=>`<th>${x}</th>`).join('')}</tr>${pr.rows.map(r=>`<tr>${r.map((x,k)=>`<td class="${pr.cls[k]||''}">${x}</td>`).join('')}</tr>`).join('')}</table>
+    ${(pr.notes||[]).map(x=>`<p class="pnotes">※ ${x}</p>`).join('')}</section>`;
+  /* 제원표: 환경가전에만 · 가격표 바로 아래 */
+  if(p.type==='appliance' && p.specs) h += `<section class="sec" data-specs>${specHTML(p.specs, S.spec3, S.specC||p.specs.compact===true)}</section>`;
+  if(p.trust) h += `<div class="trust">${p.trust}</div>`;
+  h += `<div class="fn">${p.fn.map(x=>`<p>${x}</p>`).join('')}</div>`;
+  h += ctaHTML(cta) + `</div>`;
+  return chk(h);
+}
+
+function measure(el){
+  const fixed = el.clientHeight;               // 지면 높이(297mm)
+  const prev = el.style.height; el.style.height='auto';
+  const need = el.scrollHeight; el.style.height = prev;
+  const over = Math.ceil((need - fixed)/fixed*297 - 0.3);
+  // CTA 메인 한 줄 검사
+  const cm = el.querySelector('.cmain'); const one = cm ? cm.getBoundingClientRect().height < parseFloat(getComputedStyle(cm).lineHeight)*1.5 && cm.scrollWidth<=cm.clientWidth+1 : true;
+  return {over, one};
+}
+
+function render(){
+  const p = DATA.find(d=>d.id===S.pid);
+  const nV = p.variants.length;
+  if(S.vi>=nV) S.vi=0;
+  const vis = S.side ? [...Array(nV).keys()] : [S.vi];
+  const pages = document.getElementById('pages');
+  pages.className = 'pages' + (S.side?' side':'');
+  pages.innerHTML = vis.map(vi=>`<div class="pagewrap"><div class="cap"><b>${vi+1}안</b> · ${p.variants[vi].name} <span class="badge" data-b="${vi}"></span></div>${sheetHTML(p,vi)}</div>`).join('');
+  // 배지
+  let worst = -999, allOne = true;
+  pages.querySelectorAll('.sheet').forEach(sh=>{
+    /* 지면이 남으면 블록을 더 넣지 않고 대표 이미지를 키웁니다 (최대 +30mm) */
+    { const hi=sh.querySelector('.hero-img'); hi.style.minHeight=''; const fixed=sh.clientHeight; sh.style.height='auto'; const need=sh.scrollHeight; sh.style.height='';
+      sh.style.setProperty('--xg','0mm'); let slack=(fixed-need)/fixed*297; if(slack>6){ const g=Math.min(30,slack-3); hi.style.minHeight=(44+g)+'mm'; slack-=g; }
+      /* 그래도 남으면 블록 사이 간격을 고르게 벌립니다 (블록당 최대 4mm) */
+      if(slack>4){ const n=sh.children.length-1; sh.style.setProperty('--xg', Math.min(4,(slack-2)/n).toFixed(2)+'mm'); } }
+    /* 제원표를 넣고 지면이 넘치면 간략형(텍스트)으로 자동 전환 */
+    { const sp=sh.querySelector('[data-specs]'); if(sp && !sp.querySelector('[data-compact]') && measure(sh).over>0){ sp.innerHTML=chk(specHTML(p.specs,false,true)); sh.dataset.autoc='1'; } }
+    const r = measure(sh); worst = Math.max(worst, r.over); allOne = allOne && r.one;
+    const b = pages.querySelector(`.badge[data-b="${sh.dataset.vi}"]`);
+    b.className = 'badge ' + (r.over>0||!r.one?'over':'ok');
+    b.textContent = r.over>0 ? `지면 초과 약 ${r.over}mm` : (r.one?'지면 OK':'CTA 메인 2줄');
+  });
+  // 상단 바
+  const bar = document.getElementById('bar');
+  bar.innerHTML = `
+    <div class="grp"><b>제품</b>${DATA.map(d=>`<button data-p="${d.id}" class="${d.id===S.pid?'on':''}">${d.label}</button>`).join('')}</div>
+    <div class="grp"><b>안</b>${p.variants.map((v,i)=>`<button data-v="${i}" class="${!S.side&&i===S.vi?'on':''}">${i+1}안</button>`).join('')}
+      <button data-side class="${S.side?'on':''}">${nV}안 나란히</button></div>
+    <div class="grp"><button data-spec3 class="${S.spec3?'on':''}" ${p.type!=='appliance'?'disabled':''}>제원 3개 이하 미리보기</button>
+      <button data-specc class="${S.specC?'on':''}" ${p.type!=='appliance'?'disabled':''}>제원 간략형 미리보기</button>
+      <button data-notes>메모 숨기기</button><button data-print>인쇄</button></div>
+    <div class="grp"><span class="badge ${worst>0||!allOne?'over':'ok'}">${worst>0?`지면 초과 약 ${worst}mm`:(allOne?'지면 OK':'CTA 메인 2줄')}</span></div>`;
+  bar.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{S.pid=b.dataset.p;S.vi=0;S.side=false;S.spec3=false;S.specC=false;go();});
+  bar.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{S.vi=+b.dataset.v;S.side=false;go();});
+  bar.querySelector('[data-side]').onclick=()=>{S.side=!S.side;go();};
+  bar.querySelector('[data-spec3]').onclick=()=>{S.spec3=!S.spec3;S.specC=false;render();};
+  bar.querySelector('[data-specc]').onclick=()=>{S.specC=!S.specC;S.spec3=false;render();};
+  bar.querySelector('[data-notes]').onclick=()=>document.body.classList.toggle('no-notes');
+  bar.querySelector('[data-print]').onclick=()=>window.print();
+  // 디자이너 노트
+  document.getElementById('notes').innerHTML = chk(`
+    <h4>디자이너 노트 · ${p.label}</h4>
+    ${p.variants.map((v,i)=>`<div class="vr ${(!S.side&&i===S.vi)?'cur':''}"><b>${i+1}안 · ${v.name}</b><br>${v.why}</div>`).join('')}
+    <h4>메모</h4><table>${(p.notes||[]).map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('')}</table>
+    <h4>공통 메모</h4><table>${COMMON_NOTES.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('')}</table>`);
+}
+function go(){ location.hash = `${S.pid}/${S.vi+1}${S.side?'/side':''}`; render(); }
+function fromHash(){
+  const [id,v,side] = decodeURIComponent(location.hash.slice(1)).split('/');
+  if(DATA.some(d=>d.id===id)){ S.pid=id; S.vi=Math.max(0,(+v||1)-1); S.side=side==='side'; }
+}
+window.addEventListener('hashchange',()=>{fromHash();render();});
+fromHash();
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(render); else render();
+render();
+</script>
+</body>
+</html>
