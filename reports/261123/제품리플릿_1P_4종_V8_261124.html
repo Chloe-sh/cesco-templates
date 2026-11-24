@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>세스코 1P 리플릿 통합 템플릿 · A안 · V20 · 261124</title>
+<title>세스코 1P 리플릿 통합 템플릿 · A안 · V22 · 261124</title>
 <style>
 :root{
   /* 세스코 CI 기준: 블루 #0078C7 · 레드 #E7141F(로고 전용) · 그레이 #5A5A5D */
@@ -83,6 +83,15 @@ u{text-decoration:none;font-weight:700;color:var(--navy)}
 .fcol .ft{font-size:10pt}
 .fcol .fd{font-size:7.9pt}
 .fcol .fm{margin-top:auto;padding-top:1.2mm;border-top:.2mm solid var(--line)}
+/* 특장점 4~5개 · B안: 가로 카드(좁고 길게) */
+.fcols.tall{gap:2mm}
+.fcols.tall .fcol{padding:2.2mm 2.2mm 2.2mm;gap:1.5mm}
+.fcols.tall .ftag{padding:.7mm 2mm;font-size:7.2pt}
+.fcols.tall .ft{font-size:9.4pt;line-height:1.34;letter-spacing:-.02em}
+.fcols.tall .fd{font-size:7.7pt;line-height:1.5}
+.fcols.tall .fm{font-size:6.5pt;line-height:1.45}
+.fcols.tall.n4 .ft{font-size:9.8pt}
+.fcols.tall.n4 .fd{font-size:7.9pt}
 
 .price{margin-top:2.6mm;border:.5mm solid var(--navy);border-radius:2mm;overflow:hidden}
 .price h2{margin:0;background:var(--navy);color:#fff;font-size:11pt;padding:1.5mm 3.2mm;display:flex;align-items:baseline;gap:2.4mm}
@@ -170,8 +179,8 @@ table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--l
 .point .d{font-size:8.2pt;line-height:1.48}
 
 .trust{margin-top:1.8mm;font-size:8pt;font-weight:700;color:var(--navy);text-align:center;border-top:.2mm solid var(--line);border-bottom:.2mm solid var(--line);padding:1mm 0;line-height:1.45}
-.fn{margin-top:1.6mm;font-size:6.2pt;color:var(--sub);line-height:1.5}
-.fn p+p{margin-top:.4mm}
+.fn{margin-top:1.2mm;font-size:5.6pt;color:var(--sub);line-height:1.36;letter-spacing:-.01em}
+.fn p+p{margin-top:.2mm}
 
 /* CTA — 제품 한 줄 카피 + 고객센터 · 접점 정보 (V19) */
 .cta{margin-top:auto;background:var(--navy);color:#fff;border-radius:2.4mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center;padding:3.2mm 5mm}
@@ -217,7 +226,7 @@ body.no-notes .notes{display:none}
 <script>
 /* =====================================================================
    DATA — 제품·서비스를 추가할 때는 이 배열에 객체 하나만 추가합니다.
-   작성 규칙: 세스코_1P리플릿_통합템플릿_작성규칙_V20_261124.md
+   작성 규칙: 세스코_1P리플릿_통합템플릿_작성규칙_V22_261124.md
    가변 슬롯(특장점 아래 · 가격 위): 기준 4가지(새 정보 · 구매 판단 · 근거 · 지면의 몫)를 통과한 블록만 0~2개. 없으면 비웁니다.
    가격표는 지면 아래쪽에 강조 상자로 둡니다. 영업 현장에서 가격을 바로 짚을 수 있어야 합니다.
    제원표는 환경가전에만 넣고(필수), 가격표 바로 아래에 둡니다. 특장점이 많아 지면이 부족하면 텍스트만 쓰는 간략형으로 바뀝니다(specs.compact:true 또는 지면 초과 시 자동).
@@ -235,7 +244,7 @@ const DATA = [
   {name:'살균엔진', why:'제품의 가장 큰 차별점인 ‘청정엔진 + 살균엔진 2 in 1’과 세스코 정기 관리를 앞에 둡니다.'},
   {name:'자동 선제 살균', why:'‘바이러스 선제공격 시스템™’과 6가지 센서. 사람이 모이는 매장·어린이집·대기실을 겨냥합니다.',
    hero:{h1:'사람이 모이면,<br><em>살균엔진이 먼저 움직입니다</em>', lead:'켜 두기만 하면 공기 상태를 읽고 알아서 대응합니다'},
-   cta:{main:'붐비는 시간에도 <em>살균된 공기</em>를 누려 보세요'}}
+   cta:{main:'붐비는 시간에도 <em>살균된 공기</em>로 채워 보세요'}}
  ],
  targets:{title:'이런 공간에<br>추천합니다', items:[
   '환절기마다 가족의 호흡기 건강이 신경 쓰이는 넓은 거실',
@@ -244,21 +253,21 @@ const DATA = [
   '손님이 드나들고 조리 냄새가 남는 매장']},
  hero:{
   h1:'청정만으로는 부족해서,<br><em>살균엔진을 따로 만들었습니다</em>',
-  lead:'청정엔진과 살균엔진, 두 엔진으로 공기를 관리해야 합니다',
+  lead:'먼지는 거르고 바이러스는 살균해, 한 대로 실내 공기를 관리합니다',
   name:'세스코 트루살균 공기청정기<br>판테온 25평형',
   sub:'공기청정 + 공기살균',
   img:'<b>이미지 · 제품 대표 컷(지면 유일 이미지 영역)</b>판테온 25평형 코튼 화이트·포레스트 그린 2대, 넓은 거실 또는 대기 공간 설치 컷. 상단 토출부와 하단 에어리바운드 토출구가 보이는 각도. 스톡 이미지 금지'
  },
  features:{title:'핵심 특장점', items:[
-  {tag:'살균', t:'공기 중 인플루엔자 바이러스<br>99.99% 살균<sup>1)</sup>', d:'흡입한 공기를 UV-C LED로 직접 살균합니다.', m:'<u>적용 기술</u> · UV살균터널 pro™ | <u>시험 근거</u> · 부유 바이러스·세균 99.9% 감소<sup>2)</sup>'},
-  {tag:'자동', t:'CO₂ 농도가 높아지면<br>살균엔진이 스스로 가동', d:'사람이 모여 공기가 탁해지는 순간 살균을 먼저 시작합니다.', m:'<u>적용 기술</u> · 바이러스 선제공격 시스템™'},
-  {tag:'청정', t:'0.01㎛ 극초미세먼지<br>99.999% 제거<sup>3)</sup>', d:'H13 구리 헤파필터를 포함한 4단계 하이엔드 필터로 걸러냅니다.', m:'<u>시험 근거</u> · 부유 미세플라스틱 99.9% 이상 제거<sup>4)</sup>(KOTITI 인증)'},
-  {tag:'바닥', t:'가라앉은 바닥 먼지까지<br>띄워서 96.7% 제거<sup>5)</sup>', d:'하단에서 바람을 내보내고 360° 방향에서 다시 흡입합니다.', m:'<u>적용 기술</u> · 에어리바운드™'},
-  {tag:'감지', t:'공기 상태를 감지하는<br>6가지 초정밀 센서', d:'실내 공기질을 실시간으로 확인하고 환기 시점을 알려 줍니다.', m:'<u>센서</u> · 극초미세먼지·냄새(VOCs)·CO₂·온도·습도·라돈(옵션)'}
+  {tag:'살균', t:'공기 중 인플루엔자 바이러스<br>99.99% 살균<sup>1)</sup>', d:'흡입한 공기를 UV-C LED로 직접 살균합니다', m:'<u>적용 기술</u> · UV살균터널 pro™ | <u>시험 근거</u> · 부유 바이러스·세균 99.9% 감소<sup>2)</sup>'},
+  {tag:'자동', t:'CO₂ 농도가 높아지면<br>살균엔진이 스스로 가동', d:'사람이 모여 공기가 탁해지는 순간 살균을 먼저 시작합니다', m:'<u>적용 기술</u> · 바이러스 선제공격 시스템™'},
+  {tag:'청정', t:'0.01㎛ 극초미세먼지<br>99.999% 제거<sup>3)</sup>', d:'H13 구리 헤파필터를 포함한 4단계 하이엔드 필터로 걸러냅니다', m:'<u>시험 근거</u> · 부유 미세플라스틱 99.9% 이상 제거<sup>4)</sup>(KOTITI 인증)'},
+  {tag:'바닥', t:'가라앉은 바닥 먼지까지<br>띄워서 96.7% 제거<sup>5)</sup>', d:'하단에서 바람을 내보낸 뒤 360° 방향에서 다시 흡입합니다', m:'<u>적용 기술</u> · 에어리바운드™'},
+  {tag:'감지', t:'공기 상태를 감지하는<br>6가지 초정밀 센서', d:'실내 공기질을 실시간으로 확인하고 환기할 때를 알려 줍니다', m:'<u>센서</u> · 극초미세먼지·냄새(VOCs)·CO₂·온도·습도·라돈(옵션)'}
  ]},
  price:{title:'렌탈·구매 가격', sub:'두 색상 동일가', cols:['구분','정상가','판매가'], cls:['','o','ff'],
   rows:[['렌탈 (월 렌탈료)','월 50,900원','월 37,900원'],['일시불 구매','1,527,000원','1,093,000원']],
-  notes:['렌탈 시 세스코 사이언스 케어 정기 방문: 기능성 필터·카본커버필터 4개월, 프리필터·하이엔드 헤파필터 12개월 교체, 분리세척 딥클리닝 12개월 | 의무사용기간 [확인 필요] | 렌탈등록비 [확인 필요]',
+  notes:['렌탈하면 세스코 사이언스 케어가 정기 방문합니다. 기능성 필터·카본커버필터는 4개월, 프리필터·하이엔드 헤파필터는 12개월마다 교체하고, 12개월마다 분리세척 딥클리닝을 합니다 | 의무사용기간 [확인 필요] | 렌탈등록비 [확인 필요]',
          '라돈 센서 선택 시 월 렌탈료 추가 · 최초 설치 시 유해가스 필터 기본 제공 · 플러스알파케어는 가정집 한정 [확인 필요: 발행 시점 가격]']},
  specs:{title:'• 트루살균 공기청정기 판테온 25평형', items:[
   {k:'색상', colors:[['코튼 화이트','#f6f4ee'],['포레스트 그린','#2f4b3a']]},
@@ -308,11 +317,11 @@ const DATA = [
   img:'<b>이미지 · 제품 대표 컷(지면 유일 이미지 영역)</b>2 L 본품 정면, 흰 수건과 운동복을 개어 둔 세탁실 선반 연출, 창가 자연광 측광. 스톡 이미지 금지'
  },
  features:{title:'핵심 특장점', items:[
-  {tag:'얼룩', t:'오염 유형별로 작용하는<br>8종 맞춤 효소', d:'얼룩마다 맞는 효소가 따로 움직여 찌든 때까지 분해합니다', m:'<u>처방</u> · 마이크로 딥클린'},
-  {tag:'원인균', t:'쉰내 원인균<br>모락셀라균 97% 세척<sup>1)</sup>', d:'피지와 땀을 먹고 늘어나는 균이 줄어, 냄새가 되살아나는 일이 적어집니다', m:'<u>시험 근거</u> · 세척 시험'},
-  {tag:'탈취', t:'땀 냄새 원인 성분<br>99% 탈취<sup>2)</sup>', d:'옷에 밴 아세트산을 세탁 과정에서 없앱니다', m:'<u>시험 근거</u> · 탈취 시험'}
+  {tag:'얼룩', t:'오염 유형별로 작용하는<br>8종 맞춤 효소', d:'때의 성분에 맞는 효소가 찌든 얼룩을 분해합니다', m:'<u>적용 처방</u> · 마이크로 딥클린'},
+  {tag:'원인균', t:'쉰내 원인균<br>모락셀라균 97% 세척<sup>1)</sup>', d:'피지와 땀을 먹고 늘어나 냄새를 만드는 균을 세탁 단계에서 관리합니다', m:'<u>시험 근거</u> · 세척 시험'},
+  {tag:'탈취', t:'땀 냄새 원인 성분<br>99% 탈취<sup>2)</sup>', d:'옷에 밴 아세트산을 세탁 과정에서 탈취합니다', m:'<u>시험 근거</u> · 탈취 시험'}
  ]},
- price:{title:'판매 가격', sub:'세스코몰 기준 · 2026.11.23 확인', cols:['구분','용량','정상가','판매가'], cls:['','s','o','ff'],
+ price:{title:'판매 가격', sub:'세스코몰 기준(2026.11.23)', cols:['구분','용량','정상가','판매가'], cls:['','s','o','ff'],
   rows:[['단품','2 L','18,700원','15,700원'],['세트 [확인 필요]','2 L × [확인 필요]','[확인 필요]','[확인 필요]']],
   notes:['온라인 회원가이며, 쿠폰 적용가는 결제 단계에서 달라질 수 있습니다. 정기배송 주기: 2주·1개월·2개월·4개월']},
  blocks:[
@@ -325,7 +334,7 @@ const DATA = [
  fn:['1) 세스코 마이랩 세탁세제 프리미엄: 모락셀라균 97% 세척. 2) 세스코 마이랩 세탁세제 프리미엄: 땀 냄새 원인 성분(아세트산) 99% 탈취. 3) 세스코 마이랩 이염방지시트 40매: 이염률 91% 감소 확인. [확인 필요: 세스코몰 상세페이지 각주 대조]',
      '※ 사용 환경에 따라 결과가 달라질 수 있음.'],
  cta:{kind:'shop',
-  main:'마른 뒤에도 <em>개운한 빨래</em>를 경험해 보세요',
+  main:'얼룩도 냄새도, <em>세제부터</em> 바꿔 보세요',
   label:'구매 문의', tel:'1588-1119', url:'www.cescomall.co.kr', qr:'QR<br>세스코몰'},
  notes:[
   ['자료 출처','세스코몰 상품 페이지 G2000001763(가격·고시정보, 2026.11.23 확인), 세스코몰 상세페이지 판독 내용(모락셀라균 97%, 아세트산 99%, 8종 효소, 2026.10.16 확인)'],
@@ -352,23 +361,23 @@ const DATA = [
   '해외여행·출장에서 돌아온 뒤','자고 일어나 물린 자국이 생겼을 때','매트리스 솔기에 검은 점이 보일 때','투숙객이 드나드는 숙박시설']},
  hero:{
   h1:'매트리스 틈에 숨은 빈대,<br><em>알까지 찾아 제거합니다</em>',
-  lead:'눈에 띄는 한두 마리가 아니라 서식 범위 전체를 봅니다',
+  lead:'한 마리가 보였다면, 보이지 않는 곳까지 진단합니다',
   name:'세스코<br>빈대방제 솔루션',
   sub:'가정·숙박시설·다중이용시설',
   img:'<b>이미지 · 서비스 대표 컷(지면 유일 이미지 영역)</b>객실 침대 매트리스 솔기를 세스코 전문가가 랜턴으로 점검하고, 옆에서 탐지견 ‘세코’가 냄새를 맡는 장면. 스톡 이미지 금지'
  },
  features:{title:'핵심 특장점', items:[
-  {tag:'진단', t:'눈으로 찾기 어려운 틈새까지<br>정밀 진단', d:'침대 주변과 가구, 벽 틈에 남은 분변과 탈피 흔적을 꼼꼼히 점검합니다'},
-  {tag:'제거', t:'물리적·화학적 방제를<br>번갈아 쓰는 3단계 집중 제거', d:'집진 장비와 고온 스팀, 검증된 약제를 교차 적용하고, 알이 깨어나는 9~10일 뒤 다시 확인합니다 [확인 필요: 서비스 매뉴얼 대조]', m:'<u>약제</u> · 기후에너지환경부 안전성·효과 검토 약제<sup>1)</sup>'},
-  {tag:'탐지', t:'가구를 옮기지 않고 찾는<br>빈대 탐지견 ‘세코’', d:'후각으로 알·성충·분변까지 1~2분 만에 찾아내고, 담당자가 한 번 더 살핍니다', m:'<u>탐지 성공률</u> · 95% 이상<sup>2)</sup>'},
+  {tag:'진단', t:'눈으로 찾기 어려운 틈새까지<br>정밀 진단', d:'침대 주변과 가구, 벽 틈에 남은 배설물 자국과 허물을 점검합니다'},
+  {tag:'제거', t:'한 번으로 끝내지 않는<br>3단계 집중 제거', d:'집진 장비로 빨아들이고 고온 스팀과 검증된 약제를 번갈아 쓴 뒤, 알이 깨어나는 9~10일 뒤 한 번 더 확인합니다 [확인 필요: 서비스 매뉴얼 대조]', m:'<u>약제</u> · 기후에너지환경부 안전성·효과 검토<sup>1)</sup>'},
+  {tag:'탐지', t:'가구를 옮기지 않고 찾는<br>빈대 탐지견 ‘세코’', d:'알, 성충, 배설물을 냄새로 1~2분 만에 찾아내고, 담당자가 직접 확인합니다', m:'<u>탐지 성공률</u> · 95% 이상<sup>2)</sup>'},
   {tag:'대응', t:'문제가 생기면<br>24시간 이내 출동 가능', d:'제거가 끝난 뒤에는 정기 모니터링으로 이어서 관리합니다'}
  ]},
  price:{title:'관리 방식·비용', sub:'객실 수·면적·현장 진단 결과에 따라 견적', cols:['관리 방식','이럴 때','비용'], cls:['','s','ff'],
   rows:[['빈대진단','빈대가 의심될 때','[확인 필요: 무료 여부]'],
         ['빈대 제거','이미 발생했을 때','[확인 필요]원~'],
         ['빈대 소독(1회)','유입 가능성을 줄이고 싶을 때','[확인 필요]원~'],
-        ['정기 모니터링','다시 들어오는지 꾸준히 살필 때','월 [확인 필요]원~']],
-  notes:['표의 비용은 시작가입니다. 빈대 탐지견 진단은 별도 유상 [확인 필요: 단가 기준]']},
+        ['정기 모니터링','다시 생기지 않게 관리하고 싶을 때','월 [확인 필요]원~']],
+  notes:['표의 비용은 시작가입니다. 탐지견 진단은 비용이 따로 듭니다 [확인 필요: 단가 기준]']},
  blocks:[
   {kind:'proof', pos:'top', title:'빈대, 한 번 들어오면 이렇게 번집니다', items:[
     {n:'30m', l:'하루 최대 이동 거리'},
@@ -380,7 +389,7 @@ const DATA = [
  fn:['1) 기후에너지환경부 안전성·효과 검토 약제 [확인 필요: 승인 표기]  2) 세스코 탐지견 운영 기준 [확인 필요: 근거]  3) 2010→2023년, 세스코 서비스 데이터 기준 지수(실제 발생 건수와 다름)',
      '※ 수치는 세스코 빈대방제 솔루션 페이지 기준이며, 현장 조건에 따라 달라질 수 있습니다.'],
  cta:{kind:'book',
-  main:'빈대인지 아닌지, <em>진단부터</em> 받아 보세요',
+  main:'빈대가 의심될 때, <em>세스코 진단</em>으로 확인하세요',
   label:'무료 진단 신청 [확인 필요]', tel:'1588-1119', url:'www.cesco.co.kr', qr:'QR<br>진단 신청'},
  notes:[
   ['자료 출처','세스코 홈페이지 빈대방제 솔루션 페이지(2026.11.23 확인), 12월 원천소스 빈대방제 USP, 숙박시설 빈대 컨설팅 포인트'],
@@ -398,7 +407,7 @@ const DATA = [
   {name:'넓은 공간의 첫인상', why:'발향력(최대 100평)과 향료 검증을 ‘넓은 공간의 향기’ 하나로 묶은 종합안입니다. POD의 커뮤니케이션 메시지를 헤드에 그대로 썼습니다.'},
   {name:'대형 공간 발향력', why:'디퓨저를 여러 대 놓아도 입구에서만 향이 나고 편차가 생겨 고민인 대형 공간 운영자. 1안이 향기의 중요성을 말한다면 2안은 ‘넓어도 닿는다’는 성능을 앞세웁니다.',
    hero:{h1:'입구에서만 나던 향,<br><em>공간 끝까지 보냅니다</em>', lead:'소형 디퓨저 여러 개로도 고르지 않던 향을 바로잡습니다'},
-   cta:{main:'넓은 공간 어디서나 <em>같은 향</em>으로 맞아 보세요'}}
+   cta:{main:'공간 어디서나 <em>고른 향</em>으로 채워 보세요'}}
  ],
  targets:{title:'이런 공간에<br>추천합니다', items:[
   '문을 여닫을 때마다 향이 빠져나가는 빌딩 로비',
@@ -414,20 +423,20 @@ const DATA = [
  },
  features:{title:'핵심 특장점', items:[
   {tag:'발향', t:'최대 100평을<br>한 대로 채우는 발향력<sup>1)</sup>', d:'초미세 입자로 분사하고 팬으로 밀어내, 층고가 높아도 안쪽까지 닿습니다', m:'<u>발향 면적</u> · 50~100평, 세스코 에어퍼퓸 중 최대'},
-  {tag:'검증', t:'급성·아급성 흡입독성<br>시험을 마친 향료<sup>2)</sup>', d:'향에 대한 문의나 민원이 생기면 세스코 검증 성적서로 대응을 돕습니다', m:'<u>불검출</u> · 유해물질 24종<sup>3)</sup>, 가습기살균제 이슈 성분 8종<sup>4)</sup>'},
-  {tag:'향료', t:'에탄올 0.1% 미만<br>고함량 프리미엄 향료', d:'불필요한 희석을 줄여 향의 깊이와 밀도를 살렸습니다', m:'<u>조향</u> · 전문 조향사, 퍼퓸 등급'}
+  {tag:'검증', t:'급성·아급성 흡입독성<br>시험을 마친 향료<sup>2)</sup>', d:'향에 대한 문의나 민원이 생기면 세스코 검증 성적서를 제공합니다', m:'<u>불검출</u> · 유해물질 24종<sup>3)</sup>, 가습기살균제 이슈 성분 8종<sup>4)</sup>'},
+  {tag:'향료', t:'에탄올 0.1% 미만<br>고함량 프리미엄 향료', d:'희석을 최소화해 향의 깊이와 밀도를 유지합니다', m:'<u>조향</u> · 전문 조향사, 퍼퓸 등급'}
  ]},
  blocks:[
-  {kind:'pick', title:'공간마다 설치 위치와 세기가 다릅니다', sub:'전문 컨설턴트가 영업시간과 유입 시간대에 맞춰 세팅', items:[
-    {q:'<b>빌딩 로비</b>&nbsp;· 출입구 환대 동선에 설치', a:'영업시간 내내 가장 강하게'},
-    {q:'<b>웨딩홀</b>&nbsp;· 로비와 예식홀 진입부의 대각선 위치', a:'예식 2시간 전 강하게 → 입장 때 중간'},
-    {q:'<b>미술관·전시장</b>&nbsp;· 진입부와 그 대각선 위치', a:'붐비기 2시간 전 강하게 → 이후 중간'},
-    {q:'<b>대형 피트니스</b>&nbsp;· 입구와 공조 급기구 근처', a:'급기 바람에 실어 확산'}]}
+  {kind:'pick', title:'공간마다 설치 위치와 세기가 다릅니다', sub:'전문 컨설턴트가 영업시간과 손님이 몰리는 시간에 맞춰 조절합니다', items:[
+    {q:'<b>빌딩 로비</b>&nbsp;· 출입구에서 들어오는 길목에 설치', a:'영업시간 내내 가장 강하게'},
+    {q:'<b>웨딩홀</b>&nbsp;· 로비와 예식홀 입구의 대각선 자리에 설치', a:'예식 2시간 전 강하게 → 입장 때 중간'},
+    {q:'<b>미술관·전시장</b>&nbsp;· 입구와 그 대각선 자리에 설치', a:'붐비기 2시간 전 강하게 → 이후 중간'},
+    {q:'<b>대형 피트니스</b>&nbsp;· 입구와 환기 바람이 나오는 곳 근처에 설치', a:'바람을 타고 멀리 퍼지게'}]}
  ],
  price:{title:'렌탈 가격', sub:'의무사용기간 36개월 · 소유권 이전 없음', cols:['방문주기','단독가','결합가'], cls:['','s','ff'],
   rows:[['2개월','[확인 필요]','149,900원'],['1개월','[확인 필요]','[확인 필요]']],
   notes:['결합가는 공기살균기·공기청정기·에어커튼·해충방제 등 세스코 서비스를 이용 중인 사업장에 적용 [확인 필요: 결합 조건·149,900원의 단위] | 렌탈등록비 [확인 필요]',
-         '정기 방문 때 향 오일을 교체하고 분사 강도와 기기를 점검합니다. 계절과 유입 변화에 따라 향 종류를 바꿀 수 있습니다']},
+         '정기 방문 때 향 오일을 교체하고 분사 강도와 기기를 점검합니다. 계절이나 방문객 수가 달라지면 향 종류를 바꿀 수 있습니다']},
  specs:{title:'• 공기발향기 에어퍼퓸 750', items:[
   {k:'색상', colors:[['화이트','#f7f7f5'],['블랙','#1d1d1f']]},
   {k:'크기(mm)', v:'[확인 필요]'},
@@ -464,13 +473,16 @@ const DATA = [
 /* 세스코 CI 로고 — 홈페이지 CI/BI 페이지 이미지(186×109px, 2026.11.23 확인). 인쇄 전 CI 원본(AI/EPS)으로 교체 */
 const LOGO = 'data:image/png;base64,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';
 const COMMON_NOTES = [
+  ['윤문(V22)','「AI 티 제거 · 윤문 고도화 가이드」 기준으로 4종 전체를 다시 읽었습니다. 소비자가 쓰지 않는 말(분변, 교차 적용, 환대 동선, 진입부, 급기구, 유입 시간대, 서식 범위)을 풀어 썼습니다. 서술어는 리플릿에서 흔히 쓰는 말(세척합니다, 탈취합니다, 살균합니다, 확인합니다, 점검합니다, 관리합니다)로 맞췄고, ‘덜어 줍니다’, ‘줄입니다’, ‘봅니다’, ‘가려냅니다’처럼 낯선 종결은 쓰지 않습니다. CTA의 ‘경험해 보세요’는 실제 행동으로 바꿨고, 특장점 설명 끝의 마침표는 4종 모두 없앴습니다. 수치 · 시험 조건 · 각주 · 상품명은 건드리지 않았습니다'],
+  ['확정 문구 검토 제안(본문 미반영)','① 에어퍼퓸 750 제원의 ‘케미컬 용기’, ‘케미컬 종류’는 기존 리플렛의 항목명이라 그대로 뒀습니다. 고객이 읽기에는 ‘향 오일 용량’, ‘향 종류’가 쉽습니다. ② 빈대방제 ‘빈대 모니터링 지수 증가’는 각주가 필요한 내부 지표명입니다. ‘세스코 빈대 접수 지수’처럼 풀어 쓸 수 있는지 확인이 필요합니다. ③ 세탁세제 ‘마이크로 딥클린’은 상세페이지의 처방명이라 유지했습니다'],
+  ['특장점 4~5개 배치 비교','상단 ‘특장점 4~5개’ 버튼으로 두 안을 바꿔 보거나 ‘A·B 나란히’로 한 화면에서 비교합니다. <b>A안 세로 나열</b>: 가로로 긴 박스를 위에서 아래로. 제목과 설명이 한 줄에 나란히 놓여 훑어 읽기 쉽습니다. <b>B안 가로 카드</b>: 3개 구성과 같은 카드를 한 줄에 놓고 세로로 길게. 3개짜리 지면과 모양이 통일되고 특장점끼리 비교하기 쉽습니다. 제품마다 기본값을 정하려면 features에 layout:\'cols\'를 적습니다(V21)'],
   ['지면 하단','가격표를 강조 상자로 두고(영업 현장용), 환경가전은 그 아래 제원표, 맨 아래 CTA는 제품 한 줄 카피 + 고객센터 · 필요한 접점 정보만 둡니다. 명함 부착 영역은 없습니다(V19)'],
   ['가변 슬롯 · 제원표','특장점 아래 · 가격 위 자리는 제품마다 고르는 가변 슬롯입니다. 기준 4가지를 통과한 블록만 0~2개 넣고, 없으면 비웁니다. 제원표는 환경가전에만 넣고(필수) 가격표 바로 아래에 둡니다(작성 규칙 V19 7장)'],
   ['로고','홈페이지 CI 이미지(186×109px)를 임시로 넣음. 인쇄 전 CI 원본(AI/EPS)으로 교체 [확인 필요: CI 원본 파일]'],
   ['색','세스코 CI 블루(#0078C7) 중심 · 딥 블루 보조. 노란색은 쓰지 않고, 레드는 로고에만']
 ];
 const MM = 96/25.4;
-const S = {pid:DATA[0].id, vi:0, side:false, spec3:false, specC:false};
+const S = {pid:DATA[0].id, vi:0, side:false, spec3:false, specC:false, ftall:null, fside:false};   // ftall: null=데이터 기본값 · false=A안 세로 나열 · true=B안 가로 카드
 const chk = s => String(s).replace(/\[확인 필요[^\]]*\]/g, m=>`<span class="chk">${m}</span>`);
 const merge = (p,vi) => { const v=p.variants[vi]||{}; return {hero:{...p.hero,...(v.hero||{})}, cta:{...p.cta,...(v.cta||{})}}; };
 
@@ -535,6 +547,11 @@ function sheetHTML(p, vi){
   h += blocksHTML(at('mid'));
   const fn = f.items.length;
   if(fn<=3) h += `<section class="sec"><h2>${f.title}</h2><div class="fcols" style="grid-template-columns:repeat(${fn},1fr)">${f.items.map(x=>`<div class="fcol"><span class="ftag">${x.tag}</span><div class="ft">${x.t}</div><div class="fd">${x.d}</div>${x.m?`<div class="fm">${x.m}</div>`:''}</div>`).join('')}</div></section>`;
+  else if(S.ftall!==null ? S.ftall : f.layout==='cols'){
+    /* B안: 3개 구성처럼 가로로 놓고 세로로 길게. 제목의 줄바꿈(<br>)은 풀어 좁은 폭에 맞춰 흐르게 합니다 */
+    const nb = t => t.replace(/<br\s*\/?>/g,' ');
+    h += `<section class="sec"><h2>${f.title}</h2><div class="fcols tall n${fn}" style="grid-template-columns:repeat(${fn},1fr)">${f.items.map(x=>`<div class="fcol"><span class="ftag">${x.tag}</span><div class="ft">${nb(x.t)}</div><div class="fd">${x.d}</div>${x.m?`<div class="fm">${nb(x.m).replace(/ \| /g,'<br>')}</div>`:''}</div>`).join('')}</div></section>`;
+  }
   else h += `<section class="sec"><h2>${f.title}</h2><div class="frows">${f.items.map(x=>`<div class="frow"><span class="ftag">${x.tag}</span><div class="ft">${x.t}</div><div class="fd">${x.d}${x.m?`<div class="fm">${x.m}</div>`:''}</div></div>`).join('')}</div></section>`;
   /* 가변 슬롯(특장점 아래 · 가격 위): 제품마다 고른 블록 */
   h += blocksHTML(at('bottom'));
@@ -567,7 +584,14 @@ function render(){
   if(S.vi>=nV) S.vi=0;
   const vis = S.side ? [...Array(nV).keys()] : [S.vi];
   const pages = document.getElementById('pages');
-  pages.className = 'pages' + (S.side?' side':'');
+  /* 특장점 배치 A·B 나란히: 같은 안을 두 배치로 그립니다 */
+  const fcmp = S.fside && p.features.items.length>=4;
+  pages.className = 'pages' + ((S.side||fcmp)?' side':'');
+  if(fcmp){
+    const keep = S.ftall;
+    pages.innerHTML = [[false,'A안 세로 나열'],[true,'B안 가로 카드']].map(([ft,cap])=>{ S.ftall=ft; return `<div class="pagewrap"><div class="cap"><b>${cap}</b> · 특장점 ${p.features.items.length}개 <span class="badge"></span></div>${sheetHTML(p,S.vi)}</div>`; }).join('');
+    S.ftall = keep;
+  } else
   pages.innerHTML = vis.map(vi=>`<div class="pagewrap"><div class="cap"><b>${vi+1}안</b> · ${p.variants[vi].name} <span class="badge" data-b="${vi}"></span></div>${sheetHTML(p,vi)}</div>`).join('');
   // 배지
   let worst = -999, allOne = true;
@@ -580,7 +604,7 @@ function render(){
       /* 그래도 남으면 블록 사이 간격을 고르게 벌립니다 (블록당 최대 4mm) */
       if(slack>4){ const n=sh.children.length-1; sh.style.setProperty('--xg', Math.min(4,(slack-2)/n).toFixed(2)+'mm'); } }
     const r = measure(sh); worst = Math.max(worst, r.over); allOne = allOne && r.one;
-    const b = pages.querySelector(`.badge[data-b="${sh.dataset.vi}"]`);
+    const b = sh.closest('.pagewrap').querySelector('.cap .badge');
     b.className = 'badge ' + (r.over>0||!r.one?'over':'ok');
     b.textContent = r.over>0 ? `지면 초과 약 ${r.over}mm` : (r.one?'지면 OK':'CTA 메인 2줄');
   });
@@ -590,13 +614,17 @@ function render(){
     <div class="grp"><b>제품</b>${DATA.map(d=>`<button data-p="${d.id}" class="${d.id===S.pid?'on':''}">${d.label}</button>`).join('')}</div>
     <div class="grp"><b>안</b>${p.variants.map((v,i)=>`<button data-v="${i}" class="${!S.side&&i===S.vi?'on':''}">${i+1}안</button>`).join('')}
       <button data-side class="${S.side?'on':''}">${nV}안 나란히</button></div>
+    <div class="grp"><b>특장점 4~5개</b><button data-fa class="${p.features.items.length>=4 && !(S.ftall!==null?S.ftall:p.features.layout==='cols')?'on':''}" ${p.features.items.length<4?'disabled':''}>A안 세로 나열</button><button data-fb class="${p.features.items.length>=4 && (S.ftall!==null?S.ftall:p.features.layout==='cols')?'on':''}" ${p.features.items.length<4?'disabled':''}>B안 가로 카드</button><button data-fs class="${S.fside&&p.features.items.length>=4?'on':''}" ${p.features.items.length<4?'disabled':''}>A·B 나란히</button></div>
     <div class="grp"><button data-spec3 class="${S.spec3?'on':''}" ${p.type!=='appliance'?'disabled':''}>제원 3개 이하 미리보기</button>
       <button data-specc class="${S.specC?'on':''}" ${p.type!=='appliance'?'disabled':''}>제원 간략형 미리보기</button>
       <button data-notes>메모 숨기기</button><button data-print>인쇄</button></div>
     <div class="grp"><span class="badge ${worst>0||!allOne?'over':'ok'}">${worst>0?`지면 초과 약 ${worst}mm`:(allOne?'지면 OK':'CTA 메인 2줄')}</span></div>`;
   bar.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{S.pid=b.dataset.p;S.vi=0;S.side=false;S.spec3=false;S.specC=false;go();});
   bar.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{S.vi=+b.dataset.v;S.side=false;go();});
-  bar.querySelector('[data-side]').onclick=()=>{S.side=!S.side;go();};
+  bar.querySelector('[data-fa]').onclick=()=>{S.ftall=false;S.fside=false;render();};
+  bar.querySelector('[data-fb]').onclick=()=>{S.ftall=true;S.fside=false;render();};
+  bar.querySelector('[data-fs]').onclick=()=>{S.fside=!S.fside;if(S.fside)S.side=false;render();};
+  bar.querySelector('[data-side]').onclick=()=>{S.fside=false;S.side=!S.side;go();};
   bar.querySelector('[data-spec3]').onclick=()=>{S.spec3=!S.spec3;S.specC=false;render();};
   bar.querySelector('[data-specc]').onclick=()=>{S.specC=!S.specC;S.spec3=false;render();};
   bar.querySelector('[data-notes]').onclick=()=>document.body.classList.toggle('no-notes');
