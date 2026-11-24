@@ -892,6 +892,8 @@ ${repRow}${fine}</div>`;
 <div class="iv-hero"><div class="ph">사진 자리 · ${t.owner} · 대표 컷 (${t.owner} 업로드 또는 점검 촬영)</div><div class="eb">${t.key} 위생 정보 · ${reg.date} 점검</div><h3>${t.about_h}</h3></div>
 <div class="card intro"><p>${mark(s.about, fill(t.about,reg))}</p></div>
 <div class="card iv">${qa}</div>
+<div class="sh2"><b>얼마나 깨끗할까요?</b><small>${reg.date} 세스코 실측 · 측정값과 기준</small></div>
+<div class="res">${hc.metrics.map(m=>`<div class="r"><div class="k">${m.k}</div><div class="mt" style="margin-top:3px"><div class="mrow"><b>${m.v}</b>${m.u?'<small>'+m.u+'</small>':''}</div><div class="mb"><i style="width:${m.pct}%"></i></div><div class="ml"><span>0</span><span>${m.base}</span></div></div></div>`).join('')}</div>
 ${pull}
 ${repRow}${fine}</div>`;
   const body = typ==='A'?bodyA : typ==='B'?bodyB : bodyC;
