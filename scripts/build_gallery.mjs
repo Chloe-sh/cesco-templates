@@ -51,7 +51,7 @@ function card(it, skipTpl) {
 let body = '';
 body += `<article class="doc" id="d103" hidden><header class="dochead"><div class="crumb"><span class="cr-code">··</span><span class="cr-name">개요</span><span class="cr-sep">/</span><span class="cr-label">시안 갤러리</span><span class="stat s-ok">${capDate} 캡처</span></div><div class="path">${capDir}/ · reports/ 폴더의 시안 ${total}건을 ${capDate}에 캡처 · 재생성은 scripts/capture_reports.mjs → scripts/build_gallery.mjs</div></header>`;
 body += `<h1>시안 갤러리 — 템플릿별 시안 ${total}건 한눈에 보기</h1>`;
-body += `<p class="idx-lead">10월에 만든 시안을 채널별로 모았습니다. 채널 칩을 누르면 주소가 <code>#d103/채널키</code>로 바뀌어 그 채널만 보이는 링크를 공유할 수 있습니다(카드뉴스 유형 고르기: <code>#d103/cardnews</code>). 템플릿을 고를 때 글로 된 규칙보다 완성된 모습부터 보고 싶을 때 씁니다. <strong>썸네일을 누르면 전체 캡처</strong>가 크게 열리고, <strong>열기 ↗</strong>는 탭·스와이프가 그대로 움직이는 실제 페이지를 새 창에 엽니다. 카드 아래 칩은 그 시안이 따른 템플릿 문서입니다.</p>`;
+body += `<p class="idx-lead">만든 시안을 채널별로 모았습니다. ★ 표시는 최종본입니다. 채널 칩을 누르면 주소가 <code>#d103/채널키</code>로 바뀌어 그 채널만 보이는 링크를 공유할 수 있습니다(카드뉴스 유형 고르기: <code>#d103/cardnews</code>). 템플릿을 고를 때 글로 된 규칙보다 완성된 모습부터 보고 싶을 때 씁니다. <strong>썸네일을 누르면 전체 캡처</strong>가 크게 열리고, <strong>열기 ↗</strong>는 탭·스와이프가 그대로 움직이는 실제 페이지를 새 창에 엽니다. 카드 아래 칩은 그 시안이 따른 템플릿 문서입니다.</p>`;
 body += `<div class="wide gal-filter" role="tablist" aria-label="채널 필터"><button type="button" class="gal-chip on" data-gal="all">전체 <b>${total}</b></button>`;
 for (const g of groups) body += `<button type="button" class="gal-chip" data-gal="${g.key}">${esc(g.label)} <b>${g.items.length}</b></button>`;
 body += `</div>`;
@@ -66,7 +66,7 @@ for (const g of groups) {
   for (const it of g.items) body += card(it);
   body += `</div></section>`;
 }
-body += `<h2 id="d103-s${groups.length + 1}"><span class="secnum">${String(groups.length + 1).padStart(2, '0')}</span>근거와 이력</h2><ul><li>${capDate}: reports/261020·261022·261026·261028 폴더의 시안 HTML ${total}건을 Edge 헤드리스(1280px 폭)로 캡처. 썸네일은 상단 1600px, 전체 캡처는 5200px까지 찍고 아래 빈 여백을 잘랐습니다. 탭·스와이프·버튼이 있는 시안은 첫 화면 기준이라 실제 페이지와 다를 수 있습니다.</li><li>2026-11-02: 리플릿은 전부 실물 디자인형(A4 2면, 원고는 v2 그대로)으로 캡처했습니다. 코드 초안형은 카드의 "초안" 링크로 볼 수 있습니다.</li><li>포함하지 않은 파일: 보고 자료 2건(reports/261026/index.html · reports/261028/index.html), 옛 주소 안내 페이지, 엑셀·이미지·스크립트.</li><li>시안이 늘면 <code>${capDir}/manifest.json</code>에 항목을 추가하고 <code>node scripts/capture_reports.mjs</code> → <code>node scripts/build_gallery.mjs</code> 순서로 다시 만듭니다. 캡처 1건당 2초쯤 걸립니다.</li></ul>`;
+body += `<h2 id="d103-s${groups.length + 1}"><span class="secnum">${String(groups.length + 1).padStart(2, '0')}</span>근거와 이력</h2><ul><li>${capDate}: reports/261020·261022·261026·261028 폴더의 시안 HTML ${total}건을 Edge 헤드리스(1280px 폭)로 캡처. 썸네일은 상단 1600px, 전체 캡처는 5200px까지 찍고 아래 빈 여백을 잘랐습니다. 탭·스와이프·버튼이 있는 시안은 첫 화면 기준이라 실제 페이지와 다를 수 있습니다.</li><li>2026-11-24: 최종본 3건(제품 리플릿 1P 4종 V8 · 2P 샘플 4종 v3 · SR리포트 샘플 시안 1안·2안)을 reports/261123에서 캡처해 추가하고, SR리포트 그룹을 새로 만들었습니다. 이 3건의 캡처일은 11/24입니다.</li><li>2026-11-02: 리플릿은 전부 실물 디자인형(A4 2면, 원고는 v2 그대로)으로 캡처했습니다. 코드 초안형은 카드의 "초안" 링크로 볼 수 있습니다.</li><li>포함하지 않은 파일: 보고 자료 2건(reports/261026/index.html · reports/261028/index.html), 옛 주소 안내 페이지, 엑셀·이미지·스크립트.</li><li>시안이 늘면 <code>${capDir}/manifest.json</code>에 항목을 추가하고 <code>node scripts/capture_reports.mjs</code> → <code>node scripts/build_gallery.mjs</code> 순서로 다시 만듭니다. 캡처 1건당 2초쯤 걸립니다.</li></ul>`;
 const lbHtml = `<div class="gal-lb" id="gal-lb" hidden><div class="gal-lb-bar"><span id="gal-lb-title"></span><a id="gal-lb-open" href="#" target="_blank" rel="noopener">실제 페이지 열기 ↗</a><button type="button" id="gal-lb-close" aria-label="닫기">닫기 ✕</button></div><div class="gal-lb-scroll"><img id="gal-lb-img" src="" alt=""></div></div>`;
 body += `</article>`;
 
@@ -218,7 +218,7 @@ else html = html.replace('var SECS = {', 'var SECS = {' + secsStr + ', ');
 // 목차 버튼 건수
 html = html.replace(/(data-goto="d103"[^>]*>시안 갤러리) \(\d+\)/, `$1 (${total})`);
 // 상단 바 버튼 건수
-html = html.replace(/(data-goto="d103">시안 갤러리 · 10월 시안 )\d+건/, `$1${total}건`);
+html = html.replace(/(data-goto="d103">시안 갤러리 · )(?:10월 시안 )?\d+건/, `$1${total}건`);
 // 마스터 인덱스 링크 건수
 html = html.replace(/(class="xref" data-goto="d103">시안 갤러리 )\d+건/, `$1${total}건`);
 
