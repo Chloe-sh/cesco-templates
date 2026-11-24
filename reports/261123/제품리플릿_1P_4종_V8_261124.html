@@ -76,16 +76,18 @@ u{text-decoration:none;font-weight:700;color:var(--navy)}
 .ft{font-size:9.6pt;font-weight:800;line-height:1.32;color:var(--ink)}
 .fd{font-size:7.9pt;line-height:1.45;color:var(--ink)}
 .fm{font-size:6.7pt;color:var(--sub);margin-top:.6mm}
-/* 특장점 가로 배열(기본 · 3개 이하) */
-.fcols{display:grid;gap:2.6mm}
-.fcol{border-top:.3mm solid var(--navy);padding:2mm 0 1.6mm;display:flex;flex-direction:column;gap:1.3mm}
-.fcol .ftag{align-self:flex-start}
+/* 특장점 가로 배열(기본 · 3개 이하)
+   카드마다 태그 · 제목 · 설명 · 근거 4줄을 같은 행 격자(subgrid)에 놓아, 줄 수가 달라도
+   제목 · 설명 · 근거 구분선의 시작 높이가 카드끼리 맞습니다 */
+.fcols{display:grid;grid-template-rows:repeat(4,auto);column-gap:2.6mm;row-gap:0}
+.fcol{border-top:.3mm solid var(--navy);padding:2mm 0 1.6mm;display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:1.3mm;align-content:start}
+.fcol .ftag{justify-self:start}
 .fcol .ft{font-size:10pt}
 .fcol .fd{font-size:7.9pt}
-.fcol .fm{margin-top:auto;padding-top:1.2mm;border-top:.2mm solid var(--line)}
+.fcol .fm{padding-top:1.2mm;border-top:.2mm solid var(--line)}
 /* 특장점 4~5개 · A안(기본): 가로 카드(좁고 길게) */
-.fcols.tall{gap:2mm}
-.fcols.tall .fcol{padding:2mm 0 1.6mm;gap:1.5mm}
+.fcols.tall{column-gap:2mm}
+.fcols.tall .fcol{padding:2mm 0 1.6mm;row-gap:1.5mm}
 .fcols.tall .ftag{font-size:7.4pt}
 .fcols.tall .ft{font-size:9.4pt;line-height:1.34;letter-spacing:-.02em}
 .fcols.tall .fd{font-size:7.7pt;line-height:1.5}
@@ -167,6 +169,11 @@ table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--l
 .pick .r{display:grid;grid-template-columns:1fr 66mm;border-bottom:.2mm solid var(--line)}
 .pick .r > div{padding:1.3mm 2.2mm;font-size:8pt;line-height:1.42;display:flex;align-items:center}
 .pick .a{background:var(--blue-l);color:var(--navy);font-weight:800}
+/* pick 3열(공간 · 기준 · 권장): 공간 이름을 따로 세워 세로로 훑고, 열 제목으로 칸의 뜻을 밝혀 정보가 한 줄로 읽히게 합니다 */
+.pick.s3 .r{grid-template-columns:27mm 1fr 1fr}
+.pick .r.h > div{font-size:7.2pt;font-weight:700;color:var(--sub);padding:1mm 2.2mm;background:var(--bg)}
+.pick .r.h > div:last-child{background:var(--blue-m);color:var(--navy)}
+.pick .sp{font-weight:800;color:var(--navy);border-right:.2mm solid var(--line)}
 /* list · 체크 목록 */
 .clist{list-style:none;display:grid;gap:1mm 4mm}
 .clist li{font-size:8pt;line-height:1.42;padding:1.2mm 0 1.2mm 3.4mm;position:relative;border-bottom:.2mm solid var(--line)}
@@ -361,22 +368,22 @@ const DATA = [
   '해외여행·출장에서 돌아온 뒤','자고 일어나 물린 자국이 생겼을 때','매트리스 솔기에 검은 점이 보일 때','투숙객이 드나드는 숙박시설']},
  hero:{
   h1:'매트리스 틈에 숨은 빈대,<br><em>알까지 찾아 제거합니다</em>',
-  lead:'한 마리가 보였다면, 보이지 않는 곳까지 진단합니다',
+  lead:'한 마리가 보였다면, 흔적을 따라 은신처까지 추적합니다',
   name:'세스코<br>빈대방제 솔루션',
   sub:'가정·숙박시설·다중이용시설',
   img:'<b>이미지 · 서비스 대표 컷(지면 유일 이미지 영역)</b>객실 침대 매트리스 솔기를 세스코 전문가가 랜턴으로 점검하고, 옆에서 탐지견 ‘세코’가 냄새를 맡는 장면. 스톡 이미지 금지'
  },
  features:{title:'핵심 특장점', items:[
   {tag:'진단', t:'눈으로 찾기 어려운 틈새까지<br>정밀 진단', d:'침대 주변과 가구, 벽 틈에 남은 배설물 자국과 허물을 점검합니다'},
-  {tag:'제거', t:'한 번으로 끝내지 않는<br>3단계 집중 제거', d:'집진 장비로 빨아들이고 고온 스팀과 검증된 약제를 번갈아 쓴 뒤, 알이 깨어나는 9~10일 뒤 한 번 더 확인합니다 [확인 필요: 서비스 매뉴얼 대조]', m:'<u>약제</u> · 기후에너지환경부 안전성·효과 검토<sup>1)</sup>'},
+  {tag:'제거', t:'한 번으로 끝내지 않는<br>3단계 집중 제거', d:'집진 장비 · 고온 스팀 · 약제로 처리하고, 알이 깨어나는 9~10일 뒤 다시 확인합니다 [확인 필요: 서비스 매뉴얼 대조]', m:'<u>약제</u> · 기후에너지환경부 안전성·효과 검토<sup>1)</sup>'},
   {tag:'탐지', t:'가구를 옮기지 않고 찾는<br>빈대 탐지견 ‘세코’', d:'알, 성충, 배설물을 냄새로 1~2분 만에 찾아내고, 담당자가 직접 확인합니다', m:'<u>탐지 성공률</u> · 95% 이상<sup>2)</sup>'},
-  {tag:'대응', t:'문제가 생기면<br>24시간 이내 출동 가능', d:'제거가 끝난 뒤에는 정기 모니터링으로 이어서 관리합니다'}
+  {tag:'대응', t:'문제가 생기면<br>24시간 이내 출동 대응', d:'제거가 끝난 뒤에는 정기 모니터링으로 이어서 관리합니다'}
  ]},
- price:{title:'관리 방식·비용', sub:'객실 수·면적·현장 진단 결과에 따라 견적', cols:['관리 방식','이럴 때','비용'], cls:['','s','ff'],
-  rows:[['빈대진단','빈대가 의심될 때','[확인 필요: 무료 여부]'],
-        ['빈대 제거','이미 발생했을 때','[확인 필요]원~'],
-        ['빈대 소독(1회)','유입 가능성을 줄이고 싶을 때','[확인 필요]원~'],
-        ['정기 모니터링','다시 생기지 않게 관리하고 싶을 때','월 [확인 필요]원~']],
+ price:{title:'관리 방식·비용', sub:'객실 수·면적·현장 진단 결과에 따라 견적', cols:['관리 방식','지금 상태','비용'], cls:['','s','ff'],
+  rows:[['빈대진단','<b>의심 단계</b><br>흔적이 보일 때','[확인 필요: 무료 여부]'],
+        ['빈대 제거','<b>발생 단계</b><br>빈대나 알이 보일 때','[확인 필요]원~'],
+        ['빈대 소독(1회)','<b>예방 단계</b><br>아직 흔적이 없을 때','[확인 필요]원~'],
+        ['정기 모니터링','<b>관리 단계</b><br>제거를 마친 뒤','월 [확인 필요]원~']],
   notes:['표의 비용은 시작가입니다. 탐지견 진단은 비용이 따로 듭니다 [확인 필요: 단가 기준]']},
  blocks:[
   {kind:'proof', pos:'top', title:'빈대, 한 번 들어오면 이렇게 번집니다', items:[
@@ -416,22 +423,22 @@ const DATA = [
   '환기 설비가 쉬지 않고 돌아가는 대형 피트니스']},
  hero:{
   h1:'넓은 공간의 첫인상은<br><em>향기가 만듭니다</em>',
-  lead:'향은 공간 끝까지 고르게, 성분은 시험으로 확인했습니다',
+  lead:'공간 구석까지 고르게 퍼지는 향, 성분까지 꼼꼼히 검증했습니다',
   name:'세스코 공기발향기<br>에어퍼퓸 750',
   sub:'50평 이상 대형 공간용 [확인 필요: 제품 명칭 가안]',
   img:'<b>이미지 · 제품 대표 컷(지면 유일 이미지 영역)</b>층고 높은 빌딩 로비 벽면에 설치된 에어퍼퓸 750. 화이트·블랙 두 색상이 함께 보이고, 출입구와 공간 안쪽이 한 화면에 들어오는 각도. 스톡 이미지 금지'
  },
  features:{title:'핵심 특장점', items:[
-  {tag:'발향', t:'최대 100평을<br>한 대로 채우는 발향력<sup>1)</sup>', d:'초미세 입자로 분사하고 팬으로 밀어내, 층고가 높아도 안쪽까지 닿습니다', m:'<u>발향 면적</u> · 50~100평, 세스코 에어퍼퓸 중 최대'},
+  {tag:'발향', t:'최대 100평을<br>한 대로 채우는 발향력<sup>1)</sup>', d:'초미세 입자로 분사하고 팬으로 밀어내,<br>층고가 높아도 안쪽까지 닿습니다', m:'<u>발향 면적</u> · 50~100평, 세스코 에어퍼퓸 중 최대'},
   {tag:'검증', t:'급성·아급성 흡입독성<br>시험을 마친 향료<sup>2)</sup>', d:'향에 대한 문의나 민원이 생기면 세스코 검증 성적서를 제공합니다', m:'<u>불검출</u> · 유해물질 24종<sup>3)</sup>, 가습기살균제 이슈 성분 8종<sup>4)</sup>'},
   {tag:'향료', t:'에탄올 0.1% 미만<br>고함량 프리미엄 향료', d:'희석을 최소화해 향의 깊이와 밀도를 유지합니다', m:'<u>조향</u> · 전문 조향사, 퍼퓸 등급'}
  ]},
  blocks:[
-  {kind:'pick', title:'공간마다 설치 위치와 세기가 다릅니다', sub:'전문 컨설턴트가 영업시간과 손님이 몰리는 시간에 맞춰 조절합니다', items:[
-    {q:'<b>빌딩 로비</b>&nbsp;· 출입구에서 들어오는 길목에 설치', a:'영업시간 내내 가장 강하게'},
-    {q:'<b>웨딩홀</b>&nbsp;· 로비와 예식홀 입구의 대각선 자리에 설치', a:'예식 2시간 전 강하게 → 입장 때 중간'},
-    {q:'<b>미술관·전시장</b>&nbsp;· 입구와 그 대각선 자리에 설치', a:'붐비기 2시간 전 강하게 → 이후 중간'},
-    {q:'<b>대형 피트니스</b>&nbsp;· 입구와 환기 바람이 나오는 곳 근처에 설치', a:'바람을 타고 멀리 퍼지게'}]}
+  {kind:'pick', title:'공간마다 설치 위치와 세기가 다릅니다', sub:'전문 컨설턴트가 영업시간과 손님이 몰리는 시간에 맞춰 조절합니다', cols:['공간','설치 위치','세기 조절'], items:[
+    {s:'빌딩 로비', q:'출입구에서 들어오는 길목', a:'영업시간 내내 가장 강하게'},
+    {s:'웨딩홀', q:'로비와 예식홀 입구의 대각선 자리', a:'예식 2시간 전 강하게 → 입장 때 중간'},
+    {s:'미술관·전시장', q:'입구와 그 대각선 자리', a:'붐비기 2시간 전 강하게 → 이후 중간'},
+    {s:'대형 피트니스', q:'입구와 환기 바람이 나오는 곳 근처', a:'바람을 타고 멀리 퍼지게'}]}
  ],
  price:{title:'렌탈 가격', sub:'의무사용기간 36개월 · 소유권 이전 없음', cols:['방문주기','단독가','결합가'], cls:['','s','ff'],
   rows:[['2개월','[확인 필요]','149,900원'],['1개월','[확인 필요]','[확인 필요]']],
@@ -455,7 +462,7 @@ const DATA = [
   label:'렌탈 문의', tel:'1588-1119', url:'www.cesco.co.kr', qr:'QR<br>제품 더 보기'},
  notes:[
   ['자료 출처','261109 POD정리_에어퍼퓸750(상품기획 · 마케팅 작성): 핵심 메시지, USP 3개, 공간별 카피안, 시험 · 인증, 렌탈 조건'],
-  ['핵심 메시지','POD의 커뮤니케이션 메시지 “넓은 공간의 첫인상은 향기가 만듭니다”를 헤드로 썼습니다. 리드는 발향(고르게)과 검증(시험으로 확인)을 수치 없이 묶었고, 수치는 특장점이 맡습니다'],
+  ['핵심 메시지','POD의 커뮤니케이션 메시지 “넓은 공간의 첫인상은 향기가 만듭니다”를 헤드로 썼습니다. 리드는 발향(구석까지 고르게)과 검증(성분까지 꼼꼼히)을 수치 없이 묶었고, 수치는 특장점이 맡습니다'],
   ['2안','처음에는 향료 검증(방문객 안전성)으로 잡았다가 발향력으로 바꿨습니다. 1안이 향기의 중요성을 말하므로 2안은 방향이 다른 성능(넓은 공간에 닿는가)을 맡습니다. ‘○○이 선택한 향’ 방향은 고객사명 협의가 끝나면 3안으로 추가할 수 있습니다(지금은 신뢰 문구 한 줄에 업종명으로만 있음)'],
   ['특장점','POD 강점 1 · 3 · 2 순서를 발향 → 검증 → 향료로 정리해 3개 가로 배열. 강점 2에 함께 있던 ‘공간 맞춤 컨설팅’은 가변 슬롯으로 보냈습니다'],
   ['가변 슬롯','<b>pick</b>(공간별 설치 위치와 세기) 1개. 기준 4가지 통과: 특장점에 없는 새 정보 / “향이 과해 민원이 나오지 않을까”라는 구매 전 걱정에 답함 / POD 공간별 컨설팅포인트에 원문 있음 / 공간 4곳을 표로 봐야 함. <b>탈락</b>: 출시 향 5종 표(더 튤립 문구가 가안이고 POD도 2P 배치를 권함), 탈취 수치(암모니아 70.4% · 트리메틸아민 58.7%, 핵심 메시지 밖)'],
@@ -513,6 +520,8 @@ function blockHTML(b){
   if(b.kind==='cause'){ const c=b.cols||['이런 고민','원인','세스코 해법'];
     return `<div class="blk">${h3}<div class="cause"><div class="r h"><div>${c[0]}</div><div>${c[1]}</div><div>${c[2]}</div></div>${b.items.map(i=>`<div class="r"><div class="q">${i.q}</div><div>${i.c}</div><div class="a">${i.a}</div></div>`).join('')}</div></div>`; }
   if(b.kind==='pair') return `<div class="blk">${h3}<div class="pair" style="grid-template-columns:repeat(${n},1fr)">${b.items.map(i=>`<div class="c"><div class="ph">${i.img||'<b>제품 컷</b>'}</div><div><div class="u">${i.u||''}</div><div class="t">${i.t}</div>${i.d?`<div class="d">${i.d}</div>`:''}</div></div>`).join('')}</div></div>`;
+  if(b.kind==='pick' && b.items.some(i=>i.s)){ const c=b.cols||['구분','기준','권장'];
+    return `<div class="blk">${h3}<div class="pick s3"><div class="r h"><div>${c[0]}</div><div>${c[1]}</div><div>${c[2]}</div></div>${b.items.map(i=>`<div class="r"><div class="sp">${i.s}</div><div>${i.q}</div><div class="a">${i.a}</div></div>`).join('')}</div></div>`; }
   if(b.kind==='pick') return `<div class="blk">${h3}<div class="pick">${b.items.map(i=>`<div class="r"><div>${i.q}</div><div class="a">${i.a}</div></div>`).join('')}</div></div>`;
   if(b.kind==='list') return `<div class="blk">${h3}<ul class="clist" style="grid-template-columns:repeat(${b.cols||2},1fr)">${b.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
   if(b.kind==='point') return `<div class="blk">${h3}<div class="point"><div class="n">${b.n}<small>${b.l||''}</small></div><div class="d">${b.d}</div></div></div>`;
@@ -548,9 +557,10 @@ function sheetHTML(p, vi){
   const fn = f.items.length;
   if(fn<=3) h += `<section class="sec"><h2>${f.title}</h2><div class="fcols" style="grid-template-columns:repeat(${fn},1fr)">${f.items.map(x=>`<div class="fcol"><span class="ftag">${x.tag}</span><div class="ft">${x.t}</div><div class="fd">${x.d}</div>${x.m?`<div class="fm">${x.m}</div>`:''}</div>`).join('')}</div></section>`;
   else if(S.ftall!==null ? S.ftall : f.layout!=='rows'){
-    /* A안: 3개 구성처럼 가로로 놓고 세로로 길게. 제목의 줄바꿈(<br>)은 풀어 좁은 폭에 맞춰 흐르게 합니다 */
+    /* A안: 3개 구성처럼 가로로 놓고 세로로 길게. 제목은 데이터의 줄바꿈(<br>)을 그대로 살려 뜻 단위로 끊고,
+       근거 줄의 줄바꿈만 풀어 좁은 폭에 맞춰 흐르게 합니다 */
     const nb = t => t.replace(/<br\s*\/?>/g,' ');
-    h += `<section class="sec"><h2>${f.title}</h2><div class="fcols tall n${fn}" style="grid-template-columns:repeat(${fn},1fr)">${f.items.map(x=>`<div class="fcol"><span class="ftag">${x.tag}</span><div class="ft">${nb(x.t)}</div><div class="fd">${x.d}</div>${x.m?`<div class="fm">${nb(x.m).replace(/ \| /g,'<br>')}</div>`:''}</div>`).join('')}</div></section>`;
+    h += `<section class="sec"><h2>${f.title}</h2><div class="fcols tall n${fn}" style="grid-template-columns:repeat(${fn},1fr)">${f.items.map(x=>`<div class="fcol"><span class="ftag">${x.tag}</span><div class="ft">${x.t}</div><div class="fd">${x.d}</div>${x.m?`<div class="fm">${nb(x.m).replace(/ \| /g,'<br>')}</div>`:''}</div>`).join('')}</div></section>`;
   }
   else h += `<section class="sec"><h2>${f.title}</h2><div class="frows">${f.items.map(x=>`<div class="frow"><span class="ftag">${x.tag}</span><div class="ft">${x.t}</div><div class="fd">${x.d}${x.m?`<div class="fm">${x.m}</div>`:''}</div></div>`).join('')}</div></section>`;
   /* 가변 슬롯(특장점 아래 · 가격 위): 제품마다 고른 블록 */
