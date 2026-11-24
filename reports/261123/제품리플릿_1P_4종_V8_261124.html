@@ -59,16 +59,16 @@ u{text-decoration:none;font-weight:700;color:var(--navy)}
 .sec h2{font-size:10.5pt;font-weight:800;color:var(--navy);margin-bottom:1.5mm;display:flex;align-items:baseline;gap:2mm}
 .sec h2 small{font-size:7.6pt;color:var(--sub);font-weight:500}
 
-.tgt{display:grid;grid-template-columns:27mm 1fr;border-top:.3mm solid var(--navy);border-bottom:.2mm solid var(--line)}
+.tgt{display:grid;grid-template-columns:21mm 1fr;border-top:.3mm solid var(--navy);border-bottom:.2mm solid var(--line)}
 .tgt .tl{color:var(--navy);font-weight:800;font-size:8.6pt;line-height:1.35;padding:1.6mm 3mm 1.6mm 0;display:flex;align-items:center}
-.tgt ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
-.tgt li{font-size:8pt;line-height:1.4;padding:1.25mm 2mm 1.25mm 4mm;position:relative;display:flex;align-items:center}
+.tgt ul{list-style:none;display:grid;grid-template-columns:repeat(4,max-content);justify-content:space-between}
+.tgt li{font-size:8pt;line-height:1.4;padding:1.25mm 1.6mm 1.25mm 3.4mm;white-space:nowrap;position:relative;display:flex;align-items:center}
 .tgt li+li{border-left:0}
 .tgt.two ul{grid-template-columns:repeat(2,1fr)}
 .tgt.two li:nth-child(3),.tgt.two li:nth-child(4){border-top:.2mm solid var(--line)}
 .tgt.two li:nth-child(3){border-left:0}
 .blk + .tgt{margin-top:2.4mm}
-.tgt li:before{content:'·';position:absolute;left:1.6mm;color:var(--navy);font-weight:800}
+.tgt li:before{content:'·';position:absolute;left:1.2mm;color:var(--navy);font-weight:800}
 
 .frows{display:flex;flex-direction:column;border-top:.3mm solid var(--navy)}
 .frow{display:grid;grid-template-columns:10mm 58mm 1fr;align-items:center;border-bottom:.2mm solid var(--line);padding:1.6mm 0;gap:3mm}
@@ -318,7 +318,7 @@ const DATA = [
  },
  features:{title:'핵심 특장점', items:[
   {tag:'얼룩', t:'오염 유형별로 작용하는<br>8종 맞춤 효소', d:'때의 성분에 맞는 효소가 찌든 얼룩을 분해합니다', m:'<u>적용 처방</u> · 마이크로 딥클린'},
-  {tag:'원인균', t:'쉰내 원인균<br>모락셀라균 97% 세척<sup>1)</sup>', d:'피지와 땀을 먹고 늘어나 냄새를 만드는 균을 세탁 단계에서 관리합니다', m:'<u>시험 근거</u> · 세척 시험'},
+  {tag:'원인균', t:'쉰내 원인균<br>모락셀라균 97% 세척<sup>1)</sup>', d:'피지와 땀을 먹고 늘어나 냄새를 만드는<br>균을 세탁 단계에서 관리합니다', m:'<u>시험 근거</u> · 세척 시험'},
   {tag:'탈취', t:'땀 냄새 원인 성분<br>99% 탈취<sup>2)</sup>', d:'옷에 밴 아세트산을 세탁 과정에서 탈취합니다', m:'<u>시험 근거</u> · 탈취 시험'}
  ]},
  price:{title:'판매 가격', sub:'세스코몰 기준(2026.11.23)', cols:['구분','용량','정상가','판매가'], cls:['','s','o','ff'],
