@@ -51,7 +51,7 @@ u{text-decoration:none;font-weight:700;color:var(--navy)}
 .hero .lead{margin-top:1.6mm;font-size:10pt;line-height:1.5;color:var(--ink)}
 .hero .pname{margin-top:2.4mm;font-size:13pt;font-weight:800;line-height:1.3;color:var(--ink)}
 .hero .psub{margin-top:1.4mm;font-size:8.3pt;color:var(--sub);line-height:1.45;padding-top:1.6mm;border-top:.2mm solid var(--line)}
-.ph{background:repeating-linear-gradient(135deg,#f1f4f9 0 6px,#e9eef6 6px 12px);border:.25mm dashed #9fb0c9;border-radius:2mm;color:#55657f;font-size:7.6pt;line-height:1.5;padding:3mm;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.ph{background:repeating-linear-gradient(135deg,#f1f4f9 0 6px,#e9eef6 6px 12px);border:.25mm dashed #9fb0c9;color:#55657f;font-size:7.6pt;line-height:1.5;padding:3mm;display:flex;flex-direction:column;justify-content:center;text-align:center}
 .ph b{display:block;color:var(--navy);margin-bottom:1mm}
 .hero-img{min-height:44mm}
 
@@ -59,41 +59,41 @@ u{text-decoration:none;font-weight:700;color:var(--navy)}
 .sec h2{font-size:10.5pt;font-weight:800;color:var(--navy);margin-bottom:1.5mm;display:flex;align-items:baseline;gap:2mm}
 .sec h2 small{font-size:7.6pt;color:var(--sub);font-weight:500}
 
-.tgt{display:grid;grid-template-columns:27mm 1fr;border:.25mm solid var(--blue-m);border-radius:1.6mm;overflow:hidden}
-.tgt .tl{background:var(--navy);color:#fff;font-weight:800;font-size:8.6pt;line-height:1.35;padding:1.6mm 3mm;display:flex;align-items:center}
+.tgt{display:grid;grid-template-columns:27mm 1fr;border-top:.3mm solid var(--navy);border-bottom:.2mm solid var(--line)}
+.tgt .tl{color:var(--navy);font-weight:800;font-size:8.6pt;line-height:1.35;padding:1.6mm 3mm 1.6mm 0;display:flex;align-items:center}
 .tgt ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
-.tgt li{font-size:8pt;line-height:1.4;padding:1.25mm 2mm 1.25mm 5.6mm;position:relative;display:flex;align-items:center;background:var(--blue-l)}
-.tgt li+li{border-left:.25mm solid #fff}
+.tgt li{font-size:8pt;line-height:1.4;padding:1.25mm 2mm 1.25mm 4mm;position:relative;display:flex;align-items:center}
+.tgt li+li{border-left:0}
 .tgt.two ul{grid-template-columns:repeat(2,1fr)}
-.tgt.two li:nth-child(3),.tgt.two li:nth-child(4){border-top:.25mm solid #fff}
+.tgt.two li:nth-child(3),.tgt.two li:nth-child(4){border-top:.2mm solid var(--line)}
 .tgt.two li:nth-child(3){border-left:0}
 .blk + .tgt{margin-top:2.4mm}
-.tgt li:before{content:'✓';position:absolute;left:2mm;color:var(--blue);font-weight:800}
+.tgt li:before{content:'·';position:absolute;left:1.6mm;color:var(--navy);font-weight:800}
 
-.frows{display:flex;flex-direction:column;gap:1mm}
-.frow{display:grid;grid-template-columns:15mm 56mm 1fr;align-items:center;border:.25mm solid var(--line);border-left:1.2mm solid var(--blue);border-radius:1.4mm;padding:1.1mm 3mm 1.1mm 2.4mm;gap:3mm}
-.ftag{font-size:7.6pt;font-weight:800;color:#fff;background:var(--navy);border-radius:1mm;padding:1mm 0;text-align:center}
+.frows{display:flex;flex-direction:column;border-top:.3mm solid var(--navy)}
+.frow{display:grid;grid-template-columns:10mm 58mm 1fr;align-items:center;border-bottom:.2mm solid var(--line);padding:1.6mm 0;gap:3mm}
+.ftag{font-size:7.8pt;font-weight:800;color:var(--blue);text-align:left}
 .ft{font-size:9.6pt;font-weight:800;line-height:1.32;color:var(--ink)}
 .fd{font-size:7.9pt;line-height:1.45;color:var(--ink)}
 .fm{font-size:6.7pt;color:var(--sub);margin-top:.6mm}
 /* 특장점 가로 배열(기본 · 3개 이하) */
 .fcols{display:grid;gap:2.6mm}
-.fcol{border:.25mm solid var(--line);border-top:1.2mm solid var(--blue);border-radius:1.4mm;padding:2.2mm 3mm 2.4mm;display:flex;flex-direction:column;gap:1.3mm}
-.fcol .ftag{align-self:flex-start;padding:.8mm 2.4mm}
+.fcol{border-top:.3mm solid var(--navy);padding:2mm 0 1.6mm;display:flex;flex-direction:column;gap:1.3mm}
+.fcol .ftag{align-self:flex-start}
 .fcol .ft{font-size:10pt}
 .fcol .fd{font-size:7.9pt}
 .fcol .fm{margin-top:auto;padding-top:1.2mm;border-top:.2mm solid var(--line)}
 /* 특장점 4~5개 · B안: 가로 카드(좁고 길게) */
 .fcols.tall{gap:2mm}
-.fcols.tall .fcol{padding:2.2mm 2.2mm 2.2mm;gap:1.5mm}
-.fcols.tall .ftag{padding:.7mm 2mm;font-size:7.2pt}
+.fcols.tall .fcol{padding:2mm 0 1.6mm;gap:1.5mm}
+.fcols.tall .ftag{font-size:7.4pt}
 .fcols.tall .ft{font-size:9.4pt;line-height:1.34;letter-spacing:-.02em}
 .fcols.tall .fd{font-size:7.7pt;line-height:1.5}
 .fcols.tall .fm{font-size:6.5pt;line-height:1.45}
 .fcols.tall.n4 .ft{font-size:9.8pt}
 .fcols.tall.n4 .fd{font-size:7.9pt}
 
-.price{margin-top:2.6mm;border:.5mm solid var(--navy);border-radius:2mm;overflow:hidden}
+.price{margin-top:2.6mm;border:.5mm solid var(--navy)}
 .price h2{margin:0;background:var(--navy);color:#fff;font-size:11pt;padding:1.5mm 3.2mm;display:flex;align-items:baseline;gap:2.4mm}
 .price .psub2{font-size:7.8pt;color:#fff;opacity:.85;font-weight:500}
 table.pt{width:100%;border-collapse:collapse;font-size:8.8pt}
@@ -138,14 +138,14 @@ table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--l
 .blk h3 small{font-size:7.4pt;color:var(--sub);font-weight:500;margin-left:1.4mm}
 /* proof */
 .proof{display:grid;gap:1.6mm}
-.proof .c{background:var(--blue-l);border-radius:1.6mm;padding:2mm 2mm;text-align:center}
+.proof .c{border-top:.3mm solid var(--navy);padding:2mm 1mm 0;text-align:center}
 .proof .n{font-size:16pt;font-weight:900;color:var(--blue);line-height:1.1;letter-spacing:-.02em}
 .proof .l{font-size:7.6pt;line-height:1.38;margin-top:1mm;color:var(--ink)}
 /* how */
 .how{display:grid;gap:2.6mm;position:relative}
-.how .c{border:.25mm solid var(--blue-m);border-radius:1.6mm;padding:1.8mm 2.4mm;position:relative;background:#fff}
+.how .c{border-top:.3mm solid var(--navy);padding:1.8mm 0 0;position:relative}
 .how.flow .c:not(:last-child):after{content:'';position:absolute;right:-2.3mm;top:50%;width:2mm;height:2mm;border-top:.5mm solid var(--blue);border-right:.5mm solid var(--blue);transform:translate(0,-50%) rotate(45deg);background:transparent}
-.how .no{display:inline-block;font-size:7pt;font-weight:800;color:#fff;background:var(--blue);border-radius:.8mm;padding:.2mm 1.4mm;margin-bottom:1mm}
+.how .no{display:inline-block;font-size:7.4pt;font-weight:800;color:var(--blue);margin-bottom:.6mm}
 .how .t{font-size:8.8pt;font-weight:800;color:var(--navy);line-height:1.3}
 .how .d{font-size:7.6pt;line-height:1.42;margin-top:.8mm}
 /* cause */
@@ -157,7 +157,7 @@ table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--l
 .cause .a{background:var(--blue-l);color:var(--navy);font-weight:800}
 /* pair · 함께 쓰면 좋은 제품 */
 .pair{display:grid;gap:2.6mm}
-.pair .c{display:grid;grid-template-columns:17mm 1fr;gap:2.4mm;border:.25mm solid var(--blue-m);border-radius:1.6mm;padding:1.8mm 2.2mm;background:#fff;align-items:center}
+.pair .c{display:grid;grid-template-columns:17mm 1fr;gap:2.4mm;border-top:.3mm solid var(--navy);padding:1.8mm 0 0;align-items:center}
 .pair .ph{min-height:15mm;padding:1mm;font-size:6.2pt}
 .pair .u{font-size:7.4pt;color:var(--sub);line-height:1.4}
 .pair .t{font-size:8.8pt;font-weight:800;color:var(--navy);line-height:1.3;margin-top:.3mm}
@@ -169,11 +169,11 @@ table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--l
 .pick .a{background:var(--blue-l);color:var(--navy);font-weight:800}
 /* list · 체크 목록 */
 .clist{list-style:none;display:grid;gap:1mm 4mm}
-.clist li{font-size:8pt;line-height:1.42;padding:1.2mm 2mm 1.2mm 6mm;position:relative;background:var(--blue-l);border-radius:1.2mm}
-.clist li:before{content:'✓';position:absolute;left:2.2mm;color:var(--blue);font-weight:800}
+.clist li{font-size:8pt;line-height:1.42;padding:1.2mm 0 1.2mm 3.4mm;position:relative;border-bottom:.2mm solid var(--line)}
+.clist li:before{content:'·';position:absolute;left:.8mm;color:var(--navy);font-weight:800}
 .clist li b{color:var(--navy)}
 /* point */
-.point{display:grid;grid-template-columns:auto 1fr;gap:3mm;align-items:center;background:var(--navy);color:#fff;border-radius:2mm;padding:3mm 4mm}
+.point{display:grid;grid-template-columns:auto 1fr;gap:3mm;align-items:center;background:var(--navy);color:#fff;padding:3mm 4mm}
 .point .n{font-size:20pt;font-weight:900;line-height:1;color:#fff}
 .point .n small{display:block;font-size:7.4pt;font-weight:500;opacity:.8;margin-top:1mm}
 .point .d{font-size:8.2pt;line-height:1.48}
@@ -183,7 +183,7 @@ table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--l
 .fn p+p{margin-top:.2mm}
 
 /* CTA — 제품 한 줄 카피 + 고객센터 · 접점 정보 (V19) */
-.cta{margin-top:auto;background:var(--navy);color:#fff;border-radius:2.4mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center;padding:3.2mm 5mm}
+.cta{margin-top:auto;background:var(--navy);color:#fff;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center;padding:3.2mm 5mm}
 .cta.hasqr{grid-template-columns:1fr auto 17mm}
 .cta .cmain{font-size:14.5pt;font-weight:800;line-height:1.3;white-space:nowrap;letter-spacing:-.01em}
 .cta .cmain em{font-style:normal;color:var(--sky)}
@@ -191,7 +191,7 @@ table.st td{padding:2mm 1.6mm;text-align:center;border-bottom:.2mm solid var(--l
 .cta .clabel{font-size:7.6pt;opacity:.85}
 .cta .ctel{font-size:17pt;font-weight:900;letter-spacing:.01em;line-height:1.15}
 .cta .curl{font-size:7.6pt;opacity:.85;margin-top:.3mm}
-.cta .qr{background:#fff;color:var(--navy);border-radius:1.2mm;width:17mm;height:17mm;display:flex;align-items:center;justify-content:center;text-align:center;font-size:6.6pt;font-weight:700;line-height:1.3}
+.cta .qr{background:#fff;color:var(--navy);width:17mm;height:17mm;display:flex;align-items:center;justify-content:center;text-align:center;font-size:6.6pt;font-weight:700;line-height:1.3}
 
 /* ── 디자이너 노트 ── */
 .notes{width:330px;flex:none;background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 16px;font-size:12.5px;line-height:1.6;position:sticky;top:64px;max-height:calc(100vh - 90px);overflow:auto}
