@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SR레포트 샘플 시안 · 1안/2안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E7EAEE; --panel:#FFFFFF; --ink:#1D2630; --sub:#5A6672; --line:#CFD5DC;
+  --seg:#F1F3F6; --seg-on:#1D2630; --seg-on-ink:#FFFFFF;
+  --v1:#46525F; --v1-soft:#E3E7EB; --v2:#0A7F7A; --v2-soft:#DDF1EF;
+  --shadow:0 1px 2px rgba(20,30,45,.12),0 8px 24px rgba(20,30,45,.10);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#14181D; --panel:#1E242B; --ink:#E8ECF0; --sub:#9CA8B4; --line:#343D47;
+    --seg:#272E36; --seg-on:#E8ECF0; --seg-on-ink:#14181D;
+    --v1:#AEB9C4; --v1-soft:#2A323B; --v2:#4CC9C2; --v2-soft:#16302F;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#14181D; --panel:#1E242B; --ink:#E8ECF0; --sub:#9CA8B4; --line:#343D47;
+  --seg:#272E36; --seg-on:#E8ECF0; --seg-on-ink:#14181D;
+  --v1:#AEB9C4; --v1-soft:#2A323B; --v2:#4CC9C2; --v2-soft:#16302F;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'SUIT','Noto Sans KR','Noto Sans CJK KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  font-size:15px;line-height:1.6;word-break:keep-all}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+
+/* ---------- 화면 틀 ---------- */
+.top{max-width:1680px;margin:0 auto;padding:28px 24px 8px}
+.top h1{margin:0 0 6px;font-size:24px;font-weight:700;letter-spacing:-.01em}
+.top p{margin:0;color:var(--sub);max-width:70ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);
+  border-block:1px solid var(--line);margin-top:18px}
+.bar-in{max-width:1680px;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center}
+.ctl{display:flex;align-items:center;gap:10px}
+.ctl > span{font-size:13px;color:var(--sub);font-weight:500}
+.seg{display:inline-flex;background:var(--seg);border-radius:8px;padding:3px}
+.seg button{font:inherit;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ink);
+  padding:6px 14px;border-radius:6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--seg-on);color:var(--seg-on-ink)}
+.seg button:focus-visible{outline:2px solid var(--v2);outline-offset:2px}
+
+.stage{max-width:1680px;margin:0 auto;padding:20px 24px 8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;align-items:start}
+.stage[data-view="v1"] .grid,.stage[data-view="v2"] .grid{grid-template-columns:minmax(0,794px);justify-content:center}
+.stage[data-view="v1"] .c2,.stage[data-view="v2"] .c1{display:none}
+.cell{min-width:0;max-width:794px;width:100%}
+.c1{justify-self:end}.c2{justify-self:start}
+.stage[data-view="v1"] .cell,.stage[data-view="v2"] .cell{justify-self:center}
+
+.planhead{border-radius:10px;padding:14px 18px;background:var(--panel);border-top:5px solid var(--v1)}
+.c2.planhead{border-top-color:var(--v2)}
+.planhead h2{margin:0;font-size:18px;font-weight:700;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.planhead h2 b{color:var(--v1)}
+.c2.planhead h2 b{color:var(--v2)}
+.planhead p{margin:4px 0 0;font-size:13.5px;color:var(--sub)}
+
+.pagelabel{display:flex;gap:8px;align-items:flex-start;margin:6px 0 8px;font-size:13px}
+.tag{flex:none;font-weight:700;padding:2px 9px;border-radius:5px;background:var(--v1-soft);color:var(--v1)}
+.c2 .tag{background:var(--v2-soft);color:var(--v2)}
+.pagelabel .what{color:var(--sub)}
+.wrap{position:relative;width:100%;aspect-ratio:794/1123;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+
+.notes{max-width:1680px;margin:0 auto;padding:16px 24px 56px}
+.notes-in{background:var(--panel);border-radius:10px;padding:20px 24px}
+.notes h2{font-size:17px;margin:0 0 10px}
+.notes h3{font-size:14px;margin:16px 0 4px;color:var(--sub);font-weight:600}
+.notes ul{margin:0;padding-left:20px;max-width:90ch}
+.notes li{margin:3px 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px;color:var(--sub);margin-top:6px}
+.legend i{display:inline-block;width:26px;height:14px;vertical-align:-2px;margin-right:6px}
+.lg-slot{border:1px dashed #8A96A3;background:repeating-linear-gradient(135deg,#eef1f4 0 5px,#e2e6ea 5px 10px)}
+.lg-tbd{border-bottom:1px dashed #B25A00;height:10px!important}
+
+@media (max-width:900px){
+  .top,.bar-in,.stage,.notes{padding-left:14px;padding-right:14px}
+  .grid{grid-template-columns:minmax(0,794px);justify-content:center}
+  .stage[data-view="cmp"] .c2{display:none}
+  .cmp-btn{display:none}
+}
+
+/* ---------- A4 시트 공통 (항상 흰 종이) ---------- */
+.sheet{position:absolute;left:0;top:0;width:794px;height:1123px;background:#fff;color:#000;
+  transform-origin:0 0;color-scheme:light;overflow:hidden;line-height:1.4;font-size:12px}
+.slot{display:flex;align-items:center;justify-content:center;text-align:center;
+  border:1px dashed #8A96A3;color:#5d6873;font-size:9px;line-height:1.3;padding:3px;
+  background:repeating-linear-gradient(135deg,#eef1f4 0 5px,#e2e6ea 5px 10px)}
+.tbd{color:#B25A00;border-bottom:1px dashed #B25A00;font-weight:500}
+
+/* 보고서 1·2P */
+.rp .frame{position:absolute;left:21px;top:21px;right:22px;bottom:40px;border:6px solid #0068AD;pointer-events:none}
+.rh{position:absolute;left:21px;right:22px;top:21px;height:140px;color:#fff;
+  background:linear-gradient(90deg,#005A9E 0%,#0068AD 45%,#0079BF 100%)}
+.rh .t1{position:absolute;left:36px;top:24px;font-size:12.5px;font-weight:300}
+.rh .t2{position:absolute;left:36px;top:41px;font-size:18px;font-weight:300}
+.rh .t2 b{font-weight:700}
+.rh .t3{position:absolute;left:34px;top:70px;font-size:33px;font-weight:300;letter-spacing:-.01em;white-space:nowrap}
+.rh .t3 b{font-weight:800;margin-left:6px}
+.rh .bld{position:absolute;right:62px;bottom:0;width:168px;height:120px;
+  border-color:rgba(255,255,255,.7);color:#fff;background:repeating-linear-gradient(135deg,rgba(255,255,255,.10) 0 6px,rgba(255,255,255,.18) 6px 12px)}
+.rh .logo{position:absolute;right:14px;top:14px;width:48px;height:30px;font-size:7.5px;
+  border-color:rgba(255,255,255,.7);color:#fff;background:transparent}
+.rbody{position:absolute;left:55px;right:58px;top:161px}
+.greet{margin:34px 0 0;font-size:22.6px;font-weight:700;color:#0068AD;letter-spacing:-.03em;white-space:nowrap}
+.greet span{font-weight:300}
+.greet-sub{margin:9px 0 0;font-size:12.6px;line-height:1.6;color:#404041;letter-spacing:-.02em}
+.sec{margin-top:var(--gap,36px)}
+.sec-h{border-bottom:2px solid #5DB6E3;line-height:0}
+.sec-h span{display:inline-block;background:#0F8FD3;color:#fff;font-weight:600;font-size:12.5px;line-height:1;
+  padding:6px 14px 5px;border-radius:0 13px 0 0;min-width:92px;text-align:center}
+table.t{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11.6px}
+table.t th,table.t td{border:1px solid #E5E5E5;padding:0 9px;height:var(--rh,30px);line-height:1.35;letter-spacing:-.02em}
+table.t tr > :first-child{border-left:0} table.t tr > :last-child{border-right:0}
+table.t th{background:#EAEAEA;font-weight:700;font-size:13px;color:#000;text-align:center}
+table.t td.l{background:#FAFAFA;font-weight:700;color:#000;text-align:center}
+table.t td.k{font-weight:600;color:#333}
+table.t td.v{color:#646464}
+table.t td.c{text-align:center}
+table.t td.hl{background:#E5E5E5;font-weight:700;color:#000;text-align:center}
+table.t td.b{font-weight:700;color:#000}
+table.t td.pad{padding-top:6px;padding-bottom:6px}
+table.t td.sig{height:var(--sig,110px);vertical-align:top;padding-top:8px}
+table.t td.sig .slot{width:150px;height:calc(var(--sig,110px) - 18px)}
+
+/* 2안 전용 보고서 요소 */
+.sum{display:grid;grid-template-columns:repeat(var(--n,3),1fr);border-bottom:1px solid #E5E5E5;background:#F6FAFD}
+.sum div{padding:11px 14px 12px;border-left:1px solid #DCE9F2}
+.sum div:first-child{border-left:0}
+.sum small{display:block;font-size:11px;font-weight:700;color:#0068AD;margin-bottom:3px}
+.sum p{margin:0;font-size:12.6px;font-weight:600;color:#262626;line-height:1.45;letter-spacing:-.02em}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.stack3 table + table{margin-top:6px}
+.stack3 > * + *{margin-top:10px!important}
+
+/* 뒷면 Information Desk */
+.bk{color:#404041}
+.bk .inner{position:absolute;left:56px;right:56px;top:0}
+.bk .ttl{margin-top:74px;border-top:3px solid #404041;border-bottom:1px solid #9a9a9a;text-align:center;
+  font-size:26.5px;font-weight:600;letter-spacing:.01em;padding:7px 0 6px;color:#404041}
+.months{display:flex;margin-top:22px;font-size:14.4px;color:#9B9B9C}
+.months span{flex:1;text-align:center;border-left:1px solid #9B9B9C;line-height:1}
+.months span:last-child{border-right:1px solid #9B9B9C}
+.months .on{color:#262626;font-weight:800}
+.bsec{display:flex;align-items:flex-end;border-bottom:2px solid #0089CF;margin-top:var(--bgap,30px)}
+.bsec .tab{display:flex;align-items:center;gap:7px;background:#0089CF;color:#fff;font-weight:700;font-size:15px;
+  padding:4px 16px 3px 12px;min-width:116px;line-height:1.2}
+.bsec .tab svg{width:15px;height:15px;flex:none}
+.bsec h3{margin:0 0 3px 16px;font-size:15.8px;font-weight:600;color:#262626;letter-spacing:-.02em}
+.bsec h3 em{font-style:normal;color:#0089CF;font-weight:700}
+
+/* 1안 해충 패널 */
+.pp{display:grid;grid-template-columns:1fr 1fr;gap:18px;background:#F2F2F3;margin-top:8px}
+.pc{display:grid;grid-template-columns:100px 1fr;gap:10px}
+.pc .ph{display:grid;grid-template-rows:1fr 1fr;gap:3px}
+.pc .ph .slot{min-height:76px}
+.pc .tx{padding:7px 6px 7px 0;font-size:8.6px;line-height:1.5;letter-spacing:-.02em}
+.pc h4{margin:0 0 2px;font-size:13px;font-weight:700;color:#262626}
+.pc ul{margin:0;padding:0;list-style:none}
+.pc ul li::before{content:"· "}
+.kv{display:grid;grid-template-columns:26px 1fr;gap:0 7px;margin-top:5px}
+.kv dt{font-weight:700;color:#262626;border-right:1px solid #9a9a9a;line-height:1.3;align-self:stretch}
+.kv dd{margin:0}
+.kv dd p{margin:0;padding-left:1.1em;text-indent:-1.1em}
+
+/* 뉴스 */
+.news{font-size:11.2px;line-height:1.75;letter-spacing:-.025em}
+.news p{margin:0}
+.news .intro{margin-top:9px}
+.news h5{display:inline-block;margin:9px 0 2px;font-size:12.6px;font-weight:600;color:#0089CF;border-bottom:1px solid #0089CF;line-height:1.5}
+.news .src{margin-top:8px;font-size:8px;line-height:1.55;color:#6a6a6b}
+
+/* 1안 프로모션 배너 */
+.promo{position:absolute;left:0;right:0;top:779px;height:284px;background:linear-gradient(100deg,#E6EDF4 0%,#DAE4EE 55%,#CBD8E5 100%)}
+.promo .strip{position:absolute;left:56px;top:16px;background:#1C2D52;color:#fff;font-size:12.5px;font-weight:600;padding:3px 10px}
+.promo .pn{position:absolute;left:56px;top:50px;font-size:16.5px;color:#1C2D52}
+.promo .mo{position:absolute;left:56px;top:74px;font-size:26px;font-weight:800;color:#1C2D52;letter-spacing:-.03em}
+.promo .per{position:absolute;right:56px;top:18px;text-align:right;font-size:10px;color:#1C2D52}
+.promo .per b{font-weight:700}
+.promo .bens{position:absolute;left:56px;top:128px;display:grid;grid-template-columns:150px 180px;gap:14px}
+.promo .bens small{display:inline-block;background:#1C2D52;color:#fff;font-size:9.5px;font-weight:700;padding:1px 8px}
+.promo .bens p{margin:4px 0 0;font-size:12.5px;font-weight:700;color:#1C2D52;line-height:1.35}
+.promo .bens em{display:block;font-style:normal;font-size:7.6px;font-weight:400;color:#404041;margin-top:3px;line-height:1.45}
+.promo .pbar{position:absolute;left:56px;bottom:14px;width:330px;background:#1C2D52;color:#fff;border-radius:0 22px 22px 0;
+  font-size:9.6px;padding:6px 14px;line-height:1.6}
+.promo .pimg{position:absolute;right:70px;top:50px;width:120px;height:150px}
+.promo .chk{position:absolute;right:56px;bottom:12px;width:330px;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;
+  font-size:9.2px;color:#1C2D52;font-weight:500;line-height:1.4}
+.promo .chk > span::before{content:"✓ ";font-weight:700}
+.pfoot{position:absolute;left:56px;right:56px;top:1068px;font-size:6.6px;line-height:1.5;color:#6a6a6b}
+
+/* 2안 뒷면 */
+.v2b .pp{padding:0}
+.v2b .pc{grid-template-columns:118px 1fr;gap:12px}
+.v2b .pc .ph{grid-template-rows:1fr}
+.v2b .pc .tx{font-size:10.4px;line-height:1.5;padding:9px 10px 9px 0}
+.v2b .pc h4{font-size:14px;margin-bottom:3px}
+.v2b .grp{margin-top:5px}
+.v2b .grp b{display:block;font-size:10px;color:#0068AD;font-weight:700}
+.v2b .grp p{margin:0;padding-left:1.1em;text-indent:-1.1em}
+.v2b .grp p.np{padding-left:0;text-indent:0}
+.p1{display:grid;grid-template-columns:33% 1fr;background:#F2F2F3;margin-top:8px}
+.p1 .slot{min-height:190px}
+.p1 .tx{padding:12px 16px 12px 18px;font-size:10.8px;line-height:1.55;letter-spacing:-.02em}
+.p1 h4{margin:0 0 2px;font-size:16px;font-weight:700;color:#262626}
+.p1 .cols{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+.v2b .news{font-size:11.6px;line-height:1.62}
+.v2b .bsec{--bgap:20px!important}
+.v2b .ttl{margin-top:64px}
+.v2b .months{margin-top:18px}
+.v2b .news h5{font-size:12.8px;margin-top:10px}
+.v2b .news ol{margin:2px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.v2b .news ol li{border-top:2px solid #5DB6E3;padding-top:5px;line-height:1.55}
+.v2b .news ol b{display:block;color:#262626;font-weight:700}
+.v2b .news .src{font-size:9px}
+.sol{position:absolute;left:0;right:0;bottom:30px;height:262px;background:linear-gradient(100deg,#E6EDF4 0%,#DAE4EE 55%,#CBD8E5 100%);color:#1C2D52}
+.sol .kind{position:absolute;left:56px;top:18px;background:#1C2D52;color:#fff;font-size:10.5px;font-weight:700;padding:2px 10px}
+.sol h4{position:absolute;left:56px;top:46px;margin:0;font-size:21px;font-weight:800;letter-spacing:-.03em;width:460px;line-height:1.3}
+.sol .pn{position:absolute;left:56px;top:82px;font-size:13.5px;font-weight:500}
+.sol .pods{position:absolute;left:56px;top:110px;width:450px;margin:0;padding:0;list-style:none;font-size:11.6px}
+.sol .pods li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:6px 0;border-top:1px solid rgba(28,45,82,.25);line-height:1.45}
+.sol .pods li:last-child{border-bottom:1px solid rgba(28,45,82,.25)}
+.sol .pods b{font-weight:700}
+.sol .pimg{position:absolute;right:76px;top:18px;width:150px;height:158px}
+.sol .cta{position:absolute;right:56px;bottom:34px;width:190px;background:#1C2D52;color:#fff;text-align:center;
+  font-size:12px;font-weight:700;padding:8px 6px;line-height:1.35}
+.sol .cta small{display:block;font-weight:400;font-size:9.5px}
+.sol .nt{position:absolute;left:56px;right:56px;bottom:10px;font-size:9px;color:#404041;line-height:1.45}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>SR레포트 샘플 시안</h1>
+  <p>해충방제 서비스와 매트리스 서비스를 1안(원본 재현형), 2안(구조 개선형)으로 조판했습니다. 서비스와 발행 월을 바꾸면 양쪽 안이 같은 데이터로 함께 바뀝니다.</p>
+</div>
+
+<div class="bar"><div class="bar-in">
+  <div class="ctl"><span>서비스</span><div class="seg" data-key="svc">
+    <button data-val="pest" aria-pressed="true">해충방제</button><button data-val="mat" aria-pressed="false">매트리스</button></div></div>
+  <div class="ctl"><span>발행 월</span><div class="seg" data-key="mon">
+    <button data-val="11" aria-pressed="true">11월</button><button data-val="12" aria-pressed="false">12월</button></div></div>
+  <div class="ctl"><span>보기</span><div class="seg" data-key="view">
+    <button class="cmp-btn" data-val="cmp" aria-pressed="true">나란히 비교</button><button data-val="v1" aria-pressed="false">1안만</button><button data-val="v2" aria-pressed="false">2안만</button></div></div>
+</div></div>
+
+<main class="stage" id="stage" data-view="cmp">
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="notes"><div class="notes-in">
+  <h2>샘플 제작 기준과 확인 필요 사항</h2>
+  <div class="legend">
+    <span><i class="lg-slot"></i>빗금 상자: 공식 자산(로고, 건물 사진, 해충·제품 사진, 서명) 자리</span>
+    <span><i class="lg-tbd"></i>주황 점선 글자: 승인 자료 확정 후 기입할 문구</span>
+  </div>
+  <h3>가상 데이터</h3>
+  <ul>
+    <li>고객명, 주소, 연락처, 계좌, 담당자는 모두 가상 값입니다. 원본 PDF의 실제 고객 정보는 옮기지 않았습니다.</li>
+    <li>서명은 가이드에 따라 생성하지 않고 자리만 남겼습니다.</li>
+    <li>해충방제의 자재명과 조치 설명, 계약 금액은 원본 예시 표기를 그대로 썼고, 문진·진단 값은 샘플용으로 달리 넣었습니다.</li>
+  </ul>
+  <h3>승인이 필요한 가안</h3>
+  <ul>
+    <li>매트리스 서비스의 탭 이름, 점검항목 7개, 작업 항목명, 계약 표기는 제가 임의로 잡은 가안입니다. 두 가이드 모두 공식 승인된 서비스명과 점검항목 세트가 있을 때만 전환하도록 정하고 있어, 실제 표준 공정명으로 교체해야 합니다.</li>
+    <li>2안의 서비스 요약과 서비스 후 관리 안내는 샘플 문구입니다. 관리 안내는 11월 샘플에만 넣고 12월 샘플은 숨겨서, 승인 지침이 없을 때의 2P 구성도 볼 수 있게 했습니다.</li>
+  </ul>
+  <h3>월간 콘텐츠</h3>
+  <ul>
+    <li>세스코 공식 블로그는 이 작업 환경에서 접속할 수 없어 참고하지 못했습니다. 해충 예보와 뉴스 원고는 일반적으로 알려진 내용으로 쓴 샘플이며, 수치(잠복기, 온도, 크기 등)와 출처는 발행 전 최신 승인 원고와 대조가 필요합니다.</li>
+    <li>11월: 쥐류·독일바퀴 / 노로바이러스 식중독 / 마이랩 곡물발효 살균소독제. 12월: 빈대·집먼지진드기 / 난방철 호흡기 감염병 / 공기청정기 판테온.</li>
+    <li>확정된 행사 조건이 없어 2안 하단은 두 달 모두 제품 소개형(C-PRODUCT)으로 구성했습니다. 1안 하단은 원본 배너의 레이어 구조를 유지하고 혜택, 기간, 유의사항은 비워 두었습니다. 판테온 특장점 3개는 2025년 3월 원본 문구이고 성능 수치는 재사용하지 않았습니다.</li>
+    <li>2안 변형 시연: 11월은 해충 1종 집중형(P1) + 뉴스 실천 강화형(N3), 12월은 해충 2종 비교형(P2) + 뉴스 기본형(N2)입니다.</li>
+  </ul>
+  <h3>조판</h3>
+  <ul>
+    <li>SUIT는 이 페이지에서 불러올 수 없어 Noto Sans KR로 대체했습니다(SUIT가 설치된 PC에서는 SUIT로 표시). 자간과 줄바꿈은 실제 폰트로 다시 검수해야 합니다.</li>
+    <li>재현 모드는 권장안인 보고서 2P + 독립 뒷면 1P 세트 기준입니다.</li>
+  </ul>
+</div></section>
+
+<script>
+/* ================= 데이터 ================= */
+const TBD = t => `<span class="tbd">(${t})</span>`;
+const SVC = {
+  pest:{ name:'해충방제', tab1:'해충방제 서비스 상세내용', nextLabel:'다음 해충방제 서비스 예정월',
+    q:['해충 목격여부','목격(의심)해충','해충 주요 목격 장소','기타 특이사항'],
+    d:['해충 발견 여부 (사체/일부 포함)','흔적 발견 여부 (분변/통로 내 흔적 등)','문제 해충 종류'],
+    cust:{name:'(샘플) 주식회사 ○○식품',code:'AB0000',type:'산업체',mobile:'010-0000-0000',addr:'경기 ○○시 ○○로 00 (샘플 주소)',
+      pay:'○○은행 000000-00-000000',unpaid:'0 원',unpaidDetail:'',amount:'110,000 원',total:'110,000 원'},
+    contracts:[['일반방제','75,000 원','매 월','165.00 ㎡'],['피닉스','35,000 원','매 월','1 대']], member:'블루',
+    staff:{name:'김세스 (샘플)',phone:'010-0000-0000',branch:'○○지사',center:'1588-1119'} },
+  mat:{ name:'매트리스', tab1:'매트리스 서비스 상세내용', nextLabel:'다음 매트리스 서비스 예정월',
+    q:['알레르기·가려움 증상 여부','매트리스 사용 기간','주요 오염 부위','기타 특이사항'],
+    d:['먼지·오염 확인 여부 (상면/솔기)','해충 흔적 발견 여부 (빈대/진드기 등)','관리 필요 부위'],
+    cust:{name:'(샘플) 홍○○',code:'CD0000',type:'가정집',mobile:'010-0000-0000',addr:'서울 ○○구 ○○로 00, 000동 000호 (샘플 주소)',
+      pay:'○○카드 0000-****-****-0000',unpaid:'0 원',unpaidDetail:'',amount:'00,000 원',total:'00,000 원'},
+    contracts:[['매트리스 케어','00,000 원','(계약 주기)','퀸 1 개']], member:'블루',
+    staff:{name:'이세스 (샘플)',phone:'010-0000-0000',branch:'○○지사',center:'1588-1119'} }
+};
+const PEST_ITEMS = {
+  glue:['글루보드-NF','낮은 온도의 환경에서도 쉽게 얼지 않도록 처리된 쥐 방제 글루보드 설치'],
+  mtrap:['M-트랩','바퀴 및 보행해충 방제를 위한 모니터링 트랩 설치'],
+  phx:['피닉스 카트리지','실내 포충기기 점검 및 카트리지 교체<br>온도, 자외선에 영향받지 않는 우수한 내구성으로 타사 대비 2~6배 높은 해충 포획력을 가진 카트리지로 교체'],
+  foam:['세록스 씨투폼에어로솔','해충 침입 예방 및 제어를 위한 잔류성 거품 기피제 투약']
+};
+const MAT_ITEMS = {
+  pre:['사전 오염 점검','매트리스 상면, 측면, 솔기의 먼지와 얼룩, 해충 흔적 확인'],
+  vac:['먼지·진드기 흡입','상면과 솔기에 쌓인 먼지, 집먼지진드기 사체와 배설물 흡입 제거'],
+  uv:['UV 살균','매트리스 상면과 측면 UV 조사'],
+  frame:['침대 프레임 점검','프레임 틈새와 헤드 주변의 해충 서식 흔적 점검']
+};
+const REPORT = {
+  'pest-11':{date:'2026.11.24',cdate:'2026-11-24',next:'2026년 12월',time:['09:58','10:18','20'],
+    items:[PEST_ITEMS.glue,PEST_ITEMS.mtrap,PEST_ITEMS.phx,PEST_ITEMS.foam],
+    q:['예','쥐(의심)','자재 창고 출입구',''], d:['해충없음','분변 흔적 발견 (창고 출입구 하단)','쥐류'],
+    confirm:{name:'홍길동',comment:'감사합니다'},
+    summary:[['현장 점검','창고 출입구 하단에서 쥐류 분변 흔적 확인'],['실시한 조치','글루보드·모니터링 트랩 설치, 포충기 카트리지 교체 등'],['다음 서비스','2026년 12월 예정']],
+    aftercare:[['창고 출입구 하단에서 분변 흔적 확인','출입구 하단 틈새를 막고, 문을 열어 두는 시간을 줄여 주세요.'],
+               ['글루보드, 모니터링 트랩 설치','설치 위치를 옮기지 말고, 포획이 확인되면 담당자에게 알려 주세요.']]},
+  'pest-12':{date:'2026.12.22',cdate:'2026-12-22',next:'2027년 01월',time:['14:05','14:30','25'],
+    items:[PEST_ITEMS.mtrap,PEST_ITEMS.phx,PEST_ITEMS.foam],
+    q:['예','바퀴(의심)','탕비실 싱크대 하부',''], d:['해충없음','해충없음','해충없음'],
+    confirm:{name:'홍길동',comment:'감사합니다'},
+    summary:[['현장 점검','현장 점검에서 해충과 흔적 미발견'],['실시한 조치','모니터링 트랩 설치, 포충기 점검 및 카트리지 교체 등'],['다음 서비스','2027년 01월 예정']],
+    aftercare:[]},
+  'mat-11':{date:'2026.11.24',cdate:'2026-11-24',next:'2027년 03월',time:['13:30','14:20','50'],
+    items:[MAT_ITEMS.pre,MAT_ITEMS.vac,MAT_ITEMS.uv,MAT_ITEMS.frame],
+    q:['예 (아침 재채기)','약 4년','상단 머리 쪽','반려동물과 함께 사용, 최근 음료 얼룩이 생겨 자가 세척 1회 진행'], d:['먼지 다량 확인 (솔기)','발견 없음','상면, 솔기'],
+    confirm:{name:'홍○○',comment:'꼼꼼하게 봐 주셔서 감사합니다'},
+    summary:[['현장 점검','매트리스 솔기에서 먼지 다량 확인, 해충 흔적 미발견'],['실시한 조치','먼지·진드기 흡입, UV 살균, 침대 프레임 점검'],['다음 서비스','2027년 03월 예정']],
+    aftercare:[['솔기에서 먼지 다량 확인','침구는 55℃ 이상의 물로 주기적으로 세탁해 주세요.'],
+               ['서비스 직후','창문을 열어 침실을 환기해 주세요.']]},
+  'mat-12':{date:'2026.12.22',cdate:'2026-12-22',next:'2027년 04월',time:['10:00','10:45','45'],
+    items:[MAT_ITEMS.pre,MAT_ITEMS.vac,MAT_ITEMS.uv],
+    q:['아니오','약 2년','','연말 여행 후 점검 요청'], d:['확인 없음','발견 없음',''],
+    confirm:{name:'홍○○',comment:'감사합니다'},
+    summary:[['현장 점검','오염과 해충 흔적 미발견'],['실시한 조치','먼지·진드기 흡입, UV 살균'],['다음 서비스','2027년 04월 예정']],
+    aftercare:[]}
+};
+const MONTH = {
+  11:{
+    pests:[
+      {name:'쥐류',why:'기온이 내려가면서 먹이와 온기를 찾아 건물 안으로 침입하는 개체 증가',
+       traits:['기온이 내려가면서 먹이와 온기를 찾아 건물 안으로 침입하는 개체 증가','야행성으로 벽면과 구석을 따라 이동하며 분변과 갉은 흔적으로 확인 가능'],
+       damage:'식자재와 포장재를 갉아 오염시키고 살모넬라균 등 식중독균을 옮김. 전선을 갉아 누전과 화재의 원인이 되기도 함. 신증후군출혈열, 렙토스피라증 등 감염병을 매개함.',
+       how:['출입문 하단, 배관 관통부 등 외부와 연결된 틈새 차단','음식물과 쓰레기는 밀폐 용기에 보관하여 먹이원 제거','벽면에 붙여 쌓은 적재물을 정리하여 은신처 제거']},
+      {name:'독일바퀴',
+       traits:['난방이 되는 실내에서 겨울에도 번식과 활동을 지속','따뜻하고 습한 주방 기기 하부, 싱크대 주변 틈새에 무리 지어 서식 (성충 약 10~15mm)'],
+       damage:'식중독균 등 병원성 세균을 몸에 묻혀 식기와 음식물에 옮김. 배설물과 탈피 껍질은 알레르기와 천식을 유발할 수 있음.',
+       how:['싱크대와 바닥의 물기, 음식물 찌꺼기 제거','외부에서 들어오는 택배 상자와 식자재 박스는 바로 정리하여 배출','배관 주변과 벽면 틈새를 막아 은신처 차단']}
+    ],
+    v2pest:'P1',
+    news:{
+      head:['겨울에 더 유행하는 ','노로바이러스 식중독','을 주의하세요!'],
+      intro:'식중독은 여름철 질환으로 알려져 있지만 노로바이러스 식중독은 기온이 내려가는 11월부터 이듬해 봄까지 집중적으로 발생합니다. 노로바이러스는 낮은 온도에서도 오래 살아남고 적은 양으로도 감염을 일으켜 <b>단체 급식소와 음식점, 가정 모두 주의가 필요합니다.</b>',
+      v1:[
+        {h:'오염된 음식과 손, 문손잡이까지 감염 경로가 될 수 있어',
+         p:['노로바이러스는 <b>오염된 물이나 익히지 않은 어패류를 섭취했을 때 감염됩니다.</b> 감염자의 구토물과 분변, 감염자가 만진 문손잡이나 조리 기구를 통해서도 전파됩니다. 감염되면 12~48시간의 잠복기를 거쳐 구토, 설사, 복통 증상이 나타납니다.']},
+        {h:'손 씻기와 익혀 먹기, 표면 소독으로 예방 필요',
+         p:['노로바이러스는 알코올 손 소독제만으로는 제거가 어려워 <b>비누를 사용해 흐르는 물에 30초 이상 손을 씻는 것이 중요합니다.</b> 어패류는 중심 온도 85℃에서 1분 이상 익혀 먹고, 지하수는 끓여서 사용합니다.',
+            '증상이 있는 조리 종사자는 조리에서 제외하고 회복 후에도 2~3일간 조리를 삼가는 것이 좋습니다. 구토물이 묻은 바닥과 손이 자주 닿는 표면은 염소계 소독제로 닦아 2차 감염을 막아야 합니다.']}
+      ],
+      v2intro:'식중독은 여름철 질환으로 알려져 있지만 노로바이러스 식중독은 겨울에 더 자주 발생합니다. 단체 급식소와 음식점, 가정 모두 주의가 필요합니다.',
+      v2mode:'N3',
+      v2:[
+        {h:'왜 겨울에 유행할까요?',p:'노로바이러스는 낮은 온도에서도 오래 살아남고 적은 양으로도 감염을 일으킵니다. 기온이 내려가는 11월부터 이듬해 봄까지 발생이 집중됩니다.'},
+        {h:'어떻게 옮을까요?',p:'오염된 물이나 익히지 않은 어패류, 감염자의 구토물과 분변, 감염자가 만진 문손잡이와 조리 기구를 통해 전파됩니다. 12~48시간의 잠복기 뒤 구토, 설사, 복통이 나타납니다.'},
+        {h:'이렇게 관리하세요',list:[['손 씻기','비누로 흐르는 물에 30초 이상 씻습니다. 알코올 손 소독제만으로는 제거가 어렵습니다.'],['익혀 먹기','어패류는 중심 온도 85℃에서 1분 이상 익히고 지하수는 끓여서 사용합니다.'],['표면 소독','구토물이 묻은 바닥과 손이 자주 닿는 표면은 염소계 소독제로 닦습니다.']]}
+      ],
+      src:['[출처] 식품의약품안전처 노로바이러스 식중독 예방 안내, 질병관리청 감염병 정보 “노로바이러스 감염증”','[확인] 샘플 원고입니다. 발행 전 최신 승인 원고의 문서명, 발행일, URL로 교체합니다.']
+    },
+    promo:{
+      strip:'겨울철 노로바이러스 유행 시기, 조리대와 문손잡이 위생 관리가 필요한 때',
+      name:'환경위생용품 세스코 마이랩 곡물발효 살균소독제',
+      v2head:'조리대와 문손잡이, 손이 자주 닿는 표면 위생 관리',
+      checks:[TBD('특장점 확정 후 기입'),TBD('특장점 확정 후 기입'),TBD('특장점 확정 후 기입'),TBD('특장점 확정 후 기입')],
+      pods:[['POD 01',TBD('제품 기능 근거: 승인 POD 확정 후 기입')],['POD 02',TBD('사용 편익: 승인 POD 확정 후 기입')]],
+      img:'제품 사진<br>마이랩 곡물발효<br>살균소독제',
+      cta:['세스코몰에서 자세히 보기','문의 1588-1119'],
+      note:'* 용도, 시험 조건, 사용상 주의사항은 제품 라벨과 승인 POD 원문을 기입합니다.'
+    }
+  },
+  12:{
+    pests:[
+      {name:'빈대',
+       traits:['연말연시 여행과 숙박 시설 이용이 늘면서 가방, 의류에 붙어 실내로 유입','성충 약 5~6mm, 낮에는 매트리스 솔기와 침대 프레임 틈새에 숨고 밤에 흡혈'],
+       damage:'물린 부위에 심한 가려움과 붉은 자국이 생기고 수면을 방해함. 질병을 옮기는 것으로 알려져 있지는 않으나 긁은 부위의 2차 감염에 주의가 필요함.',
+       how:['숙박 시 매트리스 모서리와 침대 헤드의 검은 얼룩(배설물) 확인','여행 후 의류는 50~60℃ 건조기에 30분 이상 건조','가정에서 발견 시 임의로 살충제를 뿌리기보다 전문 방제 상담']},
+      {name:'집먼지진드기',
+       traits:['난방과 가습으로 따뜻하고 습해진 겨울 침실에서 번식','크기 약 0.1~0.5mm로 눈에 잘 보이지 않으며 사람의 각질을 먹이로 침구와 매트리스에 서식'],
+       damage:'배설물과 사체가 알레르기 유발 물질로 작용하여 비염, 천식, 아토피 피부염 증상을 악화시킬 수 있음.',
+       how:['침구는 55℃ 이상의 물로 주기적으로 세탁','실내 습도를 50% 이하로 유지하고 자주 환기','세탁이 어려운 매트리스는 정기적으로 흡입, 살균 관리']}
+    ],
+    v2pest:'P2',
+    news:{
+      head:['난방으로 닫힌 실내, ','인플루엔자 등 호흡기 감염병','을 주의하세요!'],
+      intro:'12월은 난방으로 창문을 닫고 지내는 시간이 길어지고 연말 모임이 늘어나는 시기입니다. 환기가 부족한 실내에 여러 사람이 모이면 <b>인플루엔자 같은 호흡기 감염병이 전파되기 쉬워 주의가 필요합니다.</b>',
+      v1:[
+        {h:'환기가 부족한 실내에서는 오염된 공기가 오래 머물 수 있어',
+         p:['호흡기 감염병은 <b>기침과 재채기로 나오는 비말, 바이러스가 묻은 손과 표면을 통해 전파됩니다.</b> 환기를 하지 않으면 실내 공기가 정체되어 오염 물질의 농도가 높아집니다. 난방으로 실내가 건조해지면 코와 목의 점막이 말라 방어 기능도 떨어집니다.']},
+        {h:'하루 3회 10분 환기와 예방접종, 손 씻기로 대비 필요',
+         p:['실내는 <b>하루 3회 이상, 한 번에 10분 이상 창문을 열어 환기합니다.</b> 실내 습도는 40~50% 수준으로 유지하고 손이 자주 닿는 문손잡이와 스위치는 주기적으로 닦아 줍니다.',
+            '인플루엔자는 갑작스러운 고열과 근육통, 기침이 특징입니다. 유행 전 예방접종을 받고, 증상이 나타나면 빠르게 의료기관을 방문해 진료를 받아야 합니다. 영유아와 어르신 등 고위험군은 폐렴 같은 합병증으로 이어질 수 있어 더욱 주의가 필요합니다.']}
+      ],
+      v2mode:'N2',
+      v2:[
+        {h:'닫힌 실내에서는 오염된 공기가 오래 머뭅니다',p:'호흡기 감염병은 기침과 재채기로 나오는 비말, 바이러스가 묻은 손과 표면을 통해 전파됩니다. 환기를 하지 않으면 실내 공기가 정체되어 오염 물질의 농도가 높아집니다. 난방으로 건조해진 실내에서는 코와 목의 점막이 말라 방어 기능도 떨어집니다.'},
+        {h:'하루 3회 10분 환기와 예방접종으로 대비하세요',p:'하루 3회 이상, 한 번에 10분 이상 창문을 열어 환기하고 실내 습도는 40~50% 수준으로 유지합니다. 인플루엔자는 갑작스러운 고열과 근육통, 기침이 특징입니다. 유행 전 예방접종을 받고 증상이 나타나면 빠르게 의료기관을 방문합니다. 영유아와 어르신 등 고위험군은 폐렴 같은 합병증에 더욱 주의가 필요합니다.'}
+      ],
+      src:['[출처] 질병관리청 감염병 정보 “인플루엔자”, 질병관리청 실내 환기 안내','[확인] 샘플 원고입니다. 발행 전 최신 승인 원고의 문서명, 발행일, URL로 교체합니다.']
+    },
+    promo:{
+      strip:'난방으로 환기가 줄어드는 12월, 실내 공기 관리가 필요한 때',
+      name:'세스코 트루살균/트루에어 공기청정기 판테온',
+      v2head:'난방으로 닫힌 실내, 청정과 살균을 한 번에',
+      checks:['청정과 살균을 한 번에 2 in 1 공기청정기','바닥먼지까지 띄워 청정하는 에어리바운드™ 기술','극초미세먼지 제거 '+TBD('수치 확정 후 기입'),'바이러스, 세균을 직접 살균하는 UV살균터널pro™'],
+      pods:[['POD 01','청정과 살균을 한 번에 하는 2 in 1 공기청정기'],['POD 02','바닥먼지까지 띄워 청정하는 에어리바운드™ 기술'],['POD 03','바이러스, 세균을 직접 살균하는 UV살균터널pro™']],
+      img:'제품 사진<br>공기청정기<br>판테온',
+      cta:['렌탈 상담 신청','본사 고객센터 1588-1119'],
+      note:'* 성능 수치와 시험 조건은 승인 자료 확정 후 기입합니다. 2025년 3월 소재의 수치는 재사용하지 않았습니다.'
+    }
+  }
+};
+
+/* ================= 공통 조각 ================= */
+const ICON_BUG='<svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round"><ellipse cx="8" cy="9" rx="3" ry="4"/><circle cx="8" cy="3.8" r="1.4"/><path d="M5 7 2 5.5M5 9.5H1.8M5.3 12 3 14M11 7l3-1.5M11 9.5h3.2M10.7 12l2.3 2"/></svg>';
+const ICON_DOC='<svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.3"><rect x="2.5" y="1.8" width="11" height="12.4" rx="1"/><path d="M5 5h6M5 8h6M5 11h4"/></svg>';
+const slot=(t,cls='')=>`<div class="slot ${cls}">${t}</div>`;
+const sec=(title,body,gap)=>`<section class="sec"${gap?` style="--gap:${gap}px"`:''}><div class="sec-h"><span>${title}</span></div>${body}</section>`;
+const header=r=>`<div class="frame"></div><header class="rh">
+  <div class="t1">세스코 과학으로 관리합니다</div><div class="t2"><b>CESCO Science.</b> ON Life</div>
+  <div class="t3">${r.date}<b>서비스리포트</b></div>
+  ${slot('건물 사진<br>(공식 자산)','bld')}${slot('CESCO<br>로고','logo')}</header>`;
+const GREET='<p class="greet"><span>고객님,</span> 오늘 세스코의 서비스 이렇게 진행되었습니다.</p>';
+const greet2=s=>`<p class="greet"><span>고객님,</span> 오늘 방문해 ${s.name==='매트리스'?'매트리스 상태를':'사업장 곳곳을'} 꼼꼼히 살폈습니다.</p><p class="greet-sub">확인한 내용과 진행한 서비스를 아래에 정리해 드립니다. 궁금하신 점은 담당자에게 언제든 편하게 연락 주세요.</p>`;
+const months=m=>`<div class="months">${Array.from({length:12},(_,i)=>`<span${i+1==m?' class="on"':''}>${i+1}월</span>`).join('')}</div>`;
+const circ=['①','②','③','④'];
+
+const tActions=r=>`<table class="t"><colgroup><col style="width:26%"><col></colgroup>
+  <tr><th colspan="2">오늘의 서비스 내역</th></tr>
+  ${r.items.map(i=>`<tr><td class="k pad">${i[0]}</td><td class="v pad" style="font-size:10.8px">${i[1]}</td></tr>`).join('')}</table>`;
+const tTime=r=>`<table class="t"><tr><td class="l">서비스 시작시간</td><td class="v c">${r.time[0]}</td><td class="l">서비스 종료시간</td><td class="v c">${r.time[1]}</td><td class="l">서비스 제공시간(분)</td><td class="v c">${r.time[2]}</td></tr></table>`;
+const tStaff=s=>`<table class="t"><tr><td class="l">서비스 담당자</td><td class="v c">${s.staff.name}</td><td class="l">서비스 담당자 연락처</td><td class="v c">${s.staff.phone}</td></tr>
+  <tr><td class="l">담당지사</td><td class="v c">${s.staff.branch}</td><td class="l">본사 고객센터</td><td class="v c">${s.staff.center}</td></tr></table>`;
+const tContract=s=>`<table class="t"><tr><th>계약기기</th><th>계약비용(월)</th><th>계약주기</th><th>관리 면적 및 기기 수량</th></tr>
+  ${s.contracts.map(c=>`<tr>${c.map(x=>`<td class="v c">${x}</td>`).join('')}</tr>`).join('')}</table>`;
+const tConfirm=r=>`<table class="t"><colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup>
+  <tr><td class="l">확인일자</td><td class="v">${r.cdate}</td><td class="l">고객확인</td><td class="v">${r.confirm.name}</td></tr>
+  <tr><td class="l">의견</td><td class="v" colspan="3">${r.confirm.comment}</td></tr>
+  <tr><td class="l">서명</td><td class="sig" colspan="3">${slot('서명 이미지 자리<br>(제공된 원본만 삽입)')}</td></tr></table>`;
+const tEtc=s=>{const c=s.cust;return `<table class="t"><colgroup><col style="width:24.5%"><col style="width:25.5%"><col style="width:25%"><col style="width:25%"></colgroup>
+  <tr><td class="l">고객명</td><td class="v">${c.name}</td><td class="l">고객코드</td><td class="v">${c.code}</td></tr>
+  <tr><td class="l">고객유형</td><td class="v">${c.type}</td><td class="l">작업 휴대전화</td><td class="v">${c.mobile}</td></tr>
+  <tr><td class="l">주소</td><td class="v" colspan="3">${c.addr}</td></tr>
+  <tr><td class="l">결제정보</td><td class="v" colspan="3">${c.pay}</td></tr>
+  <tr><td class="l">미수금액(전월기준)</td><td class="v" colspan="3">${c.unpaid}</td></tr>
+  <tr><td class="l">미수 상세내역</td><td class="v" colspan="3">${c.unpaidDetail}</td></tr>
+  <tr><td class="l">당월 서비스 금액</td><td class="v" colspan="3">${c.amount}</td></tr>
+  <tr><td class="l">총 수금 필요 금액</td><td class="b" colspan="3">${c.total}</td></tr></table>`;};
+
+/* ================= 1안 ================= */
+function v1p1(s,r){
+  const insp=`<table class="t"><colgroup><col style="width:14%"><col style="width:42%"><col></colgroup>
+    <tr><th>구분</th><th>점검항목</th><th>상세내용</th></tr>
+    ${s.q.map((q,i)=>`<tr>${i==0?'<td class="l" rowspan="4">문진</td>':''}<td class="k pad">${q}</td><td class="v pad">${r.q[i]}</td></tr>`).join('')}
+    ${s.d.map((q,i)=>`<tr>${i==0?'<td class="l" rowspan="3">진단</td>':''}<td class="k pad">${q}</td><td class="v pad">${r.d[i]}</td></tr>`).join('')}</table>`;
+  return `<div class="sheet rp">${header(r)}<div class="rbody" style="--rh:34px">${GREET}
+    ${sec(s.tab1,tActions(r),40)}${sec('사전 조사 결과 안내',insp,34)}</div></div>`;
+}
+function v1p2(s,r){
+  const more=`<table class="t" style="margin-top:-1px"><colgroup><col style="width:40%"><col></colgroup>
+    <tr><td class="l" style="background:#fff">세스코멤버스</td><td class="v c">${s.member}</td></tr>
+    <tr><td class="hl">${s.nextLabel}</td><td class="b c">${r.next}</td></tr></table>`;
+  return `<div class="sheet rp">${header(r)}<div class="rbody" style="--rh:28px;--gap:26px">
+    ${sec('서비스 시간',tTime(r))}${sec('세스코 직원 정보 및 연락망 안내',tStaff(s))}
+    ${sec('당일 서비스 내용',tContract(s)+more)}${sec('고객 확인 및 의견',tConfirm(r))}
+    ${sec('기타 계약 관련 정보 안내',tEtc(s))}</div></div>`;
+}
+function backTop(m){return `<div class="ttl">CESCO INFORMATION DESK</div>${months(m)}`;}
+const pestHead=`<div class="bsec" style="--bgap:26px"><div class="tab">${ICON_BUG}해충 예보</div><h3>이번 달 주목해야 하는 <em>해충</em>은?</h3></div>`;
+const newsHead=n=>`<div class="bsec"><div class="tab">${ICON_DOC}세스코 뉴스</div><h3>${n.head[0]}<em>${n.head[1]}</em>${n.head[2]}</h3></div>`;
+function v1back(m,M){
+  const card=p=>`<div class="pc"><div class="ph">${slot(p.name+' 사진 ①<br>(승인 이미지)')}${slot(p.name+' 사진 ②<br>(승인 이미지)')}</div>
+    <div class="tx"><h4>${p.name}</h4><ul>${p.traits.map(t=>`<li>${t}</li>`).join('')}</ul>
+    <dl class="kv"><dt>피해</dt><dd>${p.damage}</dd></dl>
+    <dl class="kv"><dt>방제<br>방법</dt><dd>${p.how.map((h,i)=>`<p>${circ[i]} ${h}</p>`).join('')}</dd></dl></div></div>`;
+  const n=M.news,p=M.promo;
+  return `<div class="sheet bk"><div class="inner">${backTop(m)}${pestHead}
+    <div class="pp">${M.pests.map(card).join('')}</div>
+    ${newsHead(n)}<div class="news"><p class="intro">${n.intro}</p>
+      ${n.v1.map(t=>`<h5>${t.h}</h5>${t.p.map(x=>`<p>${x}</p>`).join('')}`).join('')}
+      <p class="src">${n.src.join('<br>')}</p></div></div>
+    <div class="promo"><div class="strip">${p.strip}</div><div class="pn">${p.name}</div>
+      <div class="mo">${TBD('프로모션명 확정 후 기입')}</div>
+      <div class="per"><b>기간</b> | ${TBD('기간 확정 후 기입')}</div>
+      <div class="bens"><div><small>☑ 혜택 01.</small><p>${TBD('혜택 확정 후 기입')}<em>* 조건·예외 문구 자리</em></p></div>
+        <div><small>☑ 혜택 02.</small><p>${TBD('혜택 확정 후 기입')}<em>* 조건·예외 문구 자리</em></p></div></div>
+      <div class="pbar">＋ ${TBD('추가 혜택 확정 후 기입')}<br>＋ ${TBD('추가 혜택 확정 후 기입')}</div>
+      ${slot(p.img,'pimg')}<div class="chk">${p.checks.map(c=>`<span>${c}</span>`).join('')}</div></div>
+    <div class="pfoot">* 유의사항은 승인된 프로모션 약관 원문을 전체 기입합니다. * 할인율, 쿠폰, 제휴카드 혜택은 조건과 예외 문구를 함께 표기합니다.</div></div>`;
+}
+
+/* ================= 2안 ================= */
+function v2p1(s,r){
+  const sum=r.summary.length?sec('오늘의 서비스 요약',`<div class="sum" style="--n:${r.summary.length}">${r.summary.map(x=>`<div><small>${x[0]}</small><p>${x[1]}</p></div>`).join('')}</div>`,30):'';
+  const longest=Math.max(...r.q.concat(r.d).map(x=>x.length));
+  let insp;
+  if(longest>24){ // stacked_table: 값이 길면 원본형 3열 표
+    insp=`<table class="t"><colgroup><col style="width:14%"><col style="width:38%"><col></colgroup>
+      <tr><th>구분</th><th>점검항목</th><th>상세내용</th></tr>
+      ${s.q.map((q,i)=>`<tr>${i==0?'<td class="l" rowspan="4">고객 문진</td>':''}<td class="k pad">${q}</td><td class="v pad">${r.q[i]}</td></tr>`).join('')}
+      ${s.d.map((q,i)=>`<tr>${i==0?'<td class="l" rowspan="3">현장 진단</td>':''}<td class="k pad">${q}</td><td class="v pad">${r.d[i]}</td></tr>`).join('')}</table>`;
+  }else{
+    const mini=(title,labels,vals)=>`<table class="t"><colgroup><col style="width:56%"><col></colgroup><tr><th colspan="2">${title}</th></tr>
+      ${labels.map((q,i)=>`<tr><td class="k pad" style="background:#FAFAFA;font-size:11px">${q}</td><td class="v pad">${vals[i]}</td></tr>`).join('')}</table>`;
+    insp=`<div class="duo">${mini('고객 문진',s.q,r.q)}${mini('현장 진단',s.d,r.d)}</div>`;
+  }
+  const act=`<table class="t"><colgroup><col style="width:26%"><col></colgroup>
+    <tr><th>장비·자재 / 작업 구분</th><th>조치 내용</th></tr>
+    ${r.items.map(i=>`<tr><td class="k pad">${i[0]}</td><td class="v pad" style="font-size:10.8px">${i[1]}</td></tr>`).join('')}</table>`;
+  return `<div class="sheet rp">${header(r)}<div class="rbody" style="--rh:32px;--gap:28px">${greet2(s)}
+    ${sum}${sec('사전 조사 및 점검 결과',insp)}${sec('오늘 실시한 서비스',act)}</div></div>`;
+}
+function v2p2(s,r){
+  const after=r.aftercare.length?sec('서비스 후 관리 안내',`<table class="t"><colgroup><col style="width:38%"><col></colgroup>
+    <tr><th>확인된 현장 사항</th><th>고객님께 권하는 조치</th></tr>
+    ${r.aftercare.map(a=>`<tr><td class="k pad">${a[0]}</td><td class="v pad">${a[1]}</td></tr>`).join('')}</table>`):'';
+  const next=`<div class="stack3">${tTime(r)}${tStaff(s)}</div>`;
+  const contract=tContract(s)+`<table class="t" style="margin-top:-1px"><colgroup><col style="width:40%"><col></colgroup>
+    <tr><td class="l">세스코멤버스</td><td class="v c">${s.member}</td></tr></table>`;
+  const roomy=!r.aftercare.length;
+  return `<div class="sheet rp">${header(r)}<div class="rbody" style="--rh:${roomy?28:26}px;--gap:${roomy?24:18}px;--sig:${roomy?104:84}px">
+    ${after}${sec('당일 서비스 및 담당자 안내',`<div class="stack3">${tTime(r)}<div>${contract}</div>${tStaff(s)}</div>`)}
+    ${sec('고객 확인 및 의견',tConfirm(r))}${sec('기타 계약 관련 정보 안내',tEtc(s))}</div></div>`;
+}
+function v2back(m,M){
+  const n=M.news,p=M.promo; let pest;
+  if(M.v2pest==='P1'){
+    const x=M.pests[0];
+    pest=`<div class="p1">${slot(x.name+' 대표 사진<br>(종 검증된 승인 이미지)')}<div class="tx"><h4>${x.name}</h4>
+      <div class="grp"><b>이번 달 활동 특징</b>${x.traits.map(t=>`<p class="np">${t}</p>`).join('')}</div>
+      <div class="cols"><div class="grp"><b>피해·주의점</b><p class="np">${x.damage}</p></div>
+      <div class="grp"><b>예방·관리 방법</b>${x.how.map((h,i)=>`<p>${circ[i]} ${h}</p>`).join('')}</div></div></div></div>`;
+  }else{
+    pest=`<div class="pp">${M.pests.map(x=>`<div class="pc"><div class="ph">${slot(x.name+' 대표 사진<br>(승인 이미지)')}</div>
+      <div class="tx"><h4>${x.name}</h4><div class="grp"><b>활동 특징</b>${x.traits.map(t=>`<p class="np">${t}</p>`).join('')}</div>
+      <div class="grp"><b>피해·주의점</b><p class="np">${x.damage}</p></div>
+      <div class="grp"><b>예방·관리 방법</b>${x.how.map((h,i)=>`<p>${circ[i]} ${h}</p>`).join('')}</div></div></div>`).join('')}</div>`;
+  }
+  const news=n.v2.map(t=>`<h5>${t.h}</h5>${t.p?`<p>${t.p}</p>`:''}${t.list?`<ol>${t.list.map(l=>`<li><b>${l[0]}</b>${l[1]}</li>`).join('')}</ol>`:''}`).join('');
+  return `<div class="sheet bk v2b"><div class="inner">${backTop(m)}${pestHead}${pest}
+    ${newsHead(n)}<div class="news"><p class="intro">${(n.v2intro||n.intro).replace(/<\/?b>/g,'')}</p>${news}<p class="src">${n.src.join('<br>')}</p></div></div>
+    <div class="sol"><div class="kind">제품 소개</div><h4>${p.v2head}</h4><div class="pn">${p.name}</div>
+      <ul class="pods">${p.pods.map(x=>`<li><b>${x[0]}</b><span>${x[1]}</span></li>`).join('')}</ul>
+      ${slot(p.img,'pimg')}<div class="cta">${p.cta[0]}<small>${p.cta[1]}</small></div>
+      <div class="nt">${p.note}</div></div></div>`;
+}
+
+/* ================= 화면 구성 ================= */
+const state={svc:'pest',mon:'11',view:'cmp'};
+const grid=document.getElementById('grid'), stage=document.getElementById('stage');
+function render(){
+  const s=SVC[state.svc], r=REPORT[state.svc+'-'+state.mon], M=MONTH[state.mon], m=+state.mon;
+  const after=r.aftercare.length>0;
+  const rows=[
+    ['앞면 1P','작업 내역 → 사전 조사 결과. 원본 순서와 하단 여백 유지', v1p1(s,r),
+     '오늘의 서비스 요약 신설 → 점검 결과 → 실시한 조치 순서', v2p1(s,r)],
+    ['앞면 2P','서비스 시간 → 직원 → 당일 서비스 내용 → 고객 확인 → 기타 계약', v1p2(s,r),
+     (after?'서비스 후 관리 안내 → ':'(관리 안내 없음: 숨김) ')+'당일 서비스·담당자(시간, 계약기기, 담당자 통합) → 고객 확인 → 기타 계약', v2p2(s,r)],
+    ['뒷면 Information Desk','해충 2종 × 사진 2장, 기사형 뉴스(소제목 2개), 단일 광고 배너', v1back(m,M),
+     `해충 ${M.v2pest==='P1'?'1종 집중형(P1)':'2종 비교형(P2)'}, 뉴스 ${M.news.v2mode==='N3'?'실천 강화형(N3)':'기본형(N2)'}, 제품 소개형(C-PRODUCT)`, v2back(m,M)]
+  ];
+  grid.innerHTML=`
+    <div class="cell c1 planhead"><h2><b>1안</b>원본 재현형</h2><p>원본의 섹션 순서, 고정 문구, 표 구성을 그대로 두고 데이터만 교체</p></div>
+    <div class="cell c2 planhead"><h2><b>2안</b>구조 개선형</h2><p>같은 헤더, 탭, 표를 유지하면서 읽는 순서와 모듈 구성을 조정</p></div>`+
+    rows.map(x=>`
+    <div class="cell c1"><div class="pagelabel"><span class="tag">1안 · ${x[0]}</span><span class="what">${x[1]}</span></div><div class="wrap">${x[2]}</div></div>
+    <div class="cell c2"><div class="pagelabel"><span class="tag">2안 · ${x[0]}</span><span class="what">${x[3]}</span></div><div class="wrap">${x[4]}</div></div>`).join('');
+  fit();
+}
+function fit(){document.querySelectorAll('.wrap').forEach(w=>{const k=w.clientWidth/794;if(k>0)w.firstElementChild.style.transform=`scale(${k})`;});}
+document.querySelectorAll('.seg').forEach(seg=>seg.addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  state[seg.dataset.key]=b.dataset.val;
+  if(seg.dataset.key==='view'){stage.dataset.view=b.dataset.val;fit();} else render();
+}));
+if(window.matchMedia('(max-width:900px)').matches){
+  state.view='v1';stage.dataset.view='v1';
+  document.querySelectorAll('[data-key="view"] button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.val==='v1'));
+}
+new ResizeObserver(fit).observe(grid);
+window.addEventListener('resize',fit);
+render();
+</script>
+</body>
+</html>
