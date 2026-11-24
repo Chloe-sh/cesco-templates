@@ -858,7 +858,7 @@ ${mtabs}
 <div class="swbar"><button type="button" class="swnav" data-d="p" aria-label="이전 카드">‹</button><div class="dots">${cards.map((c,ci)=>`<i class="${ci===0?'on':''}"></i>`).join('')}</div><button type="button" class="swnav" data-d="n" aria-label="다음 카드">›</button></div>
 <div class="hcsum">세스코가 ${reg.date}에 직접 체크한 ${t.key} 위생 정보 ${t.hcards.cards.length}가지 · 위생 등급 <b>A</b></div>
 <div class="tools-wrap in-hc">${toolsHtml}</div>
-${typ==='A'?'<div class="grid">'+ms+'</div>':''}</div>`);
+</div>`);
   const bodyC=`<div class="dp">
 <div class="hr"><div class="pho">사진 자리 · 대표 세로 컷 (사장님 또는 점검 촬영)</div><div class="ov"><span class="lab">${fill(t.hero_lab,reg)}</span><h1>${t.hero}</h1><div class="sub">${reg.name}</div></div></div>
 <div class="sec"><span class="lab">ABOUT</span><h2>${t.about_h}</h2><p>${mark(s.about, fill(t.about,reg))}</p><div class="strip">${strip}</div></div>
@@ -875,11 +875,10 @@ ${say}
   const gauges=hc.metrics.map((m,mi)=>{
     let sel=s.sel.filter(i=>t.items[i].metric===mi); if(!sel.length){ const d0=t.items.findIndex(it=>it.metric===mi); if(d0>=0) sel=[d0]; }
     const why=sel.slice(0,1).map(i=>`<div class="why1">${t.items[i].title.replace(/<br>/g,' ')}</div>`).join('');
-    return `<div class="r"><div class="k">${m.k}</div><div class="mt" style="margin-top:3px"><div class="mrow"><b>${m.v}</b>${m.u?'<small>'+m.u+'</small>':''}</div><div class="mb"><i style="width:${m.pct}%"></i></div><div class="ml"><span>0</span><span>${m.base}</span></div></div>${why}</div>`;}).join('');
+    return `<div class="r"><div class="k">${m.k}</div><div class="mt" style="margin-top:3px"><div class="mrow"><b>${m.v}</b>${m.u?'<small>'+m.u+'</small>':''}</div><div class="mb"><i style="width:${m.pct}%"></i></div><div class="ml"><span>0</span><span>${m.base}</span></div></div></div>`;}).join('');
   const rest=s.sel.filter(i=>t.items[i].metric<0);
   const restList = rest.length ? `<div class="card list"><div class="hd"><b>${t.owner}이 꼼꼼히 신경 쓰시는 부분</b><span>운영 정보</span></div>${rest.map(i=>`<div class="row"><span style="width:8px;height:8px;border-radius:50%;background:#C9D0D8;display:block;margin:0 auto"></span><div class="k">${t.items[i].title.replace(/<br>/g,' ')}</div><span class="tag o">매장 기록</span></div>`).join('')}</div>` : '';
   const bodyA=`<div class="body">
-<div class="card intro"><div class="byline"><div class="av"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0072CE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><b>${reg.name}</b></div></div><p style="margin-top:8px">${mark(s.about, fill(t.about,reg)).replace(/^[^.<]*에 있는 [^.<]*이에요\.\s*/,'').replace(/\s*세스코가 직접 확인하거나 측정한 내용은 이 페이지에서 구분해 볼 수 있어요\.\s*$/,'')}</p></div>
 <div class="sh2"><b>얼마나 깨끗할까요?</b><small>${reg.date} 세스코 실측 · 측정값과 기준</small></div>
 <div class="res">${gauges}</div>
 ${restList}
