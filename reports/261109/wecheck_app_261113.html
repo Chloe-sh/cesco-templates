@@ -720,14 +720,14 @@ body.xapp{background:#DDE1E6;overflow:hidden}
   <aside class="xpanel" id="xpanel">
     <button type="button" class="xclose" id="xclose" aria-label="닫기">✕</button>
     <h1><small>위쳌 사업장 상세</small>앱 체험판 · 인터뷰 등록</h1>
-    <p class="xd">고객 화면 탭에서 업종과 화면 유형을 골라 보세요. 사업주 인터뷰 등록 탭에서 질문·말투·답변을 고르면 상세페이지형과 인터뷰형에 함께 반영돼요.</p>
+    <p class="xd">고객 화면 탭에서 업종과 화면 유형을 골라 보세요. 사업주 인터뷰 등록 탭에서 질문·말투·답변을 고르면 인터뷰형 화면에 반영돼요.</p>
     <div class="xlab">업종</div>
     <div class="xseg" id="xbiz"></div>
     <div class="xtabs" id="xtabs"><button type="button" data-xp="view" class="on">고객 화면</button><button type="button" data-xp="reg">사업주 인터뷰 등록</button></div>
     <div id="xp-view"><div class="xlab">화면 유형</div>
     <div class="xseg" id="xtyp"></div>
     <div class="xqr" id="xqr"><img alt="휴대폰으로 열기 QR" id="xqrimg"><div><b>휴대폰으로 보기</b>QR을 찍으면 지금 고른 화면이 휴대폰 전체 화면으로 열립니다.</div></div></div>
-    <div id="xp-reg" hidden><div class="xseg" id="xtyp2"></div>
+    <div id="xp-reg" hidden>
     <div id="wchoose" style="max-height:48vh;overflow:auto;background:white;border-radius:12px;padding:12px;margin-bottom:12px"></div></div>
   </aside>
   <div class="xdevice">
@@ -980,7 +980,6 @@ ${typ==='A'?'<div class="grid">'+ms+'</div>':''}</div>`);
 <div class="sec"><span class="lab">ABOUT</span><h2>${t.about_h}</h2><p>${mark(s.about, fill(t.about,reg))}</p><div class="strip">${strip}</div></div>
 <div class="sec alt" style="padding-bottom:10px"><span class="lab">POINT</span><h2>${t.pt_h}</h2></div>
 ${pts}
-${(typeof WI!=='undefined'&&WI[bk]&&WI[bk].published.ids.length)?`<div class="sec"><span class="lab">INTERVIEW</span><h2>${t.owner}에게 직접 물었어요</h2></div><div class="body" style="padding-top:0"><div class="card iv">${WI[bk].published.ids.map(id=>`<div class="it"><div class="q">${esc(WBANK[id].q)}</div><div class="a">${esc(WI[bk].published.answers[id]||'').split(String.fromCharCode(10)).join('<br>')}</div></div>`).join('')}</div></div>`:''}
 ${say}
 <div style="height:8px"></div>
 <div class="rep"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A3668" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><div class="t">위생점검 리포트 No. ${reg.report}<small>세스코 전문가 현장 측정·서명 원본</small></div><a class="btn sec" href="#">원본 보기</a></div>
@@ -1142,9 +1141,8 @@ const WI={}; for(const [k,c] of Object.entries(WCFG)){const tone=k==='chicken'?1
   function baseTop(){ return mob()? 0 : sc.getBoundingClientRect().top; }
   document.getElementById('xbiz').innerHTML=BIZ.map(function(b){ return '<button type="button" data-xbiz="'+b+'">'+D[b].key+'</button>'; }).join('');
   document.getElementById('xtyp').innerHTML=TYPES.map(function(x){ return '<button type="button" data-xt="'+x[0]+'">'+x[1]+'</button>'; }).join('');
-  document.getElementById('xtyp2').innerHTML=TYPES.filter(function(x){ return x[0]!=='A'; }).map(function(x){ return '<button type="button" data-xt="'+x[0]+'">'+x[1]+'</button>'; }).join('');
   var xpTab='view';
-  document.getElementById('xtabs').addEventListener('click',function(e){ var b=e.target.closest('[data-xp]'); if(!b) return; xpTab=b.dataset.xp; document.querySelectorAll('#xtabs [data-xp]').forEach(function(x){ x.classList.toggle('on', x===b); }); document.getElementById('xp-view').hidden=xpTab!=='view'; document.getElementById('xp-reg').hidden=xpTab!=='reg'; if(xpTab==='reg'&&ty==='A') ty='B'; paint(); });
+  document.getElementById('xtabs').addEventListener('click',function(e){ var b=e.target.closest('[data-xp]'); if(!b) return; xpTab=b.dataset.xp; document.querySelectorAll('#xtabs [data-xp]').forEach(function(x){ x.classList.toggle('on', x===b); }); document.getElementById('xp-view').hidden=xpTab!=='view'; document.getElementById('xp-reg').hidden=xpTab!=='reg'; if(xpTab==='reg') ty='B'; paint(); });
   function renderChooser(){
     const el=document.getElementById('wchoose'), w=WI[biz], cfg=WCFG[biz];
     el.style.display='block';
@@ -1153,7 +1151,7 @@ const WI={}; for(const [k,c] of Object.entries(WCFG)){const tone=k==='chicken'?1
     if(w.step===1){content+='<h3>위생 정보에 실을 인터뷰 질문을 골라 주세요.</h3><p>2~3개 선택 · '+w.ids.length+'/3개</p>';for(const g of [...new Set(cfg.ids.map(group))]){content+='<h4>'+g+'</h4>'+cfg.ids.filter(id=>group(id)===g).map(id=>'<label class="wi-choice"><input type="checkbox" data-wid="'+id+'" '+(w.ids.includes(id)?'checked':'')+(!w.ids.includes(id)&&w.ids.length>=3?' disabled':'')+'><span>'+esc(WBANK[id].q)+'</span></label>').join('');}content+='<button data-wa="next" '+(w.ids.length<2?'disabled':'')+'>다음</button>';}
     if(w.step===2){content+='<h3>'+D[biz].owner+' 말투와 가장 가까운 톤을 골라 주세요.</h3><h4>Q. '+esc(WBANK[w.ids[0]].q)+'</h4>'+WVOICE.map((v,i)=>'<label class="wi-choice voice"><input type="radio" name="voice" data-wtone="'+i+'" '+(w.tone===i?'checked':'')+'><span><b>'+v+'</b><br>'+esc(WBANK[w.ids[0]].voices[i])+'</span></label>').join('')+'<div class="wi-nav"><button data-wa="back">이전</button><button data-wa="examples">다음</button></div>';}
     if(w.step===3){content+='<h3>우리 '+D[biz].place+'에 맞게 답변을 다듬어 주세요.</h3>'+w.ids.map(id=>'<div class="wi-edit"><b>'+esc(WBANK[id].q)+'</b><p class="fine">선택한 톤: '+WVOICE[w.tone]+(WBANK[id].exampleCount===2?' · 공통 예시 2종 중 제공':'')+'</p><button data-wexample="'+id+'">이 답변 예시 사용</button><textarea data-wanswer="'+id+'" rows="4" placeholder="답변을 작성하세요">'+esc(w.answers[id]||'')+'</textarea></div>').join('')+'<div class="wi-nav"><button data-wa="back">이전</button><button data-wa="preview">미리보기</button></div>';}
-    if(w.step===4){content+='<h3>이대로 등록할까요?</h3><p>오른쪽 소비자 화면에 미리보기로 반영했어요.</p><label class="wi-choice"><input type="checkbox" id="wi-confirm"><span>실제 '+D[biz].place+' 관리 내용과 일치합니다.</span></label><div class="wi-nav"><button data-wa="back">답변 수정</button><button data-wa="done" disabled>등록 시연</button></div><p class="fine">실제 등록·저장·서버 전송은 하지 않습니다.</p>';}
+    if(w.step===4){content+='<h3>이대로 등록할까요?</h3><p>오른쪽 소비자 화면에 미리보기로 반영했어요.</p>'+w.ids.map(id=>'<div class="wi-edit"><b>Q. '+esc(WBANK[id].q)+'</b><p style="color:#333;margin:6px 0 0">'+esc(w.answers[id]||'').split(String.fromCharCode(10)).join('<br>')+'</p></div>').join('')+'<label class="wi-choice"><input type="checkbox" id="wi-confirm"><span>실제 '+D[biz].place+' 관리 내용과 일치합니다.</span></label><div class="wi-nav"><button data-wa="back">답변 수정</button><button data-wa="done" disabled>등록 시연</button></div><p class="fine">실제 등록·저장·서버 전송은 하지 않습니다.</p>';}
     el.innerHTML=content;
   }
   const chooser=document.getElementById('wchoose');
